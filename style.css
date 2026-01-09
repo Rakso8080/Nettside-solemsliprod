@@ -1,0 +1,268 @@
+/* --- Grunnoppsett --- */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  color: #111;
+  line-height: 1.6;
+  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+  scroll-behavior: smooth;
+}
+
+/* --- Navigasjon --- */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* match index.html spacing */
+  padding: 15px 25px;
+  background: rgba(255,255,255,0.8);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  font-weight: 700;
+  /* use the same size as index.html (1.8rem) for consistency */
+  font-size: 1.8rem;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 25px; /* match index.html gap */
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  font-size: 1rem; /* match index.html */
+  transition: color 0.3s, transform 0.2s;
+}
+
+/* shared fade-in utility (used by pages) */
+.fade-in {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.nav-links a:hover,
+.nav-links .active {
+  color: #0073e6;
+  transform: scale(1.05);
+}
+
+/* --- Hero --- */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80px 20px;
+}
+
+.hero-img {
+  width: 100%;
+  max-width: 900px;
+  border-radius: 16px;
+  margin-bottom: 30px;
+  transition: transform 0.4s ease;
+}
+
+.hero-img:hover {
+  transform: scale(1.03);
+}
+
+.hero-text {
+  text-align: center;
+  max-width: 700px;
+}
+
+.hero-text h1 {
+  font-size: 2.4rem;
+  margin-bottom: 15px;
+}
+
+.hero-text p {
+  font-size: 1.1rem;
+  color: #333;
+}
+
+/* --- Video-seksjon --- */
+.video {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.video iframe {
+  width: 100%;
+  max-width: 800px;
+  height: 450px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.video iframe:hover {
+  transform: scale(1.03);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+/* --- Om oss --- */
+.about {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+  flex-wrap: wrap;
+  padding: 80px 20px;
+}
+
+.about-img {
+  width: 400px;
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+}
+
+.about-img:hover {
+  transform: scale(1.03);
+}
+
+.about-text {
+  max-width: 500px;
+}
+
+/* --- Prosjekter / Galleri --- */
+.projects {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.gallery {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.gallery-images {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.gallery img, .gallery iframe {
+  width: 350px;
+  height: 230px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  transition: transform 0.4s, box-shadow 0.4s;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.gallery img:hover, .gallery iframe:hover {
+  transform: scale(1.08) rotate(-2deg);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.25);
+}
+
+.gallery img.visible, .gallery iframe.visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* --- Kontakt --- */
+.contact {
+  text-align: center;
+  padding: 80px 20px;
+  background: rgba(255,255,255,0.85);
+  border-radius: 15px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  max-width: 500px;
+  margin: 0 auto;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.2);
+}
+
+.contact h1 {
+  margin-bottom: 20px;
+  color: #0073e6;
+}
+
+.contact p {
+  font-size: 1.1rem;
+  margin: 10px 0;
+}
+
+.contact a {
+  color: #0073e6;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s, transform 0.2s;
+}
+
+.contact a:hover {
+  color: #005bb5;
+  transform: scale(1.05);
+}
+
+/* --- Footer --- */
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #f6f6f6;
+  color: #666;
+  font-size: 14px;
+}
+
+/* --- Animations --- */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Responsive --- */
+@media screen and (max-width: 768px) {
+  .about-img {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .about-text {
+    max-width: 100%;
+  }
+
+  .gallery img, .gallery iframe {
+    width: calc(50% - 20px);
+    height: auto;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .hero, .video, .about, .projects, .contact {
+    padding: 40px 20px;
+  }
+
+  .gallery img, .gallery iframe {
+    width: 100%;
+    height: auto;
+  }
+}
+

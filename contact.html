@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kontakt – Solemsli Productions</title>
+<link rel="stylesheet" href="style.css">
+<style>
+/* --- Nav --- */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  height: 70px;
+  background: #f0f0f0cc;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  opacity: 0;
+  transform: translateY(-30px);
+  animation: fadeInNav 1.2s 0.2s forwards;
+}
+@keyframes fadeInNav {
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+}
+.nav-links a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+.nav-links a:hover,
+.nav-links .active {
+  color: #0073e6;
+}
+
+/* --- Body --- */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+}
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* --- Main kontaktkort --- */
+main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+.contact {
+  background: #ffffffcc;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  text-align: center;
+  max-width: 500px;
+  width: 100%;
+  animation: fadeInCard 1s ease forwards;
+  opacity: 0;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+@keyframes fadeInCard {
+  from {opacity: 0; transform: translateY(20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+.contact:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.2);
+}
+.contact h1 {
+  margin-bottom: 20px;
+  color: #0073e6;
+}
+.contact p {
+  font-size: 1.1rem;
+  margin: 15px 0;
+}
+.contact a {
+  color: #0073e6;
+  text-decoration: none;
+  font-weight: 500;
+  display: inline-block;
+  margin: 5px 0;
+  transition: color 0.3s, transform 0.2s;
+}
+.contact a:hover {
+  color: #005bb5;
+  transform: scale(1.05);
+}
+.contact span {
+  display: inline-block;
+  transition: transform 0.3s;
+}
+.contact p:hover span {
+  transform: scale(1.2);
+}
+
+/* --- Footer --- */
+footer {
+  width: 100%;
+  text-align: center;
+  padding: 20px 0;
+  background: #f7f7f7;
+  margin-top: auto;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* --- Responsive --- */
+@media screen and (max-width: 480px) {
+  .contact {
+    padding: 30px 20px;
+  }
+}
+</style>
+</head>
+<body>
+<header>
+  <nav>
+    <div class="logo">Solemsli Productions</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Hjem</a></li>
+      <li><a href="about.html">Om meg</a></li>
+      <li><a href="projects.html">Prosjekter</a></li>
+      <li><a href="contact.html" class="active">Kontakt</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <section class="contact">
+    <h1>Kontakt meg!</h1>
+    <p><span>📧</span> Send meg ein e-post på <a href="mailto:rakso8080@gmail.com">rakso8080@gmail.com</a></p>
+    <p><span>📸</span> Finn meg på Instagram <a href="https://www.instagram.com/rakso_poductions/" target="_blank">@Solemsli_Production</a></p>
+  </section>
+</main>
+
+<footer>
+  <p>© 2026 Solemsli Productions</p>
+</footer>
+</body>
+</html>
