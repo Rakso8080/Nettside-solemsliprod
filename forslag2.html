@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Solemsli Production — Hjem</title>
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <link rel="stylesheet" href="forslag2.css" />
+</head>
+<body class="page" data-page="home">
+
+  <!-- NAV -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-left">
+      <a class="logo" href="forslag2.html">Solemsli Production</a>
+    </div>
+
+    <ul class="nav-center">
+      <li><a href="forslag2.html" class="nav-link active">Hjem</a></li>
+      <li><a href="blog2.html" class="nav-link">Blogg</a></li>
+      <li><a href="om2.html" class="nav-link">Om meg</a></li>
+      <li><a href="kontakt2.html" class="nav-link">Kontakt</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <a href="login.html" class="login-link">Login</a>
+      <a href="#" aria-label="instagram"><i class="fa-brands fa-instagram"></i></a>
+      <a href="#" aria-label="twitter"><i class="fa-brands fa-twitter"></i></a>
+    </div>
+  </nav>
+
+  <!-- HERO (spacer, beholder hvitrom) -->
+  <header class="hero">
+    <!-- Blank for å matche screenshot — vi viser kun galleri nedenfor -->
+  </header>
+
+  <!-- GALLERY -->
+  <main class="container">
+    <section class="masonry" id="masonry">
+      <!-- Bruk mange <figure> for variasjon i høyde -->
+      <figure class="masonry-item"><img src="images/326e6480-b879-4cf9-9e84-a5a2a2f72ba3.png" alt="foto 1" loading="lazy"></figure>
+      <figure class="masonry-item"><img src="images/img2.jpg" alt="foto 2" loading="lazy"></figure>
+      <figure class="masonry-item tall"><img src="images/img3.jpg" alt="foto 3" loading="lazy"></figure>
+      <figure class="masonry-item"><img src="images/img4.jpg" alt="foto 4" loading="lazy"></figure>
+      <figure class="masonry-item wide"><img src="images/img5.jpg" alt="foto 5" loading="lazy"></figure>
+      <figure class="masonry-item"><img src="images/img6.jpg" alt="foto 6" loading="lazy"></figure>
+      <figure class="masonry-item tall"><img src="images/img7.jpg" alt="foto 7" loading="lazy"></figure>
+      <figure class="masonry-item"><img src="images/img8.jpg" alt="foto 8" loading="lazy"></figure>
+      <figure class="masonry-item"><img src="images/img9.jpg" alt="foto 9" loading="lazy"></figure>
+      <!-- Duplicate some to fill siden, eller last flere via JS -->
+    </section>
+
+    <div class="load-more-wrap">
+      <button id="loadMore" class="btn">Last flere</button>
+    </div>
+  </main>
+
+  <!-- LIGHTBOX -->
+  <div id="lightbox" class="lightbox" aria-hidden="true">
+    <button class="lb-close" aria-label="Lukk (ESC)">✕</button>
+    <div class="lb-inner">
+      <img src="" alt="" id="lightbox-img">
+      <div class="lb-caption" id="lightbox-caption"></div>
+    </div>
+    <button class="lb-prev" aria-label="Forrige">‹</button>
+    <button class="lb-next" aria-label="Neste">›</button>
+  </div>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>

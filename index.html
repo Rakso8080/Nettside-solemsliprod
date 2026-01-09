@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solemsli Productions</title>
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Fade-in animation -->
+  <style>
+    .fade-in {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Smooth full-page fade on load */
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      margin: 0;
+      animation: fadeInBody 1.2s;
+    }
+    @keyframes fadeInBody {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* NAVIGATION */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 25px;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      transition: transform 0.3s;
+    }
+    .logo:hover {
+      transform: scale(1.06);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 25px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #111;
+      font-weight: 500;
+      font-size: 1rem;
+    }
+
+    /* MOBILE NAV */
+    @media (max-width: 750px) {
+      .nav-links {
+        gap: 15px;
+      }
+      .logo {
+        font-size: 1.4rem;
+      }
+    }
+
+    /* HERO SECTION */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      padding: 20px;
+    }
+
+    .hero-img {
+      width: 100%;
+      max-width: 850px;
+      border-radius: 16px;
+      margin-bottom: 20px;
+    }
+
+    .hero-text {
+      max-width: 700px;
+      text-align: center;
+    }
+
+    .hero-text h1 {
+      font-size: 2rem;
+      margin: 0;
+    }
+
+    @media (max-width: 600px) {
+      .hero-text h1 {
+        font-size: 1.5rem;
+      }
+    }
+
+    /* VIDEO SECTION */
+    .video {
+      width: 100%;
+      text-align: center;
+      padding: 50px 20px;
+    }
+
+    .video iframe {
+      width: 100%;
+      max-width: 750px;
+      height: 350px;
+      border-radius: 12px;
+      border: none;
+    }
+
+    @media (max-width: 600px) {
+      .video iframe {
+        height: 220px;
+      }
+    }
+
+    /* SERVICES */
+    .services {
+      text-align: center;
+      padding: 30px 20px;
+    }
+
+    .services p {
+      margin: 6px 0;
+      font-size: 1.1rem;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #f6f6f6;
+      color: #666;
+      font-size: 14px;
+      margin-top: auto;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="fade-in">
+    <nav>
+      <div class="logo">Solemsli Productions</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Hjem</a></li>
+        <li><a href="about.html">Om meg</a></li>
+        <li><a href="projects.html">Prosjekter</a></li>
+        <li><a href="contact.html">Kontakt</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- MAIN -->
+  <main>
+
+    <!-- HERO -->
+    <section class="hero fade-in">
+      <img src="_DSC2148 copy.jpg" alt="Dronebilde" class="hero-img">
+      <div class="hero-text">
+        <h1>Profesjonell foto, video og droneproduksjon</h1>
+      </div>
+    </section>
+
+    <!-- VIDEO -->
+    <section class="video fade-in">
+      <h2>Se min showreel</h2>
+      <iframe
+        src="https://www.youtube.com/watch?v=SVARx16jTQg"
+        title="Solemsli Productions showreel"
+        allowfullscreen>
+      </iframe>
+
+      <div class="services fade-in">
+        <h1>Mine tjenester</h1>
+        <p>- Video / bilder med kamera</p>
+        <p>- Dronevideoer / 360° bilder</p>
+        <p>- Eventer</p>
+        <p>- Reklamefilmer</p>
+        <p>- Bedriftsvideoer</p>
+        <p>- Bryllupsfotografi</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="fade-in">
+    <p>© 2026 Solemsli Productions. Alle rettigheter reservert.</p>
+  </footer>
+
+  <!-- SCROLL FADE SCRIPT -->
+  <script>
+    function onScrollFadeIn() {
+      document.querySelectorAll('.fade-in').forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 80) {
+          el.classList.add('visible');
+        }
+      });
+    }
+    window.addEventListener('scroll', onScrollFadeIn);
+    window.addEventListener('DOMContentLoaded', onScrollFadeIn);
+  </script>
+
+</body>
+</html>

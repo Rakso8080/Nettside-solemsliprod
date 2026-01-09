@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projekter – Solemsli Productions</title>
+<link rel="stylesheet" href="style.css">
+<style>
+/* --- Body & Nav --- */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+  opacity: 0;
+  animation: fadeInBody 1s forwards;
+}
+@keyframes fadeInBody {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+header { width: 100%; }
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background: #ffffffcc;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+}
+.logo { font-size: 2rem; font-weight: bold; }
+.nav-links { display: flex; gap: 30px; list-style: none; }
+.nav-links li a { text-decoration: none; color: #333; font-weight: 500; transition: color 0.3s; }
+.nav-links li a:hover,
+.nav-links .active { color: #0180ff; }
+
+/* --- Main & Gallery --- */
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+}
+.projects h1 {
+  margin-bottom: 30px;
+  color: #000000;
+  text-align: center;
+}
+.gallery {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+.gallery-images {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.gallery img, .gallery iframe {
+  width: 350px;
+  height: 230px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  transition: transform 0.4s, box-shadow 0.4s;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(20px);
+}
+/* Hover-effekt */
+.gallery img:hover, .gallery iframe:hover {
+  transform: scale(1.08) rotate(-2deg);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.25);
+}
+/* Fade-in når synlig */
+.gallery img.visible, .gallery iframe.visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+/* Gjør iframe responsive */
+.gallery iframe {
+  aspect-ratio: 16/9;
+  width: 100%;
+  max-width: 350px;
+  height: auto;
+}
+
+/* --- Modal --- */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.8);
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.5s ease;
+}
+.modal-content {
+  position: relative;
+  width: 90%;
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 8px;
+  overflow: hidden;
+  animation: zoomIn 0.5s;
+}
+.modal-content img,
+.modal-content iframe {
+  width: 100%;
+  height: auto;
+  max-height: 90vh;
+  border-radius: 8px;
+}
+@keyframes zoomIn {
+  from {transform: scale(0.6);}
+  to {transform: scale(1);}
+}
+.modal.show {
+  display: flex;
+  opacity: 1;
+}
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  color: #fff;
+  font-size: 35px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+.caption {
+  position: absolute;
+  bottom: 15px;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  font-size: 22px;
+}
+
+/* --- Footer --- */
+footer {
+  width: 100%;
+  text-align: center;
+  padding: 20px 0;
+  background: #f7f7f7;
+  margin-top: auto;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* --- Responsive --- */
+@media screen and (max-width: 768px) {
+  .gallery img, .gallery iframe {
+    width: calc(50% - 15px);
+    height: auto;
+  }
+}
+@media screen and (max-width: 480px) {
+  .gallery img, .gallery iframe {
+    width: 100%;
+    height: auto;
+  }
+}
+</style>
+</head>
+<body>
+<header>
+  <nav>
+    <div class="logo">Solemsli Productions</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Hjem</a></li>
+      <li><a href="about.html">Om meg</a></li>
+      <li><a href="projects.html" class="active">Projekter</a></li>
+      <li><a href="contact.html">Kontakt</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+<section class="projects">
+  <h1>Mine prosjekter</h1>
+
+  <div class="gallery">
+    <!-- YouTube Video -->
+    <iframe src="https://www.youtube.com/embed/kihsArSq2S4" frameborder="0" allowfullscreen onclick="openModal('videoModal1', 'YouTube Video')"></iframe>
+
+    <div class="gallery-images">
+      <img src="_DSC2427 copy.jpg" alt="Prosjekt 2" onclick="openModal('modal1', 'Prosjekt 2')">
+      <img src="_DSC3114 copy.jpg" alt="Prosjekt 3" onclick="openModal('modal2', 'Prosjekt 3')">
+      <img src="DJI_20241005092600_0040_D.jpg" alt="Prosjekt 4" onclick="openModal('modal3', 'Prosjekt 4')">
+      <iframe src="https://www.youtube.com/embed/bDoI1o90tz0" frameborder="0" allowfullscreen onclick="openModal('videoModal2', 'YouTube Video 2')"></iframe>
+    </div>
+
+    <div class="gallery-images">
+      <img src="1000019095.jpg" alt="Prosjekt 5" onclick="openModal('modal4', 'Prosjekt 5')">
+      <img src="1000018507.jpg" alt="Prosjekt 6" onclick="openModal('modal5', 'Prosjekt 6')">
+    </div>
+  </div>
+
+</section>
+</main>
+
+<footer>
+  <p>© 2026 Solemsli Productions</p>
+</footer>
+
+<!-- --- Modals --- -->
+<div id="modal1" class="modal">
+  <span class="close" onclick="closeModal('modal1')">&times;</span>
+  <img src="_DSC2427 copy.jpg" class="modal-content">
+  <div class="caption"></div>
+</div>
+<div id="modal2" class="modal">
+  <span class="close" onclick="closeModal('modal2')">&times;</span>
+  <img src="_DSC3114 copy.jpg" class="modal-content">
+  <div class="caption"></div>
+</div>
+<div id="modal3" class="modal">
+  <span class="close" onclick="closeModal('modal3')">&times;</span>
+  <img src="DJI_20241005092600_0040_D.jpg" class="modal-content">
+  <div class="caption"></div>
+</div>
+<div id="modal4" class="modal">
+  <span class="close" onclick="closeModal('modal4')">&times;</span>
+  <img src="1000019095.jpg" class="modal-content">
+  <div class="caption"></div>
+</div>
+<div id="modal5" class="modal">
+  <span class="close" onclick="closeModal('modal5')">&times;</span>
+  <img src="1000018507.jpg" class="modal-content">
+  <div class="caption"></div>
+</div>
+<div id="videoModal1" class="modal">
+  <span class="close" onclick="closeModal('videoModal1')">&times;</span>
+  <iframe src="https://www.youtube.com/embed/kihsArSq2S4" class="modal-content" frameborder="0" allowfullscreen></iframe>
+  <div class="caption"></div>
+</div>
+<div id="videoModal2" class="modal">
+  <span class="close" onclick="closeModal('videoModal2')">&times;</span>
+  <iframe src="https://www.youtube.com/embed/bDoI1o90tz0" class="modal-content" frameborder="0" allowfullscreen></iframe>
+  <div class="caption"></div>
+</div>
+<div id="videoModal2" class="modal">
+  <span class="close" onclick="closeModal('videoModal2')">&times;</span>
+  <iframe src="https://www.youtube.com/watch?v=v5W0yP4rA0c" class="modal-content" frameborder="0" allowfullscreen></iframe>
+  <div class="caption"></div>
+</div>
+
+<script>
+function openModal(modalId, caption) {
+  let modal = document.getElementById(modalId);
+  modal.style.display = "flex";
+  modal.classList.add("show");
+  let message = modal.querySelector(".caption");
+  message.innerText = caption;
+}
+
+function closeModal(modalId) {
+  let modal = document.getElementById(modalId);
+  modal.classList.remove("show");
+  setTimeout(function() {
+    modal.style.display = "none";
+    modal.querySelector(".caption").innerText = "";
+  }, 300);
+}
+
+// --- Fade-in på scroll ---
+function onScrollFadeIn() {
+  document.querySelectorAll('.gallery img, .gallery iframe').forEach(function(el) {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight - 60) {
+      el.classList.add('visible');
+    }
+  });
+}
+window.addEventListener('scroll', onScrollFadeIn);
+window.addEventListener('DOMContentLoaded', onScrollFadeIn);
+</script>
+</body>
+</html>
