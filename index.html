@@ -6,7 +6,6 @@
   <title>Solemsli Productions</title>
   <link rel="stylesheet" href="style.css">
 
-  <!-- Fade-in animation -->
   <style>
     .fade-in {
       opacity: 0;
@@ -24,6 +23,7 @@
       flex-direction: column;
       min-height: 100vh;
       margin: 0;
+      font-family: sans-serif; /* La til en standard font */
       animation: fadeInBody 1.2s;
     }
     @keyframes fadeInBody {
@@ -80,6 +80,7 @@
       align-items: center;
       width: 100%;
       padding: 20px;
+      box-sizing: border-box;
     }
 
     .hero-img {
@@ -87,6 +88,7 @@
       max-width: 850px;
       border-radius: 16px;
       margin-bottom: 20px;
+      object-fit: cover;
     }
 
     .hero-text {
@@ -110,12 +112,13 @@
       width: 100%;
       text-align: center;
       padding: 50px 20px;
+      box-sizing: border-box;
     }
 
     .video iframe {
       width: 100%;
       max-width: 750px;
-      height: 350px;
+      height: 422px; /* Justert høyde for 16:9 format */
       border-radius: 12px;
       border: none;
     }
@@ -130,6 +133,10 @@
     .services {
       text-align: center;
       padding: 30px 20px;
+    }
+
+    .services h1 {
+        margin-top: 40px;
     }
 
     .services p {
@@ -151,7 +158,6 @@
 
 <body>
 
-  <!-- HEADER -->
   <header class="fade-in">
     <nav>
       <div class="logo">Solemsli Productions</div>
@@ -164,23 +170,21 @@
     </nav>
   </header>
 
-  <!-- MAIN -->
   <main>
 
-    <!-- HERO -->
     <section class="hero fade-in">
-      <img src="_DSC2148 copy.jpg" alt="Dronebilde" class="hero-img">
+      <img src="uranustind.jpg" alt="Dronebilde" class="hero-img">
       <div class="hero-text">
         <h1>Profesjonell foto, video og droneproduksjon</h1>
       </div>
     </section>
 
-    <!-- VIDEO -->
     <section class="video fade-in">
       <h2>Se min showreel</h2>
       <iframe
-        src="https://www.youtube.com/watch?v=SVARx16jTQg"
+        src="https://www.youtube.com/embed/SVARx16jTQg"
         title="Solemsli Productions showreel"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowfullscreen>
       </iframe>
 
@@ -197,12 +201,10 @@
 
   </main>
 
-  <!-- FOOTER -->
   <footer class="fade-in">
     <p>© 2026 Solemsli Productions. Alle rettigheter reservert.</p>
   </footer>
 
-  <!-- SCROLL FADE SCRIPT -->
   <script>
     function onScrollFadeIn() {
       document.querySelectorAll('.fade-in').forEach(el => {
