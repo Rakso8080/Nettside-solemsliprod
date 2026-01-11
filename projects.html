@@ -6,12 +6,13 @@
 <title>Prosjekter – Solemsli Productions</title>
 <link rel="stylesheet" href="style.css">
 <style>
-/* --- Body & Layout --- */
+/* --- GRUNNLEGGENDE STIL & GLASSMORPHISM --- */
 html, body {
   max-width: 100%;
-  overflow-x: hidden; /* Hindrer scrolling sidelengs */
+  overflow-x: hidden;
   margin: 0;
   padding: 0;
+  scroll-behavior: smooth; /* Gjør at knappen ruller mykt opp */
 }
 
 body {
@@ -29,40 +30,72 @@ body {
   to { opacity: 1; }
 }
 
-#top-focus {
-  /* Jo høyere tall, jo lenger ned flyttes bildet. 
-     Prøv deg frem med f.eks. 15%, 20% eller 25% */
-  object-position: center 50%; 
+/* BACK TO TOP KNAPP */
+#backToTop {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  background: #0180ff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: none; /* Skjult til man scroller */
+  font-size: 24px;
+  z-index: 1500;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  transition: transform 0.3s, background 0.3s;
 }
 
-/* --- Navigasjon --- */
+#backToTop:hover {
+  transform: scale(1.1);
+  background: #0066cc;
+}
+
+/* SCROLL PROGRESS BAR */
+#progress-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: transparent;
+  z-index: 2000;
+}
+#progress-bar {
+  height: 100%;
+  background: #0180ff;
+  width: 0%;
+  transition: width 0.1s ease;
+}
+
+/* NAVIGATION (Glassmorphism) */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+}
+
 nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 20px;
-  background: #ffffffcc;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  padding: 15px 40px;
+  background: rgba(255, 255, 255, 0.15); 
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   box-sizing: border-box;
-  width: 100%;
 }
 
-.logo { font-size: 1.4rem; font-weight: bold; white-space: nowrap; }
+.logo { font-size: 1.6rem; font-weight: bold; color: #111; }
 
-.nav-links { 
-  display: flex; 
-  gap: 15px; 
-  list-style: none; 
-  padding: 0; 
-  margin: 0; 
-}
+.nav-links { display: flex; gap: 25px; list-style: none; margin: 0; padding: 0; }
 
-.nav-links li a { 
-  text-decoration: none; 
-  color: #333; 
-  font-weight: 500; 
-  font-size: 0.9rem; 
-}
+.nav-links li a { text-decoration: none; color: #333; font-weight: 500; font-size: 0.9rem; transition: color 0.3s; }
 
 .nav-links li a:hover,
 .nav-links .active { color: #0180ff; }
@@ -96,7 +129,7 @@ main {
 
 .gallery img, .gallery iframe {
   width: 350px;
-  max-width: 100%; /* Viktig for mobil! */
+  max-width: 100%;
   height: 230px;
   object-fit: cover;
   border-radius: 12px;
@@ -106,6 +139,11 @@ main {
   opacity: 0;
   transform: translateY(20px);
   border: none;
+}
+
+/* Spesialposisjon for bilde 13 */
+#top-focus {
+  object-position: center 20% !important;
 }
 
 .gallery img.visible, .gallery iframe.visible {
@@ -118,7 +156,7 @@ main {
 .modal {
   display: none;
   position: fixed;
-  z-index: 1000;
+  z-index: 3000;
   left: 0; top: 0; width: 100%; height: 100%;
   background-color: rgba(0,0,0,0.9);
   align-items: center;
@@ -133,21 +171,21 @@ main {
 .close { position: absolute; top: 20px; right: 25px; color: #fff; font-size: 40px; cursor: pointer; }
 .caption { color: #fff; margin-top: 15px; font-size: 18px; text-align: center; width: 90%; }
 
-footer { width: 100%; text-align: center; padding: 20px 0; background: #f7f7f7; margin-top: auto; color: #555; }
+footer { width: 100%; text-align: center; padding: 30px 0; color: #555; font-size: 14px; }
 
-/* --- Media Queries (Mobil-fiks) --- */
-@media (max-width: 600px) {
-  nav { 
-    flex-direction: column; 
-    padding: 15px;
-    gap: 10px;
-  }
-  .nav-links { gap: 10px; }
+/* --- MOBIL --- */
+@media (max-width: 750px) {
+  nav { flex-direction: column; padding: 15px; gap: 10px; }
+  .nav-links { gap: 15px; }
   .gallery img, .gallery iframe { height: 200px; }
 }
 </style>
 </head>
 <body>
+
+<div id="progress-container"><div id="progress-bar"></div></div>
+
+<button id="backToTop" onclick="scrollToTop()">↑</button>
 
 <header>
   <nav>
@@ -163,7 +201,7 @@ footer { width: 100%; text-align: center; padding: 20px 0; background: #f7f7f7; 
 
 <main>
 <section class="projects">
-  <h1>Mine prosjekter</h1>
+  <h1 style="text-align: center; margin-bottom: 30px;">Mine prosjekter</h1>
 
   <div class="gallery">
     <div class="gallery-images">
@@ -188,10 +226,8 @@ footer { width: 100%; text-align: center; padding: 20px 0; background: #f7f7f7; 
       <img src="bilde10.jpg" alt="Prosjekt" onclick="openModal('modal10', '')">
       <img src="bilde11.jpg" alt="Prosjekt" onclick="openModal('modal11', '')">
       <img src="bilde12.jpg" alt="Prosjekt" onclick="openModal('modal12', '')">
-     <img src="bilde13.jpg" id="top-focus" alt="Prosjekt" onclick="openModal('modal13', '')">
+      <img src="bilde13.jpg" id="top-focus" alt="Prosjekt" onclick="openModal('modal13', '')">
       <img src="bilde14.jpg" alt="Prosjekt" onclick="openModal('modal14', '')">
-      <img src="bildermamma-2.jpg" alt="Prosjekt" onclick="openModal('modal14', '')">
-      <img src="bildermamma-4.jpg" alt="Prosjekt" onclick="openModal('modal14', '')">
     </div>
   </div>
 </section>
@@ -206,9 +242,18 @@ footer { width: 100%; text-align: center; padding: 20px 0; background: #f7f7f7; 
 <div id="modal5" class="modal"><span class="close" onclick="closeModal('modal5')">&times;</span><img src="bilde5.jpg" class="modal-content"><div class="caption"></div></div>
 <div id="modal6" class="modal"><span class="close" onclick="closeModal('modal6')">&times;</span><img src="bilde6.jpg" class="modal-content"><div class="caption"></div></div>
 <div id="modal7" class="modal"><span class="close" onclick="closeModal('modal7')">&times;</span><img src="bilde7.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal8" class="modal"><span class="close" onclick="closeModal('modal8')">&times;</span><img src="bilde8.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal9" class="modal"><span class="close" onclick="closeModal('modal9')">&times;</span><img src="bilde9.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal10" class="modal"><span class="close" onclick="closeModal('modal10')">&times;</span><img src="bilde10.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal11" class="modal"><span class="close" onclick="closeModal('modal11')">&times;</span><img src="bilde11.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal12" class="modal"><span class="close" onclick="closeModal('modal12')">&times;</span><img src="bilde12.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal13" class="modal"><span class="close" onclick="closeModal('modal13')">&times;</span><img src="bilde13.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal14" class="modal"><span class="close" onclick="closeModal('modal14')">&times;</span><img src="bilde14.jpg" class="modal-content"><div class="caption"></div></div>
 
 <script>
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
 function openModal(modalId, captionText) {
   let modal = document.getElementById(modalId);
   modal.style.display = "flex";
@@ -226,8 +271,36 @@ function onScrollFadeIn() {
     if (rect.top < window.innerHeight - 60) el.classList.add('visible');
   });
 }
-window.addEventListener('scroll', onScrollFadeIn);
-window.addEventListener('DOMContentLoaded', onScrollFadeIn);
+function updateProgressBar() {
+  let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  let scrolled = (winScroll / height) * 100;
+  document.getElementById("progress-bar").style.width = scrolled + "%";
+}
+
+window.addEventListener('scroll', () => {
+  onScrollFadeIn();
+  updateProgressBar();
+  
+  // Vis eller skjul "Tilbake til toppen"-knappen
+  let btn = document.getElementById("backToTop");
+  if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) {
+    btn.style.display = "block";
+  } else {
+    btn.style.display = "none";
+  }
+});
+
+window.addEventListener('DOMContentLoaded', () => {
+  onScrollFadeIn();
+  updateProgressBar();
+});
+document.addEventListener('contextmenu', function(e) {
+  if (e.target.tagName === 'IMG') {
+    e.preventDefault();
+    alert("Bildene er beskyttet av Solemsli Productions.");
+  }
+});
 </script>
 </body>
 </html>
