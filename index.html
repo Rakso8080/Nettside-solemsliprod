@@ -3,164 +3,211 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Solemsli Productions</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Solemsli Productions | Foto, Video & Drone</title>
+  
+  <meta name="description" content="Solemsli Productions leverer profesjonell foto, video og dronefilm på Lillehammer og i Valdres. Spesialist på action, event og bedriftsprofilering.">
+  <meta name="keywords" content="Foto, Video, Drone, Lillehammer, Valdres, Solemsli Productions, Oskar Solemsli, Dronefilm, Fotograf">
+  <meta name="author" content="Oskar Solemsli">
 
+  <link rel="preconnect" href="https://www.youtube.com">
+  
   <style>
+    /* --- BASE & PERFORMANCE --- */
+    :root {
+      --main-blue: #0180ff;
+      --glass-bg: rgba(255, 255, 255, 0.15);
+      --glass-border: rgba(255, 255, 255, 0.3);
+    }
+
+    html, body {
+      max-width: 100%;
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%) fixed;
+      animation: fadeInBody 0.8s ease-out;
+    }
+
+    @keyframes fadeInBody {
+      from { opacity: 0; } to { opacity: 1; }
+    }
+
+    /* SCROLL PROGRESS */
+    #progress-container {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      height: 4px;
+      z-index: 2000;
+    }
+    #progress-bar {
+      height: 100%;
+      background: var(--main-blue);
+      width: 0%;
+    }
+
+    /* NAVIGATION */
+    header { position: sticky; top: 0; z-index: 1000; }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 40px;
+      background: var(--glass-bg); 
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border-bottom: 1px solid var(--glass-border);
+    }
+
+    .logo {
+      font-size: 1.6rem;
+      font-weight: bold;
+      color: #111;
+      text-decoration: none;
+    }
+
+    .nav-links { display: flex; gap: 25px; list-style: none; margin: 0; padding: 0; }
+    .nav-links a {
+      text-decoration: none;
+      color: #111;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--main-blue); }
+
+    /* HERO & VIDEO */
+    .hero { padding: 40px 20px; text-align: center; }
+    .hero-img {
+      width: 100%;
+      max-width: 850px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .hero-text h1 {
+      font-size: 2.2rem;
+      margin-top: 25px;
+      color: #111;
+    }
+
+    .video-container {
+      padding: 40px 20px;
+      background: var(--glass-bg);
+      border-radius: 30px;
+      margin: 20px;
+      border: 1px solid var(--glass-border);
+      text-align: center;
+    }
+
+    iframe {
+      width: 100%;
+      max-width: 800px;
+      height: 450px;
+      border-radius: 12px;
+      border: none;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    }
+
+    /* SERVICES GRID */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      padding: 50px 20px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .service-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      padding: 30px;
+      border-radius: 20px;
+      border: 1px solid var(--glass-border);
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--main-blue);
+    }
+
+    /* BACK TO TOP */
+    #backToTop {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background: var(--main-blue);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      z-index: 1500;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    /* FOOTER & SOCIALS */
+    footer { 
+      text-align: center; 
+      padding: 40px; 
+      color: #666; 
+      font-size: 0.9rem;
+      background: rgba(0,0,0,0.02);
+      margin-top: auto;
+    }
+    .footer-socials {
+      margin-top: 15px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    .footer-socials a {
+      color: #444;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    .footer-socials a:hover { color: var(--main-blue); }
+
+    /* FADE IN ON SCROLL */
     .fade-in {
       opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
+      transform: translateY(20px);
+      transition: all 0.6s ease-out;
     }
     .fade-in.visible {
       opacity: 1;
       transform: translateY(0);
     }
 
-    /* Smooth full-page fade on load */
-    body {
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      margin: 0;
-      font-family: sans-serif; /* La til en standard font */
-      animation: fadeInBody 1.2s;
-    }
-    @keyframes fadeInBody {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    /* NAVIGATION */
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 25px;
-    }
-
-    .logo {
-      font-size: 1.8rem;
-      font-weight: bold;
-      transition: transform 0.3s;
-    }
-    .logo:hover {
-      transform: scale(1.06);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 25px;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: #111;
-      font-weight: 500;
-      font-size: 1rem;
-    }
-
-    /* MOBILE NAV */
     @media (max-width: 750px) {
-      .nav-links {
-        gap: 15px;
-      }
-      .logo {
-        font-size: 1.4rem;
-      }
-    }
-
-    /* HERO SECTION */
-    .hero {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 100%;
-      padding: 20px;
-      box-sizing: border-box;
-    }
-
-    .hero-img {
-      width: 100%;
-      max-width: 850px;
-      border-radius: 16px;
-      margin-bottom: 20px;
-      object-fit: cover;
-    }
-
-    .hero-text {
-      max-width: 700px;
-      text-align: center;
-    }
-
-    .hero-text h1 {
-      font-size: 2rem;
-      margin: 0;
-    }
-
-    @media (max-width: 600px) {
-      .hero-text h1 {
-        font-size: 1.5rem;
-      }
-    }
-
-    /* VIDEO SECTION */
-    .video {
-      width: 100%;
-      text-align: center;
-      padding: 50px 20px;
-      box-sizing: border-box;
-    }
-
-    .video iframe {
-      width: 100%;
-      max-width: 750px;
-      height: 422px; /* Justert høyde for 16:9 format */
-      border-radius: 12px;
-      border: none;
-    }
-
-    @media (max-width: 600px) {
-      .video iframe {
-        height: 220px;
-      }
-    }
-
-    /* SERVICES */
-    .services {
-      text-align: center;
-      padding: 30px 20px;
-    }
-
-    .services h1 {
-        margin-top: 40px;
-    }
-
-    .services p {
-      margin: 6px 0;
-      font-size: 1.1rem;
-    }
-
-    /* FOOTER */
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: #f6f6f6;
-      color: #666;
-      font-size: 14px;
-      margin-top: auto;
+      nav { flex-direction: column; gap: 15px; }
+      iframe { height: 250px; }
+      .hero-text h1 { font-size: 1.7rem; }
     }
   </style>
 </head>
 
 <body>
 
-  <header class="fade-in">
+  <div id="progress-container"><div id="progress-bar"></div></div>
+  <button id="backToTop" onclick="window.scrollTo({top:0, behavior:'smooth'})">↑</button>
+
+  <header>
     <nav>
-      <div class="logo">Solemsli Productions</div>
+      <a href="index.html" class="logo">Solemsli Productions</a>
       <ul class="nav-links">
         <li><a href="index.html">Hjem</a></li>
         <li><a href="about.html">Om meg</a></li>
@@ -171,52 +218,65 @@
   </header>
 
   <main>
-
     <section class="hero fade-in">
-      <img src="uranustind.jpg" alt="Dronebilde" class="hero-img">
+      <img src="uranustind.jpg" alt="Dronebilde Uranustind" class="hero-img" loading="lazy">
       <div class="hero-text">
         <h1>Profesjonell foto, video og droneproduksjon</h1>
       </div>
     </section>
 
-    <section class="video fade-in">
+    <section class="video-container fade-in">
       <h2>Se min showreel</h2>
-      <iframe
-        src="https://www.youtube.com/embed/SVARx16jTQg"
-        title="Solemsli Productions showreel"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen>
-      </iframe>
+      <iframe src="https://www.youtube.com/embed/SVARx16jTQg" loading="lazy" allowfullscreen></iframe>
+    </section>
 
-      <div class="services fade-in">
-        <h1>Mine tjenester</h1>
-        <p>- Video / bilder med kamera</p>
-        <p>- Dronevideoer / 360° bilder</p>
-        <p>- Eventer</p>
-        <p>- Reklamefilmer</p>
-        <p>- Bedriftsvideoer</p>
-        <p>- Bryllupsfotografi</p>
+  <h2 style="text-align: center; margin-top: 60px; font-size: 2rem; color: #111;" class="fade-in">Hva jeg tilbyr</h2>
+
+    <section class="services-grid fade-in">
+      <div class="service-card">
+        <h3>📷 Foto & Video</h3>
+        <p>Kamera-produksjoner med fokus på detaljer og visuell historiefortelling.</p>
+      </div>
+      <div class="service-card">
+        <h3>🚁 Drone</h3>
+        <p>Dronefilm og spektakulære 360° oversiktsbilder.</p>
+      </div>
+      <div class="service-card">
+        <h3>🎸 Eventer</h3>
+        <p>Full dekning av festivaler, konserter og store begivenheter.</p>
+      </div>
+      <div class="service-card">
+        <h3>💼 Bedrift</h3>
+        <p>Reklamefilmer og innhold optimalisert for sosiale medier.</p>
       </div>
     </section>
 
-  </main>
-
-  <footer class="fade-in">
-    <p>© 2026 Solemsli Productions. Alle rettigheter reservert.</p>
+  <footer>
+    <p>© 2026 Solemsli Productions. Innlandet.</p>
   </footer>
 
   <script>
-    function onScrollFadeIn() {
-      document.querySelectorAll('.fade-in').forEach(el => {
-        const rect = el.getBoundingClientRect();
-        if (rect.top < window.innerHeight - 80) {
+    const progressBar = document.getElementById("progress-bar");
+    const topBtn = document.getElementById("backToTop");
+    const fadeElements = document.querySelectorAll('.fade-in');
+
+    window.addEventListener('scroll', () => {
+      const scrollPos = window.scrollY;
+      const winHeight = document.documentElement.scrollHeight - window.innerHeight;
+      
+      progressBar.style.width = (scrollPos / winHeight) * 100 + "%";
+      topBtn.style.display = scrollPos > 400 ? "block" : "none";
+
+      fadeElements.forEach(el => {
+        if (el.getBoundingClientRect().top < window.innerHeight - 50) {
           el.classList.add('visible');
         }
       });
-    }
-    window.addEventListener('scroll', onScrollFadeIn);
-    window.addEventListener('DOMContentLoaded', onScrollFadeIn);
-  </script>
+    }, { passive: true });
 
+    window.addEventListener('DOMContentLoaded', () => {
+      window.dispatchEvent(new Event('scroll'));
+    });
+  </script>
 </body>
 </html>
