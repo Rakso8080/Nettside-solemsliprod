@@ -4,25 +4,49 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Om Meg – Solemsli Productions</title>
-<link rel="stylesheet" href="style.css">
 
 <style>
-/* --- Nav (Beholdt nøyaktig som din originale) --- */
+/* --- VARIABLER OG MODUS --- */
+:root {
+  --main-blue: #0180ff;
+  --bg-gradient: linear-gradient(135deg, #d5e6ff, #c3cfe2);
+  --text-color: #111;
+  --nav-bg: rgba(255, 255, 255, 0.15);
+  --card-bg: rgba(255, 255, 255, 0.6);
+  --card-border: rgba(255, 255, 255, 0.4);
+  --item-bg: rgba(255, 255, 255, 0.4);
+  --footer-bg: rgba(0,0,0,0.03);
+}
+
+[data-theme="dark"] {
+  --bg-gradient: linear-gradient(135deg, #1a1c20 0%, #0f1013 100%);
+  --text-color: #f5f5f5;
+  --nav-bg: rgba(0, 0, 0, 0.3);
+  --card-bg: rgba(255, 255, 255, 0.05);
+  --card-border: rgba(255, 255, 255, 0.1);
+  --item-bg: rgba(255, 255, 255, 0.05);
+  --footer-bg: rgba(0,0,0,0.2);
+}
+
+/* --- Nav --- */
 nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 15px 40px;
-  background: rgba(255, 255, 255, 0.15); 
+  background: var(--nav-bg); 
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid var(--card-border);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 .logo {
   font-size: 1.6rem;
   font-weight: bold;
-  color: #111;
+  color: var(--text-color);
   text-decoration: none;
 }
 
@@ -32,11 +56,12 @@ nav {
   gap: 25px;
   margin: 0;
   padding: 0;
+  align-items: center;
 }
 
 .nav-links a {
   text-decoration: none;
-  color: #333;
+  color: var(--text-color);
   font-weight: 500;
   font-size: 0.9rem;
   transition: color 0.3s;
@@ -44,7 +69,23 @@ nav {
 
 .nav-links a:hover,
 .nav-links .active {
-  color: #0180ff;
+  color: var(--main-blue);
+}
+
+/* MODUS-KNAPP */
+#theme-toggle {
+  background: var(--nav-bg);
+  border: 1px solid var(--card-border);
+  color: var(--text-color);
+  padding: 8px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: 0.3s;
+}
+#theme-toggle:hover {
+  background: var(--main-blue);
+  color: white;
 }
 
 /* --- Body --- */
@@ -52,8 +93,10 @@ html, body {
   margin: 0;
   padding: 0;
   font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #f5f7fa, #c3cfe2) fixed;
+  background: var(--bg-gradient) fixed;
+  color: var(--text-color);
   scroll-behavior: smooth;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 body {
@@ -87,12 +130,12 @@ main {
 
 /* --- Kule Kort (Glassmorphism) --- */
 .about-card {
-  background: rgba(255, 255, 255, 0.6);
+  background: var(--card-bg);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   padding: 40px;
   border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  border: 1px solid var(--card-border);
   box-shadow: 0 10px 30px rgba(0,0,0,0.05);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -120,16 +163,17 @@ main {
 /* --- Tekst-detaljer --- */
 h1 {
   margin-top: 0;
-  color: #111;
+  color: var(--text-color);
   font-size: 2rem;
-  border-left: 5px solid #0180ff;
+  border-left: 5px solid var(--main-blue);
   padding-left: 15px;
 }
 
 p {
   font-size: 1.05rem;
   line-height: 1.7;
-  color: #333;
+  color: var(--text-color);
+  opacity: 0.9;
 }
 
 /* Utstyrsliste-grid */
@@ -141,10 +185,10 @@ p {
 }
 
 .eq-item {
-  background: rgba(255, 255, 255, 0.4);
+  background: var(--item-bg);
   padding: 15px;
   border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  border: 1px solid var(--card-border);
   text-align: center;
 }
 
@@ -153,22 +197,26 @@ footer {
   width: 100%;
   text-align: center;
   padding: 40px 0;
-  background: rgba(0,0,0,0.03);
+  background: var(--footer-bg);
   font-size: 0.9rem;
-  color: #555;
+  color: var(--text-color);
+  opacity: 0.7;
 }
 
-/* --- Responsiv (Grid-oppsett) --- */
+/* --- Responsiv --- */
 @media (min-width: 850px) {
   .about-container {
-    grid-template-columns: 1.2fr 1fr; /* To kolonner på desktop */
+    grid-template-columns: 1.2fr 1fr;
   }
   .full-width {
     grid-column: span 2;
   }
 }
 
-/* Fade-in scroll animasjon */
+@media (max-width: 750px) {
+  nav { flex-direction: column; gap: 15px; }
+}
+
 .fade-in {
   opacity: 0;
   transform: translateY(30px);
@@ -191,6 +239,7 @@ footer {
       <li><a href="about.html" class="active">Om meg</a></li>
       <li><a href="projects.html">Prosjekter</a></li>
       <li><a href="contact.html">Kontakt</a></li>
+      <li><button id="theme-toggle">🌙 Mørk</button></li>
     </ul>
   </nav>
 </header>
@@ -229,11 +278,10 @@ footer {
 
     <div class="about-card fade-in full-width">
       <h1>Mitt Utstyr</h1>
-      <p></p>
       <div class="equipment-grid">
         <div class="eq-item"><strong>Kamera</strong><br>Sony A7IV</div>
         <div class="eq-item"><strong>Drone</strong><br>DJI Mini 4 Pro / Avata</div>
-        <div class="eq-item"><strong>Software</strong><br>DaVinci Resolve, Lightroom-Classic, Photoshop</div>
+        <div class="eq-item"><strong>Software</strong><br>DaVinci Resolve, Lightroom, Photoshop</div>
       </div>
     </div>
 
@@ -245,7 +293,29 @@ footer {
 </footer>
 
 <script>
-// Scroll animasjon
+// --- MØRK MODUS LOGIKK ---
+const themeToggle = document.getElementById('theme-toggle');
+const currentTheme = localStorage.getItem('theme');
+
+if (currentTheme === 'dark') {
+  document.documentElement.setAttribute('data-theme', 'dark');
+  themeToggle.textContent = "☀️ Lys";
+}
+
+themeToggle.addEventListener('click', () => {
+  let theme = document.documentElement.getAttribute('data-theme');
+  if (theme === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'light');
+    localStorage.setItem('theme', 'light');
+    themeToggle.textContent = "🌙 Mørk";
+  } else {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    localStorage.setItem('theme', 'dark');
+    themeToggle.textContent = "☀️ Lys";
+  }
+});
+
+// --- SCROLL ANIMASJON ---
 function handleScroll() {
   const elements = document.querySelectorAll('.fade-in');
   elements.forEach(el => {
