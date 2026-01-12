@@ -6,14 +6,36 @@
 <title>Kontakt – Solemsli Productions</title>
 <link rel="stylesheet" href="style.css">
 <style>
+/* --- VARIABLER OG MODUS --- */
+:root {
+  --main-blue: #0180ff;
+  --bg-gradient: linear-gradient(135deg, #eef4fd, #c3cfe2);
+  --text-color: #111;
+  --nav-bg: rgba(255, 255, 255, 0.15);
+  --card-bg: rgba(255, 255, 255, 0.2);
+  --card-border: rgba(255, 255, 255, 0.3);
+  --footer-color: #666;
+}
+
+[data-theme="dark"] {
+  --bg-gradient: linear-gradient(135deg, #1a1c20 0%, #0f1013 100%);
+  --text-color: #f5f5f5;
+  --nav-bg: rgba(0, 0, 0, 0.3);
+  --card-bg: rgba(255, 255, 255, 0.05);
+  --card-border: rgba(255, 255, 255, 0.1);
+  --footer-color: #999;
+}
+
 /* --- Body & Layout --- */
 html, body {
   height: 100%;
   margin: 0;
   padding: 0;
   font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+  background: var(--bg-gradient) fixed;
+  color: var(--text-color);
   overflow-x: hidden;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 body {
   display: flex;
@@ -33,9 +55,8 @@ body {
 }
 #progress-bar {
   height: 100%;
-  background: #0180ff;
+  background: var(--main-blue);
   width: 0%;
-  transition: width 0.1s ease;
 }
 
 /* --- Nav --- */
@@ -51,10 +72,10 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 15px 40px;
-  background: rgba(255, 255, 255, 0.15); 
+  background: var(--nav-bg); 
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid var(--card-border);
   box-sizing: border-box;
   opacity: 0;
   transform: translateY(-30px);
@@ -62,14 +83,13 @@ nav {
 }
 
 @keyframes fadeInNav {
-  from { opacity: 0; transform: translateY(-30px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 .logo {
   font-size: 1.6rem;
   font-weight: bold;
-  color: #111;
+  color: var(--text-color);
 }
 
 .nav-links {
@@ -78,17 +98,34 @@ nav {
   gap: 25px;
   margin: 0;
   padding: 0;
+  align-items: center;
 }
 .nav-links a {
   text-decoration: none;
-  color: #111;
+  color: var(--text-color);
   font-weight: 500;
   font-size: 1rem;
   transition: color 0.3s;
 }
 .nav-links a:hover,
 .nav-links .active {
-  color: #0180ff;
+  color: var(--main-blue);
+}
+
+/* MODUS-KNAPP */
+#theme-toggle {
+  background: var(--nav-bg);
+  border: 1px solid var(--card-border);
+  color: var(--text-color);
+  padding: 8px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: 0.3s;
+}
+#theme-toggle:hover {
+  background: var(--main-blue);
+  color: white;
 }
 
 /* --- Main kontaktkort --- */
@@ -100,13 +137,13 @@ main {
   padding: 40px 20px;
 }
 .contact {
-  background: rgba(255, 255, 255, 0.2);
+  background: var(--card-bg);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   padding: 40px;
-  border-radius: 15px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  border-radius: 20px;
+  border: 1px solid var(--card-border);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
   text-align: center;
   max-width: 500px;
   width: 100%;
@@ -119,7 +156,7 @@ main {
 }
 .contact h1 {
   margin-bottom: 20px;
-  color: #0180ff;
+  color: var(--main-blue);
 }
 .contact p {
   font-size: 1.1rem;
@@ -127,14 +164,15 @@ main {
   line-height: 1.6;
 }
 .contact a {
-  color: #0180ff;
+  color: var(--main-blue);
   text-decoration: none;
   font-weight: 600;
   display: inline-block;
   transition: color 0.3s, transform 0.2s;
 }
 .contact a:hover {
-  color: #005bb5;
+  color: var(--main-blue);
+  opacity: 0.8;
   transform: scale(1.05);
 }
 
@@ -143,7 +181,7 @@ footer {
   width: 100%;
   text-align: center;
   padding: 30px 0;
-  color: #666;
+  color: var(--footer-color);
   font-size: 0.9rem;
   margin-top: auto;
 }
@@ -153,10 +191,9 @@ footer {
   nav { 
     padding: 15px 20px; 
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
   }
   .nav-links { gap: 15px; }
-  .logo { font-size: 1.3rem; }
 }
 </style>
 </head>
@@ -174,6 +211,7 @@ footer {
       <li><a href="about.html">Om meg</a></li>
       <li><a href="projects.html">Prosjekter</a></li>
       <li><a href="contact.html" class="active">Kontakt</a></li>
+      <li><button id="theme-toggle">🌙 Mørk</button></li>
     </ul>
   </nav>
 </header>
@@ -183,11 +221,13 @@ footer {
     <h1>Kontakt meg!</h1>
     
     <p>📞 Ring eller SMS <br> 
-    <a href="tel:+47 905 60 160">+47 905 60 160</a></p> <p>📧 Send en e-post <br> 
+    <a href="tel:+4790560160">+47 905 60 160</a></p> 
+    
+    <p>📧 Send en e-post <br> 
     <a href="mailto:rakso8080@gmail.com">rakso8080@gmail.com</a></p>
     
     <p>📸 Finn meg på Instagram <br> 
-    <a href="https://www.instagram.com/solemsli_poductions/" target="_blank">@solemsli_productions</a></p>
+    <a href="https://www.instagram.com/solemsli_productions/" target="_blank">@solemsli_productions</a></p>
   </section>
 </main>
 
@@ -196,6 +236,29 @@ footer {
 </footer>
 
 <script>
+// --- DARK MODE LOGIKK ---
+const themeToggle = document.getElementById('theme-toggle');
+const currentTheme = localStorage.getItem('theme');
+
+if (currentTheme === 'dark') {
+  document.documentElement.setAttribute('data-theme', 'dark');
+  themeToggle.textContent = "☀️ Lys";
+}
+
+themeToggle.addEventListener('click', () => {
+  let theme = document.documentElement.getAttribute('data-theme');
+  if (theme === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'light');
+    localStorage.setItem('theme', 'light');
+    themeToggle.textContent = "🌙 Mørk";
+  } else {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    localStorage.setItem('theme', 'dark');
+    themeToggle.textContent = "☀️ Lys";
+  }
+});
+
+// --- PROGRESS BAR LOGIKK ---
 function updateProgressBar() {
   let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
   let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;

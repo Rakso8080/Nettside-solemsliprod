@@ -6,13 +6,31 @@
 <title>Prosjekter – Solemsli Productions</title>
 <link rel="stylesheet" href="style.css">
 <style>
-/* --- GRUNNLEGGENDE STIL & GLASSMORPHISM --- */
+/* --- VARIABLER OG MODUS --- */
+:root {
+  --main-blue: #0180ff;
+  --bg-gradient: linear-gradient(135deg, #dfebfc, #c3cfe2);
+  --text-color: #111;
+  --nav-bg: rgba(255, 255, 255, 0.15);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --modal-bg: rgba(0,0,0,0.9);
+}
+
+[data-theme="dark"] {
+  --bg-gradient: linear-gradient(135deg, #1a1c20 0%, #0f1013 100%);
+  --text-color: #f5f5f5;
+  --nav-bg: rgba(0, 0, 0, 0.3);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --modal-bg: rgba(0,0,0,0.95);
+}
+
+/* --- GRUNNLEGGENDE STIL --- */
 html, body {
   max-width: 100%;
   overflow-x: hidden;
   margin: 0;
   padding: 0;
-  scroll-behavior: smooth; /* Gjør at knappen ruller mykt opp */
+  scroll-behavior: smooth;
 }
 
 body {
@@ -20,7 +38,9 @@ body {
   flex-direction: column;
   min-height: 100vh;
   font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+  background: var(--bg-gradient) fixed;
+  color: var(--text-color);
+  transition: background 0.3s ease, color 0.3s ease;
   opacity: 0;
   animation: fadeInBody 1s forwards;
 }
@@ -37,21 +57,16 @@ body {
   right: 30px;
   width: 50px;
   height: 50px;
-  background: #0180ff;
+  background: var(--main-blue);
   color: white;
   border: none;
   border-radius: 50%;
   cursor: pointer;
-  display: none; /* Skjult til man scroller */
+  display: none;
   font-size: 24px;
   z-index: 1500;
   box-shadow: 0 4px 15px rgba(0,0,0,0.2);
   transition: transform 0.3s, background 0.3s;
-}
-
-#backToTop:hover {
-  transform: scale(1.1);
-  background: #0066cc;
 }
 
 /* SCROLL PROGRESS BAR */
@@ -66,12 +81,11 @@ body {
 }
 #progress-bar {
   height: 100%;
-  background: #0180ff;
+  background: var(--main-blue);
   width: 0%;
-  transition: width 0.1s ease;
 }
 
-/* NAVIGATION (Glassmorphism) */
+/* NAVIGATION */
 header {
   position: sticky;
   top: 0;
@@ -84,21 +98,34 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 15px 40px;
-  background: rgba(255, 255, 255, 0.15); 
+  background: var(--nav-bg); 
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid var(--glass-border);
   box-sizing: border-box;
 }
 
-.logo { font-size: 1.6rem; font-weight: bold; color: #111; }
+.logo { font-size: 1.6rem; font-weight: bold; color: var(--text-color); }
 
-.nav-links { display: flex; gap: 25px; list-style: none; margin: 0; padding: 0; }
+.nav-links { display: flex; gap: 25px; list-style: none; margin: 0; padding: 0; align-items: center; }
 
-.nav-links li a { text-decoration: none; color: #333; font-weight: 500; font-size: 0.9rem; transition: color 0.3s; }
+.nav-links li a { text-decoration: none; color: var(--text-color); font-weight: 500; font-size: 0.9rem; transition: color 0.3s; }
 
 .nav-links li a:hover,
-.nav-links .active { color: #0180ff; }
+.nav-links .active { color: var(--main-blue); }
+
+/* MODUS-KNAPP */
+#theme-toggle {
+  background: var(--nav-bg);
+  border: 1px solid var(--glass-border);
+  color: var(--text-color);
+  padding: 8px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: 0.3s;
+}
+#theme-toggle:hover { background: var(--main-blue); color: white; }
 
 /* --- Galleri --- */
 main {
@@ -111,20 +138,13 @@ main {
   box-sizing: border-box;
 }
 
-.gallery {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  width: 100%;
-}
-
 .gallery-images {
   display: flex;
   gap: 15px;
   justify-content: center;
   flex-wrap: wrap;
   width: 100%;
+  margin-bottom: 20px;
 }
 
 .gallery img, .gallery iframe {
@@ -134,22 +154,30 @@ main {
   object-fit: cover;
   border-radius: 12px;
   box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-  transition: transform 0.4s;
+  /* Fjernet transform herfra for å la JS styre 3D-vipping */
   cursor: pointer;
   opacity: 0;
   transform: translateY(20px);
   border: none;
+  transition: opacity 0.8s ease, transform 0.1s ease-out; /* Raskere transform for 3D-effekt */
+  will-change: transform; /* Optimaliserer ytelse for animasjon */
 }
 
-/* Spesialposisjon for bilde 13 */
-#top-focus {
-  object-position: center 20% !important;
+/* Blur-effekt for lazy loading */
+img[loading="lazy"] {
+  filter: blur(10px);
+  transition: filter 0.5s ease-in-out;
 }
+
+img.loaded {
+  filter: blur(0);
+}
+
+#top-focus { object-position: center 20% !important; }
 
 .gallery img.visible, .gallery iframe.visible {
   opacity: 1;
   transform: translateY(0);
-  transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
 /* --- Modal --- */
@@ -158,7 +186,7 @@ main {
   position: fixed;
   z-index: 3000;
   left: 0; top: 0; width: 100%; height: 100%;
-  background-color: rgba(0,0,0,0.9);
+  background-color: var(--modal-bg);
   align-items: center;
   justify-content: center;
 }
@@ -166,18 +194,21 @@ main {
   max-width: 95%;
   max-height: 85vh;
   border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
 }
 .modal.show { display: flex; }
 .close { position: absolute; top: 20px; right: 25px; color: #fff; font-size: 40px; cursor: pointer; }
 .caption { color: #fff; margin-top: 15px; font-size: 18px; text-align: center; width: 90%; }
 
-footer { width: 100%; text-align: center; padding: 30px 0; color: #555; font-size: 14px; }
+footer { width: 100%; text-align: center; padding: 30px 0; color: var(--text-color); opacity: 0.7; font-size: 14px; }
 
 /* --- MOBIL --- */
 @media (max-width: 750px) {
-  nav { flex-direction: column; padding: 15px; gap: 10px; }
+  nav { flex-direction: column; padding: 15px; gap: 15px; }
   .nav-links { gap: 15px; }
   .gallery img, .gallery iframe { height: 200px; }
+  /* Deaktiver 3D-vipp på mobil for bedre brukervennlighet */
+  .gallery img { transform: none !important; } 
 }
 </style>
 </head>
@@ -195,6 +226,7 @@ footer { width: 100%; text-align: center; padding: 30px 0; color: #555; font-siz
       <li><a href="about.html">Om meg</a></li>
       <li><a href="projects.html" class="active">Prosjekter</a></li>
       <li><a href="contact.html">Kontakt</a></li>
+      <li><button id="theme-toggle">🌙 Mørk</button></li>
     </ul>
   </nav>
 </header>
@@ -206,28 +238,27 @@ footer { width: 100%; text-align: center; padding: 30px 0; color: #555; font-siz
   <div class="gallery">
     <div class="gallery-images">
       <iframe src="https://www.youtube.com/embed/kihsArSq2S4" allowfullscreen></iframe>
-      <img src="bilde1.jpg" alt="Prosjekt" onclick="openModal('modal1', '')">
-      <img src="bilde2.jpg" alt="Prosjekt" onclick="openModal('modal2', '')">
+      <img src="bilde1.jpg" alt="Prosjekt" loading="lazy" onclick="openModal('modal1', '')">
+      <img src="bilde2.jpg" alt="Prosjekt" loading="lazy" onclick="openModal('modal2', '')">
     </div>
 
     <div class="gallery-images">
-      <img src="bilde3.jpg" alt="Prosjekt" onclick="openModal('modal3', 'Tyin-Ultra')">
+      <img src="bilde3.jpg" alt="Prosjekt" loading="lazy" onclick="openModal('modal3', 'Tyin-Ultra')">
       <iframe src="https://www.youtube.com/embed/bDoI1o90tz0" allowfullscreen></iframe>
-      <img src="bilde4.jpg" alt="Prosjekt" onclick="openModal('modal4', '')">
+      <img src="bilde4.jpg" alt="Prosjekt" loading="lazy" onclick="openModal('modal4', '')">
     </div>
 
     <div class="gallery-images">
       <iframe src="https://www.youtube.com/embed/dnu5sXuDk8k" allowfullscreen></iframe>
-      <img src="bilde5.jpg" alt="Tyin-Ultra" onclick="openModal('modal5', 'Tyin-Ultra 2023')">
-      <img src="bilde6.jpg" alt="Prosjekt" onclick="openModal('modal6', '')">
-      <img src="bilde7.jpg" alt="Prosjekt" onclick="openModal('modal7', '')">
-      
-      <img src="bilde9.jpg" alt="Prosjekt" onclick="openModal('modal9', '')">
-      <img src="bilde10.jpg" alt="Prosjekt" onclick="openModal('modal10', '')">
-      <img src="bilde11.jpg" alt="Prosjekt" onclick="openModal('modal11', '')">
-      <img src="bilde12.jpg" alt="Prosjekt" onclick="openModal('modal12', '')">
-      <img src="bilde13.jpg" id="top-focus" alt="Prosjekt" onclick="openModal('modal13', '')">
-      <img src="bilde14.jpg" alt="Prosjekt" onclick="openModal('modal14', '')">
+      <img src="bilde5.jpg" alt="Tyin-Ultra" loading="lazy" onclick="openModal('modal5', 'Tyin-Ultra 2023')">
+      <img src="bilde6.jpg" alt="Prosjekt" loading="lazy" onclick="openModal('modal6', '')">
+      <img src="bilde7.jpg" alt="Prosjekt" loading="lazy" onclick="openModal('modal7', '')">
+      <img src="bilde9.jpg" alt="Prosjekt" loading="lazy" onclick="openModal('modal9', '')">
+      <img src="bilde10.jpg" alt="Prosjekt" loading="lazy" onclick="openModal('modal10', '')">
+      <img src="bilde11.jpg" alt="Prosjekt" loading="lazy" onclick="openModal('modal11', '')">
+      <img src="bilde12.jpg" alt="Prosjekt" loading="lazy" onclick="openModal('modal12', '')">
+      <img src="bilde13.jpg" id="top-focus" alt="Prosjekt" loading="lazy" onclick="openModal('modal13', '')">
+      <img src="bilde14.jpg" alt="Prosjekt" loading="lazy" onclick="openModal('modal14', '')">
     </div>
   </div>
 </section>
@@ -236,20 +267,65 @@ footer { width: 100%; text-align: center; padding: 30px 0; color: #555; font-siz
 <footer><p>© 2026 Solemsli Productions</p></footer>
 
 <div id="modal1" class="modal"><span class="close" onclick="closeModal('modal1')">&times;</span><img src="bilde1.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal2" class="modal"><span class="close" onclick="closeModal('modal2')">&times;</span><img src="bilde2.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal3" class="modal"><span class="close" onclick="closeModal('modal3')">&times;</span><img src="bilde3.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal4" class="modal"><span class="close" onclick="closeModal('modal4')">&times;</span><img src="bilde4.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal5" class="modal"><span class="close" onclick="closeModal('modal5')">&times;</span><img src="bilde5.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal6" class="modal"><span class="close" onclick="closeModal('modal6')">&times;</span><img src="bilde6.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal7" class="modal"><span class="close" onclick="closeModal('modal7')">&times;</span><img src="bilde7.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal9" class="modal"><span class="close" onclick="closeModal('modal9')">&times;</span><img src="bilde9.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal10" class="modal"><span class="close" onclick="closeModal('modal10')">&times;</span><img src="bilde10.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal11" class="modal"><span class="close" onclick="closeModal('modal11')">&times;</span><img src="bilde11.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal12" class="modal"><span class="close" onclick="closeModal('modal12')">&times;</span><img src="bilde12.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal13" class="modal"><span class="close" onclick="closeModal('modal13')">&times;</span><img src="bilde13.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal14" class="modal"><span class="close" onclick="closeModal('modal14')">&times;</span><img src="bilde14.jpg" class="modal-content"><div class="caption"></div></div>
 
 <script>
+// --- MØRK MODUS LOGIKK ---
+const themeToggle = document.getElementById('theme-toggle');
+const currentTheme = localStorage.getItem('theme');
+
+if (currentTheme === 'dark') {
+  document.documentElement.setAttribute('data-theme', 'dark');
+  themeToggle.textContent = "☀️ Lys";
+}
+
+themeToggle.addEventListener('click', () => {
+  let theme = document.documentElement.getAttribute('data-theme');
+  if (theme === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'light');
+    localStorage.setItem('theme', 'light');
+    themeToggle.textContent = "🌙 Mørk";
+  } else {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    localStorage.setItem('theme', 'dark');
+    themeToggle.textContent = "☀️ Lys";
+  }
+});
+
+// --- 3D HOVER PARALLAX ---
+const projectImages = document.querySelectorAll('.gallery img');
+
+projectImages.forEach(img => {
+  img.addEventListener('mousemove', (e) => {
+    if (window.innerWidth < 750) return; // Ikke kjør på mobil
+    const rect = img.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    
+    const rotateX = (y - centerY) / 10;
+    const rotateY = (centerX - x) / 10;
+    
+    img.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+  });
+  
+  img.addEventListener('mouseleave', () => {
+    img.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)`;
+  });
+});
+
+// --- LAZY LOADING BLUR-EFFEKT ---
+projectImages.forEach(img => {
+  if (img.complete) {
+    img.classList.add('loaded');
+  } else {
+    img.addEventListener('load', () => {
+      img.classList.add('loaded');
+    });
+  }
+});
+
 function scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
@@ -260,17 +336,20 @@ function openModal(modalId, captionText) {
   modal.classList.add("show");
   modal.querySelector(".caption").innerText = captionText;
 }
+
 function closeModal(modalId) {
   let modal = document.getElementById(modalId);
   modal.style.display = "none";
   modal.classList.remove("show");
 }
+
 function onScrollFadeIn() {
   document.querySelectorAll('.gallery img, .gallery iframe').forEach(function(el) {
     const rect = el.getBoundingClientRect();
     if (rect.top < window.innerHeight - 60) el.classList.add('visible');
   });
 }
+
 function updateProgressBar() {
   let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
   let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -281,8 +360,6 @@ function updateProgressBar() {
 window.addEventListener('scroll', () => {
   onScrollFadeIn();
   updateProgressBar();
-  
-  // Vis eller skjul "Tilbake til toppen"-knappen
   let btn = document.getElementById("backToTop");
   if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) {
     btn.style.display = "block";
@@ -295,10 +372,17 @@ window.addEventListener('DOMContentLoaded', () => {
   onScrollFadeIn();
   updateProgressBar();
 });
+
+window.onclick = function(event) {
+  if (event.target.className === 'modal show') {
+    event.target.style.display = "none";
+    event.target.classList.remove("show");
+  }
+}
+
 document.addEventListener('contextmenu', function(e) {
   if (e.target.tagName === 'IMG') {
     e.preventDefault();
-    alert("Bildene er beskyttet av Solemsli Productions.");
   }
 });
 </script>
