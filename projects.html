@@ -154,13 +154,18 @@ main {
   object-fit: cover;
   border-radius: 12px;
   box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-  /* Fjernet transform herfra for å la JS styre 3D-vipping */
   cursor: pointer;
   opacity: 0;
   transform: translateY(20px);
   border: none;
-  transition: opacity 0.8s ease, transform 0.1s ease-out; /* Raskere transform for 3D-effekt */
-  will-change: transform; /* Optimaliserer ytelse for animasjon */
+  transition: opacity 0.8s ease, transform 0.1s ease-out;
+  will-change: transform;
+}
+
+/* Spesifikk stil for YouTube Shorts (stående format) */
+.shorts-video {
+  width: 250px !important;
+  height: 440px !important;
 }
 
 /* Blur-effekt for lazy loading */
@@ -207,7 +212,7 @@ footer { width: 100%; text-align: center; padding: 30px 0; color: var(--text-col
   nav { flex-direction: column; padding: 15px; gap: 15px; }
   .nav-links { gap: 15px; }
   .gallery img, .gallery iframe { height: 200px; }
-  /* Deaktiver 3D-vipp på mobil for bedre brukervennlighet */
+  .shorts-video { width: 180px !important; height: 320px !important; }
   .gallery img { transform: none !important; } 
 }
 </style>
@@ -250,9 +255,10 @@ footer { width: 100%; text-align: center; padding: 30px 0; color: var(--text-col
 
     <div class="gallery-images">
       <iframe src="https://www.youtube.com/embed/dnu5sXuDk8k" allowfullscreen></iframe>
-      <iframe src="https://www.youtube.com/shorts/zmlPOtFY9_8" allowfullscreen></iframe>
-      <iframe src="https://www.youtube.com/shorts/ZRK-0-iUAj8" allowfullscreen></iframe>
-      <iframe src="https://www.youtube.com/shorts/qyguQjbqtzk" allowfullscreen></iframe>
+      <iframe class="shorts-video" src="https://www.youtube.com/embed/zmlPOtFY9_8" allowfullscreen></iframe>
+      <iframe class="shorts-video" src="https://www.youtube.com/embed/ZRK-0-iUAj8" allowfullscreen></iframe>
+      <iframe class="shorts-video" src="https://www.youtube.com/embed/qyguQjbqtzk" allowfullscreen></iframe>
+      
       <img src="bilde5.jpg" alt="Tyin-Ultra" loading="lazy" onclick="openModal('modal5', 'Tyin-Ultra 2023')">
       <img src="bilde6.jpg" alt="Prosjekt" loading="lazy" onclick="openModal('modal6', '')">
       <img src="bilde7.jpg" alt="Prosjekt" loading="lazy" onclick="openModal('modal7', '')">
@@ -299,7 +305,7 @@ const projectImages = document.querySelectorAll('.gallery img');
 
 projectImages.forEach(img => {
   img.addEventListener('mousemove', (e) => {
-    if (window.innerWidth < 750) return; // Ikke kjør på mobil
+    if (window.innerWidth < 750) return; 
     const rect = img.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
