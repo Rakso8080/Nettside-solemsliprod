@@ -94,7 +94,6 @@
       margin-top: 40px;
     }
 
-    /* Tvinger 4 kolonner på stor PC-skjerm */
     @media (min-width: 1100px) {
       .price-section {
         grid-template-columns: repeat(4, 1fr);
@@ -123,20 +122,20 @@
     .details li { margin-bottom: 10px; font-size: 0.9rem; opacity: 0.9; }
     .details li::before { content: "✓ "; color: var(--main-blue); font-weight: bold; }
 
-    /* Spesialramme for den siste boksen */
-    .price-card.special {
-      border: 2px solid var(--main-blue);
-    }
+    .price-card.special { border: 2px solid var(--main-blue); }
 
     .btn {
       background: var(--main-blue);
       color: white;
       padding: 12px 20px;
-      text-decoration: none;
+      border: none;
       border-radius: 30px;
       font-weight: bold;
+      font-family: inherit;
+      cursor: pointer;
       transition: 0.3s;
       margin-top: auto;
+      width: 100%;
     }
     .btn:hover { opacity: 0.9; transform: scale(1.05); }
 
@@ -179,7 +178,7 @@
           <li>Digital levering</li>
           <li>Grunnleggende redigering</li>
         </ul>
-        <a href="contact.html" class="btn">Book nå</a>
+        <button class="btn" data-package="Liten Pakke" onclick="sendBookingEmail(this)">Book nå</button>
       </div>
 
       <div class="price-card">
@@ -192,7 +191,7 @@
           <li>Full redigering inkludert</li>
           <li>Høy oppløsning</li>
         </ul>
-        <a href="contact.html" class="btn">Book nå</a>
+        <button class="btn" data-package="Medium Pakke" onclick="sendBookingEmail(this)">Book nå</button>
       </div>
 
       <div class="price-card">
@@ -205,7 +204,7 @@
           <li>Prioritert redigering</li>
           <li>4K Video kvalitet</li>
         </ul>
-        <a href="contact.html" class="btn">Book nå</a>
+        <button class="btn" data-package="Stor Pakke" onclick="sendBookingEmail(this)">Book nå</button>
       </div>
 
       <div class="price-card special">
@@ -218,7 +217,7 @@
           <li>Reels & TikTok produksjon</li>
           <li>Pris diskuteres</li>
         </ul>
-        <a href="contact.html" class="btn">Få tilbud</a>
+        <button class="btn" data-package="Skreddersydd Oppdrag" onclick="sendBookingEmail(this)">Få tilbud</button>
       </div>
     </div>
   </main>
@@ -228,6 +227,38 @@
   </footer>
 
   <script>
+    // --- BOOKING EMAIL FUNKSJON ---
+    function sendBookingEmail(button) {
+      const packageName = button.getAttribute('data-package');
+      const myEmail = "din-epost@adresse.no"; // HUSK Å BYTTE DENNE!
+      
+      const subject = encodeURIComponent("Bookingforespørsel: " + packageName);
+      
+      const bodyText = `Hei,
+
+Jeg ønsker å booke følgende pakke: ${packageName}
+
+Vennligst fyll ut informasjonen under:
+
+Navn: 
+Telefonnummer:
+Organisasjon / Bedrift / Privatperson: 
+Sted for oppdraget:
+Dato for oppdraget: 
+Møtetid: 
+
+Kort beskrivelse av oppdraget:
+
+Ønsket sluttprodukt (f.eks. antall bilder/video-lengde):
+
+Tilleggsinformasjon (valgfritt): 
+
+Med vennlig hilsen`;
+
+      const body = encodeURIComponent(bodyText);
+      window.location.href = `mailto:${myEmail}?subject=${subject}&body=${body}`;
+    }
+
     // --- DARK MODE LOGIKK ---
     const themeToggle = document.getElementById('theme-toggle');
     const currentTheme = localStorage.getItem('theme');
