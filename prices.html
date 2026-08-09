@@ -3,148 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Priser | Solemsli Productions</title>
-  
-  <style>
-    /* --- BASE & PERFORMANCE --- */
-    :root {
-      --main-blue: #0180ff;
-      --bg-gradient: linear-gradient(135deg, #dde8f8 0%, #c3cfe2 100%);
-      --text-color: #111;
-      --glass-bg: rgba(255, 255, 255, 0.15);
-      --glass-border: rgba(255, 255, 255, 0.3);
-      --card-bg: rgba(255, 255, 255, 0.15);
-      --footer-bg: rgba(0,0,0,0.02);
-    }
-
-    /* DARK MODE FARGER */
-    [data-theme="dark"] {
-      --bg-gradient: linear-gradient(135deg, #1a1c20 0%, #0f1013 100%);
-      --text-color: #f5f5f5;
-      --glass-bg: rgba(0, 0, 0, 0.3);
-      --glass-border: rgba(255, 255, 255, 0.1);
-      --card-bg: rgba(255, 255, 255, 0.05);
-      --footer-bg: rgba(0,0,0,0.2);
-    }
-
-    html, body {
-      max-width: 100%;
-      overflow-x: hidden;
-      margin: 0;
-      padding: 0;
-      scroll-behavior: smooth;
-    }
-
-    body {
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-      background: var(--bg-gradient) fixed;
-      color: var(--text-color);
-      transition: background 0.3s ease, color 0.3s ease;
-      animation: fadeInBody 0.8s ease-out;
-    }
-
-    @keyframes fadeInBody { from { opacity: 0; } to { opacity: 1; } }
-
-    /* NAVIGATION */
-    header { position: sticky; top: 0; z-index: 1000; }
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 40px;
-      background: var(--glass-bg); 
-      backdrop-filter: blur(15px);
-      -webkit-backdrop-filter: blur(15px);
-      border-bottom: 1px solid var(--glass-border);
-    }
-
-    .logo { font-size: 1.6rem; font-weight: bold; color: var(--text-color); text-decoration: none; }
-    .nav-links { display: flex; gap: 20px; list-style: none; margin: 0; padding: 0; align-items: center; }
-    .nav-links a { text-decoration: none; color: var(--text-color); font-weight: 500; font-size: 0.9rem; transition: color 0.2s; }
-    .nav-links a:hover { color: var(--main-blue); }
-
-    /* DARK MODE TOGGLE BUTTON */
-    #theme-toggle {
-      background: var(--glass-bg);
-      border: 1px solid var(--glass-border);
-      color: var(--text-color);
-      padding: 8px 12px;
-      border-radius: 20px;
-      cursor: pointer;
-      font-size: 0.8rem;
-      transition: 0.3s;
-    }
-    #theme-toggle:hover { background: var(--main-blue); color: white; }
-
-    /* PRIS-LAYOUT */
-    .container {
-      max-width: 1200px;
-      margin: 50px auto;
-      padding: 0 20px;
-      text-align: center;
-    }
-
-    .price-section {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
-      margin-top: 40px;
-    }
-
-    @media (min-width: 1100px) {
-      .price-section {
-        grid-template-columns: repeat(4, 1fr);
-      }
-    }
-
-    .price-card {
-      background: var(--card-bg);
-      backdrop-filter: blur(10px);
-      padding: 35px 25px;
-      border-radius: 25px;
-      border: 1px solid var(--glass-border);
-      transition: transform 0.3s ease, border-color 0.3s ease;
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-      box-sizing: border-box;
-    }
-
-    .price-card:hover { transform: translateY(-10px); border-color: var(--main-blue); }
-    .price-card h3 { color: var(--main-blue); margin-bottom: 15px; font-size: 1.4rem; }
-    
-    .amount { font-size: 1.8rem; font-weight: bold; margin: 15px 0; }
-    
-    .details { list-style: none; padding: 0; margin: 0 0 30px 0; flex-grow: 1; text-align: left; }
-    .details li { margin-bottom: 10px; font-size: 0.9rem; opacity: 0.9; }
-    .details li::before { content: "✓ "; color: var(--main-blue); font-weight: bold; }
-
-    .price-card.special { border: 2px solid var(--main-blue); }
-
-    .btn {
-      background: var(--main-blue);
-      color: white;
-      padding: 12px 20px;
-      border: none;
-      border-radius: 30px;
-      font-weight: bold;
-      font-family: inherit;
-      cursor: pointer;
-      transition: 0.3s;
-      margin-top: auto;
-      width: 100%;
-    }
-    .btn:hover { opacity: 0.9; transform: scale(1.05); }
-
-    footer { text-align: center; padding: 40px; color: var(--text-color); font-size: 0.9rem; background: var(--footer-bg); margin-top: auto; opacity: 0.8; }
-
-    @media (max-width: 750px) {
-      nav { flex-direction: column; gap: 15px; }
-    }
-  </style>
+  <meta name="description" content="Pakker og priser for foto, video og droneproduksjon fra Solemsli Productions.">
+  <meta property="og:title" content="Priser – Solemsli Productions">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://rakso8080.github.io/Nettside-solemsliprod/prices.html">
+  <title>Priser – Solemsli Productions</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -152,13 +17,14 @@
   <header>
     <nav>
       <a href="index.html" class="logo">Solemsli Productions</a>
-      <ul class="nav-links">
+      <button id="menu-toggle" aria-label="Åpne meny" aria-expanded="false">☰</button>
+      <ul class="nav-links" id="nav-links">
         <li><a href="index.html">Hjem</a></li>
         <li><a href="about.html">Om meg</a></li>
         <li><a href="projects.html">Prosjekter</a></li>
-        <li><a href="prices.html" style="color: var(--main-blue);">Priser</a></li>
+        <li><a href="prices.html" class="active">Priser</a></li>
         <li><a href="contact.html">Kontakt</a></li>
-        <li><button id="theme-toggle">🌙 Modus</button></li>
+        <li><button id="theme-toggle">🌙 Mørk</button></li>
       </ul>
     </nav>
   </header>
@@ -227,13 +93,13 @@
   </footer>
 
   <script>
-    // --- BOOKING EMAIL FUNKSJON ---
+    // --- BOOKING EMAIL ---
     function sendBookingEmail(button) {
       const packageName = button.getAttribute('data-package');
-      const myEmail = "rakso8080@gmail.com"; // HUSK Å BYTTE DENNE!
-      
+      const myEmail = "rakso8080@gmail.com";
+
       const subject = encodeURIComponent("Bookingforespørsel: " + packageName);
-      
+
       const bodyText = `Hei,
 
 Jeg ønsker å booke følgende pakke: ${packageName}
@@ -257,7 +123,7 @@ Med vennlig hilsen`;
       window.location.href = `mailto:${myEmail}?subject=${subject}&body=${body}`;
     }
 
-    // --- DARK MODE LOGIKK ---
+    // --- MØRK MODUS ---
     const themeToggle = document.getElementById('theme-toggle');
     const currentTheme = localStorage.getItem('theme');
 
@@ -279,7 +145,18 @@ Med vennlig hilsen`;
       }
     });
 
-    // --- FADE IN LOGIKK ---
+    // --- HAMBURGER-MENY ---
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinks = document.getElementById('nav-links');
+    menuToggle.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', open);
+    });
+    navLinks.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => navLinks.classList.remove('open'));
+    });
+
+    // --- FADE IN ---
     const fadeElements = document.querySelectorAll('.fade-in');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {

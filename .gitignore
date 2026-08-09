@@ -1,0 +1,14 @@
+# macOS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Temporary export files
+*.tmp
+*.bak
