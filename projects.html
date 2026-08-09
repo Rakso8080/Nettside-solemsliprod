@@ -147,7 +147,7 @@ main {
   margin-bottom: 20px;
 }
 
-.gallery img, .gallery iframe {
+.gallery-images img, .gallery-images iframe {
   width: 350px;
   max-width: 100%;
   height: 230px;
@@ -180,7 +180,7 @@ img.loaded {
 
 #top-focus { object-position: center 20% !important; }
 
-.gallery img.visible, .gallery iframe.visible {
+.gallery-images img.visible, .gallery-images iframe.visible {
   opacity: 1;
   transform: translateY(0);
 }
@@ -211,9 +211,9 @@ footer { width: 100%; text-align: center; padding: 30px 0; color: var(--text-col
 @media (max-width: 750px) {
   nav { flex-direction: column; padding: 15px; gap: 15px; }
   .nav-links { gap: 15px; }
-  .gallery img, .gallery iframe { height: 200px; }
+  .gallery-images img, .gallery-images iframe { height: 200px; }
   .shorts-video { width: 180px !important; height: 320px !important; }
-  .gallery img { transform: none !important; } 
+  .gallery-images img { transform: none !important; } 
 }
 </style>
 </head>
@@ -273,214 +273,109 @@ footer { width: 100%; text-align: center; padding: 30px 0; color: var(--text-col
     </div>
   </div>
 
-    <h2 style="text-align:center; margin:40px 0 20px; font-size:1.4rem;">Bilder Kunst</h2>
-    <div class="gallery-images">
-      <img src="gallery/bilder-kunst/untitled--10.jpg" alt="Bilder Kunst" loading="lazy" onclick="openModal('modal1001', 'Bilder Kunst')">
-      <img src="gallery/bilder-kunst/untitled--16.jpg" alt="Bilder Kunst" loading="lazy" onclick="openModal('modal1002', 'Bilder Kunst')">
-      <img src="gallery/bilder-kunst/untitled--21.jpg" alt="Bilder Kunst" loading="lazy" onclick="openModal('modal1003', 'Bilder Kunst')">
-      <img src="gallery/bilder-kunst/untitled--3.jpg" alt="Bilder Kunst" loading="lazy" onclick="openModal('modal1004', 'Bilder Kunst')">
-      <img src="gallery/bilder-kunst/untitled--9.jpg" alt="Bilder Kunst" loading="lazy" onclick="openModal('modal1005', 'Bilder Kunst')">
-      <img src="gallery/bilder-kunst/untitled-0280.jpg" alt="Bilder Kunst" loading="lazy" onclick="openModal('modal1006', 'Bilder Kunst')">
-      <img src="gallery/bilder-kunst/untitled-0286.jpg" alt="Bilder Kunst" loading="lazy" onclick="openModal('modal1007', 'Bilder Kunst')">
-      <img src="gallery/bilder-kunst/untitled-0292.jpg" alt="Bilder Kunst" loading="lazy" onclick="openModal('modal1008', 'Bilder Kunst')">
-      <img src="gallery/bilder-kunst/untitled-0298.jpg" alt="Bilder Kunst" loading="lazy" onclick="openModal('modal1009', 'Bilder Kunst')">
-      <img src="gallery/bilder-kunst/untitled-0304.jpg" alt="Bilder Kunst" loading="lazy" onclick="openModal('modal1010', 'Bilder Kunst')">
-      <img src="gallery/bilder-kunst/untitled-0310.jpg" alt="Bilder Kunst" loading="lazy" onclick="openModal('modal1011', 'Bilder Kunst')">
-      <img src="gallery/bilder-kunst/untitled-0316.jpg" alt="Bilder Kunst" loading="lazy" onclick="openModal('modal1012', 'Bilder Kunst')">
-      <img src="gallery/bilder-kunst/untitled-4683.jpg" alt="Bilder Kunst" loading="lazy" onclick="openModal('modal1013', 'Bilder Kunst')">
-      <img src="gallery/bilder-kunst/untitled-4876.jpg" alt="Bilder Kunst" loading="lazy" onclick="openModal('modal1014', 'Bilder Kunst')">
-    </div>
     <h2 style="text-align:center; margin:40px 0 20px; font-size:1.4rem;">Bryllup</h2>
     <div class="gallery-images">
-      <img src="gallery/bryllup/_DSC3168.jpg" alt="Bryllup" loading="lazy" onclick="openModal('modal1015', 'Bryllup')">
-      <img src="gallery/bryllup/_DSC3182.jpg" alt="Bryllup" loading="lazy" onclick="openModal('modal1016', 'Bryllup')">
-      <img src="gallery/bryllup/_DSC3192.jpg" alt="Bryllup" loading="lazy" onclick="openModal('modal1017', 'Bryllup')">
-      <img src="gallery/bryllup/_DSC3195.jpg" alt="Bryllup" loading="lazy" onclick="openModal('modal1018', 'Bryllup')">
-      <img src="gallery/bryllup/_DSC3228.jpg" alt="Bryllup" loading="lazy" onclick="openModal('modal1019', 'Bryllup')">
-      <img src="gallery/bryllup/_DSC3303.jpg" alt="Bryllup" loading="lazy" onclick="openModal('modal1020', 'Bryllup')">
-      <img src="gallery/bryllup/_DSC3489.jpg" alt="Bryllup" loading="lazy" onclick="openModal('modal1021', 'Bryllup')">
-      <img src="gallery/bryllup/_DSC3531.jpg" alt="Bryllup" loading="lazy" onclick="openModal('modal1022', 'Bryllup')">
-      <img src="gallery/bryllup/_DSC3566.jpg" alt="Bryllup" loading="lazy" onclick="openModal('modal1023', 'Bryllup')">
-      <img src="gallery/bryllup/_DSC3682.jpg" alt="Bryllup" loading="lazy" onclick="openModal('modal1024', 'Bryllup')">
-      <img src="gallery/bryllup/_DSC3761.jpg" alt="Bryllup" loading="lazy" onclick="openModal('modal1025', 'Bryllup')">
+      <img src="gallery/bryllup/_DSC3168.jpg" alt="Bryllup" loading="lazy" onclick="openModal('modal1001', 'Bryllup')">
+      <img src="gallery/bryllup/_DSC3182.jpg" alt="Bryllup" loading="lazy" onclick="openModal('modal1002', 'Bryllup')">
+      <img src="gallery/bryllup/_DSC3192.jpg" alt="Bryllup" loading="lazy" onclick="openModal('modal1003', 'Bryllup')">
+      <img src="gallery/bryllup/_DSC3195.jpg" alt="Bryllup" loading="lazy" onclick="openModal('modal1004', 'Bryllup')">
+      <img src="gallery/bryllup/_DSC3228.jpg" alt="Bryllup" loading="lazy" onclick="openModal('modal1005', 'Bryllup')">
+      <img src="gallery/bryllup/_DSC3303.jpg" alt="Bryllup" loading="lazy" onclick="openModal('modal1006', 'Bryllup')">
+      <img src="gallery/bryllup/_DSC3489.jpg" alt="Bryllup" loading="lazy" onclick="openModal('modal1007', 'Bryllup')">
+      <img src="gallery/bryllup/_DSC3531.jpg" alt="Bryllup" loading="lazy" onclick="openModal('modal1008', 'Bryllup')">
+      <img src="gallery/bryllup/_DSC3566.jpg" alt="Bryllup" loading="lazy" onclick="openModal('modal1009', 'Bryllup')">
+      <img src="gallery/bryllup/_DSC3682.jpg" alt="Bryllup" loading="lazy" onclick="openModal('modal1010', 'Bryllup')">
+      <img src="gallery/bryllup/_DSC3761.jpg" alt="Bryllup" loading="lazy" onclick="openModal('modal1011', 'Bryllup')">
+      <img src="gallery/bryllup/bryllup-redigert-133.jpg" alt="Bryllup" loading="lazy" onclick="openModal('modal1012', 'Bryllup')">
+      <img src="gallery/bryllup/bryllup-redigert-210.jpg" alt="Bryllup" loading="lazy" onclick="openModal('modal1013', 'Bryllup')">
+      <img src="gallery/bryllup/bryllup-redigert-25.jpg" alt="Bryllup" loading="lazy" onclick="openModal('modal1014', 'Bryllup')">
+      <img src="gallery/bryllup/bryllup-redigert-8.jpg" alt="Bryllup" loading="lazy" onclick="openModal('modal1015', 'Bryllup')">
+      <img src="gallery/bryllup/bryllup-redigert-87.jpg" alt="Bryllup" loading="lazy" onclick="openModal('modal1016', 'Bryllup')">
     </div>
     <h2 style="text-align:center; margin:40px 0 20px; font-size:1.4rem;">Konfirmasjon</h2>
     <div class="gallery-images">
-      <img src="gallery/konfirmasjon/untitled-5010.jpg" alt="Konfirmasjon" loading="lazy" onclick="openModal('modal1026', 'Konfirmasjon')">
-      <img src="gallery/konfirmasjon/untitled-5078.jpg" alt="Konfirmasjon" loading="lazy" onclick="openModal('modal1027', 'Konfirmasjon')">
-      <img src="gallery/konfirmasjon/untitled-5143.jpg" alt="Konfirmasjon" loading="lazy" onclick="openModal('modal1028', 'Konfirmasjon')">
-      <img src="gallery/konfirmasjon/untitled-5193.jpg" alt="Konfirmasjon" loading="lazy" onclick="openModal('modal1029', 'Konfirmasjon')">
-      <img src="gallery/konfirmasjon/untitled-5236.jpg" alt="Konfirmasjon" loading="lazy" onclick="openModal('modal1030', 'Konfirmasjon')">
-      <img src="gallery/konfirmasjon/untitled-5293.jpg" alt="Konfirmasjon" loading="lazy" onclick="openModal('modal1031', 'Konfirmasjon')">
-      <img src="gallery/konfirmasjon/untitled-5325.jpg" alt="Konfirmasjon" loading="lazy" onclick="openModal('modal1032', 'Konfirmasjon')">
-      <img src="gallery/konfirmasjon/untitled-5363.jpg" alt="Konfirmasjon" loading="lazy" onclick="openModal('modal1033', 'Konfirmasjon')">
-      <img src="gallery/konfirmasjon/untitled-5439.jpg" alt="Konfirmasjon" loading="lazy" onclick="openModal('modal1034', 'Konfirmasjon')">
-      <img src="gallery/konfirmasjon/untitled-5507.jpg" alt="Konfirmasjon" loading="lazy" onclick="openModal('modal1035', 'Konfirmasjon')">
-      <img src="gallery/konfirmasjon/untitled-5574.jpg" alt="Konfirmasjon" loading="lazy" onclick="openModal('modal1036', 'Konfirmasjon')">
-      <img src="gallery/konfirmasjon/untitled-5613.jpg" alt="Konfirmasjon" loading="lazy" onclick="openModal('modal1037', 'Konfirmasjon')">
-      <img src="gallery/konfirmasjon/untitled-5649.jpg" alt="Konfirmasjon" loading="lazy" onclick="openModal('modal1038', 'Konfirmasjon')">
-    </div>
-    <h2 style="text-align:center; margin:40px 0 20px; font-size:1.4rem;">Lillehammer Judo</h2>
-    <div class="gallery-images">
-      <img src="gallery/lilhamar-judo/untitled-5652.jpg" alt="Lillehammer Judo" loading="lazy" onclick="openModal('modal1039', 'Lillehammer Judo')">
-      <img src="gallery/lilhamar-judo/untitled-5666.jpg" alt="Lillehammer Judo" loading="lazy" onclick="openModal('modal1040', 'Lillehammer Judo')">
-      <img src="gallery/lilhamar-judo/untitled-5680.jpg" alt="Lillehammer Judo" loading="lazy" onclick="openModal('modal1041', 'Lillehammer Judo')">
-      <img src="gallery/lilhamar-judo/untitled-5690.jpg" alt="Lillehammer Judo" loading="lazy" onclick="openModal('modal1042', 'Lillehammer Judo')">
-      <img src="gallery/lilhamar-judo/untitled-5702.jpg" alt="Lillehammer Judo" loading="lazy" onclick="openModal('modal1043', 'Lillehammer Judo')">
-      <img src="gallery/lilhamar-judo/untitled-5714.jpg" alt="Lillehammer Judo" loading="lazy" onclick="openModal('modal1044', 'Lillehammer Judo')">
-      <img src="gallery/lilhamar-judo/untitled-5721.jpg" alt="Lillehammer Judo" loading="lazy" onclick="openModal('modal1045', 'Lillehammer Judo')">
-      <img src="gallery/lilhamar-judo/untitled-5735.jpg" alt="Lillehammer Judo" loading="lazy" onclick="openModal('modal1046', 'Lillehammer Judo')">
-      <img src="gallery/lilhamar-judo/untitled-5746.jpg" alt="Lillehammer Judo" loading="lazy" onclick="openModal('modal1047', 'Lillehammer Judo')">
-      <img src="gallery/lilhamar-judo/untitled-5755.jpg" alt="Lillehammer Judo" loading="lazy" onclick="openModal('modal1048', 'Lillehammer Judo')">
-      <img src="gallery/lilhamar-judo/untitled-5761.jpg" alt="Lillehammer Judo" loading="lazy" onclick="openModal('modal1049', 'Lillehammer Judo')">
-      <img src="gallery/lilhamar-judo/untitled-5766.jpg" alt="Lillehammer Judo" loading="lazy" onclick="openModal('modal1050', 'Lillehammer Judo')">
-      <img src="gallery/lilhamar-judo/untitled-5771.jpg" alt="Lillehammer Judo" loading="lazy" onclick="openModal('modal1051', 'Lillehammer Judo')">
-      <img src="gallery/lilhamar-judo/untitled-5776.jpg" alt="Lillehammer Judo" loading="lazy" onclick="openModal('modal1052', 'Lillehammer Judo')">
+      <img src="gallery/konfirmasjon/untitled-5010.jpg" alt="Konfirmasjon" loading="lazy" onclick="openModal('modal1017', 'Konfirmasjon')">
+      <img src="gallery/konfirmasjon/untitled-5193.jpg" alt="Konfirmasjon" loading="lazy" onclick="openModal('modal1018', 'Konfirmasjon')">
+      <img src="gallery/konfirmasjon/untitled-5293.jpg" alt="Konfirmasjon" loading="lazy" onclick="openModal('modal1019', 'Konfirmasjon')">
+      <img src="gallery/konfirmasjon/untitled-5439.jpg" alt="Konfirmasjon" loading="lazy" onclick="openModal('modal1020', 'Konfirmasjon')">
+      <img src="gallery/konfirmasjon/untitled-5574.jpg" alt="Konfirmasjon" loading="lazy" onclick="openModal('modal1021', 'Konfirmasjon')">
+      <img src="gallery/konfirmasjon/untitled-5649.jpg" alt="Konfirmasjon" loading="lazy" onclick="openModal('modal1022', 'Konfirmasjon')">
     </div>
     <h2 style="text-align:center; margin:40px 0 20px; font-size:1.4rem;">Mahir</h2>
     <div class="gallery-images">
-      <img src="gallery/mahir/untitled--10.jpg" alt="Mahir" loading="lazy" onclick="openModal('modal1053', 'Mahir')">
-      <img src="gallery/mahir/untitled--24.jpg" alt="Mahir" loading="lazy" onclick="openModal('modal1054', 'Mahir')">
-      <img src="gallery/mahir/untitled--5.jpg" alt="Mahir" loading="lazy" onclick="openModal('modal1055', 'Mahir')">
-      <img src="gallery/mahir/untitled-5793.jpg" alt="Mahir" loading="lazy" onclick="openModal('modal1056', 'Mahir')">
-      <img src="gallery/mahir/untitled-5808.jpg" alt="Mahir" loading="lazy" onclick="openModal('modal1057', 'Mahir')">
-      <img src="gallery/mahir/untitled-5823.jpg" alt="Mahir" loading="lazy" onclick="openModal('modal1058', 'Mahir')">
-      <img src="gallery/mahir/untitled-5838.jpg" alt="Mahir" loading="lazy" onclick="openModal('modal1059', 'Mahir')">
-      <img src="gallery/mahir/untitled-5853.jpg" alt="Mahir" loading="lazy" onclick="openModal('modal1060', 'Mahir')">
-      <img src="gallery/mahir/untitled-5868.jpg" alt="Mahir" loading="lazy" onclick="openModal('modal1061', 'Mahir')">
-      <img src="gallery/mahir/untitled-5920.jpg" alt="Mahir" loading="lazy" onclick="openModal('modal1062', 'Mahir')">
-      <img src="gallery/mahir/untitled-5935.jpg" alt="Mahir" loading="lazy" onclick="openModal('modal1063', 'Mahir')">
-      <img src="gallery/mahir/untitled-5964.jpg" alt="Mahir" loading="lazy" onclick="openModal('modal1064', 'Mahir')">
-      <img src="gallery/mahir/untitled-5983.jpg" alt="Mahir" loading="lazy" onclick="openModal('modal1065', 'Mahir')">
+      <img src="gallery/mahir/untitled-5793.jpg" alt="Mahir" loading="lazy" onclick="openModal('modal1023', 'Mahir')">
+      <img src="gallery/mahir/untitled-5808.jpg" alt="Mahir" loading="lazy" onclick="openModal('modal1024', 'Mahir')">
+      <img src="gallery/mahir/untitled-5853.jpg" alt="Mahir" loading="lazy" onclick="openModal('modal1025', 'Mahir')">
+      <img src="gallery/mahir/untitled-5920.jpg" alt="Mahir" loading="lazy" onclick="openModal('modal1026', 'Mahir')">
+      <img src="gallery/mahir/untitled-5964.jpg" alt="Mahir" loading="lazy" onclick="openModal('modal1027', 'Mahir')">
+      <img src="gallery/mahir/untitled-5983.jpg" alt="Mahir" loading="lazy" onclick="openModal('modal1028', 'Mahir')">
     </div>
     <h2 style="text-align:center; margin:40px 0 20px; font-size:1.4rem;">Ola K.</h2>
     <div class="gallery-images">
-      <img src="gallery/ola-k/untitled--10.jpg" alt="Ola K." loading="lazy" onclick="openModal('modal1066', 'Ola K.')">
-      <img src="gallery/ola-k/untitled--11.jpg" alt="Ola K." loading="lazy" onclick="openModal('modal1067', 'Ola K.')">
-      <img src="gallery/ola-k/untitled--12.jpg" alt="Ola K." loading="lazy" onclick="openModal('modal1068', 'Ola K.')">
-      <img src="gallery/ola-k/untitled--13.jpg" alt="Ola K." loading="lazy" onclick="openModal('modal1069', 'Ola K.')">
-      <img src="gallery/ola-k/untitled--14.jpg" alt="Ola K." loading="lazy" onclick="openModal('modal1070', 'Ola K.')">
-      <img src="gallery/ola-k/untitled--15.jpg" alt="Ola K." loading="lazy" onclick="openModal('modal1071', 'Ola K.')">
-      <img src="gallery/ola-k/untitled--16.jpg" alt="Ola K." loading="lazy" onclick="openModal('modal1072', 'Ola K.')">
-      <img src="gallery/ola-k/untitled--2.jpg" alt="Ola K." loading="lazy" onclick="openModal('modal1073', 'Ola K.')">
-      <img src="gallery/ola-k/untitled--3.jpg" alt="Ola K." loading="lazy" onclick="openModal('modal1074', 'Ola K.')">
-      <img src="gallery/ola-k/untitled--4.jpg" alt="Ola K." loading="lazy" onclick="openModal('modal1075', 'Ola K.')">
-      <img src="gallery/ola-k/untitled--5.jpg" alt="Ola K." loading="lazy" onclick="openModal('modal1076', 'Ola K.')">
-      <img src="gallery/ola-k/untitled--6.jpg" alt="Ola K." loading="lazy" onclick="openModal('modal1077', 'Ola K.')">
-      <img src="gallery/ola-k/untitled--7.jpg" alt="Ola K." loading="lazy" onclick="openModal('modal1078', 'Ola K.')">
-      <img src="gallery/ola-k/untitled--8.jpg" alt="Ola K." loading="lazy" onclick="openModal('modal1079', 'Ola K.')">
-      <img src="gallery/ola-k/untitled--9.jpg" alt="Ola K." loading="lazy" onclick="openModal('modal1080', 'Ola K.')">
-      <img src="gallery/ola-k/untitled-.jpg" alt="Ola K." loading="lazy" onclick="openModal('modal1081', 'Ola K.')">
+      <img src="gallery/ola-k/untitled--15.jpg" alt="Ola K." loading="lazy" onclick="openModal('modal1029', 'Ola K.')">
+      <img src="gallery/ola-k/untitled--2.jpg" alt="Ola K." loading="lazy" onclick="openModal('modal1030', 'Ola K.')">
+      <img src="gallery/ola-k/untitled--9.jpg" alt="Ola K." loading="lazy" onclick="openModal('modal1031', 'Ola K.')">
     </div>
     <h2 style="text-align:center; margin:40px 0 20px; font-size:1.4rem;">Vang bygg – Oversikt</h2>
     <div class="gallery-images">
-      <img src="gallery/vang-bygg-oversikt/untitled--10.jpg" alt="Vang bygg – Oversikt" loading="lazy" onclick="openModal('modal1082', 'Vang bygg – Oversikt')">
-      <img src="gallery/vang-bygg-oversikt/untitled--11.jpg" alt="Vang bygg – Oversikt" loading="lazy" onclick="openModal('modal1083', 'Vang bygg – Oversikt')">
-      <img src="gallery/vang-bygg-oversikt/untitled--12.jpg" alt="Vang bygg – Oversikt" loading="lazy" onclick="openModal('modal1084', 'Vang bygg – Oversikt')">
-      <img src="gallery/vang-bygg-oversikt/untitled--13.jpg" alt="Vang bygg – Oversikt" loading="lazy" onclick="openModal('modal1085', 'Vang bygg – Oversikt')">
-      <img src="gallery/vang-bygg-oversikt/untitled--14.jpg" alt="Vang bygg – Oversikt" loading="lazy" onclick="openModal('modal1086', 'Vang bygg – Oversikt')">
-      <img src="gallery/vang-bygg-oversikt/untitled--15.jpg" alt="Vang bygg – Oversikt" loading="lazy" onclick="openModal('modal1087', 'Vang bygg – Oversikt')">
-      <img src="gallery/vang-bygg-oversikt/untitled--16.jpg" alt="Vang bygg – Oversikt" loading="lazy" onclick="openModal('modal1088', 'Vang bygg – Oversikt')">
-      <img src="gallery/vang-bygg-oversikt/untitled--17.jpg" alt="Vang bygg – Oversikt" loading="lazy" onclick="openModal('modal1089', 'Vang bygg – Oversikt')">
-      <img src="gallery/vang-bygg-oversikt/untitled--18.jpg" alt="Vang bygg – Oversikt" loading="lazy" onclick="openModal('modal1090', 'Vang bygg – Oversikt')">
-      <img src="gallery/vang-bygg-oversikt/untitled--19.jpg" alt="Vang bygg – Oversikt" loading="lazy" onclick="openModal('modal1091', 'Vang bygg – Oversikt')">
-      <img src="gallery/vang-bygg-oversikt/untitled--2.jpg" alt="Vang bygg – Oversikt" loading="lazy" onclick="openModal('modal1092', 'Vang bygg – Oversikt')">
-      <img src="gallery/vang-bygg-oversikt/untitled--20.jpg" alt="Vang bygg – Oversikt" loading="lazy" onclick="openModal('modal1093', 'Vang bygg – Oversikt')">
-      <img src="gallery/vang-bygg-oversikt/untitled--21.jpg" alt="Vang bygg – Oversikt" loading="lazy" onclick="openModal('modal1094', 'Vang bygg – Oversikt')">
-      <img src="gallery/vang-bygg-oversikt/untitled--3.jpg" alt="Vang bygg – Oversikt" loading="lazy" onclick="openModal('modal1095', 'Vang bygg – Oversikt')">
-      <img src="gallery/vang-bygg-oversikt/untitled--4.jpg" alt="Vang bygg – Oversikt" loading="lazy" onclick="openModal('modal1096', 'Vang bygg – Oversikt')">
-      <img src="gallery/vang-bygg-oversikt/untitled--5.jpg" alt="Vang bygg – Oversikt" loading="lazy" onclick="openModal('modal1097', 'Vang bygg – Oversikt')">
-      <img src="gallery/vang-bygg-oversikt/untitled--6.jpg" alt="Vang bygg – Oversikt" loading="lazy" onclick="openModal('modal1098', 'Vang bygg – Oversikt')">
-      <img src="gallery/vang-bygg-oversikt/untitled--7.jpg" alt="Vang bygg – Oversikt" loading="lazy" onclick="openModal('modal1099', 'Vang bygg – Oversikt')">
-      <img src="gallery/vang-bygg-oversikt/untitled--8.jpg" alt="Vang bygg – Oversikt" loading="lazy" onclick="openModal('modal1100', 'Vang bygg – Oversikt')">
-      <img src="gallery/vang-bygg-oversikt/untitled--9.jpg" alt="Vang bygg – Oversikt" loading="lazy" onclick="openModal('modal1101', 'Vang bygg – Oversikt')">
-      <img src="gallery/vang-bygg-oversikt/untitled-.jpg" alt="Vang bygg – Oversikt" loading="lazy" onclick="openModal('modal1102', 'Vang bygg – Oversikt')">
-    </div>
-    <h2 style="text-align:center; margin:40px 0 20px; font-size:1.4rem;">Vang bygg – Prosjekt</h2>
-    <div class="gallery-images">
-      <img src="gallery/vang-bygg-prosjekt/untitled--10.jpg" alt="Vang bygg – Prosjekt" loading="lazy" onclick="openModal('modal1103', 'Vang bygg – Prosjekt')">
-      <img src="gallery/vang-bygg-prosjekt/untitled--13.jpg" alt="Vang bygg – Prosjekt" loading="lazy" onclick="openModal('modal1104', 'Vang bygg – Prosjekt')">
-      <img src="gallery/vang-bygg-prosjekt/untitled--16.jpg" alt="Vang bygg – Prosjekt" loading="lazy" onclick="openModal('modal1105', 'Vang bygg – Prosjekt')">
-      <img src="gallery/vang-bygg-prosjekt/untitled--19.jpg" alt="Vang bygg – Prosjekt" loading="lazy" onclick="openModal('modal1106', 'Vang bygg – Prosjekt')">
-      <img src="gallery/vang-bygg-prosjekt/untitled--21.jpg" alt="Vang bygg – Prosjekt" loading="lazy" onclick="openModal('modal1107', 'Vang bygg – Prosjekt')">
-      <img src="gallery/vang-bygg-prosjekt/untitled--3.jpg" alt="Vang bygg – Prosjekt" loading="lazy" onclick="openModal('modal1108', 'Vang bygg – Prosjekt')">
-      <img src="gallery/vang-bygg-prosjekt/untitled--6.jpg" alt="Vang bygg – Prosjekt" loading="lazy" onclick="openModal('modal1109', 'Vang bygg – Prosjekt')">
-      <img src="gallery/vang-bygg-prosjekt/untitled--9.jpg" alt="Vang bygg – Prosjekt" loading="lazy" onclick="openModal('modal1110', 'Vang bygg – Prosjekt')">
-      <img src="gallery/vang-bygg-prosjekt/untitled-4393.jpg" alt="Vang bygg – Prosjekt" loading="lazy" onclick="openModal('modal1111', 'Vang bygg – Prosjekt')">
-      <img src="gallery/vang-bygg-prosjekt/untitled-4401.jpg" alt="Vang bygg – Prosjekt" loading="lazy" onclick="openModal('modal1112', 'Vang bygg – Prosjekt')">
-      <img src="gallery/vang-bygg-prosjekt/untitled-4413.jpg" alt="Vang bygg – Prosjekt" loading="lazy" onclick="openModal('modal1113', 'Vang bygg – Prosjekt')">
-      <img src="gallery/vang-bygg-prosjekt/untitled-4417.jpg" alt="Vang bygg – Prosjekt" loading="lazy" onclick="openModal('modal1114', 'Vang bygg – Prosjekt')">
-      <img src="gallery/vang-bygg-prosjekt/untitled-4425.jpg" alt="Vang bygg – Prosjekt" loading="lazy" onclick="openModal('modal1115', 'Vang bygg – Prosjekt')">
-      <img src="gallery/vang-bygg-prosjekt/untitled-4430.jpg" alt="Vang bygg – Prosjekt" loading="lazy" onclick="openModal('modal1116', 'Vang bygg – Prosjekt')">
-      <img src="gallery/vang-bygg-prosjekt/untitled-4448.jpg" alt="Vang bygg – Prosjekt" loading="lazy" onclick="openModal('modal1117', 'Vang bygg – Prosjekt')">
-      <img src="gallery/vang-bygg-prosjekt/untitled-4492.jpg" alt="Vang bygg – Prosjekt" loading="lazy" onclick="openModal('modal1118', 'Vang bygg – Prosjekt')">
+      <img src="gallery/vang-bygg-oversikt/untitled--10.jpg" alt="Vang bygg – Oversikt" loading="lazy" onclick="openModal('modal1032', 'Vang bygg – Oversikt')">
+      <img src="gallery/vang-bygg-oversikt/untitled--14.jpg" alt="Vang bygg – Oversikt" loading="lazy" onclick="openModal('modal1033', 'Vang bygg – Oversikt')">
+      <img src="gallery/vang-bygg-oversikt/untitled--2.jpg" alt="Vang bygg – Oversikt" loading="lazy" onclick="openModal('modal1034', 'Vang bygg – Oversikt')">
+      <img src="gallery/vang-bygg-oversikt/untitled--20.jpg" alt="Vang bygg – Oversikt" loading="lazy" onclick="openModal('modal1035', 'Vang bygg – Oversikt')">
+      <img src="gallery/vang-bygg-oversikt/untitled--6.jpg" alt="Vang bygg – Oversikt" loading="lazy" onclick="openModal('modal1036', 'Vang bygg – Oversikt')">
     </div>
     <h2 style="text-align:center; margin:40px 0 20px; font-size:1.4rem;">Vang kommune – Sentrum</h2>
     <div class="gallery-images">
-      <img src="gallery/vang-kommune-sentrum/DJI_20250921114906_0193_D.jpg" alt="Vang kommune – Sentrum" loading="lazy" onclick="openModal('modal1119', 'Vang kommune – Sentrum')">
-      <img src="gallery/vang-kommune-sentrum/DJI_20250921115035_0195_D.jpg" alt="Vang kommune – Sentrum" loading="lazy" onclick="openModal('modal1120', 'Vang kommune – Sentrum')">
-      <img src="gallery/vang-kommune-sentrum/DJI_20250921115332_0198_D.jpg" alt="Vang kommune – Sentrum" loading="lazy" onclick="openModal('modal1121', 'Vang kommune – Sentrum')">
-      <img src="gallery/vang-kommune-sentrum/DJI_20250921115411_0201_D.jpg" alt="Vang kommune – Sentrum" loading="lazy" onclick="openModal('modal1122', 'Vang kommune – Sentrum')">
-      <img src="gallery/vang-kommune-sentrum/DJI_20251006083055_0205_D.jpg" alt="Vang kommune – Sentrum" loading="lazy" onclick="openModal('modal1123', 'Vang kommune – Sentrum')">
-      <img src="gallery/vang-kommune-sentrum/DJI_20251006084058_0212_D.jpg" alt="Vang kommune – Sentrum" loading="lazy" onclick="openModal('modal1124', 'Vang kommune – Sentrum')">
-      <img src="gallery/vang-kommune-sentrum/DJI_20251006084404_0221_D.jpg" alt="Vang kommune – Sentrum" loading="lazy" onclick="openModal('modal1125', 'Vang kommune – Sentrum')">
-      <img src="gallery/vang-kommune-sentrum/DJI_20251006085633_0225_D.jpg" alt="Vang kommune – Sentrum" loading="lazy" onclick="openModal('modal1126', 'Vang kommune – Sentrum')">
-      <img src="gallery/vang-kommune-sentrum/DJI_20251006091304_0231_D.jpg" alt="Vang kommune – Sentrum" loading="lazy" onclick="openModal('modal1127', 'Vang kommune – Sentrum')">
-      <img src="gallery/vang-kommune-sentrum/DJI_20251006091923_0234_D.jpg" alt="Vang kommune – Sentrum" loading="lazy" onclick="openModal('modal1128', 'Vang kommune – Sentrum')">
-      <img src="gallery/vang-kommune-sentrum/DJI_20251006092135_0238_D.jpg" alt="Vang kommune – Sentrum" loading="lazy" onclick="openModal('modal1129', 'Vang kommune – Sentrum')">
-      <img src="gallery/vang-kommune-sentrum/DJI_20251006092218_0241_D.jpg" alt="Vang kommune – Sentrum" loading="lazy" onclick="openModal('modal1130', 'Vang kommune – Sentrum')">
-      <img src="gallery/vang-kommune-sentrum/DJI_20251006093037_0243_D.jpg" alt="Vang kommune – Sentrum" loading="lazy" onclick="openModal('modal1131', 'Vang kommune – Sentrum')">
-      <img src="gallery/vang-kommune-sentrum/DJI_20251006095230_0248_D.jpg" alt="Vang kommune – Sentrum" loading="lazy" onclick="openModal('modal1132', 'Vang kommune – Sentrum')">
-      <img src="gallery/vang-kommune-sentrum/DJI_20251006095433_0251_D.jpg" alt="Vang kommune – Sentrum" loading="lazy" onclick="openModal('modal1133', 'Vang kommune – Sentrum')">
-      <img src="gallery/vang-kommune-sentrum/DJI_20251006095542_0253_D.jpg" alt="Vang kommune – Sentrum" loading="lazy" onclick="openModal('modal1134', 'Vang kommune – Sentrum')">
-      <img src="gallery/vang-kommune-sentrum/DJI_20251006102449_0256_D.jpg" alt="Vang kommune – Sentrum" loading="lazy" onclick="openModal('modal1135', 'Vang kommune – Sentrum')">
+      <img src="gallery/vang-kommune-sentrum/DJI_20250921114906_0193_D.jpg" alt="Vang kommune – Sentrum" loading="lazy" onclick="openModal('modal1037', 'Vang kommune – Sentrum')">
+      <img src="gallery/vang-kommune-sentrum/DJI_20250921115035_0195_D.jpg" alt="Vang kommune – Sentrum" loading="lazy" onclick="openModal('modal1038', 'Vang kommune – Sentrum')">
+      <img src="gallery/vang-kommune-sentrum/DJI_20250921115332_0198_D.jpg" alt="Vang kommune – Sentrum" loading="lazy" onclick="openModal('modal1039', 'Vang kommune – Sentrum')">
+      <img src="gallery/vang-kommune-sentrum/DJI_20250921115411_0201_D.jpg" alt="Vang kommune – Sentrum" loading="lazy" onclick="openModal('modal1040', 'Vang kommune – Sentrum')">
+      <img src="gallery/vang-kommune-sentrum/DJI_20251006083055_0205_D.jpg" alt="Vang kommune – Sentrum" loading="lazy" onclick="openModal('modal1041', 'Vang kommune – Sentrum')">
+      <img src="gallery/vang-kommune-sentrum/DJI_20251006084058_0212_D.jpg" alt="Vang kommune – Sentrum" loading="lazy" onclick="openModal('modal1042', 'Vang kommune – Sentrum')">
+      <img src="gallery/vang-kommune-sentrum/DJI_20251006084404_0221_D.jpg" alt="Vang kommune – Sentrum" loading="lazy" onclick="openModal('modal1043', 'Vang kommune – Sentrum')">
+      <img src="gallery/vang-kommune-sentrum/DJI_20251006085633_0225_D.jpg" alt="Vang kommune – Sentrum" loading="lazy" onclick="openModal('modal1044', 'Vang kommune – Sentrum')">
+      <img src="gallery/vang-kommune-sentrum/DJI_20251006091304_0231_D.jpg" alt="Vang kommune – Sentrum" loading="lazy" onclick="openModal('modal1045', 'Vang kommune – Sentrum')">
+      <img src="gallery/vang-kommune-sentrum/DJI_20251006091923_0234_D.jpg" alt="Vang kommune – Sentrum" loading="lazy" onclick="openModal('modal1046', 'Vang kommune – Sentrum')">
+      <img src="gallery/vang-kommune-sentrum/DJI_20251006092135_0238_D.jpg" alt="Vang kommune – Sentrum" loading="lazy" onclick="openModal('modal1047', 'Vang kommune – Sentrum')">
+      <img src="gallery/vang-kommune-sentrum/DJI_20251006092218_0241_D.jpg" alt="Vang kommune – Sentrum" loading="lazy" onclick="openModal('modal1048', 'Vang kommune – Sentrum')">
+      <img src="gallery/vang-kommune-sentrum/DJI_20251006093037_0243_D.jpg" alt="Vang kommune – Sentrum" loading="lazy" onclick="openModal('modal1049', 'Vang kommune – Sentrum')">
+      <img src="gallery/vang-kommune-sentrum/DJI_20251006095230_0248_D.jpg" alt="Vang kommune – Sentrum" loading="lazy" onclick="openModal('modal1050', 'Vang kommune – Sentrum')">
+      <img src="gallery/vang-kommune-sentrum/DJI_20251006095433_0251_D.jpg" alt="Vang kommune – Sentrum" loading="lazy" onclick="openModal('modal1051', 'Vang kommune – Sentrum')">
+      <img src="gallery/vang-kommune-sentrum/DJI_20251006095542_0253_D.jpg" alt="Vang kommune – Sentrum" loading="lazy" onclick="openModal('modal1052', 'Vang kommune – Sentrum')">
+      <img src="gallery/vang-kommune-sentrum/DJI_20251006102449_0256_D.jpg" alt="Vang kommune – Sentrum" loading="lazy" onclick="openModal('modal1053', 'Vang kommune – Sentrum')">
     </div>
     <h2 style="text-align:center; margin:40px 0 20px; font-size:1.4rem;">Vang kommune – Reklamefilm</h2>
     <div class="gallery-images">
-      <img src="gallery/vang-reklamefilm/untitled-4532.jpg" alt="Vang kommune – Reklamefilm" loading="lazy" onclick="openModal('modal1136', 'Vang kommune – Reklamefilm')">
-      <img src="gallery/vang-reklamefilm/untitled-4536.jpg" alt="Vang kommune – Reklamefilm" loading="lazy" onclick="openModal('modal1137', 'Vang kommune – Reklamefilm')">
-      <img src="gallery/vang-reklamefilm/untitled-4538.jpg" alt="Vang kommune – Reklamefilm" loading="lazy" onclick="openModal('modal1138', 'Vang kommune – Reklamefilm')">
-      <img src="gallery/vang-reklamefilm/untitled-4547.jpg" alt="Vang kommune – Reklamefilm" loading="lazy" onclick="openModal('modal1139', 'Vang kommune – Reklamefilm')">
-      <img src="gallery/vang-reklamefilm/untitled-4548.jpg" alt="Vang kommune – Reklamefilm" loading="lazy" onclick="openModal('modal1140', 'Vang kommune – Reklamefilm')">
-      <img src="gallery/vang-reklamefilm/untitled-4550.jpg" alt="Vang kommune – Reklamefilm" loading="lazy" onclick="openModal('modal1141', 'Vang kommune – Reklamefilm')">
-      <img src="gallery/vang-reklamefilm/untitled-4557.jpg" alt="Vang kommune – Reklamefilm" loading="lazy" onclick="openModal('modal1142', 'Vang kommune – Reklamefilm')">
-      <img src="gallery/vang-reklamefilm/untitled-4559.jpg" alt="Vang kommune – Reklamefilm" loading="lazy" onclick="openModal('modal1143', 'Vang kommune – Reklamefilm')">
+      <img src="gallery/vang-reklamefilm/untitled-4532.jpg" alt="Vang kommune – Reklamefilm" loading="lazy" onclick="openModal('modal1054', 'Vang kommune – Reklamefilm')">
+      <img src="gallery/vang-reklamefilm/untitled-4536.jpg" alt="Vang kommune – Reklamefilm" loading="lazy" onclick="openModal('modal1055', 'Vang kommune – Reklamefilm')">
+      <img src="gallery/vang-reklamefilm/untitled-4538.jpg" alt="Vang kommune – Reklamefilm" loading="lazy" onclick="openModal('modal1056', 'Vang kommune – Reklamefilm')">
+      <img src="gallery/vang-reklamefilm/untitled-4547.jpg" alt="Vang kommune – Reklamefilm" loading="lazy" onclick="openModal('modal1057', 'Vang kommune – Reklamefilm')">
+      <img src="gallery/vang-reklamefilm/untitled-4548.jpg" alt="Vang kommune – Reklamefilm" loading="lazy" onclick="openModal('modal1058', 'Vang kommune – Reklamefilm')">
+      <img src="gallery/vang-reklamefilm/untitled-4550.jpg" alt="Vang kommune – Reklamefilm" loading="lazy" onclick="openModal('modal1059', 'Vang kommune – Reklamefilm')">
+      <img src="gallery/vang-reklamefilm/untitled-4557.jpg" alt="Vang kommune – Reklamefilm" loading="lazy" onclick="openModal('modal1060', 'Vang kommune – Reklamefilm')">
+      <img src="gallery/vang-reklamefilm/untitled-4559.jpg" alt="Vang kommune – Reklamefilm" loading="lazy" onclick="openModal('modal1061', 'Vang kommune – Reklamefilm')">
     </div>
     <h2 style="text-align:center; margin:40px 0 20px; font-size:1.4rem;">Vinjerock – Drone</h2>
     <div class="gallery-images">
-      <img src="gallery/vinjerock-drone/untitled--10.jpg" alt="Vinjerock – Drone" loading="lazy" onclick="openModal('modal1144', 'Vinjerock – Drone')">
-      <img src="gallery/vinjerock-drone/untitled--11.jpg" alt="Vinjerock – Drone" loading="lazy" onclick="openModal('modal1145', 'Vinjerock – Drone')">
-      <img src="gallery/vinjerock-drone/untitled--12.jpg" alt="Vinjerock – Drone" loading="lazy" onclick="openModal('modal1146', 'Vinjerock – Drone')">
-      <img src="gallery/vinjerock-drone/untitled--13.jpg" alt="Vinjerock – Drone" loading="lazy" onclick="openModal('modal1147', 'Vinjerock – Drone')">
-      <img src="gallery/vinjerock-drone/untitled--14.jpg" alt="Vinjerock – Drone" loading="lazy" onclick="openModal('modal1148', 'Vinjerock – Drone')">
-      <img src="gallery/vinjerock-drone/untitled--15.jpg" alt="Vinjerock – Drone" loading="lazy" onclick="openModal('modal1149', 'Vinjerock – Drone')">
-      <img src="gallery/vinjerock-drone/untitled--16.jpg" alt="Vinjerock – Drone" loading="lazy" onclick="openModal('modal1150', 'Vinjerock – Drone')">
-      <img src="gallery/vinjerock-drone/untitled--17.jpg" alt="Vinjerock – Drone" loading="lazy" onclick="openModal('modal1151', 'Vinjerock – Drone')">
-      <img src="gallery/vinjerock-drone/untitled--2.jpg" alt="Vinjerock – Drone" loading="lazy" onclick="openModal('modal1152', 'Vinjerock – Drone')">
-      <img src="gallery/vinjerock-drone/untitled--3.jpg" alt="Vinjerock – Drone" loading="lazy" onclick="openModal('modal1153', 'Vinjerock – Drone')">
-      <img src="gallery/vinjerock-drone/untitled--4.jpg" alt="Vinjerock – Drone" loading="lazy" onclick="openModal('modal1154', 'Vinjerock – Drone')">
-      <img src="gallery/vinjerock-drone/untitled--5.jpg" alt="Vinjerock – Drone" loading="lazy" onclick="openModal('modal1155', 'Vinjerock – Drone')">
-      <img src="gallery/vinjerock-drone/untitled--6.jpg" alt="Vinjerock – Drone" loading="lazy" onclick="openModal('modal1156', 'Vinjerock – Drone')">
-      <img src="gallery/vinjerock-drone/untitled--7.jpg" alt="Vinjerock – Drone" loading="lazy" onclick="openModal('modal1157', 'Vinjerock – Drone')">
-      <img src="gallery/vinjerock-drone/untitled--8.jpg" alt="Vinjerock – Drone" loading="lazy" onclick="openModal('modal1158', 'Vinjerock – Drone')">
-      <img src="gallery/vinjerock-drone/untitled--9.jpg" alt="Vinjerock – Drone" loading="lazy" onclick="openModal('modal1159', 'Vinjerock – Drone')">
-      <img src="gallery/vinjerock-drone/untitled-.jpg" alt="Vinjerock – Drone" loading="lazy" onclick="openModal('modal1160', 'Vinjerock – Drone')">
+      <img src="gallery/vinjerock-drone/untitled--16.jpg" alt="Vinjerock – Drone" loading="lazy" onclick="openModal('modal1062', 'Vinjerock – Drone')">
+      <img src="gallery/vinjerock-drone/untitled--2.jpg" alt="Vinjerock – Drone" loading="lazy" onclick="openModal('modal1063', 'Vinjerock – Drone')">
+      <img src="gallery/vinjerock-drone/untitled--9.jpg" alt="Vinjerock – Drone" loading="lazy" onclick="openModal('modal1064', 'Vinjerock – Drone')">
     </div>
     <h2 style="text-align:center; margin:40px 0 20px; font-size:1.4rem;">Vinjerock</h2>
     <div class="gallery-images">
-      <img src="gallery/vinjerock/untitled--10.jpg" alt="Vinjerock" loading="lazy" onclick="openModal('modal1161', 'Vinjerock')">
-      <img src="gallery/vinjerock/untitled--13.jpg" alt="Vinjerock" loading="lazy" onclick="openModal('modal1162', 'Vinjerock')">
-      <img src="gallery/vinjerock/untitled--3.jpg" alt="Vinjerock" loading="lazy" onclick="openModal('modal1163', 'Vinjerock')">
-      <img src="gallery/vinjerock/untitled--6.jpg" alt="Vinjerock" loading="lazy" onclick="openModal('modal1164', 'Vinjerock')">
-      <img src="gallery/vinjerock/untitled--9.jpg" alt="Vinjerock" loading="lazy" onclick="openModal('modal1165', 'Vinjerock')">
-      <img src="gallery/vinjerock/untitled-7604.jpg" alt="Vinjerock" loading="lazy" onclick="openModal('modal1166', 'Vinjerock')">
-      <img src="gallery/vinjerock/untitled-7610.jpg" alt="Vinjerock" loading="lazy" onclick="openModal('modal1167', 'Vinjerock')">
-      <img src="gallery/vinjerock/untitled-7624.jpg" alt="Vinjerock" loading="lazy" onclick="openModal('modal1168', 'Vinjerock')">
-      <img src="gallery/vinjerock/untitled-7639.jpg" alt="Vinjerock" loading="lazy" onclick="openModal('modal1169', 'Vinjerock')">
-      <img src="gallery/vinjerock/untitled-7648.jpg" alt="Vinjerock" loading="lazy" onclick="openModal('modal1170', 'Vinjerock')">
-      <img src="gallery/vinjerock/untitled-7654.jpg" alt="Vinjerock" loading="lazy" onclick="openModal('modal1171', 'Vinjerock')">
-      <img src="gallery/vinjerock/untitled-7799.jpg" alt="Vinjerock" loading="lazy" onclick="openModal('modal1172', 'Vinjerock')">
-      <img src="gallery/vinjerock/untitled-7812.jpg" alt="Vinjerock" loading="lazy" onclick="openModal('modal1173', 'Vinjerock')">
+      <img src="gallery/vinjerock/untitled--10.jpg" alt="Vinjerock" loading="lazy" onclick="openModal('modal1065', 'Vinjerock')">
+      <img src="gallery/vinjerock/untitled--13.jpg" alt="Vinjerock" loading="lazy" onclick="openModal('modal1066', 'Vinjerock')">
+      <img src="gallery/vinjerock/untitled--3.jpg" alt="Vinjerock" loading="lazy" onclick="openModal('modal1067', 'Vinjerock')">
+      <img src="gallery/vinjerock/untitled--6.jpg" alt="Vinjerock" loading="lazy" onclick="openModal('modal1068', 'Vinjerock')">
+      <img src="gallery/vinjerock/untitled--9.jpg" alt="Vinjerock" loading="lazy" onclick="openModal('modal1069', 'Vinjerock')">
+      <img src="gallery/vinjerock/untitled-7604.jpg" alt="Vinjerock" loading="lazy" onclick="openModal('modal1070', 'Vinjerock')">
+      <img src="gallery/vinjerock/untitled-7610.jpg" alt="Vinjerock" loading="lazy" onclick="openModal('modal1071', 'Vinjerock')">
+      <img src="gallery/vinjerock/untitled-7624.jpg" alt="Vinjerock" loading="lazy" onclick="openModal('modal1072', 'Vinjerock')">
+      <img src="gallery/vinjerock/untitled-7639.jpg" alt="Vinjerock" loading="lazy" onclick="openModal('modal1073', 'Vinjerock')">
+      <img src="gallery/vinjerock/untitled-7648.jpg" alt="Vinjerock" loading="lazy" onclick="openModal('modal1074', 'Vinjerock')">
+      <img src="gallery/vinjerock/untitled-7654.jpg" alt="Vinjerock" loading="lazy" onclick="openModal('modal1075', 'Vinjerock')">
+      <img src="gallery/vinjerock/untitled-7799.jpg" alt="Vinjerock" loading="lazy" onclick="openModal('modal1076', 'Vinjerock')">
+      <img src="gallery/vinjerock/untitled-7812.jpg" alt="Vinjerock" loading="lazy" onclick="openModal('modal1077', 'Vinjerock')">
     </div>
 </section>
 </main>
@@ -500,179 +395,83 @@ footer { width: 100%; text-align: center; padding: 30px 0; color: var(--text-col
 <div id="modal12" class="modal"><span class="close" onclick="closeModal('modal12')">&times;</span><img src="bilde12.jpg" class="modal-content"><div class="caption"></div></div>
 <div id="modal13" class="modal"><span class="close" onclick="closeModal('modal13')">&times;</span><img src="bilde13.jpg" class="modal-content"><div class="caption"></div></div>
 <div id="modal14" class="modal"><span class="close" onclick="closeModal('modal14')">&times;</span><img src="bilde14.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1001" class="modal"><span class="close" onclick="closeModal('modal1001')">&times;</span><img src="gallery/bilder-kunst/untitled--10.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1002" class="modal"><span class="close" onclick="closeModal('modal1002')">&times;</span><img src="gallery/bilder-kunst/untitled--16.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1003" class="modal"><span class="close" onclick="closeModal('modal1003')">&times;</span><img src="gallery/bilder-kunst/untitled--21.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1004" class="modal"><span class="close" onclick="closeModal('modal1004')">&times;</span><img src="gallery/bilder-kunst/untitled--3.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1005" class="modal"><span class="close" onclick="closeModal('modal1005')">&times;</span><img src="gallery/bilder-kunst/untitled--9.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1006" class="modal"><span class="close" onclick="closeModal('modal1006')">&times;</span><img src="gallery/bilder-kunst/untitled-0280.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1007" class="modal"><span class="close" onclick="closeModal('modal1007')">&times;</span><img src="gallery/bilder-kunst/untitled-0286.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1008" class="modal"><span class="close" onclick="closeModal('modal1008')">&times;</span><img src="gallery/bilder-kunst/untitled-0292.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1009" class="modal"><span class="close" onclick="closeModal('modal1009')">&times;</span><img src="gallery/bilder-kunst/untitled-0298.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1010" class="modal"><span class="close" onclick="closeModal('modal1010')">&times;</span><img src="gallery/bilder-kunst/untitled-0304.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1011" class="modal"><span class="close" onclick="closeModal('modal1011')">&times;</span><img src="gallery/bilder-kunst/untitled-0310.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1012" class="modal"><span class="close" onclick="closeModal('modal1012')">&times;</span><img src="gallery/bilder-kunst/untitled-0316.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1013" class="modal"><span class="close" onclick="closeModal('modal1013')">&times;</span><img src="gallery/bilder-kunst/untitled-4683.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1014" class="modal"><span class="close" onclick="closeModal('modal1014')">&times;</span><img src="gallery/bilder-kunst/untitled-4876.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1015" class="modal"><span class="close" onclick="closeModal('modal1015')">&times;</span><img src="gallery/bryllup/_DSC3168.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1016" class="modal"><span class="close" onclick="closeModal('modal1016')">&times;</span><img src="gallery/bryllup/_DSC3182.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1017" class="modal"><span class="close" onclick="closeModal('modal1017')">&times;</span><img src="gallery/bryllup/_DSC3192.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1018" class="modal"><span class="close" onclick="closeModal('modal1018')">&times;</span><img src="gallery/bryllup/_DSC3195.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1019" class="modal"><span class="close" onclick="closeModal('modal1019')">&times;</span><img src="gallery/bryllup/_DSC3228.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1020" class="modal"><span class="close" onclick="closeModal('modal1020')">&times;</span><img src="gallery/bryllup/_DSC3303.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1021" class="modal"><span class="close" onclick="closeModal('modal1021')">&times;</span><img src="gallery/bryllup/_DSC3489.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1022" class="modal"><span class="close" onclick="closeModal('modal1022')">&times;</span><img src="gallery/bryllup/_DSC3531.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1023" class="modal"><span class="close" onclick="closeModal('modal1023')">&times;</span><img src="gallery/bryllup/_DSC3566.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1024" class="modal"><span class="close" onclick="closeModal('modal1024')">&times;</span><img src="gallery/bryllup/_DSC3682.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1025" class="modal"><span class="close" onclick="closeModal('modal1025')">&times;</span><img src="gallery/bryllup/_DSC3761.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1026" class="modal"><span class="close" onclick="closeModal('modal1026')">&times;</span><img src="gallery/konfirmasjon/untitled-5010.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1027" class="modal"><span class="close" onclick="closeModal('modal1027')">&times;</span><img src="gallery/konfirmasjon/untitled-5078.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1028" class="modal"><span class="close" onclick="closeModal('modal1028')">&times;</span><img src="gallery/konfirmasjon/untitled-5143.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1029" class="modal"><span class="close" onclick="closeModal('modal1029')">&times;</span><img src="gallery/konfirmasjon/untitled-5193.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1030" class="modal"><span class="close" onclick="closeModal('modal1030')">&times;</span><img src="gallery/konfirmasjon/untitled-5236.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1031" class="modal"><span class="close" onclick="closeModal('modal1031')">&times;</span><img src="gallery/konfirmasjon/untitled-5293.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1032" class="modal"><span class="close" onclick="closeModal('modal1032')">&times;</span><img src="gallery/konfirmasjon/untitled-5325.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1033" class="modal"><span class="close" onclick="closeModal('modal1033')">&times;</span><img src="gallery/konfirmasjon/untitled-5363.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1034" class="modal"><span class="close" onclick="closeModal('modal1034')">&times;</span><img src="gallery/konfirmasjon/untitled-5439.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1035" class="modal"><span class="close" onclick="closeModal('modal1035')">&times;</span><img src="gallery/konfirmasjon/untitled-5507.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1036" class="modal"><span class="close" onclick="closeModal('modal1036')">&times;</span><img src="gallery/konfirmasjon/untitled-5574.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1037" class="modal"><span class="close" onclick="closeModal('modal1037')">&times;</span><img src="gallery/konfirmasjon/untitled-5613.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1038" class="modal"><span class="close" onclick="closeModal('modal1038')">&times;</span><img src="gallery/konfirmasjon/untitled-5649.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1039" class="modal"><span class="close" onclick="closeModal('modal1039')">&times;</span><img src="gallery/lilhamar-judo/untitled-5652.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1040" class="modal"><span class="close" onclick="closeModal('modal1040')">&times;</span><img src="gallery/lilhamar-judo/untitled-5666.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1041" class="modal"><span class="close" onclick="closeModal('modal1041')">&times;</span><img src="gallery/lilhamar-judo/untitled-5680.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1042" class="modal"><span class="close" onclick="closeModal('modal1042')">&times;</span><img src="gallery/lilhamar-judo/untitled-5690.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1043" class="modal"><span class="close" onclick="closeModal('modal1043')">&times;</span><img src="gallery/lilhamar-judo/untitled-5702.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1044" class="modal"><span class="close" onclick="closeModal('modal1044')">&times;</span><img src="gallery/lilhamar-judo/untitled-5714.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1045" class="modal"><span class="close" onclick="closeModal('modal1045')">&times;</span><img src="gallery/lilhamar-judo/untitled-5721.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1046" class="modal"><span class="close" onclick="closeModal('modal1046')">&times;</span><img src="gallery/lilhamar-judo/untitled-5735.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1047" class="modal"><span class="close" onclick="closeModal('modal1047')">&times;</span><img src="gallery/lilhamar-judo/untitled-5746.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1048" class="modal"><span class="close" onclick="closeModal('modal1048')">&times;</span><img src="gallery/lilhamar-judo/untitled-5755.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1049" class="modal"><span class="close" onclick="closeModal('modal1049')">&times;</span><img src="gallery/lilhamar-judo/untitled-5761.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1050" class="modal"><span class="close" onclick="closeModal('modal1050')">&times;</span><img src="gallery/lilhamar-judo/untitled-5766.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1051" class="modal"><span class="close" onclick="closeModal('modal1051')">&times;</span><img src="gallery/lilhamar-judo/untitled-5771.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1052" class="modal"><span class="close" onclick="closeModal('modal1052')">&times;</span><img src="gallery/lilhamar-judo/untitled-5776.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1053" class="modal"><span class="close" onclick="closeModal('modal1053')">&times;</span><img src="gallery/mahir/untitled--10.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1054" class="modal"><span class="close" onclick="closeModal('modal1054')">&times;</span><img src="gallery/mahir/untitled--24.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1055" class="modal"><span class="close" onclick="closeModal('modal1055')">&times;</span><img src="gallery/mahir/untitled--5.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1056" class="modal"><span class="close" onclick="closeModal('modal1056')">&times;</span><img src="gallery/mahir/untitled-5793.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1057" class="modal"><span class="close" onclick="closeModal('modal1057')">&times;</span><img src="gallery/mahir/untitled-5808.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1058" class="modal"><span class="close" onclick="closeModal('modal1058')">&times;</span><img src="gallery/mahir/untitled-5823.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1059" class="modal"><span class="close" onclick="closeModal('modal1059')">&times;</span><img src="gallery/mahir/untitled-5838.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1060" class="modal"><span class="close" onclick="closeModal('modal1060')">&times;</span><img src="gallery/mahir/untitled-5853.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1061" class="modal"><span class="close" onclick="closeModal('modal1061')">&times;</span><img src="gallery/mahir/untitled-5868.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1062" class="modal"><span class="close" onclick="closeModal('modal1062')">&times;</span><img src="gallery/mahir/untitled-5920.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1063" class="modal"><span class="close" onclick="closeModal('modal1063')">&times;</span><img src="gallery/mahir/untitled-5935.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1064" class="modal"><span class="close" onclick="closeModal('modal1064')">&times;</span><img src="gallery/mahir/untitled-5964.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1065" class="modal"><span class="close" onclick="closeModal('modal1065')">&times;</span><img src="gallery/mahir/untitled-5983.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1066" class="modal"><span class="close" onclick="closeModal('modal1066')">&times;</span><img src="gallery/ola-k/untitled--10.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1067" class="modal"><span class="close" onclick="closeModal('modal1067')">&times;</span><img src="gallery/ola-k/untitled--11.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1068" class="modal"><span class="close" onclick="closeModal('modal1068')">&times;</span><img src="gallery/ola-k/untitled--12.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1069" class="modal"><span class="close" onclick="closeModal('modal1069')">&times;</span><img src="gallery/ola-k/untitled--13.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1070" class="modal"><span class="close" onclick="closeModal('modal1070')">&times;</span><img src="gallery/ola-k/untitled--14.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1071" class="modal"><span class="close" onclick="closeModal('modal1071')">&times;</span><img src="gallery/ola-k/untitled--15.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1072" class="modal"><span class="close" onclick="closeModal('modal1072')">&times;</span><img src="gallery/ola-k/untitled--16.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1073" class="modal"><span class="close" onclick="closeModal('modal1073')">&times;</span><img src="gallery/ola-k/untitled--2.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1074" class="modal"><span class="close" onclick="closeModal('modal1074')">&times;</span><img src="gallery/ola-k/untitled--3.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1075" class="modal"><span class="close" onclick="closeModal('modal1075')">&times;</span><img src="gallery/ola-k/untitled--4.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1076" class="modal"><span class="close" onclick="closeModal('modal1076')">&times;</span><img src="gallery/ola-k/untitled--5.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1077" class="modal"><span class="close" onclick="closeModal('modal1077')">&times;</span><img src="gallery/ola-k/untitled--6.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1078" class="modal"><span class="close" onclick="closeModal('modal1078')">&times;</span><img src="gallery/ola-k/untitled--7.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1079" class="modal"><span class="close" onclick="closeModal('modal1079')">&times;</span><img src="gallery/ola-k/untitled--8.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1080" class="modal"><span class="close" onclick="closeModal('modal1080')">&times;</span><img src="gallery/ola-k/untitled--9.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1081" class="modal"><span class="close" onclick="closeModal('modal1081')">&times;</span><img src="gallery/ola-k/untitled-.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1082" class="modal"><span class="close" onclick="closeModal('modal1082')">&times;</span><img src="gallery/vang-bygg-oversikt/untitled--10.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1083" class="modal"><span class="close" onclick="closeModal('modal1083')">&times;</span><img src="gallery/vang-bygg-oversikt/untitled--11.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1084" class="modal"><span class="close" onclick="closeModal('modal1084')">&times;</span><img src="gallery/vang-bygg-oversikt/untitled--12.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1085" class="modal"><span class="close" onclick="closeModal('modal1085')">&times;</span><img src="gallery/vang-bygg-oversikt/untitled--13.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1086" class="modal"><span class="close" onclick="closeModal('modal1086')">&times;</span><img src="gallery/vang-bygg-oversikt/untitled--14.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1087" class="modal"><span class="close" onclick="closeModal('modal1087')">&times;</span><img src="gallery/vang-bygg-oversikt/untitled--15.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1088" class="modal"><span class="close" onclick="closeModal('modal1088')">&times;</span><img src="gallery/vang-bygg-oversikt/untitled--16.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1089" class="modal"><span class="close" onclick="closeModal('modal1089')">&times;</span><img src="gallery/vang-bygg-oversikt/untitled--17.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1090" class="modal"><span class="close" onclick="closeModal('modal1090')">&times;</span><img src="gallery/vang-bygg-oversikt/untitled--18.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1091" class="modal"><span class="close" onclick="closeModal('modal1091')">&times;</span><img src="gallery/vang-bygg-oversikt/untitled--19.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1092" class="modal"><span class="close" onclick="closeModal('modal1092')">&times;</span><img src="gallery/vang-bygg-oversikt/untitled--2.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1093" class="modal"><span class="close" onclick="closeModal('modal1093')">&times;</span><img src="gallery/vang-bygg-oversikt/untitled--20.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1094" class="modal"><span class="close" onclick="closeModal('modal1094')">&times;</span><img src="gallery/vang-bygg-oversikt/untitled--21.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1095" class="modal"><span class="close" onclick="closeModal('modal1095')">&times;</span><img src="gallery/vang-bygg-oversikt/untitled--3.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1096" class="modal"><span class="close" onclick="closeModal('modal1096')">&times;</span><img src="gallery/vang-bygg-oversikt/untitled--4.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1097" class="modal"><span class="close" onclick="closeModal('modal1097')">&times;</span><img src="gallery/vang-bygg-oversikt/untitled--5.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1098" class="modal"><span class="close" onclick="closeModal('modal1098')">&times;</span><img src="gallery/vang-bygg-oversikt/untitled--6.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1099" class="modal"><span class="close" onclick="closeModal('modal1099')">&times;</span><img src="gallery/vang-bygg-oversikt/untitled--7.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1100" class="modal"><span class="close" onclick="closeModal('modal1100')">&times;</span><img src="gallery/vang-bygg-oversikt/untitled--8.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1101" class="modal"><span class="close" onclick="closeModal('modal1101')">&times;</span><img src="gallery/vang-bygg-oversikt/untitled--9.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1102" class="modal"><span class="close" onclick="closeModal('modal1102')">&times;</span><img src="gallery/vang-bygg-oversikt/untitled-.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1103" class="modal"><span class="close" onclick="closeModal('modal1103')">&times;</span><img src="gallery/vang-bygg-prosjekt/untitled--10.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1104" class="modal"><span class="close" onclick="closeModal('modal1104')">&times;</span><img src="gallery/vang-bygg-prosjekt/untitled--13.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1105" class="modal"><span class="close" onclick="closeModal('modal1105')">&times;</span><img src="gallery/vang-bygg-prosjekt/untitled--16.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1106" class="modal"><span class="close" onclick="closeModal('modal1106')">&times;</span><img src="gallery/vang-bygg-prosjekt/untitled--19.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1107" class="modal"><span class="close" onclick="closeModal('modal1107')">&times;</span><img src="gallery/vang-bygg-prosjekt/untitled--21.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1108" class="modal"><span class="close" onclick="closeModal('modal1108')">&times;</span><img src="gallery/vang-bygg-prosjekt/untitled--3.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1109" class="modal"><span class="close" onclick="closeModal('modal1109')">&times;</span><img src="gallery/vang-bygg-prosjekt/untitled--6.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1110" class="modal"><span class="close" onclick="closeModal('modal1110')">&times;</span><img src="gallery/vang-bygg-prosjekt/untitled--9.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1111" class="modal"><span class="close" onclick="closeModal('modal1111')">&times;</span><img src="gallery/vang-bygg-prosjekt/untitled-4393.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1112" class="modal"><span class="close" onclick="closeModal('modal1112')">&times;</span><img src="gallery/vang-bygg-prosjekt/untitled-4401.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1113" class="modal"><span class="close" onclick="closeModal('modal1113')">&times;</span><img src="gallery/vang-bygg-prosjekt/untitled-4413.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1114" class="modal"><span class="close" onclick="closeModal('modal1114')">&times;</span><img src="gallery/vang-bygg-prosjekt/untitled-4417.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1115" class="modal"><span class="close" onclick="closeModal('modal1115')">&times;</span><img src="gallery/vang-bygg-prosjekt/untitled-4425.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1116" class="modal"><span class="close" onclick="closeModal('modal1116')">&times;</span><img src="gallery/vang-bygg-prosjekt/untitled-4430.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1117" class="modal"><span class="close" onclick="closeModal('modal1117')">&times;</span><img src="gallery/vang-bygg-prosjekt/untitled-4448.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1118" class="modal"><span class="close" onclick="closeModal('modal1118')">&times;</span><img src="gallery/vang-bygg-prosjekt/untitled-4492.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1119" class="modal"><span class="close" onclick="closeModal('modal1119')">&times;</span><img src="gallery/vang-kommune-sentrum/DJI_20250921114906_0193_D.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1120" class="modal"><span class="close" onclick="closeModal('modal1120')">&times;</span><img src="gallery/vang-kommune-sentrum/DJI_20250921115035_0195_D.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1121" class="modal"><span class="close" onclick="closeModal('modal1121')">&times;</span><img src="gallery/vang-kommune-sentrum/DJI_20250921115332_0198_D.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1122" class="modal"><span class="close" onclick="closeModal('modal1122')">&times;</span><img src="gallery/vang-kommune-sentrum/DJI_20250921115411_0201_D.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1123" class="modal"><span class="close" onclick="closeModal('modal1123')">&times;</span><img src="gallery/vang-kommune-sentrum/DJI_20251006083055_0205_D.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1124" class="modal"><span class="close" onclick="closeModal('modal1124')">&times;</span><img src="gallery/vang-kommune-sentrum/DJI_20251006084058_0212_D.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1125" class="modal"><span class="close" onclick="closeModal('modal1125')">&times;</span><img src="gallery/vang-kommune-sentrum/DJI_20251006084404_0221_D.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1126" class="modal"><span class="close" onclick="closeModal('modal1126')">&times;</span><img src="gallery/vang-kommune-sentrum/DJI_20251006085633_0225_D.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1127" class="modal"><span class="close" onclick="closeModal('modal1127')">&times;</span><img src="gallery/vang-kommune-sentrum/DJI_20251006091304_0231_D.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1128" class="modal"><span class="close" onclick="closeModal('modal1128')">&times;</span><img src="gallery/vang-kommune-sentrum/DJI_20251006091923_0234_D.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1129" class="modal"><span class="close" onclick="closeModal('modal1129')">&times;</span><img src="gallery/vang-kommune-sentrum/DJI_20251006092135_0238_D.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1130" class="modal"><span class="close" onclick="closeModal('modal1130')">&times;</span><img src="gallery/vang-kommune-sentrum/DJI_20251006092218_0241_D.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1131" class="modal"><span class="close" onclick="closeModal('modal1131')">&times;</span><img src="gallery/vang-kommune-sentrum/DJI_20251006093037_0243_D.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1132" class="modal"><span class="close" onclick="closeModal('modal1132')">&times;</span><img src="gallery/vang-kommune-sentrum/DJI_20251006095230_0248_D.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1133" class="modal"><span class="close" onclick="closeModal('modal1133')">&times;</span><img src="gallery/vang-kommune-sentrum/DJI_20251006095433_0251_D.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1134" class="modal"><span class="close" onclick="closeModal('modal1134')">&times;</span><img src="gallery/vang-kommune-sentrum/DJI_20251006095542_0253_D.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1135" class="modal"><span class="close" onclick="closeModal('modal1135')">&times;</span><img src="gallery/vang-kommune-sentrum/DJI_20251006102449_0256_D.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1136" class="modal"><span class="close" onclick="closeModal('modal1136')">&times;</span><img src="gallery/vang-reklamefilm/untitled-4532.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1137" class="modal"><span class="close" onclick="closeModal('modal1137')">&times;</span><img src="gallery/vang-reklamefilm/untitled-4536.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1138" class="modal"><span class="close" onclick="closeModal('modal1138')">&times;</span><img src="gallery/vang-reklamefilm/untitled-4538.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1139" class="modal"><span class="close" onclick="closeModal('modal1139')">&times;</span><img src="gallery/vang-reklamefilm/untitled-4547.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1140" class="modal"><span class="close" onclick="closeModal('modal1140')">&times;</span><img src="gallery/vang-reklamefilm/untitled-4548.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1141" class="modal"><span class="close" onclick="closeModal('modal1141')">&times;</span><img src="gallery/vang-reklamefilm/untitled-4550.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1142" class="modal"><span class="close" onclick="closeModal('modal1142')">&times;</span><img src="gallery/vang-reklamefilm/untitled-4557.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1143" class="modal"><span class="close" onclick="closeModal('modal1143')">&times;</span><img src="gallery/vang-reklamefilm/untitled-4559.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1144" class="modal"><span class="close" onclick="closeModal('modal1144')">&times;</span><img src="gallery/vinjerock-drone/untitled--10.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1145" class="modal"><span class="close" onclick="closeModal('modal1145')">&times;</span><img src="gallery/vinjerock-drone/untitled--11.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1146" class="modal"><span class="close" onclick="closeModal('modal1146')">&times;</span><img src="gallery/vinjerock-drone/untitled--12.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1147" class="modal"><span class="close" onclick="closeModal('modal1147')">&times;</span><img src="gallery/vinjerock-drone/untitled--13.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1148" class="modal"><span class="close" onclick="closeModal('modal1148')">&times;</span><img src="gallery/vinjerock-drone/untitled--14.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1149" class="modal"><span class="close" onclick="closeModal('modal1149')">&times;</span><img src="gallery/vinjerock-drone/untitled--15.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1150" class="modal"><span class="close" onclick="closeModal('modal1150')">&times;</span><img src="gallery/vinjerock-drone/untitled--16.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1151" class="modal"><span class="close" onclick="closeModal('modal1151')">&times;</span><img src="gallery/vinjerock-drone/untitled--17.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1152" class="modal"><span class="close" onclick="closeModal('modal1152')">&times;</span><img src="gallery/vinjerock-drone/untitled--2.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1153" class="modal"><span class="close" onclick="closeModal('modal1153')">&times;</span><img src="gallery/vinjerock-drone/untitled--3.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1154" class="modal"><span class="close" onclick="closeModal('modal1154')">&times;</span><img src="gallery/vinjerock-drone/untitled--4.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1155" class="modal"><span class="close" onclick="closeModal('modal1155')">&times;</span><img src="gallery/vinjerock-drone/untitled--5.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1156" class="modal"><span class="close" onclick="closeModal('modal1156')">&times;</span><img src="gallery/vinjerock-drone/untitled--6.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1157" class="modal"><span class="close" onclick="closeModal('modal1157')">&times;</span><img src="gallery/vinjerock-drone/untitled--7.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1158" class="modal"><span class="close" onclick="closeModal('modal1158')">&times;</span><img src="gallery/vinjerock-drone/untitled--8.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1159" class="modal"><span class="close" onclick="closeModal('modal1159')">&times;</span><img src="gallery/vinjerock-drone/untitled--9.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1160" class="modal"><span class="close" onclick="closeModal('modal1160')">&times;</span><img src="gallery/vinjerock-drone/untitled-.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1161" class="modal"><span class="close" onclick="closeModal('modal1161')">&times;</span><img src="gallery/vinjerock/untitled--10.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1162" class="modal"><span class="close" onclick="closeModal('modal1162')">&times;</span><img src="gallery/vinjerock/untitled--13.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1163" class="modal"><span class="close" onclick="closeModal('modal1163')">&times;</span><img src="gallery/vinjerock/untitled--3.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1164" class="modal"><span class="close" onclick="closeModal('modal1164')">&times;</span><img src="gallery/vinjerock/untitled--6.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1165" class="modal"><span class="close" onclick="closeModal('modal1165')">&times;</span><img src="gallery/vinjerock/untitled--9.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1166" class="modal"><span class="close" onclick="closeModal('modal1166')">&times;</span><img src="gallery/vinjerock/untitled-7604.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1167" class="modal"><span class="close" onclick="closeModal('modal1167')">&times;</span><img src="gallery/vinjerock/untitled-7610.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1168" class="modal"><span class="close" onclick="closeModal('modal1168')">&times;</span><img src="gallery/vinjerock/untitled-7624.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1169" class="modal"><span class="close" onclick="closeModal('modal1169')">&times;</span><img src="gallery/vinjerock/untitled-7639.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1170" class="modal"><span class="close" onclick="closeModal('modal1170')">&times;</span><img src="gallery/vinjerock/untitled-7648.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1171" class="modal"><span class="close" onclick="closeModal('modal1171')">&times;</span><img src="gallery/vinjerock/untitled-7654.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1172" class="modal"><span class="close" onclick="closeModal('modal1172')">&times;</span><img src="gallery/vinjerock/untitled-7799.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1173" class="modal"><span class="close" onclick="closeModal('modal1173')">&times;</span><img src="gallery/vinjerock/untitled-7812.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1001" class="modal"><span class="close" onclick="closeModal('modal1001')">&times;</span><img src="gallery/bryllup/_DSC3168.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1002" class="modal"><span class="close" onclick="closeModal('modal1002')">&times;</span><img src="gallery/bryllup/_DSC3182.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1003" class="modal"><span class="close" onclick="closeModal('modal1003')">&times;</span><img src="gallery/bryllup/_DSC3192.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1004" class="modal"><span class="close" onclick="closeModal('modal1004')">&times;</span><img src="gallery/bryllup/_DSC3195.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1005" class="modal"><span class="close" onclick="closeModal('modal1005')">&times;</span><img src="gallery/bryllup/_DSC3228.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1006" class="modal"><span class="close" onclick="closeModal('modal1006')">&times;</span><img src="gallery/bryllup/_DSC3303.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1007" class="modal"><span class="close" onclick="closeModal('modal1007')">&times;</span><img src="gallery/bryllup/_DSC3489.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1008" class="modal"><span class="close" onclick="closeModal('modal1008')">&times;</span><img src="gallery/bryllup/_DSC3531.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1009" class="modal"><span class="close" onclick="closeModal('modal1009')">&times;</span><img src="gallery/bryllup/_DSC3566.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1010" class="modal"><span class="close" onclick="closeModal('modal1010')">&times;</span><img src="gallery/bryllup/_DSC3682.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1011" class="modal"><span class="close" onclick="closeModal('modal1011')">&times;</span><img src="gallery/bryllup/_DSC3761.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1012" class="modal"><span class="close" onclick="closeModal('modal1012')">&times;</span><img src="gallery/bryllup/bryllup-redigert-133.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1013" class="modal"><span class="close" onclick="closeModal('modal1013')">&times;</span><img src="gallery/bryllup/bryllup-redigert-210.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1014" class="modal"><span class="close" onclick="closeModal('modal1014')">&times;</span><img src="gallery/bryllup/bryllup-redigert-25.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1015" class="modal"><span class="close" onclick="closeModal('modal1015')">&times;</span><img src="gallery/bryllup/bryllup-redigert-8.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1016" class="modal"><span class="close" onclick="closeModal('modal1016')">&times;</span><img src="gallery/bryllup/bryllup-redigert-87.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1017" class="modal"><span class="close" onclick="closeModal('modal1017')">&times;</span><img src="gallery/konfirmasjon/untitled-5010.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1018" class="modal"><span class="close" onclick="closeModal('modal1018')">&times;</span><img src="gallery/konfirmasjon/untitled-5193.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1019" class="modal"><span class="close" onclick="closeModal('modal1019')">&times;</span><img src="gallery/konfirmasjon/untitled-5293.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1020" class="modal"><span class="close" onclick="closeModal('modal1020')">&times;</span><img src="gallery/konfirmasjon/untitled-5439.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1021" class="modal"><span class="close" onclick="closeModal('modal1021')">&times;</span><img src="gallery/konfirmasjon/untitled-5574.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1022" class="modal"><span class="close" onclick="closeModal('modal1022')">&times;</span><img src="gallery/konfirmasjon/untitled-5649.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1023" class="modal"><span class="close" onclick="closeModal('modal1023')">&times;</span><img src="gallery/mahir/untitled-5793.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1024" class="modal"><span class="close" onclick="closeModal('modal1024')">&times;</span><img src="gallery/mahir/untitled-5808.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1025" class="modal"><span class="close" onclick="closeModal('modal1025')">&times;</span><img src="gallery/mahir/untitled-5853.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1026" class="modal"><span class="close" onclick="closeModal('modal1026')">&times;</span><img src="gallery/mahir/untitled-5920.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1027" class="modal"><span class="close" onclick="closeModal('modal1027')">&times;</span><img src="gallery/mahir/untitled-5964.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1028" class="modal"><span class="close" onclick="closeModal('modal1028')">&times;</span><img src="gallery/mahir/untitled-5983.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1029" class="modal"><span class="close" onclick="closeModal('modal1029')">&times;</span><img src="gallery/ola-k/untitled--15.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1030" class="modal"><span class="close" onclick="closeModal('modal1030')">&times;</span><img src="gallery/ola-k/untitled--2.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1031" class="modal"><span class="close" onclick="closeModal('modal1031')">&times;</span><img src="gallery/ola-k/untitled--9.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1032" class="modal"><span class="close" onclick="closeModal('modal1032')">&times;</span><img src="gallery/vang-bygg-oversikt/untitled--10.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1033" class="modal"><span class="close" onclick="closeModal('modal1033')">&times;</span><img src="gallery/vang-bygg-oversikt/untitled--14.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1034" class="modal"><span class="close" onclick="closeModal('modal1034')">&times;</span><img src="gallery/vang-bygg-oversikt/untitled--2.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1035" class="modal"><span class="close" onclick="closeModal('modal1035')">&times;</span><img src="gallery/vang-bygg-oversikt/untitled--20.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1036" class="modal"><span class="close" onclick="closeModal('modal1036')">&times;</span><img src="gallery/vang-bygg-oversikt/untitled--6.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1037" class="modal"><span class="close" onclick="closeModal('modal1037')">&times;</span><img src="gallery/vang-kommune-sentrum/DJI_20250921114906_0193_D.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1038" class="modal"><span class="close" onclick="closeModal('modal1038')">&times;</span><img src="gallery/vang-kommune-sentrum/DJI_20250921115035_0195_D.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1039" class="modal"><span class="close" onclick="closeModal('modal1039')">&times;</span><img src="gallery/vang-kommune-sentrum/DJI_20250921115332_0198_D.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1040" class="modal"><span class="close" onclick="closeModal('modal1040')">&times;</span><img src="gallery/vang-kommune-sentrum/DJI_20250921115411_0201_D.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1041" class="modal"><span class="close" onclick="closeModal('modal1041')">&times;</span><img src="gallery/vang-kommune-sentrum/DJI_20251006083055_0205_D.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1042" class="modal"><span class="close" onclick="closeModal('modal1042')">&times;</span><img src="gallery/vang-kommune-sentrum/DJI_20251006084058_0212_D.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1043" class="modal"><span class="close" onclick="closeModal('modal1043')">&times;</span><img src="gallery/vang-kommune-sentrum/DJI_20251006084404_0221_D.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1044" class="modal"><span class="close" onclick="closeModal('modal1044')">&times;</span><img src="gallery/vang-kommune-sentrum/DJI_20251006085633_0225_D.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1045" class="modal"><span class="close" onclick="closeModal('modal1045')">&times;</span><img src="gallery/vang-kommune-sentrum/DJI_20251006091304_0231_D.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1046" class="modal"><span class="close" onclick="closeModal('modal1046')">&times;</span><img src="gallery/vang-kommune-sentrum/DJI_20251006091923_0234_D.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1047" class="modal"><span class="close" onclick="closeModal('modal1047')">&times;</span><img src="gallery/vang-kommune-sentrum/DJI_20251006092135_0238_D.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1048" class="modal"><span class="close" onclick="closeModal('modal1048')">&times;</span><img src="gallery/vang-kommune-sentrum/DJI_20251006092218_0241_D.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1049" class="modal"><span class="close" onclick="closeModal('modal1049')">&times;</span><img src="gallery/vang-kommune-sentrum/DJI_20251006093037_0243_D.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1050" class="modal"><span class="close" onclick="closeModal('modal1050')">&times;</span><img src="gallery/vang-kommune-sentrum/DJI_20251006095230_0248_D.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1051" class="modal"><span class="close" onclick="closeModal('modal1051')">&times;</span><img src="gallery/vang-kommune-sentrum/DJI_20251006095433_0251_D.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1052" class="modal"><span class="close" onclick="closeModal('modal1052')">&times;</span><img src="gallery/vang-kommune-sentrum/DJI_20251006095542_0253_D.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1053" class="modal"><span class="close" onclick="closeModal('modal1053')">&times;</span><img src="gallery/vang-kommune-sentrum/DJI_20251006102449_0256_D.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1054" class="modal"><span class="close" onclick="closeModal('modal1054')">&times;</span><img src="gallery/vang-reklamefilm/untitled-4532.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1055" class="modal"><span class="close" onclick="closeModal('modal1055')">&times;</span><img src="gallery/vang-reklamefilm/untitled-4536.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1056" class="modal"><span class="close" onclick="closeModal('modal1056')">&times;</span><img src="gallery/vang-reklamefilm/untitled-4538.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1057" class="modal"><span class="close" onclick="closeModal('modal1057')">&times;</span><img src="gallery/vang-reklamefilm/untitled-4547.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1058" class="modal"><span class="close" onclick="closeModal('modal1058')">&times;</span><img src="gallery/vang-reklamefilm/untitled-4548.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1059" class="modal"><span class="close" onclick="closeModal('modal1059')">&times;</span><img src="gallery/vang-reklamefilm/untitled-4550.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1060" class="modal"><span class="close" onclick="closeModal('modal1060')">&times;</span><img src="gallery/vang-reklamefilm/untitled-4557.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1061" class="modal"><span class="close" onclick="closeModal('modal1061')">&times;</span><img src="gallery/vang-reklamefilm/untitled-4559.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1062" class="modal"><span class="close" onclick="closeModal('modal1062')">&times;</span><img src="gallery/vinjerock-drone/untitled--16.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1063" class="modal"><span class="close" onclick="closeModal('modal1063')">&times;</span><img src="gallery/vinjerock-drone/untitled--2.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1064" class="modal"><span class="close" onclick="closeModal('modal1064')">&times;</span><img src="gallery/vinjerock-drone/untitled--9.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1065" class="modal"><span class="close" onclick="closeModal('modal1065')">&times;</span><img src="gallery/vinjerock/untitled--10.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1066" class="modal"><span class="close" onclick="closeModal('modal1066')">&times;</span><img src="gallery/vinjerock/untitled--13.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1067" class="modal"><span class="close" onclick="closeModal('modal1067')">&times;</span><img src="gallery/vinjerock/untitled--3.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1068" class="modal"><span class="close" onclick="closeModal('modal1068')">&times;</span><img src="gallery/vinjerock/untitled--6.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1069" class="modal"><span class="close" onclick="closeModal('modal1069')">&times;</span><img src="gallery/vinjerock/untitled--9.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1070" class="modal"><span class="close" onclick="closeModal('modal1070')">&times;</span><img src="gallery/vinjerock/untitled-7604.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1071" class="modal"><span class="close" onclick="closeModal('modal1071')">&times;</span><img src="gallery/vinjerock/untitled-7610.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1072" class="modal"><span class="close" onclick="closeModal('modal1072')">&times;</span><img src="gallery/vinjerock/untitled-7624.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1073" class="modal"><span class="close" onclick="closeModal('modal1073')">&times;</span><img src="gallery/vinjerock/untitled-7639.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1074" class="modal"><span class="close" onclick="closeModal('modal1074')">&times;</span><img src="gallery/vinjerock/untitled-7648.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1075" class="modal"><span class="close" onclick="closeModal('modal1075')">&times;</span><img src="gallery/vinjerock/untitled-7654.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1076" class="modal"><span class="close" onclick="closeModal('modal1076')">&times;</span><img src="gallery/vinjerock/untitled-7799.jpg" class="modal-content"><div class="caption"></div></div>
+<div id="modal1077" class="modal"><span class="close" onclick="closeModal('modal1077')">&times;</span><img src="gallery/vinjerock/untitled-7812.jpg" class="modal-content"><div class="caption"></div></div>
 
 <script>
 // --- MØRK MODUS LOGIKK ---
@@ -698,7 +497,7 @@ themeToggle.addEventListener('click', () => {
 });
 
 // --- 3D HOVER PARALLAX ---
-const projectImages = document.querySelectorAll('.gallery img');
+const projectImages = document.querySelectorAll('.gallery-images img');
 
 projectImages.forEach(img => {
   img.addEventListener('mousemove', (e) => {
@@ -750,7 +549,7 @@ function closeModal(modalId) {
 }
 
 function onScrollFadeIn() {
-  document.querySelectorAll('.gallery img, .gallery iframe').forEach(function(el) {
+  document.querySelectorAll('.gallery-images img, .gallery-images iframe').forEach(function(el) {
     const rect = el.getBoundingClientRect();
     if (rect.top < window.innerHeight - 60) el.classList.add('visible');
   });
