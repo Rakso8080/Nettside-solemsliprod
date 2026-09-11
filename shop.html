@@ -9,8 +9,6 @@
     gtag('js', new Date());
     gtag('config', 'G-XXXXXXXXXX');
   </script>
-  <!-- Vipps Button Generator -->
-  <script async type="text/javascript" src="https://cdn.vippsmobilepay.com/js/button/button.js"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <link rel="icon" href="Solemsli production.png">
@@ -214,12 +212,15 @@
     .checkout-modal .modal-close{position:sticky;top:12px;float:right;z-index:2}
     .checkout-modal form{overflow-y:auto;flex:1;-webkit-overflow-scrolling:touch}
     .checkout-modal .btn-pay{position:sticky;bottom:0;margin-top:12px;padding:18px;font-size:1.05rem;z-index:2}
-    #vipps-button-container{position:sticky;bottom:0;z-index:2}
     .pay-methods{grid-template-columns:repeat(3,1fr);gap:6px}
     .pay-method{padding:10px 6px}
     .pay-method-icon{font-size:1.1rem}
     .pay-method-name{font-size:.7rem}
     .crypto-qr img{width:150px;height:150px}
+    /* FLOATING CART BUTTON ON MOBILE */
+    .floating-cart{display:flex;position:fixed;bottom:max(20px,env(safe-area-inset-bottom,20px));right:20px;z-index:9999;width:56px;height:56px;border-radius:50%;background:var(--main-blue);color:white;border:none;font-size:1.4rem;cursor:pointer;box-shadow:0 6px 24px rgba(1,128,255,0.4);align-items:center;justify-content:center;transition:all .3s}
+    .floating-cart:active{transform:scale(0.92)}
+    .floating-cart .floating-count{position:absolute;top:-4px;right:-4px;background:#ff4444;color:white;width:22px;height:22px;border-radius:50%;font-size:.7rem;font-weight:700;display:flex;align-items:center;justify-content:center;border:2px solid var(--bg)}
   }
 </style>
 </head>
@@ -566,12 +567,9 @@
           </button>
         </div>
 
-        <button type="submit" class="btn-pay" id="checkout-submit-btn" style="display:none">
+        <button type="submit" class="btn-pay" id="checkout-submit-btn">
           <span data-no="Betal nå" data-en="Pay now" data-de="Jetzt bezahlen">Betal nå</span>
         </button>
-        <div id="vipps-button-container" style="margin-top:10px;text-align:center">
-          <vipps-mobilepay-button id="vipps-widget-btn" brand="vipps" language="no" rounded="true" verb="pay" variant="primary"></vipps-mobilepay-button>
-        </div>
       </form>
     </div>
   </div>
@@ -591,6 +589,9 @@
     </div>
   </div>
   <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+
+  <!-- FLOATING CART (MOBILE) -->
+  <button class="floating-cart" id="floating-cart" onclick="openCart()" style="display:none">🛒<span class="floating-count" id="floating-count">0</span></button>
 
   <!-- CUSTOM CURSOR -->
   <div class="custom-cursor" id="cursor"></div>
@@ -682,7 +683,11 @@
       const items = document.getElementById('cartItems');
       const total = document.getElementById('cartTotal');
       const count = document.getElementById('cart-count');
+      const floatCount = document.getElementById('floating-count');
+      const floatBtn = document.getElementById('floating-cart');
       count.textContent = cart.length;
+      if (floatCount) floatCount.textContent = cart.length;
+      if (floatBtn) floatBtn.style.display = cart.length > 0 ? 'flex' : 'none';
       if (cart.length === 0) {
         items.innerHTML = '<p class="cart-empty">Handlekurven er tom</p>';
         total.textContent = '0 kr';
@@ -725,7 +730,6 @@
         btn.classList.add('active');
         selectedPayMethod = btn.dataset.method;
         const submitBtn = document.getElementById('checkout-submit-btn');
-        const vippsContainer = document.getElementById('vipps-button-container');
         const labels = {
           vipps: { no: 'Betal med Vipps', en: 'Pay with Vipps', de: 'Mit Vipps bezahlen' },
           crypto: { no: 'Betal med Crypto', en: 'Pay with Crypto', de: 'Mit Crypto bezahlen' },
@@ -734,25 +738,11 @@
         const l = labels[selectedPayMethod];
         const activeLang = localStorage.getItem('lang') || 'no';
         submitBtn.querySelector('span').textContent = l[activeLang] || l.no;
-        if (selectedPayMethod === 'vipps') {
-          submitBtn.style.display = 'none';
-          vippsContainer.style.display = 'block';
-        } else {
-          submitBtn.style.display = '';
-          vippsContainer.style.display = 'none';
-          if (selectedPayMethod === 'crypto') submitBtn.style.background = 'linear-gradient(135deg,#f7931a,#e2790e)';
-          else submitBtn.style.background = '';
-        }
+        submitBtn.style.display = '';
+        if (selectedPayMethod === 'vipps') submitBtn.style.background = '';
+        else if (selectedPayMethod === 'crypto') submitBtn.style.background = 'linear-gradient(135deg,#f7931a,#e2790e)';
+        else submitBtn.style.background = '';
       });
-    });
-
-    // VIPPS BUTTON CLICK — open payment link
-    document.addEventListener('click', (e) => {
-      if (e.target.closest('#vipps-widget-btn') || e.target.id === 'vipps-widget-btn') {
-        e.preventDefault();
-        e.stopPropagation();
-        processCheckout();
-      }
     });
 
     // CHECKOUT FORM → Payment
@@ -785,27 +775,20 @@
         })
       }).catch(() => {});
 
-      // VIPPS — open payment link directly
-      if (selectedPayMethod === 'vipps') {
-        if (VIPPS_PAYMENT_LINK) {
-          window.location.href = VIPPS_PAYMENT_LINK;
-          return;
-        }
-        // Fallback: show Vipps number
-      }
-
       closeCheckout();
       const overlay = document.createElement('div');
       overlay.className = 'vipps-overlay';
 
       // Build payment info for chosen method
       let paymentInfo = '';
+      // VIPPS — show Vipps number with instructions
       if (selectedPayMethod === 'vipps') {
         paymentInfo = `
           <div class="vipps-number-box">
             <span>${VIPPS_NUMBER}</span>
             <button class="vipps-copy-btn" onclick="navigator.clipboard.writeText('${VIPPS_NUMBER}').then(()=>{this.textContent='Kopiert!';this.classList.add('copied');setTimeout(()=>{this.textContent='Kopier';this.classList.remove('copied')},2000)})">Kopier</button>
           </div>
+          <a href="vipps://send?recipient=${VIPPS_NUMBER}&amount=${total}&message=${encodeURIComponent(name)}" class="vipps-open-btn" style="text-decoration:none">💚 <span data-no="Åpne Vipps" data-en="Open Vipps" data-de="Vipps öffnen">Åpne Vipps</span></a>
           <p class="vipps-note">Søk opp <strong>${VIPPS_NUMBER}</strong> i Vipps-appen og send <strong>${total} kr</strong>. Merk med: <strong>${name}</strong></p>`;
       } else if (selectedPayMethod === 'crypto') {
         const btcAmount = (total / 1100000).toFixed(8);
