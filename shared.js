@@ -161,4 +161,128 @@
     });
   }
 
+  // ===== UNIQUE 3D SCROLL EFFECTS =====
+
+  // 3D TILT ON CARDS (desktop only)
+  if (!isTouch) {
+    document.querySelectorAll('.product-card, .price-card, .equip-card, .proof-card, .wyg-item, .info-item').forEach(card => {
+      card.style.transformStyle = 'preserve-3d';
+      card.style.transition = 'transform 0.4s cubic-bezier(.23,1,.32,1)';
+      card.addEventListener('mousemove', e => {
+        const r = card.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width - 0.5;
+        const y = (e.clientY - r.top) / r.height - 0.5;
+        card.style.transform = `perspective(600px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg) translateZ(10px)`;
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(600px) rotateY(0) rotateX(0) translateZ(0)';
+      });
+    });
+  }
+
+  // PARALLAX DEPTH LAYERS — elements with data-parallax scroll at different speeds
+  document.querySelectorAll('[data-parallax]').forEach(el => {
+    const speed = parseFloat(el.dataset.parallax) || 0.3;
+    window.addEventListener('scroll', () => {
+      const rect = el.getBoundingClientRect();
+      if (rect.bottom < -200 || rect.top > window.innerHeight + 200) return;
+      const offset = (window.scrollY - el.offsetTop) * speed;
+      el.style.transform = `translateY(${offset}px)`;
+    }, { passive: true });
+  });
+
+  // TEXT CHARACTER REVEAL — elements with .char-reveal get characters animated on scroll
+  const charRevealObs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      const text = el.textContent;
+      el.textContent = '';
+      el.style.visibility = 'visible';
+      [...text].forEach((char, i) => {
+        const span = document.createElement('span');
+        span.textContent = char === ' ' ? '\u00a0' : char;
+        span.style.display = 'inline-block';
+        span.style.opacity = '0';
+        span.style.transform = 'translateY(20px) rotateX(-40deg)';
+        span.style.transition = `all 0.5s cubic-bezier(.23,1,.32,1) ${i * 0.025}s`;
+        el.appendChild(span);
+      });
+      requestAnimationFrame(() => {
+        el.querySelectorAll('span').forEach(s => { s.style.opacity = '1'; s.style.transform = 'translateY(0) rotateX(0)'; });
+      });
+      charRevealObs.unobserve(el);
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('.char-reveal').forEach(el => {
+    el.style.visibility = 'hidden';
+    charRevealObs.observe(el);
+  });
+
+  // SCROLL SCALE — elements with .scroll-scale grow/shrink slightly based on scroll
+  const scrollScaleObs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const update = () => {
+        const rect = entry.target.getBoundingClientRect();
+        const progress = 1 - (rect.top / window.innerHeight);
+        const scale = 0.92 + Math.min(Math.max(progress, 0), 1) * 0.08;
+        const opacity = 0.4 + Math.min(Math.max(progress, 0), 1) * 0.6;
+        entry.target.style.transform = `scale(${scale})`;
+        entry.target.style.opacity = opacity;
+        if (rect.bottom > 0 && rect.top < window.innerHeight) requestAnimationFrame(update);
+      };
+      update();
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.scroll-scale').forEach(el => scrollScaleObs.observe(el));
+
+  // 3D PERSPECTIVE SECTIONS — sections tilt slightly as you scroll through them
+  const perspObs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const update = () => {
+        const rect = entry.target.getBoundingClientRect();
+        const progress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
+        const rotateX = (progress - 0.5) * 4;
+        entry.target.style.transform = `perspective(1200px) rotateX(${rotateX}deg)`;
+        entry.target.style.transformOrigin = 'center center';
+        if (rect.bottom > 0 && rect.top < window.innerHeight) requestAnimationFrame(update);
+      };
+      update();
+    });
+  }, { threshold: 0.05 });
+  document.querySelectorAll('.perspective-section').forEach(el => perspObs.observe(el));
+
+  // STAGGERED REVEAL — children of .stagger-reveal animate in sequence
+  const staggerObs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const children = entry.target.children;
+      Array.from(children).forEach((child, i) => {
+        child.style.opacity = '0';
+        child.style.transform = 'translateY(30px)';
+        child.style.transition = `all 0.6s cubic-bezier(.23,1,.32,1) ${i * 0.1}s`;
+        requestAnimationFrame(() => {
+          child.style.opacity = '1';
+          child.style.transform = 'translateY(0)';
+        });
+      });
+      staggerObs.unobserve(entry.target);
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.stagger-reveal').forEach(el => staggerObs.observe(el));
+
+  // GLOW ON SCROLL — elements with .glow-scroll get a blue glow when in view
+  const glowObs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.boxShadow = '0 0 40px rgba(1,128,255,0.15), 0 20px 60px rgba(0,0,0,0.1)';
+      } else {
+        entry.target.style.boxShadow = '';
+      }
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('.glow-scroll').forEach(el => glowObs.observe(el));
+
 })();
