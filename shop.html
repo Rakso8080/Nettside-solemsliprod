@@ -161,14 +161,7 @@
   .download-section{margin-top:20px;padding-top:20px;border-top:1px solid var(--card-border);text-align:center}
   .download-icon{font-size:2rem;margin-bottom:8px}
   .download-section h4{font-size:1rem;font-weight:700;margin-bottom:4px}
-  .download-section p{font-size:.8rem;color:var(--text-muted);margin-bottom:12px}
-  .download-buttons{display:flex;flex-direction:column;gap:8px}
-  .btn-download{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 20px;background:linear-gradient(135deg,var(--main-blue),#0055cc);color:white;border:none;border-radius:12px;font-size:.85rem;font-weight:600;text-decoration:none;cursor:pointer;transition:all .3s}
-  .btn-download:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(1,128,255,0.3)}
-
-  /* CONFIRM PAID BUTTON */
-  .btn-pay-confirm{display:block;width:100%;padding:14px;margin-top:16px;background:linear-gradient(135deg,#22c55e,#16a34a);color:white;border:none;border-radius:30px;font-size:.95rem;font-weight:700;cursor:pointer;transition:all .3s;font-family:inherit}
-  .btn-pay-confirm:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(34,197,94,0.3)}
+  .download-section p{font-size:.85rem;color:var(--text-muted);line-height:1.6}
 
   /* TIPS SECTION */
   .tips-section{padding:40px 20px 80px;max-width:600px;margin:0 auto}
@@ -271,7 +264,7 @@
           <p>Profesjonelle fargeinnstillinger for DaVinci Resolve. 10+ powergrades for å raskt sette et kinematisk preg på videoene dine.</p>
           <div class="product-footer">
             <div class="product-price">349 <span class="currency">kr</span></div>
-            <button class="btn-buy" onclick="addToCart('Cinematic Powergrade Pack', '349 kr', 'powergrades', 'cinematic-powergrade-pack.zip')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
+            <button class="btn-buy" onclick="addToCart('Cinematic Powergrade Pack', '349 kr', 'powergrades')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
           </div>
         </div>
       </div>
@@ -288,7 +281,7 @@
           <p>Kald, filmatisk look med blå toner. Perfekt for natur og droneopptak.</p>
           <div class="product-footer">
             <div class="product-price">99 <span class="currency">kr</span></div>
-            <button class="btn-buy" onclick="addToCart('Cinematic Blue', '99 kr', 'lut', 'cinematic-blue.zip')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
+            <button class="btn-buy" onclick="addToCart('Cinematic Blue', '99 kr', 'lut')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
           </div>
         </div>
       </div>
@@ -304,7 +297,7 @@
           <p>Varme, gyldne toner som gir en koselig og innbydende atmosfære.</p>
           <div class="product-footer">
             <div class="product-price">99 <span class="currency">kr</span></div>
-            <button class="btn-buy" onclick="addToCart('Warm Sunset', '99 kr', 'lut', 'warm-sunset.zip')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
+            <button class="btn-buy" onclick="addToCart('Warm Sunset', '99 kr', 'lut')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
           </div>
         </div>
       </div>
@@ -321,7 +314,7 @@
           <p>Mørk og dramatisk look med høy kontrast. Ideelt for action og event.</p>
           <div class="product-footer">
             <div class="product-price">99 <span class="currency">kr</span></div>
-            <button class="btn-buy" onclick="addToCart('Moody Dark', '99 kr', 'lut', 'moody-dark.zip')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
+            <button class="btn-buy" onclick="addToCart('Moody Dark', '99 kr', 'lut')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
           </div>
         </div>
       </div>
@@ -338,7 +331,7 @@
           <p>Alle tre LUT-ene i én pakke. Perfekt for deg som vil ha variasjon.</p>
           <div class="product-footer">
             <div class="product-price">269 <span class="currency">kr</span></div>
-            <button class="btn-buy" onclick="addToCart('LUT Pack', '269 kr', 'lut', 'lut-pack.zip')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
+            <button class="btn-buy" onclick="addToCart('LUT Pack', '269 kr', 'lut')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
           </div>
         </div>
       </div>
@@ -354,7 +347,7 @@
           <p>Lightroom-preset for natur- og landskapsbilder med nordisk estetikk.</p>
           <div class="product-footer">
             <div class="product-price">99 <span class="currency">kr</span></div>
-            <button class="btn-buy" onclick="addToCart('Nordic Tone', '99 kr', 'lut', 'nordic-tone.zip')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
+            <button class="btn-buy" onclick="addToCart('Nordic Tone', '99 kr', 'lut')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
           </div>
         </div>
       </div>
@@ -370,7 +363,7 @@
           <p>Presets optimalisert for portrett- og bryllupsfotografering.</p>
           <div class="product-footer">
             <div class="product-price">99 <span class="currency">kr</span></div>
-            <button class="btn-buy" onclick="addToCart('Portrait Pro', '99 kr', 'lut', 'portrait-pro.zip')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
+            <button class="btn-buy" onclick="addToCart('Portrait Pro', '99 kr', 'lut')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
           </div>
         </div>
       </div>
@@ -604,8 +597,8 @@
     let cart = [];
     // TODO: Replace with your Vipps number or payment link from vipps.no
     const VIPPS_NUMBER = '65829';
-    function addToCart(name, price, category, downloadFile) {
-      cart.push({ name, price, category: category || '', downloadFile: downloadFile || '' });
+    function addToCart(name, price, category) {
+      cart.push({ name, price, category: category || '' });
       updateCart();
       playAddToCart();
       openCart();
@@ -745,20 +738,16 @@
           <p class="vipps-note">Overfør <strong>${total} kr</strong> og merk med: <strong>${name}</strong><br>Varer sendes etter betaling er mottatt.</p>`;
       }
 
-      // Build download section for digital products
+      // Build digital product info for confirmation
       let downloadSection = '';
       if (digitalItems.length > 0) {
-        const downloadButtons = digitalItems.map(item =>
-          `<a href="downloads/${item.downloadFile}" download class="btn-download" onclick="event.stopPropagation()">${item.name}</a>`
-        ).join('');
+        const itemList2 = digitalItems.map(item => item.name).join(', ');
         downloadSection = `
-          <div class="download-section" id="download-section" style="display:none">
-            <div class="download-icon">⬇️</div>
-            <h4>Last ned dine filer</h4>
-            <p>Last ned filene dine under:</p>
-            <div class="download-buttons">${downloadButtons}</div>
-          </div>
-          <button class="btn-pay-confirm" id="btn-confirm-paid" onclick="document.getElementById('download-section').style.display='block';this.style.display='none'">✅ Jeg har betalt — last ned</button>`;
+          <div class="download-section" style="display:block">
+            <div class="download-icon">📧</div>
+            <h4>Digitale filer</h4>
+            <p>${itemList2} sendast på e-post til <strong>${email}</strong> når betaling er motteken.</p>
+          </div>`;
       }
 
       overlay.innerHTML = `
