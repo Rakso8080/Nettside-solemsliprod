@@ -9,6 +9,8 @@
     gtag('js', new Date());
     gtag('config', 'G-XXXXXXXXXX');
   </script>
+  <!-- Vipps Button Generator -->
+  <script async type="text/javascript" src="https://cdn.vippsmobilepay.com/js/button/button.js"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <link rel="icon" href="Solemsli production.png">
@@ -162,6 +164,14 @@
   .download-icon{font-size:2rem;margin-bottom:8px}
   .download-section h4{font-size:1rem;font-weight:700;margin-bottom:4px}
   .download-section p{font-size:.85rem;color:var(--text-muted);line-height:1.6}
+  .download-buttons{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+  .btn-download{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 20px;background:linear-gradient(135deg,var(--main-blue),#0055cc);color:white;border:none;border-radius:12px;font-size:.85rem;font-weight:600;text-decoration:none;cursor:pointer;transition:all .3s}
+  .btn-download:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(1,128,255,0.3)}
+
+  /* RECEIPT */
+  .receipt-section{margin-top:16px;text-align:center}
+  .btn-receipt{background:none;border:1px solid var(--card-border);color:var(--text);padding:10px 20px;border-radius:30px;font-size:.85rem;font-weight:500;cursor:pointer;transition:.3s;font-family:inherit}
+  .btn-receipt:hover{background:var(--card-bg);border-color:var(--main-blue);color:var(--main-blue)}
 
   /* TIPS SECTION */
   .tips-section{padding:40px 20px 80px;max-width:600px;margin:0 auto}
@@ -198,6 +208,11 @@
     .vipps-total-display{font-size:1.6rem}
     .vipps-open-btn{padding:14px;font-size:.95rem}
     .modal{margin:10px;max-width:calc(100% - 20px);padding:24px 20px}
+    .checkout-modal{max-height:90vh;display:flex;flex-direction:column}
+    .checkout-modal .modal-close{position:sticky;top:12px;float:right;z-index:2}
+    .checkout-modal form{overflow-y:auto;flex:1;-webkit-overflow-scrolling:touch}
+    .checkout-modal .btn-pay{position:sticky;bottom:0;margin-top:12px;padding:18px;font-size:1.05rem;z-index:2}
+    #vipps-button-container{position:sticky;bottom:0;z-index:2}
     .pay-methods{grid-template-columns:repeat(3,1fr);gap:6px}
     .pay-method{padding:10px 6px}
     .pay-method-icon{font-size:1.1rem}
@@ -264,7 +279,7 @@
           <p>Profesjonelle fargeinnstillinger for DaVinci Resolve. 10+ powergrades for å raskt sette et kinematisk preg på videoene dine.</p>
           <div class="product-footer">
             <div class="product-price">349 <span class="currency">kr</span></div>
-            <button class="btn-buy" onclick="addToCart('Cinematic Powergrade Pack', '349 kr', 'powergrades')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
+            <button class="btn-buy" onclick="addToCart('Cinematic Powergrade Pack', '349 kr', 'powergrades', 'cinematic-powergrade-pack.zip')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
           </div>
         </div>
       </div>
@@ -500,9 +515,12 @@
           </button>
         </div>
 
-        <button type="submit" class="btn-pay" id="checkout-submit-btn">
-          <span data-no="Betal med Vipps" data-en="Pay with Vipps" data-de="Mit Vipps bezahlen">Betal med Vipps</span>
+        <button type="submit" class="btn-pay" id="checkout-submit-btn" style="display:none">
+          <span data-no="Betal nå" data-en="Pay now" data-de="Jetzt bezahlen">Betal nå</span>
         </button>
+        <div id="vipps-button-container" style="margin-top:10px;text-align:center">>
+          <vipps-mobilepay-button id="vipps-widget-btn" brand="vipps" language="no" rounded="true" verb="pay" variant="primary"></vipps-mobilepay-button>
+        </div>
       </form>
     </div>
   </div>
@@ -597,8 +615,10 @@
     let cart = [];
     // TODO: Replace with your Vipps number or payment link from vipps.no
     const VIPPS_NUMBER = '65829';
-    function addToCart(name, price, category) {
-      cart.push({ name, price, category: category || '' });
+    // Sett inn di Vipps Payment Link her frå portal.vippsmobilepay.com → Betalingslenker
+    const VIPPS_PAYMENT_LINK = '';
+    function addToCart(name, price, category, downloadFile) {
+      cart.push({ name, price, category: category || '', downloadFile: downloadFile || '' });
       updateCart();
       playAddToCart();
       openCart();
@@ -655,6 +675,7 @@
         btn.classList.add('active');
         selectedPayMethod = btn.dataset.method;
         const submitBtn = document.getElementById('checkout-submit-btn');
+        const vippsContainer = document.getElementById('vipps-button-container');
         const labels = {
           vipps: { no: 'Betal med Vipps', en: 'Pay with Vipps', de: 'Mit Vipps bezahlen' },
           crypto: { no: 'Betal med Crypto', en: 'Pay with Crypto', de: 'Mit Crypto bezahlen' },
@@ -663,15 +684,29 @@
         const l = labels[selectedPayMethod];
         const activeLang = localStorage.getItem('lang') || 'no';
         submitBtn.querySelector('span').textContent = l[activeLang] || l.no;
-        if (selectedPayMethod === 'vipps') submitBtn.style.background = 'linear-gradient(135deg,#6dd400,#4fa500)';
-        else if (selectedPayMethod === 'crypto') submitBtn.style.background = 'linear-gradient(135deg,#f7931a,#e2790e)';
-        else submitBtn.style.background = '';
+        if (selectedPayMethod === 'vipps') {
+          submitBtn.style.display = 'none';
+          vippsContainer.style.display = 'block';
+        } else {
+          submitBtn.style.display = '';
+          vippsContainer.style.display = 'none';
+          if (selectedPayMethod === 'crypto') submitBtn.style.background = 'linear-gradient(135deg,#f7931a,#e2790e)';
+          else submitBtn.style.background = '';
+        }
       });
     });
 
+    // VIPPS BUTTON CLICK — open payment link
+    document.addEventListener('click', (e) => {
+      if (e.target.closest('#vipps-widget-btn') || e.target.id === 'vipps-widget-btn') {
+        e.preventDefault();
+        e.stopPropagation();
+        processCheckout();
+      }
+    });
+
     // CHECKOUT FORM → Payment
-    document.getElementById('checkout-form').addEventListener('submit', (e) => {
-      e.preventDefault();
+    function processCheckout() {
       const name = document.getElementById('co-name').value;
       const email = document.getElementById('co-email').value;
       const phone = document.getElementById('co-phone').value;
@@ -682,9 +717,6 @@
       // Determine if order has digital products
       const digitalItems = cart.filter(item =>
         item.category === 'lut' || item.category === 'powergrades'
-      );
-      const physicalItems = cart.filter(item =>
-        item.category !== 'lut' && item.category !== 'powergrades'
       );
 
       // Send order to Formspree (placeholder)
@@ -702,6 +734,15 @@
           totalt: total + ' kr'
         })
       }).catch(() => {});
+
+      // VIPPS — open payment link directly
+      if (selectedPayMethod === 'vipps') {
+        if (VIPPS_PAYMENT_LINK) {
+          window.location.href = VIPPS_PAYMENT_LINK;
+          return;
+        }
+        // Fallback: show Vipps number
+      }
 
       closeCheckout();
       const overlay = document.createElement('div');
@@ -738,21 +779,28 @@
           <p class="vipps-note">Overfør <strong>${total} kr</strong> og merk med: <strong>${name}</strong><br>Varer sendes etter betaling er mottatt.</p>`;
       }
 
-      // Build digital product info for confirmation
+      // Build digital product download section
       let downloadSection = '';
       if (digitalItems.length > 0) {
-        const itemList2 = digitalItems.map(item => item.name).join(', ');
+        const downloadButtons = digitalItems.map(item =>
+          `<a href="downloads/${item.downloadFile || item.name.toLowerCase().replace(/\s+/g, '-') + '.zip'}" download class="btn-download" onclick="event.stopPropagation()">${item.name}</a>`
+        ).join('');
         downloadSection = `
-          <div class="download-section" style="display:block">
-            <div class="download-icon">📧</div>
-            <h4>Digitale filer</h4>
-            <p>${itemList2} sendast på e-post til <strong>${email}</strong> når betaling er motteken.</p>
+          <div class="download-section">
+            <div class="download-icon">⬇️</div>
+            <h4>Last ned dine filer</h4>
+            <div class="download-buttons">${downloadButtons}</div>
           </div>`;
       }
 
+      // Build receipt
+      const now = new Date();
+      const receiptDate = now.toLocaleDateString('nb-NO') + ' ' + now.toLocaleTimeString('nb-NO', {hour:'2-digit', minute:'2-digit'});
+      const receiptId = 'SP-' + now.getFullYear() + (now.getMonth()+1).toString().padStart(2,'0') + now.getDate().toString().padStart(2,'0') + '-' + Math.random().toString(36).substring(2,8).toUpperCase();
+
       overlay.innerHTML = `
         <div class="vipps-modal">
-          <div class="vipps-icon">📦</div>
+          <div class="vipps-icon">✅</div>
           <h3>Bestilling mottatt!</h3>
           <div class="vipps-total-display">${total} kr</div>
           ${paymentInfo}
@@ -760,8 +808,12 @@
             <p>📦 Varer: ${itemList}</p>
             <p>📧 E-post: ${email}</p>
             ${address ? `<p>📍 Adresse: ${address}</p>` : ''}
+            <p>🧾 Ordre: <strong>${receiptId}</strong></p>
           </div>
           ${downloadSection}
+          <div class="receipt-section">
+            <button class="btn-receipt" onclick="downloadReceipt('${receiptId}','${receiptDate}','${name.replace(/'/g,"\\'")}','${email}','${itemList.replace(/'/g,"\\'")}','${total}')">🧾 Last ned kvittering</button>
+          </div>
           <button class="vipps-close-btn" onclick="this.closest('.vipps-overlay').remove()">Forstått</button>
         </div>`;
       document.body.appendChild(overlay);
@@ -777,6 +829,11 @@
       overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.remove(); });
       cart = [];
       updateCart();
+    }
+
+    document.getElementById('checkout-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      processCheckout();
     });
 
     // TIPS / DONASJON
@@ -839,6 +896,33 @@
           </div>
           <p style="font-size:.75rem;color:var(--text-muted);margin-top:6px">Merk betalingen med navnet ditt.</p>`;
       }
+    }
+
+    // KVITTERING
+    function downloadReceipt(id, date, name, email, items, total) {
+      const receipt = `
+KVITTERING — Solemsli Productions
+================================
+Ordre: ${id}
+Dato:  ${date}
+
+Kunde: ${name}
+E-post: ${email}
+
+Varer:
+${items.split(', ').map(i => '  • ' + i).join('\n')}
+
+Totalt: ${total} kr
+================================
+Takk for handelen!
+Solemsli Productions
+solemsliproductions.no`;
+      const blob = new Blob([receipt], { type: 'text/plain' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `kvittering-${id}.txt`;
+      a.click();
+      URL.revokeObjectURL(a.href);
     }
 
     // HERO TEXT SPLIT (word-by-word)
