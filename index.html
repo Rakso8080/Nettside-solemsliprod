@@ -62,7 +62,7 @@
     .marquee{display:flex;animation:marquee 20s linear infinite}
     .marquee-item{flex-shrink:0;padding:0 50px;font-size:1.2rem;font-weight:600;color:var(--text);opacity:.3;white-space:nowrap;display:flex;align-items:center;gap:15px}
     .marquee-item span{white-space:nowrap}
-    .marquee-item span{width:8px;height:8px;background:var(--main-blue);border-radius:50%}
+    .marquee-item span:first-child{width:8px;height:8px;background:var(--main-blue);border-radius:50%;flex-shrink:0}
     @keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
     /* SHOWREEL */
