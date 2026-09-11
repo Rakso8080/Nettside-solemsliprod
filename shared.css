@@ -50,19 +50,11 @@ nav a:hover::after{width:100%}
 .section-label{font-size:.75rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--main-blue);margin-bottom:15px}
 .section-title{font-size:clamp(2rem,4vw,3.5rem);font-weight:700;letter-spacing:-1px;line-height:1.2;margin-bottom:50px}
 
-/* CURSOR GLOW */
-.cursor-glow{position:fixed;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(1,128,255,0.15) 0%,transparent 70%);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:opacity .3s;opacity:0}
-.cursor-glow.active{opacity:1}
-
 /* CUSTOM CURSOR */
 .custom-cursor{position:fixed;width:40px;height:40px;border:2px solid var(--main-blue);border-radius:50%;pointer-events:none;z-index:99999;transition:transform .15s,opacity .15s;transform:translate(-50%,-50%);opacity:0}
 .custom-cursor-dot{position:fixed;width:6px;height:6px;background:var(--main-blue);border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);opacity:0}
 body:hover .custom-cursor,body:hover .custom-cursor-dot{opacity:1}
 .custom-cursor.hovering{transform:translate(-50%,-50%) scale(1.5);border-color:var(--accent)}
-
-/* GLOWING ORB */
-.glow-orb{position:fixed;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(1,128,255,0.08) 0%,transparent 70%);pointer-events:none;z-index:0;transition:opacity .5s;opacity:0;filter:blur(40px)}
-.glow-orb.active{opacity:1}
 
 /* REVEAL */
 .reveal{opacity:0;transform:translateY(60px);transition:all .8s cubic-bezier(.23,1,.32,1)}
@@ -96,6 +88,7 @@ footer{padding:60px 40px;border-top:1px solid var(--glass-border);display:flex;j
 
 /* RESPONSIVE */
 @media(max-width:900px){
+  .section{padding:80px 20px}
 }
 @media(max-width:750px){
   header{padding:15px 20px}
@@ -114,4 +107,31 @@ footer{padding:60px 40px;border-top:1px solid var(--glass-border);display:flex;j
   .menu-toggle.active span:nth-child(2){opacity:0}
   .menu-toggle.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
   .custom-cursor,.custom-cursor-dot{display:none}
+  .scroll-top{width:44px;height:44px;bottom:20px;right:20px}
+  .btn{padding:16px 32px;font-size:1rem}
+  .nav-btn{padding:10px 16px}
+}
+
+/* MOBILE — iOS & Android optimalization */
+html{-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;text-size-adjust:100%;overscroll-behavior:none}
+body{-webkit-overflow-scrolling:touch;overscroll-behavior:none}
+img{max-width:100%;height:auto;-webkit-tap-highlight-color:transparent}
+a,button{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+button{cursor:pointer}
+
+/* SAFE AREA — iPhone notch */
+@supports(padding:max(0px)){
+  header{padding-left:max(20px,env(safe-area-inset-left));padding-right:max(20px,env(safe-area-inset-right))}
+  footer{padding-left:max(20px,env(safe-area-inset-left));padding-right:max(20px,env(safe-area-inset-right))}
+  .section{padding-left:max(20px,env(safe-area-inset-left));padding-right:max(20px,env(safe-area-inset-right))}
+}
+
+/* MOBILE NAV OVERLAY — full width */
+@media(max-width:750px){
+  nav{width:100%}
+}
+
+/* MOBILE MAP */
+@media(max-width:750px){
+  #coverage-map{height:350px;border-radius:16px}
 }

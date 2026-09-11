@@ -73,56 +73,28 @@
   }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
   document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-  // CUSTOM CURSOR
-  const cursorEl = document.getElementById('cursor');
-  const cursorDot = document.getElementById('cursor-dot');
-  if (cursorEl && cursorDot) {
-    let cx = 0, cy = 0, dx = 0, dy = 0;
-    document.addEventListener('mousemove', e => { dx = e.clientX; dy = e.clientY; });
-    (function animCursor() {
-      cx += (dx - cx) * 0.12;
-      cy += (dy - cy) * 0.12;
-      cursorEl.style.left = cx + 'px';
-      cursorEl.style.top = cy + 'px';
-      cursorDot.style.left = dx + 'px';
-      cursorDot.style.top = dy + 'px';
-      requestAnimationFrame(animCursor);
-    })();
-    document.querySelectorAll('a,button').forEach(el => {
-      el.addEventListener('mouseenter', () => cursorEl.classList.add('hovering'));
-      el.addEventListener('mouseleave', () => cursorEl.classList.remove('hovering'));
-    });
-  }
-
-  // CURSOR GLOW
-  const glow = document.getElementById('cursor-glow');
-  if (glow) {
-    let mx = 0, my = 0, gx = 0, gy = 0;
-    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; glow.classList.add('active'); });
-    document.addEventListener('mouseleave', () => glow.classList.remove('active'));
-    (function animGlow() {
-      gx += (mx - gx) * 0.1;
-      gy += (my - gy) * 0.1;
-      glow.style.left = gx + 'px';
-      glow.style.top = gy + 'px';
-      requestAnimationFrame(animGlow);
-    })();
-  }
-
-  // GLOWING ORB
-  const existingOrb = document.querySelector('.glow-orb');
-  if (!existingOrb) {
-    const orb = document.createElement('div');
-    orb.className = 'glow-orb';
-    document.body.appendChild(orb);
-    let ox = 0, oy = 0;
-    document.addEventListener('mousemove', e => { ox = e.clientX; oy = e.clientY; orb.classList.add('active'); });
-    document.addEventListener('mouseleave', () => orb.classList.remove('active'));
-    (function animOrb() {
-      orb.style.left = (ox - 100) + 'px';
-      orb.style.top = (oy - 100) + 'px';
-      requestAnimationFrame(animOrb);
-    })();
+  // CUSTOM CURSOR (desktop only)
+  const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+  if (!isTouch) {
+    const cursorEl = document.getElementById('cursor');
+    const cursorDot = document.getElementById('cursor-dot');
+    if (cursorEl && cursorDot) {
+      let cx = 0, cy = 0, dx = 0, dy = 0;
+      document.addEventListener('mousemove', e => { dx = e.clientX; dy = e.clientY; });
+      (function animCursor() {
+        cx += (dx - cx) * 0.12;
+        cy += (dy - cy) * 0.12;
+        cursorEl.style.left = cx + 'px';
+        cursorEl.style.top = cy + 'px';
+        cursorDot.style.left = dx + 'px';
+        cursorDot.style.top = dy + 'px';
+        requestAnimationFrame(animCursor);
+      })();
+      document.querySelectorAll('a,button').forEach(el => {
+        el.addEventListener('mouseenter', () => cursorEl.classList.add('hovering'));
+        el.addEventListener('mouseleave', () => cursorEl.classList.remove('hovering'));
+      });
+    }
   }
 
   // MOBILE MENU
@@ -176,15 +148,17 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
-  // MAGNETIC BUTTONS
-  document.querySelectorAll('.magnetic').forEach(btn => {
-    btn.addEventListener('mousemove', e => {
-      const r = btn.getBoundingClientRect();
-      const x = e.clientX - r.left - r.width / 2;
-      const y = e.clientY - r.top - r.height / 2;
-      btn.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+  // MAGNETIC BUTTONS (desktop only)
+  if (!isTouch) {
+    document.querySelectorAll('.magnetic').forEach(btn => {
+      btn.addEventListener('mousemove', e => {
+        const r = btn.getBoundingClientRect();
+        const x = e.clientX - r.left - r.width / 2;
+        const y = e.clientY - r.top - r.height / 2;
+        btn.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+      });
+      btn.addEventListener('mouseleave', () => btn.style.transform = 'translate(0, 0)');
     });
-    btn.addEventListener('mouseleave', () => btn.style.transform = 'translate(0, 0)');
-  });
+  }
 
 })();

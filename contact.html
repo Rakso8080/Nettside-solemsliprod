@@ -10,7 +10,7 @@
     gtag('config', 'G-XXXXXXXXXX');
   </script>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <link rel="icon" href="Solemsli production.png">
   <meta name="theme-color" content="#0180ff">
   <link rel="manifest" href="manifest.json">
@@ -75,7 +75,7 @@
     .section-title{font-size:1.8rem;font-weight:700;letter-spacing:-1px}
 
     /* RESPONSIVE — PAGE-SPECIFIC */
-    @media(max-width:750px){.contact{padding:35px}main{padding:80px 20px}.contact-options{flex-direction:column}}
+    @media(max-width:750px){.contact{padding:35px}main{padding:40px 16px;min-height:calc(100vh - 60px)}.contact-options{flex-direction:column}body{padding-top:60px}}
   </style>
 </head>
 <body>
@@ -88,9 +88,6 @@
 
   <!-- PROGRESS BAR -->
   <div id="progress-bar"></div>
-
-  <!-- CURSOR GLOW -->
-  <div class="cursor-glow" id="cursor-glow"></div>
 
   <!-- HEADER -->
   <header id="header">
