@@ -41,6 +41,9 @@
 
     .price-card.special{border:2px solid var(--main-blue)}
 
+    /* POPULAR BADGE */
+    .popular-badge{position:absolute;top:16px;right:-30px;background:linear-gradient(135deg,var(--main-blue),var(--accent));color:white;font-size:.7rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:6px 40px;transform:rotate(45deg);z-index:1}
+
     .magnetic{transition:transform .3s cubic-bezier(.23,1,.32,1)}
 
     /* CALCULATOR */
@@ -64,6 +67,22 @@
     .wyg-icon{font-size:2rem;margin-bottom:12px}
     .wyg-item h4{margin:0 0 8px;font-size:1rem}
     .wyg-item p{margin:0;font-size:.85rem;color:var(--text-muted);line-height:1.5}
+
+    /* SOCIAL PROOF */
+    .social-proof{padding:60px 20px;text-align:center}
+    .proof-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-top:40px;max-width:900px;margin-left:auto;margin-right:auto}
+    .proof-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:16px;padding:30px;text-align:left;transition:all .3s}
+    .proof-card:hover{border-color:rgba(1,128,255,0.3);transform:translateY(-4px)}
+    .proof-stars{color:#fbbf24;font-size:1rem;margin-bottom:12px}
+    .proof-card p{font-size:.95rem;color:var(--text-muted);line-height:1.7;font-style:italic;margin-bottom:16px}
+    .proof-author{font-size:.85rem;font-weight:600}
+    .proof-author span{color:var(--text-muted);font-weight:400}
+
+    /* URGENCY BANNER */
+    .urgency-banner{display:flex;align-items:center;justify-content:center;gap:12px;padding:16px 20px;background:linear-gradient(135deg,rgba(1,128,255,0.08),rgba(0,212,255,0.05));border:1px solid rgba(1,128,255,0.2);border-radius:16px;max-width:700px;margin:30px auto 0}
+    .urgency-icon{font-size:1.5rem}
+    .urgency-text{font-size:.9rem;color:var(--text)}
+    .urgency-text strong{color:var(--main-blue)}
 
     /* TILBUDSKJEMA */
     .tilbud-section{max-width:700px;margin:0 auto}
@@ -170,6 +189,7 @@
       </div>
 
       <div class="price-card reveal reveal-delay-2">
+        <div class="popular-badge" data-no="Mest populær" data-en="Most Popular" data-de="Beliebteste">Mest populær</div>
         <h3 data-no="Medium Pakke" data-en="Medium Package" data-de="Mittleres Paket">Medium Pakke</h3>
         <p data-no="Det mest populære valget for eventer og bedrifter." data-en="The most popular choice for events and businesses." data-de="Die beliebteste Wahl für Veranstaltungen und Unternehmen.">Det mest populære valget for eventer og bedrifter.</p>
         <div class="amount" data-no="5 000 kr" data-en="5 000 NOK" data-de="5 000 NOK">5 000 kr</div>
@@ -208,6 +228,29 @@
         <button class="btn btn-primary magnetic" data-package="Skreddersydd Oppdrag" onclick="sendBookingEmail(this)" data-no="Kontakt for pris" data-en="Contact for Pricing" data-de="Kontakt für Preis">Få tilbud</button>
       </div>
     </div>
+
+    <!-- URGENCY BANNER -->
+    <div class="urgency-banner reveal">
+      <span class="urgency-icon">🔥</span>
+      <span class="urgency-text" data-no="<strong>Begrenset kapasitet</strong> — jeg tar kun et visst antall oppdrag per måned for å sikre kvalitet. Book tidlig for å sikre din dato." data-en="<strong>Limited capacity</strong> — I only take a certain number of jobs per month to ensure quality. Book early to secure your date." data-de="<strong>Begrenzte Kapazität</strong> — Ich übernehme nur eine bestimmte Anzahl Aufträge pro Monat, um die Qualität zu sichern. Buchen Sie frühzeitig, um Ihren Termin zu sicheren."><strong>Begrenset kapasitet</strong> — jeg tar kun et visst antall oppdrag per måned for å sikre kvalitet. Book tidlig for å sikre din dato.</span>
+    </div>
+
+    <!-- SOCIAL PROOF -->
+    <section class="social-proof">
+      <div class="reveal"><div class="section-label" data-no="Tilbakemeldinger" data-en="Testimonials" data-de="Referenzen">Tilbakemeldinger</div><h2 class="section-title" data-no="Hva kundene sier" data-en="What clients say" data-de="Was Kunden sagen">Hva kundene sier</h2></div>
+      <div class="proof-grid reveal">
+        <div class="proof-card">
+          <div class="proof-stars">★★★★★</div>
+          <p data-no="\"Solemsli Productions levererte fantastiske bilder fra bryllupet vårt. Profesjonell, kreativ og til å stole på. Vi anbefaler dem på det varmeste!\"" data-en="\"Solemsli Productions delivered amazing photos from our wedding. Professional, creative and reliable. We highly recommend them!\"" data-de="\"Solemsli Productions hat fantastische Fotos von unserer Hochzeit geliefert. Professionell, kreativ und zuverlässig. Wir empfehlen sie wärmstens!\"">"Solemsli Productions levererte fantastiske bilder fra bryllupet vårt. Profesjonell, kreativ og til å stole på. Vi anbefaler dem på det varmeste!"</p>
+          <div class="proof-author">Arctic Domes <span>— Bryllup</span></div>
+        </div>
+        <div class="proof-card">
+          <div class="proof-stars">★★★★★</div>
+          <p data-no="\"Dronevideoen fra arrangementet vårt ble helt rå. Rask levering, god kommunikasjon og et sluttprodukt som overgikk forventningene.\"" data-en="\"The drone video from our event was absolutely amazing. Fast delivery, good communication and a final product that exceeded expectations.\"">"Dronevideoen fra arrangementet vårt ble helt rå. Rask levering, god kommunikasjon og et sluttprodukt som overgikk forventningene."</p>
+          <div class="proof-author">Lena Ubario <span>— Event</span></div>
+        </div>
+      </div>
+    </section>
 
     <!-- HVA FÅR DU? -->
     <section class="section what-you-get">

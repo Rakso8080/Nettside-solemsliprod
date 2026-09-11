@@ -49,12 +49,14 @@
   .products-grid.revealed>*{opacity:1;transform:translateY(0)}
 
   /* PRODUCT CARD */
-  .product-card{background:var(--card-bg);border:1px solid var(--glass-border);border-radius:16px;overflow:hidden;transition:border-color .3s,box-shadow .3s}
-  .product-card:hover{border-color:rgba(1,128,255,0.3);box-shadow:0 12px 32px rgba(0,0,0,0.12)}
+  .product-card{background:var(--card-bg);border:1px solid var(--glass-border);border-radius:16px;overflow:hidden;transition:border-color .3s,box-shadow .3s,transform .3s}
+  .product-card:hover{border-color:rgba(1,128,255,0.3);box-shadow:0 16px 40px rgba(0,0,0,0.15);transform:translateY(-4px)}
   .product-image{position:relative;aspect-ratio:4/3;overflow:hidden;background:linear-gradient(135deg,#1a1a2e,#16213e)}
-  .product-image img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
-  .product-card:hover .product-image img{transform:scale(1.05)}
-  .product-badge{position:absolute;top:12px;left:12px;padding:5px 12px;background:var(--main-blue);color:white;font-size:.65rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;border-radius:20px}
+  .product-image img{width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.23,1,.32,1)}
+  .product-card:hover .product-image img{transform:scale(1.08)}
+  .product-image::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.4) 0%,transparent 50%);opacity:0;transition:opacity .3s;pointer-events:none}
+  .product-card:hover .product-image::after{opacity:1}
+  .product-badge{position:absolute;top:12px;left:12px;padding:5px 12px;background:var(--main-blue);color:white;font-size:.65rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;border-radius:20px;z-index:1}
   .product-info{padding:20px}
   .product-category{font-size:.7rem;font-weight:600;color:var(--main-blue);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
   .product-info h3{font-size:1.1rem;font-weight:700;margin-bottom:6px}
@@ -402,26 +404,9 @@
 
       <!-- MERCH — ZIP HOODIE -->
       <div class="product-card" data-category="merch">
-        <div class="product-image" style="background: linear-gradient(135deg, #1a1a2e, #2d2d44);">
+        <div class="product-image" style="background:linear-gradient(135deg,#1a1a2e,#2d2d44)">
           <img src="merch/5035.jpg" alt="Solemsli Zip Hoodie" loading="lazy">
-          <div class="product-badge">Merch</div>
-        </div>
-        <div class="product-info">
-          <div class="product-category">MERCH</div>
-          <h3 data-no="Solemsli Zip Hoodie" data-en="Solemsli Zip Hoodie" data-de="Solemsli Zip Hoodie">Solemsli Zip Hoodie</h3>
-          <p data-no="Sort zip-hoodie med Solemsli Productions-logo. Unisex passform, premium kvalitet." data-en="Black zip hoodie with Solemsli Productions logo. Unisex fit, premium quality." data-de="Schwarze Zip- Hoodie mit Solemsli Productions-Logo. Unisex-Passform, Premium-Qualität.">Sort zip-hoodie med Solemsli Productions-logo. Unisex passform, premium kvalitet.</p>
-          <div class="product-footer">
-            <div class="product-price">700 <span class="currency">kr</span></div>
-            <button class="btn-buy" onclick="addToCart('Solemsli Zip Hoodie', '700 kr')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- MERCH — ZIP HOODIE 2 -->
-      <div class="product-card" data-category="merch">
-        <div class="product-image" style="background: linear-gradient(135deg, #1a1a2e, #2d2d44);">
-          <img src="merch/untitled-1628.jpg" alt="Solemsli Zip Hoodie" loading="lazy">
-          <div class="product-badge">Merch</div>
+          <div class="product-badge" data-no="Bestselger" data-en="Bestseller" data-de="Bestseller">Bestselger</div>
         </div>
         <div class="product-info">
           <div class="product-category">MERCH</div>
@@ -430,6 +415,55 @@
           <div class="product-footer">
             <div class="product-price">700 <span class="currency">kr</span></div>
             <button class="btn-buy" onclick="addToCart('Solemsli Zip Hoodie', '700 kr')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- MERCH — T-SHIRT -->
+      <div class="product-card" data-category="merch">
+        <div class="product-image" style="background:linear-gradient(135deg,#0f0f23,#1a1a3e)">
+          <img src="merch/untitled-1628.jpg" alt="Solemsli T-Shirt" loading="lazy">
+          <div class="product-badge" data-no="Ny" data-en="New" data-de="Neu">Ny</div>
+        </div>
+        <div class="product-info">
+          <div class="product-category">MERCH</div>
+          <h3 data-no="Solemsli T-Shirt" data-en="Solemsli T-Shirt" data-de="Solemsli T-Shirt">Solemsli T-Shirt</h3>
+          <p data-no="Sort t-skjorte med diskret Solemsli Productions-logo. Behagelig passform i bomull." data-en="Black t-shirt with subtle Solemsli Productions logo. Comfortable cotton fit." data-de="Schwarzes T-Shirt mit dezентem Solemsli Productions-Logo. Bequeme Baumwoll-Passform.">Sort t-skjorte med diskret Solemsli Productions-logo. Behagelig passform i bomull.</p>
+          <div class="product-footer">
+            <div class="product-price">350 <span class="currency">kr</span></div>
+            <button class="btn-buy" onclick="addToCart('Solemsli T-Shirt', '350 kr')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- MERCH — CAP -->
+      <div class="product-card" data-category="merch">
+        <div class="product-image" style="background:linear-gradient(135deg,#1a1a2e,#0a2540)">
+          <img src="gallery/biler/untitled--13684.jpg" alt="Solemsli Cap" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-category">MERCH</div>
+          <h3 data-no="Solemsli Cap" data-en="Solemsli Cap" data-de="Solemsli Cap">Solemsli Cap</h3>
+          <p data-no="Sort cap med brodert Solemsli Productions-logo. Justerbar, universell passform." data-en="Black cap with embroidered Solemsli Productions logo. Adjustable, universal fit." data-de="Schwarze Cap mit gesticktem Solemsli Productions-Logo. Verstellbar, universelle Passform.">Sort cap med brodert Solemsli Productions-logo. Justerbar, universell passform.</p>
+          <div class="product-footer">
+            <div class="product-price">300 <span class="currency">kr</span></div>
+            <button class="btn-buy" onclick="addToCart('Solemsli Cap', '300 kr')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- MERCH — STICKER PACK -->
+      <div class="product-card" data-category="merch">
+        <div class="product-image" style="background:linear-gradient(135deg,#0d1b2a,#1b263b)">
+          <img src="gallery/andre natur bilder/uranustind.jpg" alt="Solemsli Sticker Pack" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-category">MERCH</div>
+          <h3 data-no="Sticker Pack" data-en="Sticker Pack" data-de="Sticker-Pack">Sticker Pack</h3>
+          <p data-no="5 stk klistremerker med Solemsli Productions-design. Perfekt for laptop, vannflaske eller bil." data-en="5 stickers with Solemsli Productions designs. Perfect for laptop, water bottle or car." data-de="5 Sticker mit Solemsli Productions-Designs. Perfekt für Laptop, Trinkflasche oder Auto.">5 stk klistremerker med Solemsli Productions-design. Perfekt for laptop, vannflaske eller bil.</p>
+          <div class="product-footer">
+            <div class="product-price">99 <span class="currency">kr</span></div>
+            <button class="btn-buy" onclick="addToCart('Sticker Pack', '99 kr')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
           </div>
         </div>
       </div>

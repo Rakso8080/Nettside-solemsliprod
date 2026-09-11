@@ -99,9 +99,18 @@
     .timeline-section{padding:120px 40px;background:var(--card-bg)}
     .timeline{position:relative;max-width:800px;margin:60px auto 0;padding-left:60px}
     .timeline::before{content:'';position:absolute;left:30px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--main-blue),var(--accent),transparent)}
-    .timeline-item{position:relative;margin-bottom:60px;opacity:0;transform:translateX(-30px);transition:all .6s cubic-bezier(.23,1,.32,1)}
+    .timeline-item{position:relative;margin-bottom:60px;opacity:0;transform:translateX(-40px);transition:all .8s cubic-bezier(.23,1,.32,1)}
     .timeline-item.active{opacity:1;transform:translateX(0)}
-    .timeline-dot{position:absolute;left:-42px;top:5px;width:16px;height:16px;background:var(--main-blue);border-radius:50%;border:3px solid var(--bg);box-shadow:0 0 20px rgba(1,128,255,0.4)}
+    .timeline-item:nth-child(2).active{transition-delay:.15s}
+    .timeline-item:nth-child(3).active{transition-delay:.3s}
+    .timeline-item:nth-child(4).active{transition-delay:.45s}
+    .timeline-item:nth-child(5).active{transition-delay:.6s}
+    .timeline-item:nth-child(6).active{transition-delay:.75s}
+    .timeline-dot{position:absolute;left:-42px;top:5px;width:16px;height:16px;background:var(--main-blue);border-radius:50%;border:3px solid var(--bg);box-shadow:0 0 20px rgba(1,128,255,0.4);transition:all .6s}
+    .timeline-item.active .timeline-dot{animation:dotPulse 2s ease-in-out infinite}
+    @keyframes dotPulse{0%,100%{box-shadow:0 0 20px rgba(1,128,255,0.4)}50%{box-shadow:0 0 30px rgba(1,128,255,0.7),0 0 60px rgba(1,128,255,0.2)}}
+    .timeline-item.active .timeline-dot::after{content:'';position:absolute;inset:-8px;border-radius:50%;border:1px solid rgba(1,128,255,0.2);animation:dotRing 2s ease-in-out infinite .3s}
+    @keyframes dotRing{0%,100%{transform:scale(1);opacity:.3}50%{transform:scale(1.3);opacity:0}}
     .timeline-year{font-size:.8rem;font-weight:600;color:var(--main-blue);letter-spacing:1px;margin-bottom:8px}
     .timeline-item h3{font-size:1.2rem;font-weight:700;margin-bottom:8px}
     .timeline-item p{color:var(--text-muted);line-height:1.7;font-size:.95rem}
@@ -172,7 +181,7 @@
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-bg"><img src="gallery/andre natur bilder/uranustind.jpg" alt="Fjellandskap" id="hero-img"></div>
+    <div class="hero-bg"><img src="gallery/vinjerock-drone/untitled--9.jpg" alt="Droneutsikt" id="hero-img"></div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <div class="hero-badge" data-no="📍 17 år • Innlandet" data-en="📍 17 years old • Innlandet" data-de="📍 17 Jahre • Innlandet">📍 17 år • Innlandet</div>
@@ -206,6 +215,9 @@
         </p>
         <p data-no="Jeg har også erfaring som sommerjobb ved Filefjellstuene, digihjelper for Vang kommune og butikkmedarbeider ved Intersport. På fritiden sykler, ski og driver med judo. For meg handler det ikke bare om teknisk kvalitet — det handler om å fortelle en historie og fange den rette stemningen." data-en="I also have experience from seasonal work at Filefjellstuene, digital helper for Vang municipality, and retail at Intersport. In my spare time I cycle, ski and practice judo. For me, it's not just about technical quality — it's about telling a story and capturing the right atmosphere." data-de="Ich habe auch Erfahrung durch Saisonarbeit bei Filefjellstuene, als Digitalhelfer für die Gemeinde Vang und als Einzelhandelsmitarbeiter bei Intersport. In meiner Freizeit fahre ich Rad, Ski und betreibe Judo. Für mich geht es nicht nur um technische Qualität — es geht darum, eine Geschichte zu erzählen und die richtige Stimmung einzufangen.">
           Jeg har også erfaring fra sommerjobb ved Filefjellstuene, digihjelper for Vang kommune og butikkmedarbeider ved Intersport. På fritiden sykler jeg, går på ski og driver med judo. For meg handler det ikke bare om teknisk kvalitet — det handler om å fortelle en historie og fange den rette stemningen.
+        </p>
+        <p data-no="Jeg trives best når jeg kan kombinere kreativitet med teknisk utfordring — enten det er å finne den perfekte vinkelen fra drone, fange gylne øyeblikk i bryllup, eller skape en filmatisk look i DaVinci Resolve. Målet mitt er å levere innhold som overgår forventningene — hver gang." data-en="I thrive when I can combine creativity with technical challenges — whether it's finding the perfect angle from a drone, capturing golden moments at a wedding, or creating a cinematic look in DaVinci Resolve. My goal is to deliver content that exceeds expectations — every time." data-de="Ich blühe auf, wenn ich Kreativität mit technischen Herausforderungen kombinieren kann — egal ob der perfekte Winkel aus der Drohne, goldene Momente bei einer Hochzeit oder ein filmatischer Look in DaVinci Resolve. Mein Ziel ist es, Inhalte zu liefern, die die Erwartungen übertreffen — jedes Mal.">
+          Jeg trives best når jeg kan kombinere kreativitet med teknisk utfordring — enten det er å finne den perfekte vinkelen fra drone, fange gylne øyeblikk i bryllup, eller skape en filmatisk look i DaVinci Resolve. Målet mitt er å levere innhold som overgår forventningene — hver gang.
         </p>
         <div class="profile-tags">
           <span class="profile-tag" data-no="Foto" data-en="Photography" data-de="Foto">Foto</span>
@@ -261,7 +273,7 @@
       <div class="reveal"><div class="section-label" data-no="Dag i livet" data-en="Day in the life" data-de="Tag im Leben">Dag i livet</div><h2 class="section-title" data-no="En typisk dag" data-en="A typical day" data-de="Ein typischer Tag">En typisk dag</h2></div>
       <div class="day-scroll-container">
         <div class="day-track">
-          <div class="day-card"><div class="day-time">07:00</div><img src="uranustind.jpg" alt="Morgen" loading="lazy"><h4 data-no="Morgen" data-en="Morning" data-de="Morgen">Morgen</h4><p data-no="Våkner tidlig, sjekker været og planlegger dagen" data-en="Wake up early, check the weather and plan the day" data-de="Früh aufstehen, das Wetter prüfen und den Tag planen">Våkner tidlig, sjekker været og planlegger dagen</p></div>
+          <div class="day-card"><div class="day-time">07:00</div><img src="gallery/andre natur bilder/uranustind.jpg" alt="Morgen" loading="lazy"><h4 data-no="Morgen" data-en="Morning" data-de="Morgen">Morgen</h4><p data-no="Våkner tidlig, sjekker været og planlegger dagen" data-en="Wake up early, check the weather and plan the day" data-de="Früh aufstehen, das Wetter prüfen und den Tag planen">Våkner tidlig, sjekker været og planlegger dagen</p></div>
           <div class="day-card"><div class="day-time">09:00</div><img src="gallery/andre natur bilder/bilde5.jpg" alt="Utstyr" loading="lazy"><h4 data-no="Utstyr" data-en="Equipment" data-de="Ausrüstung">Utstyr</h4><p data-no="Pakker kamera, drone og tilbehør" data-en="Pack camera, drone and accessories" data-de="Kamera, Drohne und Zubehör einpacken">Pakker kamera, drone og tilbehør</p></div>
           <div class="day-card"><div class="day-time">11:00</div><img src="gallery/vinjerock/untitled-7604.jpg" alt="Oppdrag" loading="lazy"><h4 data-no="Oppdrag" data-en="Mission" data-de="Einsatz">Oppdrag</h4><p data-no="Er ute på oppdrag og fanger øyeblikkene" data-en="Out on assignment capturing moments" data-de="Draußen beim Einsatz und fange die Momente">Er ute på oppdrag og fanger øyeblikkene</p></div>
           <div class="day-card"><div class="day-time">15:00</div><img src="gallery/andre natur bilder/bilde7.jpg" alt="Redigering" loading="lazy"><h4 data-no="Redigering" data-en="Editing" data-de="Bearbeitung">Redigering</h4><p data-no="Tilbake på kontoret for redigering og fargejustering" data-en="Back at the office for editing and color grading" data-de="Zurück im Büro für Bearbeitung und Farbkorrektur">Tilbake på kontoret for redigering og fargejustering</p></div>

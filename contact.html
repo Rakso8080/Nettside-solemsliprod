@@ -25,18 +25,41 @@
   <link rel="stylesheet" href="shared.css">
   <style>
     /* PAGE-SPECIFIC — Contact */
-    body{padding-top:80px}
-    main{display:flex;justify-content:center;align-items:center;min-height:calc(100vh - 140px);padding:40px 20px;flex-direction:column;gap:40px}
-    .contact{background:var(--card-bg);border:1px solid var(--glass-border);border-radius:24px;padding:50px;text-align:center;max-width:550px;width:100%;position:relative;overflow:hidden;transition:all .5s cubic-bezier(.23,1,.32,1)}
+    body{padding-top:0}
+    main{display:block;padding:0;min-height:auto}
+
+    /* HERO */
+    .contact-hero{position:relative;height:60vh;min-height:400px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+    .contact-hero-bg{position:absolute;inset:0;z-index:0}
+    .contact-hero-bg img{width:100%;height:100%;object-fit:cover;transform:scale(1.1)}
+    .contact-hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.5) 0%,rgba(0,0,0,.4) 50%,rgba(10,10,10,1) 100%);z-index:1}
+    .contact-hero-content{position:relative;z-index:2;text-align:center;padding:0 20px}
+    .contact-hero-badge{display:inline-block;background:rgba(255,255,255,0.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.15);padding:8px 20px;border-radius:30px;font-size:.8rem;color:rgba(255,255,255,0.9);margin-bottom:20px;opacity:0;transform:translateY(20px);animation:fadeUp 1s .2s forwards}
+    .contact-hero h1{font-size:clamp(2.5rem,6vw,4.5rem);font-weight:800;color:white;line-height:1.1;letter-spacing:-2px;margin-bottom:16px;text-shadow:0 4px 30px rgba(0,0,0,0.5);opacity:0;transform:translateY(20px);animation:fadeUp 1s .4s forwards}
+    .contact-hero h1 span{background:linear-gradient(135deg,var(--main-blue),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .contact-hero p{font-size:1.1rem;color:rgba(255,255,255,0.8);max-width:500px;margin:0 auto;line-height:1.6;opacity:0;transform:translateY(20px);animation:fadeUp 1s .6s forwards}
+    @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+
+    /* QUICK INFO STRIP */
+    .info-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:60px 40px;max-width:1000px;margin:0 auto}
+    .info-item{text-align:center;padding:24px 16px;background:var(--card-bg);border:1px solid var(--card-border);border-radius:16px;transition:all .3s}
+    .info-item:hover{border-color:rgba(1,128,255,0.3);transform:translateY(-4px)}
+    .info-icon{font-size:2rem;margin-bottom:10px;display:block}
+    .info-item h4{font-size:.95rem;font-weight:700;margin-bottom:4px}
+    .info-item p{font-size:.8rem;color:var(--text-muted);line-height:1.5}
+
+    /* CONTACT SECTION */
+    .contact-section{display:flex;justify-content:center;padding:40px 20px 80px;flex-direction:column;gap:60px;align-items:center;max-width:1200px;margin:0 auto}
+    .contact{background:var(--card-bg);border:1px solid var(--glass-border);border-radius:24px;padding:50px;text-align:center;max-width:600px;width:100%;position:relative;overflow:hidden;transition:all .5s cubic-bezier(.23,1,.32,1)}
     .contact::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--main-blue),var(--accent))}
     .contact:hover{border-color:rgba(1,128,255,0.3);transform:translateY(-8px);box-shadow:0 20px 40px rgba(0,0,0,0.1)}
-    .contact h1{font-size:2rem;font-weight:700;letter-spacing:-1px;margin-bottom:20px;background:linear-gradient(135deg,var(--main-blue),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .contact h2{font-size:2rem;font-weight:700;letter-spacing:-1px;margin-bottom:20px;background:linear-gradient(135deg,var(--main-blue),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 
     /* CONTACT OPTIONS */
     .contact-options{display:flex;gap:16px;margin-bottom:30px;flex-wrap:wrap}
     .contact-option{display:flex;align-items:center;gap:12px;background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:16px 20px;text-decoration:none;color:var(--text);transition:all .3s;flex:1;min-width:180px}
     .contact-option:hover{border-color:var(--main-blue);transform:translateY(-3px)}
-    .contact-option-icon{font-size:1.5rem;width:45px;height:45px;background:var(--card-bg);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .contact-option-icon{font-size:1.5rem;width:45px;height:45px;background:rgba(1,128,255,0.08);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
     .contact-option strong{display:block;font-size:.9rem;margin-bottom:2px}
     .contact-option span{font-size:.8rem;color:var(--text-muted)}
 
@@ -63,19 +86,41 @@
     .submit-btn:active{transform:translateY(0)}
 
     /* MAP */
-    .map-section{padding:60px 20px}
+    .map-section{padding:80px 40px;max-width:1000px;margin:0 auto}
     .map-container{max-width:800px;margin:0 auto}
     #coverage-map{width:100%;height:500px;border-radius:20px;border:1px solid var(--card-border);overflow:hidden}
     .map-popup{font-family:'Inter',sans-serif}
     .map-popup strong{color:#0180ff}
 
-    /* SECTION OVERRIDES */
-    .section{padding:40px 20px}
+    /* FAQ */
+    .faq-section{padding:80px 40px;max-width:800px;margin:0 auto}
+    .faq-grid{display:flex;flex-direction:column;gap:12px;margin-top:40px}
+    .faq-item{background:var(--card-bg);border:1px solid var(--card-border);border-radius:16px;overflow:hidden;transition:all .3s}
+    .faq-item:hover{border-color:rgba(1,128,255,0.2)}
+    .faq-question{display:flex;justify-content:space-between;align-items:center;padding:20px 24px;cursor:pointer;gap:12px}
+    .faq-question h4{font-size:1rem;font-weight:600;margin:0}
+    .faq-arrow{font-size:1.2rem;color:var(--text-muted);transition:transform .3s;flex-shrink:0}
+    .faq-item.open .faq-arrow{transform:rotate(180deg)}
+    .faq-answer{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.23,1,.32,1),padding .3s}
+    .faq-item.open .faq-answer{max-height:200px;padding:0 24px 20px}
+    .faq-answer p{font-size:.9rem;color:var(--text-muted);line-height:1.7;margin:0}
+
+    /* SECTION LABELS */
     .section-label{font-size:.8rem;color:var(--main-blue);text-transform:uppercase;letter-spacing:2px;font-weight:600;margin-bottom:8px}
     .section-title{font-size:1.8rem;font-weight:700;letter-spacing:-1px}
 
     /* RESPONSIVE — PAGE-SPECIFIC */
-    @media(max-width:750px){.contact{padding:35px}main{padding:40px 16px;min-height:calc(100vh - 60px)}.contact-options{flex-direction:column}body{padding-top:60px}}
+    @media(max-width:750px){
+      .contact{padding:35px}
+      .contact-section{padding:40px 16px}
+      .contact-options{flex-direction:column}
+      body{padding-top:0}
+      .info-strip{grid-template-columns:repeat(2,1fr);padding:40px 20px;gap:12px}
+      .info-item{padding:20px 12px}
+      .faq-section{padding:60px 20px}
+      .map-section{padding:60px 20px}
+      .contact-hero{height:50vh;min-height:350px}
+    }
   </style>
 </head>
 <body>
@@ -105,49 +150,128 @@
     </nav>
   </header>
 
+  <!-- HERO -->
+  <section class="contact-hero">
+    <div class="contact-hero-bg"><img src="gallery/vang-kommune-sentrum/DJI_20251006091304_0231_D.jpg" alt="Droneutsikt Vang"></div>
+    <div class="contact-hero-overlay"></div>
+    <div class="contact-hero-content">
+      <div class="contact-hero-badge" data-no="📞 Svar innen 24t" data-en="📞 Reply within 24h" data-de="📞 Antwort innerhalb 24h">📞 Svar innen 24t</div>
+      <h1 data-no="Ta <span>kontakt</span>" data-en="Get in <span>touch</span>" data-de="Kontakt <span>aufnehmen</span>">Ta <span>kontakt</span></h1>
+      <p data-no="Har du et prosjekt i tankene? Jeg hører gjerne fra deg. Enten det er bryllup, droneoppdrag, reklamefilm eller noe helt annet — ta gjerne kontakt for en uforpliktende samtale." data-en="Have a project in mind? I'd love to hear from you. Whether it's a wedding, drone job, commercial or something else entirely — feel free to reach out for a no-obligation chat." data-de="Haben Sie ein Projekt im Sinn? Ich freue mich von Ihnen zu hören. Ob Hochzeit, Drohneneinsatz, Werbe oder etwas ganz anderes — kontaktieren Sie mich gerne für ein unverbindliches Gespräch.">Har du et prosjekt i tankene? Jeg hører gjerne fra deg. Enten det er bryllup, droneoppdrag, reklamefilm eller noe helt annet — ta gjerne kontakt for en uforpliktende samtale.</p>
+    </div>
+  </section>
+
+  <!-- QUICK INFO -->
+  <section class="info-strip">
+    <div class="info-item reveal">
+      <span class="info-icon">⚡</span>
+      <h4 data-no="Rask respons" data-en="Fast response" data-de="Schnelle Antwort">Rask respons</h4>
+      <p data-no="Svar innen 24 timer" data-en="Reply within 24 hours" data-de="Antwort innerhalb 24h">Svar innen 24 timer</p>
+    </div>
+    <div class="info-item reveal reveal-delay-1">
+      <span class="info-icon">📍</span>
+      <h4 data-no="Basert i Innlandet" data-en="Based in Innlandet" data-de="Basierend in Innlandet">Basert i Innlandet</h4>
+      <p data-no="Tar oppdrag i hele Norge" data-en="Taking jobs across Norway" data-de="Aufträge in ganz Norwegen">Tar oppdrag i hele Norge</p>
+    </div>
+    <div class="info-item reveal reveal-delay-2">
+      <span class="info-icon">💬</span>
+      <h4 data-no="Uforpliktende" data-en="No obligation" data-de="Unverbindlich">Uforpliktende</h4>
+      <p data-no="Gratis førstegangssamtale" data-en="Free initial consultation" data-de="Erstberatung kostenlos">Gratis førstegangssamtale</p>
+    </div>
+    <div class="info-item reveal reveal-delay-3">
+      <span class="info-icon">🎓</span>
+      <h4 data-no="Studentrabatt" data-en="Student discount" data-de="Studentenrabatt">Studentrabatt</h4>
+      <p data-no="10% rabatt for studenter" data-en="10% discount for students" data-de="10% Rabatt für Studenten">10% rabatt for studenter</p>
+    </div>
+  </section>
+
   <!-- MAIN -->
   <main>
-    <section class="contact reveal">
-      <h1 data-no="Kontakt meg!" data-en="Contact Me!" data-de="Kontaktiere mich!">Kontakt meg!</h1>
+    <section class="contact-section">
+      <section class="contact reveal">
+        <h2 data-no="Kontakt meg!" data-en="Contact Me!" data-de="Kontaktiere mich!">Kontakt meg!</h2>
 
-      <div class="response-badge">
-        <div class="response-icon">⚡</div>
-        <div class="response-text"><strong data-no="Svar innen 24 timer" data-en="Reply within 24 hours" data-de="Antwort innerhalb 24 Stunden">Svar innen 24 timer</strong><span data-no="Jeg svarer raskt på alle henvendelser" data-en="I respond quickly to all inquiries" data-de="Ich antworte schnell auf alle Anfragen">Jeg svarer raskt på alle henvendelser</span></div>
-      </div>
+        <div class="response-badge">
+          <div class="response-icon">⚡</div>
+          <div class="response-text"><strong data-no="Svar innen 24 timer" data-en="Reply within 24 hours" data-de="Antwort innerhalb 24 Stunden">Svar innen 24 timer</strong><span data-no="Jeg svarer raskt på alle henvendelser" data-en="I respond quickly to all inquiries" data-de="Ich antworte schnell auf alle Anfragen">Jeg svarer raskt på alle henvendelser</span></div>
+        </div>
 
-      <div class="contact-options">
-        <a href="tel:+4790560160" class="contact-option"><div class="contact-option-icon">📞</div><div><strong data-no="Ring meg" data-en="Call me" data-de="Anrufen">Ring meg</strong><span>+47 905 60 160</span></div></a>
-        <a href="mailto:rakso8080@gmail.com" class="contact-option"><div class="contact-option-icon">✉️</div><div><strong data-no="Send e-post" data-en="Send email" data-de="E-Mail senden">Send e-post</strong><span>rakso8080@gmail.com</span></div></a>
-        <a href="https://www.instagram.com/solemsli_productions/" target="_blank" class="contact-option"><div class="contact-option-icon">💬</div><div><strong data-no="Instagram DM" data-en="Instagram DM" data-de="Instagram DM">Instagram DM</strong><span>@solemsli_productions</span></div></a>
-      </div>
+        <div class="contact-options">
+          <a href="tel:+4790560160" class="contact-option"><div class="contact-option-icon">📞</div><div><strong data-no="Ring meg" data-en="Call me" data-de="Anrufen">Ring meg</strong><span>+47 905 60 160</span></div></a>
+          <a href="mailto:rakso8080@gmail.com" class="contact-option"><div class="contact-option-icon">✉️</div><div><strong data-no="Send e-post" data-en="Send email" data-de="E-Mail senden">Send e-post</strong><span>rakso8080@gmail.com</span></div></a>
+          <a href="https://www.instagram.com/solemsli_productions/" target="_blank" class="contact-option"><div class="contact-option-icon">💬</div><div><strong data-no="Instagram DM" data-en="Instagram DM" data-de="Instagram DM">Instagram DM</strong><span>@solemsli_productions</span></div></a>
+        </div>
 
-      <!-- TODO: Replace "placeholder" below with your actual Formspree form ID from formspree.io -->
-      <form id="contact-form" action="https://formspree.io/f/placeholder" method="POST">
-        <input type="hidden" name="_next" value="https://solemsliproductions.no/contact.html">
-        <div class="form-group">
-          <input type="text" id="name" placeholder=" " required>
-          <label for="name" data-no="Ditt navn" data-en="Your name" data-de="Ihr Name">Ditt navn</label>
-          <div class="form-line"></div>
-        </div>
-        <div class="form-group">
-          <input type="email" id="email" placeholder=" " required>
-          <label for="email" data-no="Din e-post" data-en="Your email" data-de="Ihre E-Mail">Din e-post</label>
-          <div class="form-line"></div>
-        </div>
-        <div class="form-group">
-          <input type="tel" id="phone" placeholder=" ">
-          <label for="phone" data-no="Telefon (valgfritt)" data-en="Phone (optional)" data-de="Telefon (optional)">Telefon (valgfritt)</label>
-          <div class="form-line"></div>
-        </div>
-        <div class="form-group">
-          <textarea id="message" placeholder=" " rows="4" required></textarea>
-          <label for="message" data-no="Din melding" data-en="Your message" data-de="Ihre Nachricht">Din melding</label>
-          <div class="form-line"></div>
-        </div>
-        <button type="submit" class="submit-btn"><span data-no="Send melding" data-en="Send message" data-de="Nachricht senden">Send melding</span><div class="submit-arrow">→</div></button>
-      </form>
+        <!-- TODO: Replace "placeholder" below with your actual Formspree form ID from formspree.io -->
+        <form id="contact-form" action="https://formspree.io/f/placeholder" method="POST">
+          <input type="hidden" name="_next" value="https://solemsliproductions.no/contact.html">
+          <div class="form-group">
+            <input type="text" id="name" placeholder=" " required>
+            <label for="name" data-no="Ditt navn" data-en="Your name" data-de="Ihr Name">Ditt navn</label>
+            <div class="form-line"></div>
+          </div>
+          <div class="form-group">
+            <input type="email" id="email" placeholder=" " required>
+            <label for="email" data-no="Din e-post" data-en="Your email" data-de="Ihre E-Mail">Din e-post</label>
+            <div class="form-line"></div>
+          </div>
+          <div class="form-group">
+            <input type="tel" id="phone" placeholder=" ">
+            <label for="phone" data-no="Telefon (valgfritt)" data-en="Phone (optional)" data-de="Telefon (optional)">Telefon (valgfritt)</label>
+            <div class="form-line"></div>
+          </div>
+          <div class="form-group">
+            <textarea id="message" placeholder=" " rows="4" required></textarea>
+            <label for="message" data-no="Din melding" data-en="Your message" data-de="Ihre Nachricht">Din melding</label>
+            <div class="form-line"></div>
+          </div>
+          <button type="submit" class="submit-btn"><span data-no="Send melding" data-en="Send message" data-de="Nachricht senden">Send melding</span><div class="submit-arrow">→</div></button>
+        </form>
+      </section>
     </section>
   </main>
+
+  <!-- FAQ -->
+  <section class="faq-section">
+    <div class="reveal"><div class="section-label" data-no="Vanlige spørsmål" data-en="FAQ" data-de="Häufige Fragen">Vanlige spørsmål</div><h2 class="section-title" data-no="Spørsmål og svar" data-en="Questions & Answers" data-de="Fragen & Antworten">Spørsmål og svar</h2></div>
+    <div class="faq-grid reveal">
+      <div class="faq-item">
+        <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+          <h4 data-no="Hvor raskt kan dere levere?" data-en="How quickly can you deliver?" data-de="Wie schnell können Sie liefern?">Hvor raskt kan dere levere?</h4>
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-answer"><p data-no="For foto og drone er leveransen typisk 2–5 virkedager. Video og redigert innhold kan ta 1–2 uker, avhengig av omfang. Vi blir alltid enige om en frist på forhånd." data-en="For photo and drone, delivery is typically 2–5 business days. Video and edited content can take 1–2 weeks depending on scope. We always agree on a deadline in advance." data-de="Bei Foto- und Drohnenaufnahmen beträgt die Lieferzeit typischerweise 2–5 Werktage. Video und bearbeitete Inhalte können 1–2 Wochen dauern, je nach Umfang. Wir einigen uns immer vorher auf eine Frist.">For foto og drone er leveransen typisk 2–5 virkedager. Video og redigert innhold kan ta 1–2 uker, avhengig av omfang. Vi blir alltid enige om en frist på forhånd.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+          <h4 data-no="Må jeg være i Innlandet?" data-en="Do I have to be in Innlandet?" data-de="Muss ich in Innlandet sein?">Må jeg være i Innlandet?</h4>
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-answer"><p data-no="Nei! Jeg tar oppdrag i hele Norge. Ved lengre reiser kan det komme et tillegg for reise og overnatting, men dette avtales alltid på forhånd." data-en="No! I take jobs across all of Norway. For longer trips there may be an additional charge for travel and accommodation, but this is always agreed in advance." data-de="Nein! Ich übernehme Aufträge in ganz Norwegen. Bei längeren Reisen kann ein Zuschlag für Reise und Unterkunft anfallen, dies wird aber immer vorher vereinbart.">Nei! Jeg tar oppdrag i hele Norge. Ved lengre reiser kan det komme et tillegg for reise og overnatting, men dette avtales alltid på forhånd.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+          <h4 data-no="Hva skjer hvis det regner?" data-en="What happens if it rains?" data-de="Was passiert bei Regen?">Hva skjer hvis det regner?</h4>
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-answer"><p data-no="Vi finner alltid en løsning — enten det er å flytte oppdraget, finne en alternativ lokasjon, eller utnytte været kreativt. Regn kan gi stemningsfulle bilder!" data-en="We always find a solution — whether it's moving the job, finding an alternative location, or using the weather creatively. Rain can create atmospheric photos!" data-de="Wir finden immer eine Lösung — sei es der Auftragsverlegung, einen alternativen Standort oder die kreative Nutzung des Wetters. Regen kann stimmungsvolle Fotos ergeben!">Vi finner alltid en løsning — enten det er å flytte oppdraget, finne en alternativ lokasjon, eller utnytte været kreativt. Regn kan gi stemningsfulle bilder!</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+          <h4 data-no="Hvilke betalingsmåter aksepterer dere?" data-en="What payment methods do you accept?" data-de="Welche Zahlungsmethoden akzeptieren Sie?">Hvilke betalingsmåter aksepterer dere?</h4>
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-answer"><p data-no="Jeg aksepterer Vipps, bankoverføring og krypto (Bitcoin). Faktura kan også avtales for bedrifter." data-en="I accept Vipps, bank transfer and crypto (Bitcoin). Invoice can also be arranged for businesses." data-de="Ich akzeptiere Vipps, Banküberweisung und Krypto (Bitcoin). Rechnungen können auch für Unternehmen vereinbart werden.">Jeg aksepterer Vipps, bankoverføring og krypto (Bitcoin). Faktura kan også avtales for bedrifter.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+          <h4 data-no="Kan jeg få revisjoner?" data-en="Can I get revisions?" data-de="Kann ich Überarbeitungen bekommen?">Kan jeg få revisjoner?</h4>
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-answer"><p data-no="Ja! Alle pakker inkluderer opptil 2 revisjoner. Ekstra revisjoner kan kjøpes separat." data-en="Yes! All packages include up to 2 revisions. Additional revisions can be purchased separately." data-de="Ja! Alle Pakete beinhalten bis zu 2 Überarbeitungen. Zusätzliche Überarbeitungen können separat gekauft werden.">Ja! Alle pakker inkluderer opptil 2 revisjoner. Ekstra revisjoner kan kjøpes separat.</p></div>
+      </div>
+    </div>
+  </section>
 
   <!-- KART -->
   <section class="section map-section">
@@ -171,23 +295,37 @@
     </div>
   </footer>
 
+  <script src="shared.js"></script>
   <script>
+    // CONTACT HERO PARALLAX
+    window.addEventListener('scroll', () => {
+      const s = window.scrollY;
+      const img = document.querySelector('.contact-hero-bg img');
+      if (img && s < window.innerHeight) img.style.transform = `scale(${1.1 + s * 0.0002}) translateY(${s * 0.3}px)`;
+    });
+
+    // FORM HANDLER
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
       contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const response = await fetch(contactForm.action, {
-          method: 'POST',
-          body: new FormData(contactForm),
-          headers: { 'Accept': 'application/json' }
-        });
-        if (response.ok) {
-          contactForm.innerHTML = '<div style="text-align:center;padding:40px"><h3 data-no="Takk for din henvendelse!" data-en="Thank you!" data-de="Vielen Dank!">Takk for din henvendelse!</h3><p data-no="Jeg tar kontakt innen 24 timer." data-en="I will get back to you within 24 hours." data-de="Ich melde mich innerhalb von 24 Stunden.">Jeg tar kontakt innen 24 timer.</p></div>';
-        }
+        const btn = contactForm.querySelector('.submit-btn');
+        if (btn) { btn.textContent = '...'; btn.disabled = true; }
+        try {
+          const response = await fetch(contactForm.action, {
+            method: 'POST',
+            body: new FormData(contactForm),
+            headers: { 'Accept': 'application/json' }
+          });
+          if (response.ok) {
+            contactForm.innerHTML = '<div style="text-align:center;padding:40px"><div style="font-size:3rem;margin-bottom:16px">✅</div><h3 data-no="Takk for din henvendelse!" data-en="Thank you!" data-de="Vielen Dank!">Takk for din henvendelse!</h3><p data-no="Jeg tar kontakt innen 24 timer." data-en="I will get back to you within 24 hours." data-de="Ich melde mich innerhalb von 24 Stunden.">Jeg tar kontakt innen 24 timer.</p></div>';
+          } else {
+            if (btn) { btn.textContent = 'Send melding'; btn.disabled = false; }
+          }
+        } catch { if (btn) { btn.textContent = 'Send melding'; btn.disabled = false; } }
       });
     }
   </script>
-  <script src="shared.js"></script>
   <script>
     // LEAFLET COVERAGE MAP
     const map = L.map('coverage-map', {
