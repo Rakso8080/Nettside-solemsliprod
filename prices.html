@@ -17,7 +17,7 @@
   <meta name="description" content="Priser for foto, video og drone-tjenester fra Solemsli Productions. Pakker fra 2 000 kr.">
   <meta property="og:title" content="Solemsli Productions | Priser" />
   <meta property="og:description" content="Se priser for foto, video og droneoppdrag. Pakkeløsninger for bedrifter og privatpersoner." />
-  <meta property="og:image" content="https://rakso8080.github.io/Nettside-solemsliprod/uranustind.jpg" />
+  <meta property="og:image" content="https://solemsliproductions.no/gallery/andre%20natur%20bilder/uranustind.jpg" />
   <title>Priser | Solemsli Productions</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="shared.css">
@@ -225,11 +225,11 @@
     <!-- TILBUDSKJEMA -->
     <section class="section tilbud-section">
       <div class="reveal"><div class="section-label" data-no="Få tilbud" data-en="Get a quote" data-de="Angebot erhalten">Få tilbud</div><h2 class="section-title" data-no="Fortell meg om ditt prosjekt" data-en="Tell me about your project" data-de="Erzaehlen Sie mir von Ihrem Projekt">Fortell meg om ditt prosjekt</h2></div>
-      <form class="tilbud-form reveal" id="tilbudForm" onsubmit="event.preventDefault();document.getElementById('tilbudSuccess').style.display='block';this.style.display='none';">
+      <form class="tilbud-form reveal" id="tilbudForm" action="https://formspree.io/f/placeholder" method="POST">
         <div class="tilbud-row">
           <div class="tilbud-field">
             <label data-no="Tjeneste" data-en="Service" data-de="Dienstleistung">Tjeneste</label>
-            <select required>
+            <select name="tjeneste" required>
               <option value="" data-no="Velg tjeneste..." data-en="Choose service..." data-de="Dienstleistung waehlen...">Velg tjeneste...</option>
               <option value="foto" data-no="Foto" data-en="Photo" data-de="Foto">Foto</option>
               <option value="video" data-no="Video" data-en="Video" data-de="Video">Video</option>
@@ -240,13 +240,13 @@
           </div>
           <div class="tilbud-field">
             <label data-no="Dato" data-en="Date" data-de="Datum">Dato</label>
-            <input type="date" required>
+            <input type="date" name="dato" required>
           </div>
         </div>
         <div class="tilbud-row">
           <div class="tilbud-field">
             <label data-no="Budsjett" data-en="Budget" data-de="Budget">Budsjett</label>
-            <select required>
+            <select name="budsjett" required>
               <option value="" data-no="Velg budsjett..." data-en="Choose budget..." data-de="Budget waehlen...">Velg budsjett...</option>
               <option value="under5k" data-no="Under 5 000 kr" data-en="Under 5 000 NOK" data-de="Unter 5 000 NOK">Under 5 000 kr</option>
               <option value="5k-10k" data-no="5 000 – 10 000 kr" data-en="5 000 – 10 000 NOK" data-de="5 000 – 10 000 NOK">5 000 – 10 000 kr</option>
@@ -256,17 +256,18 @@
           </div>
           <div class="tilbud-field">
             <label data-no="Navn" data-en="Name" data-de="Name">Navn</label>
-            <input type="text" placeholder="Oskar Solemsli" required>
+            <input type="text" name="navn" placeholder="Oskar Solemsli" required>
           </div>
         </div>
         <div class="tilbud-field">
           <label data-no="E-post" data-en="Email" data-de="E-Mail">E-post</label>
-          <input type="email" placeholder="din@epost.no" required>
+          <input type="email" name="epost" placeholder="din@epost.no" required>
         </div>
         <div class="tilbud-field">
           <label data-no="Fortell om prosjektet" data-en="Tell us about the project" data-de="Erzaehlen Sie uns vom Projekt">Fortell om prosjektet</label>
-          <textarea rows="4" placeholder="Beskriv hva du trenger..." required></textarea>
+          <textarea name="melding" rows="4" placeholder="Beskriv hva du trenger..." required></textarea>
         </div>
+        <input type="hidden" name="_subject" value="Ny tilbudsforespørsel — Solemsli Productions">
         <button type="submit" class="btn btn-primary magnetic" data-no="Send forespørsel" data-en="Send request" data-de="Anfrage senden">Send forespørsel</button>
       </form>
       <div class="tilbud-success" id="tilbudSuccess" style="display:none">
