@@ -1,0 +1,23 @@
+{
+  "name": "Solemsli Productions",
+  "short_name": "Solemsli",
+  "description": "Profesjonell foto, video og droneproduksjon i Innlandet",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#0180ff",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "Solemsli production.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "Solemsli production.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "lang": "no"
+}

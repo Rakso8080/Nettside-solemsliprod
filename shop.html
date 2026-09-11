@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="Solemsli production.png">
+  <meta name="theme-color" content="#0180ff">
+  <link rel="manifest" href="manifest.json">
+  <meta name="description" content="Shop - Kjøp LUT-er, presets, powergrades og merchandise fra Solemsli Productions.">
+  <meta property="og:title" content="Solemsli Productions | Shop" />
+  <meta property="og:description" content="Kjøp digitale produkter, LUT-pakker og Powergrades fra Solemsli Productions." />
+  <meta property="og:image" content="https://rakso8080.github.io/Nettside-solemsliprod/uranustind.jpg" />
+<title>Shop – Solemsli Productions</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+  /* HERO */
+  .hero {
+    padding: 160px 40px 80px;
+    text-align: center;
+    position: relative;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(1, 128, 255, 0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: rgba(1, 128, 255, 0.1);
+    border: 1px solid rgba(1, 128, 255, 0.2);
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--main-blue);
+    margin-bottom: 25px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    letter-spacing: -2px;
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+
+  .hero h1 .word {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s cubic-bezier(.23,1,.32,1);
+  }
+
+  .hero h1.revealed .word {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .hero h1 span {
+    background: linear-gradient(135deg, var(--main-blue), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero p {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.6;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 0.8s 0.6s forwards;
+  }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* FILTER */
+  .filter-bar {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 0 40px 60px;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.8s forwards;
+  }
+
+  .filter-btn {
+    padding: 10px 24px;
+    border-radius: 30px;
+    border: 1px solid var(--glass-border);
+    background: var(--card-bg);
+    color: var(--text);
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .filter-btn:hover,
+  .filter-btn.active {
+    background: var(--main-blue);
+    border-color: var(--main-blue);
+    color: white;
+  }
+
+  /* PRODUCTS GRID */
+  .shop-section {
+    padding: 0 40px 120px;
+    max-width: 1300px;
+    margin: 0 auto;
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+  }
+
+  /* STAGGERED GRID REVEAL */
+  .products-grid > * { opacity: 0; transform: translateY(20px); transition: all .6s cubic-bezier(.23,1,.32,1); }
+  .products-grid.revealed > * { opacity: 1; transform: translateY(0); }
+
+  .product-card {
+    background: var(--card-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    perspective: 800px;
+    transition: transform .4s, opacity 0.4s cubic-bezier(0.23, 1, 0.32, 1), border-color 0.3s, box-shadow 0.3s;
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  .product-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .product-card:hover {
+    transform: rotateY(5deg) rotateX(-3deg) translateY(-8px);
+    border-color: rgba(1, 128, 255, 0.3);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  }
+
+  .product-image {
+    position: relative;
+    aspect-ratio: 1;
+    overflow: hidden;
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+  }
+
+  .product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .4s;
+  }
+
+  .product-card:hover .product-image {
+    transform: translateZ(20px);
+  }
+
+  .product-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    padding: 6px 14px;
+    background: var(--main-blue);
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-radius: 20px;
+  }
+
+  .product-info {
+    padding: 25px;
+  }
+
+  .product-category {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--main-blue);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+
+  .product-info h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .product-info p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+
+  .product-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .product-price {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--text);
+  }
+
+  .product-price .currency {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-muted);
+  }
+
+  .product-mva {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-left: 6px;
+  }
+
+  .btn-buy {
+    padding: 12px 24px;
+    background: var(--main-blue);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .btn-buy:hover {
+    background: #0066cc;
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(1, 128, 255, 0.3);
+  }
+
+  /* FEATURES BANNER */
+  .features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    padding: 80px 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+    border-top: 1px solid var(--glass-border);
+    border-bottom: 1px solid var(--glass-border);
+  }
+
+  .feature-item {
+    text-align: center;
+    padding: 30px;
+  }
+
+  .feature-icon {
+    font-size: 2rem;
+    margin-bottom: 15px;
+  }
+
+  .feature-item h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .feature-item p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  /* CTA */
+  .cta {
+    padding: 120px 40px;
+    text-align: center;
+  }
+
+  .cta h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-bottom: 15px;
+  }
+
+  .cta p {
+    color: var(--text-muted);
+    font-size: 1rem;
+    margin-bottom: 30px;
+  }
+
+  .cta .btn-primary {
+    display: inline-block;
+    padding: 14px 32px;
+    background: var(--main-blue);
+    color: white;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+
+  .cta .btn-primary:hover {
+    background: #0066cc;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(1, 128, 255, 0.3);
+  }
+
+  /* MODAL */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.8);
+    backdrop-filter: blur(10px);
+    z-index: 10000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .modal-overlay.active { display: flex; }
+
+  .modal {
+    background: var(--bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    max-width: 500px;
+    width: 100%;
+    padding: 40px;
+    position: relative;
+    animation: modalIn 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  @keyframes modalIn {
+    from { opacity: 0; transform: scale(0.9) translateY(20px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--glass-border);
+    background: var(--card-bg);
+    color: var(--text);
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+  }
+
+  .modal-close:hover {
+    background: var(--main-blue);
+    border-color: var(--main-blue);
+    color: white;
+  }
+
+  .modal h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .modal p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 25px;
+  }
+
+  .modal-price {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 25px;
+  }
+
+  .modal-features {
+    list-style: none;
+    margin-bottom: 30px;
+  }
+
+  .modal-features li {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--glass-border);
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .modal-features li::before {
+    content: '✓';
+    color: var(--main-blue);
+    font-weight: 700;
+  }
+
+  .btn-full {
+    width: 100%;
+    padding: 16px;
+    background: var(--main-blue);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .btn-full:hover {
+    background: #0066cc;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .features { grid-template-columns: 1fr; gap: 0; }
+    .products-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 750px) {
+    .hero { padding: 140px 20px 60px; }
+    .shop-section { padding: 0 20px 80px; }
+    .products-grid { grid-template-columns: 1fr; }
+  }
+
+
+
+  /* CART PANEL */
+  .cart-btn{position:relative}
+  .cart-panel{position:fixed;top:0;right:-400px;width:380px;max-width:90vw;height:100vh;background:var(--bg);border-left:1px solid var(--card-border);z-index:10001;display:flex;flex-direction:column;transition:right .4s cubic-bezier(.23,1,.32,1)}
+  .cart-panel.open{right:0}
+  .cart-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:10000;opacity:0;pointer-events:none;transition:opacity .3s}
+  .cart-overlay.open{opacity:1;pointer-events:all}
+  .cart-header{display:flex;justify-content:space-between;align-items:center;padding:20px;border-bottom:1px solid var(--card-border)}
+  .cart-close{background:none;border:none;color:var(--text);font-size:1.2rem;cursor:pointer}
+  .cart-items{flex:1;overflow-y:auto;padding:20px}
+  .cart-item{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--card-border)}
+  .cart-item-icon{width:50px;height:50px;background:var(--card-bg);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0}
+  .cart-item-info h4{font-size:.9rem;margin:0 0 4px}
+  .cart-item-info p{font-size:.8rem;color:var(--text-muted);margin:0}
+  .cart-item-remove{background:none;border:none;color:#ff4444;cursor:pointer;font-size:.8rem;margin-top:4px}
+  .cart-footer{padding:20px;border-top:1px solid var(--card-border)}
+  .cart-total{display:flex;justify-content:space-between;font-weight:700;font-size:1.1rem;margin-bottom:12px}
+
+  /* CHECKOUT BUTTON */
+    .btn-checkout{width:100%}
+</style>
+</head>
+
+<body>
+  <div class="cursor-glow" id="cursor-glow"></div>
+  <div id="grain"></div>
+  <div id="progress-bar"></div>
+
+  <header id="header">
+    <a href="index.html" class="logo">Solemsli Productions</a>
+    <div class="menu-toggle" onclick="this.classList.toggle('active'); document.querySelector('nav').classList.toggle('active')">
+      <span></span><span></span><span></span>
+    </div>
+    <nav>
+      <a href="index.html" data-no="Hjem" data-en="Home" data-de="Startseite">Hjem</a>
+      <a href="about.html" data-no="Om meg" data-en="About" data-de="Über mich">Om meg</a>
+      <a href="projects.html" data-no="Portfolio" data-en="Portfolio" data-de="Portfolio">Portfolio</a>
+      <a href="shop.html" class="active" data-no="Shop" data-en="Shop" data-de="Shop">Shop</a>
+      <a href="prices.html" data-no="Priser" data-en="Pricing" data-de="Preise">Priser</a>
+      <a href="contact.html" data-no="Kontakt" data-en="Contact" data-de="Kontakt">Kontakt</a>
+      <button class="nav-btn" id="lang-toggle">EN</button>
+      <button class="nav-btn" id="theme-toggle">☀️ Lys</button>
+      <button class="nav-btn cart-btn" id="cart-btn" onclick="openCart()">🛒 <span id="cart-count">0</span></button>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge">NYHET</div>
+    <h1 id="hero-title">Profesjonelle <span data-no="LUT-er" data-en="LUTs" data-de="LUTs">LUT-er</span> & Merch</h1>
+    <p>Oppgrader videoene dine med mine egne fargeinnstillinger, eller represent Solemsli Productions med merch.</p>
+    <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 15px; opacity: 0.7;">* <span data-no="Alle priser er inkludert MVA" data-en="All prices include VAT" data-de="Alle Preise inkl. MwSt.">Alle priser er inkludert MVA</span></p>
+  </section>
+
+
+  <!-- FILTER -->
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="all" data-no="Alle" data-en="All" data-de="Alle">Alle</button>
+    <button class="filter-btn" data-filter="lut" data-no="LUT-er" data-en="LUTs" data-de="LUTs">LUT-er</button>
+    <button class="filter-btn" data-filter="merch" data-no="Merch" data-en="Merch" data-de="Merch">Merch</button>
+    <button class="filter-btn" data-filter="preset" data-no="Presets" data-en="Presets" data-de="Presets">Presets</button>
+    <button class="filter-btn" data-filter="powergrades" data-no="Powergrades" data-en="Powergrades" data-de="Powergrades">Powergrades</button>
+  </div>
+
+  <!-- PRODUCTS -->
+  <section class="shop-section">
+    <div class="products-grid">
+
+      <!-- POWERGRADES -->
+      <div class="product-card" data-category="powergrades">
+        <div class="product-image"><img src="gallery/bryllup/untitled-6005.jpg" alt="Cinematic Powergrade Pack" loading="lazy"></div>
+        <div class="product-info">
+          <h3>Cinematic Powergrade Pack</h3>
+          <p>Profesjonelle fargeinnstillinger for DaVinci Resolve. 10+ powergrades for å raskt sette et kinematisk preg på videoene dine.</p>
+          <span class="product-price" data-no="349 kr" data-en="349 NOK" data-de="349 EUR">349 kr</span>
+          <span class="product-mva" data-no="Inkl. MVA" data-en="incl. VAT" data-de="inkl. MwSt.">Inkl. MVA</span>
+          <button class="btn-buy" onclick="addToCart('Cinematic Powergrade Pack', '349 kr')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
+        </div>
+      </div>
+
+      <!-- LUT 1 -->
+      <div class="product-card" data-category="lut">
+        <div class="product-image">
+          <img src="gallery/bryllup/untitled-6005.jpg" alt="Cinematic LUT" loading="lazy">
+          <div class="product-badge">Bestselger</div>
+        </div>
+        <div class="product-info">
+          <div class="product-category">LUT</div>
+          <h3>Cinematic Blue</h3>
+          <p>Kald, filmatisk look med blå toner. Perfekt for natur og droneopptak.</p>
+          <div class="product-footer">
+            <div class="product-price">149 <span class="currency">kr</span></div>
+            <button class="btn-buy" onclick="addToCart('Cinematic Blue', '149 kr')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- LUT 2 -->
+      <div class="product-card" data-category="lut">
+        <div class="product-image">
+          <img src="gallery/vinjerock/untitled-7604.jpg" alt="Warm Tone LUT" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-category">LUT</div>
+          <h3>Warm Sunset</h3>
+          <p>Varme, gyldne toner som gir en koselig og innbydende atmosfære.</p>
+          <div class="product-footer">
+            <div class="product-price">149 <span class="currency">kr</span></div>
+            <button class="btn-buy" onclick="addToCart('Warm Sunset', '149 kr')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- LUT 3 -->
+      <div class="product-card" data-category="lut">
+        <div class="product-image">
+          <img src="gallery/konfirmasjon/untitled-5010.jpg" alt="Moody LUT" loading="lazy">
+          <div class="product-badge">Ny</div>
+        </div>
+        <div class="product-info">
+          <div class="product-category">LUT</div>
+          <h3>Moody Dark</h3>
+          <p>Mørk og dramatisk look med høy kontrast. Ideelt for action og event.</p>
+          <div class="product-footer">
+            <div class="product-price">149 <span class="currency">kr</span></div>
+            <button class="btn-buy" onclick="addToCart('Moody Dark', '149 kr')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- LUT BUNDLE -->
+      <div class="product-card" data-category="lut">
+        <div class="product-image" style="background: linear-gradient(135deg, var(--main-blue), #0066cc);">
+          <img src="gallery/vang-kommune-sentrum/DJI_20251006091304_0231_D.jpg" alt="LUT Bundle" loading="lazy">
+          <div class="product-badge">Spar 40%</div>
+        </div>
+        <div class="product-info">
+          <div class="product-category">BUNDLE</div>
+          <h3>LUT Pack – Alle 3</h3>
+          <p>Alle tre LUT-ene i én pakke. Perfekt for deg som vil ha variasjon.</p>
+          <div class="product-footer">
+            <div class="product-price">269 <span class="currency">kr</span></div>
+            <button class="btn-buy" onclick="addToCart('LUT Pack', '269 kr')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- PRESET 1 -->
+      <div class="product-card" data-category="preset">
+        <div class="product-image">
+          <img src="gallery/vinjerock-drone/untitled--16.jpg" alt="Lightroom Preset" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-category">PRESET</div>
+          <h3>Nordic Tone</h3>
+          <p>Lightroom-preset for natur- og landskapsbilder med nordisk estetikk.</p>
+          <div class="product-footer">
+            <div class="product-price">99 <span class="currency">kr</span></div>
+            <button class="btn-buy" onclick="addToCart('Nordic Tone', '99 kr')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- PRESET 2 -->
+      <div class="product-card" data-category="preset">
+        <div class="product-image">
+          <img src="gallery/vang-bygg-oversikt/untitled--10.jpg" alt="Lightroom Preset" loading="lazy">
+        </div>
+        <div class="product-info">
+          <div class="product-category">PRESET</div>
+          <h3>Portrait Pro</h3>
+          <p>Presets optimalisert for portrett- og bryllupsfotografering.</p>
+          <div class="product-footer">
+            <div class="product-price">99 <span class="currency">kr</span></div>
+            <button class="btn-buy" onclick="addToCart('Portrait Pro', '99 kr')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- MERCH 1 -->
+      <div class="product-card" data-category="merch">
+        <div class="product-image" style="background: linear-gradient(135deg, #1a1a2e, #2d2d44);">
+          <img src="gallery/ola-k/untitled--9.jpg" alt="T-skjorte" loading="lazy">
+          <div class="product-badge">Merch</div>
+        </div>
+        <div class="product-info">
+          <div class="product-category">MERCH</div>
+          <h3>Solemsli T-skjorte</h3>
+          <p>Klassisk sort t-skjorte med Solemsli Productions-logo. Premium kvalitet.</p>
+          <div class="product-footer">
+            <div class="product-price">299 <span class="currency">kr</span></div>
+            <button class="btn-buy" onclick="addToCart('Solemsli T-skjorte', '299 kr')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- MERCH 2 -->
+      <div class="product-card" data-category="merch">
+        <div class="product-image" style="background: linear-gradient(135deg, #1a1a2e, #2d2d44);">
+          <img src="gallery/vang-bygg-oversikt/untitled--6.jpg" alt="Koppe" loading="lazy">
+          <div class="product-badge">Merch</div>
+        </div>
+        <div class="product-info">
+          <div class="product-category">MERCH</div>
+          <h3>Solemsli Koppe</h3>
+          <p>Sort kopp med logo. Perfekt til kaffen mens du redigerer.</p>
+          <div class="product-footer">
+            <div class="product-price">199 <span class="currency">kr</span></div>
+            <button class="btn-buy" onclick="addToCart('Solemsli Koppe', '199 kr')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features">
+    <div class="feature-item">
+      <div class="feature-icon">⚡</div>
+      <h4 data-no="Rask levering" data-en="Fast Delivery" data-de="Schnelle Lieferung">Rask levering</h4>
+      <p data-no="Digitale produkter leveres umiddelbart på e-post." data-en="Digital products are delivered instantly via email." data-de="Digitale Produkte werden sofort per E-Mail zugestellt.">Digitale produkter leveres umiddelbart på e-post.</p>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">🔄</div>
+      <h4 data-no="30 dagers garanti" data-en="30-Day Guarantee" data-de="30 Tage Garantie">30 dagers garanti</h4>
+      <p data-no="Ikke fornøyd? Pengene tilbake, uten spørsmål." data-en="Not satisfied? Money back, no questions asked." data-de="Nicht zufrieden? Geld zurück, ohne Fragen.">Ikke fornøyd? Pengene tilbake, uten spørsmål.</p>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">💬</div>
+      <h4 data-no="Støtte" data-en="Support" data-de="Support">Støtte</h4>
+      <p data-no="Jeg hjelper deg gjerne med spørsmål om bruk." data-en="I'm happy to help with any questions about usage." data-de="Ich helfe gerne bei Fragen zur Nutzung.">Jeg hjelper deg gjerne med spørsmål om bruk.</p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <h2 data-no="Skreddersydd innhold?" data-en="Custom Content?" data-de="Maßgeschneiderter Inhalt?">Skreddersydd innhold?</h2>
+    <p data-no="Trenger du noe som ikke finnes i shoppen? Ta kontakt!" data-en="Need something not in the shop? Get in touch!" data-de="Benötigen Sie etwas, das nicht im Shop verfügbar ist? Kontaktieren Sie uns!">Trenger du noe som ikke finnes i shoppen? Ta kontakt!</p>
+    <a href="contact.html" class="btn-primary" data-no="Kontakt meg" data-en="Contact Me" data-de="Kontaktieren Sie mich">Kontakt meg</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-left">
+      <a href="index.html" class="logo footer-logo">Solemsli Productions</a>
+      <p>© 2026 Solemsli Productions. Innlandet.</p>
+    </div>
+    <div class="footer-links">
+      <a href="https://www.instagram.com/solemsli_productions/" target="_blank">Instagram</a>
+      <a href="contact.html" data-no="Kontakt" data-en="Contact" data-de="Kontakt">Kontakt</a>
+      <a href="about.html" data-no="Om meg" data-en="About" data-de="Über mich">Om meg</a>
+    </div>
+  </footer>
+
+  <!-- MODAL -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal()">×</button>
+      <div class="product-category" id="modal-category"></div>
+      <h3 id="modal-title"></h3>
+      <p id="modal-desc"></p>
+      <div class="modal-price" id="modal-price"></div>
+      <ul class="modal-features" id="modal-features"></ul>
+      <button class="btn-full" onclick="alert('Takk for interesse! Betaling kommer snart.')" data-no="Kjøp nå" data-en="Buy Now" data-de="Jetzt kaufen">Kjøp nå</button>
+    </div>
+  </div>
+
+  <!-- CART PANEL -->
+  <div class="cart-panel" id="cartPanel">
+    <div class="cart-header"><h3 data-no="Handlekurv" data-en="Cart" data-de="Warenkorb">Handlekurv</h3><button class="cart-close" onclick="closeCart()">✕</button></div>
+    <div class="cart-items" id="cartItems"><p style="color:var(--text-muted);text-align:center;padding:40px 0" data-no="Handlekurven er tom" data-en="Cart is empty" data-de="Warenkorb ist leer">Handlekurven er tom</p></div>
+    <div class="cart-footer"><div class="cart-total"><span>Totalt:</span><span id="cartTotal">0 kr</span></div><button class="btn-primary btn-checkout" data-no="Til kassen" data-en="Checkout" data-de="Zur Kasse">Til kassen</button></div>
+  </div>
+  <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+
+  <!-- CUSTOM CURSOR -->
+  <div class="custom-cursor" id="cursor"></div>
+  <div class="custom-cursor-dot" id="cursor-dot"></div>
+
+  <script>
+    // FILTER
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const products = document.querySelectorAll('.product-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        const filter = btn.dataset.filter;
+        products.forEach(card => {
+          if (filter === 'all' || card.dataset.category === filter) {
+            card.style.display = 'block';
+            setTimeout(() => card.classList.add('visible'), 50);
+          } else {
+            card.classList.remove('visible');
+            setTimeout(() => card.style.display = 'none', 300);
+          }
+        });
+      });
+    });
+
+    function closeModal() {
+      document.getElementById('modal-overlay').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('modal-overlay').addEventListener('click', (e) => {
+      if (e.target === e.currentTarget) closeModal();
+    });
+
+    // CART
+    let cart = [];
+    function addToCart(name, price) {
+      cart.push({ name, price });
+      updateCart();
+      openCart();
+    }
+    function removeFromCart(i) {
+      cart.splice(i, 1);
+      updateCart();
+    }
+    function updateCart() {
+      const items = document.getElementById('cartItems');
+      const total = document.getElementById('cartTotal');
+      const count = document.getElementById('cart-count');
+      count.textContent = cart.length;
+      if (cart.length === 0) {
+        items.innerHTML = '<p style="color:var(--text-muted);text-align:center;padding:40px 0">Handlekurven er tom</p>';
+        total.textContent = '0 kr';
+        return;
+      }
+      items.innerHTML = cart.map((item, i) => `<div class="cart-item"><div class="cart-item-icon">📦</div><div class="cart-item-info"><h4>${item.name}</h4><p>${item.price}</p></div><button class="cart-item-remove" onclick="removeFromCart(${i})">Fjern</button></div>`).join('');
+      total.textContent = cart.reduce((sum, item) => sum + parseInt(item.price), 0) + ' kr';
+    }
+    function openCart() { document.getElementById('cartPanel').classList.add('open'); document.getElementById('cartOverlay').classList.add('open'); }
+    function closeCart() { document.getElementById('cartPanel').classList.remove('open'); document.getElementById('cartOverlay').classList.remove('open'); }
+
+    // HERO TEXT SPLIT (word-by-word)
+    const heroH1 = document.getElementById('hero-title');
+    if (heroH1) {
+      const fullText = heroH1.textContent;
+      heroH1.innerHTML = '';
+      fullText.split(' ').forEach((word, i) => {
+        const s = document.createElement('span');
+        s.className = 'word';
+        s.textContent = word;
+        heroH1.appendChild(s);
+        if (i < fullText.split(' ').length - 1) heroH1.appendChild(document.createTextNode(' '));
+      });
+      setTimeout(() => heroH1.classList.add('revealed'), 200);
+    }
+
+    // STAGGERED GRID REVEAL
+    const gridObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          gridObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.products-grid').forEach(grid => {
+      gridObserver.observe(grid);
+      grid.querySelectorAll(':scope > *').forEach((child, i) => {
+        child.style.transitionDelay = (i * 0.08) + 's';
+      });
+    });
+  </script>
+  <script src="shared.js"></script>
+</body>
+</html>

@@ -1,249 +1,633 @@
 <!DOCTYPE html>
 <html lang="no">
 <head>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
   <meta charset="UTF-8">
-  <meta property="og:description" content="Profesjonell foto, video og droneproduksjon i Innlandet. Ta kontakt for samarbeid!" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="Solemsli production.png">
+  <meta name="theme-color" content="#0180ff">
+  <link rel="manifest" href="manifest.json">
+  <meta name="description" content="Solemsli Productions - Visuell historiefortelling med foto, video og drone i Innlandet og hele Norge.">
+  <meta property="og:description" content="Profesjonell foto, video og droneproduksjon i Innlandet." />
   <meta property="og:image" content="https://rakso8080.github.io/Nettside-solemsliprod/uranustind.jpg" />
-  <meta property="og:image:alt" content="Dronebilde Uranustind" />
   <meta property="og:title" content="Solemsli Productions | Foto, Video & Drone" />
-  <meta property="og:url" content="https://rakso8080.github.io/Nettside-solemsliprod/" />
-  <meta property="og:type" content="website" />
-  <meta property="fb:app_id" content="439880039693282" />
   <title>Solemsli Productions | Foto, Video & Drone</title>
-  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
   <style>
-    /* --- ANIMASJON FOR AUTOMATISK FADE IN --- */
-    @keyframes autoFadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
 
-    :root {
-      --main-blue: #0180ff;
-      --bg-gradient: linear-gradient(135deg, #dde8f8 0%, #c3cfe2 100%);
-      --text-color: #111;
-      --glass-bg: rgba(255, 255, 255, 0.15);
-      --glass-border: rgba(255, 255, 255, 0.3);
-      --card-bg: rgba(255, 255, 255, 0.15);
-      --footer-bg: rgba(0,0,0,0.02);
-    }
+    /* LOADER */
+    #loader{position:fixed;inset:0;background:#0a0a0a;z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .6s,visibility .6s}
+    #loader.hidden{opacity:0;visibility:hidden;pointer-events:none}
+    .loader-logo{font-size:1.8rem;font-weight:800;color:white;letter-spacing:-1px;opacity:0;animation:loaderFade 1s .2s forwards}
+    .loader-logo span{color:var(--main-blue)}
+    .loader-bar{width:120px;height:3px;background:rgba(255,255,255,0.1);border-radius:2px;margin-top:20px;overflow:hidden}
+    .loader-bar::after{content:'';display:block;height:100%;width:0;background:linear-gradient(90deg,var(--main-blue),var(--accent));border-radius:2px;animation:loaderProgress 1.5s .3s ease forwards}
+    @keyframes loaderFade{to{opacity:1}}
+    @keyframes loaderProgress{to{width:100%}}
 
-    [data-theme="dark"] {
-      --bg-gradient: linear-gradient(135deg, #1a1c20 0%, #0f1013 100%);
-      --text-color: #f5f5f5;
-      --glass-bg: rgba(0, 0, 0, 0.3);
-      --glass-border: rgba(255, 255, 255, 0.1);
-      --card-bg: rgba(255, 255, 255, 0.05);
-      --footer-bg: rgba(0,0,0,0.2);
-    }
+    /* PARTICLES CANVAS */
+    #particles{position:absolute;inset:0;z-index:1;pointer-events:none}
 
-    html, body {
-      max-width: 100%;
-      overflow-x: hidden;
-      margin: 0;
-      padding: 0;
-      scroll-behavior: smooth;
-    }
+    /* HERO */
+    .hero{position:relative;height:100vh;min-height:700px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+    .hero-bg{position:absolute;inset:0;z-index:0}
+    .hero-bg img{width:100%;height:100%;object-fit:cover;transform:scale(1.1);transition:transform 8s ease-out}
+    .hero.loaded .hero-bg img{transform:scale(1)}
+    .hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.6) 0%,rgba(0,0,0,.4) 40%,rgba(0,0,0,.5) 70%,rgba(10,10,10,1) 100%);z-index:1}
+    .hero-content{position:relative;z-index:2;text-align:center;padding:0 20px;max-width:900px}
+    .hero-badge{display:inline-block;background:rgba(255,255,255,0.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.15);padding:8px 20px;border-radius:30px;font-size:.8rem;color:rgba(255,255,255,0.9);margin-bottom:30px;opacity:0;transform:translateY(20px);animation:fadeUp 1s .8s forwards}
+    .hero h1{font-size:clamp(2.5rem,6vw,5rem);font-weight:800;color:white;line-height:1.1;letter-spacing:-2px;margin-bottom:20px;text-shadow:0 4px 30px rgba(0,0,0,0.5)}
+    .hero h1 .word{display:inline-block;opacity:0;transform:translateY(30px);transition:all .6s cubic-bezier(.23,1,.32,1)}
+    .hero h1.revealed .word{opacity:1;transform:translateY(0)}
+    .hero h1 span{background:linear-gradient(135deg,var(--main-blue),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .hero p{font-size:1.15rem;color:rgba(255,255,255,0.85);max-width:500px;margin:0 auto 40px;line-height:1.6;opacity:0;transform:translateY(30px);animation:fadeUp 1s 1.4s forwards;text-shadow:0 2px 20px rgba(0,0,0,0.4)}
+    .hero-buttons{display:flex;gap:15px;justify-content:center;opacity:0;transform:translateY(30px);animation:fadeUp 1s 1.6s forwards}
+    .scroll-indicator{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);z-index:2;opacity:0;animation:fadeUp 1s 2s forwards}
+    .scroll-indicator div{width:24px;height:40px;border:2px solid rgba(255,255,255,0.3);border-radius:12px;position:relative}
+    .scroll-indicator div::before{content:'';position:absolute;top:8px;left:50%;transform:translateX(-50%);width:4px;height:8px;background:white;border-radius:2px;animation:scrollDot 1.5s infinite}
+    @keyframes scrollDot{0%,100%{opacity:1;top:8px}50%{opacity:.3;top:20px}}
+    @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+    @keyframes charIn{to{opacity:1;transform:translateY(0)}}
 
-    body {
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-      background: var(--bg-gradient) fixed;
-      color: var(--text-color);
-      transition: background 0.3s ease, color 0.3s ease;
-      
-      /* AKTIVERER AUTOMATISK FADE IN HER */
-      animation: autoFadeIn 1.5s ease-in-out forwards;
-    }
+    /* MARQUEE */
+    .marquee-section{padding:40px 0;overflow:hidden;border-top:1px solid var(--glass-border);border-bottom:1px solid var(--glass-border)}
+    .marquee{display:flex;animation:marquee 20s linear infinite}
+    .marquee-item{flex-shrink:0;padding:0 50px;font-size:1.2rem;font-weight:600;color:var(--text);opacity:.3;white-space:nowrap;display:flex;align-items:center;gap:15px}
+    .marquee-item span{white-space:nowrap}
+    .marquee-item span{width:8px;height:8px;background:var(--main-blue);border-radius:50%}
+    @keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
-    #progress-container { position: fixed; top: 0; width: 100%; height: 4px; z-index: 2000; }
-    #progress-bar { height: 100%; background: var(--main-blue); width: 0%; }
+    /* SHOWREEL */
+    .video-wrapper{position:relative;border-radius:20px;overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,0.3);aspect-ratio:16/9}
+    .video-wrapper iframe{width:100%;height:100%;border:none}
 
-    header { position: sticky; top: 0; z-index: 1000; }
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 40px;
-      background: var(--glass-bg); 
-      backdrop-filter: blur(15px);
-      -webkit-backdrop-filter: blur(15px);
-      border-bottom: 1px solid var(--glass-border);
-    }
+    /* SERVICES */
+    .services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:40px;margin-top:60px}
+    .service-card{background:var(--card-bg);border:1px solid var(--glass-border);border-radius:24px;padding:50px 40px;position:relative;overflow:hidden;transition:all .5s cubic-bezier(.23,1,.32,1);cursor:default;min-height:220px;display:flex;flex-direction:column}
+    .service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--main-blue),var(--accent));transform:scaleX(0);transform-origin:left;transition:transform .5s}
+    .service-card:hover::before{transform:scaleX(1)}
+    .service-card:hover{transform:translateY(-12px);border-color:rgba(1,128,255,0.3);box-shadow:0 25px 50px rgba(0,0,0,0.15)}
+    .service-card h3{font-size:1.5rem;font-weight:700;margin-bottom:15px}
+    .service-card p{color:var(--text-muted);line-height:1.7;font-size:.95rem}
+    .service-card .service-link{display:inline-flex;align-items:center;gap:8px;margin-top:25px;color:var(--main-blue);font-weight:600;font-size:.9rem;text-decoration:none;transition:gap .3s}
+    .service-card .service-link:hover{gap:12px}
 
-    .logo { font-size: 1.6rem; font-weight: bold; color: var(--text-color); text-decoration: none; }
-    .nav-links { display: flex; gap: 20px; list-style: none; margin: 0; padding: 0; align-items: center; }
-    .nav-links a { text-decoration: none; color: var(--text-color); font-weight: 500; font-size: 0.9rem; transition: color 0.2s; }
-    .nav-links a:hover { color: var(--main-blue); }
+    /* WORKFLOW */
+    .workflow-steps{margin-top:60px;position:relative}
+    .workflow-steps::before{content:'';position:absolute;left:30px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--main-blue),transparent)}
+    .workflow-step{display:flex;gap:40px;margin-bottom:60px;position:relative}
+    .step-number{flex-shrink:0;width:60px;height:60px;background:var(--main-blue);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;font-weight:700;color:white;position:relative;z-index:1}
+    .step-content{background:var(--card-bg);border:1px solid var(--glass-border);border-radius:20px;padding:35px;flex:1;transition:all .3s}
+    .step-content:hover{border-color:rgba(1,128,255,0.3);transform:translateX(10px)}
+    .step-content h3{font-size:1.3rem;font-weight:700;margin-bottom:10px}
+    .step-content p{color:var(--text-muted);line-height:1.7}
+    .step-tag{display:inline-block;margin-top:15px;padding:6px 14px;background:rgba(1,128,255,0.1);color:var(--main-blue);border-radius:20px;font-size:.8rem;font-weight:600}
 
-    #theme-toggle {
-      background: var(--glass-bg);
-      border: 1px solid var(--glass-border);
-      color: var(--text-color);
-      padding: 8px 12px;
-      border-radius: 20px;
-      cursor: pointer;
-      font-size: 0.8rem;
-      transition: 0.3s;
-    }
-    #theme-toggle:hover { background: var(--main-blue); color: white; }
+    /* STATS */
+    .stats{padding:100px 40px;background:linear-gradient(135deg,var(--main-blue),#0066cc);text-align:center}
+    .stats-grid{display:flex;justify-content:center;gap:80px;flex-wrap:wrap;max-width:1000px;margin:0 auto}
+    .stat-item h3{font-size:3rem;font-weight:800;color:white}
+    .stat-item p{color:rgba(255,255,255,0.7);font-size:.9rem;margin-top:5px}
 
-    .hero { padding: 40px 20px; text-align: center; }
-    .hero-img { width: 100%; max-width: 850px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
-    .hero-text h1 { font-size: 2.2rem; margin-top: 25px; color: var(--text-color); }
+    /* TESTIMONIALS */
+    .testimonials-section{padding:120px 40px;background:var(--card-bg)}
+    .testimonials-container{max-width:1200px;margin:0 auto}
+    .testimonials-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:30px;margin-top:50px}
+    .testimonial-card{background:rgba(255,255,255,0.03);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:35px;transition:all .4s}
+    .testimonial-card:hover{border-color:rgba(1,128,255,0.2);transform:translateY(-4px)}
+    .testimonial-stars{color:#fbbf24;font-size:1rem;margin-bottom:15px;letter-spacing:2px}
+    .testimonial-text{font-size:.95rem;line-height:1.7;color:var(--text-muted);margin-bottom:20px;font-style:italic}
+    .testimonial-author{display:flex;align-items:center;gap:12px}
+    .testimonial-avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--main-blue),var(--accent));display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:1rem}
+    .testimonial-name{font-weight:600;font-size:.9rem}
+    .testimonial-role{font-size:.8rem;color:var(--text-muted)}
+    @media(max-width:750px){.testimonials-grid{grid-template-columns:1fr}}
 
-    .video-container {
-      padding: 40px 20px;
-      background: var(--glass-bg);
-      border-radius: 30px;
-      margin: 20px;
-      border: 1px solid var(--glass-border);
-      text-align: center;
-    }
+    /* EQUIPMENT */
+    .equipment{padding:120px 40px;background:var(--card-bg)}
+    .equip-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:25px;margin-top:60px;perspective:1000px}
+    .equip-card{background:var(--bg);border:1px solid var(--glass-border);border-radius:20px;padding:30px;text-align:center;transition:all .5s;transform-style:preserve-3d}
+    .equip-card:hover{transform:rotateY(8deg) rotateX(-5deg);border-color:rgba(1,128,255,0.3);box-shadow:0 20px 40px rgba(0,0,0,0.15)}
+    .equip-icon{font-size:3rem;margin-bottom:15px;display:block}
+    .equip-card h4{font-size:1rem;font-weight:700;margin-bottom:8px}
+    .equip-card p{font-size:.8rem;color:var(--text-muted);line-height:1.5}
 
-    iframe { width: 100%; max-width: 800px; height: 450px; border-radius: 12px; border: none; box-shadow: 0 15px 35px rgba(0,0,0,0.3); }
+    /* FAQ */
+    .faq{padding:120px 40px;max-width:800px;margin:0 auto}
+    .faq-item{border-bottom:1px solid var(--glass-border);overflow:hidden}
+    .faq-question{width:100%;padding:25px 0;background:none;border:none;color:var(--text);font-size:1.1rem;font-weight:600;text-align:left;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:inherit;transition:color .3s}
+    .faq-question:hover{color:var(--main-blue)}
+    .faq-question .faq-icon{font-size:1.5rem;transition:transform .3s;color:var(--main-blue)}
+    .faq-item.open .faq-icon{transform:rotate(45deg)}
+    .faq-answer{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .4s}
+    .faq-item.open .faq-answer{max-height:300px;padding-bottom:25px}
+    .faq-answer p{color:var(--text-muted);line-height:1.7;font-size:.95rem}
 
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 20px;
-      padding: 50px 20px;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
+    .newsletter h2{font-size:1.8rem;font-weight:700;margin-bottom:10px}
+    .newsletter p{color:var(--text-muted);font-size:.95rem}
+    .newsletter{padding:100px 40px;text-align:center;border-top:1px solid var(--glass-border)}
+    .newsletter-form{display:flex;gap:10px;justify-content:center;margin-top:30px;flex-wrap:wrap}
+    .newsletter-form input{padding:14px 24px;border-radius:50px;border:1px solid var(--glass-border);background:var(--card-bg);color:var(--text);font-size:.9rem;font-family:inherit;width:300px;outline:none;transition:border-color .3s}
+    .newsletter-form input:focus{border-color:var(--main-blue)}
+    .newsletter-form button{padding:14px 28px;border-radius:50px;background:var(--main-blue);color:white;border:none;font-size:.9rem;font-weight:600;cursor:pointer;font-family:inherit;transition:.3s}
+    .newsletter-form button:hover{background:#0066cc}
 
-    .service-card {
-      background: var(--card-bg);
-      backdrop-filter: blur(10px);
-      padding: 30px;
-      border-radius: 20px;
-      border: 1px solid var(--glass-border);
-      transition: transform 0.3s ease;
-    }
-    .service-card h3 { color: var(--main-blue); }
-    .service-card:hover { transform: translateY(-8px); border-color: var(--main-blue); }
+    /* CTA */
+    .cta{padding:150px 40px;text-align:center}
+    .cta h2{font-size:clamp(2rem,4vw,3.5rem);font-weight:800;letter-spacing:-1px;margin-bottom:20px}
+    .cta p{color:var(--text-muted);font-size:1.1rem;margin-bottom:40px;max-width:500px;margin-left:auto;margin-right:auto}
 
-    #backToTop {
-      position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px;
-      background: var(--main-blue); color: rgb(255, 255, 255); border: none; border-radius: 50%;
-      cursor: pointer; display: none; z-index: 1500; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    }
+    /* INSTAGRAM */
+    .instagram{padding:80px 40px;text-align:center}
+    .insta-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:5px;margin-top:40px}
+    .insta-item{aspect-ratio:1;overflow:hidden;border-radius:8px;position:relative;cursor:pointer}
+    .insta-item img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+    .insta-item:hover img{transform:scale(1.1)}
+    .insta-item .insta-overlay{position:absolute;inset:0;background:rgba(1,128,255,0.6);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s}
+    .insta-item:hover .insta-overlay{opacity:1}
+    .insta-overlay span{color:white;font-size:1.2rem}
 
-    footer { text-align: center; padding: 40px; color: var(--text-color); font-size: 0.9rem; background: var(--footer-bg); margin-top: auto; opacity: 0.8; }
+    /* LATEST PROJECTS GRID */
+    @keyframes clientsScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
-    .fade-in { opacity: 0; transform: translateY(20px); transition: all 0.6s ease-out; }
-    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    /* LATEST GRID */
+    .latest-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:60px}
+    .latest-item{position:relative;overflow:hidden;border-radius:16px;cursor:pointer}
+    .latest-item img{width:100%;height:250px;object-fit:cover;transition:transform .5s}
+    .latest-item:hover img{transform:scale(1.05)}
+    .latest-overlay{position:absolute;bottom:0;left:0;right:0;padding:20px;background:linear-gradient(transparent,rgba(0,0,0,0.7));color:white;font-weight:600;font-size:1rem}
+    @media(max-width:900px){.latest-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:600px){.latest-grid{grid-template-columns:1fr}}
 
-    @media (max-width: 750px) {
-      nav { flex-direction: column; gap: 15px; }
-      iframe { height: 250px; }
-      .hero-text h1 { font-size: 1.7rem; }
-    }
+    /* GRADIENT TEXT SHIMMER */
+    .section-title{background:linear-gradient(90deg,var(--text),var(--main-blue),var(--text));background-size:200% 100%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 4s ease-in-out infinite}
+    @keyframes shimmer{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+
+    /* STAGGERED GRID REVEAL — handled by gridObserver + lines 253-254 */
+
+    /* 3D IMAGE TILT ON HOVER */
+    .insta-item,.latest-item{transform-style:preserve-3d;perspective:600px}
+    .insta-item:hover,.latest-item:hover{transform:translateY(-8px) rotateX(4deg)}
+    .insta-item:hover img,.latest-item:hover img{transform:translateZ(20px) scale(1.05)}
+
+    /* FLOATING BADGE ANIMATION */
+    .hero-badge{animation:float 3s ease-in-out infinite}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+
+    /* LIVE CLOCK */
+    .hero-time{font-size:.85rem;font-weight:500;color:rgba(255,255,255,0.5);letter-spacing:2px;margin-bottom:12px;font-variant-numeric:tabular-nums}
+
+    /* SCROLL-TRIGGERED TEXT REVEAL */
+    .reveal-char{display:inline-block;opacity:0;transform:translateY(20px);transition:opacity .4s,transform .4s}
+    .reveal-char.visible{opacity:1;transform:translateY(0)}
+
+    /* CLEAN CARD HOVER STATES */
+    .service-card::after{content:'';position:absolute;inset:0;border-radius:24px;opacity:0;transition:opacity .5s;background:linear-gradient(135deg,rgba(1,128,255,0.05) 0%,rgba(0,212,255,0.02) 100%)}
+    .service-card:hover::after{opacity:1}
+
+    /* STEP NUMBER PULSE */
+    .step-number{transition:all .3s}
+    .step-content:hover .step-number{background:var(--main-blue);color:white;transform:scale(1.1)}
+
+    /* EQUIPMENT CARD GLOW */
+    .equip-card{position:relative;overflow:hidden}
+    .equip-card::after{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:conic-gradient(transparent,rgba(1,128,255,0.1),transparent 30%);opacity:0;transition:opacity .5s;animation:none}
+    .equip-card:hover::after{opacity:1;animation:equipSpin 3s linear infinite}
+    @keyframes equipSpin{to{transform:rotate(360deg)}}
+
+    /* FAQ HOVER LINE */
+    .faq-question{position:relative}
+    .faq-question::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--main-blue);transition:width .3s}
+    .faq-question:hover::after{width:100%}
+
+    /* INSTAGRAM HEART BOUNCE */
+    .insta-overlay span{transition:transform .3s}
+    .insta-item:hover .insta-overlay span{transform:scale(1.3)}
+
+    /* STAT COUNTER GLOW */
+    .stat-item h3{text-shadow:0 0 30px rgba(1,128,255,0)}
+    .stat-item:hover h3{text-shadow:0 0 30px rgba(1,128,255,0.3)}
+
+    /* CTA GLOW */
+    .cta{position:relative;overflow:hidden}
+    .cta::before{content:'';position:absolute;top:50%;left:50%;width:400px;height:400px;background:radial-gradient(circle,rgba(1,128,255,0.15) 0%,transparent 70%);transform:translate(-50%,-50%);pointer-events:none}
+
+    /* STAGGERED GRID REVEAL */
+    .services-grid > *,.latest-grid > *,.insta-grid > *,.workflow-steps > *{opacity:0;transform:translateY(20px);transition:all .6s cubic-bezier(.23,1,.32,1)}
+    .services-grid.revealed > *,.latest-grid.revealed > *,.insta-grid.revealed > *,.workflow-steps.revealed > *{opacity:1;transform:translateY(0)}
+
+    /* PARALLAX FADE ON SCROLL */
+    .parallax-section{transition:transform .1s linear}
+
+    /* STAT COUNTER PULSE */
+    .stat-item h3{transition:color .3s}
+    .stat-item:hover h3{color:var(--main-blue)}
+
+    /* 3D CARD TILT */
+    .service-card,.equip-card{transform-style:preserve-3d;perspective:800px;transition:all .5s cubic-bezier(.23,1,.32,1)}
+    .service-card:hover{transform:translateY(-12px) rotateY(5deg) rotateX(-3deg) scale(1.02);box-shadow:0 25px 50px rgba(0,0,0,0.2)}
+    .equip-card:hover{transform:rotateY(8deg) rotateX(-5deg) scale(1.02);box-shadow:0 20px 40px rgba(0,0,0,0.15)}
+
+    /* RESPONSIVE (page-specific) */
+    @media(max-width:750px){.hero h1{letter-spacing:-1px}.hero-buttons{flex-direction:column;align-items:center}.workflow-steps::before{left:20px}.step-number{width:40px;height:40px;font-size:.9rem}.step-content{padding:25px}.stat-item h3{font-size:2rem}}
   </style>
 </head>
-
 <body>
+  <!-- LOADER -->
+  <div id="loader">
+    <div class="loader-logo">Solemsli <span>Productions</span></div>
+    <div class="loader-bar"></div>
+  </div>
 
-  <div id="progress-container"><div id="progress-bar"></div></div>
-  <button id="backToTop" onclick="window.scrollTo({top:0, behavior:'smooth'})">↑</button>
+  <!-- GRAIN -->
+  <div id="grain"></div>
 
-  <header>
+  <!-- PROGRESS BAR -->
+  <div id="progress-bar"></div>
+
+  <!-- CURSOR GLOW -->
+  <div class="cursor-glow" id="cursor-glow"></div>
+
+  <!-- CUSTOM CURSOR -->
+  <div class="custom-cursor" id="cursor"></div>
+  <div class="custom-cursor-dot" id="cursor-dot"></div>
+  <!-- HEADER -->
+  <header id="header">
+    <a href="index.html" class="logo">Solemsli Productions</a>
+    <div class="menu-toggle" onclick="this.classList.toggle('active');document.querySelector('nav').classList.toggle('active')"><span></span><span></span><span></span></div>
     <nav>
-      <a href="index.html" class="logo">Solemsli Productions</a>
-      <ul class="nav-links">
-        <li><a href="index.html">Hjem</a></li>
-        <li><a href="about.html">Om meg</a></li>
-        <li><a href="projects.html">Prosjekter</a></li>
-        <li><a href="prices.html">Priser</a></li> 
-        <li><a href="contact.html">Kontakt</a></li>
-        <li><button id="theme-toggle">🌙 Modus</button></li>
-      </ul>
+      <a href="index.html" class="active" data-no="Hjem" data-en="Home" data-de="Startseite">Hjem</a>
+      <a href="about.html" data-no="Om meg" data-en="About" data-de="Über mich">Om meg</a>
+      <a href="projects.html" data-no="Portfolio" data-en="Portfolio" data-de="Portfolio">Portfolio</a>
+      <a href="shop.html" data-no="Shop" data-en="Shop" data-de="Shop">Shop</a>
+      <a href="prices.html" data-no="Priser" data-en="Pricing" data-de="Preise">Priser</a>
+      <a href="contact.html" data-no="Kontakt" data-en="Contact" data-de="Kontakt">Kontakt</a>
+      <button class="nav-btn" id="lang-toggle">EN</button>
+      <button class="nav-btn" id="theme-toggle">☀️ Lys</button>
     </nav>
   </header>
 
-  <main>
-    <section class="hero fade-in">
-      <img src="uranustind.jpg" alt="Dronebilde Uranustind" class="hero-img" loading="lazy">
-      <div class="hero-text">
-        <h1>Profesjonell foto, video og droneproduksjon</h1>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"><img src="uranustind.jpg" alt="Dronebilde" id="hero-img"></div>
+    <canvas id="particles"></canvas>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-badge" data-no="📍 Basert i Innlandet" data-en="📍 Based in Innlandet" data-de="📍 Basierend in Innlandet">📍 Basert i Innlandet</div>
+      <div class="hero-time" id="heroTime"></div>
+      <h1 id="hero-title"><span data-no="Visuell" data-en="Visual" data-de="Visuell">Visuell</span><br><span data-no="historiefortelling" data-en="storytelling" data-de="Geschichtenerzaehlung">historiefortelling</span></h1>
+      <p data-no="Profesjonell foto, video og droneproduksjon for bedrifter og privatpersoner i Innlandet." data-en="Professional photo, video and drone production for businesses and individuals in Innlandet." data-de="Professionelle Foto-, Video- und Drohnenproduktion für Unternehmen und Privatpersonen in Innlandet.">Profesjonell foto, video og droneproduksjon for bedrifter og privatpersoner i Innlandet.</p>
+      <div class="hero-buttons">
+        <a href="projects.html" class="btn btn-primary magnetic" data-no="Se arbeidet mitt" data-en="See my work" data-de="Meine Arbeit ansehen">Se arbeidet mitt</a>
+        <a href="contact.html" class="btn btn-outline magnetic" data-no="Ta kontakt" data-en="Get in touch" data-de="Kontaktieren">Ta kontakt</a>
       </div>
-    </section>
+    </div>
+    <div class="scroll-indicator"><div></div></div>
+  </section>
 
-    <section class="video-container fade-in">
-      <h2>Se min showreel</h2>
-      <iframe src="https://www.youtube.com/embed/SVARx16jTQg" loading="lazy" allowfullscreen></iframe>
-    </section>
+  <!-- MARQUEE -->
+  <div class="marquee-section">
+    <div class="marquee">
+      <div class="marquee-item"><span></span><span data-no="Fotografering" data-en="Photography" data-de="Fotografie">Fotografering</span></div>
+      <div class="marquee-item"><span></span><span data-no="Videoproduksjon" data-en="Video Production" data-de="Videoproduktion">Videoproduksjon</span></div>
+      <div class="marquee-item"><span></span><span data-no="Drone" data-en="Drone" data-de="Drohne">Drone</span></div>
+      <div class="marquee-item"><span></span><span data-no="Eventer" data-en="Events" data-de="Veranstaltungen">Eventer</span></div>
+      <div class="marquee-item"><span></span><span data-no="Bryllup" data-en="Weddings" data-de="Hochzeiten">Bryllup</span></div>
+      <div class="marquee-item"><span></span><span data-no="Bedrift" data-en="Business" data-de="Geschäft">Bedrift</span></div>
+      <div class="marquee-item"><span></span><span data-no="Reklamefilm" data-en="Commercials" data-de="Werbefilm">Reklamefilm</span></div>
+      <div class="marquee-item"><span></span><span data-no="Sosiale medier" data-en="Social Media" data-de="Soziale Medien">Sosiale medier</span></div>
+      <div class="marquee-item"><span></span><span data-no="Fotografering" data-en="Photography" data-de="Fotografie">Fotografering</span></div>
+      <div class="marquee-item"><span></span><span data-no="Videoproduksjon" data-en="Video Production" data-de="Videoproduktion">Videoproduksjon</span></div>
+      <div class="marquee-item"><span></span><span data-no="Drone" data-en="Drone" data-de="Drohne">Drone</span></div>
+      <div class="marquee-item"><span></span><span data-no="Eventer" data-en="Events" data-de="Veranstaltungen">Eventer</span></div>
+      <div class="marquee-item"><span></span><span data-no="Bryllup" data-en="Weddings" data-de="Hochzeiten">Bryllup</span></div>
+      <div class="marquee-item"><span></span><span data-no="Bedrift" data-en="Business" data-de="Geschäft">Bedrift</span></div>
+      <div class="marquee-item"><span></span><span data-no="Reklamefilm" data-en="Commercials" data-de="Werbefilm">Reklamefilm</span></div>
+      <div class="marquee-item"><span></span><span data-no="Sosiale medier" data-en="Social Media" data-de="Soziale Medien">Sosiale medier</span></div>
+    </div>
+  </div>
 
-    <h2 style="text-align: center; margin-top: 60px; font-size: 2rem;" class="fade-in">Hva jeg tilbyr</h2>
+  <!-- SHOWREEL -->
+  <section class="section">
+    <div class="reveal"><div class="section-label" data-no="Showreel" data-en="Showreel" data-de="Showreel">Showreel</div><h2 class="section-title" data-no="Se mitt arbeid i aksjon" data-en="See my work in action" data-de="Sehen Sie meine Arbeit in Aktion">Se mitt arbeid i aksjon</h2></div>
+    <div class="video-wrapper reveal reveal-delay-2"><iframe src="https://www.youtube.com/embed/SVARx16jTQg" loading="lazy" allowfullscreen></iframe></div>
+  </section>
 
-    <section class="services-grid fade-in">
-      <div class="service-card">
-        <h3>📷 Foto & Video</h3>
-        <p>Kamera-produksjoner med fokus på detaljer og visuell historiefortelling.</p>
-      </div>
-      <div class="service-card">
-        <h3>🚁 Drone</h3>
-        <p>Dronefilm og spektakulære 360° oversiktsbilder.</p>
-      </div>
-      <div class="service-card">
-        <h3>🎸 Eventer</h3>
-        <p>Full dekning av festivaler, konserter og store begivenheter.</p>
-      </div>
-      <div class="service-card">
-        <h3>💼 Bedrift</h3>
-        <p>Reklamefilmer og innhold optimalisert for sosiale medier eller YouTube.</p>
-      </div>
-    </section>
-  </main>
+  <!-- SERVICES -->
+  <section class="section">
+    <div class="reveal"><div class="section-label" data-no="Tjenester" data-en="Services" data-de="Dienstleistungen">Tjenester</div><h2 class="section-title" data-no="Hva jeg kan hjelpe med" data-en="How I can help" data-de="Wobei ich helfen kann">Hva jeg kan hjelpe med</h2></div>
+    <div class="services-grid">
+      <div class="service-card reveal reveal-delay-1"><h3 data-no="Foto & Video" data-en="Photo & Video" data-de="Foto & Video">Foto & Video</h3><p data-no="Kamera-produksjoner med fokus på detaljer og visuell historiefortelling. Alt fra portrett til landskap." data-en="Camera productions focusing on details and visual storytelling. From portraits to landscapes." data-de="Kamera-Produktionen mit Fokus auf Details und visuelles Storytelling. Von Porträts bis hin zu Landschaften.">Kamera-produksjoner med fokus på detaljer og visuell historiefortelling. Alt fra portrett til landskap.</p><a href="projects.html" class="service-link" data-no="Se eksempler →" data-en="See examples →" data-de="Beispiele ansehen →">Se eksempler →</a></div>
+      <div class="service-card reveal reveal-delay-2"><h3 data-no="Drone" data-en="Drone" data-de="Drohne">Drone</h3><p data-no="Spektakulære dronefilmer og oversiktsbilder. Perfekt for eiendom, eventer og natur." data-en="Spectacular drone films and aerial shots. Perfect for real estate, events and nature." data-de="Spektakuläre Drohnenfilme und Luftaufnahmen. Perfekt für Immobilien, Veranstaltungen und Natur.">Spektakulære dronefilmer og oversiktsbilder. Perfekt for eiendom, eventer og natur.</p><a href="projects.html" class="service-link" data-no="Se eksempler →" data-en="See examples →" data-de="Beispiele ansehen →">Se eksempler →</a></div>
+      <div class="service-card reveal reveal-delay-3"><h3 data-no="Eventer" data-en="Events" data-de="Veranstaltungen">Eventer</h3><p data-no="Full dekning av festivaler, konserter og store begivenheter. Jeg fanger øyeblikkene som betyr noe." data-en="Full coverage of festivals, concerts and major events. I capture the moments that matter." data-de="Vollständige Abdeckung von Festivals, Konzerten und großen Veranstaltungen. Ich erfasse die Momente, die zählen.">Full dekning av festivaler, konserter og store begivenheter. Jeg fanger øyeblikkene som betyr noe.</p><a href="projects.html" class="service-link" data-no="Se eksempler →" data-en="See examples →" data-de="Beispiele ansehen →">Se eksempler →</a></div>
+      <div class="service-card reveal reveal-delay-4"><h3 data-no="Bedrift" data-en="Business" data-de="Geschäft">Bedrift</h3><p data-no="Reklamefilmer og innhold optimalisert for sosiale medier, YouTube og nettsider." data-en="Commercials and content optimized for social media, YouTube and websites." data-de="Werbefilme und Inhalte optimiert für soziale Medien, YouTube und Webseiten.">Reklamefilmer og innhold optimalisert for sosiale medier, YouTube og nettsider.</p><a href="projects.html" class="service-link" data-no="Se eksempler →" data-en="See examples →" data-de="Beispiele ansehen →">Se eksempler →</a></div>
+    </div>
+  </section>
 
+  <!-- WORKFLOW -->
+  <section class="section">
+    <div class="reveal"><div class="section-label" data-no="Slik jobber jeg" data-en="How I work" data-de="So arbeite ich">Slik jobber jeg</div><h2 class="section-title" data-no="Fra idé til ferdig produkt" data-en="From idea to finished product" data-de="Von der Idee zum fertigen Produkt">Fra idé til ferdig produkt</h2></div>
+    <div class="workflow-steps">
+      <div class="workflow-step reveal"><div class="step-number">1</div><div class="step-content"><h3 data-no="Samtale & Planlegging" data-en="Consultation & Planning" data-de="Beratung & Planung">Samtale & Planlegging</h3><p data-no="Vi starter med en uforpliktende samtale om dine ønsker og behov. Jeg lager en plan som passer ditt budsjett." data-en="We start with a no-obligation conversation about your wishes and needs. I create a plan that fits your budget." data-de="Wir beginnen mit einem unverbindlichen Gespräch über Ihre Wünsche und Bedürfnisse. Ich erstelle einen Plan, der zu Ihrem Budget passt.">Vi starter med en uforpliktende samtale om dine ønsker og behov. Jeg lager en plan som passer ditt budsjett.</p><span class="step-tag" data-no="Uforpliktende" data-en="Free" data-de="Kostenlos">Uforpliktende</span></div></div>
+      <div class="workflow-step reveal reveal-delay-1"><div class="step-number">2</div><div class="step-content"><h3 data-no="Produksjon" data-en="Production" data-de="Produktion">Produksjon</h3><p data-no="Enten det er foto, video eller drone – jeg er ute i feltet og fanger de beste øyeblikkene." data-en="Whether it's photo, video or drone – I'm out in the field capturing the best moments." data-de="Egal ob Foto, Video oder Drohne – ich bin im Feld und erfasse die besten Momente.">Enten det er foto, video eller drone – jeg er ute i feltet og fanger de beste øyeblikkene.</p><span class="step-tag" data-no="1-3 dager" data-en="1-3 days" data-de="1-3 Tage">1-3 dager</span></div></div>
+      <div class="workflow-step reveal reveal-delay-2"><div class="step-number">3</div><div class="step-content"><h3 data-no="Redigering" data-en="Editing" data-de="Bearbeitung">Redigering</h3><p data-no="Profesjonell redigering med fokus på kvalitet. Du får preview før endelig levering." data-en="Professional editing with a focus on quality. You get a preview before final delivery." data-de="Professionelle Bearbeitung mit Fokus auf Qualität. Sie erhalten eine Vorschau vor der endgültigen Lieferung.">Profesjonell redigering med fokus på kvalitet. Du får preview før endelig levering.</p><span class="step-tag" data-no="2-5 dager" data-en="2-5 days" data-de="2-5 Tage">2-5 dager</span></div></div>
+      <div class="workflow-step reveal reveal-delay-3"><div class="step-number">4</div><div class="step-content"><h3 data-no="Levering" data-en="Delivery" data-de="Lieferung">Levering</h3><p data-no="Ferdige filer i høy kvalitet, klare til bruk på nettside, sosiale medier eller print." data-en="Finished files in high quality, ready for use on websites, social media or print." data-de="Fertige Dateien in hoher Qualität, bereit zur Verwendung auf Webseiten, sozialen Medien oder Print.">Ferdige filer i høy kvalitet, klare til bruk på nettside, sosiale medier eller print.</p><span class="step-tag" data-no="Digital levering" data-en="Digital delivery" data-de="Digitale Lieferung">Digital levering</span></div></div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats">
+    <div class="stats-grid">
+      <div class="stat-item reveal"><h3 id="stat1" data-count="20">0+</h3><p data-no="Oppdrag fullført" data-en="Jobs completed" data-de="Abgeschlossene Auftraege">Oppdrag fullført</p></div>
+      <div class="stat-item reveal reveal-delay-1"><h3 id="stat2" data-count="15">0+</h3><p data-no="Kunder" data-en="Clients" data-de="Kunden">Kunder</p></div>
+      <div class="stat-item reveal reveal-delay-2"><h3 id="stat3" data-count="10">0+</h3><p data-no="Droneoppdrag" data-en="Drone missions" data-de="Drohnen-Einsaetze">Droneoppdrag</p></div>
+      <div class="stat-item reveal reveal-delay-3"><h3 id="stat4" data-count="4">0+</h3><p data-no="År med drone" data-en="Years with drone" data-de="Jahre mit Drohne">År med drone</p></div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials-section">
+    <div class="testimonials-container">
+      <div class="reveal"><div class="section-label" data-no="Anmeldelser" data-en="Reviews" data-de="Bewertungen">Anmeldelser</div><h2 class="section-title" data-no="Hva kundene sier" data-en="What clients say" data-de="Was Kunden sagen">Hva kundene sier</h2></div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card reveal reveal-delay-1">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text" data-no="«Kjempeflink fotograf som leverer kvalitet i både bilder og video. Vi brukte Oskar til å filme og fotografere, og resultatet overgikk forventningene. Anbefales på det sterkeste!»" data-en="«Incredibly talented photographer who delivers quality in both photos and video. We used Oskar for filming and photography, and the result exceeded expectations. Highly recommended!»" data-de="«Unglaublich talentierter Fotograf, der Qualität in Bildern und Videos liefert. Wir haben Oskar für Dreharbeiten und Fotografie beauftragt und das Ergebnis hat die Erwartungen übertroffen. Absolute Empfehlung!»">«Kjempeflink fotograf som leverer kvalitet i både bilder og video. Vi brukte Oskar til å filme og fotografere, og resultatet overgikk forventningene. Anbefales på det sterkeste!»</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">AD</div>
+            <div>
+              <div class="testimonial-name">Arctic Domes</div>
+              <div class="testimonial-role" data-no="Glass igloer på fjellet" data-en="Glass igloos in the mountains" data-de="Glaskuppeln im Gebirge">Glass igloer på fjellet</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal reveal-delay-2">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text" data-no="«Oskar er kjempeflink. Han har tatt flotte bilder av kunstverkene til min masteroppgave. Han har også laget en katalog til utstillingen som skal være i Bergen til sommeren, både virtuelt og til papirform. Oskar er effektiv og arbeidssom, han er tålmodig og veldig samarbeidsvillig. Oskar har gjort en kjempejobb 😀»" data-en="«Oskar is incredibly talented. He took beautiful photos of the artworks for my master's thesis. He also created a catalog for the exhibition in Bergen this summer, both digital and print. Oskar is efficient and hardworking, patient and very collaborative. Oskar did an amazing job 😀»" data-de="«Oskar ist unglaublich talentiert. Er hat wunderschöne Fotos meiner Kunstwerke für meine Masterarbeit gemacht. Er hat auch einen Katalog für die Ausstellung in Bergen diesen Sommer erstellt, sowohl digital als auch als Druck. Oskar ist effizient und fleißig, geduldig und sehr kooperativ. Oskar hat eine großartige Arbeit geleistet 😀»">«Oskar er kjempeflink. Han har tatt flotte bilder av kunstverkene til min masteroppgave. Han har også laget en katalog til utstillingen som skal være i Bergen til sommeren, både virtuelt og til papirform. Oskar er effektiv og arbeidssom, han er tålmodig og veldig samarbeidsvillig. Oskar har gjort en kjempejobb 😀»</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">LU</div>
+            <div>
+              <div class="testimonial-name">Lena Ubario</div>
+              <div class="testimonial-role" data-no="Kunstner" data-en="Artist" data-de="Künstlerin">Kunstner</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EQUIPMENT -->
+  <section class="equipment">
+    <div class="section" style="padding:0;max-width:1200px;margin:0 auto">
+      <div class="reveal"><div class="section-label" data-no="Utstyr" data-en="Equipment" data-de="Ausrüstung">Utstyr</div><h2 class="section-title" data-no="Hva jeg jobber med" data-en="What I work with" data-de="Womit ich arbeite">Hva jeg jobber med</h2></div>
+      <div class="equip-grid reveal">
+        <div class="equip-card"><span class="equip-icon">📷</span><h4>Sony A7IV</h4><p data-no="Fullformat kamera med høy oppløsning" data-en="Full-frame camera with high resolution" data-de="Vollformat-Kamera mit hoher Aufloesung">Fullformat kamera med høy oppløsning</p></div>
+        <div class="equip-card"><span class="equip-icon">🔭</span><h4>Sigma 24-70mm f/2.8</h4><p data-no="Allsidig zoom-objektiv i topp kvalitet" data-en="Versatile zoom lens in top quality" data-de="Vielseitiges Zoom-Objektiv in Top-Qualitaet">Allsidig zoom-objektiv i topp kvalitet</p></div>
+        <div class="equip-card"><span class="equip-icon">🚁</span><h4>DJI Mini 4 Pro</h4><p data-no="Kompakt drone med 4K video" data-en="Compact drone with 4K video" data-de="Kompakte Drohne mit 4K Video">Kompakt drone med 4K video</p></div>
+        <div class="equip-card"><span class="equip-icon">🎬</span><h4>DaVinci Resolve</h4><p data-no="Profesjonell videoredigering og color grading" data-en="Professional video editing and color grading" data-de="Professionelle Videobearbeitung und Color Grading">Profesjonell videoredigering og color grading</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq">
+    <div class="reveal"><div class="section-label" data-no="FAQ" data-en="FAQ" data-de="FAQ">FAQ</div><h2 class="section-title" data-no="Vanlige spørsmål" data-en="Frequently asked questions" data-de="Häufige Fragen">Vanlige spørsmål</h2></div>
+    <div class="faq-item reveal"><button class="faq-question" data-no="Hva koster et oppdrag?" data-en="How much does a job cost?" data-de="Wie viel kostet ein Auftrag?">Hva koster et oppdrag?<span class="faq-icon">+</span></button><div class="faq-answer"><p data-no="Priser starter fra 2 000 kr for enkle oppdrag. Se mine pakker på Priser-siden, eller ta kontakt for et skreddersydd tilbud." data-en="Prices start from 2,000 NOK for simple jobs. See my packages on the Pricing page, or contact me for a custom quote." data-de="Preise beginnen bei 2.000 NOK für einfache Aufträge. Sehen Sie meine Pakete auf der Preisseite oder kontaktieren Sie mich für ein maßgeschneidertes Angebot.">Priser starter fra 2 000 kr for enkle oppdrag. Se mine pakker på Priser-siden, eller ta kontakt for et skreddersydd tilbud.</p></div></div>
+    <div class="faq-item reveal reveal-delay-1"><button class="faq-question" data-no="Hvor lang er leveringstiden?" data-en="What is the delivery time?" data-de="Wie lang ist die Lieferzeit?">Hvor lang er leveringstiden?<span class="faq-icon">+</span></button><div class="faq-answer"><p data-no="Typisk leveringstid er 2-5 dager for foto og 5-10 dager for videoproduksjon. Rush kan avtales." data-en="Typical delivery is 2-5 days for photos and 5-10 days for video production. Rush can be arranged." data-de="Typische Lieferzeit beträgt 2-5 Tage für Fotos und 5-10 Tage für Videoproduktion. Eilige Lieferung kann vereinbart werden.">Typisk leveringstid er 2-5 dager for foto og 5-10 dager for videoproduksjon. Rush kan avtales.</p></div></div>
+    <div class="faq-item reveal reveal-delay-2"><button class="faq-question" data-no="Hva er inkludert i prisen?" data-en="What's included in the price?" data-de="Was ist im Preis enthalten?">Hva er inkludert i prisen?<span class="faq-icon">+</span></button><div class="faq-answer"><p data-no="Alle priser inkluderer oppdrag, redigering og digital levering. Reisekostnader kan komme i tillegg utenfor Innlandet." data-en="All prices include the assignment, editing and digital delivery. Travel costs may apply outside Innlandet." data-de="Alle Preise beinhalten Auftrag, Bearbeitung und digitale Lieferung. Reisekosten können außerhalb von Innlandet anfallen.">Alle priser inkluderer oppdrag, redigering og digital levering. Reisekostnader kan komme i tillegg utenfor Innlandet.</p></div></div>
+    <div class="faq-item reveal reveal-delay-3"><button class="faq-question" data-no="Kan jeg bruke bildene fritt?" data-en="Can I use the images freely?" data-de="Kann ich die Bilder frei verwenden?">Kan jeg bruke bildene fritt?<span class="faq-icon">+</span></button><div class="faq-answer"><p data-no="Ja! Du får full bruksrett til alle ferdige bilder og videoer til eget bruk. Ved kommersiell bruk kan vi avtale vilkår." data-en="Yes! You get full usage rights to all finished photos and videos for personal use. Commercial use terms can be arranged." data-de="Ja! Sie erhalten volle Nutzungsrechte an allen fertigen Fotos und Videos für den Privatgebrauch. Für kommerzielle Nutzung können wir Bedingungen vereinbaren.">Ja! Du får full bruksrett til alle ferdige bilder og videoer til eget bruk. Ved kommersiell bruk kan vi avtale vilkår.</p></div></div>
+  </section>
+
+  <!-- SISTE PROSJEKTER -->
+  <section class="section">
+    <div class="reveal"><div class="section-label" data-no="Siste arbeid" data-en="Latest work" data-de="Letzte Arbeiten">Siste arbeid</div><h2 class="section-title" data-no="Nylige prosjekter" data-en="Recent projects" data-de="Aktuelle Projekte">Nylige prosjekter</h2></div>
+    <div class="latest-grid reveal">
+      <div class="latest-item"><img src="gallery/vinjerock/untitled-7604.jpg" alt="Vinjerock" loading="lazy"><div class="latest-overlay"><span>Vinjerock</span></div></div>
+      <div class="latest-item"><img src="gallery/bryllup/untitled-6005.jpg" alt="Bryllup" loading="lazy"><div class="latest-overlay"><span>Bryllup</span></div></div>
+      <div class="latest-item"><img src="gallery/vang-kommune-sentrum/DJI_20251006091304_0231_D.jpg" alt="Vang" loading="lazy"><div class="latest-overlay"><span>Vang Kommune</span></div></div>
+      <div class="latest-item"><img src="gallery/vang-bygg-oversikt/untitled--14.jpg" alt="Drone" loading="lazy"><div class="latest-overlay"><span>Droneoppdrag</span></div></div>
+      <div class="latest-item"><img src="gallery/konfirmasjon/untitled-5010.jpg" alt="Konfirmasjon" loading="lazy"><div class="latest-overlay"><span>Konfirmasjon</span></div></div>
+      <div class="latest-item"><img src="gallery/vinjerock-drone/untitled--16.jpg" alt="Drone" loading="lazy"><div class="latest-overlay"><span>Vinjerock Drone</span></div></div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="reveal">
+      <h2 data-no="Klar til å starte?" data-en="Ready to get started?" data-de="Bereit zu starten?">Klar til å starte?</h2>
+      <p data-no="Ta kontakt for en uforpliktende samtale om ditt neste prosjekt." data-en="Get in touch for a no-obligation chat about your next project." data-de="Kontaktieren Sie mich für ein unverbindliches Gespräch über Ihr nächstes Projekt.">Ta kontakt for en uforpliktende samtale om ditt neste prosjekt.</p>
+      <a href="contact.html" class="btn btn-primary magnetic" data-no="Kontakt meg" data-en="Contact me" data-de="Kontaktiere mich">Kontakt meg</a>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="newsletter">
+    <div class="reveal">
+      <div class="section-label" data-no="Nyhetsbrev" data-en="Newsletter" data-de="Newsletter">Nyhetsbrev</div>
+      <h2 data-no="Hold deg oppdatert" data-en="Stay updated" data-de="Bleib auf dem Laufenden">Hold deg oppdatert</h2>
+      <p data-no="Meld deg på for tips, nye prosjekter og eksklusive tilbud." data-en="Sign up for tips, new projects and exclusive offers." data-de="Melden Sie sich für Tipps, neue Projekte und exklusive Angebote an.">Meld deg på for tips, nye prosjekter og eksklusive tilbud.</p>
+      <!-- TODO: Replace "placeholder-newsletter" below with your actual Formspree newsletter form ID from formspree.io -->
+      <form class="newsletter-form" action="https://formspree.io/f/placeholder-newsletter" method="POST" id="newsletterForm">
+        <input type="email" placeholder="Din e-post" name="email" required>
+        <button type="submit" data-no="Meld på" data-en="Subscribe" data-de="Abonnieren">Meld på</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- INSTAGRAM -->
+  <section class="instagram">
+    <div class="reveal"><div class="section-label">@solemsli_productions</div><h2 class="section-title" data-no="Følg meg på Instagram" data-en="Follow me on Instagram" data-de="Folge mir auf Instagram">Følg meg på Instagram</h2></div>
+    <div class="insta-grid reveal">
+      <div class="insta-item"><img src="gallery/bryllup/untitled-6005.jpg" alt="Instagram" loading="lazy"><div class="insta-overlay"><span>♡</span></div></div>
+      <div class="insta-item"><img src="gallery/vinjerock/untitled-7604.jpg" alt="Instagram" loading="lazy"><div class="insta-overlay"><span>♡</span></div></div>
+      <div class="insta-item"><img src="gallery/konfirmasjon/untitled-5010.jpg" alt="Instagram" loading="lazy"><div class="insta-overlay"><span>♡</span></div></div>
+      <div class="insta-item"><img src="gallery/vang-kommune-sentrum/DJI_20251006091304_0231_D.jpg" alt="Instagram" loading="lazy"><div class="insta-overlay"><span>♡</span></div></div>
+      <div class="insta-item"><img src="gallery/vinjerock-drone/untitled--16.jpg" alt="Instagram" loading="lazy"><div class="insta-overlay"><span>♡</span></div></div>
+      <div class="insta-item"><img src="gallery/vang-bygg-oversikt/untitled--10.jpg" alt="Instagram" loading="lazy"><div class="insta-overlay"><span>♡</span></div></div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
   <footer>
-    <p>© 2026 Solemsli Productions. Innlandet.</p>
+    <div class="footer-left">
+      <a href="index.html" class="logo">Solemsli Productions</a>
+      <p>© 2026 Solemsli Productions. Innlandet.</p>
+    </div>
+    <div class="footer-links">
+      <a href="https://www.instagram.com/solemsli_productions/" target="_blank">Instagram</a>
+      <a href="contact.html" data-no="Kontakt" data-en="Contact" data-de="Kontakt">Kontakt</a>
+      <a href="about.html" data-no="Om meg" data-en="About" data-de="Über mich">Om meg</a>
+    </div>
   </footer>
 
   <script>
-    const themeToggle = document.getElementById('theme-toggle');
-    const currentTheme = localStorage.getItem('theme');
-
-    if (currentTheme === 'dark') {
-      document.documentElement.setAttribute('data-theme', 'dark');
-      themeToggle.textContent = "☀️ Lys";
-    }
-
-    themeToggle.addEventListener('click', () => {
-      let theme = document.documentElement.getAttribute('data-theme');
-      if (theme === 'dark') {
-        document.documentElement.setAttribute('data-theme', 'light');
-        localStorage.setItem('theme', 'light');
-        themeToggle.textContent = "🌙 Mørk";
-      } else {
-        document.documentElement.setAttribute('data-theme', 'dark');
-        localStorage.setItem('theme', 'dark');
-        themeToggle.textContent = "☀️ Lys";
-      }
-    });
-
-    const progressBar = document.getElementById("progress-bar");
-    const topBtn = document.getElementById("backToTop");
-    const fadeElements = document.querySelectorAll('.fade-in');
-
-    window.addEventListener('scroll', () => {
-      const scrollPos = window.scrollY;
-      const winHeight = document.documentElement.scrollHeight - window.innerHeight;
-      
-      progressBar.style.width = (scrollPos / winHeight) * 100 + "%";
-      topBtn.style.display = scrollPos > 400 ? "block" : "none";
-
-      fadeElements.forEach(el => {
-        if (el.getBoundingClientRect().top < window.innerHeight - 50) {
-          el.classList.add('visible');
+    const nlForm = document.getElementById('newsletterForm');
+    if (nlForm) {
+      nlForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const response = await fetch(nlForm.action, {
+          method: 'POST',
+          body: new FormData(nlForm),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (response.ok) {
+          nlForm.innerHTML = '<p style="color:var(--main-blue);font-weight:600" data-no="Takk! Du er nå påmeldt." data-en="Thanks! You are now subscribed." data-de="Danke! Sie sind jetzt angemeldet.">Takk! Du er nå påmeldt.</p>';
         }
       });
-    }, { passive: true });
+    }
+  </script>
+  <script src="shared.js"></script>
+  <script>
+    // LOADER
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('loader').classList.add('hidden');
+        document.querySelector('.hero').classList.add('loaded');
+      }, 1800);
+    });
 
-    window.addEventListener('DOMContentLoaded', () => {
-      window.dispatchEvent(new Event('scroll'));
+    // HERO TEXT SPLIT (word-by-word)
+    function splitHeroText() {
+      const h1 = document.getElementById('hero-title');
+      const spans = h1.querySelectorAll('span[data-no]');
+      let allWords = [];
+      spans.forEach(span => {
+        const lang = currentLang || 'no';
+        const text = span.getAttribute('data-' + lang) || span.dataset.no;
+        const words = text.split(' ');
+        span.innerHTML = '';
+        words.forEach((word, i) => {
+          const s = document.createElement('span');
+          s.className = 'word';
+          s.textContent = word;
+          allWords.push(s);
+          span.appendChild(s);
+          if (i < words.length - 1) span.appendChild(document.createTextNode(' '));
+        });
+      });
+      setTimeout(() => h1.classList.add('revealed'), 200);
+    }
+    splitHeroText();
+
+    // PARALLAX HERO ON SCROLL
+    window.addEventListener('scroll', () => {
+      const s = window.scrollY;
+      const img = document.getElementById('hero-img');
+      if (img && s < window.innerHeight) img.style.transform = `scale(${1 + s * 0.0002}) translateY(${s * 0.3}px)`;
+    });
+
+    // FAQ ACCORDION
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.parentElement;
+        const wasOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!wasOpen) item.classList.add('open');
+      });
+    });
+
+    // WEBGL PARTICLES
+    try {
+    const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    let pmx = 0, pmy = 0;
+    const resize = () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; };
+    resize();
+    window.addEventListener('resize', resize);
+    document.addEventListener('mousemove', e => { pmx = e.clientX; pmy = e.clientY; });
+    class Particle {
+      constructor() { this.reset(); }
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2 + 0.5;
+        this.vx = (Math.random() - 0.5) * 0.5;
+        this.vy = (Math.random() - 0.5) * 0.5;
+        this.alpha = Math.random() * 0.5 + 0.1;
+      }
+      update() {
+        const dx = this.x - pmx;
+        const dy = this.y - pmy;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 120) {
+          this.x += dx / dist * 2;
+          this.y += dy / dist * 2;
+        }
+        this.x += this.vx;
+        this.y += this.vy;
+        if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) this.reset();
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(1, 128, 255, ${this.alpha})`;
+        ctx.fill();
+      }
+    }
+    for (let i = 0; i < 80; i++) particles.push(new Particle());
+    function animParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => { p.update(); p.draw(); });
+      requestAnimationFrame(animParticles);
+    }
+    animParticles();
+    } catch(e) { console.warn('Particles skipped:', e); }
+
+    // LIVE CLOCK
+    function updateClock() {
+      const now = new Date();
+      const time = now.toLocaleTimeString('nb-NO', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+      const date = now.toLocaleDateString('nb-NO', { weekday: 'long', day: 'numeric', month: 'long' });
+      const el = document.getElementById('heroTime');
+      if (el) el.textContent = time + ' — ' + date.charAt(0).toUpperCase() + date.slice(1);
+    }
+    updateClock();
+    setInterval(updateClock, 1000);
+
+    // SMOOTH STAT COUNTER ANIMATION
+    const statObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const target = parseInt(el.getAttribute('data-count') || el.textContent.replace(/\D/g, ''));
+          if (isNaN(target) || target === 0) return;
+          const suffix = el.textContent.replace(/[\d]/g, '').trim();
+          let current = 0;
+          const step = Math.max(1, Math.floor(target / 40));
+          const timer = setInterval(() => {
+            current += step;
+            if (current >= target) { current = target; clearInterval(timer); }
+            el.textContent = current + suffix;
+          }, 30);
+          statObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.stat-item h3').forEach(el => statObserver.observe(el));
+
+    // STAGGERED GRID REVEAL
+    const gridObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          gridObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.services-grid,.latest-grid,.insta-grid,.workflow-steps,.equip-grid').forEach(grid => {
+      gridObserver.observe(grid);
+      grid.querySelectorAll(':scope > *').forEach((child, i) => {
+        child.style.transitionDelay = (i * 0.1) + 's';
+      });
     });
   </script>
 </body>

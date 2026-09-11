@@ -1,546 +1,425 @@
 <!DOCTYPE html>
 <html lang="no">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Prosjekter – Solemsli Productions</title>
-<link rel="stylesheet" href="style.css">
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="Solemsli production.png">
+  <meta name="theme-color" content="#0180ff">
+  <link rel="manifest" href="manifest.json">
+  <meta name="description" content="Portefølje - Se foto, video og droneprosjekter fra Solemsli Productions. Bryllup, eventer og bedriftsproduksjoner.">
+  <meta property="og:title" content="Solemsli Productions | Portfolio" />
+  <meta property="og:description" content="Se mitt arbeid med foto, video og drone. Bryllup, eventer, konfirmasjon og mer." />
+  <meta property="og:image" content="https://rakso8080.github.io/Nettside-solemsliprod/uranustind.jpg" />
+<title>Portfolio – Solemsli Productions</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
 <style>
-/* --- VARIABLER OG MODUS --- */
-:root {
-  --main-blue: #0180ff;
-  --bg-gradient: linear-gradient(135deg, #dfebfc, #c3cfe2);
-  --text-color: #111;
-  --nav-bg: rgba(255, 255, 255, 0.15);
-  --glass-border: rgba(255, 255, 255, 0.2);
-  --modal-bg: rgba(0,0,0,0.9);
-}
+:root{--card-border:rgba(255,255,255,0.1)}
 
-[data-theme="dark"] {
-  --bg-gradient: linear-gradient(135deg, #1a1c20 0%, #0f1013 100%);
-  --text-color: #f5f5f5;
-  --nav-bg: rgba(0, 0, 0, 0.3);
-  --glass-border: rgba(255, 255, 255, 0.1);
-  --modal-bg: rgba(0,0,0,0.95);
-}
+.hero{position:relative;width:100%;height:70vh;min-height:400px;overflow:hidden;display:flex;align-items:flex-end}
+.hero img{width:100%;height:100%;object-fit:cover;object-position:center 30%;position:absolute;top:0;left:0}
+.hero-overlay{position:relative;z-index:2;padding:60px 40px 40px;background:linear-gradient(transparent,rgba(0,0,0,0.7));width:100%;color:white}
+.hero-overlay h1{font-size:3rem;margin:0 0 10px 0;font-weight:700;letter-spacing:-0.5px}
+.hero-overlay p{font-size:1.15rem;margin:0;opacity:0.9;max-width:600px;line-height:1.6}
 
-/* --- GRUNNLEGGENDE STIL --- */
-html, body {
-  max-width: 100%;
-  overflow-x: hidden;
-  margin: 0;
-  padding: 0;
-  scroll-behavior: smooth;
-}
+main{flex:1;padding:0;width:100%}
+.portfolio-section{padding:80px 40px;max-width:1200px;margin:0 auto}
+.section-header{margin-bottom:30px}
+.section-header h2{font-size:clamp(2rem,4vw,3.5rem);font-weight:700;letter-spacing:-1px;margin:0 0 8px 0}
+.section-header p{font-size:1rem;opacity:0.7;margin:0;color:var(--text-muted)}
 
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  font-family: 'Segoe UI', sans-serif;
-  background: var(--bg-gradient) fixed;
-  color: var(--text-color);
-  transition: background 0.3s ease, color 0.3s ease;
-  opacity: 0;
-  animation: fadeInBody 1s forwards;
-}
+.portfolio-grid{column-count:4;column-gap:12px}
+.portfolio-grid img{width:100%;display:block;border-radius:12px;margin-bottom:12px;break-inside:avoid;cursor:pointer;transition:transform .3s,filter .3s}
+.portfolio-grid img:hover{transform:scale(1.02);filter:brightness(1.1)}
 
-@keyframes fadeInBody {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
+.video-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:20px}
+.video-grid .video-wrapper{position:relative;border-radius:20px;overflow:hidden;box-shadow:0 20px 40px rgba(0,0,0,0.15);aspect-ratio:16/9;border:1px solid var(--glass-border)}
+.video-grid iframe{width:100%;height:100%;border:none}
+.shorts-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px}
+.shorts-grid .video-wrapper{position:relative;border-radius:16px;overflow:hidden;box-shadow:0 15px 30px rgba(0,0,0,0.15);aspect-ratio:9/16;border:1px solid var(--glass-border)}
+.shorts-grid iframe{width:100%;height:100%;border:none}
 
-/* BACK TO TOP KNAPP */
-#backToTop {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  width: 50px;
-  height: 50px;
-  background: var(--main-blue);
-  color: white;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  display: none;
-  font-size: 24px;
-  z-index: 1500;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-  transition: transform 0.3s, background 0.3s;
-}
+/* LIGHTBOX */
+.lightbox{position:fixed;inset:0;z-index:3000;display:none;align-items:center;justify-content:center;opacity:0;transition:opacity .3s ease}
+.lightbox.open{display:flex;opacity:1}
+.lightbox-backdrop{position:absolute;inset:0;background:rgba(0,0,0,0.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+.lightbox-content{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;max-width:90vw;max-height:85vh;animation:lbIn .4s cubic-bezier(.23,1,.32,1)}
+@keyframes lbIn{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}
+.lightbox-img{max-width:90vw;max-height:80vh;border-radius:12px;box-shadow:0 30px 60px rgba(0,0,0,0.5);object-fit:contain;user-select:none;-webkit-user-drag:none}
+.lightbox-close{position:absolute;top:20px;right:20px;z-index:10;width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:white;font-size:24px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.3s;backdrop-filter:blur(10px)}
+.lightbox-close:hover{background:rgba(255,255,255,0.2);transform:rotate(90deg)}
+.lightbox-nav{position:absolute;top:50%;transform:translateY(-50%);z-index:10;width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:white;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.3s;backdrop-filter:blur(10px)}
+.lightbox-nav:hover{background:var(--main-blue);border-color:var(--main-blue)}
+.lightbox-prev{left:20px}
+.lightbox-next{right:20px}
+.lightbox-caption{text-align:center;color:white;font-size:.9rem;font-weight:500;margin-top:15px;opacity:.8}
+.lightbox-counter{text-align:center;color:rgba(255,255,255,0.5);font-size:.8rem;margin-top:8px;font-weight:500}
 
-/* SCROLL PROGRESS BAR */
-#progress-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background: transparent;
-  z-index: 2000;
-}
-#progress-bar {
-  height: 100%;
-  background: var(--main-blue);
-  width: 0%;
-}
+/* FILTER TABS */
+.filter-tabs{display:flex;justify-content:center;gap:12px;padding:20px;flex-wrap:wrap;position:sticky;top:80px;z-index:100;background:var(--bg);backdrop-filter:blur(10px)}
+.filter-tab{background:var(--card-bg);border:1px solid var(--card-border,rgba(255,255,255,0.1));color:var(--text);padding:8px 20px;border-radius:30px;cursor:pointer;font-size:.85rem;font-weight:500;transition:all .3s}
+.filter-tab.active,.filter-tab:hover{background:var(--main-blue);color:white;border-color:var(--main-blue)}
+.portfolio-section.hidden{display:none}
 
-/* NAVIGATION */
-header {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  width: 100%;
-}
+/* VIDEO WRAPPER */
+.video-wrapper{position:relative;border-radius:16px;overflow:hidden;background:#000;aspect-ratio:16/9}
+.video-wrapper iframe{width:100%;height:100%;border:none}
+.video-wrapper::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,0.3);transition:opacity .3s;pointer-events:none}
+.video-wrapper:hover::after{opacity:0}
 
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 40px;
-  background: var(--nav-bg); 
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  border-bottom: 1px solid var(--glass-border);
-  box-sizing: border-box;
-}
-
-.logo { font-size: 1.6rem; font-weight: bold; color: var(--text-color); }
-
-.nav-links { display: flex; gap: 25px; list-style: none; margin: 0; padding: 0; align-items: center; }
-
-.nav-links li a { text-decoration: none; color: var(--text-color); font-weight: 500; font-size: 0.9rem; transition: color 0.3s; }
-
-.nav-links li a:hover,
-.nav-links .active { color: var(--main-blue); }
-
-/* MODUS-KNAPP */
-#theme-toggle {
-  background: var(--nav-bg);
-  border: 1px solid var(--glass-border);
-  color: var(--text-color);
-  padding: 8px 12px;
-  border-radius: 20px;
-  cursor: pointer;
-  font-size: 0.8rem;
-  transition: 0.3s;
-}
-#theme-toggle:hover { background: var(--main-blue); color: white; }
-
-/* --- Galleri --- */
-main {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 30px 10px;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.gallery-images {
-  display: flex;
-  gap: 15px;
-  justify-content: center;
-  flex-wrap: wrap;
-  width: 100%;
-  margin-bottom: 20px;
-}
-
-.gallery-images img, .gallery-images iframe {
-  width: 350px;
-  max-width: 100%;
-  height: 230px;
-  object-fit: cover;
-  border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-  cursor: pointer;
-  opacity: 0;
-  transform: translateY(20px);
-  border: none;
-  transition: opacity 0.8s ease, transform 0.1s ease-out;
-  will-change: transform;
-}
-
-/* Spesifikk stil for YouTube Shorts (stående format) */
-.shorts-video {
-  width: 250px !important;
-  height: 440px !important;
-}
-
-/* Blur-effekt for lazy loading */
-img[loading="lazy"] {
-  filter: blur(10px);
-  transition: filter 0.5s ease-in-out;
-}
-
-img.loaded {
-  filter: blur(0);
-}
-
-#top-focus { object-position: center 20% !important; }
-
-.gallery-images img.visible, .gallery-images iframe.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* --- Modal --- */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 3000;
-  left: 0; top: 0; width: 100%; height: 100%;
-  background-color: var(--modal-bg);
-  align-items: center;
-  justify-content: center;
-}
-.modal-content {
-  max-width: 95%;
-  max-height: 85vh;
-  border-radius: 8px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.5);
-}
-.modal.show { display: flex; }
-.close { position: absolute; top: 20px; right: 25px; color: #fff; font-size: 40px; cursor: pointer; }
-.caption { color: #fff; margin-top: 15px; font-size: 18px; text-align: center; width: 90%; }
-
-footer { width: 100%; text-align: center; padding: 30px 0; color: var(--text-color); opacity: 0.7; font-size: 14px; }
-
-/* --- MOBIL --- */
-@media (max-width: 750px) {
-  nav { flex-direction: column; padding: 15px; gap: 15px; }
-  .nav-links { gap: 15px; }
-  .gallery-images img, .gallery-images iframe { height: 200px; }
-  .shorts-video { width: 180px !important; height: 320px !important; }
-  .gallery-images img { transform: none !important; } 
-}
+@media(max-width:900px){.portfolio-grid{column-count:3}.video-grid{grid-template-columns:1fr}}
+@media(max-width:600px){.portfolio-grid{column-count:2}}
+@media(max-width:750px){.hero{height:50vh;min-height:300px}.hero-overlay h1{font-size:2rem}.portfolio-section{padding:60px 20px}.portfolio-grid{gap:12px}.portfolio-grid img{height:180px}.video-grid iframe{height:250px}.shorts-grid{grid-template-columns:repeat(2,1fr)}.shorts-grid iframe{height:280px}.lightbox-nav{width:40px;height:40px;font-size:18px}.lightbox-prev{left:10px}.lightbox-next{right:10px}.lightbox-close{width:40px;height:40px;font-size:20px;top:10px;right:10px}}
 </style>
 </head>
 <body>
 
-<div id="progress-container"><div id="progress-bar"></div></div>
+<div id="grain"></div>
+<div class="cursor-glow" id="cursor-glow"></div>
+<div id="progress-bar"></div>
 
-<button id="backToTop" onclick="scrollToTop()">↑</button>
+<!-- CUSTOM CURSOR -->
+<div class="custom-cursor" id="cursor"></div>
+<div class="custom-cursor-dot" id="cursor-dot"></div>
 
-<header>
+<header id="header">
+  <a href="index.html" class="logo">Solemsli Productions</a>
+  <div class="menu-toggle" onclick="this.classList.toggle('active');document.querySelector('nav').classList.toggle('active')"><span></span><span></span><span></span></div>
   <nav>
-    <div class="logo">Solemsli Productions</div>
-    <ul class="nav-links">
-      <li><a href="index.html">Hjem</a></li>
-      <li><a href="about.html">Om meg</a></li>
-      <li><a href="projects.html" class="active">Prosjekter</a></li>
-       <li><a href="prices.html">Priser</a></li>
-      <li><a href="contact.html">Kontakt</a></li>
-      <li><button id="theme-toggle">🌙 Mørk</button></li>
-    </ul>
+    <a href="index.html" data-no="Hjem" data-en="Home" data-de="Startseite">Hjem</a>
+    <a href="about.html" data-no="Om meg" data-en="About" data-de="Über mich">Om meg</a>
+    <a href="projects.html" class="active" data-no="Portfolio" data-en="Portfolio" data-de="Portfolio">Portfolio</a>
+    <a href="shop.html" data-no="Shop" data-en="Shop" data-de="Shop">Shop</a>
+    <a href="prices.html" data-no="Priser" data-en="Pricing" data-de="Preise">Priser</a>
+    <a href="contact.html" data-no="Kontakt" data-en="Contact" data-de="Kontakt">Kontakt</a>
+    <button class="nav-btn" id="lang-toggle">EN</button>
+    <button class="nav-btn" id="theme-toggle">☀️ Lys</button>
   </nav>
 </header>
 
-<main>
-<section class="projects">
-  <h1 style="text-align: center; margin-bottom: 30px;">Noen av mine prosjekter</h1>
-
-  <div class="gallery">
-    <div class="gallery-images">
-      <iframe src="https://www.youtube.com/embed/kihsArSq2S4" allowfullscreen></iframe>
-      <img src="bilde1.jpg" alt="Prosjekt" loading="lazy" onclick="openModal('modal1', '')">
-      <img src="bilde2.jpg" alt="Prosjekt" loading="lazy" onclick="openModal('modal2', '')">
-    </div>
-
-    <div class="gallery-images">
-      <img src="bilde3.jpg" alt="Prosjekt" loading="lazy" onclick="openModal('modal3', 'Tyin-Ultra')">
-      <iframe src="https://www.youtube.com/embed/bDoI1o90tz0" allowfullscreen></iframe>
-      <img src="bilde4.jpg" alt="Prosjekt" loading="lazy" onclick="openModal('modal4', '')">
-    </div>
-
-    <div class="gallery-images">
-      <iframe src="https://www.youtube.com/embed/dnu5sXuDk8k" allowfullscreen></iframe>
-      <iframe class="shorts-video" src="https://www.youtube.com/embed/zmlPOtFY9_8" allowfullscreen></iframe>
-      <iframe class="shorts-video" src="https://www.youtube.com/embed/ZRK-0-iUAj8" allowfullscreen></iframe>
-      <iframe class="shorts-video" src="https://www.youtube.com/embed/qyguQjbqtzk" allowfullscreen></iframe>
-      <iframe class="shorts-video" src="https://www.youtube.com/embed/V599osfVA9Y" allowfullscreen></iframe>
-      
-      <img src="bilde5.jpg" alt="Tyin-Ultra" loading="lazy" onclick="openModal('modal5', 'Tyin-Ultra 2023')">
-      <img src="bilde6.jpg" alt="Prosjekt" loading="lazy" onclick="openModal('modal6', '')">
-      <img src="bilde7.jpg" alt="Prosjekt" loading="lazy" onclick="openModal('modal7', '')">
-      <img src="bilde9.jpg" alt="Prosjekt" loading="lazy" onclick="openModal('modal9', '')">
-      <img src="bilde10.jpg" alt="Prosjekt" loading="lazy" onclick="openModal('modal10', '')">
-      <img src="bilde11.jpg" alt="Prosjekt" loading="lazy" onclick="openModal('modal11', '')">
-      <img src="bilde12.jpg" alt="Prosjekt" loading="lazy" onclick="openModal('modal12', '')">
-      <img src="bilde13.jpg" id="top-focus" alt="Prosjekt" loading="lazy" onclick="openModal('modal13', '')">
-      <img src="bilde14.jpg" alt="Prosjekt" loading="lazy" onclick="openModal('modal14', '')">
-    </div>
+<!-- HERO HEADER -->
+<section class="hero">
+  <img src="uranustind.jpg" alt="Portfolio header" id="hero-img">
+  <div class="hero-overlay">
+    <h1 data-no="Portfolio" data-en="Portfolio" data-de="Portfolio">Portfolio</h1>
+    <p data-no="Et utvalg av foto, video og droneprosjekter fra Innlandet og utover." data-en="A selection of photo, video and drone projects from Innlandet and beyond." data-de="Eine Auswahl an Foto-, Video- und Drohnenprojekten aus Innlandet und darüber hinaus.">Et utvalg av foto, video og droneprosjekter fra Innlandet og utover.</p>
   </div>
-
-    <h2 style="text-align:center; margin:40px 0 20px; font-size:1.4rem;">Bryllup</h2>
-    <div class="gallery-images">
-      <img src="gallery/bryllup/untitled-6005.jpg" alt="Bryllup" loading="lazy" onclick="openModal('modal1001', 'Bryllup')">
-      <img src="gallery/bryllup/untitled-6500.jpg" alt="Bryllup" loading="lazy" onclick="openModal('modal1002', 'Bryllup')">
-      <img src="gallery/bryllup/untitled-6900.jpg" alt="Bryllup" loading="lazy" onclick="openModal('modal1003', 'Bryllup')">
-      <img src="gallery/bryllup/untitled-7200.jpg" alt="Bryllup" loading="lazy" onclick="openModal('modal1004', 'Bryllup')">
-      <img src="gallery/bryllup/untitled-7350.jpg" alt="Bryllup" loading="lazy" onclick="openModal('modal1005', 'Bryllup')">
-    </div>
-    <h2 style="text-align:center; margin:40px 0 20px; font-size:1.4rem;">Konfirmasjon</h2>
-    <div class="gallery-images">
-      <img src="gallery/konfirmasjon/untitled-5010.jpg" alt="Konfirmasjon" loading="lazy" onclick="openModal('modal1006', 'Konfirmasjon')">
-      <img src="gallery/konfirmasjon/untitled-5193.jpg" alt="Konfirmasjon" loading="lazy" onclick="openModal('modal1007', 'Konfirmasjon')">
-      <img src="gallery/konfirmasjon/untitled-5439.jpg" alt="Konfirmasjon" loading="lazy" onclick="openModal('modal1008', 'Konfirmasjon')">
-      <img src="gallery/konfirmasjon/untitled-5574.jpg" alt="Konfirmasjon" loading="lazy" onclick="openModal('modal1009', 'Konfirmasjon')">
-      <img src="gallery/konfirmasjon/untitled-5649.jpg" alt="Konfirmasjon" loading="lazy" onclick="openModal('modal1010', 'Konfirmasjon')">
-    </div>
-    <h2 style="text-align:center; margin:40px 0 20px; font-size:1.4rem;">Oversiktsbilder hyttetomt</h2>
-    <div class="gallery-images">
-      <img src="gallery/ola-k/untitled--15.jpg" alt="Oversiktsbilder hyttetomt" loading="lazy" onclick="openModal('modal1011', 'Oversiktsbilder hyttetomt')">
-      <img src="gallery/ola-k/untitled--2.jpg" alt="Oversiktsbilder hyttetomt" loading="lazy" onclick="openModal('modal1012', 'Oversiktsbilder hyttetomt')">
-      <img src="gallery/ola-k/untitled--9.jpg" alt="Oversiktsbilder hyttetomt" loading="lazy" onclick="openModal('modal1013', 'Oversiktsbilder hyttetomt')">
-    </div>
-    <h2 style="text-align:center; margin:40px 0 20px; font-size:1.4rem;">Vang bygg – Oversikt</h2>
-    <div class="gallery-images">
-      <img src="gallery/vang-bygg-oversikt/untitled--10.jpg" alt="Vang bygg – Oversikt" loading="lazy" onclick="openModal('modal1014', 'Vang bygg – Oversikt')">
-      <img src="gallery/vang-bygg-oversikt/untitled--14.jpg" alt="Vang bygg – Oversikt" loading="lazy" onclick="openModal('modal1015', 'Vang bygg – Oversikt')">
-      <img src="gallery/vang-bygg-oversikt/untitled--2.jpg" alt="Vang bygg – Oversikt" loading="lazy" onclick="openModal('modal1016', 'Vang bygg – Oversikt')">
-      <img src="gallery/vang-bygg-oversikt/untitled--20.jpg" alt="Vang bygg – Oversikt" loading="lazy" onclick="openModal('modal1017', 'Vang bygg – Oversikt')">
-      <img src="gallery/vang-bygg-oversikt/untitled--6.jpg" alt="Vang bygg – Oversikt" loading="lazy" onclick="openModal('modal1018', 'Vang bygg – Oversikt')">
-    </div>
-    <h2 style="text-align:center; margin:40px 0 20px; font-size:1.4rem;">Vang kommune – Sentrum</h2>
-    <div class="gallery-images">
-      <img src="gallery/vang-kommune-sentrum/DJI_20250921114906_0193_D.jpg" alt="Vang kommune – Sentrum" loading="lazy" onclick="openModal('modal1019', 'Vang kommune – Sentrum')">
-      <img src="gallery/vang-kommune-sentrum/DJI_20250921115035_0195_D.jpg" alt="Vang kommune – Sentrum" loading="lazy" onclick="openModal('modal1020', 'Vang kommune – Sentrum')">
-      <img src="gallery/vang-kommune-sentrum/DJI_20250921115332_0198_D.jpg" alt="Vang kommune – Sentrum" loading="lazy" onclick="openModal('modal1021', 'Vang kommune – Sentrum')">
-      <img src="gallery/vang-kommune-sentrum/DJI_20250921115411_0201_D.jpg" alt="Vang kommune – Sentrum" loading="lazy" onclick="openModal('modal1022', 'Vang kommune – Sentrum')">
-      <img src="gallery/vang-kommune-sentrum/DJI_20251006083055_0205_D.jpg" alt="Vang kommune – Sentrum" loading="lazy" onclick="openModal('modal1023', 'Vang kommune – Sentrum')">
-      <img src="gallery/vang-kommune-sentrum/DJI_20251006084058_0212_D.jpg" alt="Vang kommune – Sentrum" loading="lazy" onclick="openModal('modal1024', 'Vang kommune – Sentrum')">
-      <img src="gallery/vang-kommune-sentrum/DJI_20251006084404_0221_D.jpg" alt="Vang kommune – Sentrum" loading="lazy" onclick="openModal('modal1025', 'Vang kommune – Sentrum')">
-      <img src="gallery/vang-kommune-sentrum/DJI_20251006085633_0225_D.jpg" alt="Vang kommune – Sentrum" loading="lazy" onclick="openModal('modal1026', 'Vang kommune – Sentrum')">
-      <img src="gallery/vang-kommune-sentrum/DJI_20251006091304_0231_D.jpg" alt="Vang kommune – Sentrum" loading="lazy" onclick="openModal('modal1027', 'Vang kommune – Sentrum')">
-      <img src="gallery/vang-kommune-sentrum/DJI_20251006091923_0234_D.jpg" alt="Vang kommune – Sentrum" loading="lazy" onclick="openModal('modal1028', 'Vang kommune – Sentrum')">
-      <img src="gallery/vang-kommune-sentrum/DJI_20251006092135_0238_D.jpg" alt="Vang kommune – Sentrum" loading="lazy" onclick="openModal('modal1029', 'Vang kommune – Sentrum')">
-      <img src="gallery/vang-kommune-sentrum/DJI_20251006092218_0241_D.jpg" alt="Vang kommune – Sentrum" loading="lazy" onclick="openModal('modal1030', 'Vang kommune – Sentrum')">
-      <img src="gallery/vang-kommune-sentrum/DJI_20251006093037_0243_D.jpg" alt="Vang kommune – Sentrum" loading="lazy" onclick="openModal('modal1031', 'Vang kommune – Sentrum')">
-      <img src="gallery/vang-kommune-sentrum/DJI_20251006095230_0248_D.jpg" alt="Vang kommune – Sentrum" loading="lazy" onclick="openModal('modal1032', 'Vang kommune – Sentrum')">
-      <img src="gallery/vang-kommune-sentrum/DJI_20251006095433_0251_D.jpg" alt="Vang kommune – Sentrum" loading="lazy" onclick="openModal('modal1033', 'Vang kommune – Sentrum')">
-      <img src="gallery/vang-kommune-sentrum/DJI_20251006095542_0253_D.jpg" alt="Vang kommune – Sentrum" loading="lazy" onclick="openModal('modal1034', 'Vang kommune – Sentrum')">
-      <img src="gallery/vang-kommune-sentrum/DJI_20251006102449_0256_D.jpg" alt="Vang kommune – Sentrum" loading="lazy" onclick="openModal('modal1035', 'Vang kommune – Sentrum')">
-    </div>
-    <h2 style="text-align:center; margin:40px 0 20px; font-size:1.4rem;">Vang kommune – Reklamefilm</h2>
-    <div class="gallery-images">
-      <img src="gallery/vang-reklamefilm/untitled-4532.jpg" alt="Vang kommune – Reklamefilm" loading="lazy" onclick="openModal('modal1036', 'Vang kommune – Reklamefilm')">
-      <img src="gallery/vang-reklamefilm/untitled-4536.jpg" alt="Vang kommune – Reklamefilm" loading="lazy" onclick="openModal('modal1037', 'Vang kommune – Reklamefilm')">
-      <img src="gallery/vang-reklamefilm/untitled-4538.jpg" alt="Vang kommune – Reklamefilm" loading="lazy" onclick="openModal('modal1038', 'Vang kommune – Reklamefilm')">
-      <img src="gallery/vang-reklamefilm/untitled-4547.jpg" alt="Vang kommune – Reklamefilm" loading="lazy" onclick="openModal('modal1039', 'Vang kommune – Reklamefilm')">
-      <img src="gallery/vang-reklamefilm/untitled-4548.jpg" alt="Vang kommune – Reklamefilm" loading="lazy" onclick="openModal('modal1040', 'Vang kommune – Reklamefilm')">
-      <img src="gallery/vang-reklamefilm/untitled-4550.jpg" alt="Vang kommune – Reklamefilm" loading="lazy" onclick="openModal('modal1041', 'Vang kommune – Reklamefilm')">
-      <img src="gallery/vang-reklamefilm/untitled-4557.jpg" alt="Vang kommune – Reklamefilm" loading="lazy" onclick="openModal('modal1042', 'Vang kommune – Reklamefilm')">
-      <img src="gallery/vang-reklamefilm/untitled-4559.jpg" alt="Vang kommune – Reklamefilm" loading="lazy" onclick="openModal('modal1043', 'Vang kommune – Reklamefilm')">
-    </div>
-    <h2 style="text-align:center; margin:40px 0 20px; font-size:1.4rem;">Vinjerock – Drone</h2>
-    <div class="gallery-images">
-      <img src="gallery/vinjerock-drone/untitled--16.jpg" alt="Vinjerock – Drone" loading="lazy" onclick="openModal('modal1044', 'Vinjerock – Drone')">
-      <img src="gallery/vinjerock-drone/untitled--2.jpg" alt="Vinjerock – Drone" loading="lazy" onclick="openModal('modal1045', 'Vinjerock – Drone')">
-      <img src="gallery/vinjerock-drone/untitled--9.jpg" alt="Vinjerock – Drone" loading="lazy" onclick="openModal('modal1046', 'Vinjerock – Drone')">
-    </div>
-    <h2 style="text-align:center; margin:40px 0 20px; font-size:1.4rem;">Vinjerock</h2>
-    <div class="gallery-images">
-      <img src="gallery/vinjerock/untitled-7604.jpg" alt="Vinjerock" loading="lazy" onclick="openModal('modal1047', 'Vinjerock')">
-      <img src="gallery/vinjerock/untitled-7610.jpg" alt="Vinjerock" loading="lazy" onclick="openModal('modal1048', 'Vinjerock')">
-      <img src="gallery/vinjerock/untitled-7624.jpg" alt="Vinjerock" loading="lazy" onclick="openModal('modal1049', 'Vinjerock')">
-      <img src="gallery/vinjerock/untitled-7639.jpg" alt="Vinjerock" loading="lazy" onclick="openModal('modal1050', 'Vinjerock')">
-      <img src="gallery/vinjerock/untitled-7648.jpg" alt="Vinjerock" loading="lazy" onclick="openModal('modal1051', 'Vinjerock')">
-      <img src="gallery/vinjerock/untitled-7654.jpg" alt="Vinjerock" loading="lazy" onclick="openModal('modal1052', 'Vinjerock')">
-      <img src="gallery/vinjerock/untitled-7799.jpg" alt="Vinjerock" loading="lazy" onclick="openModal('modal1053', 'Vinjerock')">
-      <img src="gallery/vinjerock/untitled-7812.jpg" alt="Vinjerock" loading="lazy" onclick="openModal('modal1054', 'Vinjerock')">
-    </div>
 </section>
+
+<!-- FILTER FANER -->
+<div class="filter-tabs">
+  <button class="filter-tab active" data-filter="all" data-no="Alle" data-en="All" data-de="Alle">Alle</button>
+  <button class="filter-tab" data-filter="foto" data-no="Foto" data-en="Photo" data-de="Foto">Foto</button>
+  <button class="filter-tab" data-filter="video" data-no="Video" data-en="Video" data-de="Video">Video</button>
+  <button class="filter-tab" data-filter="drone" data-no="Drone" data-en="Drone" data-de="Drohne">Drone</button>
+  <button class="filter-tab" data-filter="bryllup" data-no="Bryllup" data-en="Wedding" data-de="Hochzeit">Bryllup</button>
+  <button class="filter-tab" data-filter="event" data-no="Event" data-en="Event" data-de="Veranstaltung">Event</button>
+</div>
+
+<main>
+  <!-- SHOWREEL -->
+  <section class="portfolio-section reveal">
+    <div class="section-label" data-no="Showreel" data-en="Showreel" data-de="Showreel">Showreel</div>
+    <div class="section-header">
+      <h2 data-no="Min visuelle presentasjon" data-en="My visual showcase" data-de="Mein visuelles Portfolio">Min visuelle presentasjon</h2>
+      <p data-no="Min visuelle presentasjon av tidligere arbeid" data-en="A visual showcase of previous work" data-de="Ein visuelles Portfolio früherer Arbeiten">Min visuelle presentasjon av tidligere arbeid</p>
+    </div>
+    <div class="video-grid"><div class="video-wrapper"><iframe src="https://www.youtube.com/embed/SVARx16jTQg" loading="lazy" allowfullscreen></iframe></div></div>
+  </section>
+
+
+
+  <!-- PROSJEKTER -->
+  <section class="portfolio-section reveal" data-category="foto">
+    <div class="section-label" data-no="Foto" data-en="Photo" data-de="Foto">Foto</div>
+    <div class="section-header">
+      <h2 data-no="Prosjekter" data-en="Projects" data-de="Projekte">Prosjekter</h2>
+      <p data-no="Drone, foto og videoproduksjon" data-en="Drone, photo and video production" data-de="Drohne, Foto und Videoproduktion">Drone, foto og videoproduksjon</p>
+    </div>
+    <div class="portfolio-grid" id="grid-prosjekter">
+      <img src="bilde1.jpg" alt="Prosjekt" loading="lazy" data-section="Prosjekter">
+      <img src="bilde2.jpg" alt="Prosjekt" loading="lazy" data-section="Prosjekter">
+      <img src="bilde3.jpg" alt="Prosjekt" loading="lazy" data-section="Prosjekter">
+      <img src="bilde4.jpg" alt="Prosjekt" loading="lazy" data-section="Prosjekter">
+      <img src="bilde5.jpg" alt="Prosjekt" loading="lazy" data-section="Prosjekter">
+      <img src="bilde6.jpg" alt="Prosjekt" loading="lazy" data-section="Prosjekter">
+      <img src="bilde7.jpg" alt="Prosjekt" loading="lazy" data-section="Prosjekter">
+      <img src="bilde9.jpg" alt="Prosjekt" loading="lazy" data-section="Prosjekter">
+      <img src="bilde10.jpg" alt="Prosjekt" loading="lazy" data-section="Prosjekter">
+      <img src="bilde11.jpg" alt="Prosjekt" loading="lazy" data-section="Prosjekter">
+      <img src="bilde12.jpg" alt="Prosjekt" loading="lazy" data-section="Prosjekter">
+      <img src="bilde13.jpg" alt="Prosjekt" loading="lazy" data-section="Prosjekter">
+      <img src="bilde14.jpg" alt="Prosjekt" loading="lazy" data-section="Prosjekter">
+    </div>
+  </section>
+
+  <!-- VIDEOER -->
+  <section class="portfolio-section reveal" data-category="video">
+    <div class="section-label" data-no="Videoer" data-en="Videos" data-de="Videos">Videoer</div>
+    <div class="section-header">
+      <h2 data-no="Videoprosjekter" data-en="Video Projects" data-de="Videoprojekte">Videoprosjekter</h2>
+      <p data-no="Film og dronevideo" data-en="Film and drone video" data-de="Film und Drohnenvideo">Film og dronevideo</p>
+    </div>
+    <div class="video-grid">
+      <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/kihsArSq2S4" loading="lazy" allowfullscreen></iframe></div>
+      <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/bDoI1o90tz0" loading="lazy" allowfullscreen></iframe></div>
+      <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/dnu5sXuDk8k" loading="lazy" allowfullscreen></iframe></div>
+    </div>
+  </section>
+
+  <!-- SHORTS -->
+  <section class="portfolio-section reveal" data-category="video">
+    <div class="section-label" data-no="Shorts" data-en="Shorts" data-de="Shorts">Shorts</div>
+    <div class="section-header">
+      <h2 data-no="Shorts" data-en="Shorts" data-de="Shorts">Shorts</h2>
+      <p data-no="Korte klipp for sosiale medier" data-en="Short clips for social media" data-de="Kurze Clips für soziale Medien">Korte klipp for sosiale medier</p>
+    </div>
+    <div class="shorts-grid">
+      <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/zmlPOtFY9_8" loading="lazy" allowfullscreen></iframe></div>
+      <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/ZRK-0-iUAj8" loading="lazy" allowfullscreen></iframe></div>
+      <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/qyguQjbqtzk" loading="lazy" allowfullscreen></iframe></div>
+      <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/V599osfVA9Y" loading="lazy" allowfullscreen></iframe></div>
+    </div>
+  </section>
+
+  <!-- BRYLLUP -->
+  <section class="portfolio-section reveal" data-category="bryllup">
+    <div class="section-label" data-no="Bryllup" data-en="Weddings" data-de="Hochzeiten">Bryllup</div>
+    <div class="section-header">
+      <h2 data-no="Bryllup" data-en="Weddings" data-de="Hochzeiten">Bryllup</h2>
+      <p data-no="Profesjonell fotografering av bryllup" data-en="Professional wedding photography" data-de="Professionelle Hochzeitsfotografie">Profesjonell fotografering av bryllup</p>
+    </div>
+    <div class="portfolio-grid" id="grid-bryllup">
+      <img src="gallery/bryllup/untitled-6005.jpg" alt="Bryllup" loading="lazy" data-section="Bryllup">
+      <img src="gallery/bryllup/untitled-6500.jpg" alt="Bryllup" loading="lazy" data-section="Bryllup">
+      <img src="gallery/bryllup/untitled-6900.jpg" alt="Bryllup" loading="lazy" data-section="Bryllup">
+      <img src="gallery/bryllup/untitled-7200.jpg" alt="Bryllup" loading="lazy" data-section="Bryllup">
+      <img src="gallery/bryllup/untitled-7350.jpg" alt="Bryllup" loading="lazy" data-section="Bryllup">
+    </div>
+  </section>
+
+  <!-- KONFIRMASJON -->
+  <section class="portfolio-section reveal" data-category="bryllup">
+    <div class="section-label" data-no="Konfirmasjon" data-en="Confirmation" data-de="Konfirmation">Konfirmasjon</div>
+    <div class="section-header">
+      <h2 data-no="Konfirmasjon" data-en="Confirmation" data-de="Konfirmation">Konfirmasjon</h2>
+      <p data-no="Minneverdige øyeblikk fra konfirmasjoner" data-en="Memorable moments from confirmations" data-de="Unvergessliche Momente von Konfirmationen">Minneverdige øyeblikk fra konfirmasjoner</p>
+    </div>
+    <div class="portfolio-grid" id="grid-konfirmasjon">
+      <img src="gallery/konfirmasjon/untitled-5010.jpg" alt="Konfirmasjon" loading="lazy" data-section="Konfirmasjon">
+      <img src="gallery/konfirmasjon/untitled-5193.jpg" alt="Konfirmasjon" loading="lazy" data-section="Konfirmasjon">
+      <img src="gallery/konfirmasjon/untitled-5439.jpg" alt="Konfirmasjon" loading="lazy" data-section="Konfirmasjon">
+      <img src="gallery/konfirmasjon/untitled-5574.jpg" alt="Konfirmasjon" loading="lazy" data-section="Konfirmasjon">
+      <img src="gallery/konfirmasjon/untitled-5649.jpg" alt="Konfirmasjon" loading="lazy" data-section="Konfirmasjon">
+    </div>
+  </section>
+
+  <!-- DRONEBILDER -->
+  <section class="portfolio-section reveal" data-category="drone">
+    <div class="section-label" data-no="Drone" data-en="Drone" data-de="Drohne">Drone</div>
+    <div class="section-header">
+      <h2 data-no="Dronebilder" data-en="Aerial Photos" data-de="Drohnenbilder">Dronebilder</h2>
+      <p data-no="Oversiktsbilder og landskap fra lufta" data-en="Aerial shots and landscapes from above" data-de="Luftaufnahmen und Landschaften aus der Luft">Oversiktsbilder og landskap fra lufta</p>
+    </div>
+    <div class="portfolio-grid" id="grid-dronebilder">
+      <img src="gallery/ola-k/untitled--15.jpg" alt="Dronebilde" loading="lazy" data-section="Dronebilder">
+      <img src="gallery/ola-k/untitled--2.jpg" alt="Dronebilde" loading="lazy" data-section="Dronebilder">
+      <img src="gallery/ola-k/untitled--9.jpg" alt="Dronebilde" loading="lazy" data-section="Dronebilder">
+      <img src="gallery/vang-bygg-oversikt/untitled--10.jpg" alt="Vang bygg" loading="lazy" data-section="Dronebilder">
+      <img src="gallery/vang-bygg-oversikt/untitled--14.jpg" alt="Vang bygg" loading="lazy" data-section="Dronebilder">
+      <img src="gallery/vang-bygg-oversikt/untitled--2.jpg" alt="Vang bygg" loading="lazy" data-section="Dronebilder">
+      <img src="gallery/vang-bygg-oversikt/untitled--20.jpg" alt="Vang bygg" loading="lazy" data-section="Dronebilder">
+      <img src="gallery/vang-bygg-oversikt/untitled--6.jpg" alt="Vang bygg" loading="lazy" data-section="Dronebilder">
+    </div>
+  </section>
+
+  <!-- VANG KOMMUNE -->
+  <section class="portfolio-section reveal" data-category="drone">
+    <div class="section-label" data-no="Kommune" data-en="Municipality" data-de="Gemeinde">Kommune</div>
+    <div class="section-header">
+      <h2 data-no="Vang kommune" data-en="Vang municipality" data-de="Gemeinde Vang">Vang kommune</h2>
+      <p data-no="Droneoppdrag for Vang kommune – Sentrum og reklamefilm" data-en="Drone assignment for Vang municipality – Center and commercial" data-de="Drohneneinsatz für Gemeinde Vang – Zentrum und Werbefilm">Droneoppdrag for Vang kommune – Sentrum og reklamefilm</p>
+    </div>
+    <div class="portfolio-grid" id="grid-vangkommune">
+      <img src="gallery/vang-kommune-sentrum/DJI_20250921114906_0193_D.jpg" alt="Vang kommune" loading="lazy" data-section="Vang kommune">
+      <img src="gallery/vang-kommune-sentrum/DJI_20250921115035_0195_D.jpg" alt="Vang kommune" loading="lazy" data-section="Vang kommune">
+      <img src="gallery/vang-kommune-sentrum/DJI_20250921115332_0198_D.jpg" alt="Vang kommune" loading="lazy" data-section="Vang kommune">
+      <img src="gallery/vang-kommune-sentrum/DJI_20250921115411_0201_D.jpg" alt="Vang kommune" loading="lazy" data-section="Vang kommune">
+      <img src="gallery/vang-kommune-sentrum/DJI_20251006083055_0205_D.jpg" alt="Vang kommune" loading="lazy" data-section="Vang kommune">
+      <img src="gallery/vang-kommune-sentrum/DJI_20251006084058_0212_D.jpg" alt="Vang kommune" loading="lazy" data-section="Vang kommune">
+      <img src="gallery/vang-kommune-sentrum/DJI_20251006084404_0221_D.jpg" alt="Vang kommune" loading="lazy" data-section="Vang kommune">
+      <img src="gallery/vang-kommune-sentrum/DJI_20251006085633_0225_D.jpg" alt="Vang kommune" loading="lazy" data-section="Vang kommune">
+      <img src="gallery/vang-kommune-sentrum/DJI_20251006091304_0231_D.jpg" alt="Vang kommune" loading="lazy" data-section="Vang kommune">
+      <img src="gallery/vang-kommune-sentrum/DJI_20251006091923_0234_D.jpg" alt="Vang kommune" loading="lazy" data-section="Vang kommune">
+      <img src="gallery/vang-kommune-sentrum/DJI_20251006092135_0238_D.jpg" alt="Vang kommune" loading="lazy" data-section="Vang kommune">
+      <img src="gallery/vang-kommune-sentrum/DJI_20251006092218_0241_D.jpg" alt="Vang kommune" loading="lazy" data-section="Vang kommune">
+      <img src="gallery/vang-kommune-sentrum/DJI_20251006093037_0243_D.jpg" alt="Vang kommune" loading="lazy" data-section="Vang kommune">
+      <img src="gallery/vang-kommune-sentrum/DJI_20251006095230_0248_D.jpg" alt="Vang kommune" loading="lazy" data-section="Vang kommune">
+      <img src="gallery/vang-kommune-sentrum/DJI_20251006095433_0251_D.jpg" alt="Vang kommune" loading="lazy" data-section="Vang kommune">
+      <img src="gallery/vang-kommune-sentrum/DJI_20251006095542_0253_D.jpg" alt="Vang kommune" loading="lazy" data-section="Vang kommune">
+      <img src="gallery/vang-kommune-sentrum/DJI_20251006102449_0256_D.jpg" alt="Vang kommune" loading="lazy" data-section="Vang kommune">
+    </div>
+  </section>
+
+  <!-- VINJEROCK -->
+  <section class="portfolio-section reveal" data-category="event">
+    <div class="section-label" data-no="Vinjerock" data-en="Vinjerock" data-de="Vinjerock">Vinjerock</div>
+    <div class="section-header">
+      <h2 data-no="Vinjerock" data-en="Vinjerock" data-de="Vinjerock">Vinjerock</h2>
+      <p data-no="Fotografering og drone under Vinjerock festivalen" data-en="Photography and drone during Vinjerock festival" data-de="Fotografie und Drohne während des Vinjerock-Festivals">Fotografering og drone under Vinjerock festivalen</p>
+    </div>
+    <div class="portfolio-grid" id="grid-vinjerock">
+      <img src="gallery/vinjerock-drone/untitled--16.jpg" alt="Vinjerock drone" loading="lazy" data-section="Vinjerock">
+      <img src="gallery/vinjerock-drone/untitled--2.jpg" alt="Vinjerock drone" loading="lazy" data-section="Vinjerock">
+      <img src="gallery/vinjerock-drone/untitled--9.jpg" alt="Vinjerock drone" loading="lazy" data-section="Vinjerock">
+      <img src="gallery/vinjerock/untitled-7604.jpg" alt="Vinjerock" loading="lazy" data-section="Vinjerock">
+      <img src="gallery/vinjerock/untitled-7610.jpg" alt="Vinjerock" loading="lazy" data-section="Vinjerock">
+      <img src="gallery/vinjerock/untitled-7624.jpg" alt="Vinjerock" loading="lazy" data-section="Vinjerock">
+      <img src="gallery/vinjerock/untitled-7639.jpg" alt="Vinjerock" loading="lazy" data-section="Vinjerock">
+      <img src="gallery/vinjerock/untitled-7648.jpg" alt="Vinjerock" loading="lazy" data-section="Vinjerock">
+      <img src="gallery/vinjerock/untitled-7654.jpg" alt="Vinjerock" loading="lazy" data-section="Vinjerock">
+      <img src="gallery/vinjerock/untitled-7799.jpg" alt="Vinjerock" loading="lazy" data-section="Vinjerock">
+      <img src="gallery/vinjerock/untitled-7812.jpg" alt="Vinjerock" loading="lazy" data-section="Vinjerock">
+    </div>
+  </section>
 </main>
 
-<footer><p>© 2026 Solemsli Productions</p></footer>
+<footer>
+  <div class="footer-left">
+    <a href="index.html" class="logo">Solemsli Productions</a>
+    <p>© 2026 Solemsli Productions. Innlandet.</p>
+  </div>
+  <div class="footer-links">
+    <a href="https://www.instagram.com/solemsli_productions/" target="_blank">Instagram</a>
+    <a href="contact.html" data-no="Kontakt" data-en="Contact" data-de="Kontakt">Kontakt</a>
+    <a href="about.html" data-no="Om meg" data-en="About" data-de="Über mich">Om meg</a>
+  </div>
+</footer>
 
-<div id="modal1" class="modal"><span class="close" onclick="closeModal('modal1')">&times;</span><img src="bilde1.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal2" class="modal"><span class="close" onclick="closeModal('modal2')">&times;</span><img src="bilde2.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal3" class="modal"><span class="close" onclick="closeModal('modal3')">&times;</span><img src="bilde3.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal4" class="modal"><span class="close" onclick="closeModal('modal4')">&times;</span><img src="bilde4.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal5" class="modal"><span class="close" onclick="closeModal('modal5')">&times;</span><img src="bilde5.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal6" class="modal"><span class="close" onclick="closeModal('modal6')">&times;</span><img src="bilde6.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal7" class="modal"><span class="close" onclick="closeModal('modal7')">&times;</span><img src="bilde7.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal9" class="modal"><span class="close" onclick="closeModal('modal9')">&times;</span><img src="bilde9.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal10" class="modal"><span class="close" onclick="closeModal('modal10')">&times;</span><img src="bilde10.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal11" class="modal"><span class="close" onclick="closeModal('modal11')">&times;</span><img src="bilde11.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal12" class="modal"><span class="close" onclick="closeModal('modal12')">&times;</span><img src="bilde12.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal13" class="modal"><span class="close" onclick="closeModal('modal13')">&times;</span><img src="bilde13.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal14" class="modal"><span class="close" onclick="closeModal('modal14')">&times;</span><img src="bilde14.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1001" class="modal"><span class="close" onclick="closeModal('modal1001')">&times;</span><img src="gallery/bryllup/untitled-6005.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1002" class="modal"><span class="close" onclick="closeModal('modal1002')">&times;</span><img src="gallery/bryllup/untitled-6500.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1003" class="modal"><span class="close" onclick="closeModal('modal1003')">&times;</span><img src="gallery/bryllup/untitled-6900.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1004" class="modal"><span class="close" onclick="closeModal('modal1004')">&times;</span><img src="gallery/bryllup/untitled-7200.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1005" class="modal"><span class="close" onclick="closeModal('modal1005')">&times;</span><img src="gallery/bryllup/untitled-7350.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1006" class="modal"><span class="close" onclick="closeModal('modal1006')">&times;</span><img src="gallery/konfirmasjon/untitled-5010.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1007" class="modal"><span class="close" onclick="closeModal('modal1007')">&times;</span><img src="gallery/konfirmasjon/untitled-5193.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1008" class="modal"><span class="close" onclick="closeModal('modal1008')">&times;</span><img src="gallery/konfirmasjon/untitled-5439.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1009" class="modal"><span class="close" onclick="closeModal('modal1009')">&times;</span><img src="gallery/konfirmasjon/untitled-5574.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1010" class="modal"><span class="close" onclick="closeModal('modal1010')">&times;</span><img src="gallery/konfirmasjon/untitled-5649.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1011" class="modal"><span class="close" onclick="closeModal('modal1011')">&times;</span><img src="gallery/ola-k/untitled--15.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1012" class="modal"><span class="close" onclick="closeModal('modal1012')">&times;</span><img src="gallery/ola-k/untitled--2.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1013" class="modal"><span class="close" onclick="closeModal('modal1013')">&times;</span><img src="gallery/ola-k/untitled--9.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1014" class="modal"><span class="close" onclick="closeModal('modal1014')">&times;</span><img src="gallery/vang-bygg-oversikt/untitled--10.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1015" class="modal"><span class="close" onclick="closeModal('modal1015')">&times;</span><img src="gallery/vang-bygg-oversikt/untitled--14.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1016" class="modal"><span class="close" onclick="closeModal('modal1016')">&times;</span><img src="gallery/vang-bygg-oversikt/untitled--2.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1017" class="modal"><span class="close" onclick="closeModal('modal1017')">&times;</span><img src="gallery/vang-bygg-oversikt/untitled--20.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1018" class="modal"><span class="close" onclick="closeModal('modal1018')">&times;</span><img src="gallery/vang-bygg-oversikt/untitled--6.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1019" class="modal"><span class="close" onclick="closeModal('modal1019')">&times;</span><img src="gallery/vang-kommune-sentrum/DJI_20250921114906_0193_D.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1020" class="modal"><span class="close" onclick="closeModal('modal1020')">&times;</span><img src="gallery/vang-kommune-sentrum/DJI_20250921115035_0195_D.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1021" class="modal"><span class="close" onclick="closeModal('modal1021')">&times;</span><img src="gallery/vang-kommune-sentrum/DJI_20250921115332_0198_D.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1022" class="modal"><span class="close" onclick="closeModal('modal1022')">&times;</span><img src="gallery/vang-kommune-sentrum/DJI_20250921115411_0201_D.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1023" class="modal"><span class="close" onclick="closeModal('modal1023')">&times;</span><img src="gallery/vang-kommune-sentrum/DJI_20251006083055_0205_D.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1024" class="modal"><span class="close" onclick="closeModal('modal1024')">&times;</span><img src="gallery/vang-kommune-sentrum/DJI_20251006084058_0212_D.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1025" class="modal"><span class="close" onclick="closeModal('modal1025')">&times;</span><img src="gallery/vang-kommune-sentrum/DJI_20251006084404_0221_D.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1026" class="modal"><span class="close" onclick="closeModal('modal1026')">&times;</span><img src="gallery/vang-kommune-sentrum/DJI_20251006085633_0225_D.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1027" class="modal"><span class="close" onclick="closeModal('modal1027')">&times;</span><img src="gallery/vang-kommune-sentrum/DJI_20251006091304_0231_D.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1028" class="modal"><span class="close" onclick="closeModal('modal1028')">&times;</span><img src="gallery/vang-kommune-sentrum/DJI_20251006091923_0234_D.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1029" class="modal"><span class="close" onclick="closeModal('modal1029')">&times;</span><img src="gallery/vang-kommune-sentrum/DJI_20251006092135_0238_D.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1030" class="modal"><span class="close" onclick="closeModal('modal1030')">&times;</span><img src="gallery/vang-kommune-sentrum/DJI_20251006092218_0241_D.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1031" class="modal"><span class="close" onclick="closeModal('modal1031')">&times;</span><img src="gallery/vang-kommune-sentrum/DJI_20251006093037_0243_D.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1032" class="modal"><span class="close" onclick="closeModal('modal1032')">&times;</span><img src="gallery/vang-kommune-sentrum/DJI_20251006095230_0248_D.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1033" class="modal"><span class="close" onclick="closeModal('modal1033')">&times;</span><img src="gallery/vang-kommune-sentrum/DJI_20251006095433_0251_D.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1034" class="modal"><span class="close" onclick="closeModal('modal1034')">&times;</span><img src="gallery/vang-kommune-sentrum/DJI_20251006095542_0253_D.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1035" class="modal"><span class="close" onclick="closeModal('modal1035')">&times;</span><img src="gallery/vang-kommune-sentrum/DJI_20251006102449_0256_D.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1036" class="modal"><span class="close" onclick="closeModal('modal1036')">&times;</span><img src="gallery/vang-reklamefilm/untitled-4532.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1037" class="modal"><span class="close" onclick="closeModal('modal1037')">&times;</span><img src="gallery/vang-reklamefilm/untitled-4536.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1038" class="modal"><span class="close" onclick="closeModal('modal1038')">&times;</span><img src="gallery/vang-reklamefilm/untitled-4538.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1039" class="modal"><span class="close" onclick="closeModal('modal1039')">&times;</span><img src="gallery/vang-reklamefilm/untitled-4547.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1040" class="modal"><span class="close" onclick="closeModal('modal1040')">&times;</span><img src="gallery/vang-reklamefilm/untitled-4548.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1041" class="modal"><span class="close" onclick="closeModal('modal1041')">&times;</span><img src="gallery/vang-reklamefilm/untitled-4550.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1042" class="modal"><span class="close" onclick="closeModal('modal1042')">&times;</span><img src="gallery/vang-reklamefilm/untitled-4557.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1043" class="modal"><span class="close" onclick="closeModal('modal1043')">&times;</span><img src="gallery/vang-reklamefilm/untitled-4559.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1044" class="modal"><span class="close" onclick="closeModal('modal1044')">&times;</span><img src="gallery/vinjerock-drone/untitled--16.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1045" class="modal"><span class="close" onclick="closeModal('modal1045')">&times;</span><img src="gallery/vinjerock-drone/untitled--2.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1046" class="modal"><span class="close" onclick="closeModal('modal1046')">&times;</span><img src="gallery/vinjerock-drone/untitled--9.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1047" class="modal"><span class="close" onclick="closeModal('modal1047')">&times;</span><img src="gallery/vinjerock/untitled-7604.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1048" class="modal"><span class="close" onclick="closeModal('modal1048')">&times;</span><img src="gallery/vinjerock/untitled-7610.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1049" class="modal"><span class="close" onclick="closeModal('modal1049')">&times;</span><img src="gallery/vinjerock/untitled-7624.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1050" class="modal"><span class="close" onclick="closeModal('modal1050')">&times;</span><img src="gallery/vinjerock/untitled-7639.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1051" class="modal"><span class="close" onclick="closeModal('modal1051')">&times;</span><img src="gallery/vinjerock/untitled-7648.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1052" class="modal"><span class="close" onclick="closeModal('modal1052')">&times;</span><img src="gallery/vinjerock/untitled-7654.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1053" class="modal"><span class="close" onclick="closeModal('modal1053')">&times;</span><img src="gallery/vinjerock/untitled-7799.jpg" class="modal-content"><div class="caption"></div></div>
-<div id="modal1054" class="modal"><span class="close" onclick="closeModal('modal1054')">&times;</span><img src="gallery/vinjerock/untitled-7812.jpg" class="modal-content"><div class="caption"></div></div>
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-backdrop" id="lb-backdrop"></div>
+  <button class="lightbox-close" id="lb-close">&times;</button>
+  <button class="lightbox-nav lightbox-prev" id="lb-prev">&#8249;</button>
+  <button class="lightbox-nav lightbox-next" id="lb-next">&#8250;</button>
+  <div class="lightbox-content">
+    <img class="lightbox-img" id="lb-img" src="" alt="">
+    <div class="lightbox-caption" id="lb-caption"></div>
+    <div class="lightbox-counter" id="lb-counter"></div>
+  </div>
+</div>
 
 <script>
-// --- MØRK MODUS LOGIKK ---
-const themeToggle = document.getElementById('theme-toggle');
-const currentTheme = localStorage.getItem('theme');
+(function() {
+  // LIGHTBOX
+  const lightbox = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lb-img');
+  const lbCaption = document.getElementById('lb-caption');
+  const lbCounter = document.getElementById('lb-counter');
+  let currentImages = [];
+  let currentIndex = 0;
+  let currentSection = '';
 
-if (currentTheme === 'dark') {
-  document.documentElement.setAttribute('data-theme', 'dark');
-  themeToggle.textContent = "☀️ Lys";
-}
-
-themeToggle.addEventListener('click', () => {
-  let theme = document.documentElement.getAttribute('data-theme');
-  if (theme === 'dark') {
-    document.documentElement.setAttribute('data-theme', 'light');
-    localStorage.setItem('theme', 'light');
-    themeToggle.textContent = "🌙 Mørk";
-  } else {
-    document.documentElement.setAttribute('data-theme', 'dark');
-    localStorage.setItem('theme', 'dark');
-    themeToggle.textContent = "☀️ Lys";
+  function getImagesInSection(section) {
+    return Array.from(document.querySelectorAll('.portfolio-grid img[data-section="' + section + '"]'));
   }
-});
 
-// --- 3D HOVER PARALLAX ---
-const projectImages = document.querySelectorAll('.gallery-images img');
+  function openLightbox(img) {
+    currentSection = img.dataset.section;
+    currentImages = getImagesInSection(currentSection);
+    currentIndex = currentImages.indexOf(img);
+    updateLightbox();
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
 
-projectImages.forEach(img => {
-  img.addEventListener('mousemove', (e) => {
-    if (window.innerWidth < 750) return; 
-    const rect = img.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    
-    const rotateX = (y - centerY) / 10;
-    const rotateY = (centerX - x) / 10;
-    
-    img.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function updateLightbox() {
+    const img = currentImages[currentIndex];
+    lbImg.src = img.src;
+    lbImg.alt = img.alt;
+    lbCaption.textContent = img.alt || currentSection;
+    lbCounter.textContent = (currentIndex + 1) + ' av ' + currentImages.length;
+  }
+
+  function nextImage() {
+    currentIndex = (currentIndex + 1) % currentImages.length;
+    updateLightbox();
+  }
+
+  function prevImage() {
+    currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+    updateLightbox();
+  }
+
+  // Event delegation for all portfolio images
+  document.addEventListener('click', (e) => {
+    if (e.target.matches('.portfolio-grid img[data-section]')) {
+      openLightbox(e.target);
+    }
   });
-  
-  img.addEventListener('mouseleave', () => {
-    img.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)`;
-  });
-});
 
-// --- LAZY LOADING BLUR-EFFEKT ---
-projectImages.forEach(img => {
-  if (img.complete) {
-    img.classList.add('loaded');
-  } else {
-    img.addEventListener('load', () => {
-      img.classList.add('loaded');
+  document.getElementById('lb-close').addEventListener('click', closeLightbox);
+  document.getElementById('lb-backdrop').addEventListener('click', closeLightbox);
+  document.getElementById('lb-next').addEventListener('click', nextImage);
+  document.getElementById('lb-prev').addEventListener('click', prevImage);
+
+  // Keyboard
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight') nextImage();
+    if (e.key === 'ArrowLeft') prevImage();
+  });
+
+  // Touch swipe
+  let touchStartX = 0;
+  let touchEndX = 0;
+  lightbox.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+  lightbox.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    const diff = touchStartX - touchEndX;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) nextImage();
+      else prevImage();
+    }
+  }, { passive: true });
+
+  // PARALLAX HERO
+  window.addEventListener('scroll', () => {
+    const s = window.scrollY;
+    const img = document.getElementById('hero-img');
+    if (img && s < window.innerHeight) img.style.transform = 'scale(' + (1 + s * 0.0002) + ') translateY(' + (s * 0.3) + 'px)';
+  });
+
+  // FILTER TABS
+  document.querySelectorAll('.filter-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const f = tab.dataset.filter;
+      document.querySelectorAll('.portfolio-section[data-category]').forEach(sec => {
+        sec.classList.toggle('hidden', f !== 'all' && sec.dataset.category !== f);
+      });
+      document.querySelectorAll('.portfolio-section:not([data-category])').forEach(sec => {
+        sec.classList.remove('hidden');
+      });
     });
-  }
-});
-
-function scrollToTop() {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function openModal(modalId, captionText) {
-  let modal = document.getElementById(modalId);
-  modal.style.display = "flex";
-  modal.classList.add("show");
-  modal.querySelector(".caption").innerText = captionText;
-}
-
-function closeModal(modalId) {
-  let modal = document.getElementById(modalId);
-  modal.style.display = "none";
-  modal.classList.remove("show");
-}
-
-function onScrollFadeIn() {
-  document.querySelectorAll('.gallery-images img, .gallery-images iframe').forEach(function(el) {
-    const rect = el.getBoundingClientRect();
-    if (rect.top < window.innerHeight - 60) el.classList.add('visible');
   });
-}
-
-function updateProgressBar() {
-  let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-  let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  let scrolled = (winScroll / height) * 100;
-  document.getElementById("progress-bar").style.width = scrolled + "%";
-}
-
-window.addEventListener('scroll', () => {
-  onScrollFadeIn();
-  updateProgressBar();
-  let btn = document.getElementById("backToTop");
-  if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) {
-    btn.style.display = "block";
-  } else {
-    btn.style.display = "none";
-  }
-});
-
-window.addEventListener('DOMContentLoaded', () => {
-  onScrollFadeIn();
-  updateProgressBar();
-});
-
-window.onclick = function(event) {
-  if (event.target.className === 'modal show') {
-    event.target.style.display = "none";
-    event.target.classList.remove("show");
-  }
-}
-
-document.addEventListener('contextmenu', function(e) {
-  if (e.target.tagName === 'IMG') {
-    e.preventDefault();
-  }
-});
+})();
 </script>
+<script src="shared.js"></script>
 </body>
 </html>

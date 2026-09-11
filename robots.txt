@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /js/
+Disallow: /style.css
+
+Sitemap: https://rakso8080.github.io/Nettside-solemsliprod/sitemap.xml

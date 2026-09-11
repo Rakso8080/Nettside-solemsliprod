@@ -1,277 +1,257 @@
 <!DOCTYPE html>
 <html lang="no">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kontakt – Solemsli Productions</title>
-<link rel="stylesheet" href="style.css">
-<style>
-/* --- VARIABLER OG MODUS --- */
-:root {
-  --main-blue: #0180ff;
-  --bg-gradient: linear-gradient(135deg, #eef4fd, #c3cfe2);
-  --text-color: #111;
-  --nav-bg: rgba(255, 255, 255, 0.15);
-  --card-bg: rgba(255, 255, 255, 0.2);
-  --card-border: rgba(255, 255, 255, 0.3);
-  --footer-color: #666;
-}
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="Solemsli production.png">
+  <meta name="theme-color" content="#0180ff">
+  <link rel="manifest" href="manifest.json">
+  <meta name="description" content="Kontakt Solemsli Productions for foto, video og drone-tjenester. Svar innen 24 timer.">
+  <meta property="og:title" content="Solemsli Productions | Kontakt" />
+  <meta property="og:description" content="Ta kontakt med Solemsli Productions for foto, video og droneoppdrag i Innlandet." />
+  <meta property="og:image" content="https://rakso8080.github.io/Nettside-solemsliprod/uranustind.jpg" />
+  <title>Kontakt – Solemsli Productions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    /* PAGE-SPECIFIC — Contact */
+    body{padding-top:80px}
+    main{display:flex;justify-content:center;align-items:center;min-height:calc(100vh - 140px);padding:40px 20px;flex-direction:column;gap:40px}
+    .contact{background:var(--card-bg);border:1px solid var(--glass-border);border-radius:24px;padding:50px;text-align:center;max-width:550px;width:100%;position:relative;overflow:hidden;transition:all .5s cubic-bezier(.23,1,.32,1)}
+    .contact::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--main-blue),var(--accent))}
+    .contact:hover{border-color:rgba(1,128,255,0.3);transform:translateY(-8px);box-shadow:0 20px 40px rgba(0,0,0,0.1)}
+    .contact h1{font-size:2rem;font-weight:700;letter-spacing:-1px;margin-bottom:20px;background:linear-gradient(135deg,var(--main-blue),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 
-[data-theme="dark"] {
-  --bg-gradient: linear-gradient(135deg, #1a1c20 0%, #0f1013 100%);
-  --text-color: #f5f5f5;
-  --nav-bg: rgba(0, 0, 0, 0.3);
-  --card-bg: rgba(255, 255, 255, 0.05);
-  --card-border: rgba(255, 255, 255, 0.1);
-  --footer-color: #999;
-}
+    /* CONTACT OPTIONS */
+    .contact-options{display:flex;gap:16px;margin-bottom:30px;flex-wrap:wrap}
+    .contact-option{display:flex;align-items:center;gap:12px;background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:16px 20px;text-decoration:none;color:var(--text);transition:all .3s;flex:1;min-width:180px}
+    .contact-option:hover{border-color:var(--main-blue);transform:translateY(-3px)}
+    .contact-option-icon{font-size:1.5rem;width:45px;height:45px;background:var(--card-bg);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .contact-option strong{display:block;font-size:.9rem;margin-bottom:2px}
+    .contact-option span{font-size:.8rem;color:var(--text-muted)}
 
-/* --- Body & Layout --- */
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: var(--bg-gradient) fixed;
-  color: var(--text-color);
-  overflow-x: hidden;
-  transition: background 0.3s ease, color 0.3s ease;
-}
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
+    /* RESPONSE BADGE */
+    .response-badge{display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,rgba(1,128,255,0.1),rgba(0,212,255,0.05));border:1px solid rgba(1,128,255,0.2);border-radius:16px;padding:16px 20px;margin-bottom:24px}
+    .response-icon{font-size:1.8rem;width:50px;height:50px;background:var(--main-blue);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .response-text strong{display:block;font-size:.95rem;margin-bottom:2px}
+    .response-text span{font-size:.8rem;color:var(--text-muted)}
 
-/* SCROLL PROGRESS BAR */
-#progress-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background: transparent;
-  z-index: 2000;
-}
-#progress-bar {
-  height: 100%;
-  background: var(--main-blue);
-  width: 0%;
-}
+    /* FORM */
+    .form-group{position:relative;margin-bottom:28px}
+    .form-group input,.form-group textarea{width:100%;padding:14px 0;background:transparent;border:none;border-bottom:2px solid var(--card-border);color:var(--text);font-size:1rem;font-family:inherit;transition:border-color .3s;outline:none}
+    .form-group textarea{resize:vertical;min-height:100px}
+    .form-group label{position:absolute;top:14px;left:0;color:var(--text-muted);font-size:1rem;transition:all .3s;pointer-events:none}
+    .form-group input:focus+label,.form-group input:not(:placeholder-shown)+label,.form-group textarea:focus+label,.form-group textarea:not(:placeholder-shown)+label{top:-14px;font-size:.75rem;color:var(--main-blue)}
+    .form-line{position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--main-blue);transition:width .3s}
+    .form-group input:focus~.form-line,.form-group textarea:focus~.form-line{width:100%}
 
-/* --- Nav --- */
-header {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  width: 100%;
-}
+    /* SUBMIT BTN */
+    .submit-btn{display:flex;align-items:center;gap:10px;background:var(--main-blue);color:white;border:none;padding:14px 32px;border-radius:30px;font-size:1rem;font-weight:600;cursor:pointer;transition:all .3s;overflow:hidden}
+    .submit-btn:hover{background:#0066cc;transform:translateY(-2px);box-shadow:0 10px 30px rgba(1,128,255,0.3)}
+    .submit-arrow{transition:transform .3s}
+    .submit-btn:hover .submit-arrow{transform:translateX(4px)}
+    .submit-btn:active{transform:translateY(0)}
 
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 40px;
-  background: var(--nav-bg); 
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  border-bottom: 1px solid var(--card-border);
-  box-sizing: border-box;
-  opacity: 0;
-  transform: translateY(-30px);
-  animation: fadeInNav 1.2s 0.2s forwards;
-}
+    /* MAP */
+    .map-section{padding:60px 20px}
+    .map-container{max-width:800px;margin:0 auto}
+    #coverage-map{width:100%;height:500px;border-radius:20px;border:1px solid var(--card-border);overflow:hidden}
+    .map-popup{font-family:'Inter',sans-serif}
+    .map-popup strong{color:#0180ff}
 
-@keyframes fadeInNav {
-  to { opacity: 1; transform: translateY(0); }
-}
+    /* SECTION OVERRIDES */
+    .section{padding:40px 20px}
+    .section-label{font-size:.8rem;color:var(--main-blue);text-transform:uppercase;letter-spacing:2px;font-weight:600;margin-bottom:8px}
+    .section-title{font-size:1.8rem;font-weight:700;letter-spacing:-1px}
 
-.logo {
-  font-size: 1.6rem;
-  font-weight: bold;
-  color: var(--text-color);
-}
-
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 25px;
-  margin: 0;
-  padding: 0;
-  align-items: center;
-}
-.nav-links a {
-  text-decoration: none;
-  color: var(--text-color);
-  font-weight: 500;
-  font-size: 1rem;
-  transition: color 0.3s;
-}
-.nav-links a:hover,
-.nav-links .active {
-  color: var(--main-blue);
-}
-
-/* MODUS-KNAPP */
-#theme-toggle {
-  background: var(--nav-bg);
-  border: 1px solid var(--card-border);
-  color: var(--text-color);
-  padding: 8px 12px;
-  border-radius: 20px;
-  cursor: pointer;
-  font-size: 0.8rem;
-  transition: 0.3s;
-}
-#theme-toggle:hover {
-  background: var(--main-blue);
-  color: white;
-}
-
-/* --- Main kontaktkort --- */
-main {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 40px 20px;
-}
-.contact {
-  background: var(--card-bg);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  padding: 40px;
-  border-radius: 20px;
-  border: 1px solid var(--card-border);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  text-align: center;
-  max-width: 500px;
-  width: 100%;
-  animation: fadeInCard 1s ease forwards;
-  opacity: 0;
-}
-@keyframes fadeInCard {
-  from {opacity: 0; transform: translateY(20px);}
-  to {opacity: 1; transform: translateY(0);}
-}
-.contact h1 {
-  margin-bottom: 20px;
-  color: var(--main-blue);
-}
-.contact p {
-  font-size: 1.1rem;
-  margin: 20px 0;
-  line-height: 1.6;
-}
-.contact a {
-  color: var(--main-blue);
-  text-decoration: none;
-  font-weight: 600;
-  display: inline-block;
-  transition: color 0.3s, transform 0.2s;
-}
-.contact a:hover {
-  color: var(--main-blue);
-  opacity: 0.8;
-  transform: scale(1.05);
-}
-
-/* --- Footer --- */
-footer {
-  width: 100%;
-  text-align: center;
-  padding: 30px 0;
-  color: var(--footer-color);
-  font-size: 0.9rem;
-  margin-top: auto;
-}
-
-/* --- Responsive --- */
-@media screen and (max-width: 750px) {
-  nav { 
-    padding: 15px 20px; 
-    flex-direction: column;
-    gap: 15px;
-  }
-  .nav-links { gap: 15px; }
-}
-</style>
+    /* RESPONSIVE — PAGE-SPECIFIC */
+    @media(max-width:750px){.contact{padding:35px}main{padding:80px 20px}.contact-options{flex-direction:column}}
+  </style>
 </head>
 <body>
+  <!-- CUSTOM CURSOR -->
+  <div class="custom-cursor" id="cursor"></div>
+  <div class="custom-cursor-dot" id="cursor-dot"></div>
 
-<div id="progress-container">
+  <!-- GRAIN -->
+  <div id="grain"></div>
+
+  <!-- PROGRESS BAR -->
   <div id="progress-bar"></div>
-</div>
 
-<header>
-  <nav>
-    <div class="logo">Solemsli Productions</div>
-    <ul class="nav-links">
-      <li><a href="index.html">Hjem</a></li>
-      <li><a href="about.html">Om meg</a></li>
-      <li><a href="projects.html">Prosjekter</a></li>
-       <li><a href="prices.html">Priser</a></li>
-      <li><a href="contact.html" class="active">Kontakt</a></li>
-      <li><button id="theme-toggle">🌙 Mørk</button></li>
-    </ul>
-  </nav>
-</header>
+  <!-- CURSOR GLOW -->
+  <div class="cursor-glow" id="cursor-glow"></div>
 
-<main>
-  <section class="contact">
-    <h1>Kontakt meg!</h1>
-    
-    <p>📞 Ring eller SMS <br> 
-    <a href="tel:+4790560160">+47 905 60 160</a></p> 
-    
-    <p>📧 Send en e-post <br> 
-    <a href="mailto:rakso8080@gmail.com">rakso8080@gmail.com</a></p>
-    
-    <p>📸 Finn meg på Instagram <br> 
-    <a href="https://www.instagram.com/solemsli_productions/" target="_blank">@solemsli_productions</a></p>
+  <!-- HEADER -->
+  <header id="header">
+    <a href="index.html" class="logo">Solemsli Productions</a>
+    <div class="menu-toggle" onclick="this.classList.toggle('active');document.querySelector('nav').classList.toggle('active')"><span></span><span></span><span></span></div>
+    <nav>
+      <a href="index.html" data-no="Hjem" data-en="Home" data-de="Startseite">Hjem</a>
+      <a href="about.html" data-no="Om meg" data-en="About" data-de="Über mich">Om meg</a>
+      <a href="projects.html" data-no="Portfolio" data-en="Portfolio" data-de="Portfolio">Portfolio</a>
+      <a href="shop.html" data-no="Shop" data-en="Shop" data-de="Shop">Shop</a>
+      <a href="prices.html" data-no="Priser" data-en="Pricing" data-de="Preise">Priser</a>
+      <a href="contact.html" class="active" data-no="Kontakt" data-en="Contact" data-de="Kontakt">Kontakt</a>
+      <button class="nav-btn" id="lang-toggle">EN</button>
+      <button class="nav-btn" id="theme-toggle">☀️ Lys</button>
+    </nav>
+  </header>
+
+  <!-- MAIN -->
+  <main>
+    <section class="contact reveal">
+      <h1 data-no="Kontakt meg!" data-en="Contact Me!" data-de="Kontaktiere mich!">Kontakt meg!</h1>
+
+      <div class="response-badge">
+        <div class="response-icon">⚡</div>
+        <div class="response-text"><strong data-no="Svar innen 24 timer" data-en="Reply within 24 hours" data-de="Antwort innerhalb 24 Stunden">Svar innen 24 timer</strong><span data-no="Jeg svarer raskt på alle henvendelser" data-en="I respond quickly to all inquiries" data-de="Ich antworte schnell auf alle Anfragen">Jeg svarer raskt på alle henvendelser</span></div>
+      </div>
+
+      <div class="contact-options">
+        <a href="tel:+4790560160" class="contact-option"><div class="contact-option-icon">📞</div><div><strong data-no="Ring meg" data-en="Call me" data-de="Anrufen">Ring meg</strong><span>+47 905 60 160</span></div></a>
+        <a href="mailto:rakso8080@gmail.com" class="contact-option"><div class="contact-option-icon">✉️</div><div><strong data-no="Send e-post" data-en="Send email" data-de="E-Mail senden">Send e-post</strong><span>rakso8080@gmail.com</span></div></a>
+        <a href="https://www.instagram.com/solemsli_productions/" target="_blank" class="contact-option"><div class="contact-option-icon">💬</div><div><strong data-no="Instagram DM" data-en="Instagram DM" data-de="Instagram DM">Instagram DM</strong><span>@solemsli_productions</span></div></a>
+      </div>
+
+      <!-- TODO: Replace "placeholder" below with your actual Formspree form ID from formspree.io -->
+      <form id="contact-form" action="https://formspree.io/f/placeholder" method="POST">
+        <input type="hidden" name="_next" value="https://rakso8080.github.io/Nettside-solemsliprod/contact.html">
+        <div class="form-group">
+          <input type="text" id="name" placeholder=" " required>
+          <label for="name" data-no="Ditt navn" data-en="Your name" data-de="Ihr Name">Ditt navn</label>
+          <div class="form-line"></div>
+        </div>
+        <div class="form-group">
+          <input type="email" id="email" placeholder=" " required>
+          <label for="email" data-no="Din e-post" data-en="Your email" data-de="Ihre E-Mail">Din e-post</label>
+          <div class="form-line"></div>
+        </div>
+        <div class="form-group">
+          <input type="tel" id="phone" placeholder=" ">
+          <label for="phone" data-no="Telefon (valgfritt)" data-en="Phone (optional)" data-de="Telefon (optional)">Telefon (valgfritt)</label>
+          <div class="form-line"></div>
+        </div>
+        <div class="form-group">
+          <textarea id="message" placeholder=" " rows="4" required></textarea>
+          <label for="message" data-no="Din melding" data-en="Your message" data-de="Ihre Nachricht">Din melding</label>
+          <div class="form-line"></div>
+        </div>
+        <button type="submit" class="submit-btn"><span data-no="Send melding" data-en="Send message" data-de="Nachricht senden">Send melding</span><div class="submit-arrow">→</div></button>
+      </form>
+    </section>
+  </main>
+
+  <!-- KART -->
+  <section class="section map-section">
+      <div class="reveal"><div class="section-label" data-no="Hvor jeg opererer" data-en="Where I operate" data-de="Einsatzgebiet">Hvor jeg opererer</div><h2 class="section-title" data-no="Dekningsområde" data-en="Coverage area" data-de="Einsatzbereich">Dekningsområde</h2></div>
+    <div class="map-container reveal">
+      <div id="coverage-map"></div>
+      <p style="text-align:center;color:var(--text-muted);font-size:.9rem;margin-top:20px" data-no="Basert i Innlandet, men tar oppdrag over hele Norge." data-en="Based in Innlandet, but taking jobs across all of Norway." data-de="Basierend in Innlandet, aber ich übernehme Aufgaben in ganz Norwegen.">Basert i Innlandet, men tar oppdrag over hele Norge.</p>
+    </div>
   </section>
-</main>
 
-<footer>
-  <p>© 2026 Solemsli Productions</p>
-</footer>
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-left">
+      <a href="index.html" class="logo">Solemsli Productions</a>
+      <p>© 2026 Solemsli Productions. Innlandet.</p>
+    </div>
+    <div class="footer-links">
+      <a href="https://www.instagram.com/solemsli_productions/" target="_blank">Instagram</a>
+      <a href="contact.html" data-no="Kontakt" data-en="Contact" data-de="Kontakt">Kontakt</a>
+      <a href="about.html" data-no="Om meg" data-en="About" data-de="Über mich">Om meg</a>
+    </div>
+  </footer>
 
-<script>
-// --- DARK MODE LOGIKK ---
-const themeToggle = document.getElementById('theme-toggle');
-const currentTheme = localStorage.getItem('theme');
+  <script>
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+      contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const response = await fetch(contactForm.action, {
+          method: 'POST',
+          body: new FormData(contactForm),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (response.ok) {
+          contactForm.innerHTML = '<div style="text-align:center;padding:40px"><h3 data-no="Takk for din henvendelse!" data-en="Thank you!" data-de="Vielen Dank!">Takk for din henvendelse!</h3><p data-no="Jeg tar kontakt innen 24 timer." data-en="I will get back to you within 24 hours." data-de="Ich melde mich innerhalb von 24 Stunden.">Jeg tar kontakt innen 24 timer.</p></div>';
+        }
+      });
+    }
+  </script>
+  <script src="shared.js"></script>
+  <script>
+    // LEAFLET COVERAGE MAP
+    const map = L.map('coverage-map', {
+      center: [61.1, 8.5],
+      zoom: 7,
+      zoomControl: false,
+      attributionControl: false
+    });
+    L.control.zoom({ position: 'topright' }).addTo(map);
 
-if (currentTheme === 'dark') {
-  document.documentElement.setAttribute('data-theme', 'dark');
-  themeToggle.textContent = "☀️ Lys";
-}
+    // Dark tile layer
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      maxZoom: 19
+    }).addTo(map);
 
-themeToggle.addEventListener('click', () => {
-  let theme = document.documentElement.getAttribute('data-theme');
-  if (theme === 'dark') {
-    document.documentElement.setAttribute('data-theme', 'light');
-    localStorage.setItem('theme', 'light');
-    themeToggle.textContent = "🌙 Mørk";
-  } else {
-    document.documentElement.setAttribute('data-theme', 'dark');
-    localStorage.setItem('theme', 'dark');
-    themeToggle.textContent = "☀️ Lys";
-  }
-});
+    // Center marker — Vang
+    const marker = L.marker([61.125, 8.55]).addTo(map);
+    marker.bindPopup('<div class="map-popup"><strong>Solemsli Productions</strong><br>Vang, Innlandet<br>📍 Meg</div>').openPopup();
 
-// --- PROGRESS BAR LOGIKK ---
-function updateProgressBar() {
-  let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-  let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  if (height > 0) {
-    let scrolled = (winScroll / height) * 100;
-    document.getElementById("progress-bar").style.width = scrolled + "%";
-  }
-}
+    // Coverage circles — gradient from red (center) to cooler colors outward
+    const vang = [61.125, 8.55];
+    const circles = [
+      { r: 30000, color: '#ff3b3b', opacity: 0.25 },   // Rødt — Innlandet
+      { r: 80000, color: '#ff8c00', opacity: 0.18 },   // Oransje — omkringliggende
+      { r: 150000, color: '#ffc107', opacity: 0.12 },  // Gult
+      { r: 300000, color: '#4fc3f7', opacity: 0.08 },  // Lyst blått
+      { r: 500000, color: '#2196f3', opacity: 0.05 },  // Blått — langt unna
+    ];
+    circles.forEach(c => {
+      L.circle(vang, {
+        radius: c.r,
+        color: c.color,
+        fillColor: c.color,
+        fillOpacity: c.opacity,
+        weight: 1,
+        opacity: c.opacity * 1.5
+      }).addTo(map);
+    });
 
-window.addEventListener('scroll', updateProgressBar);
-window.addEventListener('DOMContentLoaded', updateProgressBar);
-</script>
-
+    // City markers
+    const cities = [
+      { name: 'Oslo', lat: 59.91, lng: 10.75 },
+      { name: 'Bergen', lat: 60.39, lng: 5.32 },
+      { name: 'Trondheim', lat: 63.43, lng: 10.39 },
+      { name: 'Tromsø', lat: 69.65, lng: 18.96 },
+      { name: 'Stavanger', lat: 58.97, lng: 5.73 },
+      { name: 'Hamar', lat: 60.80, lng: 11.07 },
+      { name: 'Lillehammer', lat: 61.11, lng: 10.47 },
+      { name: 'Gjøvik', lat: 60.80, lng: 10.69 },
+      { name: 'Elverum', lat: 60.88, lng: 11.56 },
+      { name: 'Brumunddal', lat: 60.88, lng: 10.94 },
+    ];
+    cities.forEach(c => {
+      L.circleMarker([c.lat, c.lng], {
+        radius: 5,
+        color: '#0180ff',
+        fillColor: '#0180ff',
+        fillOpacity: 0.7,
+        weight: 2
+      }).addTo(map).bindTooltip(c.name, { permanent: false, direction: 'top' });
+    });
+  </script>
 </body>
 </html>
