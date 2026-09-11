@@ -166,6 +166,10 @@
   .btn-download{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 20px;background:linear-gradient(135deg,var(--main-blue),#0055cc);color:white;border:none;border-radius:12px;font-size:.85rem;font-weight:600;text-decoration:none;cursor:pointer;transition:all .3s}
   .btn-download:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(1,128,255,0.3)}
 
+  /* CONFIRM PAID BUTTON */
+  .btn-pay-confirm{display:block;width:100%;padding:14px;margin-top:16px;background:linear-gradient(135deg,#22c55e,#16a34a);color:white;border:none;border-radius:30px;font-size:.95rem;font-weight:700;cursor:pointer;transition:all .3s;font-family:inherit}
+  .btn-pay-confirm:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(34,197,94,0.3)}
+
   /* TIPS SECTION */
   .tips-section{padding:40px 20px 80px;max-width:600px;margin:0 auto}
   .tips-card{background:var(--card-bg);border:1px solid var(--glass-border);border-radius:20px;padding:40px;text-align:center;position:relative;overflow:hidden}
@@ -745,20 +749,21 @@
       let downloadSection = '';
       if (digitalItems.length > 0) {
         const downloadButtons = digitalItems.map(item =>
-          `<a href="downloads/${item.downloadFile}" download class="btn-download">${item.name}</a>`
+          `<a href="downloads/${item.downloadFile}" download class="btn-download" onclick="event.stopPropagation()">${item.name}</a>`
         ).join('');
         downloadSection = `
-          <div class="download-section">
+          <div class="download-section" id="download-section" style="display:none">
             <div class="download-icon">⬇️</div>
             <h4>Last ned dine filer</h4>
-            <p>Klikk for å laste ned etter betaling:</p>
+            <p>Last ned filene dine under:</p>
             <div class="download-buttons">${downloadButtons}</div>
-          </div>`;
+          </div>
+          <button class="btn-pay-confirm" id="btn-confirm-paid" onclick="document.getElementById('download-section').style.display='block';this.style.display='none'">✅ Jeg har betalt — last ned</button>`;
       }
 
       overlay.innerHTML = `
         <div class="vipps-modal">
-          <div class="vipps-icon">✅</div>
+          <div class="vipps-icon">📦</div>
           <h3>Bestilling mottatt!</h3>
           <div class="vipps-total-display">${total} kr</div>
           ${paymentInfo}
