@@ -152,14 +152,7 @@
     overflow: hidden;
     transform-style: preserve-3d;
     perspective: 800px;
-    transition: transform .4s, opacity 0.4s cubic-bezier(0.23, 1, 0.32, 1), border-color 0.3s, box-shadow 0.3s;
-    opacity: 0;
-    transform: translateY(40px);
-  }
-
-  .product-card.visible {
-    opacity: 1;
-    transform: translateY(0);
+    transition: transform .4s, border-color 0.3s, box-shadow 0.3s;
   }
 
   .product-card:hover {
@@ -460,7 +453,16 @@
     .hero { padding: 140px 20px 60px; }
     .shop-section { padding: 0 20px 80px; }
     .products-grid { grid-template-columns: 1fr; }
+    .cta { padding: 60px 20px; }
   }
+
+  /* FORM GROUP — for checkout */
+  .form-group{position:relative;margin-bottom:20px}
+  .form-group input{width:100%;padding:14px 4px;background:transparent;border:none;border-bottom:2px solid var(--card-border);color:var(--text);font-size:1rem;font-family:inherit;transition:border-color .3s;outline:none}
+  .form-group label{position:absolute;top:14px;left:4px;color:var(--text-muted);font-size:1rem;transition:all .3s;pointer-events:none}
+  .form-group input:focus+label,.form-group input:not(:placeholder-shown)+label{top:-12px;font-size:.75rem;color:var(--main-blue)}
+  .form-line{position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--main-blue);transition:width .3s}
+  .form-group input:focus~.form-line{width:100%}
 
 
 

@@ -94,14 +94,14 @@ footer{padding:60px 40px;border-top:1px solid var(--glass-border);display:flex;j
   header{padding:15px 20px}
   header.scrolled{padding:12px 20px}
   nav{gap:15px}
-  nav a{font-size:.75rem}
+  nav a{font-size:1rem}
   .section{padding:80px 20px}
   footer{flex-direction:column;text-align:center}
   .menu-toggle{display:flex}
   nav{position:fixed;top:0;right:-100%;width:70%;height:100vh;background:rgba(10,10,10,0.98);backdrop-filter:blur(20px);flex-direction:column;justify-content:center;padding:40px;transition:right .4s cubic-bezier(.23,1,.32,1)}
   nav.active{right:0}
   nav a{font-size:1.2rem;padding:15px 0;border-bottom:1px solid rgba(255,255,255,0.05)}
-  .menu-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;z-index:1001}
+  .menu-toggle{display:flex;flex-direction:column;gap:5px;cursor:pointer;z-index:1001}
   .menu-toggle span{width:25px;height:2px;background:white;transition:.3s}
   .menu-toggle.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
   .menu-toggle.active span:nth-child(2){opacity:0}

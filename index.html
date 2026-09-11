@@ -221,8 +221,8 @@
     .cta::before{content:'';position:absolute;top:50%;left:50%;width:400px;height:400px;background:radial-gradient(circle,rgba(1,128,255,0.15) 0%,transparent 70%);transform:translate(-50%,-50%);pointer-events:none}
 
     /* STAGGERED GRID REVEAL */
-    .services-grid > *,.latest-grid > *,.insta-grid > *,.workflow-steps > *{opacity:0;transform:translateY(20px);transition:all .6s cubic-bezier(.23,1,.32,1)}
-    .services-grid.revealed > *,.latest-grid.revealed > *,.insta-grid.revealed > *,.workflow-steps.revealed > *{opacity:1;transform:translateY(0)}
+    .services-grid > *,.latest-grid > *,.insta-grid > *,.workflow-steps > *,.equip-grid > *{opacity:0;transform:translateY(20px);transition:all .6s cubic-bezier(.23,1,.32,1)}
+    .services-grid.revealed > *,.latest-grid.revealed > *,.insta-grid.revealed > *,.workflow-steps.revealed > *,.equip-grid.revealed > *{opacity:1;transform:translateY(0)}
 
     /* PARALLAX FADE ON SCROLL */
     .parallax-section{transition:transform .1s linear}
@@ -237,7 +237,31 @@
     .equip-card:hover{transform:rotateY(8deg) rotateX(-5deg) scale(1.02);box-shadow:0 20px 40px rgba(0,0,0,0.15)}
 
     /* RESPONSIVE (page-specific) */
-    @media(max-width:750px){.hero h1{letter-spacing:-1px}.hero-buttons{flex-direction:column;align-items:center}.workflow-steps::before{left:20px}.step-number{width:40px;height:40px;font-size:.9rem}.step-content{padding:25px}.stat-item h3{font-size:2rem}}
+    @media(max-width:900px){
+      .equip-grid{grid-template-columns:repeat(2,1fr)}
+      .insta-grid{grid-template-columns:repeat(3,1fr)}
+      .services-grid{gap:20px}
+      .stats-grid{gap:40px}
+    }
+    @media(max-width:750px){
+      .hero{min-height:auto;height:auto;min-height:100dvh;padding:120px 20px 80px}
+      .hero h1{letter-spacing:-1px;font-size:clamp(2rem,8vw,3.5rem)}
+      .hero-buttons{flex-direction:column;align-items:center}
+      .services-grid{grid-template-columns:1fr;gap:20px}
+      .equip-grid{grid-template-columns:1fr;gap:16px}
+      .equip-card{padding:20px}
+      .insta-grid{grid-template-columns:repeat(2,1fr);gap:4px}
+      .stats,.testimonials-section,.equipment,.faq,.newsletter,.cta,.instagram{padding:60px 20px}
+      .stats-grid{gap:30px;flex-direction:column;align-items:center}
+      .stat-item{min-width:0}
+      .workflow-steps::before{left:20px}
+      .step-number{width:40px;height:40px;font-size:.9rem}
+      .step-content{padding:25px}
+      .stat-item h3{font-size:2rem}
+      .service-card{padding:30px 25px;min-height:auto}
+      .testimonials-grid{grid-template-columns:1fr}
+      .cta h2{font-size:1.8rem}
+    }
   </style>
 </head>
 <body>
