@@ -125,6 +125,16 @@
   .checkout-total{display:flex;justify-content:space-between;font-weight:700;margin-bottom:20px}
   .btn-pay{width:100%;padding:16px;background:var(--main-blue);color:white;border:none;border-radius:30px;font-size:1rem;font-weight:600;cursor:pointer;margin-top:10px;transition:all .3s}
   .btn-pay:hover{background:#0066cc}
+  .checkout-modal{max-width:480px}
+
+  /* PAYMENT METHOD SELECTOR */
+  .pay-method-label{font-size:.8rem;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;margin:20px 0 10px}
+  .pay-methods{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px}
+  .pay-method{display:flex;flex-direction:column;align-items:center;gap:4px;padding:12px 8px;background:var(--card-bg);border:2px solid var(--card-border);border-radius:12px;cursor:pointer;transition:all .3s;font-family:inherit}
+  .pay-method:hover{border-color:rgba(1,128,255,0.3)}
+  .pay-method.active{border-color:var(--main-blue);background:rgba(1,128,255,0.08)}
+  .pay-method-icon{font-size:1.3rem}
+  .pay-method-name{font-size:.75rem;font-weight:600;color:var(--text)}
 
   /* VIPPS CONFIRMATION */
   .vipps-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.8);backdrop-filter:blur(8px);z-index:99999;display:flex;align-items:center;justify-content:center;padding:20px}
@@ -144,6 +154,8 @@
   .vipps-details{text-align:left;font-size:.8rem;color:var(--text-muted);line-height:1.8;margin-top:16px;padding-top:16px;border-top:1px solid var(--card-border)}
   .vipps-close-btn{margin-top:16px;background:none;border:1px solid var(--card-border);color:var(--text);padding:10px 24px;border-radius:30px;cursor:pointer;font-size:.85rem;font-weight:500;transition:.3s}
   .vipps-close-btn:hover{background:var(--card-bg)}
+  .crypto-qr{text-align:center;margin:12px 0}
+  .crypto-qr img{border:1px solid var(--card-border);background:white;padding:8px}
 
   /* TIPS SECTION */
   .tips-section{padding:40px 20px 80px;max-width:600px;margin:0 auto}
@@ -180,6 +192,11 @@
     .vipps-total-display{font-size:1.6rem}
     .vipps-open-btn{padding:14px;font-size:.95rem}
     .modal{margin:10px;max-width:calc(100% - 20px);padding:24px 20px}
+    .pay-methods{grid-template-columns:repeat(3,1fr);gap:6px}
+    .pay-method{padding:10px 6px}
+    .pay-method-icon{font-size:1.1rem}
+    .pay-method-name{font-size:.7rem}
+    .crypto-qr img{width:150px;height:150px}
   }
   }
 </style>
@@ -449,7 +466,7 @@
 
   <!-- CHECKOUT MODAL -->
   <div class="modal-overlay" id="checkout-overlay">
-    <div class="modal">
+    <div class="modal checkout-modal">
       <button class="modal-close" onclick="closeCheckout()">×</button>
       <h3 data-no="Kasse" data-en="Checkout" data-de="Kasse">Kasse</h3>
       <div id="checkout-items" class="checkout-items"></div>
@@ -459,7 +476,27 @@
         <div class="form-group"><input type="email" id="co-email" placeholder=" " required><label for="co-email">E-post</label><div class="form-line"></div></div>
         <div class="form-group"><input type="tel" id="co-phone" placeholder=" " required><label for="co-phone">Telefon</label><div class="form-line"></div></div>
         <div class="form-group"><input type="text" id="co-address" placeholder=" "><label for="co-address">Adresse (for frakt)</label><div class="form-line"></div></div>
-        <button type="submit" class="btn-pay" data-no="Betal med Vipps" data-en="Pay with Vipps" data-de="Mit Vipps bezahlen">Betal med Vipps</button>
+
+        <!-- PAYMENT METHOD SELECTOR -->
+        <div class="pay-method-label" data-no="Betalingsmåte" data-en="Payment method" data-de="Zahlungsmethode">Betalingsmåte</div>
+        <div class="pay-methods">
+          <button type="button" class="pay-method active" data-method="vipps">
+            <span class="pay-method-icon">💚</span>
+            <span class="pay-method-name">Vipps</span>
+          </button>
+          <button type="button" class="pay-method" data-method="crypto">
+            <span class="pay-method-icon">₿</span>
+            <span class="pay-method-name">Crypto</span>
+          </button>
+          <button type="button" class="pay-method" data-method="bank">
+            <span class="pay-method-icon">🏦</span>
+            <span class="pay-method-name" data-no="Bank" data-en="Bank" data-de="Bank">Bank</span>
+          </button>
+        </div>
+
+        <button type="submit" class="btn-pay" id="checkout-submit-btn">
+          <span data-no="Betal med Vipps" data-en="Pay with Vipps" data-de="Mit Vipps bezahlen">Betal med Vipps</span>
+        </button>
       </form>
     </div>
   </div>
@@ -581,6 +618,11 @@
     function closeCart() { document.getElementById('cartPanel').classList.remove('open'); document.getElementById('cartOverlay').classList.remove('open'); }
 
     // CHECKOUT
+    let selectedPayMethod = 'vipps';
+    const BTC_WALLET = 'DIN_BITCOIN_ADRESSE';
+    const BANK_ACCOUNT = 'DITT_KONTONUMMER';
+    const BANK_BIC = 'DITT_BIC';
+
     function openCheckout() {
       if (cart.length === 0) return;
       closeCart();
@@ -600,7 +642,28 @@
       if (e.target === e.currentTarget) closeCheckout();
     });
 
-    // CHECKOUT FORM → Vipps redirect
+    // PAYMENT METHOD SWITCHING
+    document.querySelectorAll('.pay-method').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.pay-method').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        selectedPayMethod = btn.dataset.method;
+        const submitBtn = document.getElementById('checkout-submit-btn');
+        const labels = {
+          vipps: { no: 'Betal med Vipps', en: 'Pay with Vipps', de: 'Mit Vipps bezahlen' },
+          crypto: { no: 'Betal med Crypto', en: 'Pay with Crypto', de: 'Mit Crypto bezahlen' },
+          bank: { no: 'Betal med Bankoverføring', en: 'Pay via Bank Transfer', de: 'Per Banküberweisung bezahlen' }
+        };
+        const l = labels[selectedPayMethod];
+        const activeLang = localStorage.getItem('lang') || 'no';
+        submitBtn.querySelector('span').textContent = l[activeLang] || l.no;
+        if (selectedPayMethod === 'vipps') submitBtn.style.background = 'linear-gradient(135deg,#6dd400,#4fa500)';
+        else if (selectedPayMethod === 'crypto') submitBtn.style.background = 'linear-gradient(135deg,#f7931a,#e2790e)';
+        else submitBtn.style.background = '';
+      });
+    });
+
+    // CHECKOUT FORM → Payment
     document.getElementById('checkout-form').addEventListener('submit', (e) => {
       e.preventDefault();
       const name = document.getElementById('co-name').value;
@@ -610,12 +673,13 @@
       const total = cart.reduce((sum, item) => sum + parseInt(item.price), 0);
       const itemList = cart.map(item => item.name).join(', ');
 
-      // Send order to Formspree (replace with your Formspree ID)
+      // Send order to Formspree (placeholder)
       fetch('https://formspree.io/f/placeholder-newsletter', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           _subject: 'Ny bestilling — Solemsli Productions',
+          betalingsmåte: selectedPayMethod,
           navn: name,
           epost: email,
           telefon: phone,
@@ -625,29 +689,89 @@
         })
       }).catch(() => {});
 
-      // Show Vipps payment instructions
       closeCheckout();
       const overlay = document.createElement('div');
       overlay.className = 'vipps-overlay';
-      const vippsDeepLink = `vipps://business/${VIPPS_NUMBER}?amount=${total}&message=${encodeURIComponent(name)}`;
-      overlay.innerHTML = `
-        <div class="vipps-modal">
-          <div class="vipps-icon">💚</div>
-          <h3>Betal med Vipps</h3>
-          <div class="vipps-total-display">${total} kr</div>
-          <div class="vipps-number-box">
-            <span id="vipps-num-display">${VIPPS_NUMBER}</span>
-            <button class="vipps-copy-btn" onclick="navigator.clipboard.writeText('${VIPPS_NUMBER}').then(()=>{this.textContent='Kopiert!';this.classList.add('copied');setTimeout(()=>{this.textContent='Kopier';this.classList.remove('copied')},2000)})">Kopier</button>
-          </div>
-          <a href="${vippsDeepLink}" class="vipps-open-btn" id="vipps-open">Åpne Vipps-appen</a>
-          <p class="vipps-note">Merk betalingen med: <strong>${name}</strong></p>
-          <div class="vipps-details">
-            <p>📦 Varer: ${itemList}</p>
-            <p>📧 E-post: ${email}</p>
-            ${address ? `<p>📍 Adresse: ${address}</p>` : ''}
-          </div>
-          <button class="vipps-close-btn" onclick="this.closest('.vipps-overlay').remove()">Forstått</button>
-        </div>`;
+
+      if (selectedPayMethod === 'vipps') {
+        const deepLink = `vipps://business/${VIPPS_NUMBER}?amount=${total}&message=${encodeURIComponent(name)}`;
+        overlay.innerHTML = `
+          <div class="vipps-modal">
+            <div class="vipps-icon">💚</div>
+            <h3>Betal med Vipps</h3>
+            <div class="vipps-total-display">${total} kr</div>
+            <div class="vipps-number-box">
+              <span>${VIPPS_NUMBER}</span>
+              <button class="vipps-copy-btn" onclick="navigator.clipboard.writeText('${VIPPS_NUMBER}').then(()=>{this.textContent='Kopiert!';this.classList.add('copied');setTimeout(()=>{this.textContent='Kopier';this.classList.remove('copied')},2000)})">Kopier</button>
+            </div>
+            <a href="${deepLink}" class="vipps-open-btn">Åpne Vipps-appen</a>
+            <p class="vipps-note">Merk betalingen med: <strong>${name}</strong></p>
+            <div class="vipps-details">
+              <p>📦 Varer: ${itemList}</p>
+              <p>📧 E-post: ${email}</p>
+              ${address ? `<p>📍 Adresse: ${address}</p>` : ''}
+            </div>
+            <button class="vipps-close-btn" onclick="this.closest('.vipps-overlay').remove()">Forstått</button>
+          </div>`;
+
+      } else if (selectedPayMethod === 'crypto') {
+        const btcAmount = (total / 1100000).toFixed(8);
+        overlay.innerHTML = `
+          <div class="vipps-modal">
+            <div class="vipps-icon">₿</div>
+            <h3>Betal med Crypto</h3>
+            <div class="vipps-total-display">${total} kr</div>
+            <p style="font-size:.8rem;color:var(--text-muted);margin-bottom:12px">Send Bitcoin til adressen under:</p>
+            <div class="crypto-qr" id="crypto-qr"></div>
+            <div class="vipps-number-box">
+              <span style="font-size:.85rem;word-break:break-all;letter-spacing:0">${BTC_WALLET}</span>
+              <button class="vipps-copy-btn" onclick="navigator.clipboard.writeText('${BTC_WALLET}').then(()=>{this.textContent='Kopiert!';this.classList.add('copied');setTimeout(()=>{this.textContent='Kopier';this.classList.remove('copied')},2000)})">Kopier</button>
+            </div>
+            <p class="vipps-note">Merk betalingen med navn: <strong>${name}</strong><br>Ta kontakt hvis du bruker annen krypto (ETH, USDT m.m.)</p>
+            <div class="vipps-details">
+              <p>📦 Varer: ${itemList}</p>
+              <p>📧 E-post: ${email}</p>
+              ${address ? `<p>📍 Adresse: ${address}</p>` : ''}
+            </div>
+            <button class="vipps-close-btn" onclick="this.closest('.vipps-overlay').remove()">Forstått</button>
+          </div>`;
+        document.body.appendChild(overlay);
+        // Generate QR code via API
+        const qrEl = document.getElementById('crypto-qr');
+        if (qrEl && BTC_WALLET !== 'DIN_BITCOIN_ADRESSE') {
+          qrEl.innerHTML = '<img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=bitcoin:' + BTC_WALLET + '?amount=' + btcAmount + '" alt="Bitcoin QR" style="width:180px;height:180px;border-radius:12px">';
+        } else if (qrEl) {
+          qrEl.innerHTML = '<p style="font-size:.75rem;color:var(--text-muted);padding:20px">Bitcoin-adresse ikke satt ennå</p>';
+        }
+        overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.remove(); });
+        cart = [];
+        updateCart();
+        return;
+
+      } else if (selectedPayMethod === 'bank') {
+        overlay.innerHTML = `
+          <div class="vipps-modal">
+            <div class="vipps-icon">🏦</div>
+            <h3>Bankoverføring</h3>
+            <div class="vipps-total-display">${total} kr</div>
+            <p style="font-size:.85rem;color:var(--text-muted);margin-bottom:12px">Overfør beløpet til kontoen under:</p>
+            <div class="vipps-number-box">
+              <div style="text-align:left;width:100%">
+                <div style="font-size:.7rem;color:var(--text-muted);margin-bottom:2px">Kontonummer</div>
+                <span style="font-size:1rem;letter-spacing:1px">${BANK_ACCOUNT}</span>
+              </div>
+              <button class="vipps-copy-btn" onclick="navigator.clipboard.writeText('${BANK_ACCOUNT}').then(()=>{this.textContent='Kopiert!';this.classList.add('copied');setTimeout(()=>{this.textContent='Kopier';this.classList.remove('copied')},2000)})">Kopier</button>
+            </div>
+            <p class="vipps-note">Merk overføringen med: <strong>${name}</strong><br>Varer sendes etter at betalingen er mottatt.</p>
+            <div class="vipps-details">
+              <p>📦 Varer: ${itemList}</p>
+              <p>📧 E-post: ${email}</p>
+              ${address ? `<p>📍 Adresse: ${address}</p>` : ''}
+            </div>
+            <button class="vipps-close-btn" onclick="this.closest('.vipps-overlay').remove()">Forstått</button>
+          </div>`;
+      }
+
       document.body.appendChild(overlay);
       overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.remove(); });
       cart = [];
@@ -655,26 +779,66 @@
     });
 
     // TIPS / DONASJON
+    let tipsPayMethod = 'vipps';
     function openTips() {
       playCheckout();
       const overlay = document.createElement('div');
       overlay.className = 'vipps-overlay';
-      const vippsDeepLink = `vipps://business/${VIPPS_NUMBER}?message=Tips`;
       overlay.innerHTML = `
-        <div class="vipps-modal">
-          <div class="vipps-icon">💚</div>
+        <div class="vipps-modal tips-modal-content">
+          <div class="vipps-icon">☕</div>
           <h3>Tusen takk!</h3>
-          <p style="margin:8px 0 0" data-no="Send et valgfritt beløp via Vipps." data-en="Send any amount via Vipps." data-de="Senden Sie einen beliebigen Betrag per Vipps.">Send et valgfritt beløp via Vipps.</p>
-          <div class="vipps-number-box">
-            <span>${VIPPS_NUMBER}</span>
-            <button class="vipps-copy-btn" onclick="navigator.clipboard.writeText('${VIPPS_NUMBER}').then(()=>{this.textContent='Kopiert!';this.classList.add('copied');setTimeout(()=>{this.textContent='Kopier';this.classList.remove('copied')},2000)})">Kopier</button>
+          <p style="margin:8px 0 12px;font-size:.9rem;color:var(--text-muted)">Send et valgfritt beløp — tusen takk for støtten!</p>
+          <div class="pay-methods" style="margin-bottom:16px">
+            <button type="button" class="pay-method active" data-tmethod="vipps" onclick="tipsPayMethod='vipps';document.querySelectorAll('.tips-modal-content .pay-method').forEach(b=>b.classList.remove('active'));this.classList.add('active');updateTipsContent()">
+              <span class="pay-method-icon">💚</span><span class="pay-method-name">Vipps</span>
+            </button>
+            <button type="button" class="pay-method" data-tmethod="crypto" onclick="tipsPayMethod='crypto';document.querySelectorAll('.tips-modal-content .pay-method').forEach(b=>b.classList.remove('active'));this.classList.add('active');updateTipsContent()">
+              <span class="pay-method-icon">₿</span><span class="pay-method-name">Crypto</span>
+            </button>
+            <button type="button" class="pay-method" data-tmethod="bank" onclick="tipsPayMethod='bank';document.querySelectorAll('.tips-modal-content .pay-method').forEach(b=>b.classList.remove('active'));this.classList.add('active');updateTipsContent()">
+              <span class="pay-method-icon">🏦</span><span class="pay-method-name">Bank</span>
+            </button>
           </div>
-          <a href="${vippsDeepLink}" class="vipps-open-btn">Åpne Vipps-appen</a>
-          <p class="vipps-note" data-no="Hvert bidrag hjelper meg å fortsette å skape innhold og utvikle meg som fotograf." data-en="Every contribution helps me continue creating content and developing as a photographer." data-de="Jeder Beitrag hilft mir, weiter Inhalte zu erstellen und mich als Fotograf zu entwickeln.">Hvert bidrag hjelper meg å fortsette å skape innhold og utvikle meg som fotograf.</p>
-          <button class="vipps-close-btn" onclick="this.closest('.vipps-overlay').remove()" data-no="Forstått" data-en="Got it" data-de="Verstanden">Forstått</button>
+          <div id="tips-pay-content">
+            <div class="vipps-number-box">
+              <span>${VIPPS_NUMBER}</span>
+              <button class="vipps-copy-btn" onclick="navigator.clipboard.writeText('${VIPPS_NUMBER}').then(()=>{this.textContent='Kopiert!';this.classList.add('copied');setTimeout(()=>{this.textContent='Kopier';this.classList.remove('copied')},2000)})">Kopier</button>
+            </div>
+            <a href="vipps://business/${VIPPS_NUMBER}?message=Tips" class="vipps-open-btn">Åpne Vipps-appen</a>
+          </div>
+          <p class="vipps-note">Hvert bidrag hjelper meg å fortsette å skape innhold og utvikle meg som fotograf.</p>
+          <button class="vipps-close-btn" onclick="this.closest('.vipps-overlay').remove()">Forstått</button>
         </div>`;
       document.body.appendChild(overlay);
       overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.remove(); });
+    }
+    function updateTipsContent() {
+      const container = document.getElementById('tips-pay-content');
+      if (!container) return;
+      if (tipsPayMethod === 'vipps') {
+        container.innerHTML = `
+          <div class="vipps-number-box"><span>${VIPPS_NUMBER}</span>
+            <button class="vipps-copy-btn" onclick="navigator.clipboard.writeText('${VIPPS_NUMBER}').then(()=>{this.textContent='Kopiert!';this.classList.add('copied');setTimeout(()=>{this.textContent='Kopier';this.classList.remove('copied')},2000)})">Kopier</button>
+          </div>
+          <a href="vipps://business/${VIPPS_NUMBER}?message=Tips" class="vipps-open-btn">Åpne Vipps-appen</a>`;
+      } else if (tipsPayMethod === 'crypto') {
+        container.innerHTML = `
+          <p style="font-size:.8rem;color:var(--text-muted);margin-bottom:8px">Send Bitcoin til adressen under:</p>
+          <div class="crypto-qr" style="margin:8px 0"><img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=bitcoin:${BTC_WALLET}" alt="Bitcoin QR" style="width:150px;height:150px;border-radius:12px;border:1px solid var(--card-border);background:white;padding:6px"></div>
+          <div class="vipps-number-box"><span style="font-size:.85rem;word-break:break-all;letter-spacing:0">${BTC_WALLET}</span>
+            <button class="vipps-copy-btn" onclick="navigator.clipboard.writeText('${BTC_WALLET}').then(()=>{this.textContent='Kopiert!';this.classList.add('copied');setTimeout(()=>{this.textContent='Kopier';this.classList.remove('copied')},2000)})">Kopier</button>
+          </div>
+          <p style="font-size:.75rem;color:var(--text-muted);margin-top:6px">Ta kontakt for ETH, USDT eller annen krypto.</p>`;
+      } else if (tipsPayMethod === 'bank') {
+        container.innerHTML = `
+          <div class="vipps-number-box">
+            <div style="text-align:left;width:100%"><div style="font-size:.7rem;color:var(--text-muted);margin-bottom:2px">Kontonummer</div><span style="font-size:1rem;letter-spacing:1px">${BANK_ACCOUNT}</span></div>
+            <button class="vipps-copy-btn" onclick="navigator.clipboard.writeText('${BANK_ACCOUNT}').then(()=>{this.textContent='Kopiert!';this.classList.add('copied');setTimeout(()=>{this.textContent='Kopier';this.classList.remove('copied')},2000)})">Kopier</button>
+          </div>
+          <p style="font-size:.75rem;color:var(--text-muted);margin-top:6px">Merk betalingen med navnet ditt.</p>`;
+      }
+      }
     }
 
     // HERO TEXT SPLIT (word-by-word)
