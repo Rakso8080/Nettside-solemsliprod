@@ -157,6 +157,15 @@
   .crypto-qr{text-align:center;margin:12px 0}
   .crypto-qr img{border:1px solid var(--card-border);background:white;padding:8px}
 
+  /* DOWNLOAD SECTION */
+  .download-section{margin-top:20px;padding-top:20px;border-top:1px solid var(--card-border);text-align:center}
+  .download-icon{font-size:2rem;margin-bottom:8px}
+  .download-section h4{font-size:1rem;font-weight:700;margin-bottom:4px}
+  .download-section p{font-size:.8rem;color:var(--text-muted);margin-bottom:12px}
+  .download-buttons{display:flex;flex-direction:column;gap:8px}
+  .btn-download{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 20px;background:linear-gradient(135deg,var(--main-blue),#0055cc);color:white;border:none;border-radius:12px;font-size:.85rem;font-weight:600;text-decoration:none;cursor:pointer;transition:all .3s}
+  .btn-download:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(1,128,255,0.3)}
+
   /* TIPS SECTION */
   .tips-section{padding:40px 20px 80px;max-width:600px;margin:0 auto}
   .tips-card{background:var(--card-bg);border:1px solid var(--glass-border);border-radius:20px;padding:40px;text-align:center;position:relative;overflow:hidden}
@@ -258,7 +267,7 @@
           <p>Profesjonelle fargeinnstillinger for DaVinci Resolve. 10+ powergrades for å raskt sette et kinematisk preg på videoene dine.</p>
           <div class="product-footer">
             <div class="product-price">349 <span class="currency">kr</span></div>
-            <button class="btn-buy" onclick="addToCart('Cinematic Powergrade Pack', '349 kr')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
+            <button class="btn-buy" onclick="addToCart('Cinematic Powergrade Pack', '349 kr', 'powergrades', 'cinematic-powergrade-pack.zip')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
           </div>
         </div>
       </div>
@@ -275,7 +284,7 @@
           <p>Kald, filmatisk look med blå toner. Perfekt for natur og droneopptak.</p>
           <div class="product-footer">
             <div class="product-price">149 <span class="currency">kr</span></div>
-            <button class="btn-buy" onclick="addToCart('Cinematic Blue', '149 kr')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
+            <button class="btn-buy" onclick="addToCart('Cinematic Blue', '149 kr', 'lut', 'cinematic-blue.zip')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
           </div>
         </div>
       </div>
@@ -291,7 +300,7 @@
           <p>Varme, gyldne toner som gir en koselig og innbydende atmosfære.</p>
           <div class="product-footer">
             <div class="product-price">149 <span class="currency">kr</span></div>
-            <button class="btn-buy" onclick="addToCart('Warm Sunset', '149 kr')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
+            <button class="btn-buy" onclick="addToCart('Warm Sunset', '149 kr', 'lut', 'warm-sunset.zip')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
           </div>
         </div>
       </div>
@@ -308,7 +317,7 @@
           <p>Mørk og dramatisk look med høy kontrast. Ideelt for action og event.</p>
           <div class="product-footer">
             <div class="product-price">149 <span class="currency">kr</span></div>
-            <button class="btn-buy" onclick="addToCart('Moody Dark', '149 kr')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
+            <button class="btn-buy" onclick="addToCart('Moody Dark', '149 kr', 'lut', 'moody-dark.zip')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
           </div>
         </div>
       </div>
@@ -325,7 +334,7 @@
           <p>Alle tre LUT-ene i én pakke. Perfekt for deg som vil ha variasjon.</p>
           <div class="product-footer">
             <div class="product-price">269 <span class="currency">kr</span></div>
-            <button class="btn-buy" onclick="addToCart('LUT Pack', '269 kr')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
+            <button class="btn-buy" onclick="addToCart('LUT Pack', '269 kr', 'lut', 'lut-pack.zip')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
           </div>
         </div>
       </div>
@@ -341,7 +350,7 @@
           <p>Lightroom-preset for natur- og landskapsbilder med nordisk estetikk.</p>
           <div class="product-footer">
             <div class="product-price">99 <span class="currency">kr</span></div>
-            <button class="btn-buy" onclick="addToCart('Nordic Tone', '99 kr')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
+            <button class="btn-buy" onclick="addToCart('Nordic Tone', '99 kr', 'lut', 'nordic-tone.zip')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
           </div>
         </div>
       </div>
@@ -357,7 +366,7 @@
           <p>Presets optimalisert for portrett- og bryllupsfotografering.</p>
           <div class="product-footer">
             <div class="product-price">99 <span class="currency">kr</span></div>
-            <button class="btn-buy" onclick="addToCart('Portrait Pro', '99 kr')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
+            <button class="btn-buy" onclick="addToCart('Portrait Pro', '99 kr', 'lut', 'portrait-pro.zip')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
           </div>
         </div>
       </div>
@@ -591,8 +600,8 @@
     let cart = [];
     // TODO: Replace with your Vipps number or payment link from vipps.no
     const VIPPS_NUMBER = '65829';
-    function addToCart(name, price) {
-      cart.push({ name, price });
+    function addToCart(name, price, category, downloadFile) {
+      cart.push({ name, price, category: category || '', downloadFile: downloadFile || '' });
       updateCart();
       playAddToCart();
       openCart();
@@ -619,7 +628,7 @@
 
     // CHECKOUT
     let selectedPayMethod = 'vipps';
-    const BTC_WALLET = 'DIN_BITCOIN_ADRESSE';
+    const BTC_WALLET = 'bc1pygw2tw0xus8vv4wawhh63zqdpwmfw3xkll5pqwv80eh83tr59d8qlewujt';
     const BANK_ACCOUNT = 'DITT_KONTONUMMER';
     const BANK_BIC = 'DITT_BIC';
 
@@ -673,6 +682,14 @@
       const total = cart.reduce((sum, item) => sum + parseInt(item.price), 0);
       const itemList = cart.map(item => item.name).join(', ');
 
+      // Determine if order has digital products
+      const digitalItems = cart.filter(item =>
+        item.category === 'lut' || item.category === 'powergrades'
+      );
+      const physicalItems = cart.filter(item =>
+        item.category !== 'lut' && item.category !== 'powergrades'
+      );
+
       // Send order to Formspree (placeholder)
       fetch('https://formspree.io/f/placeholder-newsletter', {
         method: 'POST',
@@ -693,86 +710,76 @@
       const overlay = document.createElement('div');
       overlay.className = 'vipps-overlay';
 
+      // Build payment info for chosen method
+      let paymentInfo = '';
       if (selectedPayMethod === 'vipps') {
-        const deepLink = `vipps://business/${VIPPS_NUMBER}?amount=${total}&message=${encodeURIComponent(name)}`;
-        overlay.innerHTML = `
-          <div class="vipps-modal">
-            <div class="vipps-icon">💚</div>
-            <h3>Betal med Vipps</h3>
-            <div class="vipps-total-display">${total} kr</div>
-            <div class="vipps-number-box">
-              <span>${VIPPS_NUMBER}</span>
-              <button class="vipps-copy-btn" onclick="navigator.clipboard.writeText('${VIPPS_NUMBER}').then(()=>{this.textContent='Kopiert!';this.classList.add('copied');setTimeout(()=>{this.textContent='Kopier';this.classList.remove('copied')},2000)})">Kopier</button>
-            </div>
-            <a href="${deepLink}" class="vipps-open-btn">Åpne Vipps-appen</a>
-            <p class="vipps-note">Merk betalingen med: <strong>${name}</strong></p>
-            <div class="vipps-details">
-              <p>📦 Varer: ${itemList}</p>
-              <p>📧 E-post: ${email}</p>
-              ${address ? `<p>📍 Adresse: ${address}</p>` : ''}
-            </div>
-            <button class="vipps-close-btn" onclick="this.closest('.vipps-overlay').remove()">Forstått</button>
-          </div>`;
-
+        paymentInfo = `
+          <div class="vipps-number-box">
+            <span>${VIPPS_NUMBER}</span>
+            <button class="vipps-copy-btn" onclick="navigator.clipboard.writeText('${VIPPS_NUMBER}').then(()=>{this.textContent='Kopiert!';this.classList.add('copied');setTimeout(()=>{this.textContent='Kopier';this.classList.remove('copied')},2000)})">Kopier</button>
+          </div>
+          <p class="vipps-note">Søk opp <strong>${VIPPS_NUMBER}</strong> i Vipps-appen og send <strong>${total} kr</strong>. Merk med: <strong>${name}</strong></p>`;
       } else if (selectedPayMethod === 'crypto') {
         const btcAmount = (total / 1100000).toFixed(8);
-        overlay.innerHTML = `
-          <div class="vipps-modal">
-            <div class="vipps-icon">₿</div>
-            <h3>Betal med Crypto</h3>
-            <div class="vipps-total-display">${total} kr</div>
-            <p style="font-size:.8rem;color:var(--text-muted);margin-bottom:12px">Send Bitcoin til adressen under:</p>
-            <div class="crypto-qr" id="crypto-qr"></div>
-            <div class="vipps-number-box">
-              <span style="font-size:.85rem;word-break:break-all;letter-spacing:0">${BTC_WALLET}</span>
-              <button class="vipps-copy-btn" onclick="navigator.clipboard.writeText('${BTC_WALLET}').then(()=>{this.textContent='Kopiert!';this.classList.add('copied');setTimeout(()=>{this.textContent='Kopier';this.classList.remove('copied')},2000)})">Kopier</button>
-            </div>
-            <p class="vipps-note">Merk betalingen med navn: <strong>${name}</strong><br>Ta kontakt hvis du bruker annen krypto (ETH, USDT m.m.)</p>
-            <div class="vipps-details">
-              <p>📦 Varer: ${itemList}</p>
-              <p>📧 E-post: ${email}</p>
-              ${address ? `<p>📍 Adresse: ${address}</p>` : ''}
-            </div>
-            <button class="vipps-close-btn" onclick="this.closest('.vipps-overlay').remove()">Forstått</button>
-          </div>`;
-        document.body.appendChild(overlay);
-        // Generate QR code via API
-        const qrEl = document.getElementById('crypto-qr');
-        if (qrEl && BTC_WALLET !== 'DIN_BITCOIN_ADRESSE') {
-          qrEl.innerHTML = '<img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=bitcoin:' + BTC_WALLET + '?amount=' + btcAmount + '" alt="Bitcoin QR" style="width:180px;height:180px;border-radius:12px">';
-        } else if (qrEl) {
-          qrEl.innerHTML = '<p style="font-size:.75rem;color:var(--text-muted);padding:20px">Bitcoin-adresse ikke satt ennå</p>';
-        }
-        overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.remove(); });
-        cart = [];
-        updateCart();
-        return;
-
+        paymentInfo = `
+          <p style="font-size:.8rem;color:var(--text-muted);margin-bottom:8px">Send <strong>${btcAmount} BTC</strong> til adressen under:</p>
+          <div class="crypto-qr" id="crypto-qr"></div>
+          <div class="vipps-number-box">
+            <span style="font-size:.8rem;word-break:break-all;letter-spacing:0">${BTC_WALLET}</span>
+            <button class="vipps-copy-btn" onclick="navigator.clipboard.writeText('${BTC_WALLET}').then(()=>{this.textContent='Kopiert!';this.classList.add('copied');setTimeout(()=>{this.textContent='Kopier';this.classList.remove('copied')},2000)})">Kopier</button>
+          </div>
+          <p class="vipps-note">Merk med navn: <strong>${name}</strong><br>Ta kontakt for ETH, USDT eller annen krypto.</p>`;
       } else if (selectedPayMethod === 'bank') {
-        overlay.innerHTML = `
-          <div class="vipps-modal">
-            <div class="vipps-icon">🏦</div>
-            <h3>Bankoverføring</h3>
-            <div class="vipps-total-display">${total} kr</div>
-            <p style="font-size:.85rem;color:var(--text-muted);margin-bottom:12px">Overfør beløpet til kontoen under:</p>
-            <div class="vipps-number-box">
-              <div style="text-align:left;width:100%">
-                <div style="font-size:.7rem;color:var(--text-muted);margin-bottom:2px">Kontonummer</div>
-                <span style="font-size:1rem;letter-spacing:1px">${BANK_ACCOUNT}</span>
-              </div>
-              <button class="vipps-copy-btn" onclick="navigator.clipboard.writeText('${BANK_ACCOUNT}').then(()=>{this.textContent='Kopiert!';this.classList.add('copied');setTimeout(()=>{this.textContent='Kopier';this.classList.remove('copied')},2000)})">Kopier</button>
+        paymentInfo = `
+          <div class="vipps-number-box">
+            <div style="text-align:left;width:100%">
+              <div style="font-size:.7rem;color:var(--text-muted);margin-bottom:2px">Kontonummer</div>
+              <span style="font-size:1rem;letter-spacing:1px">${BANK_ACCOUNT}</span>
             </div>
-            <p class="vipps-note">Merk overføringen med: <strong>${name}</strong><br>Varer sendes etter at betalingen er mottatt.</p>
-            <div class="vipps-details">
-              <p>📦 Varer: ${itemList}</p>
-              <p>📧 E-post: ${email}</p>
-              ${address ? `<p>📍 Adresse: ${address}</p>` : ''}
-            </div>
-            <button class="vipps-close-btn" onclick="this.closest('.vipps-overlay').remove()">Forstått</button>
+            <button class="vipps-copy-btn" onclick="navigator.clipboard.writeText('${BANK_ACCOUNT}').then(()=>{this.textContent='Kopiert!';this.classList.add('copied');setTimeout(()=>{this.textContent='Kopier';this.classList.remove('copied')},2000)})">Kopier</button>
+          </div>
+          <p class="vipps-note">Overfør <strong>${total} kr</strong> og merk med: <strong>${name}</strong><br>Varer sendes etter betaling er mottatt.</p>`;
+      }
+
+      // Build download section for digital products
+      let downloadSection = '';
+      if (digitalItems.length > 0) {
+        const downloadButtons = digitalItems.map(item =>
+          `<a href="downloads/${item.downloadFile}" download class="btn-download">${item.name}</a>`
+        ).join('');
+        downloadSection = `
+          <div class="download-section">
+            <div class="download-icon">⬇️</div>
+            <h4>Last ned dine filer</h4>
+            <p>Klikk for å laste ned etter betaling:</p>
+            <div class="download-buttons">${downloadButtons}</div>
           </div>`;
       }
 
+      overlay.innerHTML = `
+        <div class="vipps-modal">
+          <div class="vipps-icon">✅</div>
+          <h3>Bestilling mottatt!</h3>
+          <div class="vipps-total-display">${total} kr</div>
+          ${paymentInfo}
+          <div class="vipps-details">
+            <p>📦 Varer: ${itemList}</p>
+            <p>📧 E-post: ${email}</p>
+            ${address ? `<p>📍 Adresse: ${address}</p>` : ''}
+          </div>
+          ${downloadSection}
+          <button class="vipps-close-btn" onclick="this.closest('.vipps-overlay').remove()">Forstått</button>
+        </div>`;
       document.body.appendChild(overlay);
+
+      // Generate QR code for crypto
+      if (selectedPayMethod === 'crypto') {
+        const qrEl = document.getElementById('crypto-qr');
+        if (qrEl) {
+          qrEl.innerHTML = '<img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=bitcoin:' + BTC_WALLET + '?amount=' + ((total / 1100000).toFixed(8)) + '" alt="Bitcoin QR" style="width:180px;height:180px;border-radius:12px;border:1px solid var(--card-border);background:white;padding:8px">';
+        }
+      }
+
       overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.remove(); });
       cart = [];
       updateCart();
@@ -805,7 +812,7 @@
               <span>${VIPPS_NUMBER}</span>
               <button class="vipps-copy-btn" onclick="navigator.clipboard.writeText('${VIPPS_NUMBER}').then(()=>{this.textContent='Kopiert!';this.classList.add('copied');setTimeout(()=>{this.textContent='Kopier';this.classList.remove('copied')},2000)})">Kopier</button>
             </div>
-            <a href="vipps://business/${VIPPS_NUMBER}?message=Tips" class="vipps-open-btn">Åpne Vipps-appen</a>
+            <p class="vipps-note" style="margin-top:8px">Åpne Vipps → Søk opp <strong>${VIPPS_NUMBER}</strong> → Send valgfritt beløp</p>
           </div>
           <p class="vipps-note">Hvert bidrag hjelper meg å fortsette å skape innhold og utvikle meg som fotograf.</p>
           <button class="vipps-close-btn" onclick="this.closest('.vipps-overlay').remove()">Forstått</button>
@@ -821,7 +828,7 @@
           <div class="vipps-number-box"><span>${VIPPS_NUMBER}</span>
             <button class="vipps-copy-btn" onclick="navigator.clipboard.writeText('${VIPPS_NUMBER}').then(()=>{this.textContent='Kopiert!';this.classList.add('copied');setTimeout(()=>{this.textContent='Kopier';this.classList.remove('copied')},2000)})">Kopier</button>
           </div>
-          <a href="vipps://business/${VIPPS_NUMBER}?message=Tips" class="vipps-open-btn">Åpne Vipps-appen</a>`;
+          <p class="vipps-note" style="margin-top:8px">Åpne Vipps → Søk opp <strong>${VIPPS_NUMBER}</strong> → Send valgfritt beløp</p>`;
       } else if (tipsPayMethod === 'crypto') {
         container.innerHTML = `
           <p style="font-size:.8rem;color:var(--text-muted);margin-bottom:8px">Send Bitcoin til adressen under:</p>
