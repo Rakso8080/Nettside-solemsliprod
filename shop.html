@@ -219,7 +219,6 @@
     .pay-method-name{font-size:.7rem}
     .crypto-qr img{width:150px;height:150px}
   }
-  }
 </style>
 </head>
 
@@ -363,7 +362,7 @@
           <p>Lightroom-preset for natur- og landskapsbilder med nordisk estetikk.</p>
           <div class="product-footer">
             <div class="product-price">99 <span class="currency">kr</span></div>
-            <button class="btn-buy" onclick="addToCart('Nordic Tone', '99 kr', 'lut')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
+            <button class="btn-buy" onclick="addToCart('Nordic Tone', '99 kr', 'preset', 'nordic-tone.xmp')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
           </div>
         </div>
       </div>
@@ -379,7 +378,7 @@
           <p>Presets optimalisert for portrett- og bryllupsfotografering.</p>
           <div class="product-footer">
             <div class="product-price">99 <span class="currency">kr</span></div>
-            <button class="btn-buy" onclick="addToCart('Portrait Pro', '99 kr', 'lut')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
+            <button class="btn-buy" onclick="addToCart('Portrait Pro', '99 kr', 'preset', 'portrait-pro.xmp')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
           </div>
         </div>
       </div>
@@ -617,7 +616,7 @@
         <button type="submit" class="btn-pay" id="checkout-submit-btn" style="display:none">
           <span data-no="Betal nå" data-en="Pay now" data-de="Jetzt bezahlen">Betal nå</span>
         </button>
-        <div id="vipps-button-container" style="margin-top:10px;text-align:center">>
+        <div id="vipps-button-container" style="margin-top:10px;text-align:center">
           <vipps-mobilepay-button id="vipps-widget-btn" brand="vipps" language="no" rounded="true" verb="pay" variant="primary"></vipps-mobilepay-button>
         </div>
       </form>
@@ -746,7 +745,6 @@
     let selectedPayMethod = 'vipps';
     const BTC_WALLET = 'bc1pygw2tw0xus8vv4wawhh63zqdpwmfw3xkll5pqwv80eh83tr59d8qlewujt';
     const BANK_ACCOUNT = 'DITT_KONTONUMMER';
-    const BANK_BIC = 'DITT_BIC';
 
     function openCheckout() {
       if (cart.length === 0) return;
@@ -815,7 +813,7 @@
 
       // Determine if order has digital products
       const digitalItems = cart.filter(item =>
-        item.category === 'lut' || item.category === 'powergrades'
+        item.category === 'lut' || item.category === 'powergrades' || item.category === 'preset'
       );
 
       // Send order to Formspree (placeholder)
@@ -1025,19 +1023,26 @@ solemsliproductions.no`;
     }
 
     // HERO TEXT SPLIT (word-by-word)
-    const heroH1 = document.getElementById('hero-title');
-    if (heroH1) {
-      const fullText = heroH1.textContent;
-      heroH1.innerHTML = '';
-      fullText.split(' ').forEach((word, i) => {
-        const s = document.createElement('span');
-        s.className = 'word';
-        s.textContent = word;
-        heroH1.appendChild(s);
-        if (i < fullText.split(' ').length - 1) heroH1.appendChild(document.createTextNode(' '));
+    function splitHeroText() {
+      const h1 = document.getElementById('hero-title');
+      if (!h1) return;
+      const spans = h1.querySelectorAll('span[data-no]');
+      spans.forEach(span => {
+        const lang = localStorage.getItem('lang') || 'no';
+        const text = span.getAttribute('data-' + lang) || span.dataset.no;
+        const words = text.split(' ');
+        span.innerHTML = '';
+        words.forEach((word, i) => {
+          const s = document.createElement('span');
+          s.className = 'word';
+          s.textContent = word;
+          span.appendChild(s);
+          if (i < words.length - 1) span.appendChild(document.createTextNode(' '));
+        });
       });
-      setTimeout(() => heroH1.classList.add('revealed'), 200);
+      setTimeout(() => h1.classList.add('revealed'), 200);
     }
+    splitHeroText();
 
     // STAGGERED GRID REVEAL
     const gridObserver = new IntersectionObserver((entries) => {
