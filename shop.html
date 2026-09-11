@@ -127,13 +127,23 @@
   .btn-pay:hover{background:#0066cc}
 
   /* VIPPS CONFIRMATION */
-  .vipps-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:99999;display:flex;align-items:center;justify-content:center;padding:20px}
-  .vipps-modal{background:var(--bg);border:1px solid var(--glass-border);border-radius:20px;padding:40px;max-width:400px;text-align:center}
-  .vipps-icon{font-size:3rem;margin-bottom:15px}
-  .vipps-amount{background:var(--card-bg);border:1px solid var(--glass-border);border-radius:12px;padding:16px;font-size:1.5rem;font-weight:700;letter-spacing:2px;margin:20px 0;user-select:all}
-  .vipps-details{text-align:left;font-size:.85rem;color:var(--text-muted);line-height:1.8;margin-top:20px}
-  .vipps-btn{margin-top:20px;background:var(--main-blue);color:white;border:none;padding:12px 30px;border-radius:30px;cursor:pointer;font-size:.9rem;font-weight:600;transition:all .3s}
-  .vipps-btn:hover{background:#0066cc}
+  .vipps-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.8);backdrop-filter:blur(8px);z-index:99999;display:flex;align-items:center;justify-content:center;padding:20px}
+  .vipps-modal{background:var(--bg);border:1px solid var(--glass-border);border-radius:20px;padding:32px;max-width:400px;width:100%;text-align:center}
+  .vipps-icon{font-size:3rem;margin-bottom:10px}
+  .vipps-modal h3{font-size:1.2rem;font-weight:700;margin-bottom:8px}
+  .vipps-modal p{color:var(--text-muted);font-size:.85rem;line-height:1.5}
+  .vipps-total-display{font-size:2rem;font-weight:800;margin:16px 0 4px}
+  .vipps-number-box{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--card-bg);border:1px solid var(--card-border);border-radius:12px;padding:12px 16px;margin:16px 0}
+  .vipps-number-box span{font-size:1.3rem;font-weight:700;letter-spacing:1px;user-select:all}
+  .vipps-copy-btn{background:none;border:1px solid var(--card-border);color:var(--text);padding:6px 12px;border-radius:8px;font-size:.75rem;cursor:pointer;transition:.3s;white-space:nowrap}
+  .vipps-copy-btn:hover{background:var(--main-blue);color:white;border-color:var(--main-blue)}
+  .vipps-copy-btn.copied{background:#22c55e;color:white;border-color:#22c55e}
+  .vipps-open-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:16px;background:linear-gradient(135deg,#6dd400,#4fa500);color:white;border:none;border-radius:30px;font-size:1rem;font-weight:700;cursor:pointer;transition:all .3s;margin-top:12px}
+  .vipps-open-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(109,212,0,0.3)}
+  .vipps-note{font-size:.8rem;color:var(--text-muted);margin-top:12px;line-height:1.5}
+  .vipps-details{text-align:left;font-size:.8rem;color:var(--text-muted);line-height:1.8;margin-top:16px;padding-top:16px;border-top:1px solid var(--card-border)}
+  .vipps-close-btn{margin-top:16px;background:none;border:1px solid var(--card-border);color:var(--text);padding:10px 24px;border-radius:30px;cursor:pointer;font-size:.85rem;font-weight:500;transition:.3s}
+  .vipps-close-btn:hover{background:var(--card-bg)}
 
   /* TIPS SECTION */
   .tips-section{padding:40px 20px 80px;max-width:600px;margin:0 auto}
@@ -157,6 +167,20 @@
     .features{padding:40px 20px}
     .cta{padding:60px 20px}
     .hero{padding:120px 20px 40px}
+    .cart-panel{width:100%;max-width:100%;right:-100%}
+    .cart-header{padding:16px 20px}
+    .cart-items{padding:12px 20px}
+    .cart-item{padding:14px 0;gap:12px}
+    .cart-item-icon{width:44px;height:44px}
+    .cart-item-info h4{font-size:.9rem}
+    .cart-item-remove{font-size:.8rem;padding:8px}
+    .cart-footer{padding:16px 20px;padding-bottom:max(16px,env(safe-area-inset-bottom))}
+    .btn-checkout{padding:14px;font-size:1rem}
+    .vipps-modal{padding:24px 20px}
+    .vipps-total-display{font-size:1.6rem}
+    .vipps-open-btn{padding:14px;font-size:.95rem}
+    .modal{margin:10px;max-width:calc(100% - 20px);padding:24px 20px}
+  }
   }
 </style>
 </head>
@@ -605,21 +629,27 @@
       closeCheckout();
       const overlay = document.createElement('div');
       overlay.className = 'vipps-overlay';
+      const vippsDeepLink = `vipps://business/${VIPPS_NUMBER}?amount=${total}&message=${encodeURIComponent(name)}`;
       overlay.innerHTML = `
         <div class="vipps-modal">
           <div class="vipps-icon">💚</div>
           <h3>Betal med Vipps</h3>
-          <p style="color:var(--text-muted);margin-bottom:20px;font-size:.9rem">Send <strong>${total} kr</strong> til Vipps-nummer:</p>
-          <div class="vipps-amount">${VIPPS_NUMBER}</div>
-          <p style="color:var(--text-muted);font-size:.8rem;margin-bottom:20px">Merk betalingen med: <strong>${name}</strong></p>
+          <div class="vipps-total-display">${total} kr</div>
+          <div class="vipps-number-box">
+            <span id="vipps-num-display">${VIPPS_NUMBER}</span>
+            <button class="vipps-copy-btn" onclick="navigator.clipboard.writeText('${VIPPS_NUMBER}').then(()=>{this.textContent='Kopiert!';this.classList.add('copied');setTimeout(()=>{this.textContent='Kopier';this.classList.remove('copied')},2000)})">Kopier</button>
+          </div>
+          <a href="${vippsDeepLink}" class="vipps-open-btn" id="vipps-open">Åpne Vipps-appen</a>
+          <p class="vipps-note">Merk betalingen med: <strong>${name}</strong></p>
           <div class="vipps-details">
             <p>📦 Varer: ${itemList}</p>
             <p>📧 E-post: ${email}</p>
             ${address ? `<p>📍 Adresse: ${address}</p>` : ''}
           </div>
-          <button class="vipps-btn" onclick="this.closest('.vipps-overlay').remove()">Forstått</button>
+          <button class="vipps-close-btn" onclick="this.closest('.vipps-overlay').remove()">Forstått</button>
         </div>`;
       document.body.appendChild(overlay);
+      overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.remove(); });
       cart = [];
       updateCart();
     });
@@ -629,14 +659,19 @@
       playCheckout();
       const overlay = document.createElement('div');
       overlay.className = 'vipps-overlay';
+      const vippsDeepLink = `vipps://business/${VIPPS_NUMBER}?message=Tips`;
       overlay.innerHTML = `
         <div class="vipps-modal">
           <div class="vipps-icon">💚</div>
           <h3>Tusen takk!</h3>
-          <p style="color:var(--text-muted);font-size:.9rem;line-height:1.6;margin:15px 0 20px" data-no="Send et valgfritt beløp via Vipps. Hvert bidrag hjelper meg å fortsette å skape innhold og utvikle meg som fotograf." data-en="Send any amount via Vipps. Every contribution helps me continue creating content and developing as a photographer." data-de="Senden Sie einen beliebigen Betrag per Vipps. Jeder Beitrag hilft mir, weiter Inhalte zu erstellen und mich als Fotograf zu entwickeln.">Send et valgfritt beløp via Vipps. Hvert bidrag hjelper meg å fortsette å skape innhold og utvikle meg som fotograf.</p>
-          <div class="vipps-amount">${VIPPS_NUMBER}</div>
-          <p style="color:var(--text-muted);font-size:.8rem;margin-top:15px" data-no="Merk betalingen med: 'Tips'" data-en="Note the payment with: 'Tip'" data-de="Vermerken Sie die Zahlung mit: 'Trinkgeld'">Merk betalingen med: 'Tips'</p>
-          <button class="vipps-btn" onclick="this.closest('.vipps-overlay').remove()" style="margin-top:20px" data-no="Forstått" data-en="Got it" data-de="Verstanden">Forstått</button>
+          <p style="margin:8px 0 0" data-no="Send et valgfritt beløp via Vipps." data-en="Send any amount via Vipps." data-de="Senden Sie einen beliebigen Betrag per Vipps.">Send et valgfritt beløp via Vipps.</p>
+          <div class="vipps-number-box">
+            <span>${VIPPS_NUMBER}</span>
+            <button class="vipps-copy-btn" onclick="navigator.clipboard.writeText('${VIPPS_NUMBER}').then(()=>{this.textContent='Kopiert!';this.classList.add('copied');setTimeout(()=>{this.textContent='Kopier';this.classList.remove('copied')},2000)})">Kopier</button>
+          </div>
+          <a href="${vippsDeepLink}" class="vipps-open-btn">Åpne Vipps-appen</a>
+          <p class="vipps-note" data-no="Hvert bidrag hjelper meg å fortsette å skape innhold og utvikle meg som fotograf." data-en="Every contribution helps me continue creating content and developing as a photographer." data-de="Jeder Beitrag hilft mir, weiter Inhalte zu erstellen und mich als Fotograf zu entwickeln.">Hvert bidrag hjelper meg å fortsette å skape innhold og utvikle meg som fotograf.</p>
+          <button class="vipps-close-btn" onclick="this.closest('.vipps-overlay').remove()" data-no="Forstått" data-en="Got it" data-de="Verstanden">Forstått</button>
         </div>`;
       document.body.appendChild(overlay);
       overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.remove(); });
