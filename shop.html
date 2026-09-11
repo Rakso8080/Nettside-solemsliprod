@@ -641,36 +641,36 @@
         </div>
       </div>
 
-      <!-- MERCH 1 -->
+      <!-- MERCH — ZIP HOODIE -->
       <div class="product-card" data-category="merch">
         <div class="product-image" style="background: linear-gradient(135deg, #1a1a2e, #2d2d44);">
-          <img src="gallery/ola-k/untitled--9.jpg" alt="T-skjorte" loading="lazy">
+          <img src="merch/5035.jpg" alt="Solemsli Zip Hoodie" loading="lazy">
           <div class="product-badge">Merch</div>
         </div>
         <div class="product-info">
           <div class="product-category">MERCH</div>
-          <h3>Solemsli T-skjorte</h3>
-          <p>Klassisk sort t-skjorte med Solemsli Productions-logo. Premium kvalitet.</p>
+          <h3 data-no="Solemsli Zip Hoodie" data-en="Solemsli Zip Hoodie" data-de="Solemsli Zip Hoodie">Solemsli Zip Hoodie</h3>
+          <p data-no="Sort zip-hoodie med Solemsli Productions-logo. Unisex passform, premium kvalitet." data-en="Black zip hoodie with Solemsli Productions logo. Unisex fit, premium quality." data-de="Schwarze Zip- Hoodie mit Solemsli Productions-Logo. Unisex-Passform, Premium-Qualität.">Sort zip-hoodie med Solemsli Productions-logo. Unisex passform, premium kvalitet.</p>
           <div class="product-footer">
-            <div class="product-price">299 <span class="currency">kr</span></div>
-            <button class="btn-buy" onclick="addToCart('Solemsli T-skjorte', '299 kr')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
+            <div class="product-price">700 <span class="currency">kr</span></div>
+            <button class="btn-buy" onclick="addToCart('Solemsli Zip Hoodie', '700 kr')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
           </div>
         </div>
       </div>
 
-      <!-- MERCH 2 -->
+      <!-- MERCH — ZIP HOODIE 2 -->
       <div class="product-card" data-category="merch">
         <div class="product-image" style="background: linear-gradient(135deg, #1a1a2e, #2d2d44);">
-          <img src="gallery/vang-bygg-oversikt/untitled--6.jpg" alt="Koppe" loading="lazy">
+          <img src="merch/untitled-1628.jpg" alt="Solemsli Zip Hoodie" loading="lazy">
           <div class="product-badge">Merch</div>
         </div>
         <div class="product-info">
           <div class="product-category">MERCH</div>
-          <h3>Solemsli Koppe</h3>
-          <p>Sort kopp med logo. Perfekt til kaffen mens du redigerer.</p>
+          <h3 data-no="Solemsli Zip Hoodie" data-en="Solemsli Zip Hoodie" data-de="Solemsli Zip Hoodie">Solemsli Zip Hoodie</h3>
+          <p data-no="Sort zip-hoodie med Solemsli Productions-logo. Unisex passform, premium kvalitet." data-en="Black zip hoodie with Solemsli Productions logo. Unisex fit, premium quality." data-de="Schwarze Zip-Hoodie mit Solemsli Productions-Logo. Unisex-Passform, Premium-Qualität.">Sort zip-hoodie med Solemsli Productions-logo. Unisex passform, premium kvalitet.</p>
           <div class="product-footer">
-            <div class="product-price">199 <span class="currency">kr</span></div>
-            <button class="btn-buy" onclick="addToCart('Solemsli Koppe', '199 kr')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
+            <div class="product-price">700 <span class="currency">kr</span></div>
+            <button class="btn-buy" onclick="addToCart('Solemsli Zip Hoodie', '700 kr')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
           </div>
         </div>
       </div>
@@ -726,7 +726,24 @@
       <p id="modal-desc"></p>
       <div class="modal-price" id="modal-price"></div>
       <ul class="modal-features" id="modal-features"></ul>
-      <button class="btn-full" onclick="alert('Takk for interesse! Betaling kommer snart.')" data-no="Kjøp nå" data-en="Buy Now" data-de="Jetzt kaufen">Kjøp nå</button>
+      <button class="btn-full" onclick="alert('Takk for interesse! Ta kontakt for bestilling.')" data-no="Kjøp nå" data-en="Buy Now" data-de="Jetzt kaufen">Kjøp nå</button>
+    </div>
+  </div>
+
+  <!-- CHECKOUT MODAL -->
+  <div class="modal-overlay" id="checkout-overlay">
+    <div class="modal" style="max-width:450px">
+      <button class="modal-close" onclick="closeCheckout()">×</button>
+      <h3 data-no="Kasse" data-en="Checkout" data-de="Kasse">Kasse</h3>
+      <div id="checkout-items" style="margin:15px 0;padding:15px 0;border-top:1px solid var(--glass-border);border-bottom:1px solid var(--glass-border)"></div>
+      <div style="display:flex;justify-content:space-between;font-weight:700;margin-bottom:20px"><span>Totalt:</span><span id="checkout-total"></span></div>
+      <form id="checkout-form">
+        <div class="form-group"><input type="text" id="co-name" placeholder=" " required><label for="co-name">Navn</label><div class="form-line"></div></div>
+        <div class="form-group"><input type="email" id="co-email" placeholder=" " required><label for="co-email">E-post</label><div class="form-line"></div></div>
+        <div class="form-group"><input type="tel" id="co-phone" placeholder=" " required><label for="co-phone">Telefon</label><div class="form-line"></div></div>
+        <div class="form-group"><input type="text" id="co-address" placeholder=" "><label for="co-address">Adresse (for frakt)</label><div class="form-line"></div></div>
+        <button type="submit" class="btn-full" style="background:var(--main-blue);color:white;border:none;padding:16px;border-radius:30px;font-size:1rem;font-weight:600;width:100%;cursor:pointer;margin-top:10px" data-no="Betal med Vipps" data-en="Pay with Vipps" data-de="Mit Vipps bezahlen">Betal med Vipps</button>
+      </form>
     </div>
   </div>
 
@@ -734,7 +751,7 @@
   <div class="cart-panel" id="cartPanel">
     <div class="cart-header"><h3 data-no="Handlekurv" data-en="Cart" data-de="Warenkorb">Handlekurv</h3><button class="cart-close" onclick="closeCart()">✕</button></div>
     <div class="cart-items" id="cartItems"><p style="color:var(--text-muted);text-align:center;padding:40px 0" data-no="Handlekurven er tom" data-en="Cart is empty" data-de="Warenkorb ist leer">Handlekurven er tom</p></div>
-    <div class="cart-footer"><div class="cart-total"><span>Totalt:</span><span id="cartTotal">0 kr</span></div><button class="btn-primary btn-checkout" data-no="Til kassen" data-en="Checkout" data-de="Zur Kasse">Til kassen</button></div>
+    <div class="cart-footer"><div class="cart-total"><span>Totalt:</span><span id="cartTotal">0 kr</span></div><button class="btn-primary btn-checkout" onclick="openCheckout()" data-no="Til kassen" data-en="Checkout" data-de="Zur Kasse">Til kassen</button></div>
   </div>
   <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
 
@@ -776,6 +793,8 @@
 
     // CART
     let cart = [];
+    // TODO: Replace with your Vipps number or payment link from vipps.no
+    const VIPPS_NUMBER = 'DITT_VIPPS_NUMMER';
     function addToCart(name, price) {
       cart.push({ name, price });
       updateCart();
@@ -800,6 +819,73 @@
     }
     function openCart() { document.getElementById('cartPanel').classList.add('open'); document.getElementById('cartOverlay').classList.add('open'); }
     function closeCart() { document.getElementById('cartPanel').classList.remove('open'); document.getElementById('cartOverlay').classList.remove('open'); }
+
+    // CHECKOUT
+    function openCheckout() {
+      if (cart.length === 0) return;
+      closeCart();
+      const checkoutItems = document.getElementById('checkout-items');
+      const checkoutTotal = document.getElementById('checkout-total');
+      checkoutItems.innerHTML = cart.map(item => `<div style="display:flex;justify-content:space-between;padding:6px 0"><span>${item.name}</span><span>${item.price}</span></div>`).join('');
+      checkoutTotal.textContent = cart.reduce((sum, item) => sum + parseInt(item.price), 0) + ' kr';
+      document.getElementById('checkout-overlay').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeCheckout() {
+      document.getElementById('checkout-overlay').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    document.getElementById('checkout-overlay').addEventListener('click', (e) => {
+      if (e.target === e.currentTarget) closeCheckout();
+    });
+
+    // CHECKOUT FORM → Vipps redirect
+    document.getElementById('checkout-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('co-name').value;
+      const email = document.getElementById('co-email').value;
+      const phone = document.getElementById('co-phone').value;
+      const address = document.getElementById('co-address').value;
+      const total = cart.reduce((sum, item) => sum + parseInt(item.price), 0);
+      const itemList = cart.map(item => item.name).join(', ');
+
+      // Send order to Formspree (replace with your Formspree ID)
+      fetch('https://formspree.io/f/placeholder-newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          _subject: 'Ny bestilling — Solemsli Productions',
+          navn: name,
+          epost: email,
+          telefon: phone,
+          adresse: address,
+          varer: itemList,
+          totalt: total + ' kr'
+        })
+      }).catch(() => {});
+
+      // Show Vipps payment instructions
+      closeCheckout();
+      const overlay = document.createElement('div');
+      overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:99999;display:flex;align-items:center;justify-content:center;padding:20px';
+      overlay.innerHTML = `
+        <div style="background:var(--bg);border:1px solid var(--glass-border);border-radius:20px;padding:40px;max-width:400px;text-align:center">
+          <div style="font-size:3rem;margin-bottom:15px">💚</div>
+          <h3 style="margin-bottom:10px">Betal med Vipps</h3>
+          <p style="color:var(--text-muted);margin-bottom:20px;font-size:.9rem">Send <strong>${total} kr</strong> til Vipps-nummer:</p>
+          <div style="background:var(--card-bg);border:1px solid var(--glass-border);border-radius:12px;padding:16px;font-size:1.5rem;font-weight:700;letter-spacing:2px;margin-bottom:20px;user-select:all">${VIPPS_NUMBER}</div>
+          <p style="color:var(--text-muted);font-size:.8rem;margin-bottom:20px">Merk betalingen med: <strong>${name}</strong></p>
+          <div style="text-align:left;font-size:.85rem;color:var(--text-muted);line-height:1.8">
+            <p>📦 Varer: ${itemList}</p>
+            <p>📧 E-post: ${email}</p>
+            ${address ? `<p>📍 Adresse: ${address}</p>` : ''}
+          </div>
+          <button onclick="this.closest('div[style]').parentElement.remove()" style="margin-top:20px;background:var(--main-blue);color:white;border:none;padding:12px 30px;border-radius:30px;cursor:pointer;font-size:.9rem;font-weight:600">Forstått</button>
+        </div>`;
+      document.body.appendChild(overlay);
+      cart = [];
+      updateCart();
+    });
 
     // HERO TEXT SPLIT (word-by-word)
     const heroH1 = document.getElementById('hero-title');
