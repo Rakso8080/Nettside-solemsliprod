@@ -271,7 +271,7 @@
         </div>
       </div>
       <div class="reveal" style="margin-top:40px">
-        <button class="btn btn-outline review-toggle" onclick="document.getElementById('reviewForm').classList.toggle('open');this.textContent=this.textContent.includes('Skriv') ? 'Lukk skjema' : '✏️ Skriv en anmeldelse'">✏️ Skriv en anmeldelse</button>
+        <button class="btn btn-outline review-toggle" id="reviewToggleBtn">✏️ Skriv en anmeldelse</button>
       </div>
       <div id="reviewForm" class="review-form-wrapper">
         <form class="review-form" action="https://formspree.io/f/YOUR_FORM_ID_HERE" method="POST">
@@ -423,6 +423,16 @@
             s.classList.toggle('active', i < val);
           });
         });
+      });
+    }
+
+    // REVIEW TOGGLE BUTTON
+    const reviewToggleBtn = document.getElementById('reviewToggleBtn');
+    const reviewFormWrapper = document.getElementById('reviewForm');
+    if (reviewToggleBtn && reviewFormWrapper) {
+      reviewToggleBtn.addEventListener('click', () => {
+        reviewFormWrapper.classList.toggle('open');
+        reviewToggleBtn.textContent = reviewFormWrapper.classList.contains('open') ? 'Lukk skjema' : '✏️ Skriv en anmeldelse';
       });
     }
 
