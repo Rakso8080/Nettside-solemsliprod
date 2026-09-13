@@ -94,6 +94,24 @@
     /* DESCRIPTION PARAGRAPH */
     .subtitle-text{color:var(--text-muted);font-size:1.05rem;max-width:600px;margin:0 auto}
 
+    /* REVIEW FORM */
+    .review-toggle{margin:0 auto;display:block}
+    .review-form-wrapper{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.23,1,.32,1),opacity .4s;opacity:0;max-width:600px;margin:0 auto}
+    .review-form-wrapper.open{max-height:600px;opacity:1;margin-top:30px}
+    .review-form{display:flex;flex-direction:column;gap:20px;background:var(--card-bg);border:1px solid var(--card-border);border-radius:16px;padding:30px}
+    .review-stars-input label{display:block;font-weight:600;margin-bottom:8px;font-size:.9rem}
+    .star-picker{display:flex;gap:4px}
+    .star-btn{font-size:1.8rem;cursor:pointer;color:rgba(255,255,255,0.15);transition:color .2s,transform .2s}
+    .star-btn:hover,.star-btn.active{color:#fbbf24;transform:scale(1.15)}
+    .review-form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    @media(max-width:500px){.review-form-row{grid-template-columns:1fr}}
+    .review-field{display:flex;flex-direction:column;gap:6px}
+    .review-field label{font-size:.85rem;font-weight:600}
+    .review-field input,.review-field textarea,.review-field select{background:var(--input-bg,rgba(255,255,255,0.05));border:1px solid var(--card-border);border-radius:10px;padding:12px 16px;color:var(--text);font-size:.95rem;font-family:inherit;transition:border-color .3s}
+    .review-field input:focus,.review-field textarea:focus,.review-field select:focus{outline:none;border-color:var(--main-blue)}
+    .review-field textarea{resize:vertical;min-height:80px}
+    .review-submit{align-self:flex-start}
+
     /* PRINT STYLES */
     @media print{
       body{background:#fff !important;color:#000 !important}
@@ -252,6 +270,49 @@
           <div class="proof-author">Lena Ubario <span>— Event</span></div>
         </div>
       </div>
+      <div class="reveal" style="margin-top:40px">
+        <button class="btn btn-outline review-toggle" onclick="document.getElementById('reviewForm').classList.toggle('open');this.textContent=this.textContent.includes('Skriv') ? 'Lukk skjema' : '✏️ Skriv en anmeldelse'">✏️ Skriv en anmeldelse</button>
+      </div>
+      <div id="reviewForm" class="review-form-wrapper">
+        <form class="review-form" action="https://formspree.io/f/YOUR_FORM_ID_HERE" method="POST">
+          <input type="hidden" name="_subject" value="Ny anmeldelse — Solemsli Productions">
+          <input type="hidden" name="_template" value="table">
+          <div class="review-stars-input">
+            <label>Vurdering</label>
+            <div class="star-picker" id="starPicker">
+              <span class="star-btn" data-value="1">★</span>
+              <span class="star-btn" data-value="2">★</span>
+              <span class="star-btn" data-value="3">★</span>
+              <span class="star-btn" data-value="4">★</span>
+              <span class="star-btn active" data-value="5">★</span>
+            </div>
+            <input type="hidden" name="stjerner" id="starValue" value="5" required>
+          </div>
+          <div class="review-form-row">
+            <div class="review-field">
+              <label for="review-name">Navn</label>
+              <input type="text" id="review-name" name="navn" placeholder="Oskar S." required>
+            </div>
+            <div class="review-field">
+              <label for="review-type">Type oppdrag</label>
+              <select id="review-type" name="oppdrag" required>
+                <option value="foto">Foto</option>
+                <option value="video">Video</option>
+                <option value="drone">Drone</option>
+                <option value="bryllup">Bryllup</option>
+                <option value="event">Event</option>
+                <option value="bedrift">Bedrift</option>
+                <option value="annet">Annet</option>
+              </select>
+            </div>
+          </div>
+          <div class="review-field">
+            <label for="review-text">Anmeldelsen din</label>
+            <textarea id="review-text" name="anmeldelse" rows="4" placeholder="Fortell hvordan opplevelsen din var..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary review-submit">Send anmeldelse</button>
+        </form>
+      </div>
     </section>
 
     <!-- HVA FÅR DU? -->
@@ -337,6 +398,75 @@
   </footer>
 
   <script>
+    // STAR PICKER
+    const starPicker = document.getElementById('starPicker');
+    const starValue = document.getElementById('starValue');
+    if (starPicker) {
+      starPicker.querySelectorAll('.star-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const val = parseInt(btn.dataset.value);
+          starValue.value = val;
+          starPicker.querySelectorAll('.star-btn').forEach((s, i) => {
+            s.classList.toggle('active', i < val);
+          });
+        });
+        btn.addEventListener('mouseenter', () => {
+          const val = parseInt(btn.dataset.value);
+          starPicker.querySelectorAll('.star-btn').forEach((s, i) => {
+            s.style.color = i < val ? '#fbbf24' : '';
+          });
+        });
+        btn.addEventListener('mouseleave', () => {
+          const val = parseInt(starValue.value);
+          starPicker.querySelectorAll('.star-btn').forEach((s, i) => {
+            s.style.color = '';
+            s.classList.toggle('active', i < val);
+          });
+        });
+      });
+    }
+
+    // REVIEW FORM HANDLER
+    const reviewForm = document.querySelector('.review-form');
+    if (reviewForm) {
+      reviewForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = reviewForm.querySelector('.review-submit');
+        const origText = btn.textContent;
+        if (btn) { btn.textContent = '...'; btn.disabled = true; btn.style.opacity = '.6'; }
+        try {
+          const response = await fetch(reviewForm.action, {
+            method: 'POST',
+            body: new FormData(reviewForm),
+            headers: { 'Accept': 'application/json' }
+          });
+          if (response.ok) {
+            reviewForm.innerHTML = '<div style="text-align:center;padding:30px"><div style="font-size:2.5rem;margin-bottom:12px">✅</div><h3>Takk for anmeldelsen!</h3><p style="color:var(--text-muted);margin-top:8px">Den vil bli lagt ut etter godkjenning.</p></div>';
+          } else {
+            if (btn) { btn.textContent = origText; btn.disabled = false; btn.style.opacity = '1'; }
+            const existing = reviewForm.querySelector('.form-error');
+            if (!existing) {
+              const err = document.createElement('p');
+              err.className = 'form-error';
+              err.style.cssText = 'color:#ff4444;text-align:center;font-size:.9rem;margin-top:8px';
+              err.textContent = 'Noe gikk galt. Prøv igjen.';
+              reviewForm.appendChild(err);
+            }
+          }
+        } catch {
+          if (btn) { btn.textContent = origText; btn.disabled = false; btn.style.opacity = '1'; }
+          const existing = reviewForm.querySelector('.form-error');
+          if (!existing) {
+            const err = document.createElement('p');
+            err.className = 'form-error';
+            err.style.cssText = 'color:#ff4444;text-align:center;font-size:.9rem;margin-top:8px';
+            err.textContent = 'Nettverksfeil. Prøv igjen.';
+            reviewForm.appendChild(err);
+          }
+        }
+      });
+    }
+
     // BOOKING EMAIL
     function sendBookingEmail(button) {
       const packageName = button.getAttribute('data-package');
