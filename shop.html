@@ -1,14 +1,6 @@
 <!DOCTYPE html>
 <html lang="no">
 <head>
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-XXXXXXXXXX');
-  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <link rel="icon" href="Solemsli production.png">
@@ -18,6 +10,15 @@
   <meta property="og:title" content="Solemsli Productions | Shop" />
   <meta property="og:description" content="Kjøp digitale produkter, LUT-pakker og Powergrades fra Solemsli Productions." />
   <meta property="og:image" content="https://solemsliproductions.no/gallery/andre%20natur%20bilder/uranustind.jpg" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://solemsliproductions.no/shop.html" />
+  <meta property="og:site_name" content="Solemsli Productions">
+  <meta property="og:locale" content="nb_NO">
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Solemsli Productions | Shop" />
+  <meta name="twitter:description" content="Kjøp digitale produkter, LUT-pakker og Powergrades fra Solemsli Productions." />
+  <meta name="twitter:image" content="https://solemsliproductions.no/gallery/andre%20natur%20bilder/uranustind.jpg" />
+  <link rel="canonical" href="https://solemsliproductions.no/shop.html" />
 <title>Shop – Solemsli Productions</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css">
@@ -34,12 +35,13 @@
   @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
 
   /* FILTER */
-  .filter-bar{display:flex;justify-content:center;gap:8px;padding:0 20px 50px;flex-wrap:wrap;opacity:0;animation:fadeUp .8s .8s forwards}
+  .filter-bar{display:flex;justify-content:center;gap:8px;padding:16px 20px;flex-wrap:wrap;opacity:0;animation:fadeUp .8s .8s forwards;position:sticky;top:70px;z-index:100;background:var(--bg);border-bottom:1px solid var(--glass-border);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:box-shadow .3s}
+  .filter-bar.stuck{box-shadow:0 4px 20px rgba(0,0,0,0.1)}
   .filter-btn{padding:8px 20px;border-radius:30px;border:1px solid var(--glass-border);background:var(--card-bg);color:var(--text);font-size:.8rem;font-weight:500;cursor:pointer;transition:all .3s}
   .filter-btn:hover,.filter-btn.active{background:var(--main-blue);border-color:var(--main-blue);color:white}
 
   /* PRODUCTS */
-  .shop-section{padding:0 20px 100px;max-width:1200px;margin:0 auto}
+  .shop-section{padding:40px 20px 100px;max-width:1200px;margin:0 auto}
   .products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
 
   /* GRID REVEAL */
@@ -98,6 +100,10 @@
   .form-group input:focus~.form-line{width:100%}
   .btn-full{width:100%;padding:14px;background:var(--main-blue);color:white;border:none;border-radius:30px;font-size:.95rem;font-weight:600;cursor:pointer;transition:all .3s;margin-top:8px}
   .btn-full:hover{background:#0066cc}
+
+  /* FLOATING CART — hidden on desktop, shown on mobile */
+  /* FLOATING CART — hidden on desktop, shown on mobile */
+  .floating-cart{display:none}
 
   /* CART */
   .cart-btn{position:relative}
@@ -184,10 +190,36 @@
   .btn-tips:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(34,197,94,0.3)}
   .tips-heart{font-size:1.1rem}
 
+  /* BEFORE / AFTER SLIDER */
+  .ba-section{padding:60px 20px 40px;max-width:1200px;margin:0 auto;border-bottom:1px solid var(--glass-border)}
+  .ba-header{text-align:center;margin-bottom:40px}
+  .ba-header .section-label{font-size:.75rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--main-blue);margin-bottom:10px}
+  .ba-header h2{font-size:clamp(1.5rem,4vw,2.5rem);font-weight:800;letter-spacing:-1px}
+  .ba-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .ba-card{background:var(--card-bg);border:1px solid var(--glass-border);border-radius:20px;overflow:hidden;transition:border-color .3s,box-shadow .3s,transform .3s}
+  .ba-card:hover{border-color:rgba(1,128,255,0.3);box-shadow:0 16px 40px rgba(0,0,0,0.15);transform:translateY(-4px)}
+  .ba-slider{position:relative;aspect-ratio:3/2;overflow:hidden;cursor:ew-resize;user-select:none;-webkit-user-select:none;touch-action:none}
+  .ba-slider img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+  .ba-slider .ba-after{z-index:1}
+  .ba-slider .ba-before{z-index:2;clip-path:inset(0 50% 0 0)}
+  .ba-handle{position:absolute;top:0;bottom:0;left:50%;z-index:3;display:flex;flex-direction:column;align-items:center;transform:translateX(-50%);pointer-events:none}
+  .ba-handle-line{flex:1;width:2px;background:rgba(255,255,255,0.9);box-shadow:0 0 8px rgba(0,0,0,0.5)}
+  .ba-handle-circle{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.95);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:700;color:#111;box-shadow:0 2px 12px rgba(0,0,0,0.4);flex-shrink:0;pointer-events:auto;transition:transform .2s,box-shadow .2s;animation:baPulse 2s ease-in-out 3}
+  .ba-handle-circle:hover{transform:scale(1.1);box-shadow:0 4px 20px rgba(0,0,0,0.5)}
+  @keyframes baPulse{0%,100%{box-shadow:0 2px 12px rgba(0,0,0,0.4)}50%{box-shadow:0 2px 24px rgba(1,128,255,0.5)}}
+  .ba-label{position:absolute;bottom:12px;z-index:4;padding:5px 12px;background:rgba(0,0,0,0.6);backdrop-filter:blur(6px);border-radius:20px;font-size:.7rem;font-weight:600;color:white;letter-spacing:.5px;text-transform:uppercase;pointer-events:none}
+  .ba-label-before{left:12px}
+  .ba-label-after{right:12px}
+  .ba-card-info{padding:16px 20px;display:flex;justify-content:space-between;align-items:center}
+  .ba-card-info h4{font-size:.95rem;font-weight:700}
+  .ba-card-info .ba-lut-badge{font-size:.65rem;font-weight:600;color:var(--main-blue);background:rgba(1,128,255,0.1);padding:4px 10px;border-radius:20px;text-transform:uppercase;letter-spacing:.5px}
+  .ba-card .btn-buy{margin:0 20px 16px;width:calc(100% - 40px)}
+
   /* RESPONSIVE */
   @media(max-width:900px){
     .features{grid-template-columns:1fr;gap:0}
     .products-grid{grid-template-columns:repeat(2,1fr)}
+    .ba-grid{grid-template-columns:1fr;max-width:500px;margin:0 auto}
   }
   @media(max-width:600px){
     .products-grid{grid-template-columns:1fr}
@@ -202,7 +234,7 @@
     .cart-item-icon{width:44px;height:44px}
     .cart-item-info h4{font-size:.9rem}
     .cart-item-remove{font-size:.8rem;padding:8px}
-    .cart-footer{padding:16px 20px;padding-bottom:max(16px,env(safe-area-inset-bottom))}
+    .cart-footer{padding:16px 20px;padding-bottom:max(24px,env(safe-area-inset-bottom,24px))}
     .btn-checkout{padding:14px;font-size:1rem}
     .vipps-modal{padding:24px 20px}
     .vipps-total-display{font-size:1.6rem}
@@ -210,7 +242,7 @@
     .modal{margin:10px;max-width:calc(100% - 20px);padding:24px 20px}
     .checkout-modal{max-height:90vh;display:flex;flex-direction:column}
     .checkout-modal .modal-close{position:sticky;top:12px;float:right;z-index:2}
-    .checkout-modal form{overflow-y:auto;flex:1;-webkit-overflow-scrolling:touch}
+    .checkout-modal form{overflow-y:auto;flex:1;-webkit-overflow-scrolling:touch;padding-bottom:20px}
     .checkout-modal .btn-pay{position:sticky;bottom:0;margin-top:12px;padding:18px;font-size:1.05rem;z-index:2}
     .pay-methods{grid-template-columns:repeat(3,1fr);gap:6px}
     .pay-method{padding:10px 6px}
@@ -218,7 +250,7 @@
     .pay-method-name{font-size:.7rem}
     .crypto-qr img{width:150px;height:150px}
     /* FLOATING CART BUTTON ON MOBILE */
-    .floating-cart{display:flex;position:fixed;bottom:max(20px,env(safe-area-inset-bottom,20px));right:20px;z-index:9999;width:56px;height:56px;border-radius:50%;background:var(--main-blue);color:white;border:none;font-size:1.4rem;cursor:pointer;box-shadow:0 6px 24px rgba(1,128,255,0.4);align-items:center;justify-content:center;transition:all .3s}
+    .floating-cart{display:flex;position:fixed;bottom:max(24px,env(safe-area-inset-bottom,24px));right:20px;z-index:9999;width:56px;height:56px;border-radius:50%;background:var(--main-blue);color:white;border:none;font-size:1.4rem;cursor:pointer;box-shadow:0 6px 24px rgba(1,128,255,0.4);align-items:center;justify-content:center;transition:all .3s}
     .floating-cart:active{transform:scale(0.92)}
     .floating-cart .floating-count{position:absolute;top:-4px;right:-4px;background:#ff4444;color:white;width:22px;height:22px;border-radius:50%;font-size:.7rem;font-weight:700;display:flex;align-items:center;justify-content:center;border:2px solid var(--bg)}
   }
@@ -226,32 +258,34 @@
 </head>
 
 <body>
+  <a href="#main-content" class="skip-link">Hopp til innhold</a>
   <div id="grain"></div>
   <div id="progress-bar"></div>
 
   <header id="header">
     <a href="index.html" class="logo">Solemsli Productions</a>
-    <div class="menu-toggle" onclick="this.classList.toggle('active'); document.querySelector('nav').classList.toggle('active')">
+    <div class="menu-toggle" role="button" aria-label="Meny" aria-expanded="false" onclick="this.classList.toggle('active');this.setAttribute('aria-expanded',this.classList.contains('active'));document.querySelector('nav').classList.toggle('active')">
       <span></span><span></span><span></span>
     </div>
-    <nav>
+    <nav aria-label="Hovedmeny">
       <a href="index.html" data-no="Hjem" data-en="Home" data-de="Startseite">Hjem</a>
       <a href="about.html" data-no="Om meg" data-en="About" data-de="Über mich">Om meg</a>
       <a href="projects.html" data-no="Portfolio" data-en="Portfolio" data-de="Portfolio">Portfolio</a>
       <a href="shop.html" class="active" data-no="Shop" data-en="Shop" data-de="Shop">Shop</a>
       <a href="prices.html" data-no="Priser" data-en="Pricing" data-de="Preise">Priser</a>
       <a href="contact.html" data-no="Kontakt" data-en="Contact" data-de="Kontakt">Kontakt</a>
-      <button class="nav-btn" id="lang-toggle">EN</button>
-      <button class="nav-btn" id="theme-toggle">☀️ Lys</button>
+      <button class="nav-btn" id="lang-toggle" aria-label="Bytt språk">EN</button>
+      <button class="nav-btn" id="theme-toggle" aria-label="Bytt tema">☀️ Lys</button>
       <button class="nav-btn cart-btn" id="cart-btn" onclick="openCart()">🛒 <span id="cart-count">0</span></button>
     </nav>
   </header>
 
+  <main id="main-content">
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-badge">NYHET</div>
-    <h1 id="hero-title"><span data-no="LUT-er, bilder & merch" data-en="LUTs, photos & merch" data-de="LUTs, Fotos & Merch">LUT-er, bilder & merch</span></h1>
-    <p>Oppgrader videoene dine med mine egne fargeinnstillinger, eller represent Solemsli Productions med merch.</p>
+    <div class="hero-badge scroll-velocity" data-speed="-0.3" data-no="NYHET" data-en="NEW" data-de="NEU">NYHET</div>
+    <h1 id="hero-title"><span data-no="LUT-er, bilder & merch" data-en="LUTs, photos & merch" data-de="LUTs, Fotos & Merch" class="scramble-text">LUT-er, bilder & merch</span></h1>
+    <p data-no="Oppgrader videoene dine med mine egne fargeinnstillinger, eller represent Solemsli Productions med merch." data-en="Upgrade your videos with my own color presets, or represent Solemsli Productions with merch." data-de="Verbessern Sie Ihre Videos mit meinen eigenen Farbeinstellungen oder repräsentieren Sie Solemsli Productions mit Merch.">Oppgrader videoene dine med mine egne fargeinnstillinger, eller represent Solemsli Productions med merch.</p>
     <p class="hero-note">* <span data-no="Alle priser er inkludert MVA" data-en="All prices include VAT" data-de="Alle Preise inkl. MwSt.">Alle priser er inkludert MVA</span></p>
   </section>
 
@@ -266,12 +300,72 @@
     <button class="filter-btn" data-filter="powergrades" data-no="Powergrades" data-en="Powergrades" data-de="Powergrades">Powergrades</button>
   </div>
 
-  <!-- PRODUCTS -->
+  <!-- BEFORE / AFTER — LUT SAMMENLIGNING -->
+  <section class="ba-section">
+    <div class="ba-header reveal">
+      <div class="section-label" data-no="Se forskjellen" data-en="See the difference" data-de="Den Unterschied sehen">Se forskjellen</div>
+      <h2 data-no="Før og etter med LUT-er" data-en="Before and after with LUTs" data-de="Vorher und nachher mit LUTs">Før og etter med LUT-er</h2>
+    </div>
+    <div class="ba-grid">
+      <!-- SLIDER 1 — Cinematic Blue -->
+      <div class="ba-card reveal tilt-glow">
+        <div class="ba-slider" data-start="50">
+          <!-- ⚠️ Replace after-img with your LUT-applied export from DaVinci Resolve -->
+          <img class="ba-after" src="gallery/bryllup/untitled-6005.jpg" alt="Etter LUT" draggable="false">
+          <img class="ba-before" src="gallery/bryllup/untitled-6005.jpg" alt="Før LUT" draggable="false">
+          <div class="ba-handle"><div class="ba-handle-line"></div><div class="ba-handle-circle">◄►</div><div class="ba-handle-line"></div></div>
+          <div class="ba-label ba-label-before" data-no="Før" data-en="Before" data-de="Vorher">Før</div>
+          <div class="ba-label ba-label-after" data-no="Etter" data-en="After" data-de="Nachher">Etter</div>
+        </div>
+        <div class="ba-card-info"><h3>Cinematic Blue</h3><span class="ba-lut-badge">LUT</span></div>
+        <button class="btn-buy" onclick="addToCart('Cinematic Blue', '99 kr', 'lut')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
+      </div>
+
+      <!-- SLIDER 2 — Warm Sunset -->
+      <div class="ba-card reveal reveal-delay-1 tilt-glow">
+        <div class="ba-slider" data-start="50">
+          <img class="ba-after" src="gallery/vinjerock/untitled-7604.jpg" alt="Etter LUT" draggable="false">
+          <img class="ba-before" src="gallery/vinjerock/untitled-7604.jpg" alt="Før LUT" draggable="false">
+          <div class="ba-handle"><div class="ba-handle-line"></div><div class="ba-handle-circle">◄►</div><div class="ba-handle-line"></div></div>
+          <div class="ba-label ba-label-before" data-no="Før" data-en="Before" data-de="Vorher">Før</div>
+          <div class="ba-label ba-label-after" data-no="Etter" data-en="After" data-de="Nachher">Etter</div>
+        </div>
+        <div class="ba-card-info"><h3>Warm Sunset</h3><span class="ba-lut-badge">LUT</span></div>
+        <button class="btn-buy" onclick="addToCart('Warm Sunset', '99 kr', 'lut')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
+      </div>
+
+      <!-- SLIDER 3 — Moody Dark -->
+      <div class="ba-card reveal reveal-delay-2 tilt-glow">
+        <div class="ba-slider" data-start="50">
+          <img class="ba-after" src="gallery/konfirmasjon/untitled-5010.jpg" alt="Etter LUT" draggable="false">
+          <img class="ba-before" src="gallery/konfirmasjon/untitled-5010.jpg" alt="Før LUT" draggable="false">
+          <div class="ba-handle"><div class="ba-handle-line"></div><div class="ba-handle-circle">◄►</div><div class="ba-handle-line"></div></div>
+          <div class="ba-label ba-label-before" data-no="Før" data-en="Before" data-de="Vorher">Før</div>
+          <div class="ba-label ba-label-after" data-no="Etter" data-en="After" data-de="Nachher">Etter</div>
+        </div>
+        <div class="ba-card-info"><h3>Moody Dark</h3><span class="ba-lut-badge">LUT</span></div>
+        <button class="btn-buy" onclick="addToCart('Moody Dark', '99 kr', 'lut')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
+      </div>
+
+      <!-- SLIDER 4 — Ferrari LUT -->
+      <div class="ba-card reveal reveal-delay-3 tilt-glow">
+        <div class="ba-slider" data-start="50">
+          <img class="ba-after" src="luts/før:etter/ferrari/1000020827.jpg" alt="Etter LUT" draggable="false">
+          <img class="ba-before" src="luts/før:etter/ferrari/_DSC3114.jpg" alt="Før LUT" draggable="false">
+          <div class="ba-handle"><div class="ba-handle-line"></div><div class="ba-handle-circle">◄►</div><div class="ba-handle-line"></div></div>
+          <div class="ba-label ba-label-before" data-no="Før" data-en="Before" data-de="Vorher">Før</div>
+          <div class="ba-label ba-label-after" data-no="Etter" data-en="After" data-de="Nachher">Etter</div>
+        </div>
+        <div class="ba-card-info"><h3>Ferrari Cinematic</h3><span class="ba-lut-badge">LUT</span></div>
+        <button class="btn-buy" onclick="addToCart('Ferrari Cinematic', '99 kr', 'lut')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
+      </div>
+    </div>
+  </section>
   <section class="shop-section">
     <div class="products-grid perspective-section">
 
       <!-- POWERGRADES -->
-      <div class="product-card" data-category="powergrades">
+      <div class="product-card magnetic-drag" data-category="powergrades">
         <div class="product-image">
           <img src="gallery/bryllup/untitled-6005.jpg" alt="Cinematic Powergrade Pack" loading="lazy">
           <div class="product-badge">Powergrade</div>
@@ -288,7 +382,7 @@
       </div>
 
       <!-- LUT 1 -->
-      <div class="product-card" data-category="lut">
+      <div class="product-card magnetic-drag" data-category="lut">
         <div class="product-image">
           <img src="gallery/bryllup/untitled-6005.jpg" alt="Cinematic LUT" loading="lazy">
           <div class="product-badge">Bestselger</div>
@@ -305,7 +399,7 @@
       </div>
 
       <!-- LUT 2 -->
-      <div class="product-card" data-category="lut">
+      <div class="product-card magnetic-drag" data-category="lut">
         <div class="product-image">
           <img src="gallery/vinjerock/untitled-7604.jpg" alt="Warm Tone LUT" loading="lazy">
         </div>
@@ -321,7 +415,7 @@
       </div>
 
       <!-- LUT 3 -->
-      <div class="product-card" data-category="lut">
+      <div class="product-card magnetic-drag" data-category="lut">
         <div class="product-image">
           <img src="gallery/konfirmasjon/untitled-5010.jpg" alt="Moody LUT" loading="lazy">
           <div class="product-badge">Ny</div>
@@ -338,7 +432,7 @@
       </div>
 
       <!-- LUT BUNDLE -->
-      <div class="product-card" data-category="lut">
+      <div class="product-card magnetic-drag" data-category="lut">
         <div class="product-image" style="background: linear-gradient(135deg, var(--main-blue), #0066cc);">
           <img src="gallery/vang-kommune-sentrum/DJI_20251006091304_0231_D.jpg" alt="LUT Bundle" loading="lazy">
           <div class="product-badge">Spar 40%</div>
@@ -355,7 +449,7 @@
       </div>
 
       <!-- PRESET 1 -->
-      <div class="product-card" data-category="preset">
+      <div class="product-card magnetic-drag" data-category="preset">
         <div class="product-image">
           <img src="gallery/vinjerock-drone/untitled--16.jpg" alt="Lightroom Preset" loading="lazy">
         </div>
@@ -371,7 +465,7 @@
       </div>
 
       <!-- PRESET 2 -->
-      <div class="product-card" data-category="preset">
+      <div class="product-card magnetic-drag" data-category="preset">
         <div class="product-image">
           <img src="gallery/vang-bygg-oversikt/untitled--10.jpg" alt="Lightroom Preset" loading="lazy">
         </div>
@@ -387,7 +481,7 @@
       </div>
 
       <!-- BESTILL BILDER -->
-      <div class="product-card" data-category="bilde">
+      <div class="product-card magnetic-drag" data-category="bilde">
         <div class="product-image">
           <img src="gallery/andre natur bilder/uranustind.jpg" alt="Bestill bilder" loading="lazy">
           <div class="product-badge">Bestill</div>
@@ -404,7 +498,7 @@
       </div>
 
       <!-- MERCH — ZIP HOODIE -->
-      <div class="product-card" data-category="merch">
+      <div class="product-card magnetic-drag" data-category="merch">
         <div class="product-image" style="background:linear-gradient(135deg,#1a1a2e,#2d2d44)">
           <img src="merch/5035.jpg" alt="Solemsli Zip Hoodie" loading="lazy">
           <div class="product-badge" data-no="Bestselger" data-en="Bestseller" data-de="Bestseller">Bestselger</div>
@@ -421,7 +515,7 @@
       </div>
 
       <!-- MERCH — T-SHIRT -->
-      <div class="product-card" data-category="merch">
+      <div class="product-card magnetic-drag" data-category="merch">
         <div class="product-image" style="background:linear-gradient(135deg,#0f0f23,#1a1a3e)">
           <img src="merch/untitled-1628.jpg" alt="Solemsli T-Shirt" loading="lazy">
           <div class="product-badge" data-no="Ny" data-en="New" data-de="Neu">Ny</div>
@@ -438,9 +532,9 @@
       </div>
 
       <!-- MERCH — CAP -->
-      <div class="product-card" data-category="merch">
+      <div class="product-card magnetic-drag" data-category="merch">
         <div class="product-image" style="background:linear-gradient(135deg,#1a1a2e,#0a2540)">
-          <img src="gallery/biler/untitled--13684.jpg" alt="Solemsli Cap" loading="lazy">
+          <img src="gallery/biler/untitled-9289.jpg" alt="Solemsli Cap" loading="lazy">
         </div>
         <div class="product-info">
           <div class="product-category">MERCH</div>
@@ -454,7 +548,7 @@
       </div>
 
       <!-- MERCH — STICKER PACK -->
-      <div class="product-card" data-category="merch">
+      <div class="product-card magnetic-drag" data-category="merch">
         <div class="product-image" style="background:linear-gradient(135deg,#0d1b2a,#1b263b)">
           <img src="gallery/andre natur bilder/uranustind.jpg" alt="Solemsli Sticker Pack" loading="lazy">
         </div>
@@ -511,6 +605,8 @@
     </div>
   </section>
 
+  </main>
+
   <!-- FOOTER -->
   <footer>
     <div class="footer-left">
@@ -518,14 +614,14 @@
       <p>© 2026 Solemsli Productions. Innlandet.</p>
     </div>
     <div class="footer-links">
-      <a href="https://www.instagram.com/solemsli_productions/" target="_blank">Instagram</a>
+      <a href="https://www.instagram.com/solemsli_productions/" target="_blank" rel="noopener noreferrer">Instagram</a>
       <a href="contact.html" data-no="Kontakt" data-en="Contact" data-de="Kontakt">Kontakt</a>
       <a href="about.html" data-no="Om meg" data-en="About" data-de="Über mich">Om meg</a>
     </div>
   </footer>
 
   <!-- MODAL -->
-  <div class="modal-overlay" id="modal-overlay">
+  <div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true" aria-label="Produktdetaljer" aria-hidden="true">
     <div class="modal">
       <button class="modal-close" onclick="closeModal()">×</button>
       <div class="product-category" id="modal-category"></div>
@@ -543,12 +639,12 @@
       <button class="modal-close" onclick="closeCheckout()">×</button>
       <h3 data-no="Kasse" data-en="Checkout" data-de="Kasse">Kasse</h3>
       <div id="checkout-items" class="checkout-items"></div>
-      <div class="checkout-total"><span>Totalt:</span><span id="checkout-total"></span></div>
+      <div class="checkout-total"><span data-no="Totalt:" data-en="Total:" data-de="Gesamt:">Totalt:</span><span id="checkout-total"></span></div>
       <form id="checkout-form">
-        <div class="form-group"><input type="text" id="co-name" placeholder=" " required><label for="co-name">Navn</label><div class="form-line"></div></div>
-        <div class="form-group"><input type="email" id="co-email" placeholder=" " required><label for="co-email">E-post</label><div class="form-line"></div></div>
-        <div class="form-group"><input type="tel" id="co-phone" placeholder=" " required><label for="co-phone">Telefon</label><div class="form-line"></div></div>
-        <div class="form-group"><input type="text" id="co-address" placeholder=" "><label for="co-address">Adresse (for frakt)</label><div class="form-line"></div></div>
+        <div class="form-group"><input type="text" id="co-name" placeholder=" " required><label for="co-name" data-no="Navn" data-en="Name" data-de="Name">Navn</label><div class="form-line"></div></div>
+        <div class="form-group"><input type="email" id="co-email" placeholder=" " required><label for="co-email" data-no="E-post" data-en="Email" data-de="E-Mail">E-post</label><div class="form-line"></div></div>
+        <div class="form-group"><input type="tel" id="co-phone" placeholder=" " required><label for="co-phone" data-no="Telefon" data-en="Phone" data-de="Telefon">Telefon</label><div class="form-line"></div></div>
+        <div class="form-group"><input type="text" id="co-address" placeholder=" "><label for="co-address" data-no="Adresse (for frakt)" data-en="Address (for shipping)" data-de="Adresse (fuer Versand)">Adresse (for frakt)</label><div class="form-line"></div></div>
 
         <!-- PAYMENT METHOD SELECTOR -->
         <div class="pay-method-label" data-no="Betalingsmåte" data-en="Payment method" data-de="Zahlungsmethode">Betalingsmåte</div>
@@ -575,7 +671,7 @@
   </div>
 
   <!-- CART PANEL -->
-  <div class="cart-panel" id="cartPanel">
+  <div class="cart-panel" id="cartPanel" role="dialog" aria-label="Handlekurv" aria-hidden="true">
     <div class="cart-header">
       <h3 data-no="Handlekurv" data-en="Cart" data-de="Warenkorb">Handlekurv</h3>
       <button class="cart-close" onclick="closeCart()">✕</button>
@@ -584,14 +680,14 @@
       <p class="cart-empty" data-no="Handlekurven er tom" data-en="Cart is empty" data-de="Warenkorb ist leer">Handlekurven er tom</p>
     </div>
     <div class="cart-footer">
-      <div class="cart-total"><span>Totalt:</span><span id="cartTotal">0 kr</span></div>
+      <div class="cart-total"><span data-no="Totalt:" data-en="Total:" data-de="Gesamt:">Totalt:</span><span id="cartTotal">0 kr</span></div>
       <button class="btn-checkout" onclick="openCheckout()" data-no="Til kassen" data-en="Checkout" data-de="Zur Kasse">Til kassen</button>
     </div>
   </div>
   <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
 
   <!-- FLOATING CART (MOBILE) -->
-  <button class="floating-cart" id="floating-cart" onclick="openCart()" style="display:none">🛒<span class="floating-count" id="floating-count">0</span></button>
+  <button class="floating-cart" id="floating-cart" onclick="openCart()">🛒<span class="floating-count" id="floating-count">0</span></button>
 
   <!-- CUSTOM CURSOR -->
   <div class="custom-cursor" id="cursor"></div>
@@ -632,6 +728,12 @@
       });
     }
 
+    // XSS PROTECTION
+    function escapeHtml(str) {
+      const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
+      return String(str).replace(/[&<>"']/g, c => map[c]);
+    }
+
     // FILTER
     const filterBtns = document.querySelectorAll('.filter-btn');
     const products = document.querySelectorAll('.product-card');
@@ -665,18 +767,27 @@
 
     // CART
     let cart = [];
-    // TODO: Replace with your Vipps number or payment link from vipps.no
     const VIPPS_NUMBER = '65829';
-    // Sett inn di Vipps Payment Link her frå portal.vippsmobilepay.com → Betalingslenker
-    const VIPPS_PAYMENT_LINK = '';
+
+    // Load cart from localStorage
+    try {
+      const saved = localStorage.getItem('solemsli_cart');
+      if (saved) cart = JSON.parse(saved);
+    } catch(e) { cart = []; }
+    function saveCart() {
+      try { localStorage.setItem('solemsli_cart', JSON.stringify(cart)); } catch(e) {}
+    }
+
     function addToCart(name, price, category, downloadFile) {
       cart.push({ name, price, category: category || '', downloadFile: downloadFile || '' });
+      saveCart();
       updateCart();
       playAddToCart();
       openCart();
     }
     function removeFromCart(i) {
       cart.splice(i, 1);
+      saveCart();
       updateCart();
     }
     function updateCart() {
@@ -684,24 +795,25 @@
       const total = document.getElementById('cartTotal');
       const count = document.getElementById('cart-count');
       const floatCount = document.getElementById('floating-count');
-      const floatBtn = document.getElementById('floating-cart');
       count.textContent = cart.length;
       if (floatCount) floatCount.textContent = cart.length;
-      if (floatBtn) floatBtn.style.display = cart.length > 0 ? 'flex' : 'none';
       if (cart.length === 0) {
         items.innerHTML = '<p class="cart-empty">Handlekurven er tom</p>';
         total.textContent = '0 kr';
         return;
       }
-      items.innerHTML = cart.map((item, i) => `<div class="cart-item"><div class="cart-item-icon">📦</div><div class="cart-item-info"><h4>${item.name}</h4><p>${item.price}</p></div><button class="cart-item-remove" onclick="removeFromCart(${i})">Fjern</button></div>`).join('');
+      items.innerHTML = cart.map((item, i) => `<div class="cart-item"><div class="cart-item-icon">📦</div><div class="cart-item-info"><h4>${escapeHtml(item.name)}</h4><p>${escapeHtml(item.price)}</p></div><button class="cart-item-remove" onclick="removeFromCart(${i})">Fjern</button></div>`).join('');
       total.textContent = cart.reduce((sum, item) => sum + parseInt(item.price), 0) + ' kr';
     }
+    // Render cart on load
+    updateCart();
     function openCart() { document.getElementById('cartPanel').classList.add('open'); document.getElementById('cartOverlay').classList.add('open'); }
     function closeCart() { document.getElementById('cartPanel').classList.remove('open'); document.getElementById('cartOverlay').classList.remove('open'); }
 
     // CHECKOUT
     let selectedPayMethod = 'vipps';
     const BTC_WALLET = 'bc1pygw2tw0xus8vv4wawhh63zqdpwmfw3xkll5pqwv80eh83tr59d8qlewujt';
+    // ⚠️ BANK: Replace with your real kontonummer (e.g., from Vipps/Bank)
     const BANK_ACCOUNT = 'DITT_KONTONUMMER';
 
     function openCheckout() {
@@ -747,10 +859,10 @@
 
     // CHECKOUT FORM → Payment
     function processCheckout() {
-      const name = document.getElementById('co-name').value;
-      const email = document.getElementById('co-email').value;
-      const phone = document.getElementById('co-phone').value;
-      const address = document.getElementById('co-address').value;
+      const name = escapeHtml(document.getElementById('co-name').value);
+      const email = escapeHtml(document.getElementById('co-email').value);
+      const phone = escapeHtml(document.getElementById('co-phone').value);
+      const address = escapeHtml(document.getElementById('co-address').value);
       const total = cart.reduce((sum, item) => sum + parseInt(item.price), 0);
       const itemList = cart.map(item => item.name).join(', ');
 
@@ -759,8 +871,8 @@
         item.category === 'lut' || item.category === 'powergrades' || item.category === 'preset'
       );
 
-      // Send order to Formspree (placeholder)
-      fetch('https://formspree.io/f/placeholder-newsletter', {
+      // Send order to Formspree (⚠️ Replace YOUR_FORM_ID_HERE with real ID from formspree.io/my-forms)
+      fetch('https://formspree.io/f/YOUR_FORM_ID_HERE', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -861,6 +973,7 @@
 
       overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.remove(); });
       cart = [];
+      saveCart();
       updateCart();
     }
 
@@ -995,6 +1108,89 @@ solemsliproductions.no`;
         child.style.transitionDelay = (i * 0.08) + 's';
       });
     });
+
+    // STICKY FILTER SHADOW
+    const filterBar = document.querySelector('.filter-bar');
+    if (filterBar) {
+      const sentinel = document.createElement('div');
+      sentinel.style.cssText = 'position:absolute;top:0;left:0;width:1px;height:1px;pointer-events:none';
+      filterBar.parentNode.insertBefore(sentinel, filterBar);
+      const stickObs = new IntersectionObserver(([e]) => {
+        filterBar.classList.toggle('stuck', !e.isIntersecting);
+      }, { threshold: [1], rootMargin: '-1px 0px 0px 0px' });
+      stickObs.observe(sentinel);
+    }
+
+    // BEFORE / AFTER SLIDER
+    (function initBASliders() {
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      document.querySelectorAll('.ba-slider').forEach(slider => {
+        const beforeImg = slider.querySelector('.ba-before');
+        const handle = slider.querySelector('.ba-handle');
+        let isDragging = false;
+
+        function setPosition(percent) {
+          percent = Math.max(2, Math.min(98, percent));
+          beforeImg.style.clipPath = `inset(0 ${100 - percent}% 0 0)`;
+          handle.style.left = percent + '%';
+        }
+
+        // Set initial position
+        const start = parseFloat(slider.dataset.start) || 50;
+        setPosition(start);
+
+        function getPercent(e) {
+          const rect = slider.getBoundingClientRect();
+          const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+          return ((clientX - rect.left) / rect.width) * 100;
+        }
+
+        function onDown(e) {
+          isDragging = true;
+          setPosition(getPercent(e));
+          slider.style.cursor = 'ew-resize';
+          e.preventDefault();
+        }
+
+        function onMove(e) {
+          if (!isDragging) return;
+          setPosition(getPercent(e));
+          e.preventDefault();
+        }
+
+        function onUp() {
+          isDragging = false;
+          slider.style.cursor = 'ew-resize';
+        }
+
+        // Pointer events (mouse + touch)
+        slider.addEventListener('pointerdown', onDown);
+        window.addEventListener('pointermove', onMove);
+        window.addEventListener('pointerup', onUp);
+
+        // Keyboard accessibility
+        handle.querySelector('.ba-handle-circle').setAttribute('tabindex', '0');
+        handle.querySelector('.ba-handle-circle').setAttribute('role', 'slider');
+        handle.querySelector('.ba-handle-circle').setAttribute('aria-label', 'Before/After slider');
+        handle.querySelector('.ba-handle-circle').setAttribute('aria-valuemin', '0');
+        handle.querySelector('.ba-handle-circle').setAttribute('aria-valuemax', '100');
+        handle.querySelector('.ba-handle-circle').setAttribute('aria-valuenow', String(start));
+
+        handle.querySelector('.ba-handle-circle').addEventListener('keydown', (e) => {
+          const current = parseFloat(handle.style.left) || 50;
+          if (e.key === 'ArrowLeft') { setPosition(current - 2); e.preventDefault(); }
+          if (e.key === 'ArrowRight') { setPosition(current + 2); e.preventDefault(); }
+          handle.querySelector('.ba-handle-circle').setAttribute('aria-valuenow', String(Math.round(parseFloat(handle.style.left))));
+        });
+
+        // If reduced motion, show both images side by side (no clip)
+        if (prefersReduced) {
+          beforeImg.style.clipPath = 'inset(0 50% 0 0)';
+          handle.style.left = '50%';
+        }
+      });
+    })();
   </script>
   <script src="shared.js"></script>
 </body>

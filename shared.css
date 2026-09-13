@@ -5,13 +5,66 @@
 
 /* VARIABLES */
 :root{--main-blue:#0180ff;--accent:#00d4ff;--glass-bg:rgba(255,255,255,0.08);--glass-border:rgba(255,255,255,0.12)}
-  [data-theme="dark"]{--bg:#0a0a0a;--text:#f5f5f5;--text-muted:#888;--card-bg:rgba(255,255,255,0.04);--card-border:rgba(255,255,255,0.1);--header-bg:rgba(10,10,10,0.85);--header-border:rgba(255,255,255,0.05);--nav-color:rgba(255,255,255,0.7);--nav-hover:#fff;--nav-btn-bg:rgba(255,255,255,0.1);--nav-btn-border:rgba(255,255,255,0.15);--mobile-nav-bg:rgba(10,10,10,0.98);--mobile-nav-border:rgba(255,255,255,0.05)}
+  [data-theme="dark"]{--bg:#0a0a0a;--text:#f5f5f5;--text-muted:#888;--card-bg:rgba(255,255,255,0.04);--card-border:rgba(255,255,255,0.1);--header-bg:rgba(10,10,10,0.85);--header-border:rgba(255,255,255,0.05);--nav-color:rgba(255,255,255,0.7);--nav-hover:#fff;--nav-btn-bg:rgba(255,255,255,0.1);--nav-btn-border:rgba(255,255,255,0.15);--mobile-nav-bg:rgba(10,10,10,0.98);--mobile-nav-border:rgba(255,255,255,0.05);--orb1:rgba(1,128,255,0.08);--orb2:rgba(0,212,255,0.06);--orb3:rgba(168,85,247,0.05);--bokeh:rgba(1,128,255,0.12);--vignette:rgba(0,0,0,0.5)}
 
-  [data-theme="light"]{--bg:#f8f9fa;--text:#111;--text-muted:#666;--card-bg:rgba(0,0,0,0.03);--card-border:rgba(0,0,0,0.1);--header-bg:rgba(248,249,250,0.85);--header-border:rgba(0,0,0,0.08);--nav-color:rgba(0,0,0,0.6);--nav-hover:#111;--nav-btn-bg:rgba(0,0,0,0.06);--nav-btn-border:rgba(0,0,0,0.12);--mobile-nav-bg:rgba(248,249,250,0.98);--mobile-nav-border:rgba(0,0,0,0.08)}
+[data-theme="light"]{--bg:#f8f9fa;--text:#111;--text-muted:#666;--card-bg:rgba(0,0,0,0.03);--card-border:rgba(0,0,0,0.1);--header-bg:rgba(248,249,250,0.85);--header-border:rgba(0,0,0,0.08);--nav-color:rgba(0,0,0,0.6);--nav-hover:#111;--nav-btn-bg:rgba(0,0,0,0.06);--nav-btn-border:rgba(0,0,0,0.12);--mobile-nav-bg:rgba(248,249,250,0.98);--mobile-nav-border:rgba(0,0,0,0.08);--orb1:rgba(1,128,255,0.05);--orb2:rgba(0,212,255,0.04);--orb3:rgba(168,85,247,0.04);--bokeh:rgba(1,128,255,0.08);--vignette:rgba(0,0,0,0.15)}
 /* RESET */
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:var(--main-blue) transparent}
-body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;transition:background .5s,color .5s}
+body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;transition:background .5s,color .5s;position:relative}
+
+/* ANIMATED BACKGROUND — slow shifting gradient */
+body::before{content:'';position:fixed;inset:0;z-index:-2;pointer-events:none;
+  background:linear-gradient(135deg,var(--bg) 0%,var(--bg) 100%);
+  background-size:400% 400%;animation:bgShift 20s ease-in-out infinite alternate}
+[data-theme="dark"] body::before{
+  background:linear-gradient(135deg,#0a0a0a 0%,#0d1117 25%,#0a0a0a 50%,#0f172a 75%,#0a0a0a 100%);
+  background-size:400% 400%}
+[data-theme="light"] body::before{
+  background:linear-gradient(135deg,#f8f9fa 0%,#e8f4f8 25%,#f8f9fa 50%,#f0f4ff 75%,#f8f9fa 100%);
+  background-size:400% 400%}
+@keyframes bgShift{
+  0%{background-position:0% 50%}
+  25%{background-position:100% 0%}
+  50%{background-position:100% 100%}
+  75%{background-position:0% 100%}
+  100%{background-position:0% 50%}
+}
+
+/* MESH GRADIENT ORBS — floating color blobs */
+.mesh-orbs{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+.mesh-orb{position:absolute;border-radius:50%;filter:blur(100px);opacity:0;animation:orbFloat 20s ease-in-out infinite alternate,orbFade 10s ease-in-out infinite}
+.mesh-orb:nth-child(1){width:400px;height:400px;background:var(--orb1);top:10%;left:10%;animation-delay:0s}
+.mesh-orb:nth-child(2){width:300px;height:300px;background:var(--orb2);top:60%;right:10%;animation-delay:-7s}
+.mesh-orb:nth-child(3){width:250px;height:250px;background:var(--orb3);bottom:10%;left:40%;animation-delay:-14s}
+@keyframes orbFloat{
+  0%{transform:translate(0,0) scale(1)}
+  33%{transform:translate(40px,-30px) scale(1.05)}
+  66%{transform:translate(-20px,40px) scale(.95)}
+  100%{transform:translate(10px,-10px) scale(1.02)}
+}
+@keyframes orbFade{
+  0%,100%{opacity:.4}
+  50%{opacity:.7}
+}
+
+/* BOKEH LIGHTS — soft floating circles */
+.bokeh-container{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+.bokeh-dot{position:absolute;border-radius:50%;background:var(--bokeh);animation:bokehDrift linear infinite;opacity:0}
+@keyframes bokehDrift{
+  0%{transform:translateY(100vh) translateX(0) scale(0);opacity:0}
+  10%{opacity:.6}
+  90%{opacity:.6}
+  100%{transform:translateY(-10vh) translateX(var(--drift)) scale(1);opacity:0}
+}
+
+/* VIGNETTE — dark edges on hero */
+.hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 50%,var(--vignette) 100%);pointer-events:none;z-index:1}
+
+/* SECTION AMBIENT GLOW — pulsing glow behind sections */
+.section{position:relative}
+.section::before{content:'';position:absolute;top:50%;left:50%;width:600px;height:600px;transform:translate(-50%,-50%);background:radial-gradient(circle,var(--orb1) 0%,transparent 70%);opacity:0;transition:opacity 1s;pointer-events:none;z-index:-1}
+.section:hover::before{opacity:.5}
 ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--main-blue);border-radius:3px}
 
 /* GRAIN OVERLAY */
@@ -78,6 +131,12 @@ footer{padding:60px 40px;border-top:1px solid var(--glass-border);display:flex;j
 .btn-primary::after{content:'';position:absolute;width:100%;height:100%;top:0;left:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.2),transparent);transform:translateX(-100%);transition:transform .5s}
 .btn-primary:hover::after{transform:translateX(100%)}
 
+/* IMAGE SKELETON LOADING */
+img[loading="lazy"]{background:linear-gradient(110deg,var(--card-bg) 8%,rgba(255,255,255,0.06) 18%,var(--card-bg) 33%);background-size:200% 100%;animation:skeletonShimmer 1.5s linear infinite}
+img[loading="lazy"].loaded{animation:none;background:none}
+[data-theme="light"] img[loading="lazy"]{background:linear-gradient(110deg,rgba(0,0,0,0.04) 8%,rgba(0,0,0,0.08) 18%,rgba(0,0,0,0.04) 33%);background-size:200% 100%}
+@keyframes skeletonShimmer{to{background-position:-200% 0}}
+
 /* SCROLL TO TOP */
 .scroll-top{position:fixed;bottom:30px;right:30px;width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--main-blue),var(--accent));color:white;border:none;cursor:pointer;font-size:1.2rem;display:flex;align-items:center;justify-content:center;z-index:999;opacity:0;visibility:hidden;transform:translateY(20px);transition:all .3s cubic-bezier(.23,1,.32,1);box-shadow:0 4px 20px rgba(1,128,255,0.3)}
 .scroll-top.visible{opacity:1;visibility:visible;transform:translateY(0)}
@@ -135,3 +194,343 @@ button{cursor:pointer}
 @media(max-width:750px){
   #coverage-map{height:350px;border-radius:16px}
 }
+
+/* PREFERS REDUCED MOTION — accessibility */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:0.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:0.01ms !important;
+    scroll-behavior:auto !important;
+  }
+  .custom-cursor,.custom-cursor-dot{display:none !important}
+  #grain{animation:none !important;opacity:0}
+  .reveal{opacity:1 !important;transform:none !important;transition:none !important}
+  .reveal.active{opacity:1 !important;transform:none !important}
+}
+
+/* FOCUS VISIBLE — keyboard navigation */
+:focus-visible{
+  outline:2px solid var(--main-blue);
+  outline-offset:3px;
+  border-radius:4px;
+}
+a:focus-visible,button:focus-visible{
+  outline:2px solid var(--main-blue);
+  outline-offset:2px;
+}
+
+/* MOBILE — avoid floating-cart overlap with scroll-top */
+@media(max-width:600px){
+  .scroll-top{bottom:90px;right:20px}
+}
+
+/* ===== NEW ANIMATIONS & 3D EFFECTS ===== */
+
+/* TEXT SCRAMBLE — elements with .scramble-text decode on scroll */
+.scramble-text{display:inline-block}
+
+
+
+/* SECTION GRADIENT BORDER — animated top line on scroll */
+.scroll-border{position:relative}
+.scroll-border::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--main-blue),var(--accent),transparent);transform:scaleX(0);transform-origin:center;transition:transform .8s cubic-bezier(.23,1,.32,1)}
+.scroll-border.in-view::before{transform:scaleX(1)}
+
+
+
+
+
+/* STAGGER CHILDREN — auto-animate children on scroll */
+.stagger-children>*{opacity:0;transform:translateY(24px);transition:all .5s cubic-bezier(.23,1,.32,1)}
+.stagger-children.in-view>*{opacity:1;transform:translateY(0)}
+.stagger-children.in-view>*:nth-child(1){transition-delay:0s}
+.stagger-children.in-view>*:nth-child(2){transition-delay:.08s}
+.stagger-children.in-view>*:nth-child(3){transition-delay:.16s}
+.stagger-children.in-view>*:nth-child(4){transition-delay:.24s}
+.stagger-children.in-view>*:nth-child(5){transition-delay:.32s}
+.stagger-children.in-view>*:nth-child(6){transition-delay:.4s}
+
+
+
+/* IMAGE REVEAL CLIP — images clip in from bottom on scroll */
+.clip-reveal{clip-path:inset(100% 0 0 0);transition:clip-path .8s cubic-bezier(.23,1,.32,1)}
+.clip-reveal.in-view{clip-path:inset(0 0 0 0)}
+
+/* TILT GLOW — cards glow from cursor position */
+.tilt-glow{position:relative;overflow:hidden}
+.tilt-glow::after{content:'';position:absolute;width:200px;height:200px;background:radial-gradient(circle,rgba(1,128,255,0.15) 0%,transparent 70%);border-radius:50%;pointer-events:none;opacity:0;transition:opacity .3s;transform:translate(-50%,-50%)}
+.tilt-glow:hover::after{opacity:1}
+
+/* ============================================
+   SPECIAL EFFECTS — unique animations
+   ============================================ */
+
+/* MAGNETIC TEXT — characters follow cursor */
+.magnetic-text span{display:inline-block;transition:transform .15s cubic-bezier(.25,.46,.45,.94);cursor:default}
+.magnetic-text:hover span{transition:transform .3s cubic-bezier(.25,.46,.45,.94)}
+
+/* SCROLL-SCRUB — rotate/scale driven by scroll */
+.scroll-scrub{transition:transform .1s linear will-change:transform}
+
+
+
+/* TEXT WAVE — characters undulate on mouse */
+.text-wave span{display:inline-block;transition:transform .2s ease-out}
+
+
+
+/* PARTICLE BURST — particles on click */
+.particle-burst{position:relative;overflow:visible}
+.burst-particle{position:absolute;width:6px;height:6px;border-radius:50%;pointer-events:none;animation:burstFly .6s cubic-bezier(.25,.46,.45,.94) forwards}
+@keyframes burstFly{
+  0%{transform:translate(0,0) scale(1);opacity:1}
+  100%{transform:translate(var(--bx),var(--by)) scale(0);opacity:0}
+}
+
+/* NAV COLOR SHIFT — blue glow as you scroll */
+header.scrolled{box-shadow:0 1px 0 var(--header-border)}
+header.scrolled.nav-accent{box-shadow:0 1px 20px rgba(1,128,255,.15),0 1px 0 var(--header-border)}
+
+/* CURSOR LIGHT BEAM — radial glow follows mouse */
+#cursor-beam{position:fixed;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(1,128,255,.06) 0%,transparent 70%);pointer-events:none;z-index:9990;transform:translate(-50%,-50%);transition:opacity .3s;opacity:0;will-change:transform}
+#cursor-beam.active{opacity:1}
+@media(hover:none){#cursor-beam{display:none}}
+
+/* ============================================
+   CREATIVITY PACK — 5 new effects
+   ============================================ */
+
+/* CLICK RIPPLE — expanding circle on click */
+.click-ripple{position:fixed;width:0;height:0;border-radius:50%;pointer-events:none;z-index:9998;background:radial-gradient(circle,rgba(1,128,255,.3) 0%,transparent 70%);transform:translate(-50%,-50%);animation:rippleExpand .7s ease-out forwards}
+@keyframes rippleExpand{
+  0%{width:0;height:0;opacity:.6}
+  100%{width:300px;height:300px;opacity:0}
+}
+
+/* MORPHING BLOB — animated background shape */
+.hero-blob{position:absolute;width:600px;height:600px;top:50%;left:50%;transform:translate(-50%,-50%);opacity:.12;filter:blur(60px);pointer-events:none;z-index:0}
+.hero-blob svg{width:100%;height:100%}
+
+/* CURSOR TRAIL — dots that follow and fade */
+.cursor-trail-dot{position:fixed;width:8px;height:8px;border-radius:50%;background:var(--main-blue);pointer-events:none;z-index:9991;opacity:0;transition:opacity .15s;will-change:transform}
+.cursor-trail-dot.active{opacity:.4}
+@media(hover:none){.cursor-trail-dot{display:none}}
+
+/* HERO GRADIENT TEXT — animated shimmer on hero h1 */
+.hero-gradient-text{background:linear-gradient(90deg,var(--text) 0%,var(--main-blue) 25%,var(--accent) 50%,var(--main-blue) 75%,var(--text) 100%);background-size:200% 100%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:heroShimmer 5s ease-in-out infinite}
+@keyframes heroShimmer{
+  0%,100%{background-position:200% center}
+  50%{background-position:0% center}
+}
+
+/* PORTFOLIO HOVER TILT — 3D tilt toward cursor */
+.portfolio-tilt{transform-style:preserve-3d;perspective:800px}
+.portfolio-tilt img{transition:transform .4s cubic-bezier(.23,1,.32,1);transform-style:preserve-3d}
+.portfolio-tilt:hover img{transform:translateZ(30px) scale(1.05)}
+
+/* ============================================
+   CREATIVITY PACK VOL 2 — 5 more effects
+   ============================================ */
+
+/* DIAGONAL WIPE — page transition overlay */
+#wipe-overlay{position:fixed;inset:0;z-index:99998;pointer-events:none;clip-path:polygon(0 0,0 0,0 100%,0 100%);background:linear-gradient(135deg,var(--main-blue),#0a0a0a);transition:clip-path .5s cubic-bezier(.77,0,.175,1)}
+#wipe-overlay.wiping-in{clip-path:polygon(0 0,120% 0,100% 100%,0 100%)}
+#wipe-overlay.wiping-out{clip-path:polygon(100% 0,120% 0,100% 100%,100% 100%);transition:clip-path .4s cubic-bezier(.77,0,.175,1)}
+
+/* HERO PARALLAX DEPTH — image and content move at different speeds */
+
+
+/* CURSOR MORPH — changes shape on hover */
+.custom-cursor.cursor-crosshair{border-radius:0;transform:translate(-50%,-50%) rotate(45deg);width:24px;height:24px;border-width:1.5px}
+.custom-cursor.cursor-text{width:3px;height:28px;border-radius:2px;border:none;background:var(--main-blue)}
+.custom-cursor.cursor-expand{transform:translate(-50%,-50%) scale(2);border-color:var(--accent);background:rgba(1,128,255,.08)}
+.custom-cursor.cursor-drag{width:60px;height:60px;border-style:dashed;animation:cursorSpin 4s linear infinite}
+@keyframes cursorSpin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+
+/* WAVE DIVIDER — organic section separator */
+.wave-divider{width:100%;overflow:hidden;line-height:0;margin:-1px 0}
+.wave-divider svg{display:block;width:100%;height:60px}
+.wave-divider.flip{transform:rotate(180deg)}
+
+/* SCROLL VELOCITY — elements move based on scroll speed */
+.scroll-velocity{will-change:transform;transition:transform .1s linear}
+
+/* MAGNETIC FIELD LINES — visible lines on hover */
+.magnetic-field{position:relative}
+.magnetic-field::after{content:'';position:absolute;inset:-20px;border:1px solid rgba(1,128,255,.15);border-radius:50%;opacity:0;transform:scale(.8);transition:all .4s cubic-bezier(.23,1,.32,1);pointer-events:none}
+.magnetic-field:hover::after{opacity:1;transform:scale(1.1);border-radius:30%}
+
+/* ============================================
+   SMOOTHNESS PACK — buttery animations
+   ============================================ */
+
+
+
+/* IMAGE FADE-IN — smooth opacity on lazy load */
+img[loading="lazy"]{opacity:0;transition:opacity .6s cubic-bezier(.23,1,.32,1)}
+img[loading="lazy"].loaded{opacity:1}
+img[loading="lazy"][src]{opacity:1}
+.no-js img[loading="lazy"]{opacity:1}
+
+/* MICRO HOVER — subtle scale/glow on interactive elements */
+a{transition:color .3s,opacity .3s}
+.btn{transition:all .3s cubic-bezier(.23,1,.32,1)}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(0) scale(.98)}
+.nav-btn{transition:all .3s cubic-bezier(.23,1,.32,1)}
+.nav-btn:hover{transform:translateY(-1px)}
+.filter-btn{transition:all .3s cubic-bezier(.23,1,.32,1)}
+.filter-btn:hover{transform:translateY(-1px)}
+.faq-question{transition:all .3s cubic-bezier(.23,1,.32,1)}
+
+/* SECTION REVEAL — handled by JS staggerObs (inline styles) */
+
+/* PAGE LOAD SEQUENCE — elements animate in on load */
+.hero-badge{opacity:0;animation:fadeUp .5s .4s forwards}
+.hero-content h1{opacity:0;animation:fadeUp .5s .5s forwards}
+.hero-content p{opacity:0;animation:fadeUp .5s .65s forwards}
+.hero-buttons{opacity:0;animation:fadeUp .5s .8s forwards}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+
+
+/* IMAGE HOVER — smooth zoom without layout shift */
+img{transition:transform .5s cubic-bezier(.23,1,.32,1)}
+
+/* SMOOTH OVERLAY — modals and panels */
+.modal-overlay,.cart-panel{transition:opacity .3s,visibility .3s,transform .3s cubic-bezier(.23,1,.32,1)}
+
+
+
+/* LIGHTBOX SMOOTH — image crossfade */
+.lightbox-img{transition:opacity .3s,transform .3s cubic-bezier(.23,1,.32,1)}
+
+/* SMOOTH TOGGLE — theme/lang buttons */
+#theme-toggle,#lang-toggle{position:relative;overflow:hidden}
+#theme-toggle::after,#lang-toggle::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent);transform:translateX(-100%);transition:transform .4s}
+#theme-toggle:hover::after,#lang-toggle:hover::after{transform:translateX(100%)}
+
+/* ============================================
+   VISUAL IMPACT PACK — wow-factor effects
+   ============================================ */
+
+/* AURORA GLOW — animated light streaks in hero */
+.aurora{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.aurora-beam{position:absolute;width:200%;height:200%;top:-50%;left:-50%;opacity:.08;filter:blur(60px);animation:auroraMove 8s ease-in-out infinite alternate}
+.aurora-beam:nth-child(1){background:conic-gradient(from 0deg at 50% 50%,transparent 0%,var(--main-blue) 8%,transparent 16%);animation-duration:8s}
+.aurora-beam:nth-child(2){background:conic-gradient(from 120deg at 50% 50%,transparent 0%,var(--accent) 8%,transparent 16%);animation-duration:10s;animation-delay:-3s}
+.aurora-beam:nth-child(3){background:conic-gradient(from 240deg at 50% 50%,transparent 0%,#a855f7 8%,transparent 16%);animation-duration:12s;animation-delay:-6s}
+@keyframes auroraMove{
+  0%{transform:rotate(0deg) scale(1)}
+  50%{transform:rotate(180deg) scale(1.2)}
+  100%{transform:rotate(360deg) scale(1)}
+}
+
+/* FLOATING GEOMETRY — shapes drifting in background */
+.geo-container{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+.geo-shape{position:absolute;opacity:.06;animation:geoDrift linear infinite}
+.geo-shape.circle{border-radius:50%;border:1px solid var(--main-blue)}
+.geo-shape.triangle{width:0!important;height:0!important;background:none!important;border-left:15px solid transparent;border-right:15px solid transparent;border-bottom:26px solid var(--accent)}
+.geo-shape.square{border:1px solid var(--accent);transform:rotate(45deg)}
+.geo-shape.diamond{border:1px solid #a855f7;border-radius:4px;transform:rotate(45deg)}
+@keyframes geoDrift{
+  0%{transform:translateY(110vh) translateX(0) rotate(0deg);opacity:0}
+  5%{opacity:.06}
+  95%{opacity:.06}
+  100%{transform:translateY(-10vh) translateX(var(--drift-x)) rotate(var(--rot));opacity:0}
+}
+
+/* GLOW BORDER — animated neon border on scroll */
+.glow-border{position:relative;overflow:visible}
+.glow-border::before{content:'';position:absolute;inset:-2px;border-radius:inherit;background:linear-gradient(90deg,transparent,var(--main-blue),var(--accent),#a855f7,transparent);opacity:0;transition:opacity .6s;z-index:-1;filter:blur(1px)}
+.glow-border.in-view::before{opacity:1;animation:glowPulse 3s ease-in-out infinite}
+@keyframes glowPulse{0%,100%{filter:blur(1px);opacity:.6}50%{filter:blur(3px);opacity:1}}
+
+/* CURSOR PARTICLES — dots spawn where cursor moves */
+.cursor-particle{position:fixed;width:4px;height:4px;border-radius:50%;pointer-events:none;z-index:9991;animation:particleFade .8s ease-out forwards}
+@keyframes particleFade{
+  0%{transform:scale(1);opacity:.8}
+  100%{transform:scale(0) translateY(-20px);opacity:0}
+}
+
+/* GRADIENT SEPARATOR — animated line between hero and content */
+.gradient-separator{width:100%;height:2px;background:linear-gradient(90deg,transparent,var(--main-blue),var(--accent),#a855f7,transparent);background-size:200% 100%;animation:separatorFlow 3s linear infinite;opacity:.5}
+
+/* HERO GLOW RING — pulsing ring around hero badge */
+.hero-badge{position:relative;display:inline-block;padding:8px 20px;border-radius:99px}
+.hero-badge::before{content:'';position:absolute;inset:-3px;border-radius:inherit;background:linear-gradient(135deg,var(--main-blue),var(--accent),#a855f7);opacity:0;animation:badgeGlow 3s ease-in-out infinite;z-index:-1}
+.hero-badge::after{content:'';position:absolute;inset:0;border-radius:inherit;background:var(--bg);z-index:-1}
+.hero-badge::before{opacity:.5}
+@keyframes badgeGlow{0%,100%{opacity:.3;filter:blur(4px)}50%{opacity:.7;filter:blur(8px)}}
+
+/* ============================================
+   CLEAN SCROLL EFFECTS — new animations
+   ============================================ */
+
+/* SECTION FADE-SLIDE — smooth entrance from below */
+.scroll-reveal{opacity:0;transform:translateY(40px);transition:opacity .8s cubic-bezier(.23,1,.32,1),transform .8s cubic-bezier(.23,1,.32,1)}
+.scroll-reveal.visible{opacity:1;transform:translateY(0)}
+
+/* STAGGER CASCADE — children animate in sequence */
+.scroll-stagger>*{opacity:0;transform:translateY(30px);transition:opacity .6s cubic-bezier(.23,1,.32,1),transform .6s cubic-bezier(.23,1,.32,1)}
+.scroll-stagger.visible>*:nth-child(1){opacity:1;transform:translateY(0);transition-delay:0s}
+.scroll-stagger.visible>*:nth-child(2){opacity:1;transform:translateY(0);transition-delay:.08s}
+.scroll-stagger.visible>*:nth-child(3){opacity:1;transform:translateY(0);transition-delay:.16s}
+.scroll-stagger.visible>*:nth-child(4){opacity:1;transform:translateY(0);transition-delay:.24s}
+.scroll-stagger.visible>*:nth-child(5){opacity:1;transform:translateY(0);transition-delay:.32s}
+.scroll-stagger.visible>*:nth-child(6){opacity:1;transform:translateY(0);transition-delay:.4s}
+
+/* STAT GLOW — numbers glow when revealed */
+.stat-glow{transition:text-shadow .6s}
+.stat-glow.visible{text-shadow:0 0 20px rgba(1,128,255,.4),0 0 40px rgba(1,128,255,.2)}
+
+/* SMOOTH SCALE-IN — elements scale up from 0.95 */
+.scale-in{opacity:0;transform:scale(.95);transition:opacity .7s cubic-bezier(.23,1,.32,1),transform .7s cubic-bezier(.23,1,.32,1)}
+.scale-in.visible{opacity:1;transform:scale(1)}
+
+/* PROGRESS RING — circular progress on hero */
+.progress-ring{position:absolute;bottom:30px;right:30px;width:50px;height:50px;z-index:10;opacity:.5}
+.progress-ring circle{fill:none;stroke:var(--main-blue);stroke-width:2;stroke-linecap:round;transform:rotate(-90deg);transform-origin:center;transition:stroke-dashoffset .3s}
+
+/* HORIZONTAL LINE REVEAL — lines expand from center */
+.line-reveal{position:relative;overflow:hidden}
+.line-reveal::after{content:'';position:absolute;bottom:0;left:50%;width:0;height:2px;background:var(--main-blue);transition:width .6s cubic-bezier(.23,1,.32,1),left .6s cubic-bezier(.23,1,.32,1)}
+.line-reveal.visible::after{width:100%;left:0}
+
+/* ============================================
+   NEW ANIMATION EFFECTS — elegant & flowing
+   ============================================ */
+
+/* SCROLL-MORPH — hero border-radius morphs on scroll */
+.hero-morph{transition:border-radius .1s linear;border-radius:12px}
+
+/* BLUR-FADE — sections blur in from out-of-focus */
+.blur-fade{opacity:0;filter:blur(8px);transform:translateY(20px);transition:opacity .8s cubic-bezier(.23,1,.32,1),filter .8s cubic-bezier(.23,1,.32,1),transform .8s cubic-bezier(.23,1,.32,1)}
+.blur-fade.visible{opacity:1;filter:blur(0);transform:translateY(0)}
+
+/* HORIZONTAL STAGGER — grid items slide in from sides */
+.h-stagger>*{opacity:0;transform:translateX(-40px);transition:opacity .6s cubic-bezier(.23,1,.32,1),transform .6s cubic-bezier(.23,1,.32,1)}
+.h-stagger.visible>*{opacity:1;transform:translateX(0)}
+.h-stagger.visible>*:nth-child(even){transform:translateX(40px)}
+.h-stagger.visible>*:nth-child(1){transition-delay:0s}
+.h-stagger.visible>*:nth-child(2){transition-delay:.08s}
+.h-stagger.visible>*:nth-child(3){transition-delay:.16s}
+.h-stagger.visible>*:nth-child(4){transition-delay:.24s}
+.h-stagger.visible>*:nth-child(5){transition-delay:.32s}
+.h-stagger.visible>*:nth-child(6){transition-delay:.4s}
+
+/* MAGNETIC DRAG — elements respond to mouse drag/grab */
+.magnetic-drag{cursor:grab;transition:transform .3s cubic-bezier(.23,1,.32,1)}
+.magnetic-drag:active{cursor:grabbing}
+.magnetic-drag.dragging{transition:none}
+
+/* SECTION PARALLAX — background moves slower than content */
+.section-parallax{position:relative;overflow:hidden}
+.section-parallax-bg{position:absolute;inset:-20%;z-index:0;will-change:transform;transition:transform .05s linear}
+.section-parallax-bg img{width:100%;height:100%;object-fit:cover}
+.section-parallax > *:not(.section-parallax-bg){position:relative;z-index:1}
+
+/* SKIP LINK — accessibility */
+.skip-link{position:absolute;top:-100%;left:16px;background:var(--main-blue);color:#fff;padding:12px 24px;border-radius:0 0 8px 8px;z-index:99999;font-weight:600;transition:top .3s}
+.skip-link:focus{top:0}

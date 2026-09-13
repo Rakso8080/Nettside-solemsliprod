@@ -1,14 +1,6 @@
 <!DOCTYPE html>
 <html lang="no">
 <head>
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-XXXXXXXXXX');
-  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <link rel="icon" href="Solemsli production.png">
@@ -18,9 +10,40 @@
   <meta property="og:description" content="Profesjonell foto, video og droneproduksjon i Innlandet." />
   <meta property="og:image" content="https://solemsliproductions.no/gallery/andre%20natur%20bilder/uranustind.jpg" />
   <meta property="og:title" content="Solemsli Productions | Foto, Video & Drone" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://solemsliproductions.no/" />
+  <meta property="og:site_name" content="Solemsli Productions">
+  <meta property="og:locale" content="nb_NO">
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Solemsli Productions | Foto, Video & Drone" />
+  <meta name="twitter:description" content="Profesjonell foto, video og droneproduksjon i Innlandet." />
+  <meta name="twitter:image" content="https://solemsliproductions.no/gallery/andre%20natur%20bilder/uranustind.jpg" />
+  <link rel="canonical" href="https://solemsliproductions.no/" />
   <title>Solemsli Productions | Foto, Video & Drone</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="shared.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Solemsli Productions",
+    "description": "Profesjonell foto, video og droneproduksjon i Innlandet, Norge",
+    "url": "https://solemsliproductions.no",
+    "image": "https://solemsliproductions.no/gallery/andre%20natur%20bilder/uranustind.jpg",
+    "priceRange": "$$",
+    "areaServed": {
+      "@type": "State",
+      "name": "Innlandet"
+    },
+    "founder": {
+      "@type": "Person",
+      "name": "Oskar Solemsli"
+    },
+    "sameAs": [
+      "https://www.instagram.com/solemsli_productions/"
+    ]
+  }
+  </script>
   <style>
 
     /* LOADER */
@@ -43,11 +66,10 @@
     .hero.loaded .hero-bg img{transform:scale(1)}
     .hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.6) 0%,rgba(0,0,0,.4) 40%,rgba(0,0,0,.5) 70%,rgba(10,10,10,1) 100%);z-index:1}
     .hero-content{position:relative;z-index:2;text-align:center;padding:0 20px;max-width:900px}
-    .hero-badge{display:inline-block;background:rgba(255,255,255,0.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.15);padding:8px 20px;border-radius:30px;font-size:.8rem;color:rgba(255,255,255,0.9);margin-bottom:30px;opacity:0;transform:translateY(20px);animation:fadeUp 1s .8s forwards}
+    .hero-badge{display:inline-block;background:rgba(255,255,255,0.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.15);padding:8px 20px;border-radius:30px;font-size:.8rem;color:rgba(255,255,255,0.9);margin-bottom:30px}
     .hero h1{font-size:clamp(2.5rem,6vw,5rem);font-weight:800;color:white;line-height:1.1;letter-spacing:-2px;margin-bottom:20px;text-shadow:0 4px 30px rgba(0,0,0,0.5)}
     .hero h1 .word{display:inline-block;opacity:0;transform:translateY(30px);transition:all .6s cubic-bezier(.23,1,.32,1)}
     .hero h1.revealed .word{opacity:1;transform:translateY(0)}
-    .hero h1 span{background:linear-gradient(135deg,var(--main-blue),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
     .hero p{font-size:1.15rem;color:rgba(255,255,255,0.85);max-width:500px;margin:0 auto 40px;line-height:1.6;opacity:0;transform:translateY(30px);animation:fadeUp 1s 1.4s forwards;text-shadow:0 2px 20px rgba(0,0,0,0.4)}
     .hero-buttons{display:flex;gap:15px;justify-content:center;opacity:0;transform:translateY(30px);animation:fadeUp 1s 1.6s forwards}
     .scroll-indicator{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);z-index:2;opacity:0;animation:fadeUp 1s 2s forwards}
@@ -71,7 +93,7 @@
 
     /* SERVICES */
     .services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:40px;margin-top:60px}
-    .service-card{background:var(--card-bg);border:1px solid var(--glass-border);border-radius:24px;padding:50px 40px;position:relative;overflow:hidden;transition:all .5s cubic-bezier(.23,1,.32,1);cursor:default;min-height:220px;display:flex;flex-direction:column}
+    .service-card{background:var(--card-bg);border:1px solid var(--glass-border);border-radius:24px;padding:50px 40px;position:relative;overflow:hidden;transition:all .5s cubic-bezier(.23,1,.32,1);cursor:pointer;min-height:220px;display:flex;flex-direction:column}
     .service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--main-blue),var(--accent));transform:scaleX(0);transform-origin:left;transition:transform .5s}
     .service-card:hover::before{transform:scaleX(1)}
     .service-card:hover{transform:translateY(-12px);border-color:rgba(1,128,255,0.3);box-shadow:0 25px 50px rgba(0,0,0,0.15)}
@@ -158,15 +180,6 @@
     /* LATEST PROJECTS GRID */
     @keyframes clientsScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
-    /* LATEST GRID */
-    .latest-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:60px}
-    .latest-item{position:relative;overflow:hidden;border-radius:16px;cursor:pointer}
-    .latest-item img{width:100%;height:250px;object-fit:cover;transition:transform .5s}
-    .latest-item:hover img{transform:scale(1.05)}
-    .latest-overlay{position:absolute;bottom:0;left:0;right:0;padding:20px;background:linear-gradient(transparent,rgba(0,0,0,0.7));color:white;font-weight:600;font-size:1rem}
-    @media(max-width:900px){.latest-grid{grid-template-columns:repeat(2,1fr)}}
-    @media(max-width:600px){.latest-grid{grid-template-columns:1fr}}
-
     /* GRADIENT TEXT SHIMMER */
     .section-title{background:linear-gradient(90deg,var(--text),var(--main-blue),var(--text));background-size:200% 100%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 4s ease-in-out infinite}
     @keyframes shimmer{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
@@ -174,12 +187,13 @@
     /* STAGGERED GRID REVEAL — handled by gridObserver + lines 253-254 */
 
     /* 3D IMAGE TILT ON HOVER */
-    .insta-item,.latest-item{transform-style:preserve-3d;perspective:600px}
-    .insta-item:hover,.latest-item:hover{transform:translateY(-8px) rotateX(4deg)}
-    .insta-item:hover img,.latest-item:hover img{transform:translateZ(20px) scale(1.05)}
+    .insta-item{transform-style:preserve-3d;perspective:600px}
+    .insta-item:hover{transform:translateY(-8px) rotateX(4deg)}
+    .insta-item:hover img{transform:translateZ(20px) scale(1.05)}
 
-    /* FLOATING BADGE ANIMATION */
-    .hero-badge{animation:float 3s ease-in-out infinite}
+    /* FLOATING BADGE ANIMATION — fadeUp then float */
+    .hero-badge{animation:badgeIn 1s .8s forwards,float 3s 1.8s ease-in-out infinite}
+    @keyframes badgeIn{to{opacity:1;transform:translateY(0)}}
     @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 
     /* LIVE CLOCK */
@@ -221,11 +235,8 @@
     .cta::before{content:'';position:absolute;top:50%;left:50%;width:400px;height:400px;background:radial-gradient(circle,rgba(1,128,255,0.15) 0%,transparent 70%);transform:translate(-50%,-50%);pointer-events:none}
 
     /* STAGGERED GRID REVEAL */
-    .services-grid > *,.latest-grid > *,.insta-grid > *,.workflow-steps > *,.equip-grid > *{opacity:0;transform:translateY(20px);transition:all .6s cubic-bezier(.23,1,.32,1)}
-    .services-grid.revealed > *,.latest-grid.revealed > *,.insta-grid.revealed > *,.workflow-steps.revealed > *,.equip-grid.revealed > *{opacity:1;transform:translateY(0)}
-
-    /* PARALLAX FADE ON SCROLL */
-    .parallax-section{transition:transform .1s linear}
+    .services-grid > *,.insta-grid > *,.workflow-steps > *,.equip-grid > *{opacity:0;transform:translateY(20px);transition:all .6s cubic-bezier(.23,1,.32,1)}
+    .services-grid.revealed > *,.insta-grid.revealed > *,.workflow-steps.revealed > *,.equip-grid.revealed > *{opacity:1;transform:translateY(0)}
 
     /* STAT COUNTER PULSE */
     .stat-item h3{transition:color .3s}
@@ -265,6 +276,7 @@
   </style>
 </head>
 <body>
+  <a href="#main-content" class="skip-link">Hopp til innhold</a>
   <!-- LOADER -->
   <div id="loader">
     <div class="loader-logo">Solemsli <span>Productions</span></div>
@@ -283,32 +295,33 @@
   <!-- HEADER -->
   <header id="header">
     <a href="index.html" class="logo">Solemsli Productions</a>
-    <div class="menu-toggle" onclick="this.classList.toggle('active');document.querySelector('nav').classList.toggle('active')"><span></span><span></span><span></span></div>
-    <nav>
+    <div class="menu-toggle" role="button" aria-label="Meny" aria-expanded="false" onclick="this.classList.toggle('active');this.setAttribute('aria-expanded',this.classList.contains('active'));document.querySelector('nav').classList.toggle('active')"><span></span><span></span><span></span></div>
+    <nav aria-label="Hovedmeny">
       <a href="index.html" class="active" data-no="Hjem" data-en="Home" data-de="Startseite">Hjem</a>
       <a href="about.html" data-no="Om meg" data-en="About" data-de="Über mich">Om meg</a>
       <a href="projects.html" data-no="Portfolio" data-en="Portfolio" data-de="Portfolio">Portfolio</a>
       <a href="shop.html" data-no="Shop" data-en="Shop" data-de="Shop">Shop</a>
       <a href="prices.html" data-no="Priser" data-en="Pricing" data-de="Preise">Priser</a>
       <a href="contact.html" data-no="Kontakt" data-en="Contact" data-de="Kontakt">Kontakt</a>
-      <button class="nav-btn" id="lang-toggle">EN</button>
-      <button class="nav-btn" id="theme-toggle">☀️ Lys</button>
+      <button class="nav-btn" id="lang-toggle" aria-label="Bytt språk">EN</button>
+      <button class="nav-btn" id="theme-toggle" aria-label="Bytt tema">☀️ Lys</button>
     </nav>
   </header>
 
+  <main id="main-content">
   <!-- HERO -->
   <section class="hero">
     <div class="hero-bg"><img src="gallery/andre natur bilder/uranustind.jpg" alt="Dronebilde" id="hero-img"></div>
     <canvas id="particles"></canvas>
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <div class="hero-badge" data-no="📍 Basert i Innlandet" data-en="📍 Based in Innlandet" data-de="📍 Basierend in Innlandet">📍 Basert i Innlandet</div>
+      <div class="hero-badge scroll-velocity" data-speed="-0.3" data-no="📍 Basert i Innlandet" data-en="📍 Based in Innlandet" data-de="📍 Basierend in Innlandet">📍 Basert i Innlandet</div>
       <div class="hero-time" id="heroTime"></div>
-      <h1 id="hero-title"><span data-no="Visuell" data-en="Visual" data-de="Visuell">Visuell</span><br><span data-no="historiefortelling" data-en="storytelling" data-de="Geschichtenerzaehlung">historiefortelling</span></h1>
+      <h1 id="hero-title"><span data-no="Visuell" data-en="Visual" data-de="Visuell" class="scramble-text magnetic-text">Visuell</span><br><span data-no="historiefortelling" data-en="storytelling" data-de="Geschichtenerzaehlung" class="scramble-text magnetic-text">historiefortelling</span></h1>
       <p data-no="Profesjonell foto, video og droneproduksjon for bedrifter og privatpersoner i Innlandet." data-en="Professional photo, video and drone production for businesses and individuals in Innlandet." data-de="Professionelle Foto-, Video- und Drohnenproduktion für Unternehmen und Privatpersonen in Innlandet.">Profesjonell foto, video og droneproduksjon for bedrifter og privatpersoner i Innlandet.</p>
       <div class="hero-buttons">
-        <a href="projects.html" class="btn btn-primary magnetic" data-no="Se arbeidet mitt" data-en="See my work" data-de="Meine Arbeit ansehen">Se arbeidet mitt</a>
-        <a href="contact.html" class="btn btn-outline magnetic" data-no="Ta kontakt" data-en="Get in touch" data-de="Kontaktieren">Ta kontakt</a>
+        <a href="projects.html" class="btn btn-primary magnetic mouse-glow" data-no="Se arbeidet mitt" data-en="See my work" data-de="Meine Arbeit ansehen">Se arbeidet mitt</a>
+        <a href="contact.html" class="btn btn-outline magnetic mouse-glow" data-no="Ta kontakt" data-en="Get in touch" data-de="Kontaktieren">Ta kontakt</a>
       </div>
     </div>
     <div class="scroll-indicator"><div></div></div>
@@ -337,48 +350,48 @@
   </div>
 
   <!-- SHOWREEL -->
-  <section class="section">
+  <section class="section scroll-border">
     <div class="reveal"><div class="section-label" data-no="Showreel" data-en="Showreel" data-de="Showreel">Showreel</div><h2 class="section-title" data-no="Se mitt arbeid i aksjon" data-en="See my work in action" data-de="Sehen Sie meine Arbeit in Aktion">Se mitt arbeid i aksjon</h2></div>
     <div class="video-wrapper reveal reveal-delay-2 glow-scroll"><iframe src="https://www.youtube.com/embed/SVARx16jTQg" loading="lazy" allowfullscreen></iframe></div>
   </section>
 
   <!-- SERVICES -->
   <section class="section">
-    <div class="reveal"><div class="section-label" data-no="Tjenester" data-en="Services" data-de="Dienstleistungen">Tjenester</div><h2 class="section-title" data-no="Hva jeg kan hjelpe med" data-en="How I can help" data-de="Wobei ich helfen kann">Hva jeg kan hjelpe med</h2></div>
-    <div class="services-grid stagger-reveal perspective-section">
-      <div class="service-card reveal reveal-delay-1"><h3 data-no="Foto & Video" data-en="Photo & Video" data-de="Foto & Video">Foto & Video</h3><p data-no="Kamera-produksjoner med fokus på detaljer og visuell historiefortelling. Alt fra portrett til landskap." data-en="Camera productions focusing on details and visual storytelling. From portraits to landscapes." data-de="Kamera-Produktionen mit Fokus auf Details und visuelles Storytelling. Von Porträts bis hin zu Landschaften.">Kamera-produksjoner med fokus på detaljer og visuell historiefortelling. Alt fra portrett til landskap.</p><a href="projects.html" class="service-link" data-no="Se eksempler →" data-en="See examples →" data-de="Beispiele ansehen →">Se eksempler →</a></div>
-      <div class="service-card reveal reveal-delay-2"><h3 data-no="Drone" data-en="Drone" data-de="Drohne">Drone</h3><p data-no="Spektakulære dronefilmer og oversiktsbilder. Perfekt for eiendom, eventer og natur." data-en="Spectacular drone films and aerial shots. Perfect for real estate, events and nature." data-de="Spektakuläre Drohnenfilme und Luftaufnahmen. Perfekt für Immobilien, Veranstaltungen und Natur.">Spektakulære dronefilmer og oversiktsbilder. Perfekt for eiendom, eventer og natur.</p><a href="projects.html" class="service-link" data-no="Se eksempler →" data-en="See examples →" data-de="Beispiele ansehen →">Se eksempler →</a></div>
-      <div class="service-card reveal reveal-delay-3"><h3 data-no="Eventer" data-en="Events" data-de="Veranstaltungen">Eventer</h3><p data-no="Full dekning av festivaler, konserter og store begivenheter. Jeg fanger øyeblikkene som betyr noe." data-en="Full coverage of festivals, concerts and major events. I capture the moments that matter." data-de="Vollständige Abdeckung von Festivals, Konzerten und großen Veranstaltungen. Ich erfasse die Momente, die zählen.">Full dekning av festivaler, konserter og store begivenheter. Jeg fanger øyeblikkene som betyr noe.</p><a href="projects.html" class="service-link" data-no="Se eksempler →" data-en="See examples →" data-de="Beispiele ansehen →">Se eksempler →</a></div>
-      <div class="service-card reveal reveal-delay-4"><h3 data-no="Bedrift" data-en="Business" data-de="Geschäft">Bedrift</h3><p data-no="Reklamefilmer og innhold optimalisert for sosiale medier, YouTube og nettsider." data-en="Commercials and content optimized for social media, YouTube and websites." data-de="Werbefilme und Inhalte optimiert für soziale Medien, YouTube und Webseiten.">Reklamefilmer og innhold optimalisert for sosiale medier, YouTube og nettsider.</p><a href="projects.html" class="service-link" data-no="Se eksempler →" data-en="See examples →" data-de="Beispiele ansehen →">Se eksempler →</a></div>
+    <div class="reveal"><div class="section-label" data-no="Tjenester" data-en="Services" data-de="Dienstleistungen">Tjenester</div><h2 class="section-title char-reveal line-reveal" data-no="Hva jeg kan hjelpe med" data-en="How I can help" data-de="Wobei ich helfen kann">Hva jeg kan hjelpe med</h2></div>
+    <div class="services-grid stagger-reveal stagger-children perspective-section">
+      <a href="projects.html" class="service-card hscroll-reveal reveal reveal-delay-1" style="text-decoration:none;color:inherit;display:block"><h3 data-no="Foto & Video" data-en="Photo & Video" data-de="Foto & Video">Foto & Video</h3><p data-no="Kamera-produksjoner med fokus på detaljer og visuell historiefortelling. Alt fra portrett til landskap." data-en="Camera productions focusing on details and visual storytelling. From portraits to landscapes." data-de="Kamera-Produktionen mit Fokus auf Details und visuelles Storytelling. Von Porträts bis hin zu Landschaften.">Kamera-produksjoner med fokus på detaljer og visuell historiefortelling. Alt fra portrett til landskap.</p><span class="service-link" data-no="Se eksempler →" data-en="See examples →" data-de="Beispiele ansehen →">Se eksempler →</span></a>
+      <a href="projects.html" class="service-card hscroll-reveal reveal reveal-delay-2" style="text-decoration:none;color:inherit;display:block"><h3 data-no="Drone" data-en="Drone" data-de="Drohne">Drone</h3><p data-no="Spektakulære dronefilmer og oversiktsbilder. Perfekt for eiendom, eventer og natur." data-en="Spectacular drone films and aerial shots. Perfect for real estate, events and nature." data-de="Spektakuläre Drohnenfilme und Luftaufnahmen. Perfekt für Immobilien, Veranstaltungen und Natur.">Spektakulære dronefilmer og oversiktsbilder. Perfekt for eiendom, eventer og natur.</p><span class="service-link" data-no="Se eksempler →" data-en="See examples →" data-de="Beispiele ansehen →">Se eksempler →</span></a>
+      <a href="projects.html" class="service-card hscroll-reveal reveal reveal-delay-3" style="text-decoration:none;color:inherit;display:block"><h3 data-no="Eventer" data-en="Events" data-de="Veranstaltungen">Eventer</h3><p data-no="Full dekning av festivaler, konserter og store begivenheter. Jeg fanger øyeblikkene som betyr noe." data-en="Full coverage of festivals, concerts and major events. I capture the moments that matter." data-de="Vollständige Abdeckung von Festivals, Konzerten und großen Veranstaltungen. Ich erfasse die Momente, die zählen.">Full dekning av festivaler, konserter og store begivenheter. Jeg fanger øyeblikkene som betyr noe.</p><span class="service-link" data-no="Se eksempler →" data-en="See examples →" data-de="Beispiele ansehen →">Se eksempler →</span></a>
+      <a href="projects.html" class="service-card hscroll-reveal reveal reveal-delay-4" style="text-decoration:none;color:inherit;display:block"><h3 data-no="Bedrift" data-en="Business" data-de="Geschäft">Bedrift</h3><p data-no="Reklamefilmer og innhold optimalisert for sosiale medier, YouTube og nettsider." data-en="Commercials and content optimized for social media, YouTube and websites." data-de="Werbefilme und Inhalte optimiert für soziale Medien, YouTube und Webseiten.">Reklamefilmer og innhold optimalisert for sosiale medier, YouTube og nettsider.</p><span class="service-link" data-no="Se eksempler →" data-en="See examples →" data-de="Beispiele ansehen →">Se eksempler →</span></a>
     </div>
   </section>
 
   <!-- WORKFLOW -->
   <section class="section">
-    <div class="reveal"><div class="section-label" data-no="Slik jobber jeg" data-en="How I work" data-de="So arbeite ich">Slik jobber jeg</div><h2 class="section-title" data-no="Fra idé til ferdig produkt" data-en="From idea to finished product" data-de="Von der Idee zum fertigen Produkt">Fra idé til ferdig produkt</h2></div>
+    <div class="reveal"><div class="section-label" data-no="Slik jobber jeg" data-en="How I work" data-de="So arbeite ich">Slik jobber jeg</div><h2 class="section-title char-reveal line-reveal" data-no="Fra idé til ferdig produkt" data-en="From idea to finished product" data-de="Von der Idee zum fertigen Produkt">Fra idé til ferdig produkt</h2></div>
     <div class="workflow-steps">
-      <div class="workflow-step reveal"><div class="step-number">1</div><div class="step-content"><h3 data-no="Samtale & Planlegging" data-en="Consultation & Planning" data-de="Beratung & Planung">Samtale & Planlegging</h3><p data-no="Vi starter med en uforpliktende samtale om dine ønsker og behov. Jeg lager en plan som passer ditt budsjett." data-en="We start with a no-obligation conversation about your wishes and needs. I create a plan that fits your budget." data-de="Wir beginnen mit einem unverbindlichen Gespräch über Ihre Wünsche und Bedürfnisse. Ich erstelle einen Plan, der zu Ihrem Budget passt.">Vi starter med en uforpliktende samtale om dine ønsker og behov. Jeg lager en plan som passer ditt budsjett.</p><span class="step-tag" data-no="Uforpliktende" data-en="Free" data-de="Kostenlos">Uforpliktende</span></div></div>
-      <div class="workflow-step reveal reveal-delay-1"><div class="step-number">2</div><div class="step-content"><h3 data-no="Produksjon" data-en="Production" data-de="Produktion">Produksjon</h3><p data-no="Enten det er foto, video eller drone – jeg er ute i feltet og fanger de beste øyeblikkene." data-en="Whether it's photo, video or drone – I'm out in the field capturing the best moments." data-de="Egal ob Foto, Video oder Drohne – ich bin im Feld und erfasse die besten Momente.">Enten det er foto, video eller drone – jeg er ute i feltet og fanger de beste øyeblikkene.</p><span class="step-tag" data-no="1-3 dager" data-en="1-3 days" data-de="1-3 Tage">1-3 dager</span></div></div>
-      <div class="workflow-step reveal reveal-delay-2"><div class="step-number">3</div><div class="step-content"><h3 data-no="Redigering" data-en="Editing" data-de="Bearbeitung">Redigering</h3><p data-no="Profesjonell redigering med fokus på kvalitet. Du får forhåndsvisning før endelig levering." data-en="Professional editing with a focus on quality. You get a preview before final delivery." data-de="Professionelle Bearbeitung mit Fokus auf Qualität. Sie erhalten eine Vorschau vor der endgültigen Lieferung.">Profesjonell redigering med fokus på kvalitet. Du får forhåndsvisning før endelig levering.</p><span class="step-tag" data-no="2-5 dager" data-en="2-5 days" data-de="2-5 Tage">2-5 dager</span></div></div>
-      <div class="workflow-step reveal reveal-delay-3"><div class="step-number">4</div><div class="step-content"><h3 data-no="Levering" data-en="Delivery" data-de="Lieferung">Levering</h3><p data-no="Ferdige filer i høy kvalitet, klare til bruk på nettside, sosiale medier eller print." data-en="Finished files in high quality, ready for use on websites, social media or print." data-de="Fertige Dateien in hoher Qualität, bereit zur Verwendung auf Webseiten, sozialen Medien oder Print.">Ferdige filer i høy kvalitet, klare til bruk på nettside, sosiale medier eller print.</p><span class="step-tag" data-no="Digital levering" data-en="Digital delivery" data-de="Digitale Lieferung">Digital levering</span></div></div>
+      <div class="workflow-step reveal"><div class="step-number scroll-scrub">1</div><div class="step-content"><h3 data-no="Samtale & Planlegging" data-en="Consultation & Planning" data-de="Beratung & Planung">Samtale & Planlegging</h3><p data-no="Vi starter med en uforpliktende samtale om dine ønsker og behov. Jeg lager en plan som passer ditt budsjett." data-en="We start with a no-obligation conversation about your wishes and needs. I create a plan that fits your budget." data-de="Wir beginnen mit einem unverbindlichen Gespräch über Ihre Wünsche und Bedürfnisse. Ich erstelle einen Plan, der zu Ihrem Budget passt.">Vi starter med en uforpliktende samtale om dine ønsker og behov. Jeg lager en plan som passer ditt budsjett.</p><span class="step-tag" data-no="Uforpliktende" data-en="Free" data-de="Kostenlos">Uforpliktende</span></div></div>
+      <div class="workflow-step reveal reveal-delay-1"><div class="step-number scroll-scrub">2</div><div class="step-content"><h3 data-no="Produksjon" data-en="Production" data-de="Produktion">Produksjon</h3><p data-no="Enten det er foto, video eller drone – jeg er ute i feltet og fanger de beste øyeblikkene." data-en="Whether it's photo, video or drone – I'm out in the field capturing the best moments." data-de="Egal ob Foto, Video oder Drohne – ich bin im Feld und erfasse die besten Momente.">Enten det er foto, video eller drone – jeg er ute i feltet og fanger de beste øyeblikkene.</p><span class="step-tag" data-no="1-3 dager" data-en="1-3 days" data-de="1-3 Tage">1-3 dager</span></div></div>
+      <div class="workflow-step reveal reveal-delay-2"><div class="step-number scroll-scrub">3</div><div class="step-content"><h3 data-no="Redigering" data-en="Editing" data-de="Bearbeitung">Redigering</h3><p data-no="Profesjonell redigering med fokus på kvalitet. Du får forhåndsvisning før endelig levering." data-en="Professional editing with a focus on quality. You get a preview before final delivery." data-de="Professionelle Bearbeitung mit Fokus auf Qualität. Sie erhalten eine Vorschau vor der endgültigen Lieferung.">Profesjonell redigering med fokus på kvalitet. Du får forhåndsvisning før endelig levering.</p><span class="step-tag" data-no="2-5 dager" data-en="2-5 days" data-de="2-5 Tage">2-5 dager</span></div></div>
+      <div class="workflow-step reveal reveal-delay-3"><div class="step-number scroll-scrub">4</div><div class="step-content"><h3 data-no="Levering" data-en="Delivery" data-de="Lieferung">Levering</h3><p data-no="Ferdige filer i høy kvalitet, klare til bruk på nettside, sosiale medier eller print." data-en="Finished files in high quality, ready for use on websites, social media or print." data-de="Fertige Dateien in hoher Qualität, bereit zur Verwendung auf Webseiten, sozialen Medien oder Print.">Ferdige filer i høy kvalitet, klare til bruk på nettside, sosiale medier eller print.</p><span class="step-tag" data-no="Digital levering" data-en="Digital delivery" data-de="Digitale Lieferung">Digital levering</span></div></div>
     </div>
   </section>
 
   <!-- STATS -->
-  <section class="stats">
+  <section class="stats blur-fade">
     <div class="stats-grid">
-      <div class="stat-item reveal"><h3 id="stat1">20+</h3><p data-no="Oppdrag fullført" data-en="Jobs completed" data-de="Abgeschlossene Auftraege">Oppdrag fullført</p></div>
-      <div class="stat-item reveal reveal-delay-1"><h3 id="stat2">15+</h3><p data-no="Kunder" data-en="Clients" data-de="Kunden">Kunder</p></div>
-      <div class="stat-item reveal reveal-delay-2"><h3 id="stat3">10+</h3><p data-no="Droneoppdrag" data-en="Drone missions" data-de="Drohnen-Einsaetze">Droneoppdrag</p></div>
-      <div class="stat-item reveal reveal-delay-3"><h3 id="stat4">4+</h3><p data-no="År med drone" data-en="Years with drone" data-de="Jahre mit Drohne">År med drone</p></div>
+      <div class="stat-item reveal stat-glow"><h3 id="stat1">20+</h3><p data-no="Oppdrag fullført" data-en="Jobs completed" data-de="Abgeschlossene Auftraege">Oppdrag fullført</p></div>
+      <div class="stat-item reveal reveal-delay-1 stat-glow"><h3 id="stat2">15+</h3><p data-no="Kunder" data-en="Clients" data-de="Kunden">Kunder</p></div>
+      <div class="stat-item reveal reveal-delay-2 stat-glow"><h3 id="stat3">10+</h3><p data-no="Droneoppdrag" data-en="Drone missions" data-de="Drohnen-Einsaetze">Droneoppdrag</p></div>
+      <div class="stat-item reveal reveal-delay-3 stat-glow"><h3 id="stat4">4+</h3><p data-no="År med drone" data-en="Years with drone" data-de="Jahre mit Drohne">År med drone</p></div>
     </div>
   </section>
 
   <!-- TESTIMONIALS -->
   <section class="testimonials-section">
     <div class="testimonials-container">
-      <div class="reveal"><div class="section-label" data-no="Anmeldelser" data-en="Reviews" data-de="Bewertungen">Anmeldelser</div><h2 class="section-title" data-no="Hva kundene sier" data-en="What clients say" data-de="Was Kunden sagen">Hva kundene sier</h2></div>
-      <div class="testimonials-grid stagger-reveal">
+      <div class="reveal"><div class="section-label" data-no="Anmeldelser" data-en="Reviews" data-de="Bewertungen">Anmeldelser</div><h2 class="section-title line-reveal" data-no="Hva kundene sier" data-en="What clients say" data-de="Was Kunden sagen">Hva kundene sier</h2></div>
+      <div class="testimonials-grid stagger-reveal h-stagger">
         <div class="testimonial-card reveal reveal-delay-1">
           <div class="testimonial-stars">★★★★★</div>
           <p class="testimonial-text" data-no="«Kjempeflink fotograf som leverer kvalitet i både bilder og video. Vi brukte Oskar til å filme og fotografere, og resultatet overgikk forventningene. Anbefales på det sterkeste!»" data-en="«Incredibly talented photographer who delivers quality in both photos and video. We used Oskar for filming and photography, and the result exceeded expectations. Highly recommended!»" data-de="«Unglaublich talentierter Fotograf, der Qualität in Bildern und Videos liefert. Wir haben Oskar für Dreharbeiten und Fotografie beauftragt und das Ergebnis hat die Erwartungen übertroffen. Absolute Empfehlung!»">«Kjempeflink fotograf som leverer kvalitet i både bilder og video. Vi brukte Oskar til å filme og fotografere, og resultatet overgikk forventningene. Anbefales på det sterkeste!»</p>
@@ -408,44 +421,64 @@
   <!-- EQUIPMENT -->
   <section class="equipment">
     <div class="section" style="padding:0;max-width:1200px;margin:0 auto">
-      <div class="reveal"><div class="section-label" data-no="Utstyr" data-en="Equipment" data-de="Ausrüstung">Utstyr</div><h2 class="section-title" data-no="Hva jeg jobber med" data-en="What I work with" data-de="Womit ich arbeite">Hva jeg jobber med</h2></div>
-      <div class="equip-grid reveal stagger-reveal perspective-section">
-        <div class="equip-card"><span class="equip-icon">📷</span><h4>Sony A7IV</h4><p data-no="Fullformat kamera med høy oppløsning" data-en="Full-frame camera with high resolution" data-de="Vollformat-Kamera mit hoher Aufloesung">Fullformat kamera med høy oppløsning</p></div>
-        <div class="equip-card"><span class="equip-icon">🔭</span><h4>Sigma 24-70mm f/2.8</h4><p data-no="Allsidig zoom-objektiv i topp kvalitet" data-en="Versatile zoom lens in top quality" data-de="Vielseitiges Zoom-Objektiv in Top-Qualitaet">Allsidig zoom-objektiv i topp kvalitet</p></div>
-        <div class="equip-card"><span class="equip-icon">🚁</span><h4>DJI Mini 4 Pro</h4><p data-no="Kompakt drone med 4K video" data-en="Compact drone with 4K video" data-de="Kompakte Drohne mit 4K Video">Kompakt drone med 4K video</p></div>
-        <div class="equip-card"><span class="equip-icon">🎬</span><h4>DaVinci Resolve</h4><p data-no="Profesjonell videoredigering og color grading" data-en="Professional video editing and color grading" data-de="Professionelle Videobearbeitung und Color Grading">Profesjonell videoredigering og color grading</p></div>
+      <div class="reveal"><div class="section-label" data-no="Utstyr" data-en="Equipment" data-de="Ausrüstung">Utstyr</div><h2 class="section-title char-reveal line-reveal" data-no="Hva jeg jobber med" data-en="What I work with" data-de="Womit ich arbeite">Hva jeg jobber med</h2></div>
+      <div class="equip-grid reveal stagger-reveal perspective-section h-stagger">
+        <div class="equip-card tilt-glow"><span class="equip-icon">📷</span><h4>Sony A7IV</h4><p data-no="Fullformat kamera med høy oppløsning" data-en="Full-frame camera with high resolution" data-de="Vollformat-Kamera mit hoher Aufloesung">Fullformat kamera med høy oppløsning</p></div>
+        <div class="equip-card tilt-glow"><span class="equip-icon">🔭</span><h4>Sigma 24-70mm f/2.8</h4><p data-no="Allsidig zoom-objektiv i topp kvalitet" data-en="Versatile zoom lens in top quality" data-de="Vielseitiges Zoom-Objektiv in Top-Qualitaet">Allsidig zoom-objektiv i topp kvalitet</p></div>
+        <div class="equip-card tilt-glow"><span class="equip-icon">🚁</span><h4>DJI Mini 4 Pro</h4><p data-no="Kompakt drone med 4K video" data-en="Compact drone with 4K video" data-de="Kompakte Drohne mit 4K Video">Kompakt drone med 4K video</p></div>
+        <div class="equip-card tilt-glow"><span class="equip-icon">🎬</span><h4>DaVinci Resolve</h4><p data-no="Profesjonell videoredigering og color grading" data-en="Professional video editing and color grading" data-de="Professionelle Videobearbeitung und Color Grading">Profesjonell videoredigering og color grading</p></div>
       </div>
     </div>
   </section>
 
-  <!-- FAQ -->
-  <section class="faq">
-    <div class="reveal"><div class="section-label" data-no="FAQ" data-en="FAQ" data-de="FAQ">FAQ</div><h2 class="section-title" data-no="Vanlige spørsmål" data-en="Frequently asked questions" data-de="Häufige Fragen">Vanlige spørsmål</h2></div>
-    <div class="faq-item reveal"><button class="faq-question" data-no="Hva koster et oppdrag?" data-en="How much does a job cost?" data-de="Wie viel kostet ein Auftrag?">Hva koster et oppdrag?<span class="faq-icon">+</span></button><div class="faq-answer"><p data-no="Priser starter fra 2 000 kr for enkle oppdrag. Se mine pakker på Priser-siden, eller ta kontakt for et skreddersydd tilbud." data-en="Prices start from 2,000 NOK for simple jobs. See my packages on the Pricing page, or contact me for a custom quote." data-de="Preise beginnen bei 2.000 NOK für einfache Aufträge. Sehen Sie meine Pakete auf der Preisseite oder kontaktieren Sie mich für ein maßgeschneidertes Angebot.">Priser starter fra 2 000 kr for enkle oppdrag. Se mine pakker på Priser-siden, eller ta kontakt for et skreddersydd tilbud.</p></div></div>
-    <div class="faq-item reveal reveal-delay-1"><button class="faq-question" data-no="Hvor lang er leveringstiden?" data-en="What is the delivery time?" data-de="Wie lang ist die Lieferzeit?">Hvor lang er leveringstiden?<span class="faq-icon">+</span></button><div class="faq-answer"><p data-no="Typisk leveringstid er 2-5 dager for foto og 5-10 dager for videoproduksjon. Rush kan avtales." data-en="Typical delivery is 2-5 days for photos and 5-10 days for video production. Rush can be arranged." data-de="Typische Lieferzeit beträgt 2-5 Tage für Fotos und 5-10 Tage für Videoproduktion. Eilige Lieferung kann vereinbart werden.">Typisk leveringstid er 2-5 dager for foto og 5-10 dager for videoproduksjon. Rush kan avtales.</p></div></div>
-    <div class="faq-item reveal reveal-delay-2"><button class="faq-question" data-no="Hva er inkludert i prisen?" data-en="What's included in the price?" data-de="Was ist im Preis enthalten?">Hva er inkludert i prisen?<span class="faq-icon">+</span></button><div class="faq-answer"><p data-no="Alle priser inkluderer oppdrag, redigering og digital levering. Reisekostnader kan komme i tillegg utenfor Innlandet." data-en="All prices include the assignment, editing and digital delivery. Travel costs may apply outside Innlandet." data-de="Alle Preise beinhalten Auftrag, Bearbeitung und digitale Lieferung. Reisekosten können außerhalb von Innlandet anfallen.">Alle priser inkluderer oppdrag, redigering og digital levering. Reisekostnader kan komme i tillegg utenfor Innlandet.</p></div></div>
-    <div class="faq-item reveal reveal-delay-3"><button class="faq-question" data-no="Kan jeg bruke bildene fritt?" data-en="Can I use the images freely?" data-de="Kann ich die Bilder frei verwenden?">Kan jeg bruke bildene fritt?<span class="faq-icon">+</span></button><div class="faq-answer"><p data-no="Ja! Du får full bruksrett til alle ferdige bilder og videoer til eget bruk. Ved kommersiell bruk kan vi avtale vilkår." data-en="Yes! You get full usage rights to all finished photos and videos for personal use. Commercial use terms can be arranged." data-de="Ja! Sie erhalten volle Nutzungsrechte an allen fertigen Fotos und Videos für den Privatgebrauch. Für kommerzielle Nutzung können wir Bedingungen vereinbaren.">Ja! Du får full bruksrett til alle ferdige bilder og videoer til eget bruk. Ved kommersiell bruk kan vi avtale vilkår.</p></div></div>
-  </section>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Hvor lenge er leveringstiden?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Vanlig leveringstid er 2-5 virkedager for redigerte bilder og 1-2 uker for videoer. Under høysesong kan det ta litt lenger tid."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Hvor bor du?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Jeg bor i Vang i Innlandet, men tar oppdrag i hele regionen og resten av Norge."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Hva koster det?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Priser varierer etter oppdragets omfang. Se priser-siden for pakker og eksempler, eller kontakt meg for et uforpliktende tilbud."
+        }
+      }
+    ]
+  }
+  </script>
 
-  <!-- SISTE PROSJEKTER -->
-  <section class="section">
-    <div class="reveal"><div class="section-label" data-no="Siste arbeid" data-en="Latest work" data-de="Letzte Arbeiten">Siste arbeid</div><h2 class="section-title" data-no="Nylige prosjekter" data-en="Recent projects" data-de="Aktuelle Projekte">Nylige prosjekter</h2></div>
-    <div class="latest-grid reveal">
-      <div class="latest-item"><img src="gallery/vinjerock/untitled-7604.jpg" alt="Vinjerock" loading="lazy"><div class="latest-overlay"><span>Vinjerock</span></div></div>
-      <div class="latest-item"><img src="gallery/bryllup/untitled-6005.jpg" alt="Bryllup" loading="lazy"><div class="latest-overlay"><span>Bryllup</span></div></div>
-      <div class="latest-item"><img src="gallery/vang-kommune-sentrum/DJI_20251006091304_0231_D.jpg" alt="Vang" loading="lazy"><div class="latest-overlay"><span>Vang Kommune</span></div></div>
-      <div class="latest-item"><img src="gallery/vang-bygg-oversikt/untitled--14.jpg" alt="Drone" loading="lazy"><div class="latest-overlay"><span>Droneoppdrag</span></div></div>
-      <div class="latest-item"><img src="gallery/konfirmasjon/untitled-5010.jpg" alt="Konfirmasjon" loading="lazy"><div class="latest-overlay"><span>Konfirmasjon</span></div></div>
-      <div class="latest-item"><img src="gallery/vinjerock-drone/untitled--16.jpg" alt="Drone" loading="lazy"><div class="latest-overlay"><span>Vinjerock Drone</span></div></div>
-    </div>
+  <!-- FAQ -->
+  <section class="faq blur-fade">
+    <div class="reveal"><div class="section-label" data-no="FAQ" data-en="FAQ" data-de="FAQ">FAQ</div><h2 class="section-title" data-no="Vanlige spørsmål" data-en="Frequently asked questions" data-de="Häufige Fragen">Vanlige spørsmål</h2></div>
+    <div class="faq-item reveal"><button class="faq-question" aria-expanded="false" aria-controls="faq-a1" data-no="Hva koster et oppdrag?" data-en="How much does a job cost?" data-de="Wie viel kostet ein Auftrag?">Hva koster et oppdrag?<span class="faq-icon">+</span></button><div class="faq-answer" id="faq-a1" role="region"><p data-no="Priser starter fra 2 000 kr for enkle oppdrag. Se mine pakker på Priser-siden, eller ta kontakt for et skreddersydd tilbud." data-en="Prices start from 2,000 NOK for simple jobs. See my packages on the Pricing page, or contact me for a custom quote." data-de="Preise beginnen bei 2.000 NOK für einfache Aufträge. Sehen Sie meine Pakete auf der Preisseite oder kontaktieren Sie mich für ein maßgeschneidertes Angebot.">Priser starter fra 2 000 kr for enkle oppdrag. Se mine pakker på Priser-siden, eller ta kontakt for et skreddersydd tilbud.</p></div></div>
+    <div class="faq-item reveal reveal-delay-1"><button class="faq-question" aria-expanded="false" aria-controls="faq-a2" data-no="Hvor lang er leveringstiden?" data-en="What is the delivery time?" data-de="Wie lang ist die Lieferzeit?">Hvor lang er leveringstiden?<span class="faq-icon">+</span></button><div class="faq-answer" id="faq-a2" role="region"><p data-no="Typisk leveringstid er 2-5 dager for foto og 5-10 dager for videoproduksjon. Rush kan avtales." data-en="Typical delivery is 2-5 days for photos and 5-10 days for video production. Rush can be arranged." data-de="Typische Lieferzeit beträgt 2-5 Tage für Fotos und 5-10 Tage für Videoproduktion. Eilige Lieferung kann vereinbart werden.">Typisk leveringstid er 2-5 dager for foto og 5-10 dager for videoproduksjon. Rush kan avtales.</p></div></div>
+    <div class="faq-item reveal reveal-delay-2"><button class="faq-question" aria-expanded="false" aria-controls="faq-a3" data-no="Hva er inkludert i prisen?" data-en="What's included in the price?" data-de="Was ist im Preis enthalten?">Hva er inkludert i prisen?<span class="faq-icon">+</span></button><div class="faq-answer" id="faq-a3" role="region"><p data-no="Alle priser inkluderer oppdrag, redigering og digital levering. Reisekostnader kan komme i tillegg utenfor Innlandet." data-en="All prices include the assignment, editing and digital delivery. Travel costs may apply outside Innlandet." data-de="Alle Preise beinhalten Auftrag, Bearbeitung und digitale Lieferung. Reisekosten können außerhalb von Innlandet anfallen.">Alle priser inkluderer oppdrag, redigering og digital levering. Reisekostnader kan komme i tillegg utenfor Innlandet.</p></div></div>
+    <div class="faq-item reveal reveal-delay-3"><button class="faq-question" aria-expanded="false" aria-controls="faq-a4" data-no="Kan jeg bruke bildene fritt?" data-en="Can I use the images freely?" data-de="Kann ich die Bilder frei verwenden?">Kan jeg bruke bildene fritt?<span class="faq-icon">+</span></button><div class="faq-answer" id="faq-a4" role="region"><p data-no="Ja! Du får full bruksrett til alle ferdige bilder og videoer til eget bruk. Ved kommersiell bruk kan vi avtale vilkår." data-en="Yes! You get full usage rights to all finished photos and videos for personal use. Commercial use terms can be arranged." data-de="Ja! Sie erhalten volle Nutzungsrechte an allen fertigen Fotos und Videos für den Privatgebrauch. Für kommerzielle Nutzung können wir Bedingungen vereinbaren.">Ja! Du får full bruksrett til alle ferdige bilder og videoer til eget bruk. Ved kommersiell bruk kan vi avtale vilkår.</p></div></div>
   </section>
 
   <!-- CTA -->
-  <section class="cta">
+  <section class="cta scroll-border floating-particles section-parallax">
     <div class="reveal">
       <h2 data-no="Klar til å starte?" data-en="Ready to get started?" data-de="Bereit zu starten?">Klar til å starte?</h2>
       <p data-no="Ta kontakt for en uforpliktende samtale om ditt neste prosjekt." data-en="Get in touch for a no-obligation chat about your next project." data-de="Kontaktieren Sie mich für ein unverbindliches Gespräch über Ihr nächstes Projekt.">Ta kontakt for en uforpliktende samtale om ditt neste prosjekt.</p>
-      <a href="contact.html" class="btn btn-primary magnetic" data-no="Kontakt meg" data-en="Contact me" data-de="Kontaktiere mich">Kontakt meg</a>
+      <a href="contact.html" class="btn btn-primary magnetic magnetic-field particle-burst mouse-glow" data-no="Kontakt meg" data-en="Contact me" data-de="Kontaktiere mich">Kontakt meg</a>
     </div>
   </section>
 
@@ -455,16 +488,18 @@
       <div class="section-label" data-no="Nyhetsbrev" data-en="Newsletter" data-de="Newsletter">Nyhetsbrev</div>
       <h2 data-no="Hold deg oppdatert" data-en="Stay updated" data-de="Bleib auf dem Laufenden">Hold deg oppdatert</h2>
       <p data-no="Meld deg på for tips, nye prosjekter og eksklusive tilbud." data-en="Sign up for tips, new projects and exclusive offers." data-de="Melden Sie sich für Tipps, neue Projekte und exklusive Angebote an.">Meld deg på for tips, nye prosjekter og eksklusive tilbud.</p>
-      <!-- TODO: Replace "placeholder-newsletter" below with your actual Formspree newsletter form ID from formspree.io -->
-      <form class="newsletter-form" action="https://formspree.io/f/placeholder-newsletter" method="POST" id="newsletterForm">
+      <!-- ⚠️ FORMSPREE: Replace the form ID below with your real ID from formspree.io/my-forms -->
+      <form class="newsletter-form" action="https://formspree.io/f/YOUR_FORM_ID_HERE" method="POST" id="newsletterForm">
         <input type="email" placeholder="Din e-post" name="email" required>
         <button type="submit" data-no="Meld på" data-en="Subscribe" data-de="Abonnieren">Meld på</button>
       </form>
     </div>
   </section>
 
+  </main>
+
   <!-- INSTAGRAM -->
-  <section class="instagram">
+  <section class="instagram blur-fade">
     <div class="reveal"><div class="section-label">@solemsli_productions</div><h2 class="section-title" data-no="Følg meg på Instagram" data-en="Follow me on Instagram" data-de="Folge mir auf Instagram">Følg meg på Instagram</h2></div>
     <div class="insta-grid reveal">
       <div class="insta-item"><img src="gallery/bryllup/untitled-6005.jpg" alt="Instagram" loading="lazy"><div class="insta-overlay"><span>♡</span></div></div>
@@ -483,7 +518,7 @@
       <p>© 2026 Solemsli Productions. Innlandet.</p>
     </div>
     <div class="footer-links">
-      <a href="https://www.instagram.com/solemsli_productions/" target="_blank">Instagram</a>
+      <a href="https://www.instagram.com/solemsli_productions/" target="_blank" rel="noopener noreferrer">Instagram</a>
       <a href="contact.html" data-no="Kontakt" data-en="Contact" data-de="Kontakt">Kontakt</a>
       <a href="about.html" data-no="Om meg" data-en="About" data-de="Über mich">Om meg</a>
     </div>
@@ -494,13 +529,40 @@
     if (nlForm) {
       nlForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const response = await fetch(nlForm.action, {
-          method: 'POST',
-          body: new FormData(nlForm),
-          headers: { 'Accept': 'application/json' }
-        });
-        if (response.ok) {
-          nlForm.innerHTML = '<p style="color:var(--main-blue);font-weight:600" data-no="Takk! Du er nå påmeldt." data-en="Thanks! You are now subscribed." data-de="Danke! Sie sind jetzt angemeldet.">Takk! Du er nå påmeldt.</p>';
+        const btn = nlForm.querySelector('button');
+        const origText = btn ? btn.textContent : '';
+        if (btn) { btn.textContent = '...'; btn.disabled = true; }
+        try {
+          const response = await fetch(nlForm.action, {
+            method: 'POST',
+            body: new FormData(nlForm),
+            headers: { 'Accept': 'application/json' }
+          });
+          if (response.ok) {
+            const lang = localStorage.getItem('lang') || 'no';
+            const msgs = { no: 'Takk! Du er nå påmeldt.', en: 'Thanks! You are now subscribed.', de: 'Danke! Sie sind jetzt angemeldet.' };
+            nlForm.innerHTML = '<p style="color:var(--main-blue);font-weight:600">' + (msgs[lang] || msgs.no) + '</p>';
+          } else {
+            if (btn) { btn.textContent = origText; btn.disabled = false; }
+            const existing = nlForm.querySelector('.form-error');
+            if (!existing) {
+              const err = document.createElement('p');
+              err.className = 'form-error';
+              err.style.cssText = 'color:#ff4444;font-size:.85rem;margin-top:8px';
+              err.textContent = 'Noe gikk galt. Prøv igjen.';
+              nlForm.appendChild(err);
+            }
+          }
+        } catch {
+          if (btn) { btn.textContent = origText; btn.disabled = false; }
+          const existing = nlForm.querySelector('.form-error');
+          if (!existing) {
+            const err = document.createElement('p');
+            err.className = 'form-error';
+            err.style.cssText = 'color:#ff4444;font-size:.85rem;margin-top:8px';
+            err.textContent = 'Nettverksfeil. Prøv igjen.';
+            nlForm.appendChild(err);
+          }
         }
       });
     }
@@ -512,7 +574,7 @@
       setTimeout(() => {
         document.getElementById('loader').classList.add('hidden');
         document.querySelector('.hero').classList.add('loaded');
-      }, 1800);
+      }, 800);
     });
 
     // HERO TEXT SPLIT (word-by-word)
@@ -623,7 +685,7 @@
         }
       });
     }, { threshold: 0.1 });
-    document.querySelectorAll('.services-grid,.latest-grid,.insta-grid,.workflow-steps,.equip-grid').forEach(grid => {
+    document.querySelectorAll('.services-grid,.insta-grid,.workflow-steps,.equip-grid').forEach(grid => {
       gridObserver.observe(grid);
       grid.querySelectorAll(':scope > *').forEach((child, i) => {
         child.style.transitionDelay = (i * 0.1) + 's';

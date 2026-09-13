@@ -12,3 +12,5 @@ Thumbs.db
 # Temporary export files
 *.tmp
 *.bak
+*.ARW
+.DS_Store

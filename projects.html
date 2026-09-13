@@ -1,14 +1,6 @@
 <!DOCTYPE html>
 <html lang="no">
 <head>
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-XXXXXXXXXX');
-  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <link rel="icon" href="Solemsli production.png">
@@ -18,6 +10,15 @@
   <meta property="og:title" content="Solemsli Productions | Portfolio" />
   <meta property="og:description" content="Se mitt arbeid med foto, video og drone. Bryllup, eventer, konfirmasjon og mer." />
   <meta property="og:image" content="https://solemsliproductions.no/gallery/andre%20natur%20bilder/uranustind.jpg" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://solemsliproductions.no/projects.html" />
+  <meta property="og:site_name" content="Solemsli Productions">
+  <meta property="og:locale" content="nb_NO">
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Solemsli Productions | Portfolio" />
+  <meta name="twitter:description" content="Se mitt arbeid med foto, video og drone. Bryllup, eventer, konfirmasjon og mer." />
+  <meta name="twitter:image" content="https://solemsliproductions.no/gallery/andre%20natur%20bilder/uranustind.jpg" />
+  <link rel="canonical" href="https://solemsliproductions.no/projects.html" />
 <title>Portfolio – Solemsli Productions</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css">
@@ -84,6 +85,8 @@ main{flex:1;padding:0;width:100%}
 </head>
 <body>
 
+<a href="#main-content" class="skip-link">Hopp til innhold</a>
+
 <div id="grain"></div>
 
 <div id="progress-bar"></div>
@@ -94,16 +97,16 @@ main{flex:1;padding:0;width:100%}
 
 <header id="header">
   <a href="index.html" class="logo">Solemsli Productions</a>
-  <div class="menu-toggle" onclick="this.classList.toggle('active');document.querySelector('nav').classList.toggle('active')"><span></span><span></span><span></span></div>
-  <nav>
+    <div class="menu-toggle" role="button" aria-label="Meny" aria-expanded="false" onclick="this.classList.toggle('active');this.setAttribute('aria-expanded',this.classList.contains('active'));document.querySelector('nav').classList.toggle('active')"><span></span><span></span><span></span></div>
+    <nav aria-label="Hovedmeny">
     <a href="index.html" data-no="Hjem" data-en="Home" data-de="Startseite">Hjem</a>
     <a href="about.html" data-no="Om meg" data-en="About" data-de="Über mich">Om meg</a>
     <a href="projects.html" class="active" data-no="Portfolio" data-en="Portfolio" data-de="Portfolio">Portfolio</a>
     <a href="shop.html" data-no="Shop" data-en="Shop" data-de="Shop">Shop</a>
     <a href="prices.html" data-no="Priser" data-en="Pricing" data-de="Preise">Priser</a>
     <a href="contact.html" data-no="Kontakt" data-en="Contact" data-de="Kontakt">Kontakt</a>
-    <button class="nav-btn" id="lang-toggle">EN</button>
-    <button class="nav-btn" id="theme-toggle">☀️ Lys</button>
+      <button class="nav-btn" id="lang-toggle" aria-label="Bytt språk">EN</button>
+      <button class="nav-btn" id="theme-toggle" aria-label="Bytt tema">☀️ Lys</button>
   </nav>
 </header>
 
@@ -127,7 +130,7 @@ main{flex:1;padding:0;width:100%}
   <button class="filter-tab" data-filter="biler" data-no="Biler" data-en="Cars" data-de="Autos">Biler</button>
 </div>
 
-<main>
+<main id="main-content">
   <!-- SHOWREEL -->
   <section class="portfolio-section reveal">
     <div class="section-label" data-no="Showreel" data-en="Showreel" data-de="Showreel">Showreel</div>
@@ -351,14 +354,14 @@ main{flex:1;padding:0;width:100%}
     <p>© 2026 Solemsli Productions. Innlandet.</p>
   </div>
   <div class="footer-links">
-    <a href="https://www.instagram.com/solemsli_productions/" target="_blank">Instagram</a>
+    <a href="https://www.instagram.com/solemsli_productions/" target="_blank" rel="noopener noreferrer">Instagram</a>
     <a href="contact.html" data-no="Kontakt" data-en="Contact" data-de="Kontakt">Kontakt</a>
     <a href="about.html" data-no="Om meg" data-en="About" data-de="Über mich">Om meg</a>
   </div>
 </footer>
 
 <!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox">
+<div class="lightbox" id="lightbox" role="dialog" aria-label="Bildevisning" aria-hidden="true">
   <div class="lightbox-backdrop" id="lb-backdrop"></div>
   <button class="lightbox-close" id="lb-close">&times;</button>
   <button class="lightbox-nav lightbox-prev" id="lb-prev">&#8249;</button>

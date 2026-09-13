@@ -1,14 +1,6 @@
 <!DOCTYPE html>
 <html lang="no">
 <head>
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-XXXXXXXXXX');
-  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <link rel="icon" href="Solemsli production.png">
@@ -18,6 +10,15 @@
   <meta property="og:title" content="Solemsli Productions | Om meg" />
   <meta property="og:description" content="Lær mer om Solemsli Productions - en 17-årig fotograf og videograf fra Vang, Innlandet." />
   <meta property="og:image" content="https://solemsliproductions.no/gallery/andre%20natur%20bilder/uranustind.jpg" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://solemsliproductions.no/about.html" />
+  <meta property="og:site_name" content="Solemsli Productions">
+  <meta property="og:locale" content="nb_NO">
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Solemsli Productions | Om meg" />
+  <meta name="twitter:description" content="Lær mer om Solemsli Productions - en 17-årig fotograf og videograf fra Vang, Innlandet." />
+  <meta name="twitter:image" content="https://solemsliproductions.no/gallery/andre%20natur%20bilder/uranustind.jpg" />
+  <link rel="canonical" href="https://solemsliproductions.no/about.html" />
   <title>Om Meg – Solemsli Productions</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="shared.css">
@@ -153,6 +154,7 @@
   </style>
 </head>
 <body>
+  <a href="#main-content" class="skip-link">Hopp til innhold</a>
   <!-- GRAIN -->
   <div id="grain"></div>
 
@@ -166,26 +168,27 @@
   <!-- HEADER -->
   <header id="header">
     <a href="index.html" class="logo">Solemsli Productions</a>
-    <div class="menu-toggle" onclick="this.classList.toggle('active');document.querySelector('nav').classList.toggle('active')"><span></span><span></span><span></span></div>
-    <nav>
+    <div class="menu-toggle" role="button" aria-label="Meny" aria-expanded="false" onclick="this.classList.toggle('active');this.setAttribute('aria-expanded',this.classList.contains('active'));document.querySelector('nav').classList.toggle('active')"><span></span><span></span><span></span></div>
+    <nav aria-label="Hovedmeny">
       <a href="index.html" data-no="Hjem" data-en="Home" data-de="Startseite">Hjem</a>
       <a href="about.html" class="active" data-no="Om meg" data-en="About" data-de="Über mich">Om meg</a>
       <a href="projects.html" data-no="Portfolio" data-en="Portfolio" data-de="Portfolio">Portfolio</a>
       <a href="shop.html" data-no="Shop" data-en="Shop" data-de="Shop">Shop</a>
       <a href="prices.html" data-no="Priser" data-en="Pricing" data-de="Preise">Priser</a>
       <a href="contact.html" data-no="Kontakt" data-en="Contact" data-de="Kontakt">Kontakt</a>
-      <button class="nav-btn" id="lang-toggle">EN</button>
-      <button class="nav-btn" id="theme-toggle">☀️ Lys</button>
+      <button class="nav-btn" id="lang-toggle" aria-label="Bytt språk">EN</button>
+      <button class="nav-btn" id="theme-toggle" aria-label="Bytt tema">☀️ Lys</button>
     </nav>
   </header>
 
+  <main id="main-content">
   <!-- HERO -->
   <section class="hero">
     <div class="hero-bg"><img src="gallery/biler/untitled-9223.jpg" alt="Bil i landskap" id="hero-img"></div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <div class="hero-badge" data-no="📍 17 år • Innlandet" data-en="📍 17 years old • Innlandet" data-de="📍 17 Jahre • Innlandet">📍 17 år • Innlandet</div>
-      <h1 id="hero-title"><span data-no="Hei, jeg" data-en="Hi, I'm" data-de="Hallo, ich">Hei, jeg</span><br><span data-no="er Oskar" data-en="am Oskar" data-de="bin Oskar">er Oskar</span></h1>
+      <h1 id="hero-title"><span data-no="Hei, jeg" data-en="Hi, I'm" data-de="Hallo, ich" class="scramble-text magnetic-text">Hei, jeg</span><br><span data-no="er Oskar" data-en="am Oskar" data-de="bin Oskar" class="scramble-text magnetic-text">er Oskar</span></h1>
       <p data-no="Grunnlegger av Solemsli Productions. 17 år gammel med en stor lidenskap for visuell historiefortelling, drone og kreativ produksjon." data-en="Founder of Solemsli Productions. 17 years old with a great passion for visual storytelling, drones and creative production." data-de="Gründer von Solemsli Productions. 17 Jahre alt mit einer großen Leidenschaft für visuelles Storytelling, Drohnen und kreative Produktion.">Grunnlegger av Solemsli Productions. 17 år gammel med en stor lidenskap for visuell historiefortelling, drone og kreativ produksjon.</p>
       <div class="hero-buttons">
         <a href="#profile" class="btn btn-primary magnetic" data-no="Les mer" data-en="Read more" data-de="Mehr erfahren">Les mer</a>
@@ -202,7 +205,7 @@
         <div class="profile-glow-ring-2"></div>
         <div class="profile-glow-ring"></div>
         <div class="profile-photo">
-          <img src="gallery/bilde av meg/meg.jpg" alt="Oskar Solemsli med kamera">
+          <img src="gallery/bilde av meg/meg.jpg" alt="Oskar Solemsli med kamera" class="parallax-img">
         </div>
       </div>
       <div class="profile-bio reveal reveal-delay-2 glow-scroll">
@@ -231,7 +234,7 @@
   </section>
 
   <!-- STATS -->
-  <section class="stats">
+  <section class="stats blur-fade">
     <div class="stats-grid stagger-reveal">
       <div class="stat-item reveal"><h3 id="stat1">20+</h3><p data-no="Oppdrag fullført" data-en="Jobs completed" data-de="Aufträge abgeschlossen">Oppdrag fullført</p></div>
       <div class="stat-item reveal reveal-delay-1"><h3 id="stat2">15+</h3><p data-no="Kunder" data-en="Clients" data-de="Kunden">Kunder</p></div>
@@ -243,8 +246,8 @@
   <!-- SKILLS -->
   <section class="skills-section perspective-section">
     <div class="section">
-      <div class="reveal"><div class="section-label" data-no="Ferdigheter" data-en="Skills" data-de="Fähigkeiten">Ferdigheter</div><h2 class="section-title" data-no="Hva jeg er god på" data-en="What I'm good at" data-de="Wofür ich gut bin">Hva jeg er god på</h2></div>
-      <div class="skills-circle-grid reveal stagger-reveal">
+      <div class="reveal"><div class="section-label" data-no="Ferdigheter" data-en="Skills" data-de="Fähigkeiten">Ferdigheter</div><h2 class="section-title char-reveal" data-no="Hva jeg er god på" data-en="What I'm good at" data-de="Wofür ich gut bin">Hva jeg er god på</h2></div>
+      <div class="skills-circle-grid reveal stagger-reveal h-stagger">
         <div class="skill-circle"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="54" class="skill-bg"/><circle cx="60" cy="60" r="54" class="skill-progress" data-progress="90"/></svg><div class="skill-label"><span>Foto</span><small>90%</small></div></div>
         <div class="skill-circle"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="54" class="skill-bg"/><circle cx="60" cy="60" r="54" class="skill-progress" data-progress="85"/></svg><div class="skill-label"><span>Video</span><small>85%</small></div></div>
         <div class="skill-circle"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="54" class="skill-bg"/><circle cx="60" cy="60" r="54" class="skill-progress" data-progress="80"/></svg><div class="skill-label"><span>Drone</span><small>80%</small></div></div>
@@ -255,14 +258,14 @@
   </section>
 
   <!-- EQUIPMENT -->
-  <section class="equipment perspective-section">
+  <section class="equipment perspective-section blur-fade">
     <div class="section">
-      <div class="reveal"><div class="section-label" data-no="Utstyr" data-en="Equipment" data-de="Ausrüstung">Utstyr</div><h2 class="section-title" data-no="Hva jeg jobber med" data-en="What I work with" data-de="Womit ich arbeite">Hva jeg jobber med</h2></div>
-      <div class="equip-grid reveal stagger-reveal">
-        <div class="equip-card"><span class="equip-icon">📷</span><h4>Sony A7IV</h4><p data-no="Fullformat kamera med høy oppløsning" data-en="Full-frame camera with high resolution" data-de="Vollformatkamera mit hoher Auflösung">Fullformat kamera med høy oppløsning</p></div>
-        <div class="equip-card"><span class="equip-icon">🔭</span><h4>Sigma 24-70mm f/2.8</h4><p data-no="Allsidig zoom-objektiv i topp kvalitet" data-en="Versatile zoom lens in top quality" data-de="Vielseitiges Zoom-Objektiv in Top-Qualität">Allsidig zoom-objektiv i topp kvalitet</p></div>
-        <div class="equip-card"><span class="equip-icon">🚁</span><h4>DJI Mini 4 Pro</h4><p data-no="Kompakt drone med 4K video" data-en="Compact drone with 4K video" data-de="Kompakte Drohne mit 4K-Video">Kompakt drone med 4K video</p></div>
-        <div class="equip-card"><span class="equip-icon">🎬</span><h4>DaVinci Resolve</h4><p data-no="Profesjonell videoredigering og color grading" data-en="Professional video editing and color grading" data-de="Professionelle Videobearbeitung und Color Grading">Profesjonell videoredigering og color grading</p></div>
+      <div class="reveal"><div class="section-label" data-no="Utstyr" data-en="Equipment" data-de="Ausrüstung">Utstyr</div><h2 class="section-title char-reveal" data-no="Hva jeg jobber med" data-en="What I work with" data-de="Womit ich arbeite">Hva jeg jobber med</h2></div>
+      <div class="equip-grid reveal stagger-reveal h-stagger">
+        <div class="equip-card tilt-glow glow-border"><span class="equip-icon">📷</span><h4>Sony A7IV</h4><p data-no="Fullformat kamera med høy oppløsning" data-en="Full-frame camera with high resolution" data-de="Vollformatkamera mit hoher Auflösung">Fullformat kamera med høy oppløsning</p></div>
+        <div class="equip-card tilt-glow glow-border"><span class="equip-icon">🔭</span><h4>Sigma 24-70mm f/2.8</h4><p data-no="Allsidig zoom-objektiv i topp kvalitet" data-en="Versatile zoom lens in top quality" data-de="Vielseitiges Zoom-Objektiv in Top-Qualität">Allsidig zoom-objektiv i topp kvalitet</p></div>
+        <div class="equip-card tilt-glow glow-border"><span class="equip-icon">🚁</span><h4>DJI Mini 4 Pro</h4><p data-no="Kompakt drone med 4K video" data-en="Compact drone with 4K video" data-de="Kompakte Drohne mit 4K-Video">Kompakt drone med 4K video</p></div>
+        <div class="equip-card tilt-glow glow-border"><span class="equip-icon">🎬</span><h4>DaVinci Resolve</h4><p data-no="Profesjonell videoredigering og color grading" data-en="Professional video editing and color grading" data-de="Professionelle Videobearbeitung und Color Grading">Profesjonell videoredigering og color grading</p></div>
       </div>
     </div>
   </section>
@@ -273,11 +276,11 @@
       <div class="reveal"><div class="section-label" data-no="Dag i livet" data-en="Day in the life" data-de="Tag im Leben">Dag i livet</div><h2 class="section-title" data-no="En typisk dag" data-en="A typical day" data-de="Ein typischer Tag">En typisk dag</h2></div>
       <div class="day-scroll-container">
         <div class="day-track">
-          <div class="day-card"><div class="day-time">07:00</div><img src="gallery/andre natur bilder/uranustind.jpg" alt="Morgen" loading="lazy"><h4 data-no="Morgen" data-en="Morning" data-de="Morgen">Morgen</h4><p data-no="Våkner tidlig, sjekker været og planlegger dagen" data-en="Wake up early, check the weather and plan the day" data-de="Früh aufstehen, das Wetter prüfen und den Tag planen">Våkner tidlig, sjekker været og planlegger dagen</p></div>
-          <div class="day-card"><div class="day-time">09:00</div><img src="gallery/andre natur bilder/bilde5.jpg" alt="Utstyr" loading="lazy"><h4 data-no="Utstyr" data-en="Equipment" data-de="Ausrüstung">Utstyr</h4><p data-no="Pakker kamera, drone og tilbehør" data-en="Pack camera, drone and accessories" data-de="Kamera, Drohne und Zubehör einpacken">Pakker kamera, drone og tilbehør</p></div>
-          <div class="day-card"><div class="day-time">11:00</div><img src="gallery/vinjerock/untitled-7604.jpg" alt="Oppdrag" loading="lazy"><h4 data-no="Oppdrag" data-en="Mission" data-de="Einsatz">Oppdrag</h4><p data-no="Er ute på oppdrag og fanger øyeblikkene" data-en="Out on assignment capturing moments" data-de="Draußen beim Einsatz und fange die Momente">Er ute på oppdrag og fanger øyeblikkene</p></div>
-          <div class="day-card"><div class="day-time">15:00</div><img src="gallery/andre natur bilder/bilde7.jpg" alt="Redigering" loading="lazy"><h4 data-no="Redigering" data-en="Editing" data-de="Bearbeitung">Redigering</h4><p data-no="Tilbake på kontoret for redigering og fargejustering" data-en="Back at the office for editing and color grading" data-de="Zurück im Büro für Bearbeitung und Farbkorrektur">Tilbake på kontoret for redigering og fargejustering</p></div>
-          <div class="day-card"><div class="day-time">19:00</div><img src="gallery/bryllup/untitled-6005.jpg" alt="Levering" loading="lazy"><h4 data-no="Levering" data-en="Delivery" data-de="Lieferung">Levering</h4><p data-no="Leverer ferdig materiell til kunden" data-en="Deliver finished material to the client" data-de="Fertiges Material an den Kunden liefern">Leverer ferdig materiell til kunden</p></div>
+          <div class="day-card hscroll-reveal clip-reveal"><div class="day-time">07:00</div><img src="gallery/andre natur bilder/uranustind.jpg" alt="Morgen" loading="lazy"><h4 data-no="Morgen" data-en="Morning" data-de="Morgen">Morgen</h4><p data-no="Våkner tidlig, sjekker været og planlegger dagen" data-en="Wake up early, check the weather and plan the day" data-de="Früh aufstehen, das Wetter prüfen und den Tag planen">Våkner tidlig, sjekker været og planlegger dagen</p></div>
+          <div class="day-card hscroll-reveal clip-reveal"><div class="day-time">09:00</div><img src="gallery/andre natur bilder/bilde5.jpg" alt="Utstyr" loading="lazy"><h4 data-no="Utstyr" data-en="Equipment" data-de="Ausrüstung">Utstyr</h4><p data-no="Pakker kamera, drone og tilbehør" data-en="Pack camera, drone and accessories" data-de="Kamera, Drohne und Zubehör einpacken">Pakker kamera, drone og tilbehør</p></div>
+          <div class="day-card hscroll-reveal clip-reveal"><div class="day-time">11:00</div><img src="gallery/vinjerock/untitled-7604.jpg" alt="Oppdrag" loading="lazy"><h4 data-no="Oppdrag" data-en="Mission" data-de="Einsatz">Oppdrag</h4><p data-no="Er ute på oppdrag og fanger øyeblikkene" data-en="Out on assignment capturing moments" data-de="Draußen beim Einsatz und fange die Momente">Er ute på oppdrag og fanger øyeblikkene</p></div>
+          <div class="day-card hscroll-reveal clip-reveal"><div class="day-time">15:00</div><img src="gallery/andre natur bilder/bilde7.jpg" alt="Redigering" loading="lazy"><h4 data-no="Redigering" data-en="Editing" data-de="Bearbeitung">Redigering</h4><p data-no="Tilbake på kontoret for redigering og fargejustering" data-en="Back at the office for editing and color grading" data-de="Zurück im Büro für Bearbeitung und Farbkorrektur">Tilbake på kontoret for redigering og fargejustering</p></div>
+          <div class="day-card hscroll-reveal clip-reveal"><div class="day-time">19:00</div><img src="gallery/bryllup/untitled-6005.jpg" alt="Levering" loading="lazy"><h4 data-no="Levering" data-en="Delivery" data-de="Lieferung">Levering</h4><p data-no="Leverer ferdig materiell til kunden" data-en="Deliver finished material to the client" data-de="Fertiges Material an den Kunden liefern">Leverer ferdig materiell til kunden</p></div>
         </div>
       </div>
     </div>
@@ -285,7 +288,7 @@
 
   <!-- TIMELINE -->
   <section class="timeline-section">
-    <div class="section section-narrow">
+    <div class="section">
       <div class="reveal"><div class="section-label" data-no="Reise" data-en="Journey" data-de="Reise">Reise</div><h2 class="section-title" data-no="Min vei inn i produksjon" data-en="My path into production" data-de="Mein Weg in die Produktion">Min vei inn i produksjon</h2></div>
       <div class="timeline">
         <div class="timeline-item reveal">
@@ -351,9 +354,11 @@
     <div class="reveal">
       <h2 data-no="Klar til å starte?" data-en="Ready to get started?" data-de="Bereit anzufangen?">Klar til å starte?</h2>
       <p data-no="Ta kontakt for en uforpliktende samtale om ditt neste prosjekt." data-en="Get in touch for a no-obligation chat about your next project." data-de="Kontaktieren Sie mich für ein unverbindliches Gespräch über Ihr nächstes Projekt.">Ta kontakt for en uforpliktende samtale om ditt neste prosjekt.</p>
-      <a href="contact.html" class="btn btn-primary magnetic" data-no="Kontakt meg" data-en="Contact me" data-de="Kontaktieren Sie mich">Kontakt meg</a>
+        <a href="contact.html" class="btn btn-primary magnetic magnetic-field particle-burst mouse-glow" data-no="Kontakt meg" data-en="Contact me" data-de="Kontaktieren Sie mich">Kontakt meg</a>
     </div>
   </section>
+
+  </main>
 
   <!-- FOOTER -->
   <footer>
@@ -362,7 +367,7 @@
       <p>© 2026 Solemsli Productions. Innlandet.</p>
     </div>
     <div class="footer-links">
-      <a href="https://www.instagram.com/solemsli_productions/" target="_blank">Instagram</a>
+      <a href="https://www.instagram.com/solemsli_productions/" target="_blank" rel="noopener noreferrer">Instagram</a>
       <a href="contact.html" data-no="Kontakt" data-en="Contact" data-de="Kontakt">Kontakt</a>
       <a href="about.html" data-no="Om meg" data-en="About" data-de="Über mich">Om meg</a>
     </div>

@@ -1,14 +1,6 @@
 <!DOCTYPE html>
 <html lang="no">
 <head>
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-XXXXXXXXXX');
-  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <link rel="icon" href="Solemsli production.png">
@@ -18,10 +10,19 @@
   <meta property="og:title" content="Solemsli Productions | Kontakt" />
   <meta property="og:description" content="Ta kontakt med Solemsli Productions for foto, video og droneoppdrag i Innlandet." />
   <meta property="og:image" content="https://solemsliproductions.no/gallery/andre%20natur%20bilder/uranustind.jpg" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://solemsliproductions.no/contact.html" />
+  <meta property="og:site_name" content="Solemsli Productions">
+  <meta property="og:locale" content="nb_NO">
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Solemsli Productions | Kontakt" />
+  <meta name="twitter:description" content="Ta kontakt med Solemsli Productions for foto, video og droneoppdrag i Innlandet." />
+  <meta name="twitter:image" content="https://solemsliproductions.no/gallery/andre%20natur%20bilder/uranustind.jpg" />
+  <link rel="canonical" href="https://solemsliproductions.no/contact.html" />
   <title>Kontakt – Solemsli Productions</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
   <link rel="stylesheet" href="shared.css">
   <style>
     /* PAGE-SPECIFIC — Contact */
@@ -124,6 +125,7 @@
   </style>
 </head>
 <body>
+  <a href="#main-content" class="skip-link">Hopp til innhold</a>
   <!-- CUSTOM CURSOR -->
   <div class="custom-cursor" id="cursor"></div>
   <div class="custom-cursor-dot" id="cursor-dot"></div>
@@ -137,22 +139,22 @@
   <!-- HEADER -->
   <header id="header">
     <a href="index.html" class="logo">Solemsli Productions</a>
-    <div class="menu-toggle" onclick="this.classList.toggle('active');document.querySelector('nav').classList.toggle('active')"><span></span><span></span><span></span></div>
-    <nav>
+    <div class="menu-toggle" role="button" aria-label="Meny" aria-expanded="false" onclick="this.classList.toggle('active');this.setAttribute('aria-expanded',this.classList.contains('active'));document.querySelector('nav').classList.toggle('active')"><span></span><span></span><span></span></div>
+    <nav aria-label="Hovedmeny">
       <a href="index.html" data-no="Hjem" data-en="Home" data-de="Startseite">Hjem</a>
       <a href="about.html" data-no="Om meg" data-en="About" data-de="Über mich">Om meg</a>
       <a href="projects.html" data-no="Portfolio" data-en="Portfolio" data-de="Portfolio">Portfolio</a>
       <a href="shop.html" data-no="Shop" data-en="Shop" data-de="Shop">Shop</a>
       <a href="prices.html" data-no="Priser" data-en="Pricing" data-de="Preise">Priser</a>
       <a href="contact.html" class="active" data-no="Kontakt" data-en="Contact" data-de="Kontakt">Kontakt</a>
-      <button class="nav-btn" id="lang-toggle">EN</button>
-      <button class="nav-btn" id="theme-toggle">☀️ Lys</button>
+      <button class="nav-btn" id="lang-toggle" aria-label="Bytt språk">EN</button>
+      <button class="nav-btn" id="theme-toggle" aria-label="Bytt tema">☀️ Lys</button>
     </nav>
   </header>
 
   <!-- HERO -->
-  <section class="contact-hero">
-    <div class="contact-hero-bg"><img src="gallery/andre natur bilder/untitled--2.jpg" alt="Naturandskap"></div>
+  <section class="contact-hero section-parallax">
+    <div class="contact-hero-bg section-parallax-bg"><img src="gallery/andre natur bilder/untitled--2.jpg" alt="Naturandskap"></div>
     <div class="contact-hero-overlay"></div>
     <div class="contact-hero-content">
       <div class="contact-hero-badge" data-no="📞 Svar innen 24t" data-en="📞 Reply within 24h" data-de="📞 Antwort innerhalb 24h">📞 Svar innen 24t</div>
@@ -186,7 +188,7 @@
   </section>
 
   <!-- MAIN -->
-  <main>
+  <main id="main-content">
     <section class="contact-section">
       <section class="contact reveal glow-scroll">
         <h2 data-no="Kontakt meg!" data-en="Contact Me!" data-de="Kontaktiere mich!">Kontakt meg!</h2>
@@ -199,29 +201,29 @@
         <div class="contact-options">
           <a href="tel:+4790560160" class="contact-option"><div class="contact-option-icon">📞</div><div><strong data-no="Ring meg" data-en="Call me" data-de="Anrufen">Ring meg</strong><span>+47 905 60 160</span></div></a>
           <a href="mailto:rakso8080@gmail.com" class="contact-option"><div class="contact-option-icon">✉️</div><div><strong data-no="Send e-post" data-en="Send email" data-de="E-Mail senden">Send e-post</strong><span>rakso8080@gmail.com</span></div></a>
-          <a href="https://www.instagram.com/solemsli_productions/" target="_blank" class="contact-option"><div class="contact-option-icon">💬</div><div><strong data-no="Instagram DM" data-en="Instagram DM" data-de="Instagram DM">Instagram DM</strong><span>@solemsli_productions</span></div></a>
+          <a href="https://www.instagram.com/solemsli_productions/" target="_blank" rel="noopener noreferrer" class="contact-option"><div class="contact-option-icon">💬</div><div><strong data-no="Instagram DM" data-en="Instagram DM" data-de="Instagram DM">Instagram DM</strong><span>@solemsli_productions</span></div></a>
         </div>
 
-        <!-- TODO: Replace "placeholder" below with your actual Formspree form ID from formspree.io -->
-        <form id="contact-form" action="https://formspree.io/f/placeholder" method="POST">
+        <!-- ⚠️ FORMSPREE: Replace the form ID below with your real ID from formspree.io/my-forms -->
+        <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID_HERE" method="POST">
           <input type="hidden" name="_next" value="https://solemsliproductions.no/contact.html">
           <div class="form-group">
-            <input type="text" id="name" placeholder=" " required>
+            <input type="text" id="name" name="name" placeholder=" " required>
             <label for="name" data-no="Ditt navn" data-en="Your name" data-de="Ihr Name">Ditt navn</label>
             <div class="form-line"></div>
           </div>
           <div class="form-group">
-            <input type="email" id="email" placeholder=" " required>
+            <input type="email" id="email" name="email" placeholder=" " required>
             <label for="email" data-no="Din e-post" data-en="Your email" data-de="Ihre E-Mail">Din e-post</label>
             <div class="form-line"></div>
           </div>
           <div class="form-group">
-            <input type="tel" id="phone" placeholder=" ">
+            <input type="tel" id="phone" name="phone" placeholder=" ">
             <label for="phone" data-no="Telefon (valgfritt)" data-en="Phone (optional)" data-de="Telefon (optional)">Telefon (valgfritt)</label>
             <div class="form-line"></div>
           </div>
           <div class="form-group">
-            <textarea id="message" placeholder=" " rows="4" required></textarea>
+            <textarea id="message" name="message" placeholder=" " rows="4" required></textarea>
             <label for="message" data-no="Din melding" data-en="Your message" data-de="Ihre Nachricht">Din melding</label>
             <div class="form-line"></div>
           </div>
@@ -231,44 +233,93 @@
     </section>
   </main>
 
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Hvor raskt kan dere levere?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For foto og drone er leveransen typisk 2–5 virkedager. Video og redigert innhold kan ta 1–2 uker."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Må jeg være i Innlandet?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nei! Jeg tar oppdrag i hele Norge. Ved lengre reiser kan det komme et tillegg for reise og overnatting."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Hva skjer hvis det regner?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Vi finner alltid en løsning — enten det er å flytte oppdraget, finne en alternativ lokasjon, eller utnytte været kreativt."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Hvilke betalingsmåter aksepterer dere?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Jeg aksepterer Vipps, bankoverføring og krypto (Bitcoin). Faktura kan også avtales for bedrifter."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Kan jeg få revisjoner?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja! Alle pakker inkluderer opptil 2 revisjoner. Ekstra revisjoner kan kjøpes separat."
+        }
+      }
+    ]
+  }
+  </script>
+
   <!-- FAQ -->
   <section class="faq-section">
     <div class="reveal"><div class="section-label" data-no="Vanlige spørsmål" data-en="FAQ" data-de="Häufige Fragen">Vanlige spørsmål</div><h2 class="section-title" data-no="Spørsmål og svar" data-en="Questions & Answers" data-de="Fragen & Antworten">Spørsmål og svar</h2></div>
     <div class="faq-grid reveal stagger-reveal">
       <div class="faq-item">
-        <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+        <div class="faq-question" role="button" tabindex="0" aria-expanded="false" aria-controls="cfaq-a1" onclick="this.parentElement.classList.toggle('open');this.setAttribute('aria-expanded',this.parentElement.classList.contains('open'))">
           <h4 data-no="Hvor raskt kan dere levere?" data-en="How quickly can you deliver?" data-de="Wie schnell können Sie liefern?">Hvor raskt kan dere levere?</h4>
           <span class="faq-arrow">▼</span>
         </div>
-        <div class="faq-answer"><p data-no="For foto og drone er leveransen typisk 2–5 virkedager. Video og redigert innhold kan ta 1–2 uker, avhengig av omfang. Vi blir alltid enige om en frist på forhånd." data-en="For photo and drone, delivery is typically 2–5 business days. Video and edited content can take 1–2 weeks depending on scope. We always agree on a deadline in advance." data-de="Bei Foto- und Drohnenaufnahmen beträgt die Lieferzeit typischerweise 2–5 Werktage. Video und bearbeitete Inhalte können 1–2 Wochen dauern, je nach Umfang. Wir einigen uns immer vorher auf eine Frist.">For foto og drone er leveransen typisk 2–5 virkedager. Video og redigert innhold kan ta 1–2 uker, avhengig av omfang. Vi blir alltid enige om en frist på forhånd.</p></div>
+        <div class="faq-answer" id="cfaq-a1" role="region"><p data-no="For foto og drone er leveransen typisk 2–5 virkedager. Video og redigert innhold kan ta 1–2 uker, avhengig av omfang. Vi blir alltid enige om en frist på forhånd." data-en="For photo and drone, delivery is typically 2–5 business days. Video and edited content can take 1–2 weeks depending on scope. We always agree on a deadline in advance." data-de="Bei Foto- und Drohnenaufnahmen beträgt die Lieferzeit typischerweise 2–5 Werktage. Video und bearbeitete Inhalte können 1–2 Wochen dauern, je nach Umfang. Wir einigen uns immer vorher auf eine Frist.">For foto og drone er leveransen typisk 2–5 virkedager. Video og redigert innhold kan ta 1–2 uker, avhengig av omfang. Vi blir alltid enige om en frist på forhånd.</p></div>
       </div>
       <div class="faq-item">
-        <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+        <div class="faq-question" role="button" tabindex="0" aria-expanded="false" aria-controls="cfaq-a2" onclick="this.parentElement.classList.toggle('open');this.setAttribute('aria-expanded',this.parentElement.classList.contains('open'))">
           <h4 data-no="Må jeg være i Innlandet?" data-en="Do I have to be in Innlandet?" data-de="Muss ich in Innlandet sein?">Må jeg være i Innlandet?</h4>
           <span class="faq-arrow">▼</span>
         </div>
-        <div class="faq-answer"><p data-no="Nei! Jeg tar oppdrag i hele Norge. Ved lengre reiser kan det komme et tillegg for reise og overnatting, men dette avtales alltid på forhånd." data-en="No! I take jobs across all of Norway. For longer trips there may be an additional charge for travel and accommodation, but this is always agreed in advance." data-de="Nein! Ich übernehme Aufträge in ganz Norwegen. Bei längeren Reisen kann ein Zuschlag für Reise und Unterkunft anfallen, dies wird aber immer vorher vereinbart.">Nei! Jeg tar oppdrag i hele Norge. Ved lengre reiser kan det komme et tillegg for reise og overnatting, men dette avtales alltid på forhånd.</p></div>
+        <div class="faq-answer" id="cfaq-a2" role="region"><p data-no="Nei! Jeg tar oppdrag i hele Norge. Ved lengre reiser kan det komme et tillegg for reise og overnatting, men dette avtales alltid på forhånd." data-en="No! I take jobs across all of Norway. For longer trips there may be an additional charge for travel and accommodation, but this is always agreed in advance." data-de="Nein! Ich übernehme Aufträge in ganz Norwegen. Bei längeren Reisen kann ein Zuschlag für Reise und Unterkunft anfallen, dies wird aber immer vorher vereinbart.">Nei! Jeg tar oppdrag i hele Norge. Ved lengre reiser kan det komme et tillegg for reise og overnatting, men dette avtales alltid på forhånd.</p></div>
       </div>
       <div class="faq-item">
-        <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+        <div class="faq-question" role="button" tabindex="0" aria-expanded="false" aria-controls="cfaq-a3" onclick="this.parentElement.classList.toggle('open');this.setAttribute('aria-expanded',this.parentElement.classList.contains('open'))">
           <h4 data-no="Hva skjer hvis det regner?" data-en="What happens if it rains?" data-de="Was passiert bei Regen?">Hva skjer hvis det regner?</h4>
           <span class="faq-arrow">▼</span>
         </div>
-        <div class="faq-answer"><p data-no="Vi finner alltid en løsning — enten det er å flytte oppdraget, finne en alternativ lokasjon, eller utnytte været kreativt. Regn kan gi stemningsfulle bilder!" data-en="We always find a solution — whether it's moving the job, finding an alternative location, or using the weather creatively. Rain can create atmospheric photos!" data-de="Wir finden immer eine Lösung — sei es der Auftragsverlegung, einen alternativen Standort oder die kreative Nutzung des Wetters. Regen kann stimmungsvolle Fotos ergeben!">Vi finner alltid en løsning — enten det er å flytte oppdraget, finne en alternativ lokasjon, eller utnytte været kreativt. Regn kan gi stemningsfulle bilder!</p></div>
+        <div class="faq-answer" id="cfaq-a3" role="region"><p data-no="Vi finner alltid en løsning — enten det er å flytte oppdraget, finne en alternativ lokasjon, eller utnytte været kreativt. Regn kan gi stemningsfulle bilder!" data-en="We always find a solution — whether it's moving the job, finding an alternative location, or using the weather creatively. Rain can create atmospheric photos!" data-de="Wir finden immer eine Lösung — sei es der Auftragsverlegung, einen alternativen Standort oder die kreative Nutzung des Wetters. Regen kann stimmungsvolle Fotos ergeben!">Vi finner alltid en løsning — enten det er å flytte oppdraget, finne en alternativ lokasjon, eller utnytte været kreativt. Regn kan gi stemningsfulle bilder!</p></div>
       </div>
       <div class="faq-item">
-        <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+        <div class="faq-question" role="button" tabindex="0" aria-expanded="false" aria-controls="cfaq-a4" onclick="this.parentElement.classList.toggle('open');this.setAttribute('aria-expanded',this.parentElement.classList.contains('open'))">
           <h4 data-no="Hvilke betalingsmåter aksepterer dere?" data-en="What payment methods do you accept?" data-de="Welche Zahlungsmethoden akzeptieren Sie?">Hvilke betalingsmåter aksepterer dere?</h4>
           <span class="faq-arrow">▼</span>
         </div>
-        <div class="faq-answer"><p data-no="Jeg aksepterer Vipps, bankoverføring og krypto (Bitcoin). Faktura kan også avtales for bedrifter." data-en="I accept Vipps, bank transfer and crypto (Bitcoin). Invoice can also be arranged for businesses." data-de="Ich akzeptiere Vipps, Banküberweisung und Krypto (Bitcoin). Rechnungen können auch für Unternehmen vereinbart werden.">Jeg aksepterer Vipps, bankoverføring og krypto (Bitcoin). Faktura kan også avtales for bedrifter.</p></div>
+        <div class="faq-answer" id="cfaq-a4" role="region"><p data-no="Jeg aksepterer Vipps, bankoverføring og krypto (Bitcoin). Faktura kan også avtales for bedrifter." data-en="I accept Vipps, bank transfer and crypto (Bitcoin). Invoice can also be arranged for businesses." data-de="Ich akzeptiere Vipps, Banküberweisung und Krypto (Bitcoin). Rechnungen können auch für Unternehmen vereinbart werden.">Jeg aksepterer Vipps, bankoverføring og krypto (Bitcoin). Faktura kan også avtales for bedrifter.</p></div>
       </div>
       <div class="faq-item">
-        <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+        <div class="faq-question" role="button" tabindex="0" aria-expanded="false" aria-controls="cfaq-a5" onclick="this.parentElement.classList.toggle('open');this.setAttribute('aria-expanded',this.parentElement.classList.contains('open'))">
           <h4 data-no="Kan jeg få revisjoner?" data-en="Can I get revisions?" data-de="Kann ich Überarbeitungen bekommen?">Kan jeg få revisjoner?</h4>
           <span class="faq-arrow">▼</span>
         </div>
-        <div class="faq-answer"><p data-no="Ja! Alle pakker inkluderer opptil 2 revisjoner. Ekstra revisjoner kan kjøpes separat." data-en="Yes! All packages include up to 2 revisions. Additional revisions can be purchased separately." data-de="Ja! Alle Pakete beinhalten bis zu 2 Überarbeitungen. Zusätzliche Überarbeitungen können separat gekauft werden.">Ja! Alle pakker inkluderer opptil 2 revisjoner. Ekstra revisjoner kan kjøpes separat.</p></div>
+        <div class="faq-answer" id="cfaq-a5" role="region"><p data-no="Ja! Alle pakker inkluderer opptil 2 revisjoner. Ekstra revisjoner kan kjøpes separat." data-en="Yes! All packages include up to 2 revisions. Additional revisions can be purchased separately." data-de="Ja! Alle Pakete beinhalten bis zu 2 Überarbeitungen. Zusätzliche Überarbeitungen können separat gekauft werden.">Ja! Alle pakker inkluderer opptil 2 revisjoner. Ekstra revisjoner kan kjøpes separat.</p></div>
       </div>
     </div>
   </section>
@@ -289,7 +340,7 @@
       <p>© 2026 Solemsli Productions. Innlandet.</p>
     </div>
     <div class="footer-links">
-      <a href="https://www.instagram.com/solemsli_productions/" target="_blank">Instagram</a>
+      <a href="https://www.instagram.com/solemsli_productions/" target="_blank" rel="noopener noreferrer">Instagram</a>
       <a href="contact.html" data-no="Kontakt" data-en="Contact" data-de="Kontakt">Kontakt</a>
       <a href="about.html" data-no="Om meg" data-en="About" data-de="Über mich">Om meg</a>
     </div>
@@ -310,7 +361,8 @@
       contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const btn = contactForm.querySelector('.submit-btn');
-        if (btn) { btn.textContent = '...'; btn.disabled = true; }
+        const origHTML = btn ? btn.innerHTML : '';
+        if (btn) { btn.innerHTML = '<span>Sender...</span>'; btn.disabled = true; btn.style.opacity = '.6'; }
         try {
           const response = await fetch(contactForm.action, {
             method: 'POST',
@@ -320,8 +372,27 @@
           if (response.ok) {
             contactForm.innerHTML = '<div style="text-align:center;padding:40px"><div style="font-size:3rem;margin-bottom:16px">✅</div><h3 data-no="Takk for din henvendelse!" data-en="Thank you!" data-de="Vielen Dank!">Takk for din henvendelse!</h3><p data-no="Jeg tar kontakt innen 24 timer." data-en="I will get back to you within 24 hours." data-de="Ich melde mich innerhalb von 24 Stunden.">Jeg tar kontakt innen 24 timer.</p></div>';
           } else {
-            if (btn) { btn.textContent = 'Send melding'; btn.disabled = false; }
+            if (btn) { btn.innerHTML = origHTML; btn.disabled = false; btn.style.opacity = '1'; }
+            const existing = contactForm.querySelector('.form-error');
+            if (!existing) {
+              const err = document.createElement('div');
+              err.className = 'form-error';
+              err.style.cssText = 'color:#ff4444;text-align:center;margin-top:12px;font-size:.9rem';
+              err.textContent = 'Noe gikk galt. Prøv igjen eller kontakt meg direkte.';
+              contactForm.appendChild(err);
+            }
           }
+        } catch {
+          if (btn) { btn.innerHTML = origHTML; btn.disabled = false; btn.style.opacity = '1'; }
+          const existing = contactForm.querySelector('.form-error');
+          if (!existing) {
+            const err = document.createElement('div');
+            err.className = 'form-error';
+            err.style.cssText = 'color:#ff4444;text-align:center;margin-top:12px;font-size:.9rem';
+            err.textContent = 'Nettverksfeil. Sjekk tilkoblingen og prøv igjen.';
+            contactForm.appendChild(err);
+          }
+        }
         } catch { if (btn) { btn.textContent = 'Send melding'; btn.disabled = false; } }
       });
     }

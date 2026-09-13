@@ -6,6 +6,36 @@
 (function() {
   'use strict';
 
+  // ============================================
+  // LIVING BACKGROUND — inject orbs and bokeh
+  // ============================================
+
+  // MESH GRADIENT ORBS — 3 floating color blobs
+  const meshContainer = document.createElement('div');
+  meshContainer.className = 'mesh-orbs';
+  meshContainer.innerHTML = '<div class="mesh-orb"></div><div class="mesh-orb"></div><div class="mesh-orb"></div>';
+  document.body.appendChild(meshContainer);
+
+  // BOKEH LIGHTS — 15 soft drifting circles
+  const prefersReducedBg = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!prefersReducedBg) {
+    const bokehContainer = document.createElement('div');
+    bokehContainer.className = 'bokeh-container';
+    const bokehCount = window.innerWidth < 768 ? 4 : 8;
+    for (let i = 0; i < bokehCount; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'bokeh-dot';
+      const size = 4 + Math.random() * 12;
+      const left = Math.random() * 100;
+      const duration = 12 + Math.random() * 18;
+      const delay = Math.random() * -30;
+      const drift = (Math.random() - 0.5) * 200;
+      dot.style.cssText = `width:${size}px;height:${size}px;left:${left}%;animation-duration:${duration}s;animation-delay:${delay}s;--drift:${drift}px`;
+      bokehContainer.appendChild(dot);
+    }
+    document.body.appendChild(bokehContainer);
+  }
+
   // THEME
   const themeToggle = document.getElementById('theme-toggle');
   let currentTheme = localStorage.getItem('theme') || 'dark';
@@ -28,10 +58,28 @@
   if (!langCycle.includes(currentLang)) currentLang = 'no';
   if (langToggle) langToggle.textContent = langLabels[currentLang];
 
+  // Helper: split text into character spans for magnetic-text / text-wave
+  const splitChars = (el) => {
+    const text = el.textContent;
+    el.innerHTML = '';
+    [...text].forEach(ch => {
+      const s = document.createElement('span');
+      s.textContent = ch === ' ' ? '\u00A0' : ch;
+      el.appendChild(s);
+    });
+  };
+
   const applyLang = (lang) => {
+    document.documentElement.lang = lang;
     document.querySelectorAll('[data-no][data-en]').forEach(el => {
       const text = el.getAttribute('data-' + lang);
-      if (text) el.textContent = text;
+      if (text) {
+        if (el.hasAttribute('data-html')) el.innerHTML = text;
+        else el.textContent = text;
+        if (el.classList.contains('magnetic-text') || el.classList.contains('text-wave')) {
+          splitChars(el);
+        }
+      }
     });
   };
   applyLang(currentLang);
@@ -53,13 +101,20 @@
     if (header) header.classList.toggle('scrolled', window.scrollY > 50);
   });
 
-  // PROGRESS BAR
+  // PROGRESS BAR — smooth interpolated
   const progressBar = document.getElementById('progress-bar');
   if (progressBar) {
+    let progressTarget = 0;
+    let progressCurrent = 0;
     window.addEventListener('scroll', () => {
       const h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      progressBar.style.width = (document.documentElement.scrollTop / h) * 100 + '%';
-    });
+      progressTarget = h > 0 ? (document.documentElement.scrollTop / h) * 100 : 0;
+    }, { passive: true });
+    (function animProgress() {
+      progressCurrent += (progressTarget - progressCurrent) * 0.12;
+      progressBar.style.width = progressCurrent + '%';
+      requestAnimationFrame(animProgress);
+    })();
   }
 
   // SCROLL REVEAL
@@ -73,9 +128,10 @@
   }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
   document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-  // CUSTOM CURSOR (desktop only)
+  // CUSTOM CURSOR (desktop only, skip if reduced motion preferred)
   const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-  if (!isTouch) {
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!isTouch && !prefersReduced) {
     const cursorEl = document.getElementById('cursor');
     const cursorDot = document.getElementById('cursor-dot');
     if (cursorEl && cursorDot) {
@@ -94,6 +150,23 @@
         el.addEventListener('mouseenter', () => cursorEl.classList.add('hovering'));
         el.addEventListener('mouseleave', () => cursorEl.classList.remove('hovering'));
       });
+      // CURSOR MORPH — shape changes based on hover target
+      document.querySelectorAll('img,.latest-item,.insta-item,.ba-slider').forEach(el => {
+        el.addEventListener('mouseenter', () => cursorEl.classList.add('cursor-crosshair'));
+        el.addEventListener('mouseleave', () => cursorEl.classList.remove('cursor-crosshair'));
+      });
+      document.querySelectorAll('h1,h2,h3,p,.faq-question').forEach(el => {
+        el.addEventListener('mouseenter', () => cursorEl.classList.add('cursor-text'));
+        el.addEventListener('mouseleave', () => cursorEl.classList.remove('cursor-text'));
+      });
+      document.querySelectorAll('.product-card,.equip-card,.price-card').forEach(el => {
+        el.addEventListener('mouseenter', () => cursorEl.classList.add('cursor-expand'));
+        el.addEventListener('mouseleave', () => cursorEl.classList.remove('cursor-expand'));
+      });
+      document.querySelectorAll('.ba-slider').forEach(el => {
+        el.addEventListener('mouseenter', () => cursorEl.classList.add('cursor-drag'));
+        el.addEventListener('mouseleave', () => cursorEl.classList.remove('cursor-drag'));
+      });
     }
   }
 
@@ -107,28 +180,25 @@
     }));
   }
 
-  // SMOOTH PAGE TRANSITIONS
+  // SMOOTH PAGE TRANSITIONS — diagonal wipe (skip Cmd+click, Ctrl+click, right-click, middle-click)
+  const wipeOverlay = document.createElement('div');
+  wipeOverlay.id = 'wipe-overlay';
+  document.body.appendChild(wipeOverlay);
   document.querySelectorAll('a[href$=".html"]').forEach(link => {
     link.addEventListener('click', e => {
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
       e.preventDefault();
       const href = link.getAttribute('href');
-      document.body.style.opacity = '0';
-      document.body.style.transition = 'opacity 0.3s';
-      setTimeout(() => window.location.href = href, 300);
+      wipeOverlay.classList.add('wiping-in');
+      setTimeout(() => {
+        window.location.href = href;
+      }, 500);
     });
   });
-  document.body.style.opacity = '1';
-  document.body.style.transition = 'opacity 0.3s';
-
-  // SMOOTH SCROLL (anchor links)
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', function(e) {
-      const href = this.getAttribute('href');
-      if (href === '#') return;
-      e.preventDefault();
-      const t = document.querySelector(href);
-      if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
+  // Wipe out on page load
+  requestAnimationFrame(() => {
+    wipeOverlay.classList.add('wiping-out');
+    setTimeout(() => { wipeOverlay.classList.remove('wiping-out'); }, 400);
   });
 
   // SCROLL TO TOP
@@ -148,8 +218,8 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
-  // MAGNETIC BUTTONS (desktop only)
-  if (!isTouch) {
+  // MAGNETIC BUTTONS (desktop only, skip if reduced motion)
+  if (!isTouch && !prefersReduced) {
     document.querySelectorAll('.magnetic').forEach(btn => {
       btn.addEventListener('mousemove', e => {
         const r = btn.getBoundingClientRect();
@@ -163,8 +233,8 @@
 
   // ===== UNIQUE 3D SCROLL EFFECTS =====
 
-  // 3D TILT ON CARDS (desktop only)
-  if (!isTouch) {
+  // 3D TILT ON CARDS (desktop only, skip if reduced motion)
+  if (!isTouch && !prefersReduced) {
     document.querySelectorAll('.product-card, .price-card, .equip-card, .proof-card, .wyg-item, .info-item').forEach(card => {
       card.style.transformStyle = 'preserve-3d';
       card.style.transition = 'transform 0.4s cubic-bezier(.23,1,.32,1)';
@@ -180,16 +250,7 @@
     });
   }
 
-  // PARALLAX DEPTH LAYERS — elements with data-parallax scroll at different speeds
-  document.querySelectorAll('[data-parallax]').forEach(el => {
-    const speed = parseFloat(el.dataset.parallax) || 0.3;
-    window.addEventListener('scroll', () => {
-      const rect = el.getBoundingClientRect();
-      if (rect.bottom < -200 || rect.top > window.innerHeight + 200) return;
-      const offset = (window.scrollY - el.offsetTop) * speed;
-      el.style.transform = `translateY(${offset}px)`;
-    }, { passive: true });
-  });
+
 
   // TEXT CHARACTER REVEAL — elements with .char-reveal get characters animated on scroll
   const charRevealObs = new IntersectionObserver(entries => {
@@ -219,23 +280,7 @@
     charRevealObs.observe(el);
   });
 
-  // SCROLL SCALE — elements with .scroll-scale grow/shrink slightly based on scroll
-  const scrollScaleObs = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      const update = () => {
-        const rect = entry.target.getBoundingClientRect();
-        const progress = 1 - (rect.top / window.innerHeight);
-        const scale = 0.92 + Math.min(Math.max(progress, 0), 1) * 0.08;
-        const opacity = 0.4 + Math.min(Math.max(progress, 0), 1) * 0.6;
-        entry.target.style.transform = `scale(${scale})`;
-        entry.target.style.opacity = opacity;
-        if (rect.bottom > 0 && rect.top < window.innerHeight) requestAnimationFrame(update);
-      };
-      update();
-    });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.scroll-scale').forEach(el => scrollScaleObs.observe(el));
+
 
   // 3D PERSPECTIVE SECTIONS — sections tilt slightly as you scroll through them
   const perspObs = new IntersectionObserver(entries => {
@@ -273,16 +318,753 @@
   }, { threshold: 0.15 });
   document.querySelectorAll('.stagger-reveal').forEach(el => staggerObs.observe(el));
 
-  // GLOW ON SCROLL — elements with .glow-scroll get a blue glow when in view
+  // GLOW ON SCROLL — elements with .glow-scroll or .glow-border get glow when in view
   const glowObs = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        entry.target.style.boxShadow = '0 0 40px rgba(1,128,255,0.15), 0 20px 60px rgba(0,0,0,0.1)';
+        entry.target.classList.add('in-view');
+        if (entry.target.classList.contains('glow-scroll')) {
+          entry.target.style.boxShadow = '0 0 40px rgba(1,128,255,0.15), 0 20px 60px rgba(0,0,0,0.1)';
+        }
       } else {
-        entry.target.style.boxShadow = '';
+        entry.target.classList.remove('in-view');
+        if (entry.target.classList.contains('glow-scroll')) {
+          entry.target.style.boxShadow = '';
+        }
       }
     });
   }, { threshold: 0.3 });
-  document.querySelectorAll('.glow-scroll').forEach(el => glowObs.observe(el));
+  document.querySelectorAll('.glow-scroll, .glow-border').forEach(el => glowObs.observe(el));
+
+  // ===== ADVANCED CREATIVE EFFECTS =====
+
+  // SMOOTH COUNTER — numbers count up when in viewport
+  const counterObs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      const text = el.textContent.trim();
+      const match = text.match(/^(\d+)(\+?)$/);
+      if (!match) return;
+      const target = parseInt(match[1]);
+      const suffix = match[2] || '';
+      let current = 0;
+      const step = Math.max(1, Math.floor(target / 40));
+      const interval = setInterval(() => {
+        current += step;
+        if (current >= target) { current = target; clearInterval(interval); }
+        el.textContent = current + suffix;
+      }, 30);
+      counterObs.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.counter-num').forEach(el => counterObs.observe(el));
+
+  // IMAGE REVEAL FROM DIRECTION — elements with .reveal-left/.reveal-right/.reveal-up slide in
+  const dirRevealObs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      const dir = el.dataset.revealDir || 'up';
+      const transforms = { up: 'translateY(60px)', down: 'translateY(-60px)', left: 'translateX(60px)', right: 'translateX(-60px)' };
+      el.style.opacity = '0';
+      el.style.transform = transforms[dir] || transforms.up;
+      el.style.transition = 'all 0.8s cubic-bezier(.23,1,.32,1)';
+      requestAnimationFrame(() => { el.style.opacity = '1'; el.style.transform = 'none'; });
+      dirRevealObs.unobserve(el);
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('[data-reveal-dir]').forEach(el => dirRevealObs.observe(el));
+
+  // TILT ON SCROLL — elements tilt based on scroll direction
+  let lastScrollY = window.scrollY;
+  let scrollDir = 0;
+  window.addEventListener('scroll', () => {
+    scrollDir = window.scrollY > lastScrollY ? 1 : -1;
+    lastScrollY = window.scrollY;
+  }, { passive: true });
+
+  const tiltScrollObs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const update = () => {
+        const rect = entry.target.getBoundingClientRect();
+        const center = rect.top + rect.height / 2;
+        const offset = (center - window.innerHeight / 2) / window.innerHeight;
+        entry.target.style.transform = `perspective(800px) rotateX(${offset * 5}deg)`;
+        if (rect.bottom > -100 && rect.top < window.innerHeight + 100) requestAnimationFrame(update);
+      };
+      update();
+    });
+  }, { threshold: 0.05 });
+  document.querySelectorAll('.tilt-scroll').forEach(el => tiltScrollObs.observe(el));
+
+  // MOUSE GLOW — elements with .mouse-glow follow cursor with radial gradient
+  if (!isTouch) {
+    document.querySelectorAll('.mouse-glow').forEach(el => {
+      el.addEventListener('mousemove', e => {
+        const r = el.getBoundingClientRect();
+        const x = e.clientX - r.left;
+        const y = e.clientY - r.top;
+        el.style.setProperty('--mx', x + 'px');
+        el.style.setProperty('--my', y + 'px');
+      });
+    });
+  }
+
+  // HORIZONTAL SCROLL REVEAL — elements with .hscroll-reveal slide in horizontally on scroll
+  const hScrollObs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      const direction = el.dataset.hscroll === 'right' ? 1 : -1;
+      el.style.opacity = '0';
+      el.style.transform = `translateX(${direction * 100}px)`;
+      el.style.transition = 'all 0.8s cubic-bezier(.23,1,.32,1)';
+      const observer = new IntersectionObserver(obsEntries => {
+        obsEntries.forEach(obsEntry => {
+          const rect = el.getBoundingClientRect();
+          const progress = 1 - Math.max(0, Math.min(1, rect.left / window.innerWidth));
+          el.style.opacity = String(Math.min(1, progress * 2));
+          el.style.transform = `translateX(${direction * 100 * (1 - progress)}px)`;
+        });
+      }, { threshold: Array.from({length: 100}, (_, i) => i / 100) });
+      observer.observe(el);
+      hScrollObs.unobserve(el);
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.hscroll-reveal').forEach(el => hScrollObs.observe(el));
+
+  // SMOOTH PARALLAX IMAGES — elements with .parallax-img move at different rate
+  const parallaxImgObs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      const speed = parseFloat(el.dataset.parallaxImg) || 0.15;
+      const update = () => {
+        const rect = el.getBoundingClientRect();
+        if (rect.bottom < -200 || rect.top > window.innerHeight + 200) return;
+        const offset = (rect.top - window.innerHeight / 2) * speed;
+        el.style.transform = `translateY(${offset}px) scale(1.05)`;
+        if (rect.bottom > -200 && rect.top < window.innerHeight + 200) requestAnimationFrame(update);
+      };
+      update();
+    });
+  }, { threshold: 0.05 });
+  document.querySelectorAll('.parallax-img').forEach(el => {
+    el.style.willChange = 'transform';
+    parallaxImgObs.observe(el);
+  });
+
+  // IMAGE SKELETON LOADING — mark images as loaded when decoded
+  document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+    if (img.complete) { img.classList.add('loaded'); return; }
+    img.addEventListener('load', () => img.classList.add('loaded'), { once: true });
+    img.addEventListener('error', () => img.classList.add('loaded'), { once: true });
+  });
+
+  // FLOATING PARTICLES — elements with .floating-particles get random floating children
+  document.querySelectorAll('.floating-particles').forEach(el => {
+    for (let i = 0; i < 8; i++) {
+      const p = document.createElement('div');
+      p.style.cssText = `position:absolute;width:${4+Math.random()*6}px;height:${4+Math.random()*6}px;background:var(--main-blue);border-radius:50%;opacity:${0.05+Math.random()*0.1};left:${Math.random()*100}%;top:${Math.random()*100}%;animation:particleFloat ${6+Math.random()*8}s ease-in-out infinite ${Math.random()*5}s;pointer-events:none`;
+      el.appendChild(p);
+    }
+  });
+  if (document.querySelector('.floating-particles')) {
+    const style = document.createElement('style');
+    style.textContent = '@keyframes particleFloat{0%,100%{transform:translate(0,0)}25%{transform:translate(10px,-20px)}50%{transform:translate(-5px,-35px)}75%{transform:translate(15px,-15px)}}';
+    document.head.appendChild(style);
+  }
+
+  // ===== NEW ANIMATIONS & 3D EFFECTS =====
+
+  // TEXT SCRAMBLE / DECODE — elements with .scramble-text
+  const scrambleChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%&*';
+  const scrambleObs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      const finalText = el.dataset.scramble || el.textContent;
+      el.dataset.scramble = finalText;
+      const length = finalText.length;
+      const iterations = 12;
+      let count = 0;
+      const interval = setInterval(() => {
+        el.textContent = finalText.split('').map((char, i) => {
+          if (i < count) return char;
+          if (char === ' ') return ' ';
+          return scrambleChars[Math.floor(Math.random() * scrambleChars.length)];
+        }).join('');
+        count += Math.ceil(length / iterations);
+        if (count >= length) {
+          el.textContent = finalText;
+          clearInterval(interval);
+        }
+      }, 40);
+      scrambleObs.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.scramble-text').forEach(el => scrambleObs.observe(el));
+
+  // SCROLL BORDER — animated top line on scroll
+  const scrollBorderObs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+      } else {
+        entry.target.classList.remove('in-view');
+      }
+    });
+  }, { threshold: 0.2 });
+  document.querySelectorAll('.scroll-border').forEach(el => scrollBorderObs.observe(el));
+
+  // STAGGER CHILDREN — auto-animated stagger on scroll
+  const staggerChildObs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        staggerChildObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.stagger-children').forEach(el => staggerChildObs.observe(el));
+
+  // CLIP REVEAL — images clip in from bottom
+  const clipRevealObs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        clipRevealObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  document.querySelectorAll('.clip-reveal').forEach(el => clipRevealObs.observe(el));
+
+  // TILT GLOW — radial gradient follows cursor on .tilt-glow elements
+  if (!isTouch && !prefersReduced) {
+    document.querySelectorAll('.tilt-glow').forEach(el => {
+      el.addEventListener('mousemove', e => {
+        const r = el.getBoundingClientRect();
+        el.style.setProperty('--glow-x', (e.clientX - r.left) + 'px');
+        el.style.setProperty('--glow-y', (e.clientY - r.top) + 'px');
+      });
+    });
+    // Inject tilt-glow positioning style
+    const tgStyle = document.createElement('style');
+    tgStyle.textContent = '.tilt-glow::after{left:var(--glow-x,50%);top:var(--glow-y,50%)}';
+    document.head.appendChild(tgStyle);
+  }
+
+
+
+
+
+
+
+
+
+  // ============================================
+  // SPECIAL EFFECTS — unique animations
+  // ============================================
+
+  // CURSOR LIGHT BEAM — radial glow follows mouse
+  if (!isTouch) {
+    const beam = document.createElement('div');
+    beam.id = 'cursor-beam';
+    document.body.appendChild(beam);
+    let beamX = 0, beamY = 0, beamCurX = 0, beamCurY = 0;
+    document.addEventListener('mousemove', e => { beamX = e.clientX; beamY = e.clientY; beam.classList.add('active'); });
+    document.addEventListener('mouseleave', () => beam.classList.remove('active'));
+    (function animBeam() {
+      beamCurX += (beamX - beamCurX) * 0.08;
+      beamCurY += (beamY - beamCurY) * 0.08;
+      beam.style.transform = `translate(${beamCurX - 200}px,${beamCurY - 200}px)`;
+      requestAnimationFrame(animBeam);
+    })();
+  }
+
+  // MAGNETIC TEXT — hero h1 characters follow cursor
+  document.querySelectorAll('.magnetic-text').forEach(el => {
+    splitChars(el);
+    if (!isTouch) {
+      el.addEventListener('mousemove', e => {
+        const chars = el.querySelectorAll('span');
+        const rect = el.getBoundingClientRect();
+        chars.forEach((ch) => {
+          const dist = Math.sqrt(Math.pow(e.clientX - (rect.left + ch.offsetLeft + ch.offsetWidth / 2), 2) + Math.pow(e.clientY - (rect.top + ch.offsetTop + ch.offsetHeight / 2), 2));
+          const maxDist = 150;
+          const force = Math.max(0, 1 - dist / maxDist);
+          const angle = Math.atan2(
+            (rect.top + ch.offsetTop + ch.offsetHeight / 2) - e.clientY,
+            (rect.left + ch.offsetLeft + ch.offsetWidth / 2) - e.clientX
+          );
+          const moveX = Math.cos(angle) * force * 20;
+          const moveY = Math.sin(angle) * force * 20;
+          ch.style.transform = `translate(${moveX}px,${moveY}px)`;
+        });
+      });
+      el.addEventListener('mouseleave', () => {
+        el.querySelectorAll('span').forEach(ch => { ch.style.transform = 'translate(0,0)'; });
+      });
+    }
+  });
+
+  // TEXT WAVE — characters undulate based on mouse Y
+  document.querySelectorAll('.text-wave').forEach(el => {
+    splitChars(el);
+    let waveActive = false;
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { waveActive = e.isIntersecting; });
+    }, { threshold: 0.1 });
+    observer.observe(el);
+    if (!isTouch) {
+      document.addEventListener('mousemove', e => {
+        if (!waveActive) return;
+        const chars = el.querySelectorAll('span');
+        if (!chars.length) return;
+        const rect = el.getBoundingClientRect();
+        const normalizedY = (e.clientY - rect.top) / rect.height;
+        chars.forEach((ch, i) => {
+          const offset = Math.sin((i / chars.length) * Math.PI * 4 + normalizedY * Math.PI * 2) * 8;
+          ch.style.transform = `translateY(${offset}px)`;
+        });
+      });
+      el.addEventListener('mouseleave', () => {
+        el.querySelectorAll('span').forEach(ch => { ch.style.transform = 'translateY(0)'; });
+      });
+    }
+  });
+
+  // SCROLL-SCRUB — rotate/scale driven by scroll position
+  const scrubEls = document.querySelectorAll('.scroll-scrub');
+  if (scrubEls.length) {
+    const scrubObserver = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) scrubActive.add(e.target);
+        else scrubActive.delete(e.target);
+      });
+    }, { threshold: 0 });
+    const scrubActive = new Set();
+    scrubEls.forEach(el => scrubObserver.observe(el));
+    window.addEventListener('scroll', () => {
+      scrubActive.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        const progress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
+        const clamped = Math.max(0, Math.min(1, progress));
+        const rotate = (clamped - 0.5) * 15;
+        const scale = 0.9 + clamped * 0.1;
+        const translateY = (clamped - 0.5) * 40;
+        el.style.transform = `rotate(${rotate}deg) scale(${scale}) translateY(${translateY}px)`;
+      });
+    }, { passive: true });
+  }
+
+  // PARTICLE BURST — spawn particles on click
+  document.querySelectorAll('.particle-burst').forEach(el => {
+    el.addEventListener('click', e => {
+      const rect = el.getBoundingClientRect();
+      const colors = ['var(--main-blue)', 'var(--accent)', '#a855f7', '#ec4899', '#facc15'];
+      for (let i = 0; i < 12; i++) {
+        const p = document.createElement('div');
+        p.className = 'burst-particle';
+        const angle = (i / 12) * Math.PI * 2;
+        const dist = 40 + Math.random() * 60;
+        p.style.cssText = `left:${e.clientX - rect.left}px;top:${e.clientY - rect.top}px;background:${colors[i % colors.length]};--bx:${Math.cos(angle) * dist}px;--by:${Math.sin(angle) * dist}px;`;
+        el.appendChild(p);
+        setTimeout(() => p.remove(), 600);
+      }
+    });
+  });
+
+  // NAV COLOR SHIFT — add blue accent on scroll
+  if (header) {
+    let lastScroll = 0;
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      if (scrollY > 300) header.classList.add('nav-accent');
+      else header.classList.remove('nav-accent');
+      lastScroll = scrollY;
+    }, { passive: true });
+  }
+
+  // ============================================
+  // CREATIVITY PACK — 5 new effects
+  // ============================================
+
+  // 1. CLICK RIPPLE — expanding circle wherever you click
+  document.addEventListener('click', e => {
+    const ripple = document.createElement('div');
+    ripple.className = 'click-ripple';
+    ripple.style.left = e.clientX + 'px';
+    ripple.style.top = e.clientY + 'px';
+    document.body.appendChild(ripple);
+    setTimeout(() => ripple.remove(), 700);
+  });
+
+  // 2. MORPHING BLOB — inject SVG blob into hero sections
+  document.querySelectorAll('.hero').forEach(hero => {
+    const blob = document.createElement('div');
+    blob.className = 'hero-blob';
+    blob.innerHTML = `<svg viewBox="0 0 600 600">
+      <path d="M420,300Q380,420,300,440Q220,460,180,380Q140,300,180,220Q220,140,300,160Q380,180,420,300Z">
+        <animate attributeName="d" dur="12s" repeatCount="indefinite" values="
+          M420,300Q380,420,300,440Q220,460,180,380Q140,300,180,220Q220,140,300,160Q380,180,420,300Z;
+          M400,340Q340,440,240,420Q140,400,160,300Q180,200,260,160Q340,120,400,220Q460,320,400,340Z;
+          M440,280Q400,380,300,420Q200,460,160,360Q120,260,200,180Q280,100,360,160Q440,220,440,280Z;
+          M380,360Q320,460,220,400Q120,340,160,240Q200,140,300,120Q400,100,420,200Q440,300,380,360Z;
+          M420,300Q380,420,300,440Q220,460,180,380Q140,300,180,220Q220,140,300,160Q380,180,420,300Z"
+        />
+      </path>
+    </svg>`;
+    hero.style.position = 'relative';
+    hero.insertBefore(blob, hero.firstChild);
+  });
+
+  // 3. CURSOR TRAIL — dots follow cursor and fade out
+  if (!isTouch && !prefersReduced) {
+    const TRAIL_COUNT = 8;
+    const trailDots = [];
+    const trailPos = [];
+    for (let i = 0; i < TRAIL_COUNT; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'cursor-trail-dot';
+      document.body.appendChild(dot);
+      trailDots.push(dot);
+      trailPos.push({ x: 0, y: 0 });
+    }
+    let mouseX = 0, mouseY = 0;
+    document.addEventListener('mousemove', e => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      trailDots.forEach(d => d.classList.add('active'));
+    });
+    document.addEventListener('mouseleave', () => {
+      trailDots.forEach(d => d.classList.remove('active'));
+    });
+    (function animTrail() {
+      trailPos[0].x += (mouseX - trailPos[0].x) * 0.35;
+      trailPos[0].y += (mouseY - trailPos[0].y) * 0.35;
+      for (let i = 1; i < TRAIL_COUNT; i++) {
+        trailPos[i].x += (trailPos[i - 1].x - trailPos[i].x) * 0.25;
+        trailPos[i].y += (trailPos[i - 1].y - trailPos[i].y) * 0.25;
+      }
+      trailDots.forEach((dot, i) => {
+        const scale = 1 - (i / TRAIL_COUNT) * 0.6;
+        const opacity = 0.5 - (i / TRAIL_COUNT) * 0.45;
+        dot.style.transform = `translate(${trailPos[i].x - 4}px,${trailPos[i].y - 4}px) scale(${scale})`;
+        dot.style.opacity = opacity;
+      });
+      requestAnimationFrame(animTrail);
+    })();
+  }
+
+  // 4. HERO GRADIENT TEXT — add shimmer class to hero h1 spans
+  document.querySelectorAll('.hero h1 span, .hero h1').forEach(el => {
+    if (el.closest('.hero')) el.classList.add('hero-gradient-text');
+  });
+
+  // 5. PORTFOLIO HOVER TILT — 3D tilt toward cursor on latest/insta items
+  if (!isTouch && !prefersReduced) {
+    document.querySelectorAll('.latest-item, .insta-item').forEach(item => {
+      item.classList.add('portfolio-tilt');
+      item.addEventListener('mousemove', e => {
+        const rect = item.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        const rotateX = y * -12;
+        const rotateY = x * 12;
+        item.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+      });
+      item.addEventListener('mouseleave', () => {
+        item.style.transform = '';
+      });
+    });
+  }
+
+  // ============================================
+  // CREATIVITY PACK VOL 2 — more effects
+  // ============================================
+
+  // 6. HERO PARALLAX DEPTH — bg image moves slower than content
+  // Consolidated: handles parallax + tilt + morph in ONE scroll listener
+  document.querySelectorAll('.hero').forEach(hero => {
+    const bg = hero.querySelector('.hero-bg');
+    const bgImg = hero.querySelector('.hero-bg img');
+    const content = hero.querySelector('.hero-content');
+    if (!bg) return;
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const rect = hero.getBoundingClientRect();
+          if (rect.bottom > 0 && rect.top < window.innerHeight) {
+            const progress = -rect.top / hero.offsetHeight;
+            const clamped = Math.max(0, Math.min(1, progress));
+            bg.style.transform = `translateY(${progress * 80}px) scale(1.15) rotateX(${clamped * 3}deg)`;
+            if (bgImg) bgImg.style.borderRadius = (12 + clamped * 38) + 'px';
+            if (content) content.style.transform = `translateY(${progress * 30}px)`;
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+  });
+
+  // 7. WAVE DIVIDERS — inject SVG waves between major sections
+  const waveColors = {
+    dark: { from: '#0a0a0a', to: '#0a0a0a' },
+    light: { from: '#f8f9fa', to: '#f8f9fa' }
+  };
+  document.querySelectorAll('.section + .section, .faq + .section, .equipment + .section').forEach((section, i) => {
+    const divider = document.createElement('div');
+    divider.className = 'wave-divider' + (i % 2 === 0 ? '' : ' flip');
+    const color = 'var(--bg)';
+    divider.innerHTML = `<svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path fill="${color}" d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z"/></svg>`;
+    section.parentNode.insertBefore(divider, section);
+  });
+
+  // 8. SCROLL VELOCITY — elements move based on scroll speed
+  const velocityEls = document.querySelectorAll('.scroll-velocity');
+  if (velocityEls.length) {
+    let lastScrollY = window.scrollY;
+    let lastTime = performance.now();
+    let velocity = 0;
+    window.addEventListener('scroll', () => {
+      const now = performance.now();
+      const dt = now - lastTime;
+      if (dt > 0) {
+        velocity = (window.scrollY - lastScrollY) / dt * 16;
+        lastScrollY = window.scrollY;
+        lastTime = now;
+        velocityEls.forEach(el => {
+          const speed = parseFloat(el.dataset.speed) || 0.5;
+          el.style.transform = `translateY(${velocity * speed}px)`;
+        });
+      }
+    }, { passive: true });
+  }
+
+  // ============================================
+  // SMOOTHNESS PACK — buttery animations
+  // ============================================
+
+  // 10. STAGGER REVEAL — already handled by staggerObs above (line 301)
+
+  // 11. SMOOTH SCROLL PROGRESS — already handled by progressBar above (line 73)
+
+  // 12. SMOOTH ANCHOR SCROLL — lerp-based smooth scroll for # links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
+      if (href === '#') return;
+      e.preventDefault();
+      const target = document.querySelector(href);
+      if (!target) return;
+      const targetY = target.getBoundingClientRect().top + window.scrollY - 80;
+      let currentY = window.scrollY;
+      const diff = targetY - currentY;
+      const duration = Math.min(Math.abs(diff) * 0.5, 800);
+      const start = performance.now();
+      function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+      function smoothScroll(now) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        window.scrollTo(0, currentY + diff * easeOutCubic(progress));
+        if (progress < 1) requestAnimationFrame(smoothScroll);
+      }
+      requestAnimationFrame(smoothScroll);
+    });
+  });
+
+  // ============================================
+  // VISUAL IMPACT PACK — wow-factor effects
+  // ============================================
+
+  // 13. AURORA GLOW — inject 3 conic-gradient beams into hero sections
+  document.querySelectorAll('.hero').forEach(hero => {
+    const aurora = document.createElement('div');
+    aurora.className = 'aurora';
+    aurora.innerHTML = '<div class="aurora-beam"></div><div class="aurora-beam"></div><div class="aurora-beam"></div>';
+    hero.appendChild(aurora);
+  });
+
+  // 14. FLOATING GEOMETRY — random shapes drifting upward
+  if (!prefersReduced) {
+    const geoContainer = document.createElement('div');
+    geoContainer.className = 'geo-container';
+    const shapes = ['circle', 'circle', 'circle', 'square', 'diamond', 'triangle'];
+    const geoCount = window.innerWidth < 768 ? 4 : 8;
+    for (let i = 0; i < geoCount; i++) {
+      const shape = document.createElement('div');
+      const type = shapes[Math.floor(Math.random() * shapes.length)];
+      shape.className = 'geo-shape ' + type;
+      const size = type === 'triangle' ? 0 : (8 + Math.random() * 20);
+      if (type !== 'triangle') {
+        shape.style.width = size + 'px';
+        shape.style.height = size + 'px';
+      }
+      shape.style.left = Math.random() * 100 + '%';
+      const duration = 20 + Math.random() * 30;
+      const delay = Math.random() * -40;
+      const driftX = (Math.random() - 0.5) * 300;
+      const rot = Math.random() * 720 - 360;
+      shape.style.animationDuration = duration + 's';
+      shape.style.animationDelay = delay + 's';
+      shape.style.setProperty('--drift-x', driftX + 'px');
+      shape.style.setProperty('--rot', rot + 'deg');
+      geoContainer.appendChild(shape);
+    }
+    document.body.appendChild(geoContainer);
+  }
+
+  // 15. CURSOR PARTICLES — tiny dots spawn where cursor moves
+  if (!isTouch && !prefersReduced) {
+    let particleThrottle = 0;
+    document.addEventListener('mousemove', e => {
+      const now = Date.now();
+      if (now - particleThrottle < 50) return;
+      particleThrottle = now;
+      const p = document.createElement('div');
+      p.className = 'cursor-particle';
+      const colors = ['var(--main-blue)', 'var(--accent)', '#a855f7', '#ec4899'];
+      p.style.background = colors[Math.floor(Math.random() * colors.length)];
+      p.style.left = e.clientX + 'px';
+      p.style.top = e.clientY + 'px';
+      p.style.width = (2 + Math.random() * 4) + 'px';
+      p.style.height = p.style.width;
+      document.body.appendChild(p);
+      setTimeout(() => p.remove(), 800);
+    });
+  }
+
+  // 16. GLOW BORDER — already handled by glowObs above (line 356)
+
+  // 17. GRADIENT SEPARATOR — inject animated line after hero sections
+  document.querySelectorAll('.hero').forEach(hero => {
+    const sep = document.createElement('div');
+    sep.className = 'gradient-separator';
+    hero.parentNode.insertBefore(sep, hero.nextSibling);
+  });
+
+  // ============================================
+  // CLEAN SCROLL EFFECTS — new animations
+  // ============================================
+
+  // 18. SCROLL REVEAL — observe .scroll-reveal elements
+  const scrollRevealObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); scrollRevealObs.unobserve(e.target); }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.scroll-reveal').forEach(el => scrollRevealObs.observe(el));
+
+  // 19. SCROLL STAGGER — observe .scroll-stagger containers
+  const scrollStaggerObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); scrollStaggerObs.unobserve(e.target); }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.scroll-stagger').forEach(el => scrollStaggerObs.observe(el));
+
+  // 20. STAT GLOW — observe stat items
+  const statGlowObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); statGlowObs.unobserve(e.target); }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.stat-glow').forEach(el => statGlowObs.observe(el));
+
+  // 21. SCALE-IN — observe .scale-in elements
+  const scaleInObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); scaleInObs.unobserve(e.target); }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.scale-in').forEach(el => scaleInObs.observe(el));
+
+  // 22. LINE REVEAL — observe .line-reveal elements
+  const lineRevealObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); lineRevealObs.unobserve(e.target); }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.line-reveal').forEach(el => lineRevealObs.observe(el));
+
+  // 23. PROGRESS RING — inject into hero sections
+  document.querySelectorAll('.hero').forEach(hero => {
+    const ring = document.createElement('div');
+    ring.className = 'progress-ring';
+    const r = 20, c = 2 * Math.PI * r;
+    ring.innerHTML = `<svg viewBox="0 0 50 50"><circle cx="25" cy="25" r="${r}" stroke-dasharray="${c}" stroke-dashoffset="${c}"/></svg>`;
+    hero.appendChild(ring);
+    const circle = ring.querySelector('circle');
+    window.addEventListener('scroll', () => {
+      const h = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = h > 0 ? window.scrollY / h : 0;
+      circle.style.strokeDashoffset = c - (progress * c);
+    }, { passive: true });
+  });
+
+  // ============================================
+  // NEW ANIMATION EFFECTS — elegant & flowing
+  // ============================================
+
+  // BLUR-FADE — sections blur in when entering viewport
+  const blurFadeObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); blurFadeObs.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.blur-fade').forEach(el => blurFadeObs.observe(el));
+
+  // HORIZONTAL STAGGER — grid items slide in from alternating sides
+  const hStaggerObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); hStaggerObs.unobserve(e.target); }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.h-stagger').forEach(el => hStaggerObs.observe(el));
+
+  // MAGNETIC DRAG — elements follow mouse when grabbed
+  if (!isTouch && !prefersReduced) {
+    document.querySelectorAll('.magnetic-drag').forEach(el => {
+      let isDragging = false, startX, startY, currentX = 0, currentY = 0;
+      el.addEventListener('mousedown', e => {
+        isDragging = true;
+        el.classList.add('dragging');
+        startX = e.clientX - currentX;
+        startY = e.clientY - currentY;
+      });
+      window.addEventListener('mousemove', e => {
+        if (!isDragging) return;
+        currentX = e.clientX - startX;
+        currentY = e.clientY - startY;
+        currentX = Math.max(-60, Math.min(60, currentX));
+        currentY = Math.max(-60, Math.min(60, currentY));
+        el.style.transform = `translate(${currentX}px, ${currentY}px) rotate(${currentX * 0.05}deg)`;
+      }, { passive: true });
+      window.addEventListener('mouseup', () => {
+        if (!isDragging) return;
+        isDragging = false;
+        el.classList.remove('dragging');
+        currentX = 0; currentY = 0;
+        el.style.transform = '';
+      });
+    });
+  }
+
+  // SECTION PARALLAX — background image moves slower than content
+  document.querySelectorAll('.section-parallax-bg').forEach(bg => {
+    window.addEventListener('scroll', () => {
+      const rect = bg.parentElement.getBoundingClientRect();
+      const viewH = window.innerHeight;
+      if (rect.bottom < 0 || rect.top > viewH) return;
+      const progress = (rect.top + rect.height) / (viewH + rect.height);
+      const offset = (progress - 0.5) * 40;
+      bg.style.transform = `translateY(${offset}px) scale(1.1)`;
+    }, { passive: true });
+  });
 
 })();
