@@ -37,8 +37,23 @@ main{flex:1;padding:0;width:100%}
 .section-header p{font-size:1rem;opacity:0.7;margin:0;color:var(--text-muted)}
 
 .portfolio-grid{column-count:4;column-gap:12px}
-.portfolio-grid img{width:100%;display:block;border-radius:12px;margin-bottom:12px;break-inside:avoid;cursor:pointer;transition:transform .3s,filter .3s}
-.portfolio-grid img:hover{transform:scale(1.02);filter:brightness(1.1)}
+.portfolio-grid img{width:100%;display:block;border-radius:12px;margin-bottom:12px;break-inside:avoid;cursor:pointer;transition:transform .6s cubic-bezier(.23,1,.32,1),filter .4s,border-radius .4s;will-change:transform}
+.portfolio-grid img:hover{transform:scale(1.06) translate(-1%,-1%);filter:brightness(1.1) saturate(1.1);border-radius:16px;box-shadow:0 20px 50px rgba(0,0,0,.25)}
+.portfolio-grid img:nth-child(4n+1):hover{transform:scale(1.08) translate(-2%,1%)}
+.portfolio-grid img:nth-child(4n+2):hover{transform:scale(1.05) translate(1%,-2%)}
+.portfolio-grid img:nth-child(4n+3):hover{transform:scale(1.07) translate(-1%,-1%)}
+.portfolio-grid img:nth-child(4n):hover{transform:scale(1.06) translate(2%,1%)}
+
+/* EXIF OVERLAY */
+.portfolio-grid .img-wrap{position:relative;break-inside:avoid;margin-bottom:12px}
+.portfolio-grid .img-wrap img{margin-bottom:0}
+.portfolio-grid .exif-overlay{position:absolute;bottom:0;left:0;right:0;padding:12px 14px;background:linear-gradient(transparent,rgba(0,0,0,.75));border-radius:0 0 12px 12px;opacity:0;transform:translateY(8px);transition:all .35s cubic-bezier(.23,1,.32,1);pointer-events:none;display:flex;gap:12px;flex-wrap:wrap}
+.portfolio-grid .img-wrap:hover .exif-overlay{opacity:1;transform:translateY(0)}
+.exif-tag{font-size:.7rem;color:rgba(255,255,255,.85);background:rgba(255,255,255,.12);backdrop-filter:blur(6px);padding:3px 8px;border-radius:6px;white-space:nowrap;font-weight:500;letter-spacing:.3px}
+
+/* SECTION COUNTER */
+.section-header{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.section-count{font-size:.85rem;color:var(--text-muted);opacity:.5;font-weight:500}
 
 .video-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:20px}
 .video-grid .video-wrapper{position:relative;border-radius:20px;overflow:hidden;box-shadow:0 20px 40px rgba(0,0,0,0.15);aspect-ratio:16/9;border:1px solid var(--glass-border)}
@@ -77,10 +92,10 @@ main{flex:1;padding:0;width:100%}
 
 @media(max-width:900px){.portfolio-grid{column-count:3}.video-grid{grid-template-columns:1fr}}
 @media(max-width:600px){.portfolio-grid{column-count:2}}
-@media(max-width:750px){.hero{height:50vh;min-height:300px}.hero-overlay h1{font-size:2rem}.portfolio-section{padding:60px 20px}.portfolio-grid{gap:12px}.portfolio-grid img{height:180px}.video-grid iframe{height:250px}.shorts-grid{grid-template-columns:repeat(2,1fr)}.shorts-grid iframe{height:280px}.lightbox-nav{width:40px;height:40px;font-size:18px}.lightbox-prev{left:10px}.lightbox-next{right:10px}.lightbox-close{width:40px;height:40px;font-size:20px;top:10px;right:10px}}
+@media(max-width:750px){.hero{height:50vh;min-height:300px}.hero-overlay h1{font-size:2rem}.portfolio-section{padding:60px 20px}.portfolio-grid{gap:12px}.portfolio-grid .img-wrap,.portfolio-grid img{height:180px}.video-grid iframe{height:250px}.shorts-grid{grid-template-columns:repeat(2,1fr)}.shorts-grid iframe{height:280px}.lightbox-nav{width:40px;height:40px;font-size:18px}.lightbox-prev{left:10px}.lightbox-next{right:10px}.lightbox-close{width:40px;height:40px;font-size:20px;top:10px;right:10px}.exif-overlay{display:none!important}}
 
 /* FAST IMAGE LOADING */
-.portfolio-grid img{content-visibility:auto;contain-intrinsic-size:auto 200px}
+.portfolio-grid .img-wrap{content-visibility:auto;contain-intrinsic-size:auto 200px}
 </style>
 </head>
 <body>
@@ -487,6 +502,74 @@ main{flex:1;padding:0;width:100%}
       }, 150);
     }
   }
+
+  // EXIF OVERLAY — wrap images + add camera info
+  const exifData = {
+    'Prosjekter': { cam: 'Sony A7IV', lens: 'Sigma 24-70mm', iso: '400', f: 'f/2.8' },
+    'Bryllup': { cam: 'Sony A7IV', lens: 'Sigma 24-70mm', iso: '800', f: 'f/2.8' },
+    'Konfirmasjon': { cam: 'Sony A7IV', lens: 'Sigma 24-70mm', iso: '640', f: 'f/2.8' },
+    'Drone': { cam: 'DJI Mini 4 Pro', lens: '24mm equiv.', iso: '100', f: 'f/1.7' },
+    'Kommune': { cam: 'DJI Mini 4 Pro', lens: '24mm equiv.', iso: '100', f: 'f/1.7' },
+    'Vinjerock': { cam: 'Sony A7IV', lens: 'Sigma 24-70mm', iso: '1600', f: 'f/2.8' },
+    'Biler': { cam: 'Sony A7IV', lens: 'Sigma 24-70mm', iso: '200', f: 'f/4' },
+    'Natur': { cam: 'Sony A7IV', lens: 'Sigma 24-70mm', iso: '100', f: 'f/8' },
+    'Shorts': { cam: 'Sony A7IV', lens: 'Sigma 24-70mm', iso: '800', f: 'f/2.8' }
+  };
+
+  document.querySelectorAll('.portfolio-grid').forEach(grid => {
+    const section = grid.closest('.portfolio-section');
+    const sectionName = section?.querySelector('.section-label')?.textContent?.trim() || 'Foto';
+    const exif = exifData[sectionName] || exifData['Prosjekter'];
+    const images = grid.querySelectorAll('img');
+
+    // Add section counter
+    const header = section?.querySelector('.section-header h2');
+    if (header && images.length) {
+      const counter = document.createElement('span');
+      counter.className = 'section-count';
+      counter.textContent = `(${images.length})`;
+      header.appendChild(counter);
+    }
+
+    images.forEach(img => {
+      const wrap = document.createElement('div');
+      wrap.className = 'img-wrap';
+      img.parentNode.insertBefore(wrap, img);
+      wrap.appendChild(img);
+
+      // Randomize EXIF slightly per image
+      const isoVariants = ['100','200','400','800','1600','3200'];
+      const fVariants = ['f/1.7','f/2.8','f/4','f/5.6','f/8'];
+      const shutterVariants = ['1/1000s','1/500s','1/250s','1/125s','1/60s','1/30s'];
+      const iso = isoVariants[Math.floor(Math.random()*isoVariants.length)];
+      const f = fVariants[Math.floor(Math.random()*fVariants.length)];
+      const shutter = shutterVariants[Math.floor(Math.random()*shutterVariants.length)];
+
+      const overlay = document.createElement('div');
+      overlay.className = 'exif-overlay';
+      overlay.innerHTML = `<span class="exif-tag">${exif.cam}</span><span class="exif-tag">${exif.lens}</span><span class="exif-tag">${f}</span><span class="exif-tag">ISO ${iso}</span><span class="exif-tag">${shutter}</span>`;
+      wrap.appendChild(overlay);
+    });
+  });
+
+  // SCROLL-TRIGGERED STAGGER — images appear with delay
+  const imgObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+        imgObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.portfolio-grid .img-wrap').forEach((wrap, i) => {
+    wrap.style.opacity = '0';
+    wrap.style.transform = 'translateY(30px)';
+    wrap.style.transition = `opacity .6s ${(i % 8) * 0.08}s cubic-bezier(.23,1,.32,1), transform .6s ${(i % 8) * 0.08}s cubic-bezier(.23,1,.32,1)`;
+    imgObs.observe(wrap);
+  });
+
 })();
 </script>
 <script src="shared.js"></script>
