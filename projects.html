@@ -503,23 +503,9 @@ main{flex:1;padding:0;width:100%}
     }
   }
 
-  // EXIF OVERLAY — wrap images + add camera info
-  const exifData = {
-    'Prosjekter': { cam: 'Sony A7IV', lens: 'Sigma 24-70mm', iso: '400', f: 'f/2.8' },
-    'Bryllup': { cam: 'Sony A7IV', lens: 'Sigma 24-70mm', iso: '800', f: 'f/2.8' },
-    'Konfirmasjon': { cam: 'Sony A7IV', lens: 'Sigma 24-70mm', iso: '640', f: 'f/2.8' },
-    'Drone': { cam: 'DJI Mini 4 Pro', lens: '24mm equiv.', iso: '100', f: 'f/1.7' },
-    'Kommune': { cam: 'DJI Mini 4 Pro', lens: '24mm equiv.', iso: '100', f: 'f/1.7' },
-    'Vinjerock': { cam: 'Sony A7IV', lens: 'Sigma 24-70mm', iso: '1600', f: 'f/2.8' },
-    'Biler': { cam: 'Sony A7IV', lens: 'Sigma 24-70mm', iso: '200', f: 'f/4' },
-    'Natur': { cam: 'Sony A7IV', lens: 'Sigma 24-70mm', iso: '100', f: 'f/8' },
-    'Shorts': { cam: 'Sony A7IV', lens: 'Sigma 24-70mm', iso: '800', f: 'f/2.8' }
-  };
-
+  // EXIF OVERLAY — wrap images + add real camera metadata
   document.querySelectorAll('.portfolio-grid').forEach(grid => {
     const section = grid.closest('.portfolio-section');
-    const sectionName = section?.querySelector('.section-label')?.textContent?.trim() || 'Foto';
-    const exif = exifData[sectionName] || exifData['Prosjekter'];
     const images = grid.querySelectorAll('img');
 
     // Add section counter
@@ -537,18 +523,22 @@ main{flex:1;padding:0;width:100%}
       img.parentNode.insertBefore(wrap, img);
       wrap.appendChild(img);
 
-      // Randomize EXIF slightly per image
-      const isoVariants = ['100','200','400','800','1600','3200'];
-      const fVariants = ['f/1.7','f/2.8','f/4','f/5.6','f/8'];
-      const shutterVariants = ['1/1000s','1/500s','1/250s','1/125s','1/60s','1/30s'];
-      const iso = isoVariants[Math.floor(Math.random()*isoVariants.length)];
-      const f = fVariants[Math.floor(Math.random()*fVariants.length)];
-      const shutter = shutterVariants[Math.floor(Math.random()*shutterVariants.length)];
+      // Look up real EXIF data by src path
+      const src = img.getAttribute('src');
+      const exif = typeof EXIF_DATA !== 'undefined' ? EXIF_DATA[src] : null;
 
-      const overlay = document.createElement('div');
-      overlay.className = 'exif-overlay';
-      overlay.innerHTML = `<span class="exif-tag">${exif.cam}</span><span class="exif-tag">${exif.lens}</span><span class="exif-tag">${f}</span><span class="exif-tag">ISO ${iso}</span><span class="exif-tag">${shutter}</span>`;
-      wrap.appendChild(overlay);
+      if (exif) {
+        const overlay = document.createElement('div');
+        overlay.className = 'exif-overlay';
+        const tags = [];
+        if (exif.cam) tags.push(exif.cam);
+        if (exif.lens) tags.push(exif.lens);
+        if (exif.f) tags.push(exif.f);
+        if (exif.iso) tags.push('ISO ' + exif.iso);
+        if (exif.shutter) tags.push(exif.shutter);
+        overlay.innerHTML = tags.map(t => `<span class="exif-tag">${t}</span>`).join('');
+        wrap.appendChild(overlay);
+      }
     });
   });
 
@@ -573,5 +563,6 @@ main{flex:1;padding:0;width:100%}
 })();
 </script>
 <script src="shared.js"></script>
+<script src="exif-data.js"></script>
 </body>
 </html>
