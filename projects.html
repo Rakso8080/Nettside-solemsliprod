@@ -77,6 +77,9 @@ main{flex:1;padding:0;width:100%}
 .lightbox-prev{left:20px}
 .lightbox-next{right:20px}
 .lightbox-caption{text-align:center;color:white;font-size:.9rem;font-weight:500;margin-top:15px;opacity:.8}
+.lightbox-exif{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:10px}
+.lightbox-exif span{font-size:.75rem;color:rgba(255,255,255,.7);background:rgba(255,255,255,.1);backdrop-filter:blur(8px);padding:4px 10px;border-radius:8px;font-weight:500;letter-spacing:.3px}
+.lightbox-desc{text-align:center;color:rgba(255,255,255,.55);font-size:.82rem;margin-top:6px;max-width:500px;line-height:1.5;font-style:italic}
 .lightbox-counter{text-align:center;color:rgba(255,255,255,0.5);font-size:.8rem;margin-top:8px;font-weight:500}
 
 /* FILTER TABS */
@@ -385,6 +388,8 @@ main{flex:1;padding:0;width:100%}
   <div class="lightbox-content">
     <img class="lightbox-img" id="lb-img" src="" alt="">
     <div class="lightbox-caption" id="lb-caption"></div>
+    <div class="lightbox-exif" id="lb-exif"></div>
+    <div class="lightbox-desc" id="lb-desc"></div>
     <div class="lightbox-counter" id="lb-counter"></div>
   </div>
 </div>
@@ -424,6 +429,40 @@ main{flex:1;padding:0;width:100%}
     lbImg.alt = img.alt;
     lbCaption.textContent = img.alt || currentSection;
     lbCounter.textContent = (currentIndex + 1) + ' av ' + currentImages.length;
+
+    // EXIF info
+    const exifEl = document.getElementById('lb-exif');
+    const exif = typeof EXIF_DATA !== 'undefined' ? EXIF_DATA[img.getAttribute('src')] : null;
+    if (exif) {
+      const tags = [];
+      if (exif.cam) tags.push(exif.cam);
+      if (exif.lens) tags.push(exif.lens);
+      if (exif.f) tags.push(exif.f);
+      if (exif.iso) tags.push('ISO ' + exif.iso);
+      if (exif.shutter) tags.push(exif.shutter);
+      if (exif.focal) tags.push(exif.focal);
+      exifEl.innerHTML = tags.map(t => '<span>' + t + '</span>').join('');
+      exifEl.style.display = 'flex';
+    } else {
+      exifEl.innerHTML = '';
+      exifEl.style.display = 'none';
+    }
+
+    // Short description
+    const descEl = document.getElementById('lb-desc');
+    const descs = {
+      'Prosjekter': 'Natur og landskap fra Innlandet',
+      'Foto': 'Foto fra ulike oppdrag og prosjekter',
+      'Bryllup': 'Bryllupsfotografering i vakre omgivelser',
+      'Konfirmasjon': 'Konfirmasjonsdag foreviget',
+      'Drone': 'Luftbilder tatt med DJI Mini 4 Pro',
+      'Kommune': 'Vang kommune sett ovenfra',
+      'Vinjerock': 'Vinjerock festival — stemning og øyeblikk',
+      'Biler': 'Bilfotografering med fokus på detaljer',
+      'Natur': 'Natur og landskap i Valdres',
+      'Shorts': 'Korte videoformater for sosiale medier'
+    };
+    descEl.textContent = descs[currentSection] || '';
   }
 
   function nextImage() {
