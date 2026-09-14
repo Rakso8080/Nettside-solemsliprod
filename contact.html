@@ -110,6 +110,53 @@
     .section-label{font-size:.8rem;color:var(--main-blue);text-transform:uppercase;letter-spacing:2px;font-weight:600;margin-bottom:8px}
     .section-title{font-size:1.8rem;font-weight:700;letter-spacing:-1px}
 
+    /* MARQUEE */
+    .marquee-section{overflow:hidden;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+    .marquee{display:flex;width:100%}
+    .marquee-track{display:flex;gap:40px;animation:marqueeScroll 18s linear infinite;white-space:nowrap;flex-shrink:0}
+    .marquee-track span{font-size:.85rem;font-weight:600;letter-spacing:.15em;color:var(--text-muted);text-transform:uppercase}
+    .marquee-dot{color:var(--main-blue)!important;font-size:.65rem;align-self:center;opacity:.5}
+    @keyframes marqueeScroll{0%{transform:translateX(0)}100%{transform:translateX(-33.33%)}}
+
+    /* SOCIAL CARDS */
+    .social-cards-section{text-align:center;padding:60px 20px}
+    .social-cards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:800px;margin:32px auto 0}
+    .social-card{display:flex;flex-direction:column;align-items:center;padding:32px 24px;background:var(--card-bg);border:1px solid var(--glass-border);border-radius:20px;text-decoration:none;color:var(--text);transition:all .4s cubic-bezier(.25,.46,.45,.94);position:relative;overflow:hidden}
+    .social-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;transition:all .3s;opacity:0}
+    .social-card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(0,0,0,.15);border-color:rgba(1,128,255,.3)}
+    .social-card:hover::before{opacity:1}
+    .social-card--ig::before{background:linear-gradient(135deg,#f58529,#dd2a7b,#8134af,#515bd4)}
+    .social-card--email::before{background:linear-gradient(135deg,var(--main-blue),#0055cc)}
+    .social-card--phone::before{background:linear-gradient(135deg,#22c55e,#16a34a)}
+    .social-card-icon{font-size:2.2rem;margin-bottom:12px}
+    .social-card h3{font-size:1.1rem;font-weight:700;margin-bottom:4px}
+    .social-card p{font-size:.85rem;color:var(--text-muted);margin-bottom:12px}
+    .social-card-cta{font-size:.8rem;font-weight:600;color:var(--main-blue);transition:letter-spacing .3s}
+    .social-card:hover .social-card-cta{letter-spacing:1px}
+    @media(max-width:600px){.social-cards-grid{grid-template-columns:1fr;max-width:320px}}
+
+    /* TESTIMONIALS */
+    .testimonials-contact{text-align:center;padding:60px 20px}
+    .testimonials-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:700px;margin:32px auto 0}
+    .testimonial-card{background:var(--card-bg);border:1px solid var(--glass-border);border-radius:20px;padding:28px;text-align:left;transition:border-color .3s,box-shadow .3s}
+    .testimonial-card:hover{border-color:rgba(1,128,255,.2);box-shadow:0 8px 32px rgba(0,0,0,.08)}
+    .testimonial-stars{color:#fbbf24;font-size:.9rem;margin-bottom:12px;letter-spacing:2px}
+    .testimonial-card p{font-size:.9rem;line-height:1.7;color:var(--text-muted);margin-bottom:16px;font-style:italic}
+    .testimonial-author{font-size:.85rem;font-weight:600;color:var(--text)}
+    .testimonial-author span{font-weight:400;color:var(--text-muted);font-size:.8rem}
+    @media(max-width:600px){.testimonials-grid{grid-template-columns:1fr}}
+
+    /* MAP ANIMATION */
+    .map-container{border-radius:var(--radius-lg);overflow:hidden}
+    #coverage-map{transition:opacity .6s ease}
+
+    /* BUTTONS */
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 32px;border-radius:30px;font-size:.95rem;font-weight:600;text-decoration:none;cursor:pointer;transition:all .3s;min-width:140px;font-family:inherit;border:none}
+    .btn-primary{background:var(--main-blue);color:white;border:2px solid var(--main-blue)}
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(1,128,255,.3);background:#0066ff;border-color:#0066ff}
+    .btn-outline{background:transparent;color:var(--text);border:2px solid var(--glass-border)}
+    .btn-outline:hover{border-color:var(--main-blue);color:var(--main-blue);transform:translateY(-2px)}
+
     /* RESPONSIVE — PAGE-SPECIFIC */
     @media(max-width:750px){
       .contact{padding:35px}
@@ -243,7 +290,7 @@
         "name": "Hvor raskt kan dere levere?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "For foto og drone er leveransen typisk 2–5 virkedager. Video og redigert innhold kan ta 1–2 uker."
+          "text": "For foto og drone er leveransen typisk 2–5 virkedager. Video og redigert innhold kan ta 1–2 uker. Jeg har levert bryllupsbilder innen 24 timer selv ved store bryllup."
         }
       },
       {
@@ -267,7 +314,7 @@
         "name": "Hvilke betalingsmåter aksepterer dere?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Jeg aksepterer Vipps, bankoverføring og krypto (Bitcoin). Faktura kan også avtales for bedrifter."
+          "text": "Jeg sender helst faktura. For kjøp av merch, LUT-er og lignende i shoppen aksepterer jeg Vipps, kort, og krypto (Bitcoin, Ethereum, Solana)."
         }
       },
       {
@@ -291,7 +338,7 @@
           <h4 data-no="Hvor raskt kan dere levere?" data-en="How quickly can you deliver?" data-de="Wie schnell können Sie liefern?">Hvor raskt kan dere levere?</h4>
           <span class="faq-arrow">▼</span>
         </div>
-        <div class="faq-answer" id="cfaq-a1" role="region"><p data-no="For foto og drone er leveransen typisk 2–5 virkedager. Video og redigert innhold kan ta 1–2 uker, avhengig av omfang. Vi blir alltid enige om en frist på forhånd." data-en="For photo and drone, delivery is typically 2–5 business days. Video and edited content can take 1–2 weeks depending on scope. We always agree on a deadline in advance." data-de="Bei Foto- und Drohnenaufnahmen beträgt die Lieferzeit typischerweise 2–5 Werktage. Video und bearbeitete Inhalte können 1–2 Wochen dauern, je nach Umfang. Wir einigen uns immer vorher auf eine Frist.">For foto og drone er leveransen typisk 2–5 virkedager. Video og redigert innhold kan ta 1–2 uker, avhengig av omfang. Vi blir alltid enige om en frist på forhånd.</p></div>
+        <div class="faq-answer" id="cfaq-a1" role="region"><p data-no="For foto og drone er leveransen typisk 2–5 virkedager. Video og redigert innhold kan ta 1–2 uker, avhengig av omfang. Vi blir alltid enige om en frist på forhånd. Jeg har levert bryllupsbilder innen 24 timer selv ved store bryllup." data-en="For photo and drone, delivery is typically 2–5 business days. Video and edited content can take 1–2 weeks depending on scope. We always agree on a deadline in advance. I have delivered wedding photos within 24 hours even for large weddings." data-de="Bei Foto- und Drohnenaufnahmen beträgt die Lieferzeit typischerweise 2–5 Werktage. Video und bearbeitete Inhalte können 1–2 Wochen dauern, je nach Umfang. Wir einigen uns immer vorher auf eine Frist. Ich habe Hochzeitsfotos innerhalb von 24 Stunden geliefert, auch bei großen Hochzeiten.">For foto og drone er leveransen typisk 2–5 virkedager. Video og redigert innhold kan ta 1–2 uker, avhengig av omfang. Vi blir alltid enige om en frist på forhånd. Jeg har levert bryllupsbilder innen 24 timer selv ved store bryllup.</p></div>
       </div>
       <div class="faq-item">
         <div class="faq-question" role="button" tabindex="0" aria-expanded="false" aria-controls="cfaq-a2" onclick="this.parentElement.classList.toggle('open');this.setAttribute('aria-expanded',this.parentElement.classList.contains('open'))">
@@ -312,7 +359,7 @@
           <h4 data-no="Hvilke betalingsmåter aksepterer dere?" data-en="What payment methods do you accept?" data-de="Welche Zahlungsmethoden akzeptieren Sie?">Hvilke betalingsmåter aksepterer dere?</h4>
           <span class="faq-arrow">▼</span>
         </div>
-        <div class="faq-answer" id="cfaq-a4" role="region"><p data-no="Jeg aksepterer Vipps, bankoverføring og krypto (Bitcoin). Faktura kan også avtales for bedrifter." data-en="I accept Vipps, bank transfer and crypto (Bitcoin). Invoice can also be arranged for businesses." data-de="Ich akzeptiere Vipps, Banküberweisung und Krypto (Bitcoin). Rechnungen können auch für Unternehmen vereinbart werden.">Jeg aksepterer Vipps, bankoverføring og krypto (Bitcoin). Faktura kan også avtales for bedrifter.</p></div>
+        <div class="faq-answer" id="cfaq-a4" role="region"><p data-no="Jeg sender helst faktura. For kjøp av merch, LUT-er og lignende i shoppen aksepterer jeg Vipps, kort, og krypto (Bitcoin, Ethereum, Solana)." data-en="I prefer sending invoices. For purchasing merch, LUTs and similar items in the shop, I accept Vipps, card, and crypto (Bitcoin, Ethereum, Solana)." data-de="Ich versende lieber Rechnungen. Für den Kauf von Merch, LUTs und ähnlichem im Shop akzeptiere ich Vipps, Karte und Krypto (Bitcoin, Ethereum, Solana).">Jeg sender helst faktura. For kjøp av merch, LUT-er og lignende i shoppen aksepterer jeg Vipps, kort, og krypto (Bitcoin, Ethereum, Solana).</p></div>
       </div>
       <div class="faq-item">
         <div class="faq-question" role="button" tabindex="0" aria-expanded="false" aria-controls="cfaq-a5" onclick="this.parentElement.classList.toggle('open');this.setAttribute('aria-expanded',this.parentElement.classList.contains('open'))">
@@ -320,6 +367,64 @@
           <span class="faq-arrow">▼</span>
         </div>
         <div class="faq-answer" id="cfaq-a5" role="region"><p data-no="Ja! Alle pakker inkluderer opptil 2 revisjoner. Ekstra revisjoner kan kjøpes separat." data-en="Yes! All packages include up to 2 revisions. Additional revisions can be purchased separately." data-de="Ja! Alle Pakete beinhalten bis zu 2 Überarbeitungen. Zusätzliche Überarbeitungen können separat gekauft werden.">Ja! Alle pakker inkluderer opptil 2 revisjoner. Ekstra revisjoner kan kjøpes separat.</p></div>
+      </div>
+    </div>
+    <div class="reveal" style="text-align:center;margin-top:32px">
+      <a href="contact.html#contact-form" class="btn btn-primary" style="display:inline-flex;align-items:center;gap:8px" data-no="Kontakt meg" data-en="Contact me" data-de="Kontaktiere mich">Kontakt meg</a>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-section">
+    <div class="marquee">
+      <div class="marquee-track">
+        <span>BRYLLUP</span><span class="marquee-dot">✦</span><span>DRONE</span><span class="marquee-dot">✦</span><span>VIDEO</span><span class="marquee-dot">✦</span><span>FOTO</span><span class="marquee-dot">✦</span><span>EVENTER</span><span class="marquee-dot">✦</span>
+        <span>BRYLLUP</span><span class="marquee-dot">✦</span><span>DRONE</span><span class="marquee-dot">✦</span><span>VIDEO</span><span class="marquee-dot">✦</span><span>FOTO</span><span class="marquee-dot">✦</span><span>EVENTER</span><span class="marquee-dot">✦</span>
+        <span>BRYLLUP</span><span class="marquee-dot">✦</span><span>DRONE</span><span class="marquee-dot">✦</span><span>VIDEO</span><span class="marquee-dot">✦</span><span>FOTO</span><span class="marquee-dot">✦</span><span>EVENTER</span><span class="marquee-dot">✦</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SOSIALE MEDIER -->
+  <section class="social-cards-section reveal">
+    <div class="section-label" data-no="Finn meg" data-en="Find me" data-de="Finden Sie mich">Finn meg</div>
+    <h2 class="section-title" data-no="Sosiale medier" data-en="Social media" data-de="Soziale Medien">Sosiale medier</h2>
+    <div class="social-cards-grid">
+      <a href="https://www.instagram.com/solemsli_productions/" target="_blank" rel="noopener noreferrer" class="social-card social-card--ig">
+        <div class="social-card-icon">📷</div>
+        <h3>Instagram</h3>
+        <p>@solemsli_productions</p>
+        <span class="social-card-cta" data-no="Følg meg" data-en="Follow me" data-de="Folgen Sie mir">Følg meg →</span>
+      </a>
+      <a href="mailto:rakso8080@gmail.com" class="social-card social-card--email">
+        <div class="social-card-icon">✉️</div>
+        <h3>E-post</h3>
+        <p>rakso8080@gmail.com</p>
+        <span class="social-card-cta" data-no="Send mail" data-en="Send email" data-de="E-Mail senden">Send mail →</span>
+      </a>
+      <a href="tel:+4790560160" class="social-card social-card--phone">
+        <div class="social-card-icon">📞</div>
+        <h3 data-no="Telefon" data-en="Phone" data-de="Telefon">Telefon</h3>
+        <p>+47 905 60 160</p>
+        <span class="social-card-cta" data-no="Ring meg" data-en="Call me" data-de="Anrufen">Ring meg →</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials-contact reveal">
+    <div class="section-label" data-no="Tilbakemeldinger" data-en="Testimonials" data-de="Referenzen">Tilbakemeldinger</div>
+    <h2 class="section-title" data-no="Hva kundene sier" data-en="What clients say" data-de="Was Kunden sagen">Hva kundene sier</h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p data-no="\"Solemsli Productions levererte fantastiske bilder fra bryllupet vårt. Profesjonell, kreativ og til å stole på.\"" data-en="\"Solemsli Productions delivered amazing photos from our wedding. Professional, creative and reliable.\"" data-de="\"Solemsli Productions hat fantastische Fotos von unserer Hochzeit geliefert. Professionell, kreativ und zuverlässig.\">"Solemsli Productions levererte fantastiske bilder fra bryllupet vårt. Profesjonell, kreativ og til å stole på."</p>
+        <div class="testimonial-author">Arctic Domes <span>— Bryllup</span></div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p data-no="\"Dronevideoen fra arrangementet vårt ble helt rå. Rask levering og et sluttprodukt som overgikk forventningene.\"" data-en="\"The drone video from our event was absolutely amazing. Fast delivery and a final product that exceeded expectations.\"" data-de="\"Das Drohnenvideo von unserer Veranstaltung war absolut fantastisch. Schnelle Lieferung und ein Endprodukt, das die Erwartungen übertraf.\">"Dronevideoen fra arrangementet vårt ble helt rå. Rask levering og et sluttprodukt som overgikk forventningene."</p>
+        <div class="testimonial-author">Lena Ubario <span>— Event</span></div>
       </div>
     </div>
   </section>
@@ -330,6 +435,21 @@
     <div class="map-container reveal">
       <div id="coverage-map"></div>
       <p style="text-align:center;color:var(--text-muted);font-size:.9rem;margin-top:20px" data-no="Basert i Innlandet, men tar oppdrag over hele Norge." data-en="Based in Innlandet, but taking jobs across all of Norway." data-de="Basierend in Innlandet, aber ich übernehme Aufgaben in ganz Norwegen.">Basert i Innlandet, men tar oppdrag over hele Norge.</p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section cta-section reveal" style="margin:60px auto;max-width:1200px;padding:0 20px">
+    <div style="position:relative;border-radius:var(--radius-lg);overflow:hidden;min-height:280px;display:flex;align-items:center;justify-content:center;text-align:center">
+      <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(15,23,42,.9) 0%,rgba(30,41,59,.85) 100%)"></div>
+      <div style="position:relative;z-index:2;padding:48px 32px">
+        <h2 class="section-title" data-no="Se hva jeg har laget" data-en="See what I've created" data-de="Sehen Sie, was ich gemacht habe">Se hva jeg har laget</h2>
+        <p style="color:var(--text-muted);max-width:480px;margin:0 auto 24px" data-no="Utforsk porteføljen min med bilder og video fra tidligere oppdrag." data-en="Explore my portfolio with photos and video from past assignments." data-de="Entdecken Sie mein Portfolio mit Fotos und Videos vergangener Aufträge.">Utforsk porteføljen min med bilder og video fra tidligere oppdrag.</p>
+        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+          <a href="projects.html" class="btn btn-primary" data-no="Se portfolio" data-en="See portfolio" data-de="Portfolio ansehen">Se portfolio</a>
+          <a href="prices.html" class="btn btn-outline" data-no="Se priser" data-en="See pricing" data-de="Preise ansehen">Se priser</a>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -449,14 +569,34 @@
       { name: 'Brumunddal', lat: 60.88, lng: 10.94 },
     ];
     cities.forEach(c => {
-      L.circleMarker([c.lat, c.lng], {
-        radius: 5,
+      const marker = L.circleMarker([c.lat, c.lng], {
+        radius: 0,
         color: '#0180ff',
         fillColor: '#0180ff',
         fillOpacity: 0.7,
         weight: 2
       }).addTo(map).bindTooltip(c.name, { permanent: false, direction: 'top' });
     });
+
+    // Animate markers in with stagger when map scrolls into view
+    const mapEl = document.getElementById('coverage-map');
+    const markerLayers = [];
+    map.eachLayer(layer => { if (layer instanceof L.CircleMarker) markerLayers.push(layer); });
+    markerLayers.forEach(m => { m.setRadius(0); m.setStyle({ fillOpacity: 0, opacity: 0 }); });
+    const mapObs = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          markerLayers.forEach((m, i) => {
+            setTimeout(() => {
+              m.setRadius(5);
+              m.setStyle({ fillOpacity: 0.7, opacity: 1 });
+            }, i * 100);
+          });
+          mapObs.disconnect();
+        }
+      });
+    }, { threshold: 0.3 });
+    if (mapEl) mapObs.observe(mapEl);
   </script>
 </body>
 </html>

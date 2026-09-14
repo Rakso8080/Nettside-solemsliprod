@@ -102,16 +102,14 @@ main{flex:1;padding:0;width:100%}
 .portfolio-grid .img-wrap{content-visibility:auto;contain-intrinsic-size:auto 200px}
 
 /* 3D TILT ON HOVER */
-.portfolio-grid .img-wrap{perspective:600px}
+.portfolio-grid .img-wrap{perspective:600px;transform-style:preserve-3d;will-change:transform}
 .portfolio-grid .img-wrap img{transition:transform .15s ease-out,filter .4s,border-radius .4s,box-shadow .4s}
 .portfolio-grid .img-wrap.tilting img{transition:none}
-
 /* CHROMATIC ABERRATION ON HOVER */
 .portfolio-grid .img-wrap:hover img{filter:brightness(1.08) saturate(1.15) contrast(1.05)}
 
 /* FEATURED BADGE */
-.featured-badge{position:absolute;top:12px;left:12px;z-index:6;background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;padding:4px 12px;border-radius:20px;font-size:.7rem;font-weight:700;letter-spacing:.5px;box-shadow:0 4px 15px rgba(245,158,11,.4);animation:featuredPulse 2s ease-in-out infinite;pointer-events:none}
-@keyframes featuredPulse{0%,100%{box-shadow:0 4px 15px rgba(245,158,11,.4)}50%{box-shadow:0 4px 25px rgba(245,158,11,.7)}}
+.featured-badge{display:none}
 
 /* BLUR-UP LAZY LOAD */
 .portfolio-grid .img-wrap.blur-load img{opacity:0;transition:opacity .5s}
@@ -647,17 +645,6 @@ main{flex:1;padding:0;width:100%}
     img.addEventListener('error', () => img.parentElement.classList.add('loaded'));
   });
 
-  // FEATURED BADGE — mark one random image per section
-  document.querySelectorAll('.portfolio-section[data-category]').forEach(sec => {
-    const imgs = sec.querySelectorAll('.portfolio-grid .img-wrap');
-    if (imgs.length > 2) {
-      const random = imgs[Math.floor(Math.random() * imgs.length)];
-      const badge = document.createElement('div');
-      badge.className = 'featured-badge';
-      badge.textContent = '★';
-      random.appendChild(badge);
-    }
-  });
 
   // FILTER TAB IMAGE COUNTS
   document.querySelectorAll('.filter-tab').forEach(tab => {
@@ -674,6 +661,32 @@ main{flex:1;padding:0;width:100%}
       badge.textContent = count;
       tab.appendChild(badge);
     }
+  });
+
+  // DYNAMIC COLOR THEME — extract dominant color from lightbox image
+  const colorCanvas = document.createElement('canvas');
+  const colorCtx = colorCanvas.getContext('2d', { willReadFrequently: true });
+  colorCanvas.width = 50; colorCanvas.height = 50;
+  function extractDominantColor(img) {
+    colorCtx.drawImage(img, 0, 0, 50, 50);
+    const data = colorCtx.getImageData(0, 0, 50, 50).data;
+    let r = 0, g = 0, b = 0, count = 0;
+    for (let i = 0; i < data.length; i += 16) {
+      r += data[i]; g += data[i+1]; b += data[i+2]; count++;
+    }
+    r = Math.round(r/count); g = Math.round(g/count); b = Math.round(b/count);
+    return `rgb(${r},${g},${b})`;
+  }
+  document.querySelectorAll('.portfolio-grid .img-wrap img').forEach(img => {
+    img.addEventListener('click', () => {
+      if (img.complete && img.naturalWidth > 0) {
+        try {
+          const color = extractDominantColor(img);
+          document.documentElement.style.setProperty('--main-blue', color);
+          document.documentElement.style.setProperty('--accent', color);
+        } catch(e) {}
+      }
+    });
   });
 
   // TOUCH SWIPE in lightbox

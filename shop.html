@@ -156,6 +156,59 @@
   .vipps-copy-btn{background:none;border:1px solid var(--card-border);color:var(--text);padding:6px 12px;border-radius:8px;font-size:.75rem;cursor:pointer;transition:.3s;white-space:nowrap}
   .vipps-copy-btn:hover{background:var(--main-blue);color:white;border-color:var(--main-blue)}
   .vipps-copy-btn.copied{background:#22c55e;color:white;border-color:#22c55e}
+
+  /* HERO BG */
+  .hero{position:relative;display:flex;align-items:center;justify-content:center;min-height:50vh;overflow:hidden}
+  .hero-bg{position:absolute;inset:0;z-index:0}
+  .hero-bg-image{width:100%;height:100%;object-fit:cover;object-position:center;transform:scale(1.1);transition:transform .8s cubic-bezier(.25,.46,.45,.94)}
+  .hero-bg-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,.35) 50%,rgba(0,0,0,.7) 100%);z-index:1}
+  .hero-content{position:relative;z-index:2;text-align:center;padding:0 24px}
+  .hero .hero-badge{position:relative;z-index:2}
+  .hero-content h1{font-size:clamp(2.2rem,6vw,3.8rem);margin-bottom:16px}
+  .hero-content p{color:var(--text-muted);max-width:600px;margin:0 auto;font-size:clamp(.95rem,2vw,1.1rem)}
+  .hero-note{font-size:.8rem;margin-top:12px;opacity:.7}
+  .scroll-indicator{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);z-index:2;width:24px;height:40px;border:2px solid rgba(255,255,255,.3);border-radius:12px;display:flex;justify-content:center;padding-top:8px}
+  .scroll-indicator::after{content:'';width:3px;height:8px;background:rgba(255,255,255,.6);border-radius:2px;animation:scrollDot 1.5s ease-in-out infinite}
+  @keyframes scrollDot{0%,100%{transform:translateY(0);opacity:1}50%{transform:translateY(8px);opacity:.3}}
+
+  /* MARQUEE */
+  .marquee-section{overflow:hidden;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+  .marquee{display:flex;width:100%}
+  .marquee-track{display:flex;gap:40px;animation:marqueeScroll 18s linear infinite;white-space:nowrap;flex-shrink:0}
+  .marquee-track span{font-size:.85rem;font-weight:600;letter-spacing:.15em;color:var(--text-muted);text-transform:uppercase}
+  .marquee-dot{color:var(--main-blue)!important;font-size:.65rem;align-self:center;opacity:.5}
+  @keyframes marqueeScroll{0%{transform:translateX(0)}100%{transform:translateX(-33.33%)}}
+
+  /* FILTER COUNT */
+  .filter-count{display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:20px;padding:0 6px;border-radius:10px;background:rgba(1,128,255,.15);color:var(--main-blue);font-size:.7rem;font-weight:700;margin-left:6px;transition:all .3s}
+  .filter-btn.active .filter-count{background:rgba(255,255,255,.2);color:white}
+
+  /* FAQ */
+  .faq-section{max-width:700px;margin:0 auto;padding:60px 20px}
+  .faq-section .section-label{text-align:center}
+  .faq-section h2{text-align:center;margin-bottom:32px}
+  .faq-item{background:var(--card-bg);border:1px solid var(--glass-border);border-radius:16px;margin-bottom:12px;overflow:hidden;transition:border-color .3s,box-shadow .3s}
+  .faq-item:hover{border-color:rgba(1,128,255,.2)}
+  .faq-question{display:flex;justify-content:space-between;align-items:center;padding:20px 24px;cursor:pointer;font-weight:600;font-size:1rem;background:none;border:none;color:var(--text);width:100%;text-align:left;font-family:inherit}
+  .faq-question::after{content:'+';font-size:1.4rem;font-weight:300;color:var(--text-muted);transition:transform .3s}
+  .faq-item.open .faq-question::after{transform:rotate(45deg)}
+  .faq-answer{max-height:0;overflow:hidden;transition:max-height .35s ease,padding .35s ease;padding:0 24px}
+  .faq-item.open .faq-answer{max-height:200px;padding:0 24px 20px}
+  .faq-answer p{font-size:.9rem;color:var(--text-muted);line-height:1.7;margin:0}
+
+  /* INSTAGRAM */
+  .ig-section{padding:40px 20px 60px;text-align:center}
+  .ig-section .section-label{margin-bottom:10px}
+  .ig-section h2{margin-bottom:8px}
+  .ig-section > p{color:var(--text-muted);font-size:.95rem;margin-bottom:28px}
+  .ig-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;max-width:900px;margin:0 auto}
+  .ig-grid a{display:block;aspect-ratio:1;overflow:hidden;border-radius:8px;position:relative}
+  .ig-grid img{width:100%;height:100%;object-fit:cover;transition:transform .4s,filter .4s}
+  .ig-grid a:hover img{transform:scale(1.08);filter:brightness(1.15)}
+  .ig-grid a::after{content:'📷';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.4);opacity:0;transition:opacity .3s;font-size:1.5rem}
+  .ig-grid a:hover::after{opacity:1}
+  @media(max-width:600px){.ig-grid{grid-template-columns:repeat(3,1fr)}}
+
   .vipps-open-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:16px;background:linear-gradient(135deg,#6dd400,#4fa500);color:white;border:none;border-radius:30px;font-size:1rem;font-weight:700;cursor:pointer;transition:all .3s;margin-top:12px}
   .vipps-open-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(109,212,0,0.3)}
   .vipps-note{font-size:.8rem;color:var(--text-muted);margin-top:12px;line-height:1.5}
@@ -283,21 +336,39 @@
   <main id="main-content">
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-badge scroll-velocity" data-speed="-0.3" data-no="NYHET" data-en="NEW" data-de="NEU">NYHET</div>
-    <h1 id="hero-title"><span data-no="LUT-er, bilder & merch" data-en="LUTs, photos & merch" data-de="LUTs, Fotos & Merch" class="scramble-text">LUT-er, bilder & merch</span></h1>
-    <p data-no="Oppgrader videoene dine med mine egne fargeinnstillinger, eller represent Solemsli Productions med merch." data-en="Upgrade your videos with my own color presets, or represent Solemsli Productions with merch." data-de="Verbessern Sie Ihre Videos mit meinen eigenen Farbeinstellungen oder repräsentieren Sie Solemsli Productions mit Merch.">Oppgrader videoene dine med mine egne fargeinnstillinger, eller represent Solemsli Productions med merch.</p>
-    <p class="hero-note">* <span data-no="Alle priser er inkludert MVA" data-en="All prices include VAT" data-de="Alle Preise inkl. MwSt.">Alle priser er inkludert MVA</span></p>
+    <div class="hero-bg">
+      <div class="hero-bg-image" style="background-image:url('gallery/andre%20natur%20bilder/uranustind.jpg')"></div>
+    </div>
+    <div class="hero-bg-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-badge scroll-velocity" data-speed="-0.3" data-no="NYHET" data-en="NEW" data-de="NEU">NYHET</div>
+      <h1 id="hero-title"><span data-no="LUT-er, bilder & merch" data-en="LUTs, photos & merch" data-de="LUTs, Fotos & Merch" class="scramble-text">LUT-er, bilder & merch</span></h1>
+      <p data-no="Oppgrader videoene dine med mine egne fargeinnstillinger, eller represent Solemsli Productions med merch." data-en="Upgrade your videos with my own color presets, or represent Solemsli Productions with merch." data-de="Verbessern Sie Ihre Videos mit meinen eigenen Farbeinstellungen oder repräsentieren Sie Solemsli Productions mit Merch.">Oppgrader videoene dine med mine egne fargeinnstillinger, eller represent Solemsli Productions med merch.</p>
+      <p class="hero-note">* <span data-no="Alle priser er inkludert MVA" data-en="All prices include VAT" data-de="Alle Preise inkl. MwSt.">Alle priser er inkludert MVA</span></p>
+    </div>
+    <div class="scroll-indicator"></div>
   </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-section">
+    <div class="marquee">
+      <div class="marquee-track">
+        <span>POWERGRADE</span><span class="marquee-dot">✦</span><span>LUT</span><span class="marquee-dot">✦</span><span>PRESET</span><span class="marquee-dot">✦</span><span>MERCH</span><span class="marquee-dot">✦</span>
+        <span>POWERGRADE</span><span class="marquee-dot">✦</span><span>LUT</span><span class="marquee-dot">✦</span><span>PRESET</span><span class="marquee-dot">✦</span><span>MERCH</span><span class="marquee-dot">✦</span>
+        <span>POWERGRADE</span><span class="marquee-dot">✦</span><span>LUT</span><span class="marquee-dot">✦</span><span>PRESET</span><span class="marquee-dot">✦</span><span>MERCH</span><span class="marquee-dot">✦</span>
+      </div>
+    </div>
+  </div>
 
 
   <!-- FILTER -->
   <div class="filter-bar">
-    <button class="filter-btn active" data-filter="all" data-no="Alle" data-en="All" data-de="Alle">Alle</button>
-    <button class="filter-btn" data-filter="lut" data-no="LUT-er" data-en="LUTs" data-de="LUTs">LUT-er</button>
-    <button class="filter-btn" data-filter="bilde" data-no="Bilder" data-en="Photos" data-de="Fotos">Bilder</button>
-    <button class="filter-btn" data-filter="merch" data-no="Merch" data-en="Merch" data-de="Merch">Merch</button>
-    <button class="filter-btn" data-filter="preset" data-no="Presets" data-en="Presets" data-de="Presets">Presets</button>
-    <button class="filter-btn" data-filter="powergrades" data-no="Powergrades" data-en="Powergrades" data-de="Powergrades">Powergrades</button>
+    <button class="filter-btn active" data-filter="all" data-no="Alle" data-en="All" data-de="Alle">Alle <span class="filter-count" id="count-all">9</span></button>
+    <button class="filter-btn" data-filter="lut" data-no="LUT-er" data-en="LUTs" data-de="LUTs">LUT-er <span class="filter-count" id="count-lut">4</span></button>
+    <button class="filter-btn" data-filter="bilde" data-no="Bilder" data-en="Photos" data-de="Fotos">Bilder <span class="filter-count" id="count-bilde">1</span></button>
+    <button class="filter-btn" data-filter="merch" data-no="Merch" data-en="Merch" data-de="Merch">Merch <span class="filter-count" id="count-merch">1</span></button>
+    <button class="filter-btn" data-filter="preset" data-no="Presets" data-en="Presets" data-de="Presets">Presets <span class="filter-count" id="count-preset">2</span></button>
+    <button class="filter-btn" data-filter="powergrades" data-no="Powergrades" data-en="Powergrades" data-de="Powergrades">Powergrades <span class="filter-count" id="count-powergrades">0</span></button>
   </div>
 
   <!-- BEFORE / AFTER — LUT SAMMENLIGNING -->
@@ -307,48 +378,8 @@
       <h2 data-no="Før og etter med LUT-er" data-en="Before and after with LUTs" data-de="Vorher und nachher mit LUTs">Før og etter med LUT-er</h2>
     </div>
     <div class="ba-grid">
-      <!-- SLIDER 1 — Cinematic Blue -->
+      <!-- SLIDER — Ferrari LUT -->
       <div class="ba-card reveal tilt-glow">
-        <div class="ba-slider" data-start="50">
-          <!-- ⚠️ Replace after-img with your LUT-applied export from DaVinci Resolve -->
-          <img class="ba-after" src="gallery/bryllup/untitled-6005.jpg" alt="Etter LUT" draggable="false">
-          <img class="ba-before" src="gallery/bryllup/untitled-6005.jpg" alt="Før LUT" draggable="false">
-          <div class="ba-handle"><div class="ba-handle-line"></div><div class="ba-handle-circle">◄►</div><div class="ba-handle-line"></div></div>
-          <div class="ba-label ba-label-before" data-no="Før" data-en="Before" data-de="Vorher">Før</div>
-          <div class="ba-label ba-label-after" data-no="Etter" data-en="After" data-de="Nachher">Etter</div>
-        </div>
-        <div class="ba-card-info"><h3>Cinematic Blue</h3><span class="ba-lut-badge">LUT</span></div>
-        <button class="btn-buy" onclick="addToCart('Cinematic Blue', '99 kr', 'lut')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
-      </div>
-
-      <!-- SLIDER 2 — Warm Sunset -->
-      <div class="ba-card reveal reveal-delay-1 tilt-glow">
-        <div class="ba-slider" data-start="50">
-          <img class="ba-after" src="gallery/vinjerock/untitled-7604.jpg" alt="Etter LUT" draggable="false">
-          <img class="ba-before" src="gallery/vinjerock/untitled-7604.jpg" alt="Før LUT" draggable="false">
-          <div class="ba-handle"><div class="ba-handle-line"></div><div class="ba-handle-circle">◄►</div><div class="ba-handle-line"></div></div>
-          <div class="ba-label ba-label-before" data-no="Før" data-en="Before" data-de="Vorher">Før</div>
-          <div class="ba-label ba-label-after" data-no="Etter" data-en="After" data-de="Nachher">Etter</div>
-        </div>
-        <div class="ba-card-info"><h3>Warm Sunset</h3><span class="ba-lut-badge">LUT</span></div>
-        <button class="btn-buy" onclick="addToCart('Warm Sunset', '99 kr', 'lut')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
-      </div>
-
-      <!-- SLIDER 3 — Moody Dark -->
-      <div class="ba-card reveal reveal-delay-2 tilt-glow">
-        <div class="ba-slider" data-start="50">
-          <img class="ba-after" src="gallery/konfirmasjon/untitled-5010.jpg" alt="Etter LUT" draggable="false">
-          <img class="ba-before" src="gallery/konfirmasjon/untitled-5010.jpg" alt="Før LUT" draggable="false">
-          <div class="ba-handle"><div class="ba-handle-line"></div><div class="ba-handle-circle">◄►</div><div class="ba-handle-line"></div></div>
-          <div class="ba-label ba-label-before" data-no="Før" data-en="Before" data-de="Vorher">Før</div>
-          <div class="ba-label ba-label-after" data-no="Etter" data-en="After" data-de="Nachher">Etter</div>
-        </div>
-        <div class="ba-card-info"><h3>Moody Dark</h3><span class="ba-lut-badge">LUT</span></div>
-        <button class="btn-buy" onclick="addToCart('Moody Dark', '99 kr', 'lut')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
-      </div>
-
-      <!-- SLIDER 4 — Ferrari LUT -->
-      <div class="ba-card reveal reveal-delay-3 tilt-glow">
         <div class="ba-slider" data-start="50">
           <img class="ba-after" src="luts/før:etter/ferrari/1000020827.jpg" alt="Etter LUT" draggable="false">
           <img class="ba-before" src="luts/før:etter/ferrari/_DSC3114.jpeg" alt="Før LUT" draggable="false">
@@ -574,6 +605,57 @@
         <span data-no="Send tips via Vipps" data-en="Send tip via Vipps" data-de="Trinkgeld per Vipps">Send tips via Vipps</span>
         <span class="tips-heart">💚</span>
       </button>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section reveal">
+    <div class="section-label" data-no="Ofte stilte spørsmål" data-en="Frequently asked questions" data-de="Häufig gestellte Fragen">Ofte stilte spørsmål</div>
+    <h2 class="section-title" data-no="Spørsmål & Svar" data-en="Questions & Answers" data-de="Fragen & Antworten">Spørsmål & Svar</h2>
+    <div class="faq-item">
+      <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+        <span data-no="Hvordan laster jeg ned produktet?" data-en="How do I download the product?" data-de="Wie lade ich das Produkt herunter?">Hvordan laster jeg ned produktet?</span>
+      </button>
+      <div class="faq-answer"><p data-no="Etter kjøp mottar du en e-post med nedlastingslenke. Klikk på lenken og filen lastes ned automatisk." data-en="After purchase you will receive an email with a download link. Click the link and the file will download automatically." data-de="Nach dem Kauf erhalten Sie eine E-Mail mit einem Download-Link. Klicken Sie auf den Link und die Datei wird automatisch heruntergeladen.">Etter kjøp mottar du en e-post med nedlastingslenke. Klikk på lenken og filen lastes ned automatisk.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+        <span data-no="Fungerer LUT-ene i DaVinci Resolve?" data-en="Do the LUTs work in DaVinci Resolve?" data-de="Funktionieren die LUTs in DaVinci Resolve?">Fungerer LUT-ene i DaVinci Resolve?</span>
+      </button>
+      <div class="faq-answer"><p data-no="Ja! Alle LUT-ene er laget for DaVinci Resolve og kan enkelt importeres via Color-fanen." data-en="Yes! All LUTs are made for DaVinci Resolve and can be easily imported via the Color tab." data-de="Ja! Alle LUTs sind für DaVinci Resolve gemacht und können einfach über den Color-Tab importiert werden.">Ja! Alle LUT-ene er laget for DaVinci Resolve og kan enkelt importeres via Color-fanen.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+        <span data-no="Kan jeg få refusjon?" data-en="Can I get a refund?" data-de="Kann ich eine Rückerstattung bekommen?">Kan jeg få refusjon?</span>
+      </button>
+      <div class="faq-answer"><p data-no="Ja, vi tilbyr 30 dagers pengene-tilbake-garanti uten spørsmål." data-en="Yes, we offer a 30-day money-back guarantee with no questions asked." data-de="Ja, wir bieten eine 30-Tage-Geld-zurück-Garantie ohne Fragen.">Ja, vi tilbyr 30 dagers pengene-tilbake-garanti uten spørsmål.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+        <span data-no="Hva er en Powergrade?" data-en="What is a Powergrade?" data-de="Was ist ein Powergrade?">Hva er en Powergrade?</span>
+      </button>
+      <div class="faq-answer"><p data-no="En Powergrade er et ferdig fargeinnstillingsnettverk i DaVinci Resolve som du kan bruke som utgangspunkt for egne justeringer." data-en="A Powergrade is a ready-made color grading node tree in DaVinci Resolve that you can use as a starting point for your own adjustments." data-de="Ein Powergrade ist ein fertiges Farbkorrekture-Node-Netzwerk in DaVinci Resolve, das Sie als Ausgangspunkt für eigene Anpassungen verwenden können.">En Powergrade er et ferdig fargeinnstillingsnettverk i DaVinci Resolve som du kan bruke som utgangspunkt for egne justeringer.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+        <span data-no="Må jeg ha Lightroom for å bruke preset-ene?" data-en="Do I need Lightroom to use the presets?" data-de="Brauche ich Lightroom, um die Presets zu verwenden?">Må jeg ha Lightroom for å bruke preset-ene?</span>
+      </button>
+      <div class="faq-answer"><p data-no="Ja, preset-ene er laget for Adobe Lightroom (Classic eller mobil). Du kan også bruke dem i andre redigeringsprogrammer som støtter .xmp-filer." data-en="Yes, the presets are made for Adobe Lightroom (Classic or mobile). You can also use them in other editing software that supports .xmp files." data-de="Ja, die Presets sind für Adobe Lightroom (Classic oder mobil) gemacht. Sie können sie auch in anderer Bearbeitungssoftware verwenden, die .xmp-Dateien unterstützt.">Ja, preset-ene er laget for Adobe Lightroom (Classic eller mobil). Du kan også bruke dem i andre redigeringsprogrammer som støtter .xmp-filer.</p></div>
+    </div>
+  </section>
+
+  <!-- INSTAGRAM -->
+  <section class="ig-section reveal">
+    <div class="section-label" data-no="Følg meg" data-en="Follow me" data-de="Folge Sie mir">Følg meg</div>
+    <h2 class="section-title" data-no="Fra Instagram" data-en="From Instagram" data-de="Von Instagram">Fra Instagram</h2>
+    <p data-no="Se flere bilder og behind-the-scenes på Instagram" data-en="See more photos and behind-the-scenes on Instagram" data-de="Mehr Fotos und Hinter den Kulissen auf Instagram">Se flere bilder og behind-the-scenes på Instagram</p>
+    <div class="ig-grid">
+      <a href="https://www.instagram.com/solemsli_productions/" target="_blank" rel="noopener noreferrer"><img src="gallery/andre natur bilder/uranustind.jpg" alt="Instagram bilde" loading="lazy"></a>
+      <a href="https://www.instagram.com/solemsli_productions/" target="_blank" rel="noopener noreferrer"><img src="gallery/andre natur bilder/bilde7.jpg" alt="Instagram bilde" loading="lazy"></a>
+      <a href="https://www.instagram.com/solemsli_productions/" target="_blank" rel="noopener noreferrer"><img src="gallery/bryllup/untitled-6005.jpg" alt="Instagram bilde" loading="lazy"></a>
+      <a href="https://www.instagram.com/solemsli_productions/" target="_blank" rel="noopener noreferrer"><img src="gallery/vinjerock/untitled-7604.jpg" alt="Instagram bilde" loading="lazy"></a>
+      <a href="https://www.instagram.com/solemsli_productions/" target="_blank" rel="noopener noreferrer"><img src="gallery/andre natur bilder/bilde5.jpg" alt="Instagram bilde" loading="lazy"></a>
+      <a href="https://www.instagram.com/solemsli_productions/" target="_blank" rel="noopener noreferrer"><img src="gallery/andre natur bilder/untitled-7896.jpg" alt="Instagram bilde" loading="lazy"></a>
     </div>
   </section>
 

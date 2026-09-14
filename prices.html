@@ -125,6 +125,65 @@
       a{text-decoration:underline !important;color:#000 !important}
       img{max-width:100% !important}
     }
+
+    /* HERO */
+    .hero{position:relative;display:flex;align-items:center;justify-content:center;min-height:60vh;overflow:hidden}
+    .hero-bg{position:absolute;inset:0;z-index:0}
+    .hero-bg-image{width:100%;height:100%;object-fit:cover;object-position:center;transform:scale(1.1);transition:transform .8s cubic-bezier(.25,.46,.45,.94)}
+    .hero-bg-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.65) 0%,rgba(0,0,0,.4) 50%,rgba(0,0,0,.75) 100%);z-index:1}
+    .hero-content{position:relative;z-index:2;text-align:center;padding:0 24px}
+    .hero-content .section-title{font-size:clamp(2.4rem,6vw,4rem);margin-bottom:16px;color:white!important;-webkit-text-fill-color:white!important;background:none!important;text-shadow:0 4px 30px rgba(0,0,0,0.5)}
+    .hero-content .subtitle-text{font-size:clamp(1rem,2vw,1.2rem);max-width:600px;margin:0 auto;opacity:.9;color:rgba(255,255,255,0.9);text-shadow:0 2px 20px rgba(0,0,0,0.5)}
+    .hero-content .section-label{margin-bottom:12px;color:rgba(255,255,255,0.8);text-shadow:0 2px 10px rgba(0,0,0,0.4)}
+
+    /* MARQUEE */
+    .marquee-section{overflow:hidden;padding:16px 0;border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08)}
+    .marquee-section--sm{padding:12px 0}
+    .marquee{display:flex;width:100%}
+    .marquee-track{display:flex;gap:40px;animation:marqueeScroll 18s linear infinite;white-space:nowrap;flex-shrink:0}
+    .marquee-track span{font-size:.85rem;font-weight:600;letter-spacing:.15em;color:var(--text-muted);text-transform:uppercase}
+    .marquee-dot{color:var(--accent)!important;font-size:.65rem;align-self:center;opacity:.5}
+    @keyframes marqueeScroll{0%{transform:translateX(0)}100%{transform:translateX(-33.33%)}}
+
+    /* CTA */
+    .cta-section{position:relative;border-radius:var(--radius-lg);overflow:hidden;min-height:320px;display:flex;align-items:center;justify-content:center;text-align:center;margin-top:60px}
+    .cta-bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .6s ease}
+    .cta-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(15,23,42,.88) 0%,rgba(30,41,59,.82) 100%)}
+    .cta-content{position:relative;z-index:2;padding:48px 32px}
+    .cta-content .section-title{margin-bottom:12px}
+    .cta-content p{color:var(--text-muted);max-width:480px;margin:0 auto 24px}
+    .cta-buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+    .cta-buttons .btn{min-width:160px}
+
+    /* PRICE CARD HOVER GLOW */
+    .price-card{position:relative;overflow:hidden}
+    .price-card::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at center,rgba(255,255,255,.04) 0%,transparent 70%);opacity:0;transition:opacity .4s ease;pointer-events:none}
+    .price-card:hover::before{opacity:1}
+    .price-card .amount{transition:color .3s,transform .3s}
+    .price-card:hover .amount{color:var(--accent);transform:scale(1.05)}
+
+    /* POPULAR BADGE GLOW */
+    .price-card .popular-badge{animation:popularPulse 3s ease-in-out infinite}
+    @keyframes popularPulse{0%,100%{box-shadow:0 0 12px rgba(251,191,36,.3)}50%{box-shadow:0 0 24px rgba(251,191,36,.5)}}
+
+    /* PACKAGE RECOMMENDER */
+    .wizard{max-width:600px;margin:0 auto 60px;text-align:center}
+    .wizard-steps{display:flex;justify-content:center;gap:12px;margin-bottom:32px}
+    .wizard-step-dot{width:12px;height:12px;border-radius:50%;background:var(--card-border);transition:all .3s}
+    .wizard-step-dot.active{background:var(--main-blue);transform:scale(1.3)}
+    .wizard-step-dot.done{background:#22c55e}
+    .wizard-question{font-size:1.2rem;font-weight:600;margin-bottom:24px;min-height:60px;display:flex;align-items:center;justify-content:center}
+    .wizard-options{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    .wizard-option{padding:20px;background:var(--card-bg);border:2px solid var(--glass-border);border-radius:16px;cursor:pointer;transition:all .3s;text-align:center;font-family:inherit;color:var(--text);font-size:.95rem}
+    .wizard-option:hover{border-color:var(--main-blue);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.1)}
+    .wizard-option-icon{font-size:1.8rem;margin-bottom:8px;display:block}
+    .wizard-result{display:none;padding:32px;background:var(--card-bg);border:2px solid var(--main-blue);border-radius:20px;animation:fadeUp .5s ease}
+    .wizard-result.show{display:block}
+    .wizard-result h3{font-size:1.4rem;font-weight:700;margin-bottom:8px}
+    .wizard-result p{color:var(--text-muted);margin-bottom:16px}
+    .wizard-result .amount{font-size:2rem;font-weight:800;color:var(--main-blue);margin-bottom:16px}
+    .wizard-restart{background:none;border:1px solid var(--glass-border);color:var(--text);padding:10px 24px;border-radius:30px;cursor:pointer;font-size:.85rem;font-family:inherit;transition:.3s}
+    .wizard-restart:hover{border-color:var(--main-blue);color:var(--main-blue)}
   </style>
 </head>
 <body>
@@ -157,49 +216,50 @@
   <div class="custom-cursor" id="cursor"></div>
   <div class="custom-cursor-dot" id="cursor-dot"></div>
 
-  <main id="main-content" class="container">
-    <div class="reveal">
-      <div class="section-label" data-no="Pakker" data-en="Packages" data-de="Pakete">Pakker</div>
-      <h1 class="section-title char-reveal" data-no="Pakker & Priser" data-en="Packages & Pricing" data-de="Pakete & Preise">Pakker & Priser</h1>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="hero-bg-image" style="background-image:url('gallery/andre%20natur%20bilder/bilde7.jpg')"></div>
     </div>
-    <p class="reveal subtitle-text" data-no="Profesjonelle tjenester tilpasset ditt behov. Alle priser er ekskl. MVA og frakt." data-en="Professional services tailored to your needs. All prices excl. VAT and shipping." data-de="Professionelle Dienstleistungen nach Ihren Bedürfnissen. Alle Preise zzgl. MwSt. und Versand.">Profesjonelle tjenester tilpasset ditt behov. Alle priser er ekskl. MVA og frakt.</p>
+    <div class="hero-bg-overlay"></div>
+    <div class="hero-content">
+      <div class="section-label" data-no="Pakker" data-en="Packages" data-de="Pakete">Pakker</div>
+      <h1 class="section-title" data-no="Pakker & Priser" data-en="Packages & Pricing" data-de="Pakete & Preise">Pakker & Priser</h1>
+      <p class="subtitle-text reveal reveal-delay-2" data-no="Profesjonelle tjenester tilpasset ditt behov. Alle priser er ekskl. MVA og frakt." data-en="Professional services tailored to your needs. All prices excl. VAT and shipping." data-de="Professionelle Dienstleistungen nach Ihren Bedürfnissen. Alle Preise zzgl. MwSt. und Versand.">Profesjonelle tjenester tilpasset ditt behov. Alle priser er ekskl. MVA og frakt.</p>
+    </div>
+    <div class="scroll-indicator"></div>
+  </section>
 
-    <!-- PRIS-KALKULATOR -->
-    <section class="section calc-section">
-      <div class="reveal"><div class="section-label" data-no="Pris-kalkulator" data-en="Price calculator" data-de="Preisrechner">Pris-kalkulator</div><h2 class="section-title" data-no="Estimer din pris" data-en="Estimate your price" data-de="Schätzen Sie Ihren Preis">Estimer din pris</h2></div>
-      <div class="calc-container reveal">
-        <div class="calc-form">
-          <div class="calc-row">
-            <label data-no="Tjeneste" data-en="Service" data-de="Dienstleistung">Tjeneste</label>
-            <select id="calcService">
-              <option value="foto" data-no="Foto" data-en="Photo" data-de="Foto">Foto</option>
-              <option value="video" data-no="Video" data-en="Video" data-de="Video">Video</option>
-              <option value="drone" data-no="Drone" data-en="Drone" data-de="Drohne">Drone</option>
-              <option value="kombinert" data-no="Foto + Video + Drone" data-en="Photo + Video + Drone" data-de="Foto + Video + Drohne">Foto + Video + Drone</option>
-            </select>
-          </div>
-          <div class="calc-row">
-            <label data-no="Varighet (timer)" data-en="Duration (hours)" data-de="Dauer (Stunden)">Varighet (timer)</label>
-            <input type="range" id="calcHours" min="1" max="10" value="3">
-            <span id="calcHoursLabel">3 t</span>
-          </div>
-          <div class="calc-row">
-            <label data-no="Avstand" data-en="Distance" data-de="Entfernung">Avstand</label>
-            <select id="calcDistance">
-              <option value="lokal" data-no="Lokalt (Innlandet)" data-en="Local (Innlandet)" data-de="Lokal (Innlandet)">Lokalt (Innlandet)</option>
-              <option value="region" data-no="Regionalt (Vestlandet)" data-en="Regional (Vestlandet)" data-de="Regional (Vestlandet)">Regionalt (Vestlandet)</option>
-              <option value="langt" data-no="Langt (over 3 timer)" data-en="Far (over 3 hours)" data-de="Weit (über 3 Stunden)">Langt (over 3 timer)</option>
-            </select>
-          </div>
-          <div class="calc-result">
-            <span class="calc-result-label" data-no="Estimert pris" data-en="Estimated price" data-de="Geschätzter Preis">Estimert pris</span>
-            <span class="calc-result-price" id="calcPrice">6 000 kr</span>
-            <span class="calc-result-note" data-no="Eks. MVA" data-en="excl. VAT" data-de="zzgl. MwSt.">Eks. MVA</span>
-          </div>
-        </div>
+  <!-- MARQUEE -->
+  <div class="marquee-section marquee-section--sm">
+    <div class="marquee">
+      <div class="marquee-track">
+        <span>FOTO</span><span class="marquee-dot">✦</span><span>VIDEO</span><span class="marquee-dot">✦</span><span>DRONE</span><span class="marquee-dot">✦</span><span>BRYLLUP</span><span class="marquee-dot">✦</span><span>EVENTER</span><span class="marquee-dot">✦</span>
+        <span>FOTO</span><span class="marquee-dot">✦</span><span>VIDEO</span><span class="marquee-dot">✦</span><span>DRONE</span><span class="marquee-dot">✦</span><span>BRYLLUP</span><span class="marquee-dot">✦</span><span>EVENTER</span><span class="marquee-dot">✦</span>
+        <span>FOTO</span><span class="marquee-dot">✦</span><span>VIDEO</span><span class="marquee-dot">✦</span><span>DRONE</span><span class="marquee-dot">✦</span><span>BRYLLUP</span><span class="marquee-dot">✦</span><span>EVENTER</span><span class="marquee-dot">✦</span>
       </div>
-    </section>
+    </div>
+  </div>
 
+  <main id="main-content" class="container">
+    <!-- PACKAGE RECOMMENDER WIZARD -->
+    <div class="wizard reveal" id="wizard">
+      <div class="section-label">Finn riktig pakke</div>
+      <div class="wizard-steps"><div class="wizard-step-dot active" id="wd1"></div><div class="wizard-step-dot" id="wd2"></div><div class="wizard-step-dot" id="wd3"></div></div>
+      <div id="wizardBody">
+        <div class="wizard-question" id="wq"></div>
+        <div class="wizard-options" id="wo"></div>
+      </div>
+      <div class="wizard-result" id="wr">
+        <h3 id="wrTitle"></h3>
+        <p id="wrDesc"></p>
+        <div class="amount" id="wrPrice"></div>
+        <a href="#pris-seksjon" class="btn btn-primary" style="margin-bottom:12px;display:inline-flex">Se pakken</a><br>
+        <button class="wizard-restart" onclick="wizardReset()">Start på nytt</button>
+      </div>
+    </div>
+
+    <div id="pris-seksjon"></div>
     <div class="price-section stagger-reveal blur-fade">
       <div class="price-card reveal reveal-delay-1 glow-border">
         <h3 data-no="Liten Pakke" data-en="Small Package" data-de="Kleines Paket">Liten Pakke</h3>
@@ -254,6 +314,42 @@
         <button class="btn btn-primary magnetic" data-package="Skreddersydd Oppdrag" onclick="sendBookingEmail(this)" data-no="Kontakt for pris" data-en="Contact for Pricing" data-de="Kontakt für Preis">Få tilbud</button>
       </div>
     </div>
+
+    <!-- PRIS-KALKULATOR -->
+    <section class="section calc-section">
+      <div class="reveal"><div class="section-label" data-no="Pris-kalkulator" data-en="Price calculator" data-de="Preisrechner">Pris-kalkulator</div><h2 class="section-title" data-no="Estimer din pris" data-en="Estimate your price" data-de="Schätzen Sie Ihren Preis">Estimer din pris</h2></div>
+      <div class="calc-container reveal">
+        <div class="calc-form">
+          <div class="calc-row">
+            <label data-no="Tjeneste" data-en="Service" data-de="Dienstleistung">Tjeneste</label>
+            <select id="calcService">
+              <option value="foto" data-no="Foto" data-en="Photo" data-de="Foto">Foto</option>
+              <option value="video" data-no="Video" data-en="Video" data-de="Video">Video</option>
+              <option value="drone" data-no="Drone" data-en="Drone" data-de="Drohne">Drone</option>
+              <option value="kombinert" data-no="Foto + Video + Drone" data-en="Photo + Video + Drone" data-de="Foto + Video + Drohne">Foto + Video + Drone</option>
+            </select>
+          </div>
+          <div class="calc-row">
+            <label data-no="Varighet (timer)" data-en="Duration (hours)" data-de="Dauer (Stunden)">Varighet (timer)</label>
+            <input type="range" id="calcHours" min="1" max="10" value="3">
+            <span id="calcHoursLabel">3 t</span>
+          </div>
+          <div class="calc-row">
+            <label data-no="Avstand" data-en="Distance" data-de="Entfernung">Avstand</label>
+            <select id="calcDistance">
+              <option value="lokal" data-no="Lokalt (Innlandet)" data-en="Local (Innlandet)" data-de="Lokal (Innlandet)">Lokalt (Innlandet)</option>
+              <option value="region" data-no="Regionalt (Vestlandet)" data-en="Regional (Vestlandet)" data-de="Regional (Vestlandet)">Regionalt (Vestlandet)</option>
+              <option value="langt" data-no="Langt (over 3 timer)" data-en="Far (over 3 hours)" data-de="Weit (über 3 Stunden)">Langt (over 3 timer)</option>
+            </select>
+          </div>
+          <div class="calc-result">
+            <span class="calc-result-label" data-no="Estimert pris" data-en="Estimated price" data-de="Geschätzter Preis">Estimert pris</span>
+            <span class="calc-result-price" id="calcPrice">6 000 kr</span>
+            <span class="calc-result-note" data-no="Eks. MVA" data-en="excl. VAT" data-de="zzgl. MwSt.">Eks. MVA</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- SOCIAL PROOF -->
     <section class="social-proof blur-fade">
@@ -380,6 +476,20 @@
         <div class="tilbud-success-icon">✓</div>
         <h3 data-no="Takk for din henvendelse!" data-en="Thank you for your inquiry!" data-de="Vielen Dank fuer Ihre Anfrage!">Takk for din henvendelse!</h3>
         <p data-no="Jeg tar kontakt innen 24 timer." data-en="I will get back to you within 24 hours." data-de="Ich melde mich innerhalb von 24 Stunden.">Jeg tar kontakt innen 24 timer.</p>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section cta-section reveal">
+      <div class="cta-bg" style="background-image:url('gallery/andre%20natur%20bilder/bilde8.jpg')"></div>
+      <div class="cta-overlay"></div>
+      <div class="cta-content">
+        <h2 class="section-title" data-no="Klar til å starte?" data-en="Ready to start?" data-de="Bereit zu starten?">Klar til å starte?</h2>
+        <p data-no="La oss skape noe fantastisk sammen. Ta kontakt for en uforpliktende samtale." data-en="Let's create something amazing together. Get in touch for a no-obligation chat." data-de="Lassen Sie uns gemeinsam etwas Fantastisches erschaffen. Kontaktieren Sie Sie für ein unverbindliches Gespräch.">La oss skape noe fantastisk sammen. Ta kontakt for en uforpliktende samtale.</p>
+        <div class="cta-buttons">
+          <a href="contact.html" class="btn btn-primary" data-no="Kontakt meg" data-en="Contact me" data-de="Kontaktiere mich">Kontakt meg</a>
+          <a href="projects.html" class="btn btn-outline" data-no="Se portfolio" data-en="See portfolio" data-de="Portfolio ansehen">Se portfolio</a>
+        </div>
       </div>
     </section>
   </main>
@@ -568,5 +678,80 @@ Med vennlig hilsen`;
     }
   </script>
   <script src="shared.js"></script>
+  <script>
+    // PACKAGE RECOMMENDER WIZARD
+    const wSteps = [
+      { q: 'Hva trenger du?', opts: [
+        { icon: '📸', label: 'Foto', val: 'foto' },
+        { icon: '🎬', label: 'Video', val: 'video' },
+        { icon: '🚁', label: 'Drone', val: 'drone' },
+        { icon: '🎯', label: 'Flere ting', val: 'combo' }
+      ]},
+      { q: 'Hvor lenge?', opts: [
+        { icon: '⏱️', label: 'Under 3 timer', val: 'short' },
+        { icon: '🕐', label: '3-5 timer', val: 'medium' },
+        { icon: '🕗', label: '5-8 timer', val: 'long' },
+        { icon: '📅', label: 'Hele dagen+', val: 'fullday' }
+      ]},
+      { q: 'Hva er viktigst?', opts: [
+        { icon: '💰', label: 'Lavest pris', val: 'budget' },
+        { icon: '⚖️', label: 'Best verdi', val: 'value' },
+        { icon: '🏆', label: 'Best kvalitet', val: 'premium' },
+        { icon: '✨', label: 'Skreddersydd', val: 'custom' }
+      ]}
+    ];
+    const wResults = {
+      'combo-fullday-custom': { t: 'Skreddersydd', d: 'For store prosjekter med flere tjenester over lang tid.', p: 'Kontakt meg' },
+      'combo-medium-value': { t: 'Medium Pakke', d: 'Perfekt kombinasjon av tjenester for et fullverdig oppdrag.', p: '5 000 kr' },
+      'default-premium': { t: 'Stor Pakke', d: 'Full dekning med alt inkludert for best mulig resultat.', p: '8 500 kr' },
+      'default-value': { t: 'Medium Pakke', d: 'Det mest populære valget — god balanse mellom pris og kvalitet.', p: '5 000 kr' },
+      'default-budget': { t: 'Liten Pakke', d: 'Perfekt for enkle oppdrag og sosiale medier.', p: '2 000 kr' },
+      'short-budget': { t: 'Liten Pakke', d: 'Kort og enkelt — akkurat det du trenger.', p: '2 000 kr' },
+      'short-value': { t: 'Liten Pakke', d: 'Effektivt og rimelig for korte oppdrag.', p: '2 000 kr' },
+      'medium-value': { t: 'Medium Pakke', d: 'Best verdi for middels store oppdrag.', p: '5 000 kr' },
+      'long-premium': { t: 'Stor Pakke', d: 'Utgående kvalitet for lengre oppdrag.', p: '8 500 kr' },
+      'fullday-custom': { t: 'Skreddersydd', d: 'Kontakt meg for et tilbud tilpasset dine behov.', p: 'Kontakt meg' }
+    };
+    let wStep = 0, wAnswers = [];
+    const wq = document.getElementById('wq');
+    const wo = document.getElementById('wo');
+    const wr = document.getElementById('wr');
+    const wb = document.getElementById('wizardBody');
+    function wizardRender() {
+      if (wStep >= 3) { wizardShowResult(); return; }
+      const s = wSteps[wStep];
+      wq.textContent = s.q;
+      wo.innerHTML = '';
+      document.querySelectorAll('.wizard-step-dot').forEach((d,i) => {
+        d.className = 'wizard-step-dot' + (i < wStep ? ' done' : i === wStep ? ' active' : '');
+      });
+      s.opts.forEach(o => {
+        const btn = document.createElement('button');
+        btn.className = 'wizard-option';
+        btn.innerHTML = '<span class="wizard-option-icon">' + o.icon + '</span>' + o.label;
+        btn.onclick = () => { wAnswers.push(o.val); wStep++; wizardRender(); };
+        wo.appendChild(btn);
+      });
+    }
+    function wizardShowResult() {
+      wb.style.display = 'none';
+      document.querySelectorAll('.wizard-step-dot').forEach(d => d.className = 'wizard-step-dot done');
+      const key = wAnswers.join('-');
+      let r = wResults[key];
+      if (!r) {
+        const hasCustom = wAnswers.includes('custom') || wAnswers.includes('fullday');
+        const isCombo = wAnswers.includes('combo');
+        if (hasCustom || isCombo) r = wResults['default-premium'];
+        else if (wAnswers.includes('value') || wAnswers.includes('medium')) r = wResults['default-value'];
+        else r = wResults['default-budget'];
+      }
+      document.getElementById('wrTitle').textContent = r.t;
+      document.getElementById('wrDesc').textContent = r.d;
+      document.getElementById('wrPrice').textContent = r.p;
+      wr.classList.add('show');
+    }
+    function wizardReset() { wStep = 0; wAnswers = []; wr.classList.remove('show'); wb.style.display = ''; wizardRender(); }
+    wizardRender();
+  </script>
 </body>
 </html>

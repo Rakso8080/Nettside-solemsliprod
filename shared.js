@@ -993,4 +993,66 @@
     }, { passive: true });
   });
 
+  // KONAMI CODE EASTER EGG
+  const konamiCode = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+  let konamiIndex = 0;
+  document.addEventListener('keydown', e => {
+    if (e.key === konamiCode[konamiIndex]) {
+      konamiIndex++;
+      if (konamiIndex === konamiCode.length) {
+        konamiIndex = 0;
+        const overlay = document.createElement('div');
+        overlay.style.cssText = 'position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.92);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:24px;animation:fadeIn .4s ease;cursor:pointer';
+        overlay.innerHTML = `
+          <img src="gallery/biler/untitled-9223.jpg" alt="Behind the scenes" style="max-width:500px;width:90%;border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,.5)">
+          <div style="text-align:center;color:white">
+            <h2 style="font-size:1.5rem;margin-bottom:8px">Hey! Du fant easter egget 🥚</h2>
+            <p style="color:rgba(255,255,255,.6);font-size:.9rem">– Oskar</p>
+          </div>
+        `;
+        overlay.addEventListener('click', () => overlay.remove());
+        document.body.appendChild(overlay);
+      }
+    } else {
+      konamiIndex = 0;
+    }
+  });
+
+  // AMBIENT SOUND BUTTON
+  (function() {
+    const btn = document.createElement('button');
+    btn.id = 'ambient-toggle';
+    btn.setAttribute('aria-label', 'Toggle ambient sound');
+    btn.style.cssText = 'position:fixed;bottom:24px;left:24px;z-index:9998;width:44px;height:44px;border-radius:50%;background:var(--card-bg);border:1px solid var(--glass-border);color:var(--text);font-size:1.1rem;cursor:pointer;transition:all .3s;backdrop-filter:blur(10px)';
+    btn.textContent = '🔇';
+    document.body.appendChild(btn);
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    let playing = false, nodes = [];
+    function createWind() {
+      const bufSize = ctx.sampleRate * 2;
+      const buf = ctx.createBuffer(1, bufSize, ctx.sampleRate);
+      const data = buf.getChannelData(0);
+      for (let i = 0; i < bufSize; i++) data[i] = (Math.random() * 2 - 1) * 0.015;
+      const src = ctx.createBufferSource();
+      src.buffer = buf; src.loop = true;
+      const lp = ctx.createBiquadFilter();
+      lp.type = 'lowpass'; lp.frequency.value = 400; lp.Q.value = 0.5;
+      const gn = ctx.createGain(); gn.gain.value = 0.3;
+      src.connect(lp); lp.connect(gn); gn.connect(ctx.destination);
+      src.start(); nodes.push(src, lp, gn);
+      return { src, gn };
+    }
+    btn.addEventListener('click', () => {
+      if (ctx.state === 'suspended') ctx.resume();
+      if (!playing) {
+        createWind(); playing = true; btn.textContent = '🔊';
+        btn.style.borderColor = 'var(--main-blue)';
+      } else {
+        nodes.forEach(n => { try { n.stop ? n.stop() : n.disconnect(); } catch(e){} });
+        nodes = []; playing = false; btn.textContent = '🔇';
+        btn.style.borderColor = 'var(--glass-border)';
+      }
+    });
+  })();
+
 })();
