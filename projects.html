@@ -107,10 +107,6 @@ main{flex:1;padding:0;width:100%}
 .portfolio-grid .img-wrap.tilting img{transition:none}
 
 /* CHROMATIC ABERRATION ON HOVER */
-.portfolio-grid .img-wrap{position:relative}
-.portfolio-grid .img-wrap::before,.portfolio-grid .img-wrap::after{content:'';position:absolute;inset:0;border-radius:12px;opacity:0;pointer-events:none;transition:opacity .3s;z-index:2}
-.portfolio-grid .img-wrap::before{background:inherit;mix-blend-mode:screen}
-.portfolio-grid .img-wrap:hover::before{opacity:.03}
 .portfolio-grid .img-wrap:hover img{filter:brightness(1.08) saturate(1.15) contrast(1.05)}
 
 /* FEATURED BADGE */
@@ -118,8 +114,8 @@ main{flex:1;padding:0;width:100%}
 @keyframes featuredPulse{0%,100%{box-shadow:0 4px 15px rgba(245,158,11,.4)}50%{box-shadow:0 4px 25px rgba(245,158,11,.7)}}
 
 /* BLUR-UP LAZY LOAD */
-.portfolio-grid .img-wrap.blur-load img{filter:blur(12px);transform:scale(1.05);transition:filter .6s,transform .6s}
-.portfolio-grid .img-wrap.blur-load.loaded img{filter:blur(0);transform:scale(1)}
+.portfolio-grid .img-wrap.blur-load img{opacity:0;transition:opacity .5s}
+.portfolio-grid .img-wrap.blur-load.loaded img{opacity:1}
 
 /* LIGHTBOX CROSSFADE */
 .lightbox-img{transition:opacity .3s ease}
@@ -508,10 +504,13 @@ main{flex:1;padding:0;width:100%}
 
   // Event delegation for all portfolio images
   document.addEventListener('click', (e) => {
-    const img = e.target.closest('.portfolio-grid img[data-section]');
-    if (img) {
-      openLightbox(img);
+    const wrap = e.target.closest('.portfolio-grid .img-wrap');
+    if (wrap) {
+      const img = wrap.querySelector('img[data-section]');
+      if (img) { openLightbox(img); return; }
     }
+    const img = e.target.closest('.portfolio-grid img[data-section]');
+    if (img) openLightbox(img);
   });
 
   document.getElementById('lb-close').addEventListener('click', closeLightbox);
@@ -526,19 +525,6 @@ main{flex:1;padding:0;width:100%}
     if (e.key === 'ArrowRight') nextImage();
     if (e.key === 'ArrowLeft') prevImage();
   });
-
-  // Touch swipe
-  let touchStartX = 0;
-  let touchEndX = 0;
-  lightbox.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
-  lightbox.addEventListener('touchend', (e) => {
-    touchEndX = e.changedTouches[0].screenX;
-    const diff = touchStartX - touchEndX;
-    if (Math.abs(diff) > 50) {
-      if (diff > 0) nextImage();
-      else prevImage();
-    }
-  }, { passive: true });
 
   // PARALLAX HERO
   window.addEventListener('scroll', () => {
@@ -688,24 +674,6 @@ main{flex:1;padding:0;width:100%}
       badge.textContent = count;
       tab.appendChild(badge);
     }
-  });
-
-  // LIGHTBOX CROSSFADE — smooth transition between images
-  const origUpdateLightbox = updateLightbox;
-  updateLightbox = function() {
-    lbImg.classList.add('crossfading');
-    setTimeout(() => {
-      origUpdateLightbox();
-      lbImg.classList.remove('crossfading');
-    }, 200);
-  };
-
-  // KEYBOARD NAVIGATION — arrow keys + ESC
-  document.addEventListener('keydown', e => {
-    if (!lightbox.classList.contains('open')) return;
-    if (e.key === 'Escape') closeLightbox();
-    if (e.key === 'ArrowRight') nextImage();
-    if (e.key === 'ArrowLeft') prevImage();
   });
 
   // TOUCH SWIPE in lightbox
