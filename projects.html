@@ -100,6 +100,37 @@ main{flex:1;padding:0;width:100%}
 
 /* FAST IMAGE LOADING */
 .portfolio-grid .img-wrap{content-visibility:auto;contain-intrinsic-size:auto 200px}
+
+/* 3D TILT ON HOVER */
+.portfolio-grid .img-wrap{perspective:600px}
+.portfolio-grid .img-wrap img{transition:transform .15s ease-out,filter .4s,border-radius .4s,box-shadow .4s}
+.portfolio-grid .img-wrap.tilting img{transition:none}
+
+/* CHROMATIC ABERRATION ON HOVER */
+.portfolio-grid .img-wrap{position:relative}
+.portfolio-grid .img-wrap::before,.portfolio-grid .img-wrap::after{content:'';position:absolute;inset:0;border-radius:12px;opacity:0;pointer-events:none;transition:opacity .3s;z-index:2}
+.portfolio-grid .img-wrap::before{background:inherit;mix-blend-mode:screen}
+.portfolio-grid .img-wrap:hover::before{opacity:.03}
+.portfolio-grid .img-wrap:hover img{filter:brightness(1.08) saturate(1.15) contrast(1.05)}
+
+/* FEATURED BADGE */
+.featured-badge{position:absolute;top:12px;left:12px;z-index:5;background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;padding:4px 12px;border-radius:20px;font-size:.7rem;font-weight:700;letter-spacing:.5px;box-shadow:0 4px 15px rgba(245,158,11,.4);animation:featuredPulse 2s ease-in-out infinite}
+@keyframes featuredPulse{0%,100%{box-shadow:0 4px 15px rgba(245,158,11,.4)}50%{box-shadow:0 4px 25px rgba(245,158,11,.7)}}
+
+/* BLUR-UP LAZY LOAD */
+.portfolio-grid .img-wrap.blur-load img{filter:blur(12px);transform:scale(1.05);transition:filter .6s,transform .6s}
+.portfolio-grid .img-wrap.blur-load.loaded img{filter:blur(0);transform:scale(1)}
+
+/* LIGHTBOX CROSSFADE */
+.lightbox-img{transition:opacity .3s ease}
+.lightbox-img.crossfading{opacity:0}
+
+/* FILTER TAB BADGES */
+.filter-tab .tab-count{display:inline-block;background:rgba(255,255,255,.2);padding:1px 7px;border-radius:10px;font-size:.7rem;margin-left:6px;font-weight:600}
+.filter-tab.active .tab-count{background:rgba(255,255,255,.3)}
+
+/* SECTION DIVIDER */
+.portfolio-section+.portfolio-section{border-top:1px solid var(--glass-border);margin-top:20px;padding-top:100px}
 </style>
 </head>
 <body>
@@ -598,6 +629,93 @@ main{flex:1;padding:0;width:100%}
     wrap.style.transform = 'translateY(30px)';
     wrap.style.transition = `opacity .6s ${(i % 8) * 0.08}s cubic-bezier(.23,1,.32,1), transform .6s ${(i % 8) * 0.08}s cubic-bezier(.23,1,.32,1)`;
     imgObs.observe(wrap);
+  });
+
+  // 3D TILT ON HOVER — follows cursor position
+  document.querySelectorAll('.portfolio-grid .img-wrap').forEach(wrap => {
+    const img = wrap.querySelector('img');
+    if (!img) return;
+    wrap.addEventListener('mousemove', e => {
+      wrap.classList.add('tilting');
+      const rect = wrap.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      const tiltX = y * -12;
+      const tiltY = x * 12;
+      img.style.transform = `perspective(600px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale(1.05)`;
+      img.style.boxShadow = `${-tiltY * 2}px ${tiltX * 2}px 40px rgba(0,0,0,.25)`;
+    });
+    wrap.addEventListener('mouseleave', () => {
+      wrap.classList.remove('tilting');
+      img.style.transform = '';
+      img.style.boxShadow = '';
+    });
+  });
+
+  // BLUR-UP LAZY LOAD — fade from blurry to sharp
+  document.querySelectorAll('.portfolio-grid .img-wrap img').forEach(img => {
+    if (img.complete) return;
+    img.parentElement.classList.add('blur-load');
+    img.addEventListener('load', () => img.parentElement.classList.add('loaded'));
+    img.addEventListener('error', () => img.parentElement.classList.add('loaded'));
+  });
+
+  // FEATURED BADGE — mark one random image per section
+  document.querySelectorAll('.portfolio-section[data-category]').forEach(sec => {
+    const imgs = sec.querySelectorAll('.portfolio-grid .img-wrap');
+    if (imgs.length > 2) {
+      const random = imgs[Math.floor(Math.random() * imgs.length)];
+      const badge = document.createElement('div');
+      badge.className = 'featured-badge';
+      badge.textContent = '★';
+      random.appendChild(badge);
+    }
+  });
+
+  // FILTER TAB IMAGE COUNTS
+  document.querySelectorAll('.filter-tab').forEach(tab => {
+    const f = tab.dataset.filter;
+    let count = 0;
+    if (f === 'all') {
+      count = document.querySelectorAll('.portfolio-section[data-category] .portfolio-grid img').length;
+    } else {
+      count = document.querySelectorAll(`.portfolio-section[data-category="${f}"] .portfolio-grid img`).length;
+    }
+    if (count > 0) {
+      const badge = document.createElement('span');
+      badge.className = 'tab-count';
+      badge.textContent = count;
+      tab.appendChild(badge);
+    }
+  });
+
+  // LIGHTBOX CROSSFADE — smooth transition between images
+  const origUpdateLightbox = updateLightbox;
+  updateLightbox = function() {
+    lbImg.classList.add('crossfading');
+    setTimeout(() => {
+      origUpdateLightbox();
+      lbImg.classList.remove('crossfading');
+    }, 200);
+  };
+
+  // KEYBOARD NAVIGATION — arrow keys + ESC
+  document.addEventListener('keydown', e => {
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight') nextImage();
+    if (e.key === 'ArrowLeft') prevImage();
+  });
+
+  // TOUCH SWIPE in lightbox
+  let touchStartX = 0;
+  lightbox.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+  lightbox.addEventListener('touchend', e => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) nextImage();
+      else prevImage();
+    }
   });
 
 })();
