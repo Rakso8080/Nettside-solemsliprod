@@ -96,6 +96,20 @@
     .equip-card h4{font-size:1rem;font-weight:700;margin-bottom:8px}
     .equip-card p{font-size:.8rem;color:var(--text-muted);line-height:1.5}
 
+    /* CREATIVE SHOWCASE */
+    .creative-showcase{padding:120px 40px}
+    .creative-hero{position:relative;border-radius:24px;overflow:hidden;margin-top:60px;height:50vh;min-height:400px}
+    .creative-hero img{width:100%;height:100%;object-fit:cover;transition:transform .1s linear}
+    .creative-hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,0,0,.6) 0%,transparent 50%,rgba(0,0,0,.3) 100%);display:flex;align-items:center;justify-content:center;padding:40px}
+    .creative-quote{font-size:clamp(1.2rem,2.5vw,1.8rem);font-style:italic;color:#fff;text-align:center;max-width:600px;line-height:1.6;text-shadow:0 2px 20px rgba(0,0,0,.5);font-weight:300}
+    .creative-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:60px}
+    .creative-item{border-radius:16px;overflow:hidden;aspect-ratio:1;position:relative}
+    .creative-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.23,1,.32,1),filter .6s}
+    .creative-item:hover img{transform:scale(1.08);filter:brightness(1.1)}
+    .creative-item--tall{grid-row:span 2;aspect-ratio:auto}
+    .creative-item--wide{grid-column:span 2;aspect-ratio:2/1}
+    @media(max-width:750px){.creative-grid{grid-template-columns:repeat(2,1fr)}.creative-item--wide{grid-column:span 2}.creative-item--tall{grid-row:span 1;aspect-ratio:1}.creative-hero{height:40vh;min-height:280px}.creative-showcase{padding:80px 20px}}
+
     /* TIMELINE */
     .timeline-section{padding:120px 40px;background:var(--card-bg)}
     .timeline{position:relative;max-width:800px;margin:60px auto 0;padding-left:60px}
@@ -122,18 +136,6 @@
     .cta h2{font-size:clamp(2rem,4vw,3.5rem);font-weight:800;letter-spacing:-1px;margin-bottom:20px}
     .cta p{color:var(--text-muted);font-size:1.1rem;margin-bottom:40px;max-width:500px;margin-left:auto;margin-right:auto}
 
-    /* DAG I LIVET */
-    .day-section{padding:80px 0}
-    .day-scroll-container{overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:0 20px 40px}
-    .day-scroll-container::-webkit-scrollbar{display:none}
-    .day-track{display:flex;gap:24px;padding:20px 0;min-width:max-content}
-    .day-card{min-width:280px;scroll-snap-align:start;background:var(--card-bg);border:1px solid var(--card-border);border-radius:16px;overflow:hidden;transition:transform .3s;position:relative}
-    .day-card:hover{transform:translateY(-8px)}
-    .day-card img{width:100%;height:180px;object-fit:cover}
-    .day-card h4{margin:16px 20px 4px;font-size:1.1rem}
-    .day-card p{margin:0 20px 20px;font-size:.9rem;color:var(--text-muted);line-height:1.5}
-    .day-time{position:absolute;top:12px;right:12px;background:var(--main-blue);color:white;padding:4px 10px;border-radius:20px;font-size:.75rem;font-weight:600}
-
     /* SKILLS CIRCLE */
     .skills-circle-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:40px;margin-top:40px}
     .skill-circle{position:relative;width:120px;height:120px}
@@ -146,11 +148,7 @@
 
     /* RESPONSIVE */
     @media(max-width:1000px){.profile-grid{grid-template-columns:1fr;text-align:center}.profile-photo-wrap{margin-bottom:20px}.profile-photo{width:260px;height:260px}.profile-glow-ring{width:300px;height:300px}.profile-glow-ring-2{width:340px;height:340px}.profile-bio{padding:35px}.profile-tags{justify-content:center}.skills-grid{grid-template-columns:repeat(3,1fr)}.equip-grid{grid-template-columns:repeat(2,1fr)}.stats-grid{gap:40px}.stat-item h3{font-size:2rem}.skills-circle-grid{gap:24px}}
-    @media(max-width:750px){.section,.profile-section,.skills-section,.timeline-section,.cta,.equipment,.day-section{padding:80px 20px}.stats{padding:60px 20px}.timeline{padding-left:40px}.timeline::before{left:15px}.timeline-dot{left:-32px}.skills-grid{grid-template-columns:repeat(2,1fr)}.equip-grid{grid-template-columns:1fr}.hero{min-height:auto;height:auto;min-height:100dvh;padding:120px 20px 80px}.profile-photo{width:220px;height:220px}.profile-glow-ring{width:260px;height:260px}.profile-glow-ring-2{width:290px;height:290px}.profile-bio{padding:24px}.day-card{min-width:240px}.day-card img{height:160px}.day-card h4{font-size:1rem;margin:12px 16px 4px}.day-card p{margin:0 16px 16px;font-size:.85rem}}
-
-    /* SCROLL-SNAP ON DAY CARDS */
-    .day-scroll-track{scroll-snap-type:x mandatory;scroll-behavior:smooth;-webkit-overflow-scrolling:touch}
-    .day-card{scroll-snap-align:center;min-width:260px;flex-shrink:0}
+    @media(max-width:750px){.section,.profile-section,.skills-section,.timeline-section,.cta,.equipment,.creative-showcase{padding:80px 20px}.stats{padding:60px 20px}.timeline{padding-left:40px}.timeline::before{left:15px}.timeline-dot{left:-32px}.skills-grid{grid-template-columns:repeat(2,1fr)}.equip-grid{grid-template-columns:1fr}.hero{min-height:auto;height:auto;min-height:100dvh;padding:120px 20px 80px}.profile-photo{width:220px;height:220px}.profile-glow-ring{width:260px;height:260px}.profile-glow-ring-2{width:290px;height:290px}.profile-bio{padding:24px}}
   </style>
 </head>
 <body>
@@ -270,18 +268,23 @@
     </div>
   </section>
 
-  <!-- DAG I LIVET -->
-  <section class="day-section" id="day">
+  <!-- CREATIVE SHOWCASE -->
+  <section class="creative-showcase">
     <div class="section">
-      <div class="reveal"><div class="section-label" data-no="Dag i livet" data-en="Day in the life" data-de="Tag im Leben">Dag i livet</div><h2 class="section-title" data-no="En typisk dag" data-en="A typical day" data-de="Ein typischer Tag">En typisk dag</h2></div>
-      <div class="day-scroll-container">
-        <div class="day-track">
-          <div class="day-card hscroll-reveal clip-reveal"><div class="day-time">07:00</div><img src="gallery/andre natur bilder/uranustind.jpg" alt="Morgen" loading="lazy"><h4 data-no="Morgen" data-en="Morning" data-de="Morgen">Morgen</h4><p data-no="Våkner tidlig, sjekker været og planlegger dagen" data-en="Wake up early, check the weather and plan the day" data-de="Früh aufstehen, das Wetter prüfen und den Tag planen">Våkner tidlig, sjekker været og planlegger dagen</p></div>
-          <div class="day-card hscroll-reveal clip-reveal"><div class="day-time">09:00</div><img src="gallery/andre natur bilder/bilde5.jpg" alt="Utstyr" loading="lazy"><h4 data-no="Utstyr" data-en="Equipment" data-de="Ausrüstung">Utstyr</h4><p data-no="Pakker kamera, drone og tilbehør" data-en="Pack camera, drone and accessories" data-de="Kamera, Drohne und Zubehör einpacken">Pakker kamera, drone og tilbehør</p></div>
-          <div class="day-card hscroll-reveal clip-reveal"><div class="day-time">11:00</div><img src="gallery/vinjerock/untitled-7604.jpg" alt="Oppdrag" loading="lazy"><h4 data-no="Oppdrag" data-en="Mission" data-de="Einsatz">Oppdrag</h4><p data-no="Er ute på oppdrag og fanger øyeblikkene" data-en="Out on assignment capturing moments" data-de="Draußen beim Einsatz und fange die Momente">Er ute på oppdrag og fanger øyeblikkene</p></div>
-          <div class="day-card hscroll-reveal clip-reveal"><div class="day-time">15:00</div><img src="gallery/andre natur bilder/bilde7.jpg" alt="Redigering" loading="lazy"><h4 data-no="Redigering" data-en="Editing" data-de="Bearbeitung">Redigering</h4><p data-no="Tilbake på kontoret for redigering og fargejustering" data-en="Back at the office for editing and color grading" data-de="Zurück im Büro für Bearbeitung und Farbkorrektur">Tilbake på kontoret for redigering og fargejustering</p></div>
-          <div class="day-card hscroll-reveal clip-reveal"><div class="day-time">19:00</div><img src="gallery/bryllup/untitled-6005.jpg" alt="Levering" loading="lazy"><h4 data-no="Levering" data-en="Delivery" data-de="Lieferung">Levering</h4><p data-no="Leverer ferdig materiell til kunden" data-en="Deliver finished material to the client" data-de="Fertiges Material an den Kunden liefern">Leverer ferdig materiell til kunden</p></div>
+      <div class="reveal"><div class="section-label" data-no="Kreativt" data-en="Creative" data-de="Kreativ">Kreativt</div><h2 class="section-title char-reveal" data-no="Bak hvert øyeblikk" data-en="Behind every moment" data-de="Hinter jedem Moment">Bak hvert øyeblikk</h2></div>
+      <div class="creative-hero parallax-img">
+        <img src="gallery/andre natur bilder/untitled--3.jpg" alt="Kreativt øyeblikk" loading="lazy">
+        <div class="creative-hero-overlay">
+          <p class="creative-quote" data-no="&laquo;Det handler ikke om utstyret. Det handler om øyeblikket.&raquo;" data-en="&laquo;It's not about the gear. It's about the moment.&raquo;" data-de="&laquo;Es geht nicht um das Equipment. Es geht um den Moment.&raquo;">&laquo;Det handler ikke om utstyret. Det handler om øyeblikket.&raquo;</p>
         </div>
+      </div>
+      <div class="creative-grid stagger-reveal blur-fade">
+        <div class="creative-item creative-item--tall"><img src="gallery/andre natur bilder/bilde6.jpg" alt="Natur" loading="lazy"></div>
+        <div class="creative-item"><img src="gallery/andre natur bilder/bilde4.jpg" alt="Landskap" loading="lazy"></div>
+        <div class="creative-item"><img src="gallery/andre natur bilder/untitled-7864.jpg" alt="Drone" loading="lazy"></div>
+        <div class="creative-item creative-item--wide"><img src="gallery/andre natur bilder/bilde3.jpg" alt="Fjell" loading="lazy"></div>
+        <div class="creative-item"><img src="gallery/andre natur bilder/untitled-7914.jpg" alt="Natur" loading="lazy"></div>
+        <div class="creative-item creative-item--tall"><img src="gallery/andre natur bilder/bilde11.jpg" alt="Nordlys" loading="lazy"></div>
       </div>
     </div>
   </section>
