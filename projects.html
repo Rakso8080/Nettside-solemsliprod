@@ -114,7 +114,7 @@ main{flex:1;padding:0;width:100%}
 .portfolio-grid .img-wrap:hover img{filter:brightness(1.08) saturate(1.15) contrast(1.05)}
 
 /* FEATURED BADGE */
-.featured-badge{position:absolute;top:12px;left:12px;z-index:6;background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;padding:4px 12px;border-radius:20px;font-size:.7rem;font-weight:700;letter-spacing:.5px;box-shadow:0 4px 15px rgba(245,158,11,.4);animation:featuredPulse 2s ease-in-out infinite}
+.featured-badge{position:absolute;top:12px;left:12px;z-index:6;background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;padding:4px 12px;border-radius:20px;font-size:.7rem;font-weight:700;letter-spacing:.5px;box-shadow:0 4px 15px rgba(245,158,11,.4);animation:featuredPulse 2s ease-in-out infinite;pointer-events:none}
 @keyframes featuredPulse{0%,100%{box-shadow:0 4px 15px rgba(245,158,11,.4)}50%{box-shadow:0 4px 25px rgba(245,158,11,.7)}}
 
 /* BLUR-UP LAZY LOAD */
@@ -508,8 +508,9 @@ main{flex:1;padding:0;width:100%}
 
   // Event delegation for all portfolio images
   document.addEventListener('click', (e) => {
-    if (e.target.matches('.portfolio-grid img[data-section]')) {
-      openLightbox(e.target);
+    const img = e.target.closest('.portfolio-grid img[data-section]');
+    if (img) {
+      openLightbox(img);
     }
   });
 
