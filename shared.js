@@ -568,22 +568,6 @@
   // SPECIAL EFFECTS — unique animations
   // ============================================
 
-  // CURSOR LIGHT BEAM — radial glow follows mouse
-  if (!isTouch) {
-    const beam = document.createElement('div');
-    beam.id = 'cursor-beam';
-    document.body.appendChild(beam);
-    let beamX = 0, beamY = 0, beamCurX = 0, beamCurY = 0;
-    document.addEventListener('mousemove', e => { beamX = e.clientX; beamY = e.clientY; beam.classList.add('active'); });
-    document.addEventListener('mouseleave', () => beam.classList.remove('active'));
-    (function animBeam() {
-      beamCurX += (beamX - beamCurX) * 0.08;
-      beamCurY += (beamY - beamCurY) * 0.08;
-      beam.style.transform = `translate(${beamCurX - 200}px,${beamCurY - 200}px)`;
-      requestAnimationFrame(animBeam);
-    })();
-  }
-
   // MAGNETIC TEXT — hero h1 characters follow cursor
   document.querySelectorAll('.magnetic-text').forEach(el => {
     splitChars(el);
@@ -720,44 +704,6 @@
     hero.style.position = 'relative';
     hero.insertBefore(blob, hero.firstChild);
   });
-
-  // 3. CURSOR TRAIL — dots follow cursor and fade out
-  if (!isTouch && !prefersReduced) {
-    const TRAIL_COUNT = 8;
-    const trailDots = [];
-    const trailPos = [];
-    for (let i = 0; i < TRAIL_COUNT; i++) {
-      const dot = document.createElement('div');
-      dot.className = 'cursor-trail-dot';
-      document.body.appendChild(dot);
-      trailDots.push(dot);
-      trailPos.push({ x: 0, y: 0 });
-    }
-    let mouseX = 0, mouseY = 0;
-    document.addEventListener('mousemove', e => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      trailDots.forEach(d => d.classList.add('active'));
-    });
-    document.addEventListener('mouseleave', () => {
-      trailDots.forEach(d => d.classList.remove('active'));
-    });
-    (function animTrail() {
-      trailPos[0].x += (mouseX - trailPos[0].x) * 0.35;
-      trailPos[0].y += (mouseY - trailPos[0].y) * 0.35;
-      for (let i = 1; i < TRAIL_COUNT; i++) {
-        trailPos[i].x += (trailPos[i - 1].x - trailPos[i].x) * 0.25;
-        trailPos[i].y += (trailPos[i - 1].y - trailPos[i].y) * 0.25;
-      }
-      trailDots.forEach((dot, i) => {
-        const scale = 1 - (i / TRAIL_COUNT) * 0.6;
-        const opacity = 0.5 - (i / TRAIL_COUNT) * 0.45;
-        dot.style.transform = `translate(${trailPos[i].x - 4}px,${trailPos[i].y - 4}px) scale(${scale})`;
-        dot.style.opacity = opacity;
-      });
-      requestAnimationFrame(animTrail);
-    })();
-  }
 
   // 4. HERO GRADIENT TEXT — add shimmer class to hero h1 spans
   document.querySelectorAll('.hero h1 span, .hero h1').forEach(el => {
@@ -917,26 +863,6 @@
       geoContainer.appendChild(shape);
     }
     document.body.appendChild(geoContainer);
-  }
-
-  // 15. CURSOR PARTICLES — tiny dots spawn where cursor moves
-  if (!isTouch && !prefersReduced) {
-    let particleThrottle = 0;
-    document.addEventListener('mousemove', e => {
-      const now = Date.now();
-      if (now - particleThrottle < 50) return;
-      particleThrottle = now;
-      const p = document.createElement('div');
-      p.className = 'cursor-particle';
-      const colors = ['var(--main-blue)', 'var(--accent)', '#a855f7', '#ec4899'];
-      p.style.background = colors[Math.floor(Math.random() * colors.length)];
-      p.style.left = e.clientX + 'px';
-      p.style.top = e.clientY + 'px';
-      p.style.width = (2 + Math.random() * 4) + 'px';
-      p.style.height = p.style.width;
-      document.body.appendChild(p);
-      setTimeout(() => p.remove(), 800);
-    });
   }
 
   // 16. GLOW BORDER — already handled by glowObs above (line 356)

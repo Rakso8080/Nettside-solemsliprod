@@ -474,6 +474,19 @@ main{flex:1;padding:0;width:100%}
       });
     });
   });
+
+  // URL FILTER — activate filter from ?filter= query param
+  const urlFilter = new URLSearchParams(window.location.search).get('filter');
+  if (urlFilter) {
+    const targetTab = document.querySelector(`.filter-tab[data-filter="${urlFilter}"]`);
+    if (targetTab) {
+      targetTab.click();
+      setTimeout(() => {
+        const firstSection = document.querySelector(`.portfolio-section[data-category="${urlFilter}"]`);
+        if (firstSection) firstSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 150);
+    }
+  }
 })();
 </script>
 <script src="shared.js"></script>
