@@ -6,20 +6,20 @@
   <link rel="icon" href="Solemsli production.png">
   <meta name="theme-color" content="#0180ff">
   <link rel="manifest" href="manifest.json">
-  <meta name="description" content="Kjøp høgoppløselege bilete frå Solemsli Productions. Natur, drone, bryllup, event og meir.">
-  <meta property="og:title" content="Solemsli Productions | Kjøp bilete" />
-  <meta property="og:description" content="Kjøp høgoppløselege bilete frå Solemsli Productions." />
+  <meta name="description" content="Shop — Kjøp bilete frå Solemsli Productions. Natur, drone, bryllup, event og meir.">
+  <meta property="og:title" content="Solemsli Productions | Shop" />
+  <meta property="og:description" content="Kjøp bilete frå Solemsli Productions." />
   <meta property="og:image" content="https://solemsliproductions.no/gallery/andre%20natur%20bilder/uranustind.jpg" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://solemsliproductions.no/shop.html" />
   <meta property="og:site_name" content="Solemsli Productions">
   <meta property="og:locale" content="nb_NO">
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Solemsli Productions | Kjøp bilete" />
-  <meta name="twitter:description" content="Kjøp høgoppløselege bilete frå Solemsli Productions." />
+  <meta name="twitter:title" content="Solemsli Productions | Shop" />
+  <meta name="twitter:description" content="Kjøp bilete frå Solemsli Productions." />
   <meta name="twitter:image" content="https://solemsliproductions.no/gallery/andre%20natur%20bilder/uranustind.jpg" />
   <link rel="canonical" href="https://solemsliproductions.no/shop.html" />
-<title>Kjøp bilete – Solemsli Productions</title>
+<title>Shop – Solemsli Productions</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -37,9 +37,6 @@
   .hero-content h1 span{background:linear-gradient(135deg,var(--main-blue),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
   .hero-content p{color:var(--text-muted);max-width:500px;margin:0 auto;font-size:clamp(.95rem,2vw,1.1rem);line-height:1.6}
   .hero-note{font-size:.8rem;color:var(--text-muted);margin-top:12px;opacity:.7}
-  .scroll-indicator{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);z-index:2;width:24px;height:40px;border:2px solid rgba(255,255,255,.3);border-radius:12px;display:flex;justify-content:center;padding-top:8px}
-  .scroll-indicator::after{content:'';width:3px;height:8px;background:rgba(255,255,255,.6);border-radius:2px;animation:scrollDot 1.5s ease-in-out infinite}
-  @keyframes scrollDot{0%,100%{transform:translateY(0);opacity:1}50%{transform:translateY(8px);opacity:.3}}
 
   /* MARQUEE */
   .marquee-section{overflow:hidden;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.08)}
@@ -49,32 +46,18 @@
   .marquee-dot{color:var(--main-blue)!important;font-size:.65rem;align-self:center;opacity:.5}
   @keyframes marqueeScroll{0%{transform:translateX(0)}100%{transform:translateX(-33.33%)}}
 
-  /* PHOTO GALLERY */
-  .gallery-section{padding:60px 20px 40px;max-width:1200px;margin:0 auto}
-  .gallery-header{text-align:center;margin-bottom:40px}
-  .gallery-header .section-label{font-size:.75rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--main-blue);margin-bottom:10px}
-  .gallery-header h2{font-size:clamp(1.5rem,4vw,2.5rem);font-weight:800;letter-spacing:-1px}
-  .gallery-header p{color:var(--text-muted);font-size:.95rem;margin-top:8px;max-width:500px;margin-left:auto;margin-right:auto}
-  .gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
-  .gallery-card{background:var(--card-bg);border:1px solid var(--glass-border);border-radius:16px;overflow:hidden;transition:border-color .3s,box-shadow .3s,transform .3s}
-  .gallery-card:hover{border-color:rgba(1,128,255,0.3);box-shadow:0 16px 40px rgba(0,0,0,0.15);transform:translateY(-4px)}
-  .gallery-card-image{position:relative;aspect-ratio:3/2;overflow:hidden}
-  .gallery-card-image img{width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.23,1,.32,1)}
-  .gallery-card:hover .gallery-card-image img{transform:scale(1.08)}
-  .gallery-card-image::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.5) 0%,transparent 50%);pointer-events:none}
-  .gallery-card-badge{position:absolute;top:10px;left:10px;padding:4px 10px;background:var(--main-blue);color:white;font-size:.65rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;border-radius:20px;z-index:1}
-  .gallery-card-info{padding:16px 20px}
-  .gallery-card-info h3{font-size:1rem;font-weight:700;margin-bottom:4px}
-  .gallery-card-info p{font-size:.8rem;color:var(--text-muted);line-height:1.5;margin-bottom:14px}
-  .gallery-card-footer{display:flex;justify-content:space-between;align-items:center}
-  .gallery-card-price{font-size:1.15rem;font-weight:800}
-  .gallery-card-price .currency{font-size:.75rem;font-weight:500;color:var(--text-muted)}
-  .btn-order{padding:10px 22px;background:var(--main-blue);color:white;border:none;border-radius:30px;font-size:.8rem;font-weight:600;cursor:pointer;transition:all .3s;text-decoration:none;display:inline-block}
-  .btn-order:hover{background:#0066cc;transform:scale(1.03)}
-
-  /* GRID REVEAL */
-  .gallery-grid>*{opacity:0;transform:translateY(20px);transition:all .6s cubic-bezier(.23,1,.32,1)}
-  .gallery-grid.revealed>*{opacity:1;transform:translateY(0)}
+  /* ORDER CARD */
+  .order-section{padding:60px 20px 40px;max-width:600px;margin:0 auto}
+  .order-card{background:var(--card-bg);border:1px solid var(--glass-border);border-radius:20px;padding:40px;text-align:center;position:relative;overflow:hidden}
+  .order-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--main-blue),var(--accent))}
+  .order-icon{font-size:2.5rem;margin-bottom:15px}
+  .order-card h3{font-size:1.3rem;font-weight:700;margin-bottom:10px}
+  .order-card > p{font-size:.9rem;color:var(--text-muted);line-height:1.7;margin-bottom:24px}
+  .order-price{font-size:1.8rem;font-weight:800;margin-bottom:8px}
+  .order-price-note{font-size:.8rem;color:var(--text-muted);margin-bottom:24px}
+  .btn-order-big{display:inline-flex;align-items:center;gap:8px;padding:16px 36px;background:var(--main-blue);color:white;border:none;border-radius:30px;font-size:1rem;font-weight:600;cursor:pointer;transition:all .3s;text-decoration:none}
+  .btn-order-big:hover{background:#0066cc;transform:translateY(-2px);box-shadow:0 8px 24px rgba(1,128,255,0.3)}
+  .order-note{font-size:.8rem;color:var(--text-muted);margin-top:16px;line-height:1.6}
 
   /* FAQ */
   .faq-section{max-width:700px;margin:0 auto;padding:60px 20px}
@@ -148,8 +131,7 @@
   /* RESPONSIVE */
   @media(max-width:600px){
     .hero{min-height:40vh;padding:120px 20px 40px}
-    .gallery-grid{grid-template-columns:1fr}
-    .faq{padding:40px 20px}
+    .order-card{padding:28px 20px}
   }
 </style>
 </head>
@@ -168,7 +150,7 @@
       <a href="index.html" data-no="Hjem" data-en="Home" data-de="Startseite">Hjem</a>
       <a href="about.html" data-no="Om meg" data-en="About" data-de="Über mich">Om meg</a>
       <a href="projects.html" data-no="Portfolio" data-en="Portfolio" data-de="Portfolio">Portfolio</a>
-      <a href="shop.html" class="active" data-no="Kjøp bilde" data-en="Buy photo" data-de="Foto kaufen">Kjøp bilde</a>
+      <a href="shop.html" class="active" data-no="Shop" data-en="Shop" data-de="Shop">Shop</a>
       <a href="prices.html" data-no="Priser" data-en="Pricing" data-de="Preise">Priser</a>
       <a href="contact.html" data-no="Kontakt" data-en="Contact" data-de="Kontakt">Kontakt</a>
       <button class="nav-btn" id="lang-toggle" aria-label="Bytt språk">EN</button>
@@ -185,11 +167,9 @@
     <div class="hero-bg-overlay"></div>
     <div class="hero-content">
       <div class="hero-badge" data-no="SHOP" data-en="SHOP" data-de="SHOP">SHOP</div>
-      <h1 id="hero-title"><span data-no="Kjøp bilete" data-en="Buy photos" data-de="Fotos kaufen">Kjøp bilete</span></h1>
-      <p data-no="Velg bilete frå porteføljen min og bestill høgoppløselege digitale filer. Enkel bestilling via e-post, betal med Vipps." data-en="Choose photos from my portfolio and order high-resolution digital files. Simple ordering via email, pay with Vipps." data-de="Wählen Sie Fotos aus meinem Portfolio und bestellen Sie hochauflösende digitale Dateien. Einfache Bestellung per E-Mail, bezahlen mit Vipps.">Velg bilete frå porteføljen min og bestill høgoppløselege digitale filer. Enkel bestilling via e-post, betal med Vipps.</p>
-      <p class="hero-note">* <span data-no="Pris per bilete: 200 kr (inkl. MVA)" data-en="Price per photo: 200 kr (incl. VAT)" data-de="Preis pro Foto: 200 kr (inkl. MwSt.)">Pris per bilete: 200 kr (inkl. MVA)</span></p>
+      <h1 id="hero-title"><span data-no="Shop" data-en="Shop" data-de="Shop">Shop</span></h1>
+      <p data-no="Kjøp høgoppløselege bilete frå porteføljen min. Fortell kva du ønskjer, så sender eg deg fila etter betaling." data-en="Buy high-resolution photos from my portfolio. Tell me what you want, and I'll send the file after payment." data-de="Kaufen Sie hochauflösende Fotos aus meinem Portfolio. Sagen Sie mir, was Sie möchten, und ich sende Ihnen die Datei nach Zahlung.">Kjøp høgoppløselege bilete frå porteføljen min. Fortell kva du ønskjer, så sender eg deg fila etter betaling.</p>
     </div>
-    <div class="scroll-indicator"></div>
   </section>
 
   <!-- MARQUEE -->
@@ -203,213 +183,53 @@
     </div>
   </div>
 
-  <!-- PHOTO GALLERY -->
-  <section class="gallery-section">
-    <div class="gallery-header reveal">
-      <div class="section-label" data-no="Tilgjengelege bilete" data-en="Available photos" data-de="Verfügbare Fotos">Tilgjengelege bilete</div>
-      <h2 data-no="Velg ditt bilete" data-en="Choose your photo" data-de="Wählen Sie Ihr Foto">Velg ditt bilete</h2>
-      <p data-no="Klikk 'Bestill' for å opne e-post med biletnamnet klart. Etter betaling via Vipps får du fila tilsendt på e-post." data-en="Click 'Order' to open an email with the photo name ready. After payment via Vipps, you'll receive the file by email." data-de="Klicken Sie auf 'Bestellen', um eine E-Mail mit dem Fotonamen zu öffnen. Nach Zahlung per Vipps erhalten Sie die Datei per E-Mail.">Klikk 'Bestill' for å opne e-post med biletnamnet klart. Etter betaling via Vipps får du fila tilsendt på e-post.</p>
-    </div>
-    <div class="gallery-grid" id="gallery-grid">
-      <!-- 1 -->
-      <div class="gallery-card">
-        <div class="gallery-card-image">
-          <img src="gallery/andre natur bilder/uranustind.jpg" alt="Dronebilde av Uranustind i solnedgang" loading="lazy">
-          <div class="gallery-card-badge" data-no="Drone" data-en="Drone" data-de="Drohne">Drone</div>
-        </div>
-        <div class="gallery-card-info">
-          <h3>Uranustind</h3>
-          <p data-no="Fjellandskap i solnedgang, teken med DJI Mini 4 Pro." data-en="Mountain landscape at sunset, taken with DJI Mini 4 Pro." data-de="Berglandschaft bei Sonnenuntergang, aufgenommen mit DJI Mini 4 Pro.">Fjellandskap i solnedgang, teken med DJI Mini 4 Pro.</p>
-          <div class="gallery-card-footer">
-            <div class="gallery-card-price">200 <span class="currency">kr</span></div>
-            <a href="mailto:kontakt@solemsliproductions.no?subject=Bestilling%20%E2%80%94%20Uranustind&body=Hei!%0A%0AJeg-%C3%B8nsker-%C3%A5-kj%C3%B8pe-%C3%A5-kj%C3%B8pe-bildet-%C2%ABUranustind%C2%BB-(200-kr).%0A%0AMvh%2C%0A[Navn]" class="btn-order" data-no="Bestill" data-en="Order" data-de="Bestellen">Bestill</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- 2 -->
-      <div class="gallery-card">
-        <div class="gallery-card-image">
-          <img src="gallery/andre natur bilder/bilde7.jpg" alt="Dronebilde av skog og innsjø" loading="lazy">
-          <div class="gallery-card-badge" data-no="Drone" data-en="Drone" data-de="Drohne">Drone</div>
-        </div>
-        <div class="gallery-card-info">
-          <h3>Nordlys landskap</h3>
-          <p data-no="Nordlys over vinterlandskap, teken med DJI Mini 4 Pro." data-en="Northern lights over winter landscape, taken with DJI Mini 4 Pro." data-de="Nordlicht über Winterlandschaft, aufgenommen mit DJI Mini 4 Pro.">Nordlys over vinterlandskap, teken med DJI Mini 4 Pro.</p>
-          <div class="gallery-card-footer">
-            <div class="gallery-card-price">200 <span class="currency">kr</span></div>
-            <a href="mailto:kontakt@solemsliproductions.no?subject=Bestilling%20%E2%80%94%20Nordlys%20landskap&body=Hei!%0A%0AJeg-%C3%B8nsker-%C3%A5-kj%C3%B8pe-bildet-%C2%ABNordlys-landskap%C2%BB-(200-kr).%0A%0AMvh%2C%0A[Navn]" class="btn-order" data-no="Bestill" data-en="Order" data-de="Bestellen">Bestill</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- 3 -->
-      <div class="gallery-card">
-        <div class="gallery-card-image">
-          <img src="gallery/bryllup/untitled-6005.jpg" alt="Bryllupsbilde i naturlig lys" loading="lazy">
-          <div class="gallery-card-badge" data-no="Bryllup" data-en="Wedding" data-de="Hochzeit">Bryllup</div>
-        </div>
-        <div class="gallery-card-info">
-          <h3>Bryllup — Brudepar</h3>
-          <p data-no="Intimt brudebilde teken i naturlig lys med Sony A7IV." data-en="Intimate wedding photo taken in natural light with Sony A7IV." data-de="Intimes Hochzeitsfoto in natürlichem Licht aufgenommen mit Sony A7IV.">Intimt brudebilde teken i naturlig lys med Sony A7IV.</p>
-          <div class="gallery-card-footer">
-            <div class="gallery-card-price">200 <span class="currency">kr</span></div>
-            <a href="mailto:kontakt@solemsliproductions.no?subject=Bestilling%20%E2%80%94%20Bryllup%20%E2%80%94%20Brudepar&body=Hei!%0A%0AJeg-%C3%B8nsker-%C3%A5-kj%C3%B8pe-bildet-%C2%ABBryllup-Brudepar%C2%BB-(200-kr).%0A%0AMvh%2C%0A[Navn]" class="btn-order" data-no="Bestill" data-en="Order" data-de="Bestellen">Bestill</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- 4 -->
-      <div class="gallery-card">
-        <div class="gallery-card-image">
-          <img src="gallery/konfirmasjon/untitled-5010.jpg" alt="Konfirmant i naturlig omgivelse" loading="lazy">
-          <div class="gallery-card-badge" data-no="Konfirmasjon" data-en="Confirmation" data-de="Konfirmation">Konfirmasjon</div>
-        </div>
-        <div class="gallery-card-info">
-          <h3>Konfirmasjon</h3>
-          <p data-no="Konfirmasjonsbilde teken med Sony A7IV." data-en="Confirmation photo taken with Sony A7IV." data-de="Konfirmationsfoto aufgenommen mit Sony A7IV.">Konfirmasjonsbilde teken med Sony A7IV.</p>
-          <div class="gallery-card-footer">
-            <div class="gallery-card-price">200 <span class="currency">kr</span></div>
-            <a href="mailto:kontakt@solemsliproductions.no?subject=Bestilling%20%E2%80%94%20Konfirmasjon&body=Hei!%0A%0AJeg-%C3%B8nsker-%C3%A5-kj%C3%B8pe-bildet-%C2%ABKonfirmasjon%C2%BB-(200-kr).%0A%0AMvh%2C%0A[Navn]" class="btn-order" data-no="Bestill" data-en="Order" data-de="Bestellen">Bestill</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- 5 -->
-      <div class="gallery-card">
-        <div class="gallery-card-image">
-          <img src="gallery/vang-kommune-sentrum/DJI_20251006091304_0231_D.jpg" alt="Dronebilde av Vang kommune sentrum" loading="lazy">
-          <div class="gallery-card-badge" data-no="Drone" data-en="Drone" data-de="Drohne">Drone</div>
-        </div>
-        <div class="gallery-card-info">
-          <h3>Vang kommune sentrum</h3>
-          <p data-no="Dronebilde frå Vang kommune sentrum. Høgoppløyseleg digital fil." data-en="Drone photo from Vang municipality center. High-resolution digital file." data-de="Drohnenaufnahme aus dem Vang Gemeindezentrum. Hochauflösende digitale Datei.">Dronebilde frå Vang kommune sentrum. Høgoppløyseleg digital fil.</p>
-          <div class="gallery-card-footer">
-            <div class="gallery-card-price">200 <span class="currency">kr</span></div>
-            <a href="mailto:kontakt@solemsliproductions.no?subject=Bestilling%20%E2%80%94%20Vang%20kommune%20sentrum&body=Hei!%0A%0AJeg-%C3%B8nsker-%C3%A5-kj%C3%B8pe-bildet-%C2%ABVang-kommune-sentrum%C2%BB-(200-kr).%0A%0AMvh%2C%0A[Navn]" class="btn-order" data-no="Bestill" data-en="Order" data-de="Bestellen">Bestill</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- 6 -->
-      <div class="gallery-card">
-        <div class="gallery-card-image">
-          <img src="gallery/vang-bygg-oversikt/untitled--10.jpg" alt="Dronebilde av Vang bygg" loading="lazy">
-          <div class="gallery-card-badge" data-no="Drone" data-en="Drone" data-de="Drohne">Drone</div>
-        </div>
-        <div class="gallery-card-info">
-          <h3>Vang bygg oversikt</h3>
-          <p data-no="Dronebilde av Vang bygg. Høgoppløyseleg digital fil." data-en="Drone photo of Vang bygg. High-resolution digital file." data-de="Drohnenaufnahme von Vang bygg. Hochauflösende digitale Datei.">Dronebilde av Vang bygg. Høgoppløyseleg digital fil.</p>
-          <div class="gallery-card-footer">
-            <div class="gallery-card-price">200 <span class="currency">kr</span></div>
-            <a href="mailto:kontakt@solemsliproductions.no?subject=Bestilling%20%E2%80%94%20Vang%20bygg%20oversikt&body=Hei!%0A%0AJeg-%C3%B8nsker-%C3%A5-kj%C3%B8pe-bildet-%C2%ABVang-bygg-oversikt%C2%BB-(200-kr).%0A%0AMvh%2C%0A[Navn]" class="btn-order" data-no="Bestill" data-en="Order" data-de="Bestellen">Bestill</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- 7 -->
-      <div class="gallery-card">
-        <div class="gallery-card-image">
-          <img src="gallery/ola-k/untitled--2.jpg" alt="Dronebilde frå Ola K" loading="lazy">
-          <div class="gallery-card-badge" data-no="Drone" data-en="Drone" data-de="Drohne">Drone</div>
-        </div>
-        <div class="gallery-card-info">
-          <h3>Ola K drone</h3>
-          <p data-no="Dronebilde frå Ola K. Høgoppløyseleg digital fil." data-en="Drone photo from Ola K. High-resolution digital file." data-de="Drohnenaufnahme von Ola K. Hochauflösende digitale Datei.">Dronebilde frå Ola K. Høgoppløyseleg digital fil.</p>
-          <div class="gallery-card-footer">
-            <div class="gallery-card-price">200 <span class="currency">kr</span></div>
-            <a href="mailto:kontakt@solemsliproductions.no?subject=Bestilling%20%E2%80%94%20Ola%20K%20drone&body=Hei!%0A%0AJeg-%C3%B8nsker-%C3%A5-kj%C3%B8pe-bildet-%C2%ABOla-K-drone%C2%BB-(200-kr).%0A%0AMvh%2C%0A[Navn]" class="btn-order" data-no="Bestill" data-en="Order" data-de="Bestellen">Bestill</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- 8 -->
-      <div class="gallery-card">
-        <div class="gallery-card-image">
-          <img src="gallery/vinjerock-drone/untitled--16.jpg" alt="Dronebilde frå Vinjerock" loading="lazy">
-          <div class="gallery-card-badge" data-no="Event" data-en="Event" data-de="Event">Event</div>
-        </div>
-        <div class="gallery-card-info">
-          <h3>Vinjerock drone</h3>
-          <p data-no="Dronebilde frå Vinjerock. Høgoppløyseleg digital fil." data-en="Drone photo from Vinjerock. High-resolution digital file." data-de="Drohnenaufnahme von Vinjerock. Hochauflösende digitale Datei.">Dronebilde frå Vinjerock. Høgoppløyseleg digital fil.</p>
-          <div class="gallery-card-footer">
-            <div class="gallery-card-price">200 <span class="currency">kr</span></div>
-            <a href="mailto:kontakt@solemsliproductions.no?subject=Bestilling%20%E2%80%94%20Vinjerock%20drone&body=Hei!%0A%0AJeg-%C3%B8nsker-%C3%A5-kj%C3%B8pe-bildet-%C2%ABVinjerock-drone%C2%BB-(200-kr).%0A%0AMvh%2C%0A[Navn]" class="btn-order" data-no="Bestill" data-en="Order" data-de="Bestellen">Bestill</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- 9 -->
-      <div class="gallery-card">
-        <div class="gallery-card-image">
-          <img src="gallery/vinjerock/untitled-7604.jpg" alt="Bilde frå Vinjerock festival" loading="lazy">
-          <div class="gallery-card-badge" data-no="Event" data-en="Event" data-de="Event">Event</div>
-        </div>
-        <div class="gallery-card-info">
-          <h3>Vinjerock scene</h3>
-          <p data-no="Stemningsbilde frå Vinjerock festivalen. Sony A7IV." data-en="Atmospheric photo from Vinjerock festival. Sony A7IV." data-de="Stimmungsvolles Foto vom Vinjerock-Festival. Sony A7IV.">Stemningsbilde frå Vinjerock festivalen. Sony A7IV.</p>
-          <div class="gallery-card-footer">
-            <div class="gallery-card-price">200 <span class="currency">kr</span></div>
-            <a href="mailto:kontakt@solemsliproductions.no?subject=Bestilling%20%E2%80%94%20Vinjerock%20scene&body=Hei!%0A%0AJeg-%C3%B8nsker-%C3%A5-kj%C3%B8pe-bildet-%C2%ABVinjerock-scene%C2%BB-(200-kr).%0A%0AMvh%2C%0A[Navn]" class="btn-order" data-no="Bestill" data-en="Order" data-de="Bestellen">Bestill</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- 10 -->
-      <div class="gallery-card">
-        <div class="gallery-card-image">
-          <img src="gallery/biler/untitled-9289.jpg" alt="Bilfotografering" loading="lazy">
-          <div class="gallery-card-badge" data-no="Bil" data-en="Car" data-de="Auto">Bil</div>
-        </div>
-        <div class="gallery-card-info">
-          <h3>Bilfotografering</h3>
-          <p data-no="Profesjonelt bilde av sportsbil. Sony A7IV." data-en="Professional photo of sports car. Sony A7IV." data-de="Professionelles Foto eines Sportwagens. Sony A7IV.">Profesjonelt bilde av sportsbil. Sony A7IV.</p>
-          <div class="gallery-card-footer">
-            <div class="gallery-card-price">200 <span class="currency">kr</span></div>
-            <a href="mailto:kontakt@solemsliproductions.no?subject=Bestilling%20%E2%80%94%20Bilfotografering&body=Hei!%0A%0AJeg-%C3%B8nsker-%C3%A5-kj%C3%B8pe-bildet-%C2%ABBilfotografering%C2%BB-(200-kr).%0A%0AMvh%2C%0A[Navn]" class="btn-order" data-no="Bestill" data-en="Order" data-de="Bestellen">Bestill</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- 11 -->
-      <div class="gallery-card">
-        <div class="gallery-card-image">
-          <img src="gallery/andre natur bilder/falke.jpg" alt="Fuglebilde i naturlig miljø" loading="lazy">
-          <div class="gallery-card-badge" data-no="Natur" data-en="Nature" data-de="Natur">Natur</div>
-        </div>
-        <div class="gallery-card-info">
-          <h3>Falk i naturen</h3>
-          <p data-no="Naturbilde teken med Sony A7IV." data-en="Nature photo taken with Sony A7IV." data-de="Naturfoto aufgenommen mit Sony A7IV.">Naturbilde teken med Sony A7IV.</p>
-          <div class="gallery-card-footer">
-            <div class="gallery-card-price">200 <span class="currency">kr</span></div>
-            <a href="mailto:kontakt@solemsliproductions.no?subject=Bestilling%20%E2%80%94%20Falk%20i%20naturen&body=Hei!%0A%0AJeg-%C3%B8nsker-%C3%A5-kj%C3%B8pe-bildet-%C2%ABFalk-i-naturen%C2%BB-(200-kr).%0A%0AMvh%2C%0A[Navn]" class="btn-order" data-no="Bestill" data-en="Order" data-de="Bestellen">Bestill</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- 12 -->
-      <div class="gallery-card">
-        <div class="gallery-card-image">
-          <img src="gallery/vang-reklamefilm/untitled-4536.jpg" alt="Bilde frå Vang reklamefilm" loading="lazy">
-          <div class="gallery-card-badge" data-no="Reklame" data-en="Commercial" data-de="Werbung">Reklame</div>
-        </div>
-        <div class="gallery-card-info">
-          <h3>Vang reklamefilm</h3>
-          <p data-no="Bilde frå Vang reklamefilm. Høgoppløyseleg digital fil." data-en="Photo from Vang commercial. High-resolution digital file." data-de="Foto aus Vang Werbefilm. Hochauflösende digitale Datei.">Bilde frå Vang reklamefilm. Høgoppløyseleg digital fil.</p>
-          <div class="gallery-card-footer">
-            <div class="gallery-card-price">200 <span class="currency">kr</span></div>
-            <a href="mailto:kontakt@solemsliproductions.no?subject=Bestilling%20%E2%80%94%20Vang%20reklamefilm&body=Hei!%0A%0AJeg-%C3%B8nsker-%C3%A5-kj%C3%B8pe-bildet-%C2%ABVang-reklamefilm%C2%BB-(200-kr).%0A%0AMvh%2C%0A[Navn]" class="btn-order" data-no="Bestill" data-en="Order" data-de="Bestellen">Bestill</a>
-          </div>
-        </div>
-      </div>
+  <!-- KJØP BILDE -->
+  <section class="order-section">
+    <div class="order-card reveal">
+      <div class="order-icon">🖼️</div>
+      <h3 data-no="Kjøp bilde" data-en="Buy photo" data-de="Foto kaufen">Kjøp bilde</h3>
+      <p data-no="Fortell meg kva slags bilete du ønsker — natur, drone, bryllup, event, bil eller noko anna. Eg sender deg ein høgoppløyseleg digital fil etter betaling." data-en="Tell me what kind of photo you want — nature, drone, wedding, event, car or something else. I'll send you a high-resolution digital file after payment." data-de="Sagen Sie mir, welches Foto Sie möchten — Natur, Drohne, Hochzeit, Event, Auto oder etwas anderes. Ich sende Ihnen eine hochauflösende digitale Datei nach Zahlung.">Fortell meg kva slags bilete du ønsker — natur, drone, bryllup, event, bil eller noko anna. Eg sender deg ein høgoppløyseleg digital fil etter betaling.</p>
+      <div class="order-price">200 <span style="font-size:1rem;font-weight:500;color:var(--text-muted)">kr</span></div>
+      <div class="order-price-note" data-no="inkl. MVA per bilete" data-en="incl. VAT per photo" data-de="inkl. MwSt. pro Foto">inkl. MVA per bilete</div>
+      <a href="mailto:kontakt@solemsliproductions.no?subject=Bestilling%20bilde%20%E2%80%94%20Solemsli%20Productions&body=Hei!%0A%0AJeg%C3%B8nsker%C3%A5kj%C3%B8peet%C3%A5kj%C3%B8pebilde.%0A%0ABeskrivelse:%20[jeg%C3%B8nskeretbildeav...]%0A%0APris:%20200%C2%A0kr%0A%0AMvh%2C%0A[Navn]" class="btn-order-big" data-no="Bestill via e-post" data-en="Order via email" data-de="Bestellen per E-Mail">✉️ <span data-no="Bestill via e-post" data-en="Order via email" data-de="Bestellen per E-Mail">Bestill via e-post</span></a>
+      <p class="order-note" data-no="Opnar e-postklienten din med emne klart. Betal med Vipps (#65829), bank eller krypto." data-en="Opens your email client with subject ready. Pay with Vipps (#65829), bank or crypto." data-de="Öffnet Ihren E-Mail-Client mit Betreff. Bezahlen mit Vipps (#65829), Bank oder Krypto.">Opnar e-postklienten din med emne klart. Betal med Vipps (#65829), bank eller krypto.</p>
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="cta">
-    <h2 data-no="Fann du ikkje det du lette etter?" data-en="Didn't find what you were looking for?" data-de="Haben Sie nicht gefunden, was Sie gesucht haben?">Fann du ikkje det du lette etter?</h2>
-    <p data-no="Ta kontakt for skreddersydde oppdrag eller spesialbestillingar." data-en="Get in touch for custom assignments or special orders." data-de="Kontaktieren Sie mich für maßgeschneiderte Aufträge oder Sondernbestellungen.">Ta kontakt for skreddersydde oppdrag eller spesialbestillingar.</p>
-    <a href="contact.html" class="btn-primary" data-no="Kontakt meg" data-en="Contact Me" data-de="Kontaktieren Sie mich">Kontakt meg</a>
+  <!-- FAQ -->
+  <section class="faq-section reveal">
+    <div class="section-label" data-no="Ofte stilte spørsmål" data-en="Frequently asked questions" data-de="Häufig gestellte Fragen">Ofte stilte spørsmål</div>
+    <h2 class="section-title" data-no="Spørsmål & Svar" data-en="Questions & Answers" data-de="Fragen & Antworten">Spørsmål & Svar</h2>
+    <div class="faq-item">
+      <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+        <span data-no="Hvordan bestiller jeg?" data-en="How do I order?" data-de="Wie bestelle ich?">Hvordan bestiller jeg?</span>
+      </button>
+      <div class="faq-answer"><p data-no="Klikk 'Bestill via e-post' og beskriv kva slags bilete du ønsker. Eg sender deg en bekreftelse, og etter betaling via Vipps får du den høgoppløse fila tilsendt på e-post." data-en="Click 'Order via email' and describe what kind of photo you want. I'll send you a confirmation, and after payment via Vipps you'll receive the high-res file by email." data-de="Klicken Sie auf 'Bestellen per E-Mail' und beschreiben Sie, welches Foto Sie möchten. Ich sende Ihnen eine Bestätigung und nach Zahlung per Vipps erhalten Sie die hochauflösende Datei per E-Mail.">Klikk 'Bestill via e-post' og beskriv kva slags bilete du ønsker. Eg sender deg en bekreftelse, og etter betaling via Vipps får du den høgoppløse fila tilsendt på e-post.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+        <span data-no="Hva koster det?" data-en="How much does it cost?" data-de="Was kostet es?">Hva koster det?</span>
+      </button>
+      <div class="faq-answer"><p data-no="200 kr per bilete, inkludert MVA." data-en="200 kr per photo, including VAT." data-de="200 kr pro Foto, inkl. MwSt.">200 kr per bilete, inkludert MVA.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+        <span data-no="Hvilke betalingsmåtar?" data-en="What payment methods?" data-de="Welche Zahlungsmethoden?">Hvilke betalingsmåtar?</span>
+      </button>
+      <div class="faq-answer"><p data-no="Vipps (#65829), bankoverføring og krypto (Bitcoin). Vipps er enklast." data-en="Vipps (#65829), bank transfer and crypto (Bitcoin). Vipps is easiest." data-de="Vipps (#65829), Banküberweisung und Krypto (Bitcoin). Vipps ist am einfachsten.">Vipps (#65829), bankoverføring og krypto (Bitcoin). Vipps er enklast.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+        <span data-no="Når får jeg fila?" data-en="When do I get the file?" data-de="Wann erhalte ich die Datei?">Når får jeg fila?</span>
+      </button>
+      <div class="faq-answer"><p data-no="Etter betaling er mottatt, sender eg fila på e-post innan 24 timer." data-en="After payment is received, I send the file by email within 24 hours." data-de="Nach Zahlungseingang sende ich die Datei per E-Mail innerhalb von 24 Stunden.">Etter betaling er mottatt, sender eg fila på e-post innan 24 timer.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+        <span data-no="Kan jeg bruke bildet kommersielt?" data-en="Can I use the photo commercially?" data-de="Kann ich das Foto kommerziell verwenden?">Kan jeg bruke bildet kommersielt?</span>
+      </button>
+      <div class="faq-answer"><p data-no="Privat bruk er fritt. For kommersiell bruk, ta kontakt for avtale." data-en="Private use is free. For commercial use, please get in touch for an agreement." data-de="Privatnutzung ist frei. Für kommerzielle Nutzung kontaktieren Sie mich bitte für eine Vereinbarung.">Privat bruk er fritt. For kommersiell bruk, ta kontakt for avtale.</p></div>
+    </div>
   </section>
 
   <!-- TIPS / DONASJON -->
@@ -425,40 +245,11 @@
     </div>
   </section>
 
-  <!-- FAQ -->
-  <section class="faq-section reveal">
-    <div class="section-label" data-no="Ofte stilte spørsmål" data-en="Frequently asked questions" data-de="Häufig gestellte Fragen">Ofte stilte spørsmål</div>
-    <h2 class="section-title" data-no="Spørsmål & Svar" data-en="Questions & Answers" data-de="Fragen & Antworten">Spørsmål & Svar</h2>
-    <div class="faq-item">
-      <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-        <span data-no="Hvordan bestiller jeg et bilde?" data-en="How do I order a photo?" data-de="Wie bestelle ich ein Foto?">Hvordan bestiller jeg et bilde?</span>
-      </button>
-      <div class="faq-answer"><p data-no="Klikk 'Bestill' under bildet du ønsker. Dette åpner e-postklienten din med biletnamnet klart. Send e-posten, og etter betaling via Vipps får du den høgoppløse fila tilsendt." data-en="Click 'Order' under the photo you want. This opens your email client with the photo name ready. Send the email, and after payment via Vipps you'll receive the high-res file." data-de="Klicken Sie auf 'Bestellen' unter dem gewünschten Foto. Dies öffnet Ihren E-Mail-Client mit dem Fotonamen. Senden Sie die E-Mail und erhalten Sie nach Zahlung per Vipps die hochauflösende Datei.">Klikk 'Bestill' under bildet du ønsker. Dette åpner e-postklienten din med biletnamnet klart. Send e-posten, og etter betaling via Vipps får du den høgoppløse fila tilsendt.</p></div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-        <span data-no="Hva koster et bilde?" data-en="How much does a photo cost?" data-de="Wie viel kostet ein Foto?">Hva koster et bilde?</span>
-      </button>
-      <div class="faq-answer"><p data-no="Alle bilete i shoppen koster 200 kr per stykk, inkludert MVA. Du får ein høgoppløyseleg digital fil." data-en="All photos in the shop cost 200 kr each, including VAT. You receive a high-resolution digital file." data-de="Alle Fotos im Shop kosten 200 kr inkl. MwSt. Sie erhalten eine hochauflösende digitale Datei.">Alle bilete i shoppen koster 200 kr per stykk, inkludert MVA. Du får ein høgoppløyseleg digital fil.</p></div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-        <span data-no="Hvilke betalingsmåtar tek du?" data-en="What payment methods do you accept?" data-de="Welche Zahlungsmethoden akzeptieren Sie?">Hvilke betalingsmåtar tek du?</span>
-      </button>
-      <div class="faq-answer"><p data-no="Eg tek Vipps (nummer 65829), bankoverføring og krypto (Bitcoin). Vipps er enklast." data-en="I accept Vipps (number 65829), bank transfer and crypto (Bitcoin). Vipps is easiest." data-de="Ich akzeptiere Vipps (Nummer 65829), Banküberweisung und Krypto (Bitcoin). Vipps ist am einfachsten.">Eg tek Vipps (nummer 65829), bankoverføring og krypto (Bitcoin). Vipps er enklast.</p></div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-        <span data-no="Når får jeg fila?" data-en="When do I receive the file?" data-de="Wann erhalte ich die Datei?">Når får jeg fila?</span>
-      </button>
-      <div class="faq-answer"><p data-no="Etter at betaling er mottatt, sender eg den høgoppløse fila på e-post innan 24 timer." data-en="After payment is received, I send the high-resolution file by email within 24 hours." data-de="Nach Zahlungseingang sende ich die hochauflösende Datei per E-Mail innerhalb von 24 Stunden.">Etter at betaling er mottatt, sender eg den høgoppløse fila på e-post innan 24 timer.</p></div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-        <span data-no="Kan jeg bruke bildet kommersielt?" data-en="Can I use the photo commercially?" data-de="Kann ich das Foto kommerziell verwenden?">Kan jeg bruke bildet kommersielt?</span>
-      </button>
-      <div class="faq-answer"><p data-no="Privat bruk er fritt. For kommersiell bruk, ta kontakt for avtale." data-en="Private use is free. For commercial use, please get in touch for an agreement." data-de="Privatnutzung ist frei. Für kommerzielle Nutzung kontaktieren Sie mich bitte für eine Vereinbarung.">Privat bruk er fritt. For kommersiell bruk, ta kontakt for avtale.</p></div>
-    </div>
+  <!-- CTA -->
+  <section class="cta">
+    <h2 data-no="Trenger du noko spesielt?" data-en="Need something special?" data-de="Benötigen Sie etwas Besonderes?">Trenger du noko spesielt?</h2>
+    <p data-no="Ta kontakt for skreddersydde oppdrag, bryllup, event eller andre prosjekt." data-en="Get in touch for custom assignments, weddings, events or other projects." data-de="Kontaktieren Sie mich für maßgeschneiderte Aufträge, Hochzeiten, Veranstaltungen oder andere Projekte.">Ta kontakt for skreddersydde oppdrag, bryllup, event eller andre prosjekt.</p>
+    <a href="contact.html" class="btn-primary" data-no="Kontakt meg" data-en="Contact Me" data-de="Kontaktieren Sie mich">Kontakt meg</a>
   </section>
 
   <!-- INSTAGRAM -->
@@ -500,22 +291,6 @@
     const BTC_WALLET = 'bc1pygw2tw0xus8vv4wawhh63zqdpwmfw3xkll5pqwv80eh83tr59d8qlewujt';
     const BANK_ACCOUNT = 'DITT_KONTONUMMER';
 
-    // GRID REVEAL
-    const gridObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('revealed');
-          gridObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.gallery-grid').forEach(grid => {
-      gridObserver.observe(grid);
-      grid.querySelectorAll(':scope > *').forEach((child, i) => {
-        child.style.transitionDelay = (i * 0.08) + 's';
-      });
-    });
-
     // TIPS / DONASJON
     let tipsPayMethod = 'vipps';
     function openTips() {
@@ -527,13 +302,13 @@
           <h3>Tusen takk!</h3>
           <p style="margin:8px 0 12px;font-size:.9rem;color:var(--text-muted)">Send et valgfritt beløp — tusen takk for støtten!</p>
           <div class="pay-methods" style="margin-bottom:16px">
-            <button type="button" class="pay-method active" data-tmethod="vipps" onclick="tipsPayMethod='vipps';document.querySelectorAll('.tips-modal-content .pay-method').forEach(b=>b.classList.remove('active'));this.classList.add('active');updateTipsContent()">
+            <button type="button" class="pay-method active" onclick="tipsPayMethod='vipps';document.querySelectorAll('.tips-modal-content .pay-method').forEach(b=>b.classList.remove('active'));this.classList.add('active');updateTipsContent()">
               <span class="pay-method-icon">💚</span><span class="pay-method-name">Vipps</span>
             </button>
-            <button type="button" class="pay-method" data-tmethod="crypto" onclick="tipsPayMethod='crypto';document.querySelectorAll('.tips-modal-content .pay-method').forEach(b=>b.classList.remove('active'));this.classList.add('active');updateTipsContent()">
+            <button type="button" class="pay-method" onclick="tipsPayMethod='crypto';document.querySelectorAll('.tips-modal-content .pay-method').forEach(b=>b.classList.remove('active'));this.classList.add('active');updateTipsContent()">
               <span class="pay-method-icon">₿</span><span class="pay-method-name">Crypto</span>
             </button>
-            <button type="button" class="pay-method" data-tmethod="bank" onclick="tipsPayMethod='bank';document.querySelectorAll('.tips-modal-content .pay-method').forEach(b=>b.classList.remove('active'));this.classList.add('active');updateTipsContent()">
+            <button type="button" class="pay-method" onclick="tipsPayMethod='bank';document.querySelectorAll('.tips-modal-content .pay-method').forEach(b=>b.classList.remove('active'));this.classList.add('active');updateTipsContent()">
               <span class="pay-method-icon">🏦</span><span class="pay-method-name">Bank</span>
             </button>
           </div>
