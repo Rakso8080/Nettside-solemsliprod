@@ -47,7 +47,7 @@
   @keyframes marqueeScroll{0%{transform:translateX(0)}100%{transform:translateX(-33.33%)}}
 
   /* ORDER CARD */
-  .order-section{padding:60px 20px 40px;max-width:600px;margin:0 auto}
+  .order-section{padding:60px 20px 0;max-width:600px;margin:0 auto}
   .order-card{background:var(--card-bg);border:1px solid var(--glass-border);border-radius:20px;padding:40px;text-align:center;position:relative;overflow:hidden}
   .order-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--main-blue),var(--accent))}
   .order-icon{font-size:2.5rem;margin-bottom:15px}
@@ -58,6 +58,35 @@
   .btn-order-big{display:inline-flex;align-items:center;gap:8px;padding:16px 36px;background:var(--main-blue);color:white;border:none;border-radius:30px;font-size:1rem;font-weight:600;cursor:pointer;transition:all .3s;text-decoration:none}
   .btn-order-big:hover{background:#0066cc;transform:translateY(-2px);box-shadow:0 8px 24px rgba(1,128,255,0.3)}
   .order-note{font-size:.8rem;color:var(--text-muted);margin-top:16px;line-height:1.6}
+
+  /* PRODUCTS GRID */
+  .products-section{padding:40px 20px;max-width:1000px;margin:0 auto}
+  .products-section .section-label{text-align:center;font-size:.75rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--main-blue);margin-bottom:10px}
+  .products-section h2{text-align:center;margin-bottom:32px;font-size:clamp(1.5rem,4vw,2.2rem);font-weight:800;letter-spacing:-1px}
+  .products-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .product-card{background:var(--card-bg);border:1px solid var(--glass-border);border-radius:16px;overflow:hidden;transition:border-color .3s,box-shadow .3s,transform .3s}
+  .product-card:hover{border-color:rgba(1,128,255,0.3);box-shadow:0 16px 40px rgba(0,0,0,0.15);transform:translateY(-4px)}
+  .product-image{position:relative;aspect-ratio:4/3;overflow:hidden;background:linear-gradient(135deg,#1a1a2e,#16213e)}
+  .product-image img{width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.23,1,.32,1)}
+  .product-card:hover .product-image img{transform:scale(1.08)}
+  .product-badge{position:absolute;top:12px;left:12px;padding:5px 12px;background:var(--main-blue);color:white;font-size:.65rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;border-radius:20px;z-index:1}
+  .product-badge.coming-soon{background:linear-gradient(135deg,#f59e0b,#d97706)}
+  .product-info{padding:20px}
+  .product-info .product-category{font-size:.7rem;font-weight:600;color:var(--main-blue);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+  .product-info h3{font-size:1.1rem;font-weight:700;margin-bottom:6px}
+  .product-info p{font-size:.8rem;color:var(--text-muted);line-height:1.5;margin-bottom:16px}
+  .product-footer{display:flex;justify-content:space-between;align-items:center}
+  .product-price{font-size:1.25rem;font-weight:800}
+  .product-price .currency{font-size:.8rem;font-weight:500;color:var(--text-muted)}
+  .btn-buy{padding:10px 22px;background:var(--main-blue);color:white;border:none;border-radius:30px;font-size:.8rem;font-weight:600;cursor:pointer;transition:all .3s}
+  .btn-buy:hover{background:#0066cc;transform:scale(1.03)}
+  .btn-buy.disabled{opacity:.5;cursor:not-allowed}
+  .btn-buy.disabled:hover{background:var(--main-blue);transform:none}
+
+  @media(max-width:700px){
+    .products-grid{grid-template-columns:1fr}
+    .product-image{aspect-ratio:16/9}
+  }
 
   /* FAQ */
   .faq-section{max-width:700px;margin:0 auto;padding:60px 20px}
@@ -193,6 +222,66 @@
       <div class="order-price-note" data-no="inkl. MVA per bilete" data-en="incl. VAT per photo" data-de="inkl. MwSt. pro Foto">inkl. MVA per bilete</div>
       <a href="mailto:kontakt@solemsliproductions.no?subject=Bestilling%20bilde%20%E2%80%94%20Solemsli%20Productions&body=Hei!%0A%0AJeg%C3%B8nsker%C3%A5kj%C3%B8peet%C3%A5kj%C3%B8pebilde.%0A%0ABeskrivelse:%20[jeg%C3%B8nskeretbildeav...]%0A%0APris:%20200%C2%A0kr%0A%0AMvh%2C%0A[Navn]" class="btn-order-big" data-no="Bestill via e-post" data-en="Order via email" data-de="Bestellen per E-Mail">✉️ <span data-no="Bestill via e-post" data-en="Order via email" data-de="Bestellen per E-Mail">Bestill via e-post</span></a>
       <p class="order-note" data-no="Opnar e-postklienten din med emne klart. Betal med Vipps (#65829), bank eller krypto." data-en="Opens your email client with subject ready. Pay with Vipps (#65829), bank or crypto." data-de="Öffnet Ihren E-Mail-Client mit Betreff. Bezahlen mit Vipps (#65829), Bank oder Krypto.">Opnar e-postklienten din med emne klart. Betal med Vipps (#65829), bank eller krypto.</p>
+    </div>
+  </section>
+
+  <!-- FLERE PRODUKT -->
+  <section class="products-section">
+    <div class="section-label" data-no="Fleire produkt" data-en="More products" data-de="Weitere Produkte">Fleire produkt</div>
+    <h2 data-no="Utvida sortiment" data-en="Extended range" data-de="Erweitertes Sortiment">Utvida sortiment</h2>
+    <div class="products-grid">
+
+      <!-- LUT -->
+      <div class="product-card">
+        <div class="product-image">
+          <img src="luts/før:etter/ferrari/1000020827.jpg" alt="Cinematic LUT" loading="lazy">
+          <div class="product-badge coming-soon" data-no="Kommer snart" data-en="Coming soon" data-de="Bald">Kommer snart</div>
+        </div>
+        <div class="product-info">
+          <div class="product-category">LUT</div>
+          <h3>Cinematic LUT Pack</h3>
+          <p data-no="Profesjonelle fargeinnstillinger for DaVinci Resolve. Kinematisk look for video og film." data-en="Professional color presets for DaVinci Resolve. Cinematic look for video and film." data-de="Professionelle Farbeinstellungen für DaVinci Resolve. Kinematlicher Look für Video und Film.">Profesjonelle fargeinnstillinger for DaVinci Resolve. Kinematisk look for video og film.</p>
+          <div class="product-footer">
+            <div class="product-price">99 <span class="currency">kr</span></div>
+            <button class="btn-buy disabled" data-no="Kommer snart" data-en="Coming soon" data-de="Bald">Kommer snart</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- POWERGRADE -->
+      <div class="product-card">
+        <div class="product-image">
+          <img src="gallery/bryllup/untitled-6005.jpg" alt="Cinematic Powergrade Pack" loading="lazy">
+          <div class="product-badge coming-soon" data-no="Kommer snart" data-en="Coming soon" data-de="Bald">Kommer snart</div>
+        </div>
+        <div class="product-info">
+          <div class="product-category">POWERGRADE</div>
+          <h3>Cinematic Powergrade Pack</h3>
+          <p data-no="Ferdige fargeinnstillingsnettverk for DaVinci Resolve. Raskt sett kinematisk preg på videoane dine." data-en="Ready-made color grading node tree for DaVinci Resolve. Quickly add a cinematic look to your videos." data-de="Fertiges Farbkorrekture-Node-Netzwerk für DaVinci Resolve. Schnell ein kinematischer Look für Ihre Videos.">Ferdige fargeinnstillingsnettverk for DaVinci Resolve. Raskt sett kinematisk preg på videoane dine.</p>
+          <div class="product-footer">
+            <div class="product-price">349 <span class="currency">kr</span></div>
+            <button class="btn-buy disabled" data-no="Kommer snart" data-en="Coming soon" data-de="Bald">Kommer snart</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- MERCH — ZIP HOODIE -->
+      <div class="product-card">
+        <div class="product-image" style="background:linear-gradient(135deg,#1a1a2e,#2d2d44)">
+          <picture><source srcset="merch/5035.webp" type="image/webp"><img src="merch/5035.jpg" alt="Solemsli Zip Hoodie" loading="lazy"></picture>
+          <div class="product-badge" data-no="Bestselger" data-en="Bestseller" data-de="Bestseller">Bestselger</div>
+        </div>
+        <div class="product-info">
+          <div class="product-category">MERCH</div>
+          <h3 data-no="Solemsli Zip Hoodie" data-en="Solemsli Zip Hoodie" data-de="Solemsli Zip Hoodie">Solemsli Zip Hoodie</h3>
+          <p data-no="Sort zip-hoodie med Solemsli Productions-logo. Unisex passform, premium kvalitet." data-en="Black zip hoodie with Solemsli Productions logo. Unisex fit, premium quality." data-de="Schwarze Zip-Hoodie mit Solemsli Productions-Logo. Unisex-Passform, Premium-Qualität.">Sort zip-hoodie med Solemsli Productions-logo. Unisex passform, premium kvalitet.</p>
+          <div class="product-footer">
+            <div class="product-price">700 <span class="currency">kr</span></div>
+            <a href="mailto:kontakt@solemsliproductions.no?subject=Bestilling%20Merch%20%E2%80%94%20Solemsli%20Zip%20Hoodie&body=Hei!%0A%0AJeg%C3%B8nsker%C3%A5kj%C3%B8peSolemsli%20Zip%20Hoodie%20(700%C2%A0kr).%0A%0ASt%C3%B8rrelse:%20[S/M/L/XL]%0A%0AMvh%2C%0A[Navn]" class="btn-buy" data-no="Bestill" data-en="Order" data-de="Bestellen">Bestill</a>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
