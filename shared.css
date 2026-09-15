@@ -283,7 +283,7 @@ a:focus-visible,button:focus-visible{
 .magnetic-text:hover span{transition:transform .3s cubic-bezier(.25,.46,.45,.94)}
 
 /* SCROLL-SCRUB — rotate/scale driven by scroll */
-.scroll-scrub{transition:transform .1s linear will-change:transform}
+.scroll-scrub{transition:transform .1s linear;will-change:transform}
 
 
 
@@ -506,8 +506,8 @@ img{transition:transform .5s cubic-bezier(.23,1,.32,1)}
 
 /* HORIZONTAL STAGGER — grid items slide in from sides */
 .h-stagger>*{opacity:0;transform:translateX(-40px);transition:opacity .6s cubic-bezier(.23,1,.32,1),transform .6s cubic-bezier(.23,1,.32,1)}
+.h-stagger>*:nth-child(even){transform:translateX(40px)}
 .h-stagger.visible>*{opacity:1;transform:translateX(0)}
-.h-stagger.visible>*:nth-child(even){transform:translateX(40px)}
 .h-stagger.visible>*:nth-child(1){transition-delay:0s}
 .h-stagger.visible>*:nth-child(2){transition-delay:.08s}
 .h-stagger.visible>*:nth-child(3){transition-delay:.16s}
