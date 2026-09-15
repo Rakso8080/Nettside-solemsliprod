@@ -6,19 +6,23 @@
 (function() {
   'use strict';
 
+  const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   // ============================================
   // LIVING BACKGROUND — inject orbs and bokeh
   // ============================================
 
-  // MESH GRADIENT ORBS — 3 floating color blobs
-  const meshContainer = document.createElement('div');
-  meshContainer.className = 'mesh-orbs';
-  meshContainer.innerHTML = '<div class="mesh-orb"></div><div class="mesh-orb"></div><div class="mesh-orb"></div>';
-  document.body.appendChild(meshContainer);
+  // MESH GRADIENT ORBS — 3 floating color blobs (desktop only)
+  if (!isTouch) {
+    const meshContainer = document.createElement('div');
+    meshContainer.className = 'mesh-orbs';
+    meshContainer.innerHTML = '<div class="mesh-orb"></div><div class="mesh-orb"></div><div class="mesh-orb"></div>';
+    document.body.appendChild(meshContainer);
+  }
 
-  // BOKEH LIGHTS — 15 soft drifting circles
-  const prefersReducedBg = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (!prefersReducedBg) {
+  // BOKEH LIGHTS — soft drifting circles (desktop only)
+  if (!prefersReduced && !isTouch) {
     const bokehContainer = document.createElement('div');
     bokehContainer.className = 'bokeh-container';
     const bokehCount = window.innerWidth < 768 ? 4 : 8;
@@ -101,7 +105,7 @@
     if (header) header.classList.toggle('scrolled', window.scrollY > 50);
   });
 
-  // PROGRESS BAR — smooth interpolated
+  // PROGRESS BAR — smooth interpolated (desktop: rAF loop, mobile: direct set)
   const progressBar = document.getElementById('progress-bar');
   if (progressBar) {
     let progressTarget = 0;
@@ -109,12 +113,19 @@
     window.addEventListener('scroll', () => {
       const h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
       progressTarget = h > 0 ? (document.documentElement.scrollTop / h) * 100 : 0;
+      if (isTouch) progressBar.style.width = progressTarget + '%';
     }, { passive: true });
-    (function animProgress() {
-      progressCurrent += (progressTarget - progressCurrent) * 0.12;
-      progressBar.style.width = progressCurrent + '%';
-      requestAnimationFrame(animProgress);
-    })();
+    if (!isTouch) {
+      (function animProgress() {
+        progressCurrent += (progressTarget - progressCurrent) * 0.12;
+        progressBar.style.width = progressCurrent + '%';
+        if (Math.abs(progressTarget - progressCurrent) > 0.01 || progressTarget > 0) {
+          requestAnimationFrame(animProgress);
+        } else {
+          progressBar.style.width = progressTarget + '%';
+        }
+      })();
+    }
   }
 
   // SCROLL REVEAL
@@ -129,8 +140,6 @@
   document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
   // CUSTOM CURSOR (desktop only, skip if reduced motion preferred)
-  const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (!isTouch && !prefersReduced) {
     const cursorEl = document.getElementById('cursor');
     const cursorDot = document.getElementById('cursor-dot');
@@ -282,22 +291,24 @@
 
 
 
-  // 3D PERSPECTIVE SECTIONS — sections tilt slightly as you scroll through them
-  const perspObs = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      const update = () => {
-        const rect = entry.target.getBoundingClientRect();
-        const progress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
-        const rotateX = (progress - 0.5) * 4;
-        entry.target.style.transform = `perspective(1200px) rotateX(${rotateX}deg)`;
-        entry.target.style.transformOrigin = 'center center';
-        if (rect.bottom > 0 && rect.top < window.innerHeight) requestAnimationFrame(update);
-      };
-      update();
-    });
-  }, { threshold: 0.05 });
-  document.querySelectorAll('.perspective-section').forEach(el => perspObs.observe(el));
+  // 3D PERSPECTIVE SECTIONS — sections tilt slightly as you scroll through them (desktop only)
+  if (!isTouch && !prefersReduced) {
+    const perspObs = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const update = () => {
+          const rect = entry.target.getBoundingClientRect();
+          const progress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
+          const rotateX = (progress - 0.5) * 4;
+          entry.target.style.transform = `perspective(1200px) rotateX(${rotateX}deg)`;
+          entry.target.style.transformOrigin = 'center center';
+          if (rect.bottom > 0 && rect.top < window.innerHeight) requestAnimationFrame(update);
+        };
+        update();
+      });
+    }, { threshold: 0.05 });
+    document.querySelectorAll('.perspective-section').forEach(el => perspObs.observe(el));
+  }
 
   // STAGGERED REVEAL — children of .stagger-reveal animate in sequence
   const staggerObs = new IntersectionObserver(entries => {
@@ -397,7 +408,10 @@
       update();
     });
   }, { threshold: 0.05 });
-  document.querySelectorAll('.tilt-scroll').forEach(el => tiltScrollObs.observe(el));
+  document.querySelectorAll('.tilt-scroll').forEach(el => {
+    if (isTouch) { el.style.transform = 'none'; return; }
+    tiltScrollObs.observe(el);
+  });
 
   // MOUSE GLOW — elements with .mouse-glow follow cursor with radial gradient
   if (!isTouch) {
@@ -413,6 +427,7 @@
   }
 
   // HORIZONTAL SCROLL REVEAL — elements with .hscroll-reveal slide in horizontally on scroll
+  const hscrollEls = [];
   const hScrollObs = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
@@ -421,40 +436,50 @@
       el.style.opacity = '0';
       el.style.transform = `translateX(${direction * 100}px)`;
       el.style.transition = 'all 0.8s cubic-bezier(.23,1,.32,1)';
-      const observer = new IntersectionObserver(obsEntries => {
-        obsEntries.forEach(obsEntry => {
-          const rect = el.getBoundingClientRect();
-          const progress = 1 - Math.max(0, Math.min(1, rect.left / window.innerWidth));
-          el.style.opacity = String(Math.min(1, progress * 2));
-          el.style.transform = `translateX(${direction * 100 * (1 - progress)}px)`;
-        });
-      }, { threshold: Array.from({length: 100}, (_, i) => i / 100) });
-      observer.observe(el);
+      hscrollEls.push({ el, direction, revealed: false });
       hScrollObs.unobserve(el);
     });
   }, { threshold: 0.1 });
   document.querySelectorAll('.hscroll-reveal').forEach(el => hScrollObs.observe(el));
+  if (hscrollEls.length) {
+    window.addEventListener('scroll', () => {
+      hscrollEls.forEach(item => {
+        if (item.revealed) return;
+        const rect = item.el.getBoundingClientRect();
+        const progress = 1 - Math.max(0, Math.min(1, rect.left / window.innerWidth));
+        if (progress > 0.1) {
+          item.el.style.opacity = String(Math.min(1, progress * 2));
+          item.el.style.transform = `translateX(${item.direction * 100 * (1 - progress)}px)`;
+        }
+      });
+    }, { passive: true });
+  }
 
-  // SMOOTH PARALLAX IMAGES — elements with .parallax-img move at different rate
-  const parallaxImgObs = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      const el = entry.target;
-      const speed = parseFloat(el.dataset.parallaxImg) || 0.15;
-      const update = () => {
-        const rect = el.getBoundingClientRect();
-        if (rect.bottom < -200 || rect.top > window.innerHeight + 200) return;
-        const offset = (rect.top - window.innerHeight / 2) * speed;
-        el.style.transform = `translateY(${offset}px) scale(1.05)`;
-        if (rect.bottom > -200 && rect.top < window.innerHeight + 200) requestAnimationFrame(update);
-      };
-      update();
+  // SMOOTH PARALLAX IMAGES — elements with .parallax-img move at different rate (desktop only)
+  if (!isTouch && !prefersReduced) {
+    const parallaxImgObs = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        const speed = parseFloat(el.dataset.parallaxImg) || 0.15;
+        const update = () => {
+          const rect = el.getBoundingClientRect();
+          if (rect.bottom < -200 || rect.top > window.innerHeight + 200) {
+            el.style.willChange = 'auto';
+            return;
+          }
+          const offset = (rect.top - window.innerHeight / 2) * speed;
+          el.style.transform = `translateY(${offset}px) scale(1.05)`;
+          if (rect.bottom > -200 && rect.top < window.innerHeight + 200) requestAnimationFrame(update);
+        };
+        update();
+      });
+    }, { threshold: 0.05 });
+    document.querySelectorAll('.parallax-img').forEach(el => {
+      el.style.willChange = 'transform';
+      parallaxImgObs.observe(el);
     });
-  }, { threshold: 0.05 });
-  document.querySelectorAll('.parallax-img').forEach(el => {
-    el.style.willChange = 'transform';
-    parallaxImgObs.observe(el);
-  });
+  }
 
   // IMAGE SKELETON LOADING — mark images as loaded when decoded
   document.querySelectorAll('img[loading="lazy"]').forEach(img => {
@@ -828,13 +853,15 @@
   // VISUAL IMPACT PACK — wow-factor effects
   // ============================================
 
-  // 13. AURORA GLOW — inject 3 conic-gradient beams into hero sections
-  document.querySelectorAll('.hero').forEach(hero => {
-    const aurora = document.createElement('div');
-    aurora.className = 'aurora';
-    aurora.innerHTML = '<div class="aurora-beam"></div><div class="aurora-beam"></div><div class="aurora-beam"></div>';
-    hero.appendChild(aurora);
-  });
+  // 13. AURORA GLOW — inject 3 conic-gradient beams into hero sections (desktop only)
+  if (!isTouch && !prefersReduced) {
+    document.querySelectorAll('.hero').forEach(hero => {
+      const aurora = document.createElement('div');
+      aurora.className = 'aurora';
+      aurora.innerHTML = '<div class="aurora-beam"></div><div class="aurora-beam"></div><div class="aurora-beam"></div>';
+      hero.appendChild(aurora);
+    });
+  }
 
   // 14. FLOATING GEOMETRY — random shapes drifting upward
   if (!prefersReduced) {
@@ -867,12 +894,14 @@
 
   // 16. GLOW BORDER — already handled by glowObs above (line 356)
 
-  // 17. GRADIENT SEPARATOR — inject animated line after hero sections
-  document.querySelectorAll('.hero').forEach(hero => {
-    const sep = document.createElement('div');
-    sep.className = 'gradient-separator';
-    hero.parentNode.insertBefore(sep, hero.nextSibling);
-  });
+  // 17. GRADIENT SEPARATOR — inject animated line after hero sections (desktop only)
+  if (!isTouch) {
+    document.querySelectorAll('.hero').forEach(hero => {
+      const sep = document.createElement('div');
+      sep.className = 'gradient-separator';
+      hero.parentNode.insertBefore(sep, hero.nextSibling);
+    });
+  }
 
   // ============================================
   // CLEAN SCROLL EFFECTS — new animations
@@ -1018,41 +1047,69 @@
     }
   });
 
-  // AMBIENT SOUND BUTTON
+  // ============================================
+  // CREATIVE EFFECTS PACK
+  // ============================================
+
+  // GRADIENT SHIFT — background color shifts based on scroll position
   (function() {
-    const btn = document.createElement('button');
-    btn.id = 'ambient-toggle';
-    btn.setAttribute('aria-label', 'Toggle ambient sound');
-    btn.style.cssText = 'position:fixed;bottom:24px;left:24px;z-index:9998;width:44px;height:44px;border-radius:50%;background:var(--card-bg);border:1px solid var(--glass-border);color:var(--text);font-size:1.1rem;cursor:pointer;transition:all .3s;backdrop-filter:blur(10px)';
-    btn.textContent = '🔇';
-    document.body.appendChild(btn);
-    const ctx = new (window.AudioContext || window.webkitAudioContext)();
-    let playing = false, nodes = [];
-    function createWind() {
-      const bufSize = ctx.sampleRate * 2;
-      const buf = ctx.createBuffer(1, bufSize, ctx.sampleRate);
-      const data = buf.getChannelData(0);
-      for (let i = 0; i < bufSize; i++) data[i] = (Math.random() * 2 - 1) * 0.015;
-      const src = ctx.createBufferSource();
-      src.buffer = buf; src.loop = true;
-      const lp = ctx.createBiquadFilter();
-      lp.type = 'lowpass'; lp.frequency.value = 400; lp.Q.value = 0.5;
-      const gn = ctx.createGain(); gn.gain.value = 0.3;
-      src.connect(lp); lp.connect(gn); gn.connect(ctx.destination);
-      src.start(); nodes.push(src, lp, gn);
-      return { src, gn };
-    }
-    btn.addEventListener('click', () => {
-      if (ctx.state === 'suspended') ctx.resume();
-      if (!playing) {
-        createWind(); playing = true; btn.textContent = '🔊';
-        btn.style.borderColor = 'var(--main-blue)';
-      } else {
-        nodes.forEach(n => { try { n.stop ? n.stop() : n.disconnect(); } catch(e){} });
-        nodes = []; playing = false; btn.textContent = '🔇';
-        btn.style.borderColor = 'var(--glass-border)';
+    const root = document.documentElement;
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+          const p = h > 0 ? document.documentElement.scrollTop / h : 0;
+          const hue = 210 + p * 30;
+          const sat = 70 + p * 15;
+          root.style.setProperty('--gradient-hue', hue);
+          root.style.setProperty('--gradient-sat', sat + '%');
+          ticking = false;
+        });
+        ticking = true;
       }
-    });
+    }, { passive: true });
   })();
+
+  // SLICE REVEAL — clip-path wipe-in on scroll
+  const sliceObs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('sliced');
+      sliceObs.unobserve(entry.target);
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.slice-reveal').forEach(el => sliceObs.observe(el));
+
+  // LIQUID CURSOR — trailing dots follow cursor (desktop only)
+  if (!isTouch && !prefersReduced) {
+    const dotCount = 5;
+    const dots = [];
+    const positions = [];
+    for (let i = 0; i < dotCount; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'liquid-dot';
+      const size = 12 - i * 2;
+      dot.style.cssText = `width:${size}px;height:${size}px;opacity:${0.5 - i * 0.08}`;
+      document.body.appendChild(dot);
+      dots.push(dot);
+      positions.push({ x: 0, y: 0 });
+    }
+    let mx = 0, my = 0;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; }, { passive: true });
+    function animateLiquid() {
+      positions[0].x += (mx - positions[0].x) * 0.15;
+      positions[0].y += (my - positions[0].y) * 0.15;
+      for (let i = 1; i < dotCount; i++) {
+        positions[i].x += (positions[i-1].x - positions[i].x) * (0.12 - i * 0.015);
+        positions[i].y += (positions[i-1].y - positions[i].y) * (0.12 - i * 0.015);
+      }
+      for (let i = 0; i < dotCount; i++) {
+        dots[i].style.transform = `translate(${positions[i].x}px,${positions[i].y}px)`;
+      }
+      requestAnimationFrame(animateLiquid);
+    }
+    animateLiquid();
+  }
 
 })();

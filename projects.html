@@ -96,7 +96,7 @@ main{flex:1;padding:0;width:100%}
 
 @media(max-width:900px){.portfolio-grid{column-count:3}.video-grid{grid-template-columns:1fr}}
 @media(max-width:600px){.portfolio-grid{column-count:2}}
-@media(max-width:750px){.hero{height:50vh;min-height:300px}.hero-overlay h1{font-size:2rem}.portfolio-section{padding:60px 20px}.portfolio-grid{gap:12px}.portfolio-grid .img-wrap,.portfolio-grid img{height:180px}.video-grid iframe{height:250px}.shorts-grid{grid-template-columns:repeat(2,1fr)}.shorts-grid iframe{height:280px}.lightbox-nav{width:40px;height:40px;font-size:18px}.lightbox-prev{left:10px}.lightbox-next{right:10px}.lightbox-close{width:40px;height:40px;font-size:20px;top:10px;right:10px}.exif-overlay{display:none!important}}
+@media(max-width:750px){.hero{height:50vh;min-height:300px}.hero-overlay h1{font-size:2rem}.portfolio-section{padding:60px 20px}.portfolio-grid{gap:12px}.portfolio-grid .img-wrap,.portfolio-grid img{height:180px}.portfolio-grid .img-wrap{perspective:none;transform:none;will-change:auto}.video-grid iframe{height:250px}.shorts-grid{grid-template-columns:repeat(2,1fr)}.shorts-grid iframe{height:280px}.lightbox-nav{width:40px;height:40px;font-size:18px}.lightbox-prev{left:10px}.lightbox-next{right:10px}.lightbox-close{width:40px;height:40px;font-size:20px;top:10px;right:10px}.exif-overlay{display:none!important}.lightbox-backdrop{backdrop-filter:none;-webkit-backdrop-filter:none}}
 
 /* FAST IMAGE LOADING */
 .portfolio-grid .img-wrap{content-visibility:auto;contain-intrinsic-size:auto 200px}
@@ -524,12 +524,14 @@ main{flex:1;padding:0;width:100%}
     if (e.key === 'ArrowLeft') prevImage();
   });
 
-  // PARALLAX HERO
-  window.addEventListener('scroll', () => {
-    const s = window.scrollY;
-    const img = document.getElementById('hero-img');
-    if (img && s < window.innerHeight) img.style.transform = 'scale(' + (1 + s * 0.0002) + ') translateY(' + (s * 0.3) + 'px)';
-  });
+  // PARALLAX HERO (desktop only)
+  if (!('ontouchstart' in window)) {
+    window.addEventListener('scroll', () => {
+      const s = window.scrollY;
+      const img = document.getElementById('hero-img');
+      if (img && s < window.innerHeight) img.style.transform = 'scale(' + (1 + s * 0.0002) + ') translateY(' + (s * 0.3) + 'px)';
+    });
+  }
 
   // FILTER TABS
   document.querySelectorAll('.filter-tab').forEach(tab => {
@@ -663,31 +665,33 @@ main{flex:1;padding:0;width:100%}
     }
   });
 
-  // DYNAMIC COLOR THEME — extract dominant color from lightbox image
-  const colorCanvas = document.createElement('canvas');
-  const colorCtx = colorCanvas.getContext('2d', { willReadFrequently: true });
-  colorCanvas.width = 50; colorCanvas.height = 50;
-  function extractDominantColor(img) {
-    colorCtx.drawImage(img, 0, 0, 50, 50);
-    const data = colorCtx.getImageData(0, 0, 50, 50).data;
-    let r = 0, g = 0, b = 0, count = 0;
-    for (let i = 0; i < data.length; i += 16) {
-      r += data[i]; g += data[i+1]; b += data[i+2]; count++;
-    }
-    r = Math.round(r/count); g = Math.round(g/count); b = Math.round(b/count);
-    return `rgb(${r},${g},${b})`;
-  }
-  document.querySelectorAll('.portfolio-grid .img-wrap img').forEach(img => {
-    img.addEventListener('click', () => {
-      if (img.complete && img.naturalWidth > 0) {
-        try {
-          const color = extractDominantColor(img);
-          document.documentElement.style.setProperty('--main-blue', color);
-          document.documentElement.style.setProperty('--accent', color);
-        } catch(e) {}
+  // DYNAMIC COLOR THEME — extract dominant color from lightbox image (desktop only)
+  if (!('ontouchstart' in window)) {
+    const colorCanvas = document.createElement('canvas');
+    const colorCtx = colorCanvas.getContext('2d', { willReadFrequently: true });
+    colorCanvas.width = 50; colorCanvas.height = 50;
+    function extractDominantColor(img) {
+      colorCtx.drawImage(img, 0, 0, 50, 50);
+      const data = colorCtx.getImageData(0, 0, 50, 50).data;
+      let r = 0, g = 0, b = 0, count = 0;
+      for (let i = 0; i < data.length; i += 16) {
+        r += data[i]; g += data[i+1]; b += data[i+2]; count++;
       }
+      r = Math.round(r/count); g = Math.round(g/count); b = Math.round(b/count);
+      return `rgb(${r},${g},${b})`;
+    }
+    document.querySelectorAll('.portfolio-grid .img-wrap img').forEach(img => {
+      img.addEventListener('click', () => {
+        if (img.complete && img.naturalWidth > 0) {
+          try {
+            const color = extractDominantColor(img);
+            document.documentElement.style.setProperty('--main-blue', color);
+            document.documentElement.style.setProperty('--accent', color);
+          } catch(e) {}
+        }
+      });
     });
-  });
+  }
 
   // TOUCH SWIPE in lightbox
   let touchStartX = 0;

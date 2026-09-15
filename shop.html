@@ -282,6 +282,7 @@
     .hero{padding:120px 20px 40px}
     .cart-panel{width:100%;max-width:100%;right:-100%}
     .cart-header{padding:16px 20px}
+    .filter-bar{backdrop-filter:none;-webkit-backdrop-filter:none;background:var(--bg)}
     .cart-items{padding:12px 20px}
     .cart-item{padding:14px 0;gap:12px}
     .cart-item-icon{width:44px;height:44px}
@@ -363,12 +364,12 @@
 
   <!-- FILTER -->
   <div class="filter-bar">
-    <button class="filter-btn active" data-filter="all" data-no="Alle" data-en="All" data-de="Alle">Alle <span class="filter-count" id="count-all">9</span></button>
+    <button class="filter-btn active" data-filter="all" data-no="Alle" data-en="All" data-de="Alle">Alle <span class="filter-count" id="count-all">15</span></button>
     <button class="filter-btn" data-filter="lut" data-no="LUT-er" data-en="LUTs" data-de="LUTs">LUT-er <span class="filter-count" id="count-lut">4</span></button>
-    <button class="filter-btn" data-filter="bilde" data-no="Bilder" data-en="Photos" data-de="Fotos">Bilder <span class="filter-count" id="count-bilde">1</span></button>
+    <button class="filter-btn" data-filter="bilde" data-no="Bilder" data-en="Photos" data-de="Fotos">Bilder <span class="filter-count" id="count-bilde">7</span></button>
     <button class="filter-btn" data-filter="merch" data-no="Merch" data-en="Merch" data-de="Merch">Merch <span class="filter-count" id="count-merch">1</span></button>
     <button class="filter-btn" data-filter="preset" data-no="Presets" data-en="Presets" data-de="Presets">Presets <span class="filter-count" id="count-preset">2</span></button>
-    <button class="filter-btn" data-filter="powergrades" data-no="Powergrades" data-en="Powergrades" data-de="Powergrades">Powergrades <span class="filter-count" id="count-powergrades">0</span></button>
+    <button class="filter-btn" data-filter="powergrades" data-no="Powergrades" data-en="Powergrades" data-de="Powergrades">Powergrades <span class="filter-count" id="count-powergrades">1</span></button>
   </div>
 
   <!-- BEFORE / AFTER — LUT SAMMENLIGNING -->
@@ -525,8 +526,93 @@
           <h3 data-no="Bestill bilder" data-en="Order photos" data-de="Fotos bestellen">Bestill bilder</h3>
           <p data-no="Bestill høgoppløselege bilete av natur, biler eller andre motiv. Ta kontakt med kva bilete du ønskjer, så sender eg digitale filer i høg oppløysing." data-en="Order high-resolution photos of nature, cars or other subjects. Get in touch with what photo you want, and I'll send digital files in high resolution." data-de="Bestellen Sie hochauflösende Fotos von Natur, Autos oder anderen Motiven. Kontaktieren Sie mich mit dem gewünschten Foto und ich sende Ihnen digitale Dateien in hoher Auflösung.">Bestill høgoppløselege bilete av natur, biler eller andre motiv. Ta kontakt med kva bilete du ønskjer, så sender eg digitale filer i høg oppløysing.</p>
           <div class="product-footer">
-            <div class="product-price" data-no="Fra 49 kr" data-en="From 49 kr" data-de="Ab 49 kr">Fra 49 kr</div>
+            <div class="product-price">200 <span class="currency">kr</span></div>
             <a href="contact.html" class="btn-buy" data-no="Bestill" data-en="Order" data-de="Bestellen">Bestill</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- VANG KOMMUNE — DRONEBILDER -->
+      <div class="product-card magnetic-drag" data-category="bilde">
+        <div class="product-image">
+          <img src="gallery/vang-kommune-sentrum/DJI_20251006091304_0231_D.jpg" alt="Vang kommune drone" loading="lazy">
+          <div class="product-badge" data-no="Drone" data-en="Drone" data-de="Drohne">Drone</div>
+        </div>
+        <div class="product-info">
+          <div class="product-category">BILDE — DRONE</div>
+          <h3>Vang kommune sentrum</h3>
+          <p data-no="Dronebilde frå Vang kommune sentrum. Høgoppløyseleg digital fil." data-en="Drone photo from Vang municipality center. High-resolution digital file." data-de="Drohnenaufnahme aus dem Vang Gemeindezentrum. Hochauflösende digitale Datei.">Dronebilde frå Vang kommune sentrum. Høgoppløyseleg digital fil.</p>
+          <div class="product-footer">
+            <div class="product-price">200 <span class="currency">kr</span></div>
+            <button class="btn-buy" onclick="addToCart('Vang kommune sentrum', '200 kr', 'bilde')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- VANG BYGG — DRONEBILDER -->
+      <div class="product-card magnetic-drag" data-category="bilde">
+        <div class="product-image">
+          <img src="gallery/vang-bygg-oversikt/untitled--10.jpg" alt="Vang bygg drone" loading="lazy">
+          <div class="product-badge" data-no="Drone" data-en="Drone" data-de="Drohne">Drone</div>
+        </div>
+        <div class="product-info">
+          <div class="product-category">BILDE — DRONE</div>
+          <h3>Vang bygg oversikt</h3>
+          <p data-no="Dronebilde av Vang bygg. Høgoppløyseleg digital fil." data-en="Drone photo of Vang bygg. High-resolution digital file." data-de="Drohnenaufnahme von Vang bygg. Hochauflösende digitale Datei.">Dronebilde av Vang bygg. Høgoppløyseleg digital fil.</p>
+          <div class="product-footer">
+            <div class="product-price">200 <span class="currency">kr</span></div>
+            <button class="btn-buy" onclick="addToCart('Vang bygg oversikt', '200 kr', 'bilde')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- OLA K — DRONEBILDER -->
+      <div class="product-card magnetic-drag" data-category="bilde">
+        <div class="product-image">
+          <img src="gallery/ola-k/untitled--2.jpg" alt="Ola K drone" loading="lazy">
+          <div class="product-badge" data-no="Drone" data-en="Drone" data-de="Drohne">Drone</div>
+        </div>
+        <div class="product-info">
+          <div class="product-category">BILDE — DRONE</div>
+          <h3>Ola K</h3>
+          <p data-no="Dronebilde frå Ola K. Høgoppløyseleg digital fil." data-en="Drone photo from Ola K. High-resolution digital file." data-de="Drohnenaufnahme von Ola K. Hochauflösende digitale Datei.">Dronebilde frå Ola K. Høgoppløyseleg digital fil.</p>
+          <div class="product-footer">
+            <div class="product-price">200 <span class="currency">kr</span></div>
+            <button class="btn-buy" onclick="addToCart('Ola K drone', '200 kr', 'bilde')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- VINJEROCK DRONE -->
+      <div class="product-card magnetic-drag" data-category="bilde">
+        <div class="product-image">
+          <img src="gallery/vinjerock-drone/untitled--16.jpg" alt="Vinjerock drone" loading="lazy">
+          <div class="product-badge" data-no="Event" data-en="Event" data-de="Event">Event</div>
+        </div>
+        <div class="product-info">
+          <div class="product-category">BILDE — DRONE</div>
+          <h3>Vinjerock drone</h3>
+          <p data-no="Dronebilde frå Vinjerock. Høgoppløyseleg digital fil." data-en="Drone photo from Vinjerock. High-resolution digital file." data-de="Drohnenaufnahme von Vinjerock. Hochauflösende digitale Datei.">Dronebilde frå Vinjerock. Høgoppløyseleg digital fil.</p>
+          <div class="product-footer">
+            <div class="product-price">200 <span class="currency">kr</span></div>
+            <button class="btn-buy" onclick="addToCart('Vinjerock drone', '200 kr', 'bilde')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- VANG REKLAMEFILM -->
+      <div class="product-card magnetic-drag" data-category="bilde">
+        <div class="product-image">
+          <img src="gallery/vang-reklamefilm/untitled-4536.jpg" alt="Vang reklamefilm" loading="lazy">
+          <div class="product-badge" data-no="Reklame" data-en="Commercial" data-de="Werbung">Reklame</div>
+        </div>
+        <div class="product-info">
+          <div class="product-category">BILDE — REKLAME</div>
+          <h3>Vang reklamefilm</h3>
+          <p data-no="Bilde frå Vang reklamefilm. Høgoppløyseleg digital fil." data-en="Photo from Vang commercial. High-resolution digital file." data-de="Foto aus Vang Werbefilm. Hochauflösende digitale Datei.">Bilde frå Vang reklamefilm. Høgoppløyseleg digital fil.</p>
+          <div class="product-footer">
+            <div class="product-price">200 <span class="currency">kr</span></div>
+            <button class="btn-buy" onclick="addToCart('Vang reklamefilm', '200 kr', 'bilde')" data-no="Kjøp" data-en="Buy" data-de="Kaufen">Kjøp</button>
           </div>
         </div>
       </div>
