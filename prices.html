@@ -370,47 +370,44 @@
         </div>
       </div>
       <div class="reveal" style="margin-top:40px">
-        <button class="btn btn-outline review-toggle" id="reviewToggleBtn">✏️ Skriv en anmeldelse</button>
+        <button class="btn btn-outline review-toggle" id="reviewToggleBtn" onclick="document.getElementById('reviewForm').classList.toggle('open');this.textContent=document.getElementById('reviewForm').classList.contains('open')?'Lukk skjema':'✏️ Skriv en anmeldelse'">✏️ Skriv en anmeldelse</button>
       </div>
       <div id="reviewForm" class="review-form-wrapper">
-        <form class="review-form" action="https://formspree.io/f/YOUR_FORM_ID_HERE" method="POST">
-          <input type="hidden" name="_subject" value="Ny anmeldelse — Solemsli Productions">
-          <input type="hidden" name="_template" value="table">
+        <div class="review-form">
           <div class="review-stars-input">
             <label>Vurdering</label>
             <div class="star-picker" id="starPicker">
-              <span class="star-btn" data-value="1">★</span>
-              <span class="star-btn" data-value="2">★</span>
-              <span class="star-btn" data-value="3">★</span>
-              <span class="star-btn" data-value="4">★</span>
-              <span class="star-btn active" data-value="5">★</span>
+              <span class="star-btn" data-value="1" onclick="setStars(1)">★</span>
+              <span class="star-btn" data-value="2" onclick="setStars(2)">★</span>
+              <span class="star-btn" data-value="3" onclick="setStars(3)">★</span>
+              <span class="star-btn" data-value="4" onclick="setStars(4)">★</span>
+              <span class="star-btn active" data-value="5" onclick="setStars(5)">★</span>
             </div>
-            <input type="hidden" name="stjerner" id="starValue" value="5" required>
           </div>
           <div class="review-form-row">
             <div class="review-field">
               <label for="review-name">Navn</label>
-              <input type="text" id="review-name" name="navn" placeholder="Oskar S." required>
+              <input type="text" id="review-name" placeholder="Oskar S." required>
             </div>
             <div class="review-field">
               <label for="review-type">Type oppdrag</label>
-              <select id="review-type" name="oppdrag" required>
-                <option value="foto">Foto</option>
-                <option value="video">Video</option>
-                <option value="drone">Drone</option>
-                <option value="bryllup">Bryllup</option>
-                <option value="event">Event</option>
-                <option value="bedrift">Bedrift</option>
-                <option value="annet">Annet</option>
+              <select id="review-type" required>
+                <option value="Foto">Foto</option>
+                <option value="Video">Video</option>
+                <option value="Drone">Drone</option>
+                <option value="Bryllup">Bryllup</option>
+                <option value="Event">Event</option>
+                <option value="Bedrift">Bedrift</option>
+                <option value="Annet">Annet</option>
               </select>
             </div>
           </div>
           <div class="review-field">
             <label for="review-text">Anmeldelsen din</label>
-            <textarea id="review-text" name="anmeldelse" rows="4" placeholder="Fortell hvordan opplevelsen din var..." required></textarea>
+            <textarea id="review-text" rows="4" placeholder="Fortell hvordan opplevelsen din var..." required></textarea>
           </div>
-          <button type="submit" class="btn btn-primary review-submit">Send anmeldelse</button>
-        </form>
+          <button class="btn btn-primary review-submit" onclick="sendReview()">Send anmeldelse</button>
+        </div>
       </div>
     </section>
 
@@ -539,55 +536,27 @@
       });
     }
 
-    // REVIEW TOGGLE BUTTON
-    const reviewToggleBtn = document.getElementById('reviewToggleBtn');
-    const reviewFormWrapper = document.getElementById('reviewForm');
-    if (reviewToggleBtn && reviewFormWrapper) {
-      reviewToggleBtn.addEventListener('click', () => {
-        reviewFormWrapper.classList.toggle('open');
-        reviewToggleBtn.textContent = reviewFormWrapper.classList.contains('open') ? 'Lukk skjema' : '✏️ Skriv en anmeldelse';
+    // STAR RATING
+    let currentStars = 5;
+    function setStars(n) {
+      currentStars = n;
+      document.querySelectorAll('.star-btn').forEach(btn => {
+        btn.classList.toggle('active', parseInt(btn.dataset.value) <= n);
       });
     }
 
-    // REVIEW FORM HANDLER
-    const reviewForm = document.querySelector('.review-form');
-    if (reviewForm) {
-      reviewForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const btn = reviewForm.querySelector('.review-submit');
-        const origText = btn.textContent;
-        if (btn) { btn.textContent = '...'; btn.disabled = true; btn.style.opacity = '.6'; }
-        try {
-          const response = await fetch(reviewForm.action, {
-            method: 'POST',
-            body: new FormData(reviewForm),
-            headers: { 'Accept': 'application/json' }
-          });
-          if (response.ok) {
-            reviewForm.innerHTML = '<div style="text-align:center;padding:30px"><div style="font-size:2.5rem;margin-bottom:12px">✅</div><h3>Takk for anmeldelsen!</h3><p style="color:var(--text-muted);margin-top:8px">Den vil bli lagt ut etter godkjenning.</p></div>';
-          } else {
-            if (btn) { btn.textContent = origText; btn.disabled = false; btn.style.opacity = '1'; }
-            const existing = reviewForm.querySelector('.form-error');
-            if (!existing) {
-              const err = document.createElement('p');
-              err.className = 'form-error';
-              err.style.cssText = 'color:#ff4444;text-align:center;font-size:.9rem;margin-top:8px';
-              err.textContent = 'Noe gikk galt. Prøv igjen.';
-              reviewForm.appendChild(err);
-            }
-          }
-        } catch {
-          if (btn) { btn.textContent = origText; btn.disabled = false; btn.style.opacity = '1'; }
-          const existing = reviewForm.querySelector('.form-error');
-          if (!existing) {
-            const err = document.createElement('p');
-            err.className = 'form-error';
-            err.style.cssText = 'color:#ff4444;text-align:center;font-size:.9rem;margin-top:8px';
-            err.textContent = 'Nettverksfeil. Prøv igjen.';
-            reviewForm.appendChild(err);
-          }
-        }
-      });
+    // REVIEW → MAILTO
+    function sendReview() {
+      const name = document.getElementById('review-name').value.trim();
+      const type = document.getElementById('review-type').value;
+      const text = document.getElementById('review-text').value.trim();
+      if (!name || !text) { alert('Vennligst fyll ut navn og anmeldelse.'); return; }
+      const stars = '★'.repeat(currentStars) + '☆'.repeat(5 - currentStars);
+      const subject = encodeURIComponent('Anmeldelse — Solemsli Productions');
+      const body = encodeURIComponent(
+        `Hei!\n\nAnmeldelse fra: ${name}\nType oppdrag: ${type}\nVurdering: ${stars}\n\nAnmeldelse:\n${text}`
+      );
+      window.location.href = `mailto:rakso8080@gmail.com?subject=${subject}&body=${body}`;
     }
 
     // BOOKING EMAIL
