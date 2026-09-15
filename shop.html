@@ -233,8 +233,18 @@
 
       <!-- LUT -->
       <div class="product-card">
-        <div class="product-image">
-          <img src="luts/før:etter/ferrari/1000020827.jpg" alt="Cinematic LUT" loading="lazy">
+        <div class="product-image" style="padding:0">
+          <div class="ba-slider" data-start="50" style="position:relative;width:100%;height:100%">
+            <img class="ba-after" src="luts/før:etter/ferrari/1000020827.jpg" alt="Etter LUT" draggable="false" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover">
+            <img class="ba-before" src="luts/før:etter/ferrari/_DSC3114.jpeg" alt="Før LUT" draggable="false" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;clip-path:inset(0 50% 0 0)">
+            <div class="ba-handle" style="position:absolute;top:0;bottom:0;left:50%;z-index:3;display:flex;flex-direction:column;align-items:center;transform:translateX(-50%);pointer-events:none">
+              <div style="flex:1;width:2px;background:rgba(255,255,255,0.9);box-shadow:0 0 8px rgba(0,0,0,0.5)"></div>
+              <div class="ba-handle-circle" tabindex="0" role="slider" aria-label="Before/After slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" style="width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.95);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;color:#111;box-shadow:0 2px 12px rgba(0,0,0,0.4);flex-shrink:0;pointer-events:auto;cursor:ew-resize">◄►</div>
+              <div style="flex:1;width:2px;background:rgba(255,255,255,0.9);box-shadow:0 0 8px rgba(0,0,0,0.5)"></div>
+            </div>
+            <div style="position:absolute;bottom:8px;left:8px;z-index:4;padding:4px 10px;background:rgba(0,0,0,0.6);backdrop-filter:blur(6px);border-radius:20px;font-size:.65rem;font-weight:600;color:white;pointer-events:none" data-no="Før" data-en="Before" data-de="Vorher">Før</div>
+            <div style="position:absolute;bottom:8px;right:8px;z-index:4;padding:4px 10px;background:rgba(0,0,0,0.6);backdrop-filter:blur(6px);border-radius:20px;font-size:.65rem;font-weight:600;color:white;pointer-events:none" data-no="Etter" data-en="After" data-de="Nachher">Etter</div>
+          </div>
           <div class="product-badge coming-soon" data-no="Kommer snart" data-en="Coming soon" data-de="Bald">Kommer snart</div>
         </div>
         <div class="product-info">
@@ -440,6 +450,37 @@
           <p style="font-size:.75rem;color:var(--text-muted);margin-top:6px">Merk betalingen med navnet ditt.</p>`;
       }
     }
+
+    // BEFORE / AFTER SLIDER
+    document.querySelectorAll('.ba-slider').forEach(slider => {
+      const beforeImg = slider.querySelector('.ba-before');
+      const handle = slider.querySelector('.ba-handle');
+      let isDragging = false;
+
+      function setPosition(percent) {
+        percent = Math.max(2, Math.min(98, percent));
+        beforeImg.style.clipPath = `inset(0 ${100 - percent}% 0 0)`;
+        handle.style.left = percent + '%';
+      }
+      setPosition(50);
+
+      function getPercent(e) {
+        const rect = slider.getBoundingClientRect();
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        return ((clientX - rect.left) / rect.width) * 100;
+      }
+
+      slider.addEventListener('pointerdown', (e) => { isDragging = true; setPosition(getPercent(e)); e.preventDefault(); });
+      window.addEventListener('pointermove', (e) => { if (!isDragging) return; setPosition(getPercent(e)); e.preventDefault(); });
+      window.addEventListener('pointerup', () => { isDragging = false; });
+
+      const circle = handle.querySelector('.ba-handle-circle');
+      circle.addEventListener('keydown', (e) => {
+        const current = parseFloat(handle.style.left) || 50;
+        if (e.key === 'ArrowLeft') { setPosition(current - 2); e.preventDefault(); }
+        if (e.key === 'ArrowRight') { setPosition(current + 2); e.preventDefault(); }
+      });
+    });
   </script>
   <script src="shared.js"></script>
 </body>
