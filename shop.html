@@ -20,7 +20,10 @@
   <meta name="twitter:image" content="https://solemsliproductions.no/gallery/andre%20natur%20bilder/uranustind.jpg" />
   <link rel="canonical" href="https://solemsliproductions.no/shop.html" />
 <title>Shop – Solemsli Productions</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
 <link rel="stylesheet" href="shared.css">
 <style>
   /* HERO */
@@ -620,7 +623,7 @@
       <!-- MERCH — ZIP HOODIE -->
       <div class="product-card magnetic-drag" data-category="merch">
         <div class="product-image" style="background:linear-gradient(135deg,#1a1a2e,#2d2d44)">
-          <img src="merch/5035.jpg" alt="Solemsli Zip Hoodie" loading="lazy">
+          <picture><source srcset="merch/5035.webp" type="image/webp"><img src="merch/5035.jpg" alt="Solemsli Zip Hoodie" loading="lazy"></picture>
           <div class="product-badge" data-no="Bestselger" data-en="Bestseller" data-de="Bestseller">Bestselger</div>
         </div>
         <div class="product-info">
@@ -637,7 +640,7 @@
       <!-- MERCH — T-SHIRT -->
       <div class="product-card magnetic-drag" data-category="merch">
         <div class="product-image" style="background:linear-gradient(135deg,#0f0f23,#1a1a3e)">
-          <img src="merch/untitled-1628.jpg" alt="Solemsli T-Shirt" loading="lazy">
+          <picture><source srcset="merch/untitled-1628.webp" type="image/webp"><img src="merch/untitled-1628.jpg" alt="Solemsli T-Shirt" loading="lazy"></picture>
           <div class="product-badge" style="background:linear-gradient(135deg,#f59e0b,#d97706)" data-no="Kommer snart" data-en="Coming soon" data-de="Bald erhältlich">Kommer snart</div>
         </div>
         <div class="product-info">
@@ -908,6 +911,7 @@
     // CART
     let cart = [];
     const VIPPS_NUMBER = '65829';
+    const VIPPS_TIPS_NUMBER = '66237';
 
     // Load cart from localStorage
     try {
@@ -1146,10 +1150,10 @@
           </div>
           <div id="tips-pay-content">
             <div class="vipps-number-box">
-              <span>${VIPPS_NUMBER}</span>
-              <button class="vipps-copy-btn" onclick="navigator.clipboard.writeText('${VIPPS_NUMBER}').then(()=>{this.textContent='Kopiert!';this.classList.add('copied');setTimeout(()=>{this.textContent='Kopier';this.classList.remove('copied')},2000)})">Kopier</button>
+              <span>${VIPPS_TIPS_NUMBER}</span>
+              <button class="vipps-copy-btn" onclick="navigator.clipboard.writeText('${VIPPS_TIPS_NUMBER}').then(()=>{this.textContent='Kopiert!';this.classList.add('copied');setTimeout(()=>{this.textContent='Kopier';this.classList.remove('copied')},2000)})">Kopier</button>
             </div>
-            <p class="vipps-note" style="margin-top:8px">Åpne Vipps → Søk opp <strong>${VIPPS_NUMBER}</strong> → Send valgfritt beløp</p>
+            <p class="vipps-note" style="margin-top:8px">Åpne Vipps → Søk opp <strong>${VIPPS_TIPS_NUMBER}</strong> → Send valgfritt beløp</p>
           </div>
           <p class="vipps-note">Hvert bidrag hjelper meg å fortsette å skape innhold og utvikle meg som fotograf.</p>
           <button class="vipps-close-btn" onclick="this.closest('.vipps-overlay').remove()">Forstått</button>
@@ -1162,10 +1166,10 @@
       if (!container) return;
       if (tipsPayMethod === 'vipps') {
         container.innerHTML = `
-          <div class="vipps-number-box"><span>${VIPPS_NUMBER}</span>
-            <button class="vipps-copy-btn" onclick="navigator.clipboard.writeText('${VIPPS_NUMBER}').then(()=>{this.textContent='Kopiert!';this.classList.add('copied');setTimeout(()=>{this.textContent='Kopier';this.classList.remove('copied')},2000)})">Kopier</button>
+          <div class="vipps-number-box"><span>${VIPPS_TIPS_NUMBER}</span>
+            <button class="vipps-copy-btn" onclick="navigator.clipboard.writeText('${VIPPS_TIPS_NUMBER}').then(()=>{this.textContent='Kopiert!';this.classList.add('copied');setTimeout(()=>{this.textContent='Kopier';this.classList.remove('copied')},2000)})">Kopier</button>
           </div>
-          <p class="vipps-note" style="margin-top:8px">Åpne Vipps → Søk opp <strong>${VIPPS_NUMBER}</strong> → Send valgfritt beløp</p>`;
+          <p class="vipps-note" style="margin-top:8px">Åpne Vipps → Søk opp <strong>${VIPPS_TIPS_NUMBER}</strong> → Send valgfritt beløp</p>`;
       } else if (tipsPayMethod === 'crypto') {
         container.innerHTML = `
           <p style="font-size:.8rem;color:var(--text-muted);margin-bottom:8px">Send Bitcoin til adressen under:</p>
