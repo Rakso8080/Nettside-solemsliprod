@@ -157,10 +157,41 @@
 
   .crypto-qr{text-align:center;margin:12px 0}
 
+  /* ORDER CONFIRMATION MODAL */
+  .order-confirm-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.8);backdrop-filter:blur(8px);z-index:99999;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;transition:opacity .3s ease}
+  .order-confirm-overlay.show{opacity:1}
+  .order-confirm-modal{background:var(--bg);border:1px solid var(--glass-border);border-radius:20px;padding:40px 32px;max-width:440px;width:100%;text-align:center;transform:translateY(20px) scale(.95);transition:transform .4s cubic-bezier(.23,1,.32,1);position:relative}
+  .order-confirm-overlay.show .order-confirm-modal{transform:translateY(0) scale(1)}
+  .order-confirm-check{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#22c55e,#16a34a);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:1.8rem;color:white;animation:checkPop .5s cubic-bezier(.23,1,.32,1) .2s both}
+  @keyframes checkPop{0%{transform:scale(0);opacity:0}50%{transform:scale(1.2)}100%{transform:scale(1);opacity:1}}
+  .order-confirm-modal h3{font-size:1.3rem;font-weight:700;margin-bottom:6px}
+  .order-confirm-modal .oc-subtitle{font-size:.9rem;color:var(--text-muted);margin-bottom:20px}
+  .oc-item{background:var(--card-bg);border:1px solid var(--glass-border);border-radius:12px;padding:16px;margin-bottom:16px;text-align:left}
+  .oc-item-label{font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--main-blue);margin-bottom:6px}
+  .oc-item-name{font-size:1rem;font-weight:600;margin-bottom:2px}
+  .oc-item-price{font-size:1.2rem;font-weight:800;color:var(--main-blue)}
+  .oc-item-price span{font-size:.8rem;font-weight:500;color:var(--text-muted)}
+  .oc-steps{margin-bottom:20px}
+  .oc-step{display:flex;align-items:flex-start;gap:12px;text-align:left;margin-bottom:12px}
+  .oc-step-num{flex-shrink:0;width:28px;height:28px;border-radius:50%;background:rgba(1,128,255,0.1);border:1px solid rgba(1,128,255,0.2);display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;color:var(--main-blue)}
+  .oc-step-text{font-size:.85rem;color:var(--text-muted);line-height:1.5}
+  .oc-step-text strong{color:var(--text);font-weight:600}
+  .oc-payment{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:20px}
+  .oc-pay-item{padding:12px 8px;background:var(--card-bg);border:1px solid var(--glass-border);border-radius:10px;text-align:center}
+  .oc-pay-icon{font-size:1.2rem;margin-bottom:4px}
+  .oc-pay-name{font-size:.7rem;font-weight:600;color:var(--text-muted)}
+  .oc-pay-detail{font-size:.75rem;font-weight:700;color:var(--text);margin-top:2px}
+  .oc-close{width:100%;padding:14px;background:var(--main-blue);color:white;border:none;border-radius:14px;font-size:.9rem;font-weight:600;cursor:pointer;transition:all .3s;font-family:inherit}
+  .oc-close:hover{background:#0066cc;transform:translateY(-1px)}
+  .oc-ghost{background:none;border:1px solid var(--glass-border);color:var(--text-muted);margin-top:8px}
+  .oc-ghost:hover{background:var(--card-bg);color:var(--text)}
+
   /* RESPONSIVE */
   @media(max-width:600px){
     .hero{min-height:40vh;padding:120px 20px 40px}
     .order-card{padding:28px 20px}
+    .order-confirm-modal{padding:28px 20px}
+    .oc-payment{grid-template-columns:1fr}
   }
 </style>
 </head>
@@ -450,6 +481,63 @@
           <p style="font-size:.75rem;color:var(--text-muted);margin-top:6px">Merk betalingen med navnet ditt.</p>`;
       }
     }
+
+    // ORDER CONFIRMATION MODAL
+    function showOrderConfirm(productName, price) {
+      const overlay = document.createElement('div');
+      overlay.className = 'order-confirm-overlay';
+      overlay.innerHTML = `
+        <div class="order-confirm-modal">
+          <div class="order-confirm-check">✓</div>
+          <h3 data-no="Bestilling sendt!" data-en="Order sent!" data-de="Bestellung gesendet!">Bestilling sendt!</h3>
+          <p class="oc-subtitle" data-no="Sjekk e-postklienten din" data-en="Check your email client" data-de="Überprüfen Sie Ihren E-Mail-Client">Sjekk e-postklienten din</p>
+          <div class="oc-item">
+            <div class="oc-item-label" data-no="Din bestilling" data-en="Your order" data-de="Ihre Bestellung">Din bestilling</div>
+            <div class="oc-item-name">${productName}</div>
+            <div class="oc-item-price">${price} <span>inkl. MVA</span></div>
+          </div>
+          <div class="oc-steps">
+            <div class="oc-step">
+              <div class="oc-step-num">1</div>
+              <div class="oc-step-text" data-no="Fullfør <strong>e-posten</strong> og send den til oss" data-de="Füllen Sie die <strong>E-Mail aus</strong> und senden Sie sie uns">Fullfør <strong>e-posten</strong> og send den til oss</div>
+            </div>
+            <div class="oc-step">
+              <div class="oc-step-num">2</div>
+              <div class="oc-step-text"><strong data-no="Betal" data-en="Pay" data-de="Bezahlen">Betal</strong> <span data-no="med Vipps, bank eller krypto" data-en="with Vipps, bank or crypto" data-de="mit Vipps, Bank oder Krypto">med Vipps, bank eller krypto</span></div>
+            </div>
+            <div class="oc-step">
+              <div class="oc-step-num">3</div>
+              <div class="oc-step-text"><span data-no="Du får fila tilsendt på e-post innan 24 timer" data-en="You'll receive the file by email within 24 hours" data-de="Sie erhalten die Datei per E-Mail innerhalb von 24 Stunden">Du får fila tilsendt på e-post innan 24 timer</span></div>
+            </div>
+          </div>
+          <div class="oc-payment">
+            <div class="oc-pay-item"><div class="oc-pay-icon">💚</div><div class="oc-pay-name">Vipps</div><div class="oc-pay-detail">#65829</div></div>
+            <div class="oc-pay-item"><div class="oc-pay-icon">🏦</div><div class="oc-pay-name">Bank</div><div class="oc-pay-detail" data-no="Kontakt for detaljer" data-en="Contact for details" data-de="Kontakt für Details">Kontakt for detaljer</div></div>
+            <div class="oc-pay-item"><div class="oc-pay-icon">₿</div><div class="oc-pay-name">Crypto</div><div class="oc-pay-detail">Bitcoin</div></div>
+          </div>
+          <button class="oc-close" onclick="this.closest('.order-confirm-overlay').remove()" data-no="Forstått" data-en="Got it" data-de="Verstanden">Forstått</button>
+          <button class="oc-ghost oc-close" onclick="window.location.href='contact.html'" data-no="Spørsmål? Kontakt meg" data-en="Questions? Contact me" data-de="Fragen? Kontaktieren Sie mich">Spørsmål? Kontakt meg</button>
+        </div>`;
+      document.body.appendChild(overlay);
+      requestAnimationFrame(() => requestAnimationFrame(() => overlay.classList.add('show')));
+      overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.remove(); });
+    }
+
+    // Intercept mailto links for order confirmation
+    document.querySelectorAll('.btn-order-big, .products-section .btn-buy:not(.disabled)').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const href = this.getAttribute('href');
+        let productName = 'Bilde';
+        let price = '200 kr';
+        if (href && href.includes('Merch')) {
+          productName = 'Solemsli Zip Hoodie';
+          price = '700 kr';
+        }
+        window.location.href = href;
+        setTimeout(() => showOrderConfirm(productName, price), 300);
+      });
+    });
 
     // BEFORE / AFTER SLIDER
     document.querySelectorAll('.ba-slider').forEach(slider => {
