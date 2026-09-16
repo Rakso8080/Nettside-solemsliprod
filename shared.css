@@ -233,7 +233,7 @@ a:focus-visible,button:focus-visible{
   .aurora{display:none}
   .gradient-separator{display:none}
   .geo-container{display:none}
-  header.scrolled{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(var(--bg-rgb,0,0,0),0.95)}
+  header.scrolled{backdrop-filter:none;-webkit-backdrop-filter:none;background:var(--mobile-nav-bg)}
   .hero-badge::before{animation:none}
   .hero-gradient-text{animation:none}
 }

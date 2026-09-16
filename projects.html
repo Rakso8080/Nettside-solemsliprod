@@ -416,9 +416,9 @@ main{flex:1;padding:0;width:100%}
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox" role="dialog" aria-label="Bildevisning" aria-hidden="true">
   <div class="lightbox-backdrop" id="lb-backdrop"></div>
-  <button class="lightbox-close" id="lb-close">&times;</button>
-  <button class="lightbox-nav lightbox-prev" id="lb-prev">&#8249;</button>
-  <button class="lightbox-nav lightbox-next" id="lb-next">&#8250;</button>
+  <button class="lightbox-close" id="lb-close" aria-label="Lukk">&times;</button>
+  <button class="lightbox-nav lightbox-prev" id="lb-prev" aria-label="Forrige bilde">&#8249;</button>
+  <button class="lightbox-nav lightbox-next" id="lb-next" aria-label="Neste bilde">&#8250;</button>
   <div class="lightbox-content">
     <img class="lightbox-img" id="lb-img" src="" alt="">
     <div class="lightbox-caption" id="lb-caption"></div>
@@ -449,11 +449,13 @@ main{flex:1;padding:0;width:100%}
     currentIndex = currentImages.indexOf(img);
     updateLightbox();
     lightbox.classList.add('open');
+    lightbox.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
   }
 
   function closeLightbox() {
     lightbox.classList.remove('open');
+    lightbox.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
   }
 
@@ -462,7 +464,9 @@ main{flex:1;padding:0;width:100%}
     lbImg.src = img.src;
     lbImg.alt = img.alt;
     lbCaption.textContent = img.alt || currentSection;
-    lbCounter.textContent = (currentIndex + 1) + ' av ' + currentImages.length;
+    const lang = localStorage.getItem('lang') || 'no';
+    const ofText = {no: 'av', en: 'of', de: 'von'};
+    lbCounter.textContent = (currentIndex + 1) + ' ' + (ofText[lang] || 'av') + ' ' + currentImages.length;
 
     // EXIF info
     const exifEl = document.getElementById('lb-exif');

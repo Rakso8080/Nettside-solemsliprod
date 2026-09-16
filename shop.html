@@ -267,8 +267,8 @@
       <div class="product-card">
         <div class="product-image" style="padding:0">
           <div class="ba-slider" data-start="50" style="position:relative;width:100%;height:100%">
-            <img class="ba-after" src="luts/før:etter/ferrari/1000020827.jpg" alt="Etter LUT" draggable="false" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover">
-            <img class="ba-before" src="luts/før:etter/ferrari/_DSC3114.jpeg" alt="Før LUT" draggable="false" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;clip-path:inset(0 50% 0 0)">
+            <img class="ba-after" src="luts/før:etter/ferrari/1000020827.jpg" alt="Etter LUT" draggable="false" loading="lazy" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover">
+            <img class="ba-before" src="luts/før:etter/ferrari/_DSC3114.jpeg" alt="Før LUT" draggable="false" loading="lazy" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;clip-path:inset(0 50% 0 0)">
             <div class="ba-handle" style="position:absolute;top:0;bottom:0;left:50%;z-index:3;display:flex;flex-direction:column;align-items:center;transform:translateX(-50%);pointer-events:none">
               <div style="flex:1;width:2px;background:rgba(255,255,255,0.9);box-shadow:0 0 8px rgba(0,0,0,0.5)"></div>
               <div class="ba-handle-circle" tabindex="0" role="slider" aria-label="Before/After slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" style="width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.95);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;color:#111;box-shadow:0 2px 12px rgba(0,0,0,0.4);flex-shrink:0;pointer-events:auto;cursor:ew-resize">◄►</div>
@@ -425,18 +425,35 @@
   <script>
     const VIPPS_TIPS_NUMBER = '66237';
     const BTC_WALLET = 'bc1pygw2tw0xus8vv4wawhh63zqdpwmfw3xkll5pqwv80eh83tr59d8qlewujt';
-    const BANK_ACCOUNT = 'DITT_KONTONUMMER';
+    const BANK_ACCOUNT = 'Ta kontakt for detaljer';
 
     // TIPS / DONASJON
     let tipsPayMethod = 'vipps';
+    function tTips(key) {
+      const lang = localStorage.getItem('lang') || 'no';
+      const strings = {
+        takk: {no: 'Tusen takk!', en: 'Thank you so much!', de: 'Vielen Dank!'},
+        send: {no: 'Send et valgfritt beløp — tusen takk for støtten!', en: 'Send any amount — thank you so much for the support!', de: 'Senden Sie einen beliebigen Betrag — vielen Dank für die Unterstützung!'},
+        kopier: {no: 'Kopier', en: 'Copy', de: 'Kopieren'},
+        kopiert: {no: 'Kopiert!', en: 'Copied!', de: 'Kopiert!'},
+        vippsNote: {no: 'Åpne Vipps → Søk opp', en: 'Open Vipps → Search for', de: 'Vipps öffnen → Suchen nach'},
+        sendBelop: {no: '→ Send valgfritt beløp', en: '→ Send any amount', de: '→ Beliebigen Betrag senden'},
+        close: {no: 'Forstått', en: 'Got it', de: 'Verstanden'},
+        cryptoNote: {no: 'Send Bitcoin til adressen under:', en: 'Send Bitcoin to the address below:', de: 'Senden Sie Bitcoin an die Adresse unten:'},
+        cryptoExtra: {no: 'Ta kontakt for ETH, USDT eller annen krypto.', en: 'Contact me for ETH, USDT or other crypto.', de: 'Kontaktieren Sie mich für ETH, USDT oder andere Kryptowährungen.'},
+        bankNote: {no: 'Merk betalingen med navnet ditt.', en: 'Please note your name in the payment.', de: 'Bitte geben Sie Ihren Namen bei der Zahlung an.'},
+        stott: {no: 'Støtt meg på reisen', en: 'Support my journey', de: 'Unterstütze meine Reise'}
+      };
+      return (strings[key] && strings[key][lang]) || strings[key]?.no || '';
+    }
     function openTips() {
       const overlay = document.createElement('div');
       overlay.className = 'vipps-overlay';
       overlay.innerHTML = `
         <div class="vipps-modal tips-modal-content">
           <div class="vipps-icon">☕</div>
-          <h3>Tusen takk!</h3>
-          <p style="margin:8px 0 12px;font-size:.9rem;color:var(--text-muted)">Send et valgfritt beløp — tusen takk for støtten!</p>
+          <h3>${tTips('takk')}</h3>
+          <p style="margin:8px 0 12px;font-size:.9rem;color:var(--text-muted)">${tTips('send')}</p>
           <div class="pay-methods" style="margin-bottom:16px">
             <button type="button" class="pay-method active" onclick="tipsPayMethod='vipps';document.querySelectorAll('.tips-modal-content .pay-method').forEach(b=>b.classList.remove('active'));this.classList.add('active');updateTipsContent()">
               <span class="pay-method-icon">💚</span><span class="pay-method-name">Vipps</span>
@@ -451,12 +468,11 @@
           <div id="tips-pay-content">
             <div class="vipps-number-box">
               <span>${VIPPS_TIPS_NUMBER}</span>
-              <button class="vipps-copy-btn" onclick="navigator.clipboard.writeText('${VIPPS_TIPS_NUMBER}').then(()=>{this.textContent='Kopiert!';this.classList.add('copied');setTimeout(()=>{this.textContent='Kopier';this.classList.remove('copied')},2000)})">Kopier</button>
+              <button class="vipps-copy-btn" onclick="navigator.clipboard.writeText('${VIPPS_TIPS_NUMBER}').then(()=>{this.textContent='${tTips('kopiert')}';this.classList.add('copied');setTimeout(()=>{this.textContent='${tTips('kopier')}';this.classList.remove('copied')},2000)})">${tTips('kopier')}</button>
             </div>
-            <p class="vipps-note" style="margin-top:8px">Åpne Vipps → Søk opp <strong>${VIPPS_TIPS_NUMBER}</strong> → Send valgfritt beløp</p>
+            <p class="vipps-note" style="margin-top:8px">${tTips('vippsNote')} <strong>${VIPPS_TIPS_NUMBER}</strong> ${tTips('sendBelop')}</p>
           </div>
-          <p class="vipps-note">Hvert bidrag hjelper meg å fortsette å skape innhold og utvikle meg som fotograf.</p>
-          <button class="vipps-close-btn" onclick="this.closest('.vipps-overlay').remove()">Forstått</button>
+          <button class="vipps-close-btn" onclick="this.closest('.vipps-overlay').remove()">${tTips('close')}</button>
         </div>`;
       document.body.appendChild(overlay);
       overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.remove(); });
@@ -467,24 +483,23 @@
       if (tipsPayMethod === 'vipps') {
         container.innerHTML = `
           <div class="vipps-number-box"><span>${VIPPS_TIPS_NUMBER}</span>
-            <button class="vipps-copy-btn" onclick="navigator.clipboard.writeText('${VIPPS_TIPS_NUMBER}').then(()=>{this.textContent='Kopiert!';this.classList.add('copied');setTimeout(()=>{this.textContent='Kopier';this.classList.remove('copied')},2000)})">Kopier</button>
+            <button class="vipps-copy-btn" onclick="navigator.clipboard.writeText('${VIPPS_TIPS_NUMBER}').then(()=>{this.textContent='${tTips('kopiert')}';this.classList.add('copied');setTimeout(()=>{this.textContent='${tTips('kopier')}';this.classList.remove('copied')},2000)})">${tTips('kopier')}</button>
           </div>
-          <p class="vipps-note" style="margin-top:8px">Åpne Vipps → Søk opp <strong>${VIPPS_TIPS_NUMBER}</strong> → Send valgfritt beløp</p>`;
+          <p class="vipps-note" style="margin-top:8px">${tTips('vippsNote')} <strong>${VIPPS_TIPS_NUMBER}</strong> ${tTips('sendBelop')}</p>`;
       } else if (tipsPayMethod === 'crypto') {
         container.innerHTML = `
-          <p style="font-size:.8rem;color:var(--text-muted);margin-bottom:8px">Send Bitcoin til adressen under:</p>
+          <p style="font-size:.8rem;color:var(--text-muted);margin-bottom:8px">${tTips('cryptoNote')}</p>
           <div class="crypto-qr" style="margin:8px 0"><img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=bitcoin:${BTC_WALLET}" alt="Bitcoin QR" style="width:150px;height:150px;border-radius:12px;border:1px solid var(--card-border);background:white;padding:6px"></div>
           <div class="vipps-number-box"><span style="font-size:.85rem;word-break:break-all;letter-spacing:0">${BTC_WALLET}</span>
-            <button class="vipps-copy-btn" onclick="navigator.clipboard.writeText('${BTC_WALLET}').then(()=>{this.textContent='Kopiert!';this.classList.add('copied');setTimeout(()=>{this.textContent='Kopier';this.classList.remove('copied')},2000)})">Kopier</button>
+            <button class="vipps-copy-btn" onclick="navigator.clipboard.writeText('${BTC_WALLET}').then(()=>{this.textContent='${tTips('kopiert')}';this.classList.add('copied');setTimeout(()=>{this.textContent='${tTips('kopier')}';this.classList.remove('copied')},2000)})">${tTips('kopier')}</button>
           </div>
-          <p style="font-size:.75rem;color:var(--text-muted);margin-top:6px">Ta kontakt for ETH, USDT eller annen krypto.</p>`;
+          <p style="font-size:.75rem;color:var(--text-muted);margin-top:6px">${tTips('cryptoExtra')}</p>`;
       } else if (tipsPayMethod === 'bank') {
         container.innerHTML = `
           <div class="vipps-number-box">
             <div style="text-align:left;width:100%"><div style="font-size:.7rem;color:var(--text-muted);margin-bottom:2px">Kontonummer</div><span style="font-size:1rem;letter-spacing:1px">${BANK_ACCOUNT}</span></div>
-            <button class="vipps-copy-btn" onclick="navigator.clipboard.writeText('${BANK_ACCOUNT}').then(()=>{this.textContent='Kopiert!';this.classList.add('copied');setTimeout(()=>{this.textContent='Kopier';this.classList.remove('copied')},2000)})">Kopier</button>
           </div>
-          <p style="font-size:.75rem;color:var(--text-muted);margin-top:6px">Merk betalingen med navnet ditt.</p>`;
+          <p style="font-size:.75rem;color:var(--text-muted);margin-top:6px">${tTips('bankNote')}</p>`;
       }
     }
 
@@ -495,8 +510,8 @@
       overlay.innerHTML = `
         <div class="order-confirm-modal">
           <div class="order-confirm-check">✓</div>
-          <h3 data-no="Bestilling sendt!" data-en="Order sent!" data-de="Bestellung gesendet!">Bestilling sendt!</h3>
-          <p class="oc-subtitle" data-no="Sjekk e-postklienten din" data-en="Check your email client" data-de="Überprüfen Sie Ihren E-Mail-Client">Sjekk e-postklienten din</p>
+          <h3 data-no="Neste steg" data-en="Next steps" data-de="Nächste Schritte">Neste steg</h3>
+          <p class="oc-subtitle" data-no="Sjekk e-postklienten din for å fullføre" data-en="Check your email client to complete" data-de="Überprüfen Sie Ihren E-Mail-Client">Sjekk e-postklienten din for å fullføre</p>
           <div class="oc-item">
             <div class="oc-item-label" data-no="Din bestilling" data-en="Your order" data-de="Ihre Bestellung">Din bestilling</div>
             <div class="oc-item-name">${productName}</div>

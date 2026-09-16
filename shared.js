@@ -9,6 +9,26 @@
   const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // MENU TOGGLE — keyboard accessibility
+  document.querySelectorAll('.menu-toggle').forEach(toggle => {
+    toggle.setAttribute('tabindex', '0');
+    toggle.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggle.click();
+      }
+    });
+  });
+
+  // FAQ — aria-expanded sync
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement;
+      const isOpen = item.classList.contains('open');
+      btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+  });
+
   // ============================================
   // LIVING BACKGROUND — inject orbs and bokeh
   // ============================================

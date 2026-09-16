@@ -255,8 +255,7 @@
           <a href="https://www.instagram.com/solemsli_productions/" target="_blank" rel="noopener noreferrer" class="contact-option"><div class="contact-option-icon">💬</div><div><strong data-no="Instagram DM" data-en="Instagram DM" data-de="Instagram DM">Instagram DM</strong><span>@solemsli_productions</span></div></a>
         </div>
 
-        <!-- ⚠️ FORMSPREE: Replace the form ID below with your real ID from formspree.io/my-forms -->
-        <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID_HERE" method="POST">
+        <form id="contact-form" onsubmit="sendContact(event)">
           <input type="hidden" name="_next" value="https://solemsliproductions.no/contact.html">
           <div class="form-group">
             <input type="text" id="name" name="name" placeholder=" " required>
@@ -487,41 +486,20 @@
     // FORM HANDLER
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
-      contactForm.addEventListener('submit', async (e) => {
+      contactForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const btn = contactForm.querySelector('.submit-btn');
-        const origHTML = btn ? btn.innerHTML : '';
         if (btn) { btn.innerHTML = '<span>Sender...</span>'; btn.disabled = true; btn.style.opacity = '.6'; }
-        try {
-          const response = await fetch(contactForm.action, {
-            method: 'POST',
-            body: new FormData(contactForm),
-            headers: { 'Accept': 'application/json' }
-          });
-          if (response.ok) {
-            contactForm.innerHTML = '<div style="text-align:center;padding:40px"><div style="font-size:3rem;margin-bottom:16px">✅</div><h3 data-no="Takk for din henvendelse!" data-en="Thank you!" data-de="Vielen Dank!">Takk for din henvendelse!</h3><p data-no="Jeg tar kontakt innen 24 timer." data-en="I will get back to you within 24 hours." data-de="Ich melde mich innerhalb von 24 Stunden.">Jeg tar kontakt innen 24 timer.</p></div>';
-          } else {
-            if (btn) { btn.innerHTML = origHTML; btn.disabled = false; btn.style.opacity = '1'; }
-            const existing = contactForm.querySelector('.form-error');
-            if (!existing) {
-              const err = document.createElement('div');
-              err.className = 'form-error';
-              err.style.cssText = 'color:#ff4444;text-align:center;margin-top:12px;font-size:.9rem';
-              err.textContent = 'Noe gikk galt. Prøv igjen eller kontakt meg direkte.';
-              contactForm.appendChild(err);
-            }
-          }
-        } catch {
-          if (btn) { btn.innerHTML = origHTML; btn.disabled = false; btn.style.opacity = '1'; }
-          const existing = contactForm.querySelector('.form-error');
-          if (!existing) {
-            const err = document.createElement('div');
-            err.className = 'form-error';
-            err.style.cssText = 'color:#ff4444;text-align:center;margin-top:12px;font-size:.9rem';
-            err.textContent = 'Nettverksfeil. Sjekk tilkoblingen og prøv igjen.';
-            contactForm.appendChild(err);
-          }
-        }
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const message = document.getElementById('message').value.trim();
+        const subject = encodeURIComponent('Kontaktskjema — Solemsli Productions');
+        const body = encodeURIComponent(
+          'Navn: ' + name + '\nE-post: ' + email + '\nTelefon: ' + (phone || 'Ikkje oppgitt') + '\n\nMelding:\n' + message
+        );
+        window.location.href = 'mailto:rakso8080@gmail.com?subject=' + subject + '&body=' + body;
+        contactForm.innerHTML = '<div style="text-align:center;padding:40px"><div style="font-size:3rem;margin-bottom:16px">✅</div><h3>Takk for din henvendelse!</h3><p>Sjekk e-postklienten din for å sende meldinga.</p></div>';
       });
     }
   </script>

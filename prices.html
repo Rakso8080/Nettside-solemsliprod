@@ -47,7 +47,7 @@
     .price-card.special{border:2px solid var(--main-blue)}
 
     /* POPULAR BADGE */
-    .popular-badge{position:absolute;top:16px;right:-30px;background:linear-gradient(135deg,var(--main-blue),var(--accent));color:white;font-size:.7rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:6px 40px;transform:rotate(45deg);z-index:1}
+    .popular-badge{position:absolute;top:14px;right:14px;background:linear-gradient(135deg,var(--main-blue),var(--accent));color:white;font-size:.7rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:6px 14px;border-radius:20px;z-index:1}
 
     /* CALCULATOR */
     .calc-section{padding:60px 20px}
@@ -428,7 +428,7 @@
     <!-- TILBUDSKJEMA -->
     <section class="section tilbud-section">
       <div class="reveal"><div class="section-label" data-no="Få tilbud" data-en="Get a quote" data-de="Angebot erhalten">Få tilbud</div><h2 class="section-title" data-no="Fortell meg om ditt prosjekt" data-en="Tell me about your project" data-de="Erzaehlen Sie mir von Ihrem Projekt">Fortell meg om ditt prosjekt</h2></div>
-      <form class="tilbud-form reveal" id="tilbudForm" action="https://formspree.io/f/YOUR_FORM_ID_HERE" method="POST">
+      <form class="tilbud-form reveal" id="tilbudForm" onsubmit="sendTilbud(event)">
         <div class="tilbud-row">
           <div class="tilbud-field">
             <label data-no="Tjeneste" data-en="Service" data-de="Dienstleistung">Tjeneste</label>
@@ -516,15 +516,10 @@
   <script>
     // STAR PICKER
     const starPicker = document.getElementById('starPicker');
-    const starValue = document.getElementById('starValue');
     if (starPicker) {
       starPicker.querySelectorAll('.star-btn').forEach(btn => {
         btn.addEventListener('click', () => {
-          const val = parseInt(btn.dataset.value);
-          starValue.value = val;
-          starPicker.querySelectorAll('.star-btn').forEach((s, i) => {
-            s.classList.toggle('active', i < val);
-          });
+          setStars(parseInt(btn.dataset.value));
         });
         btn.addEventListener('mouseenter', () => {
           const val = parseInt(btn.dataset.value);
@@ -533,10 +528,9 @@
           });
         });
         btn.addEventListener('mouseleave', () => {
-          const val = parseInt(starValue.value);
           starPicker.querySelectorAll('.star-btn').forEach((s, i) => {
             s.style.color = '';
-            s.classList.toggle('active', i < val);
+            s.classList.toggle('active', parseInt(s.dataset.value) <= currentStars);
           });
         });
       });
@@ -590,6 +584,27 @@ Tilleggsinformasjon (valgfritt):
 Med vennlig hilsen`;
       const body = encodeURIComponent(bodyText);
       window.location.href = `mailto:${myEmail}?subject=${subject}&body=${body}`;
+    }
+
+    // TILBUD → MAILTO
+    function sendTilbud(e) {
+      e.preventDefault();
+      const f = e.target;
+      const tjeneste = f.querySelector('[name="tjeneste"]').value;
+      const dato = f.querySelector('[name="dato"]').value;
+      const budsjett = f.querySelector('[name="budsjett"]').value;
+      const navn = f.querySelector('[name="navn"]').value;
+      const epost = f.querySelector('[name="epost"]').value;
+      const melding = f.querySelector('[name="melding"]').value;
+      const subject = encodeURIComponent('Tilbudsforespørsel: ' + tjeneste + ' — Solemsli Productions');
+      const body = encodeURIComponent(
+        'Hei!\n\nJeg ønsker et tilbud på ' + tjeneste + '.\n\nDato: ' + dato +
+        '\nBudsjett: ' + budsjett + '\nNavn: ' + navn + '\nE-post: ' + epost +
+        '\n\nProsjektbeskrivelse:\n' + melding + '\n\nMvh,\n' + navn
+      );
+      window.location.href = 'mailto:rakso8080@gmail.com?subject=' + subject + '&body=' + body;
+      document.getElementById('tilbudForm').style.display = 'none';
+      document.getElementById('tilbudSuccess').style.display = 'block';
     }
 
     // PRICE CALCULATOR
