@@ -125,6 +125,7 @@ footer{padding:60px 40px;border-top:1px solid var(--glass-border);display:flex;j
 .footer-links{display:flex;gap:25px}
 .footer-links a{color:var(--text-muted);text-decoration:none;font-size:.85rem;transition:color .3s}
 .footer-links a:hover{color:var(--main-blue)}
+.footer-legal{font-size:.75rem!important;margin-top:4px;line-height:1.5}
 
 /* BUTTON RIPPLE */
 .btn-primary{position:relative;overflow:hidden}
