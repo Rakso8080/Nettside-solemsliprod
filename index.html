@@ -1,452 +1,68 @@
 <!DOCTYPE html>
-<html lang="no" data-theme="dark" class="no-js">
+<html lang="no" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <link rel="icon" href="Solemsli production.png">
-  <meta name="theme-color" content="#0180ff">
+  <link rel="icon" href="icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="icons/icon-192.png" sizes="192x192" type="image/png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <meta name="theme-color" content="#0a0b0d">
+  <script>
+    (function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t='dark';d.setAttribute('data-theme',t);var l=localStorage.getItem('lang');if(l==='en'||l==='de'||l==='no')d.lang=l;var m=document.querySelector('meta[name="theme-color"]');if(m&&t==='light')m.setAttribute('content','#f6f6f4');}catch(e){}})();
+  </script>
   <link rel="manifest" href="manifest.json">
-  <meta name="description" content="Solemsli Productions - Visuell historiefortelling med foto, video og drone i Innlandet og hele Norge.">
-  <meta property="og:description" content="Profesjonell foto, video og droneproduksjon i Innlandet." />
-  <meta property="og:image" content="https://solemsliproductions.no/gallery/andre%20natur%20bilder/uranustind.jpg" />
-  <meta property="og:title" content="Solemsli Productions | Foto, Video & Drone" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://solemsliproductions.no/" />
+  <meta name="description" content="Solemsli Productions – foto, video og drone i Innlandet og hele Norge.">
+  <meta property="og:description" content="Profesjonell foto, video og droneproduksjon i Innlandet.">
+  <meta property="og:image" content="https://solemsliproductions.no/og/index.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Solemsli Productions">
+  <meta property="og:title" content="Solemsli Productions | Foto, Video & Drone">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://solemsliproductions.no/">
   <meta property="og:site_name" content="Solemsli Productions">
   <meta property="og:locale" content="nb_NO">
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Solemsli Productions | Foto, Video & Drone" />
-  <meta name="twitter:description" content="Profesjonell foto, video og droneproduksjon i Innlandet." />
-  <meta name="twitter:image" content="https://solemsliproductions.no/gallery/andre%20natur%20bilder/uranustind.jpg" />
-  <link rel="canonical" href="https://solemsliproductions.no/" />
-  <meta name="organization" content="Solemsli Productions 935203708">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Solemsli Productions | Foto, Video & Drone">
+  <meta name="twitter:description" content="Profesjonell foto, video og droneproduksjon i Innlandet.">
+  <meta name="twitter:image" content="https://solemsliproductions.no/og/index.jpg">
+  <link rel="canonical" href="https://solemsliproductions.no/">
   <title>Solemsli Productions | Foto, Video & Drone</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
-  <link rel="stylesheet" href="shared.css">
+  <link rel="stylesheet" href="shared.css?v=2026-11-18">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
+    "@id": "https://solemsliproductions.no/#business",
     "name": "Solemsli Productions",
     "description": "Profesjonell foto, video og droneproduksjon i Innlandet, Norge",
     "url": "https://solemsliproductions.no",
-    "image": "https://solemsliproductions.no/gallery/andre%20natur%20bilder/uranustind.jpg",
+    "image": "https://solemsliproductions.no/og/index.jpg",
+    "logo": "https://solemsliproductions.no/icons/icon-512.png",
+    "email": "rakso8080@gmail.com",
+    "telephone": "+4790560160",
+    "vatID": "NO935203708MVA",
     "priceRange": "$$",
-    "areaServed": {
-      "@type": "State",
-      "name": "Innlandet"
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Høgesetvegen 52",
+      "postalCode": "2985",
+      "addressLocality": "Tyinkrysset",
+      "addressCountry": "NO"
     },
-    "founder": {
-      "@type": "Person",
-      "name": "Oskar Solemsli"
-    },
-    "sameAs": [
-      "https://www.instagram.com/solemsli_productions/"
+    "areaServed": [
+      { "@type": "State", "name": "Innlandet" },
+      { "@type": "Country", "name": "Norge" }
+    ],
+    "founder": { "@type": "Person", "name": "Oskar Solemsli" },
+    "sameAs": ["https://www.instagram.com/solemsli_productions/"],
+    "makesOffer": [
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Fotografering" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Videoproduksjon" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Dronefoto og dronefilm" } }
     ]
   }
   </script>
-  <style>
-
-    /* LOADER */
-    #loader{position:fixed;inset:0;background:#0a0a0a;z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .6s,visibility .6s}
-    #loader.hidden{opacity:0;visibility:hidden;pointer-events:none}
-    .loader-logo{font-size:1.8rem;font-weight:800;color:white;letter-spacing:-1px;opacity:0;animation:loaderFade 1s .2s forwards}
-    .loader-logo span{color:var(--main-blue)}
-    .loader-bar{width:120px;height:3px;background:rgba(255,255,255,0.1);border-radius:2px;margin-top:20px;overflow:hidden}
-    .loader-bar::after{content:'';display:block;height:100%;width:0;background:linear-gradient(90deg,var(--main-blue),var(--accent));border-radius:2px;animation:loaderProgress 1.5s .3s ease forwards}
-    @keyframes loaderFade{to{opacity:1}}
-    @keyframes loaderProgress{to{width:100%}}
-
-    /* PARTICLES CANVAS */
-    #particles{position:absolute;inset:0;z-index:1;pointer-events:none}
-
-    /* HERO */
-    .hero{position:relative;height:100vh;min-height:700px;display:flex;align-items:center;justify-content:center;overflow:hidden}
-    .hero-bg{position:absolute;inset:0;z-index:0}
-    .hero-bg img{width:100%;height:100%;object-fit:cover;transform:scale(1.1);transition:transform 8s ease-out}
-    .hero.loaded .hero-bg img{transform:scale(1)}
-    .hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.6) 0%,rgba(0,0,0,.4) 40%,rgba(0,0,0,.5) 70%,rgba(10,10,10,1) 100%);z-index:1}
-    .hero-content{position:relative;z-index:2;text-align:center;padding:0 20px;max-width:900px}
-    .hero-badge{display:inline-block;background:rgba(255,255,255,0.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.15);padding:8px 20px;border-radius:30px;font-size:.8rem;color:rgba(255,255,255,0.9);margin-bottom:30px}
-    .hero h1{font-size:clamp(2.5rem,6vw,5rem);font-weight:800;color:white;line-height:1.1;letter-spacing:-2px;margin-bottom:20px;text-shadow:0 4px 30px rgba(0,0,0,0.5)}
-    .hero h1 .word{display:inline-block;opacity:1;transform:none}
-    .hero h1 .typewriter-cursor{display:inline-block;width:3px;height:1em;background:var(--main-blue);margin-left:4px;vertical-align:text-bottom;animation:blink 1s step-end infinite}
-    @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
-    .hero p{font-size:1.15rem;color:rgba(255,255,255,0.85);max-width:500px;margin:0 auto 40px;line-height:1.6;opacity:0;transform:translateY(30px);animation:fadeUp 1s 1.4s forwards;text-shadow:0 2px 20px rgba(0,0,0,0.4)}
-    .hero-buttons{display:flex;gap:15px;justify-content:center;opacity:0;transform:translateY(30px);animation:fadeUp 1s 1.6s forwards}
-    .scroll-indicator{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);z-index:2;opacity:0;animation:fadeUp 1s 2s forwards}
-    .scroll-indicator div{width:24px;height:40px;border:2px solid rgba(255,255,255,0.3);border-radius:12px;position:relative}
-    .scroll-indicator div::before{content:'';position:absolute;top:8px;left:50%;transform:translateX(-50%);width:4px;height:8px;background:white;border-radius:2px;animation:scrollDot 1.5s infinite}
-    @keyframes scrollDot{0%,100%{opacity:1;top:8px}50%{opacity:.3;top:20px}}
-    @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
-    @keyframes charIn{to{opacity:1;transform:translateY(0)}}
-
-    /* MARQUEE */
-    .marquee-section{padding:40px 0;overflow:hidden;border-top:1px solid var(--glass-border);border-bottom:1px solid var(--glass-border)}
-    .marquee{display:flex;animation:marquee 20s linear infinite}
-    .marquee-item{flex-shrink:0;padding:0 50px;font-size:1.2rem;font-weight:600;color:var(--text);opacity:.3;white-space:nowrap;display:flex;align-items:center;gap:15px}
-    .marquee-item span{white-space:nowrap}
-    .marquee-item span:first-child{width:8px;height:8px;background:var(--main-blue);border-radius:50%;flex-shrink:0}
-    @keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-
-    /* SHOWREEL */
-    .video-wrapper{position:relative;border-radius:20px;overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,0.3);aspect-ratio:16/9}
-    .video-wrapper iframe{width:100%;height:100%;border:none}
-
-    /* SERVICES */
-    .services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:40px;margin-top:60px}
-    .service-card{background:var(--card-bg);border:1px solid var(--glass-border);border-radius:24px;padding:50px 40px;position:relative;overflow:hidden;transition:all .5s cubic-bezier(.23,1,.32,1);cursor:pointer;min-height:220px;display:flex;flex-direction:column}
-    .service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--main-blue),var(--accent));transform:scaleX(0);transform-origin:left;transition:transform .5s}
-    .service-card:hover::before{transform:scaleX(1)}
-    .service-card:hover{transform:translateY(-12px);border-color:rgba(1,128,255,0.3);box-shadow:0 25px 50px rgba(0,0,0,0.15)}
-    .service-card h3{font-size:1.5rem;font-weight:700;margin-bottom:15px}
-    .service-card p{color:var(--text-muted);line-height:1.7;font-size:.95rem}
-    .service-card .service-link{display:inline-flex;align-items:center;gap:8px;margin-top:25px;color:var(--main-blue);font-weight:600;font-size:.9rem;text-decoration:none;transition:gap .3s}
-    .service-card .service-link:hover{gap:12px}
-
-    /* WORKFLOW */
-    .workflow-steps{margin-top:60px;position:relative}
-    .workflow-steps::before{content:'';position:absolute;left:30px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--main-blue),transparent)}
-    .workflow-step{display:flex;gap:40px;margin-bottom:20px;position:relative}
-    .workflow-step-arrow{display:flex;justify-content:center;padding:8px 0;margin-bottom:20px}
-    .workflow-step-arrow svg{width:24px;height:24px;color:var(--main-blue);opacity:.5;animation:arrowBounce 1.5s ease-in-out infinite}
-    .workflow-step:last-child .workflow-step-arrow{display:none}
-    @keyframes arrowBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
-    .step-number{flex-shrink:0;width:60px;height:60px;background:var(--main-blue);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;font-weight:700;color:white;position:relative;z-index:1}
-    .step-content{background:var(--card-bg);border:1px solid var(--glass-border);border-radius:20px;padding:35px;flex:1;transition:all .3s}
-    .step-content:hover{border-color:rgba(1,128,255,0.3);transform:translateX(10px)}
-    .step-content h3{font-size:1.3rem;font-weight:700;margin-bottom:10px}
-    .step-content p{color:var(--text-muted);line-height:1.7}
-    .step-tag{display:inline-block;margin-top:15px;padding:6px 14px;background:rgba(1,128,255,0.1);color:var(--main-blue);border-radius:20px;font-size:.8rem;font-weight:600}
-
-    /* STATS */
-    .stats{padding:100px 40px;background:linear-gradient(135deg,var(--main-blue),#0066cc);text-align:center}
-    .stats-grid{display:flex;justify-content:center;gap:80px;flex-wrap:wrap;max-width:1000px;margin:0 auto}
-    .stat-item h3{font-size:3rem;font-weight:800;color:white}
-    .stat-item p{color:rgba(255,255,255,0.7);font-size:.9rem;margin-top:5px}
-
-    /* TESTIMONIALS */
-    .testimonials-section{padding:120px 40px;background:var(--card-bg)}
-    .testimonials-container{max-width:1200px;margin:0 auto}
-    .testimonials-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:30px;margin-top:50px}
-    .testimonial-card{background:rgba(255,255,255,0.03);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:35px;transition:all .4s}
-    .testimonial-card:hover{border-color:rgba(1,128,255,0.2);transform:translateY(-4px)}
-    .testimonial-stars{color:#fbbf24;font-size:1rem;margin-bottom:15px;letter-spacing:2px}
-    .testimonial-text{font-size:.95rem;line-height:1.7;color:var(--text-muted);margin-bottom:20px;font-style:italic}
-    .testimonial-author{display:flex;align-items:center;gap:12px}
-    .testimonial-avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--main-blue),var(--accent));display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:1rem}
-    .testimonial-name{font-weight:600;font-size:.9rem}
-    .testimonial-role{font-size:.8rem;color:var(--text-muted)}
-    @media(max-width:750px){.testimonials-grid{grid-template-columns:1fr}}
-
-    /* EQUIPMENT */
-    .equipment{padding:120px 40px;background:var(--card-bg)}
-    .equip-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:25px;margin-top:60px;perspective:1000px}
-    .equip-card{background:var(--bg);border:1px solid var(--glass-border);border-radius:20px;padding:30px;text-align:center;transition:all .5s;transform-style:preserve-3d}
-    .equip-card:hover{transform:rotateY(8deg) rotateX(-5deg);border-color:rgba(1,128,255,0.3);box-shadow:0 20px 40px rgba(0,0,0,0.15)}
-    .equip-icon{font-size:3rem;margin-bottom:15px;display:block}
-    .equip-card h4{font-size:1rem;font-weight:700;margin-bottom:8px}
-    .equip-card p{font-size:.8rem;color:var(--text-muted);line-height:1.5}
-
-    /* FAQ */
-    .faq{padding:120px 40px;max-width:800px;margin:0 auto}
-    .faq-item{border-bottom:1px solid var(--glass-border);overflow:hidden}
-    .faq-question{width:100%;padding:25px 0;background:none;border:none;color:var(--text);font-size:1.1rem;font-weight:600;text-align:left;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:inherit;transition:color .3s}
-    .faq-question:hover{color:var(--main-blue)}
-    .faq-question .faq-icon{font-size:1.5rem;transition:transform .3s;color:var(--main-blue)}
-    .faq-item.open .faq-icon{transform:rotate(45deg)}
-    .faq-answer{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .4s}
-    .faq-item.open .faq-answer{max-height:300px;padding-bottom:25px}
-    .faq-answer p{color:var(--text-muted);line-height:1.7;font-size:.95rem}
-
-    .newsletter h2{font-size:1.8rem;font-weight:700;margin-bottom:10px}
-    .newsletter p{color:var(--text-muted);font-size:.95rem}
-    .newsletter{padding:100px 40px;text-align:center;border-top:1px solid var(--glass-border)}
-    .newsletter-form{display:flex;gap:10px;justify-content:center;margin-top:30px;flex-wrap:wrap}
-    .newsletter-form input{padding:14px 24px;border-radius:50px;border:1px solid var(--glass-border);background:var(--card-bg);color:var(--text);font-size:.9rem;font-family:inherit;width:300px;outline:none;transition:border-color .3s}
-    .newsletter-form input:focus{border-color:var(--main-blue)}
-    .newsletter-form button{padding:14px 28px;border-radius:50px;background:var(--main-blue);color:white;border:none;font-size:.9rem;font-weight:600;cursor:pointer;font-family:inherit;transition:.3s}
-    .newsletter-form button:hover{background:#0066cc}
-
-    /* CTA */
-    .cta{padding:150px 40px;text-align:center}
-    .cta h2{font-size:clamp(2rem,4vw,3.5rem);font-weight:800;letter-spacing:-1px;margin-bottom:20px}
-    .cta p{color:var(--text-muted);font-size:1.1rem;margin-bottom:40px;max-width:500px;margin-left:auto;margin-right:auto}
-
-    /* INSTAGRAM */
-    .instagram{padding:80px 40px;text-align:center}
-    .insta-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(2,200px);gap:8px;margin-top:40px}
-    .insta-item{overflow:hidden;border-radius:12px;position:relative;cursor:pointer}
-    .insta-item:nth-child(1){grid-column:span 2;grid-row:span 2}
-    .insta-item:nth-child(4){grid-column:span 2}
-    .insta-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.23,1,.32,1)}
-    .insta-item:hover img{transform:scale(1.08)}
-    .insta-item .insta-overlay{position:absolute;inset:0;background:rgba(1,128,255,0.6);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s}
-    .insta-item:hover .insta-overlay{opacity:1}
-    .insta-overlay span{color:white;font-size:1.2rem}
-
-    /* LATEST PROJECTS GRID */
-    @keyframes clientsScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-
-    /* GRADIENT TEXT SHIMMER */
-    .section-title{background:linear-gradient(90deg,var(--text),var(--main-blue),var(--text));background-size:200% 100%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 4s ease-in-out infinite}
-    @keyframes shimmer{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
-
-    /* STAGGERED GRID REVEAL — handled by gridObserver + lines 253-254 */
-
-    /* 3D IMAGE TILT ON HOVER */
-    .insta-item{transform-style:preserve-3d;perspective:600px}
-    .insta-item:hover{transform:translateY(-8px) rotateX(4deg)}
-    .insta-item:hover img{transform:translateZ(20px) scale(1.05)}
-
-    /* FLOATING BADGE ANIMATION — fadeUp then float */
-    .hero-badge{animation:badgeIn 1s .8s forwards,float 3s 1.8s ease-in-out infinite}
-    @keyframes badgeIn{to{opacity:1;transform:translateY(0)}}
-    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-
-    /* LIVE CLOCK */
-    .hero-time{font-size:.85rem;font-weight:500;color:rgba(255,255,255,0.5);letter-spacing:2px;margin-bottom:12px;font-variant-numeric:tabular-nums}
-
-    /* SCROLL-TRIGGERED TEXT REVEAL */
-    .reveal-char{display:inline-block;opacity:0;transform:translateY(20px);transition:opacity .4s,transform .4s}
-    .reveal-char.visible{opacity:1;transform:translateY(0)}
-
-    /* CLEAN CARD HOVER STATES */
-    .service-card::after{content:'';position:absolute;inset:0;border-radius:24px;opacity:0;transition:opacity .5s;background:linear-gradient(135deg,rgba(1,128,255,0.05) 0%,rgba(0,212,255,0.02) 100%)}
-    .service-card:hover::after{opacity:1}
-
-    /* STEP NUMBER PULSE */
-    .step-number{transition:all .3s}
-    .step-content:hover .step-number{background:var(--main-blue);color:white;transform:scale(1.1)}
-
-    /* EQUIPMENT CARD GLOW */
-    .equip-card{position:relative;overflow:hidden}
-    .equip-card::after{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:conic-gradient(transparent,rgba(1,128,255,0.1),transparent 30%);opacity:0;transition:opacity .5s;animation:none}
-    .equip-card:hover::after{opacity:1;animation:equipSpin 3s linear infinite}
-    @keyframes equipSpin{to{transform:rotate(360deg)}}
-
-    /* FAQ HOVER LINE */
-    .faq-question{position:relative}
-    .faq-question::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--main-blue);transition:width .3s}
-    .faq-question:hover::after{width:100%}
-
-    /* INSTAGRAM HEART BOUNCE */
-    .insta-overlay span{transition:transform .3s}
-    .insta-item:hover .insta-overlay span{transform:scale(1.3)}
-
-    /* STAT COUNTER GLOW */
-    .stat-item h3{text-shadow:0 0 30px rgba(1,128,255,0)}
-    .stat-item:hover h3{text-shadow:0 0 30px rgba(1,128,255,0.3)}
-
-    /* CTA GLOW */
-    .cta{position:relative;overflow:hidden}
-    .cta::before{content:'';position:absolute;top:50%;left:50%;width:400px;height:400px;background:radial-gradient(circle,rgba(1,128,255,0.15) 0%,transparent 70%);transform:translate(-50%,-50%);pointer-events:none}
-
-    /* STAGGERED GRID REVEAL */
-    .services-grid > *,.insta-grid > *,.workflow-steps > *,.equip-grid > *{opacity:0;transform:translateY(20px);transition:all .6s cubic-bezier(.23,1,.32,1)}
-    .services-grid.revealed > *,.insta-grid.revealed > *,.workflow-steps.revealed > *,.equip-grid.revealed > *{opacity:1;transform:translateY(0)}
-    .no-js .services-grid > *,.no-js .insta-grid > *,.no-js .workflow-steps > *,.no-js .equip-grid > *{opacity:1;transform:none}
-
-    /* STAT COUNTER PULSE */
-    .stat-item h3{transition:color .3s}
-    .stat-item:hover h3{color:var(--main-blue)}
-
-    /* 3D CARD TILT */
-    .service-card,.equip-card{transform-style:preserve-3d;perspective:800px;transition:all .5s cubic-bezier(.23,1,.32,1)}
-    .service-card:hover{transform:translateY(-12px) rotateY(5deg) rotateX(-3deg) scale(1.02);box-shadow:0 25px 50px rgba(0,0,0,0.2)}
-    .equip-card:hover{transform:rotateY(8deg) rotateX(-5deg) scale(1.02);box-shadow:0 20px 40px rgba(0,0,0,0.15)}
-
-    /* RESPONSIVE (page-specific) */
-    @media(max-width:900px){
-      .equip-grid{grid-template-columns:repeat(2,1fr)}
-      .insta-grid{grid-template-columns:repeat(3,1fr);grid-template-rows:auto}
-      .services-grid{gap:20px}
-      .stats-grid{gap:40px}
-    }
-    @media(max-width:750px){
-      .hero{min-height:auto;height:auto;min-height:100dvh;padding:120px 20px 80px}
-      .hero h1{letter-spacing:-1px;font-size:clamp(2rem,8vw,3.5rem)}
-      .hero-buttons{flex-direction:column;align-items:center}
-      .services-grid{grid-template-columns:1fr;gap:20px}
-      .equip-grid{grid-template-columns:1fr;gap:16px}
-      .equip-card{padding:20px}
-      .insta-grid{grid-template-columns:repeat(2,1fr);gap:4px}
-      .stats,.testimonials-section,.equipment,.faq,.newsletter,.cta,.instagram{padding:60px 20px}
-      .stats-grid{gap:30px;flex-direction:column;align-items:center}
-      .stat-item{min-width:0}
-      .workflow-steps::before{left:20px}
-      .step-number{width:40px;height:40px;font-size:.9rem}
-      .step-content{padding:25px}
-      .stat-item h3{font-size:2rem}
-      .service-card{padding:30px 25px;min-height:auto}
-      .testimonials-grid{grid-template-columns:1fr}
-      .cta h2{font-size:1.8rem}
-    }
-  </style>
-</head>
-<body>
-  <script>document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js')</script>
-  <a href="#main-content" class="skip-link">Hopp til innhold</a>
-  <!-- LOADER -->
-  <div id="loader">
-    <div class="loader-logo">Solemsli <span>Productions</span></div>
-    <div class="loader-bar"></div>
-  </div>
-
-  <!-- GRAIN -->
-  <div id="grain"></div>
-
-  <!-- PROGRESS BAR -->
-  <div id="progress-bar"></div>
-
-  <!-- CUSTOM CURSOR -->
-  <div class="custom-cursor" id="cursor"></div>
-  <div class="custom-cursor-dot" id="cursor-dot"></div>
-  <!-- HEADER -->
-  <header id="header">
-    <a href="index.html" class="logo">Solemsli Productions</a>
-    <div class="menu-toggle" role="button" aria-label="Meny" aria-expanded="false" onclick="this.classList.toggle('active');this.setAttribute('aria-expanded',this.classList.contains('active'));document.querySelector('nav').classList.toggle('active')"><span></span><span></span><span></span></div>
-    <nav aria-label="Hovedmeny">
-      <a href="index.html" class="active" data-no="Hjem" data-en="Home" data-de="Startseite">Hjem</a>
-      <a href="about.html" data-no="Om meg" data-en="About" data-de="Über mich">Om meg</a>
-      <a href="projects.html" data-no="Portfolio" data-en="Portfolio" data-de="Portfolio">Portfolio</a>
-      <a href="shop.html" data-no="Shop" data-en="Shop" data-de="Shop">Shop</a>
-      <a href="prices.html" data-no="Priser" data-en="Pricing" data-de="Preise">Priser</a>
-      <a href="contact.html" data-no="Kontakt" data-en="Contact" data-de="Kontakt">Kontakt</a>
-      <button class="nav-btn" id="lang-toggle" aria-label="Bytt språk">EN</button>
-      <button class="nav-btn" id="theme-toggle" aria-label="Bytt tema">☀️ Lys</button>
-    </nav>
-  </header>
-
-  <main id="main-content">
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-bg"><img src="gallery/andre natur bilder/uranustind.jpg" alt="Dronebilde" id="hero-img"></div>
-    <canvas id="particles"></canvas>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <div class="hero-badge scroll-velocity" data-speed="-0.3" data-no="📍 Basert i Innlandet" data-en="📍 Based in Innlandet" data-de="📍 Basierend in Innlandet">📍 Basert i Innlandet</div>
-      <div class="hero-time" id="heroTime"></div>
-      <h1 id="hero-title"><span data-no="Visuell" data-en="Visual" data-de="Visuell" class="scramble-text magnetic-text">Visuell</span><br><span data-no="historiefortelling" data-en="storytelling" data-de="Geschichtenerzaehlung" class="scramble-text magnetic-text">historiefortelling</span></h1>
-      <p data-no="Profesjonell foto, video og droneproduksjon for bedrifter og privatpersoner i Innlandet." data-en="Professional photo, video and drone production for businesses and individuals in Innlandet." data-de="Professionelle Foto-, Video- und Drohnenproduktion für Unternehmen und Privatpersonen in Innlandet.">Profesjonell foto, video og droneproduksjon for bedrifter og privatpersoner i Innlandet.</p>
-      <div class="hero-buttons">
-        <a href="projects.html" class="btn btn-primary magnetic mouse-glow" data-no="Se arbeidet mitt" data-en="See my work" data-de="Meine Arbeit ansehen">Se arbeidet mitt</a>
-        <a href="contact.html" class="btn btn-outline magnetic mouse-glow" data-no="Ta kontakt" data-en="Get in touch" data-de="Kontaktieren">Ta kontakt</a>
-      </div>
-    </div>
-    <div class="scroll-indicator"><div></div></div>
-  </section>
-
-  <!-- MARQUEE -->
-  <div class="marquee-section">
-    <div class="marquee">
-      <div class="marquee-item"><span></span><span data-no="Fotografering" data-en="Photography" data-de="Fotografie">Fotografering</span></div>
-      <div class="marquee-item"><span></span><span data-no="Videoproduksjon" data-en="Video Production" data-de="Videoproduktion">Videoproduksjon</span></div>
-      <div class="marquee-item"><span></span><span data-no="Drone" data-en="Drone" data-de="Drohne">Drone</span></div>
-      <div class="marquee-item"><span></span><span data-no="Eventer" data-en="Events" data-de="Veranstaltungen">Eventer</span></div>
-      <div class="marquee-item"><span></span><span data-no="Bryllup" data-en="Weddings" data-de="Hochzeiten">Bryllup</span></div>
-      <div class="marquee-item"><span></span><span data-no="Bedrift" data-en="Business" data-de="Geschäft">Bedrift</span></div>
-      <div class="marquee-item"><span></span><span data-no="Reklamefilm" data-en="Commercials" data-de="Werbefilm">Reklamefilm</span></div>
-      <div class="marquee-item"><span></span><span data-no="Sosiale medier" data-en="Social Media" data-de="Soziale Medien">Sosiale medier</span></div>
-      <div class="marquee-item"><span></span><span data-no="Fotografering" data-en="Photography" data-de="Fotografie">Fotografering</span></div>
-      <div class="marquee-item"><span></span><span data-no="Videoproduksjon" data-en="Video Production" data-de="Videoproduktion">Videoproduksjon</span></div>
-      <div class="marquee-item"><span></span><span data-no="Drone" data-en="Drone" data-de="Drohne">Drone</span></div>
-      <div class="marquee-item"><span></span><span data-no="Eventer" data-en="Events" data-de="Veranstaltungen">Eventer</span></div>
-      <div class="marquee-item"><span></span><span data-no="Bryllup" data-en="Weddings" data-de="Hochzeiten">Bryllup</span></div>
-      <div class="marquee-item"><span></span><span data-no="Bedrift" data-en="Business" data-de="Geschäft">Bedrift</span></div>
-      <div class="marquee-item"><span></span><span data-no="Reklamefilm" data-en="Commercials" data-de="Werbefilm">Reklamefilm</span></div>
-      <div class="marquee-item"><span></span><span data-no="Sosiale medier" data-en="Social Media" data-de="Soziale Medien">Sosiale medier</span></div>
-    </div>
-  </div>
-
-  <!-- SHOWREEL -->
-  <section class="section scroll-border">
-    <div class="reveal"><div class="section-label" data-no="Showreel" data-en="Showreel" data-de="Showreel">Showreel</div><h2 class="section-title" data-no="Se mitt arbeid i aksjon" data-en="See my work in action" data-de="Sehen Sie meine Arbeit in Aktion">Se mitt arbeid i aksjon</h2></div>
-    <div class="video-wrapper reveal reveal-delay-2 glow-scroll"><iframe src="https://www.youtube.com/embed/SVARx16jTQg" loading="lazy" allowfullscreen title="YouTube video"></iframe></div>
-  </section>
-
-  <!-- SERVICES -->
-  <section class="section">
-    <div class="reveal"><div class="section-label" data-no="Tjenester" data-en="Services" data-de="Dienstleistungen">Tjenester</div><h2 class="section-title char-reveal line-reveal" data-no="Hva jeg kan hjelpe med" data-en="How I can help" data-de="Wobei ich helfen kann">Hva jeg kan hjelpe med</h2></div>
-    <div class="services-grid stagger-reveal stagger-children perspective-section">
-      <a href="projects.html?filter=foto" class="service-card reveal reveal-delay-1" style="text-decoration:none;color:inherit;display:block"><h3 data-no="Foto & Video" data-en="Photo & Video" data-de="Foto & Video">Foto & Video</h3><p data-no="Kamera-produksjoner med fokus på detaljer og visuell historiefortelling. Alt fra portrett til landskap." data-en="Camera productions focusing on details and visual storytelling. From portraits to landscapes." data-de="Kamera-Produktionen mit Fokus auf Details und visuelles Storytelling. Von Porträts bis hin zu Landschaften.">Kamera-produksjoner med fokus på detaljer og visuell historiefortelling. Alt fra portrett til landskap.</p><span class="service-link" data-no="Se eksempler →" data-en="See examples →" data-de="Beispiele ansehen →">Se eksempler →</span></a>
-      <a href="projects.html?filter=drone" class="service-card reveal reveal-delay-2" style="text-decoration:none;color:inherit;display:block"><h3 data-no="Drone" data-en="Drone" data-de="Drohne">Drone</h3><p data-no="Spektakulære dronefilmer og oversiktsbilder. Perfekt for eiendom, eventer og natur." data-en="Spectacular drone films and aerial shots. Perfect for real estate, events and nature." data-de="Spektakuläre Drohnenfilme und Luftaufnahmen. Perfekt für Immobilien, Veranstaltungen und Natur.">Spektakulære dronefilmer og oversiktsbilder. Perfekt for eiendom, eventer og natur.</p><span class="service-link" data-no="Se eksempler →" data-en="See examples →" data-de="Beispiele ansehen →">Se eksempler →</span></a>
-      <a href="projects.html?filter=event" class="service-card reveal reveal-delay-3" style="text-decoration:none;color:inherit;display:block"><h3 data-no="Eventer" data-en="Events" data-de="Veranstaltungen">Eventer</h3><p data-no="Full dekning av festivaler, konserter og store begivenheter. Jeg fanger øyeblikkene som betyr noe." data-en="Full coverage of festivals, concerts and major events. I capture the moments that matter." data-de="Vollständige Abdeckung von Festivals, Konzerten und großen Veranstaltungen. Ich erfasse die Momente, die zählen.">Full dekning av festivaler, konserter og store begivenheter. Jeg fanger øyeblikkene som betyr noe.</p><span class="service-link" data-no="Se eksempler →" data-en="See examples →" data-de="Beispiele ansehen →">Se eksempler →</span></a>
-      <a href="projects.html?filter=video" class="service-card reveal reveal-delay-4" style="text-decoration:none;color:inherit;display:block"><h3 data-no="Bedrift" data-en="Business" data-de="Geschäft">Bedrift</h3><p data-no="Reklamefilmer og innhold optimalisert for sosiale medier, YouTube og nettsider." data-en="Commercials and content optimized for social media, YouTube and websites." data-de="Werbefilme und Inhalte optimiert für soziale Medien, YouTube und Webseiten.">Reklamefilmer og innhold optimalisert for sosiale medier, YouTube og nettsider.</p><span class="service-link" data-no="Se eksempler →" data-en="See examples →" data-de="Beispiele ansehen →">Se eksempler →</span></a>
-    </div>
-  </section>
-
-  <!-- WORKFLOW -->
-  <section class="section">
-    <div class="reveal"><div class="section-label" data-no="Slik jobber jeg" data-en="How I work" data-de="So arbeite ich">Slik jobber jeg</div><h2 class="section-title char-reveal line-reveal" data-no="Fra idé til ferdig produkt" data-en="From idea to finished product" data-de="Von der Idee zum fertigen Produkt">Fra idé til ferdig produkt</h2></div>
-    <div class="workflow-steps">
-      <div class="workflow-step reveal"><div class="step-number scroll-scrub">1</div><div class="step-content"><h3 data-no="Samtale & Planlegging" data-en="Consultation & Planning" data-de="Beratung & Planung">Samtale & Planlegging</h3><p data-no="Vi starter med en uforpliktende samtale om dine ønsker og behov. Jeg lager en plan som passer ditt budsjett." data-en="We start with a no-obligation conversation about your wishes and needs. I create a plan that fits your budget." data-de="Wir beginnen mit einem unverbindlichen Gespräch über Ihre Wünsche und Bedürfnisse. Ich erstelle einen Plan, der zu Ihrem Budget passt.">Vi starter med en uforpliktende samtale om dine ønsker og behov. Jeg lager en plan som passer ditt budsjett.</p><span class="step-tag" data-no="Uforpliktende" data-en="Free" data-de="Kostenlos">Uforpliktende</span></div></div>
-      <div class="workflow-step-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-      <div class="workflow-step reveal reveal-delay-1"><div class="step-number scroll-scrub">2</div><div class="step-content"><h3 data-no="Produksjon" data-en="Production" data-de="Produktion">Produksjon</h3><p data-no="Enten det er foto, video eller drone – jeg er ute i feltet og fanger de beste øyeblikkene." data-en="Whether it's photo, video or drone – I'm out in the field capturing the best moments." data-de="Egal ob Foto, Video oder Drohne – ich bin im Feld und erfasse die besten Momente.">Enten det er foto, video eller drone – jeg er ute i feltet og fanger de beste øyeblikkene.</p><span class="step-tag" data-no="1-3 dager" data-en="1-3 days" data-de="1-3 Tage">1-3 dager</span></div></div>
-      <div class="workflow-step-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-      <div class="workflow-step reveal reveal-delay-2"><div class="step-number scroll-scrub">3</div><div class="step-content"><h3 data-no="Redigering" data-en="Editing" data-de="Bearbeitung">Redigering</h3><p data-no="Profesjonell redigering med fokus på kvalitet. Du får forhåndsvisning før endelig levering." data-en="Professional editing with a focus on quality. You get a preview before final delivery." data-de="Professionelle Bearbeitung mit Fokus auf Qualität. Sie erhalten eine Vorschau vor der endgültigen Lieferung.">Profesjonell redigering med fokus på kvalitet. Du får forhåndsvisning før endelig levering.</p><span class="step-tag" data-no="2-5 dager" data-en="2-5 days" data-de="2-5 Tage">2-5 dager</span></div></div>
-      <div class="workflow-step-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
-      <div class="workflow-step reveal reveal-delay-3"><div class="step-number scroll-scrub">4</div><div class="step-content"><h3 data-no="Levering" data-en="Delivery" data-de="Lieferung">Levering</h3><p data-no="Ferdige filer i høy kvalitet, klare til bruk på nettside, sosiale medier eller print." data-en="Finished files in high quality, ready for use on websites, social media or print." data-de="Fertige Dateien in hoher Qualität, bereit zur Verwendung auf Webseiten, sozialen Medien oder Print.">Ferdige filer i høy kvalitet, klare til bruk på nettside, sosiale medier eller print.</p><span class="step-tag" data-no="Digital levering" data-en="Digital delivery" data-de="Digitale Lieferung">Digital levering</span></div></div>
-    </div>
-  </section>
-
-  <!-- STATS -->
-  <section class="stats blur-fade">
-    <div class="stats-grid">
-      <div class="stat-item reveal stat-glow"><h3 id="stat1">20+</h3><p data-no="Oppdrag fullført" data-en="Jobs completed" data-de="Abgeschlossene Auftraege">Oppdrag fullført</p></div>
-      <div class="stat-item reveal reveal-delay-1 stat-glow"><h3 id="stat2">15+</h3><p data-no="Kunder" data-en="Clients" data-de="Kunden">Kunder</p></div>
-      <div class="stat-item reveal reveal-delay-2 stat-glow"><h3 id="stat3">10+</h3><p data-no="Droneoppdrag" data-en="Drone missions" data-de="Drohnen-Einsaetze">Droneoppdrag</p></div>
-      <div class="stat-item reveal reveal-delay-3 stat-glow"><h3 id="stat4">4+</h3><p data-no="År med drone" data-en="Years with drone" data-de="Jahre mit Drohne">År med drone</p></div>
-    </div>
-  </section>
-
-  <!-- TESTIMONIALS -->
-  <section class="testimonials-section">
-    <div class="testimonials-container">
-      <div class="reveal"><div class="section-label" data-no="Anmeldelser" data-en="Reviews" data-de="Bewertungen">Anmeldelser</div><h2 class="section-title line-reveal" data-no="Hva kundene sier" data-en="What clients say" data-de="Was Kunden sagen">Hva kundene sier</h2></div>
-      <div class="testimonials-grid stagger-reveal h-stagger">
-        <div class="testimonial-card reveal reveal-delay-1">
-          <div class="testimonial-stars">★★★★★</div>
-          <p class="testimonial-text" data-no="«Kjempeflink fotograf som leverer kvalitet i både bilder og video. Vi brukte Oskar til å filme og fotografere, og resultatet overgikk forventningene. Anbefales på det sterkeste!»" data-en="«Incredibly talented photographer who delivers quality in both photos and video. We used Oskar for filming and photography, and the result exceeded expectations. Highly recommended!»" data-de="«Unglaublich talentierter Fotograf, der Qualität in Bildern und Videos liefert. Wir haben Oskar für Dreharbeiten und Fotografie beauftragt und das Ergebnis hat die Erwartungen übertroffen. Absolute Empfehlung!»">«Kjempeflink fotograf som leverer kvalitet i både bilder og video. Vi brukte Oskar til å filme og fotografere, og resultatet overgikk forventningene. Anbefales på det sterkeste!»</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">AD</div>
-            <div>
-              <div class="testimonial-name">Arctic Domes</div>
-              <div class="testimonial-role" data-no="Glass igloer på fjellet" data-en="Glass igloos in the mountains" data-de="Glaskuppeln im Gebirge">Glass igloer på fjellet</div>
-            </div>
-          </div>
-        </div>
-        <div class="testimonial-card reveal reveal-delay-2">
-          <div class="testimonial-stars">★★★★★</div>
-          <p class="testimonial-text" data-no="«Oskar er kjempeflink. Han har tatt flotte bilder av kunstverkene til min masteroppgave. Han har også laget en katalog til utstillingen som skal være i Bergen til sommeren, både virtuelt og til papirform. Oskar er effektiv og arbeidssom, han er tålmodig og veldig samarbeidsvillig. Oskar har gjort en kjempejobb 😀»" data-en="«Oskar is incredibly talented. He took beautiful photos of the artworks for my master's thesis. He also created a catalog for the exhibition in Bergen this summer, both digital and print. Oskar is efficient and hardworking, patient and very collaborative. Oskar did an amazing job 😀»" data-de="«Oskar ist unglaublich talentiert. Er hat wunderschöne Fotos meiner Kunstwerke für meine Masterarbeit gemacht. Er hat auch einen Katalog für die Ausstellung in Bergen diesen Sommer erstellt, sowohl digital als auch als Druck. Oskar ist effizient und fleißig, geduldig und sehr kooperativ. Oskar hat eine großartige Arbeit geleistet 😀»">«Oskar er kjempeflink. Han har tatt flotte bilder av kunstverkene til min masteroppgave. Han har også laget en katalog til utstillingen som skal være i Bergen til sommeren, både virtuelt og til papirform. Oskar er effektiv og arbeidssom, han er tålmodig og veldig samarbeidsvillig. Oskar har gjort en kjempejobb 😀»</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">LU</div>
-            <div>
-              <div class="testimonial-name">Lena Ubario</div>
-              <div class="testimonial-role" data-no="Kunstner" data-en="Artist" data-de="Künstlerin">Kunstner</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- EQUIPMENT -->
-  <section class="equipment">
-    <div class="section" style="padding:0;max-width:1200px;margin:0 auto">
-      <div class="reveal"><div class="section-label" data-no="Utstyr" data-en="Equipment" data-de="Ausrüstung">Utstyr</div><h2 class="section-title char-reveal line-reveal" data-no="Hva jeg jobber med" data-en="What I work with" data-de="Womit ich arbeite">Hva jeg jobber med</h2></div>
-      <div class="equip-grid reveal stagger-reveal perspective-section h-stagger">
-        <div class="equip-card tilt-glow"><span class="equip-icon">📷</span><h4>Sony A7IV</h4><p data-no="Fullformat kamera med høy oppløsning" data-en="Full-frame camera with high resolution" data-de="Vollformat-Kamera mit hoher Aufloesung">Fullformat kamera med høy oppløsning</p></div>
-        <div class="equip-card tilt-glow"><span class="equip-icon">🔭</span><h4>Sigma 24-70mm f/2.8</h4><p data-no="Allsidig zoom-objektiv i topp kvalitet" data-en="Versatile zoom lens in top quality" data-de="Vielseitiges Zoom-Objektiv in Top-Qualitaet">Allsidig zoom-objektiv i topp kvalitet</p></div>
-        <div class="equip-card tilt-glow"><span class="equip-icon">🚁</span><h4>DJI Mini 4 Pro</h4><p data-no="Kompakt drone med 4K video" data-en="Compact drone with 4K video" data-de="Kompakte Drohne mit 4K Video">Kompakt drone med 4K video</p></div>
-        <div class="equip-card tilt-glow"><span class="equip-icon">🎬</span><h4>DaVinci Resolve</h4><p data-no="Profesjonell videoredigering og color grading" data-en="Professional video editing and color grading" data-de="Professionelle Videobearbeitung und Color Grading">Profesjonell videoredigering og color grading</p></div>
-      </div>
-    </div>
-  </section>
-
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -454,80 +70,445 @@
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "Hvor lenge er leveringstiden?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Vanlig leveringstid er 2-5 virkedager for redigerte bilder og 1-2 uker for videoer. Under høysesong kan det ta litt lenger tid."
-        }
+        "name": "Hva koster et oppdrag?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Priser starter fra 2 000 kr for enkle oppdrag. Se pakkene på prissiden, eller ta kontakt for et skreddersydd tilbud." }
       },
       {
         "@type": "Question",
-        "name": "Hvor bor du?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Jeg bor i Vang i Innlandet, men tar oppdrag i hele regionen og resten av Norge."
-        }
+        "name": "Hvor lang er leveringstiden?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Typisk 2–5 dager for foto og 5–10 dager for video. Rask levering kan avtales." }
       },
       {
         "@type": "Question",
-        "name": "Hva koster det?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Priser varierer etter oppdragets omfang. Se priser-siden for pakker og eksempler, eller kontakt meg for et uforpliktende tilbud."
-        }
+        "name": "Hva er inkludert i prisen?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Oppdrag, redigering og digital levering. Reisekostnader kan komme i tillegg utenfor Innlandet." }
+      },
+      {
+        "@type": "Question",
+        "name": "Kan jeg bruke bildene fritt?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Du får bruksrett til alle ferdige bilder og videoer til eget bruk. Kommersiell bruk avtales separat." }
       }
     ]
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": "Showreel – Solemsli Productions",
+    "description": "Showreel med foto, video og drone fra Solemsli Productions i Innlandet.",
+    "thumbnailUrl": "https://solemsliproductions.no/video-thumbs/SVARx16jTQg.webp",
+    "embedUrl": "https://www.youtube-nocookie.com/embed/SVARx16jTQg",
+    "publisher": { "@id": "https://solemsliproductions.no/#business" }
+  }
+  </script>
+  <style>
+    /* FORSIDEN */
 
-  <!-- FAQ -->
-  <section class="faq blur-fade">
-    <div class="reveal"><div class="section-label" data-no="FAQ" data-en="FAQ" data-de="FAQ">FAQ</div><h2 class="section-title" data-no="Vanlige spørsmål" data-en="Frequently asked questions" data-de="Häufige Fragen">Vanlige spørsmål</h2></div>
-    <div class="faq-item reveal"><button class="faq-question" aria-expanded="false" aria-controls="faq-a1" data-no="Hva koster et oppdrag?" data-en="How much does a job cost?" data-de="Wie viel kostet ein Auftrag?">Hva koster et oppdrag?<span class="faq-icon">+</span></button><div class="faq-answer" id="faq-a1" role="region"><p data-no="Priser starter fra 2 000 kr for enkle oppdrag. Se mine pakker på Priser-siden, eller ta kontakt for et skreddersydd tilbud." data-en="Prices start from 2,000 NOK for simple jobs. See my packages on the Pricing page, or contact me for a custom quote." data-de="Preise beginnen bei 2.000 NOK für einfache Aufträge. Sehen Sie meine Pakete auf der Preisseite oder kontaktieren Sie mich für ein maßgeschneidertes Angebot.">Priser starter fra 2 000 kr for enkle oppdrag. Se mine pakker på Priser-siden, eller ta kontakt for et skreddersydd tilbud.</p></div></div>
-    <div class="faq-item reveal reveal-delay-1"><button class="faq-question" aria-expanded="false" aria-controls="faq-a2" data-no="Hvor lang er leveringstiden?" data-en="What is the delivery time?" data-de="Wie lang ist die Lieferzeit?">Hvor lang er leveringstiden?<span class="faq-icon">+</span></button><div class="faq-answer" id="faq-a2" role="region"><p data-no="Typisk leveringstid er 2-5 dager for foto og 5-10 dager for videoproduksjon. Rush kan avtales." data-en="Typical delivery is 2-5 days for photos and 5-10 days for video production. Rush can be arranged." data-de="Typische Lieferzeit beträgt 2-5 Tage für Fotos und 5-10 Tage für Videoproduktion. Eilige Lieferung kann vereinbart werden.">Typisk leveringstid er 2-5 dager for foto og 5-10 dager for videoproduksjon. Rush kan avtales.</p></div></div>
-    <div class="faq-item reveal reveal-delay-2"><button class="faq-question" aria-expanded="false" aria-controls="faq-a3" data-no="Hva er inkludert i prisen?" data-en="What's included in the price?" data-de="Was ist im Preis enthalten?">Hva er inkludert i prisen?<span class="faq-icon">+</span></button><div class="faq-answer" id="faq-a3" role="region"><p data-no="Alle priser inkluderer oppdrag, redigering og digital levering. Reisekostnader kan komme i tillegg utenfor Innlandet." data-en="All prices include the assignment, editing and digital delivery. Travel costs may apply outside Innlandet." data-de="Alle Preise beinhalten Auftrag, Bearbeitung und digitale Lieferung. Reisekosten können außerhalb von Innlandet anfallen.">Alle priser inkluderer oppdrag, redigering og digital levering. Reisekostnader kan komme i tillegg utenfor Innlandet.</p></div></div>
-    <div class="faq-item reveal reveal-delay-3"><button class="faq-question" aria-expanded="false" aria-controls="faq-a4" data-no="Kan jeg bruke bildene fritt?" data-en="Can I use the images freely?" data-de="Kann ich die Bilder frei verwenden?">Kan jeg bruke bildene fritt?<span class="faq-icon">+</span></button><div class="faq-answer" id="faq-a4" role="region"><p data-no="Ja! Du får full bruksrett til alle ferdige bilder og videoer til eget bruk. Ved kommersiell bruk kan vi avtale vilkår." data-en="Yes! You get full usage rights to all finished photos and videos for personal use. Commercial use terms can be arranged." data-de="Ja! Sie erhalten volle Nutzungsrechte an allen fertigen Fotos und Videos für den Privatgebrauch. Für kommerzielle Nutzung können wir Bedingungen vereinbaren.">Ja! Du får full bruksrett til alle ferdige bilder og videoer til eget bruk. Ved kommersiell bruk kan vi avtale vilkår.</p></div></div>
-  </section>
+    .hero{min-height:100svh;align-items:flex-end}
+    .hero-content{padding-bottom:clamp(56px,10vh,110px)}
+    .hero h1{font-size:clamp(2.6rem,7vw,5.4rem);max-width:12ch}
+    .hero-badge{margin-bottom:26px}
+    .hero-scroll{
+      position:absolute;left:var(--pad);bottom:28px;z-index:1;
+      font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.45);
+      display:flex;align-items:center;gap:10px;
+    }
+    .hero-scroll::after{content:'';width:40px;height:1px;background:rgba(255,255,255,.3)}
 
-  <!-- CTA -->
-  <section class="cta scroll-border floating-particles section-parallax">
-    <div class="reveal">
-      <h2 data-no="Klar til å starte?" data-en="Ready to get started?" data-de="Bereit zu starten?">Klar til å starte?</h2>
-      <p data-no="Ta kontakt for en uforpliktende samtale om ditt neste prosjekt." data-en="Get in touch for a no-obligation chat about your next project." data-de="Kontaktieren Sie mich für ein unverbindliches Gespräch über Ihr nächstes Projekt.">Ta kontakt for en uforpliktende samtale om ditt neste prosjekt.</p>
-      <a href="contact.html" class="btn btn-primary magnetic magnetic-field particle-burst mouse-glow" data-no="Kontakt meg" data-en="Contact me" data-de="Kontaktiere mich">Kontakt meg</a>
-    </div>
-  </section>
+    /* Showreel */
+    .showreel{padding-top:clamp(56px,8vw,96px)}
+    .showreel .section-head{margin-bottom:24px}
+    .video-frame{
+      position:relative;aspect-ratio:16/9;overflow:hidden;
+      border-radius:var(--radius);border:1px solid var(--line);
+      background:#000;
+    }
+    .video-frame iframe{width:100%;height:100%;border:0}
 
-  <!-- NEWSLETTER -->
-  <section class="newsletter">
-    <div class="reveal">
-      <div class="section-label" data-no="Nyhetsbrev" data-en="Newsletter" data-de="Newsletter">Nyhetsbrev</div>
-      <h2 data-no="Hold deg oppdatert" data-en="Stay updated" data-de="Bleib auf dem Laufenden">Hold deg oppdatert</h2>
-      <p data-no="Meld deg på for tips, nye prosjekter og eksklusive tilbud." data-en="Sign up for tips, new projects and exclusive offers." data-de="Melden Sie sich für Tipps, neue Projekte und exklusive Angebote an.">Meld deg på for tips, nye prosjekter og eksklusive tilbud.</p>
-      <!-- ⚠️ FORMSPREE: Replace the form ID below with your real ID from formspree.io/my-forms -->
-      <form class="newsletter-form" action="https://formspree.io/f/YOUR_FORM_ID_HERE" method="POST" id="newsletterForm">
-        <input type="email" placeholder="Din e-post" name="email" required>
-        <button type="submit" data-no="Meld på" data-en="Subscribe" data-de="Abonnieren">Meld på</button>
-      </form>
-    </div>
-  </section>
+    /* Tjenester */
+    .services{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+    .service{
+      position:relative;
+      background:var(--bg);
+      padding:clamp(26px,4vw,40px);
+      text-decoration:none;
+      display:flex;flex-direction:column;gap:14px;
+      min-height:210px;
+      transition:background .3s;
+    }
+    .service:hover{background:var(--surface)}
+    .service-num{font-size:.7rem;font-weight:600;letter-spacing:.14em;color:var(--text-muted)}
+    .service h3{font-size:1.15rem;font-weight:600;letter-spacing:-.02em}
+    .service p{font-size:.9rem;line-height:1.7;max-width:36ch}
+    .service .link-arrow{margin-top:auto;font-size:.8rem}
+    .service:hover .link-arrow span{transform:translateX(4px)}
+
+    /* Arbeidsflyt */
+    .steps{border-top:1px solid var(--line)}
+    .step{
+      display:grid;grid-template-columns:56px 1fr auto;gap:clamp(16px,3vw,36px);
+      align-items:baseline;
+      padding:26px 0;
+      border-bottom:1px solid var(--line);
+    }
+    .step-num{font-size:.72rem;font-weight:600;letter-spacing:.14em;color:var(--text-muted)}
+    .step-body h3{font-size:1.05rem;font-weight:500;margin-bottom:6px}
+    .step-body p{font-size:.9rem;line-height:1.7;max-width:58ch}
+    .step-tag{font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);white-space:nowrap}
+    .step:hover .step-body h3{color:var(--accent)}
+
+    /* Tall */
+    .stats{
+      display:grid;grid-template-columns:repeat(4,1fr);
+      border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+      margin-top:clamp(48px,7vw,80px);
+    }
+    .stat{padding:clamp(28px,4vw,44px) 0;border-right:1px solid var(--line)}
+    .stat:last-child{border-right:0}
+    .stat strong{display:block;font-size:clamp(1.8rem,3.4vw,2.8rem);font-weight:500;letter-spacing:-.04em;line-height:1}
+    .stat span{display:block;margin-top:8px;font-size:.75rem;color:var(--text-muted)}
+
+    /* Anmeldelser */
+    .quotes{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,3vw,32px)}
+    .quote{
+      border:1px solid var(--line);border-radius:var(--radius);
+      padding:clamp(24px,3.5vw,36px);
+      display:flex;flex-direction:column;gap:20px;
+      transition:border-color .3s;
+    }
+    .quote:hover{border-color:var(--line-strong)}
+    .quote blockquote{font-size:.98rem;line-height:1.75;color:var(--text);font-weight:400}
+    .quote footer{border:0;padding:0;display:flex;align-items:center;gap:12px}
+    .quote .avatar{
+      width:34px;height:34px;border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+      background:var(--surface-2);border:1px solid var(--line);
+      font-size:.68rem;font-weight:600;color:var(--text-muted);
+    }
+    .quote .who{font-size:.82rem;color:var(--text)}
+    .quote .role{display:block;font-size:.72rem;color:var(--text-muted)}
+
+    /* Utstyr */
+    .gear{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .gear-item{background:var(--bg);padding:26px 0}
+    .gear-item h3{font-size:.9rem;font-weight:600;margin-bottom:6px}
+    .gear-item p{font-size:.78rem;line-height:1.6;max-width:24ch}
+
+    /* CTA */
+    .cta{
+      text-align:center;
+      padding:clamp(72px,10vw,120px) var(--pad);
+      border-top:1px solid var(--line);
+    }
+    .cta h2{font-size:clamp(1.9rem,4vw,3rem);font-weight:600;letter-spacing:-.04em;margin-bottom:16px}
+    .cta p{max-width:46ch;margin:0 auto 28px}
+
+    /* Nyhetsbrev */
+    .newsletter{border-top:1px solid var(--line)}
+    .newsletter-inner{max-width:520px}
+    .newsletter h2{font-size:clamp(1.4rem,2.6vw,1.9rem);font-weight:500;margin-bottom:10px}
+    .newsletter p{font-size:.9rem;margin-bottom:22px}
+    .newsletter form{display:flex;gap:8px;flex-wrap:wrap}
+    .newsletter input{
+      flex:1;min-width:200px;
+      height:44px;padding:0 16px;
+      background:transparent;border:1px solid var(--line);border-radius:999px;
+      color:var(--text);font-size:.88rem;
+      transition:border-color .25s;
+    }
+    .newsletter input:focus{outline:0;border-color:var(--text)}
+    .newsletter button{
+      height:44px;padding:0 22px;border:0;border-radius:999px;
+      background:var(--accent);color:#fff;font-size:.84rem;font-weight:600;
+      transition:background .25s;
+    }
+    .newsletter button:hover{background:var(--text);color:var(--bg)}
+    .newsletter-status{font-size:.82rem;margin-top:12px;color:var(--text-muted);min-height:1.2em}
+
+    /* Instagram */
+    .insta-grid{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:8px;
+      margin-top:8px;
+    }
+    .insta-item{position:relative;aspect-ratio:4/3;overflow:hidden;border-radius:var(--radius-sm);background:var(--surface)}
+    .insta-item img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease)}
+    .insta-item:hover img{transform:scale(1.03)}
+    .insta-item::after{
+      content:'↗';position:absolute;right:12px;top:10px;color:#fff;font-size:.8rem;
+      opacity:0;transition:opacity .25s;
+    }
+    .insta-item:hover::after{opacity:.8}
+
+    @media(max-width:820px){
+      .hero{min-height:92svh}
+      .services{grid-template-columns:1fr}
+      .quotes{grid-template-columns:1fr}
+      .stats{grid-template-columns:1fr 1fr}
+      .stat:nth-child(2){border-right:0}
+      .stat:nth-child(1),.stat:nth-child(2){border-bottom:1px solid var(--line)}
+      .gear{grid-template-columns:1fr 1fr}
+      .gear-item{padding:22px 16px 22px 0}
+      .step{grid-template-columns:40px 1fr;gap:14px}
+      .step-tag{grid-column:2;font-size:.65rem}
+      .insta-grid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media(max-width:520px){
+      .insta-grid{grid-template-columns:1fr 1fr}
+      .stat strong{font-size:1.7rem}
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Hopp til innhold</a>
+
+  <div id="progress-bar"></div>
+
+  <header id="header">
+    <a href="index.html" class="logo">Solemsli Productions</a>
+    <button class="menu-toggle" type="button" aria-label="Meny" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span></button>
+    <nav id="site-nav" aria-label="Hovedmeny">
+      <a href="index.html" class="active" aria-current="page" data-no="Hjem" data-en="Home" data-de="Startseite">Hjem</a>
+      <a href="about.html" data-no="Om meg" data-en="About" data-de="Über mich">Om meg</a>
+      <a href="projects.html" data-no="Portfolio" data-en="Portfolio" data-de="Portfolio">Portfolio</a>
+      <a href="shop.html" data-no="Shop" data-en="Shop" data-de="Shop">Shop</a>
+      <a href="prices.html" data-no="Priser" data-en="Pricing" data-de="Preise">Priser</a>
+      <a href="contact.html" data-no="Kontakt" data-en="Contact" data-de="Kontakt">Kontakt</a>
+      <button class="nav-btn" id="lang-toggle" aria-label="Bytt språk">EN</button>
+      <button class="nav-btn" id="theme-toggle" aria-label="Bytt tema">☀ Lys</button>
+    </nav>
+  </header>
+
+  <main id="main-content">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-bg">
+        <img src="gallery/andre natur bilder/uranustind.jpg" alt="Fjellandskap i Innlandet" fetchpriority="high" width="1920" height="1080" srcset="gallery/andre%20natur%20bilder/uranustind-480.webp 480w, gallery/andre%20natur%20bilder/uranustind-960.webp 960w, gallery/andre%20natur%20bilder/uranustind-1600.webp 1600w" sizes="100vw" decoding="async">
+      </div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <div class="hero-badge" data-no="Basert i Innlandet" data-en="Based in Innlandet" data-de="Basierend in Innlandet">Basert i Innlandet</div>
+        <h1 data-html data-no="Visuell <br>historiefortelling" data-en="Visual <br>storytelling" data-de="Visuelles <br>Geschichtenerzählen">Visuell <br>historiefortelling</h1>
+        <p data-no="Profesjonell foto, video og droneproduksjon for bedrifter og privatpersoner i Innlandet." data-en="Professional photo, video and drone production for businesses and individuals in Innlandet." data-de="Professionelle Foto-, Video- und Drohnenproduktion für Unternehmen und Privatpersonen in Innlandet.">Profesjonell foto, video og droneproduksjon for bedrifter og privatpersoner i Innlandet.</p>
+        <div class="hero-buttons">
+          <a href="projects.html" class="btn btn-primary" data-no="Se arbeidet" data-en="See the work" data-de="Arbeiten ansehen">Se arbeidet</a>
+          <a href="contact.html" class="btn btn-outline" data-no="Ta kontakt" data-en="Get in touch" data-de="Kontakt aufnehmen">Ta kontakt</a>
+        </div>
+      </div>
+      <div class="hero-scroll" aria-hidden="true">Scroll</div>
+    </section>
+
+    <!-- SHOWREEL -->
+    <section class="section showreel">
+      <div class="section-head reveal">
+        <span class="section-label" data-no="Showreel" data-en="Showreel" data-de="Showreel">Showreel</span>
+        <h2 class="section-title" data-no="Se arbeidet i bevegelse" data-en="See the work in motion" data-de="Die Arbeit in Bewegung">Se arbeidet i bevegelse</h2>
+      </div>
+      <div class="video-frame reveal">
+        <button class="video-facade" type="button" data-video="SVARx16jTQg" data-title="Showreel – Solemsli Productions" data-aria-no="Spill av: Showreel – Solemsli Productions" data-aria-en="Play: Showreel – Solemsli Productions" data-aria-de="Abspielen: Showreel – Solemsli Productions" aria-label="Spill av: Showreel – Solemsli Productions"><img src="video-thumbs/SVARx16jTQg.webp" alt="" width="1280" height="720" loading="lazy" decoding="async"><span class="video-play" aria-hidden="true"></span></button>
+      </div>
+    </section>
+
+    <!-- TJENESTER -->
+    <section class="section">
+      <div class="section-head reveal">
+        <span class="section-label" data-no="Tjenester" data-en="Services" data-de="Leistungen">Tjenester</span>
+        <h2 class="section-title" data-no="Det jeg gjør" data-en="What I do" data-de="Was ich mache">Det jeg gjør</h2>
+      </div>
+      <div class="services stagger">
+        <a href="projects.html?filter=foto" class="service">
+          <span class="service-num">01</span>
+          <h3 data-no="Foto & video" data-en="Photo & video" data-de="Foto & Video">Foto & video</h3>
+          <p data-no="Kamera-produksjoner med fokus på detaljer og visuell historiefortelling. Fra portrett til landskap." data-en="Camera productions focused on detail and visual storytelling. From portraits to landscapes." data-de="Kamera-Produktionen mit Fokus auf Details und visuelles Storytelling. Von Porträts bis Landschaften.">Kamera-produksjoner med fokus på detaljer og visuell historiefortelling. Fra portrett til landskap.</p>
+          <span class="link-arrow" data-no="Se eksempler" data-en="See examples" data-de="Beispiele">Se eksempler <span>→</span></span>
+        </a>
+        <a href="projects.html?filter=drone" class="service">
+          <span class="service-num">02</span>
+          <h3 data-no="Drone" data-en="Drone" data-de="Drohne">Drone</h3>
+          <p data-no="Luftbilder og dronefilm til eiendom, event og landskap." data-en="Aerial photos and drone film for property, events and landscape." data-de="Luftbilder und Drohnenfilm für Immobilien, Events und Landschaft.">Luftbilder og dronefilm til eiendom, event og landskap.</p>
+          <span class="link-arrow" data-no="Se eksempler" data-en="See examples" data-de="Beispiele">Se eksempler <span>→</span></span>
+        </a>
+        <a href="projects.html?filter=event" class="service">
+          <span class="service-num">03</span>
+          <h3 data-no="Event" data-en="Events" data-de="Veranstaltungen">Event</h3>
+          <p data-no="Dekning av festivaler, konserter og store begivenheter – øyeblikkene som betyr noe." data-en="Coverage of festivals, concerts and major events – the moments that matter." data-de="Abdeckung von Festivals, Konzerten und großen Veranstaltungen – die Momente, die zählen.">Dekning av festivaler, konserter og store begivenheter – øyeblikkene som betyr noe.</p>
+          <span class="link-arrow" data-no="Se eksempler" data-en="See examples" data-de="Beispiele">Se eksempler <span>→</span></span>
+        </a>
+        <a href="projects.html?filter=video" class="service">
+          <span class="service-num">04</span>
+          <h3 data-no="Bedrift" data-en="Business" data-de="Unternehmen">Bedrift</h3>
+          <p data-no="Reklamefilm og innhold laget for sosiale medier, YouTube og nettsider." data-en="Commercials and content made for social media, YouTube and websites." data-de="Werbefilme und Inhalte für soziale Medien, YouTube und Webseiten.">Reklamefilm og innhold laget for sosiale medier, YouTube og nettsider.</p>
+          <span class="link-arrow" data-no="Se eksempler" data-en="See examples" data-de="Beispiele">Se eksempler <span>→</span></span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ARBEIDSFLYT -->
+    <section class="section">
+      <div class="section-head reveal">
+        <span class="section-label" data-no="Slik jobber jeg" data-en="How I work" data-de="So arbeite ich">Slik jobber jeg</span>
+        <h2 class="section-title" data-no="Fra idé til ferdig leveranse" data-en="From idea to delivery" data-de="Von der Idee zur Lieferung">Fra idé til ferdig leveranse</h2>
+      </div>
+      <div class="steps">
+        <div class="step reveal">
+          <span class="step-num">01</span>
+          <div class="step-body">
+            <h3 data-no="Samtale og plan" data-en="Conversation and plan" data-de="Gespräch und Plan">Samtale og plan</h3>
+            <p data-no="En uforpliktende samtale om ønsker og behov, og en plan som passer budsjettet." data-en="A no-obligation conversation about wishes and needs, and a plan that fits the budget." data-de="Ein unverbindliches Gespräch über Wünsche und Bedürfnisse und ein Plan, der zum Budget passt.">En uforpliktende samtale om ønsker og behov, og en plan som passer budsjettet.</p>
+          </div>
+          <span class="step-tag" data-no="Uforpliktende" data-en="No obligation" data-de="Unverbindlich">Uforpliktende</span>
+        </div>
+        <div class="step reveal">
+          <span class="step-num">02</span>
+          <div class="step-body">
+            <h3 data-no="Produksjon" data-en="Production" data-de="Produktion">Produksjon</h3>
+            <p data-no="Foto, video eller drone – jeg er i feltet og fanger øyeblikkene." data-en="Photo, video or drone – I'm in the field capturing the moments." data-de="Foto, Video oder Drohne – ich bin vor Ort und fange die Momente ein.">Foto, video eller drone – jeg er i feltet og fanger øyeblikkene.</p>
+          </div>
+          <span class="step-tag" data-no="1–3 dager" data-en="1–3 days" data-de="1–3 Tage">1–3 dager</span>
+        </div>
+        <div class="step reveal">
+          <span class="step-num">03</span>
+          <div class="step-body">
+            <h3 data-no="Redigering" data-en="Editing" data-de="Bearbeitung">Redigering</h3>
+            <p data-no="Redigering med fokus på kvalitet, og forhåndsvisning før endelig levering." data-en="Editing with a focus on quality, and a preview before final delivery." data-de="Bearbeitung mit Fokus auf Qualität und eine Vorschau vor der endgültigen Lieferung.">Redigering med fokus på kvalitet, og forhåndsvisning før endelig levering.</p>
+          </div>
+          <span class="step-tag" data-no="2–5 dager" data-en="2–5 days" data-de="2–5 Tage">2–5 dager</span>
+        </div>
+        <div class="step reveal">
+          <span class="step-num">04</span>
+          <div class="step-body">
+            <h3 data-no="Levering" data-en="Delivery" data-de="Lieferung">Levering</h3>
+            <p data-no="Ferdige filer i høy kvalitet, klare til nett, sosiale medier eller print." data-en="Finished high-quality files, ready for web, social media or print." data-de="Fertige Dateien in hoher Qualität, bereit für Web, soziale Medien oder Druck.">Ferdige filer i høy kvalitet, klare til nett, sosiale medier eller print.</p>
+          </div>
+          <span class="step-tag" data-no="Digitalt" data-en="Digital" data-de="Digital">Digitalt</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- TALL -->
+    <section class="section" style="padding-bottom:0">
+      <div class="stats stagger">
+        <div class="stat"><strong>20+</strong><span data-no="Oppdrag fullført" data-en="Jobs completed" data-de="Abgeschlossene Aufträge">Oppdrag fullført</span></div>
+        <div class="stat"><strong>15+</strong><span data-no="Kunder" data-en="Clients" data-de="Kunden">Kunder</span></div>
+        <div class="stat"><strong>10+</strong><span data-no="Droneoppdrag" data-en="Drone missions" data-de="Drohneneinsätze">Droneoppdrag</span></div>
+        <div class="stat"><strong>4+</strong><span data-no="År med drone" data-en="Years with drone" data-de="Jahre mit Drohne">År med drone</span></div>
+      </div>
+    </section>
+
+    <!-- ANMELDELSER -->
+    <section class="section">
+      <div class="section-head reveal">
+        <span class="section-label" data-no="Anmeldelser" data-en="Reviews" data-de="Bewertungen">Anmeldelser</span>
+        <h2 class="section-title" data-no="Hva kundene sier" data-en="What clients say" data-de="Was Kunden sagen">Hva kundene sier</h2>
+      </div>
+      <div class="quotes stagger">
+        <div class="quote">
+          <blockquote data-no="«Kjempeflink fotograf som leverer kvalitet i både bilder og video. Resultatet overgikk forventningene. Anbefales på det sterkeste!»" data-en="“Incredibly talented photographer who delivers quality in both photos and video. The result exceeded expectations. Highly recommended!”" data-de="„Unglaublich talentierter Fotograf, der Qualität in Bildern und Videos liefert. Das Ergebnis hat die Erwartungen übertroffen. Absolute Empfehlung!“">«Kjempeflink fotograf som leverer kvalitet i både bilder og video. Resultatet overgikk forventningene. Anbefales på det sterkeste!»</blockquote>
+          <footer>
+            <span class="avatar">AD</span>
+            <div><span class="who">Arctic Domes</span><span class="role" data-no="Glassigloer på fjellet" data-en="Glass igloos in the mountains" data-de="Glaskuppeln im Gebirge">Glassigloer på fjellet</span></div>
+          </footer>
+        </div>
+        <div class="quote">
+          <blockquote data-no="«Flotte bilder av kunstverkene til masteroppgaven min, og en katalog til utstillingen. Effektiv, tålmodig og veldig samarbeidsvillig.»" data-en="“Beautiful photos of the artworks for my master's thesis, and a catalog for the exhibition. Efficient, patient and very collaborative.”" data-de="„Wunderschöne Fotos meiner Kunstwerke für meine Masterarbeit und ein Katalog für die Ausstellung. Effizient, geduldig und sehr kooperativ.“">«Flotte bilder av kunstverkene til masteroppgaven min, og en katalog til utstillingen. Effektiv, tålmodig og veldig samarbeidsvillig.»</blockquote>
+          <footer>
+            <span class="avatar">LU</span>
+            <div><span class="who">Lena Ubario</span><span class="role" data-no="Kunstner" data-en="Artist" data-de="Künstlerin">Kunstner</span></div>
+          </footer>
+        </div>
+      </div>
+    </section>
+
+    <!-- UTSTYR -->
+    <section class="section">
+      <div class="section-head reveal">
+        <span class="section-label" data-no="Utstyr" data-en="Equipment" data-de="Ausrüstung">Utstyr</span>
+        <h2 class="section-title" data-no="Verktøyene jeg bruker" data-en="The tools I use" data-de="Die Werkzeuge, die ich nutze">Verktøyene jeg bruker</h2>
+      </div>
+      <div class="gear stagger">
+        <div class="gear-item"><h3>Sony A7IV</h3><p data-no="Fullformat kamera med høy oppløsning" data-en="Full-frame camera with high resolution" data-de="Vollformatkamera mit hoher Auflösung">Fullformat kamera med høy oppløsning</p></div>
+        <div class="gear-item"><h3>Sigma 24–70mm f/2.8</h3><p data-no="Allsidig zoomobjektiv i topp kvalitet" data-en="Versatile zoom lens in top quality" data-de="Vielseitiges Zoomobjektiv in Topqualität">Allsidig zoomobjektiv i topp kvalitet</p></div>
+        <div class="gear-item"><h3>DJI Mini 4 Pro</h3><p data-no="Kompakt drone med 4K video" data-en="Compact drone with 4K video" data-de="Kompakte Drohne mit 4K-Video">Kompakt drone med 4K video</p></div>
+        <div class="gear-item"><h3>DaVinci Resolve</h3><p data-no="Videoredigering og color grading" data-en="Video editing and color grading" data-de="Videobearbeitung und Color Grading">Videoredigering og color grading</p></div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section">
+      <div class="section-head reveal">
+        <span class="section-label">FAQ</span>
+        <h2 class="section-title" data-no="Vanlige spørsmål" data-en="Frequently asked questions" data-de="Häufige Fragen">Vanlige spørsmål</h2>
+      </div>
+      <div class="faq" data-accordion>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" aria-controls="faq-a1">
+            <span data-no="Hva koster et oppdrag?" data-en="How much does a job cost?" data-de="Wie viel kostet ein Auftrag?">Hva koster et oppdrag?</span><span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer" id="faq-a1" role="region"><p data-no="Priser starter fra 2 000 kr for enkle oppdrag. Se pakkene på prissiden, eller ta kontakt for et skreddersydd tilbud." data-en="Prices start from 2,000 NOK for simple jobs. See the packages on the pricing page, or get in touch for a custom quote." data-de="Preise beginnen bei 2.000 NOK für einfache Aufträge. Sehen Sie die Pakete auf der Preisseite oder kontaktieren Sie mich für ein maßgeschneidertes Angebot.">Priser starter fra 2 000 kr for enkle oppdrag. Se pakkene på prissiden, eller ta kontakt for et skreddersydd tilbud.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" aria-controls="faq-a2">
+            <span data-no="Hvor lang er leveringstiden?" data-en="What is the delivery time?" data-de="Wie lang ist die Lieferzeit?">Hvor lang er leveringstiden?</span><span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer" id="faq-a2" role="region"><p data-no="Typisk 2–5 dager for foto og 5–10 dager for video. Rask levering kan avtales." data-en="Typically 2–5 days for photos and 5–10 days for video. Rush delivery can be arranged." data-de="Typischerweise 2–5 Tage für Fotos und 5–10 Tage für Video. Eilige Lieferung kann vereinbart werden.">Typisk 2–5 dager for foto og 5–10 dager for video. Rask levering kan avtales.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" aria-controls="faq-a3">
+            <span data-no="Hva er inkludert i prisen?" data-en="What's included?" data-de="Was ist enthalten?">Hva er inkludert i prisen?</span><span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer" id="faq-a3" role="region"><p data-no="Oppdrag, redigering og digital levering. Reisekostnader kan komme i tillegg utenfor Innlandet." data-en="The assignment, editing and digital delivery. Travel costs may apply outside Innlandet." data-de="Auftrag, Bearbeitung und digitale Lieferung. Reisekosten können außerhalb von Innlandet anfallen.">Oppdrag, redigering og digital levering. Reisekostnader kan komme i tillegg utenfor Innlandet.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" aria-controls="faq-a4">
+            <span data-no="Kan jeg bruke bildene fritt?" data-en="Can I use the images freely?" data-de="Kann ich die Bilder frei verwenden?">Kan jeg bruke bildene fritt?</span><span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer" id="faq-a4" role="region"><p data-no="Du får bruksrett til alle ferdige bilder og videoer til eget bruk. Kommersiell bruk avtales separat." data-en="You get usage rights to all finished photos and videos for personal use. Commercial use is agreed separately." data-de="Sie erhalten Nutzungsrechte an allen fertigen Fotos und Videos für den Eigengebrauch. Kommerzielle Nutzung wird separat vereinbart.">Du får bruksrett til alle ferdige bilder og videoer til eget bruk. Kommersiell bruk avtales separat.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+      <div class="reveal">
+        <h2 data-no="Klar for neste prosjekt?" data-en="Ready for the next project?" data-de="Bereit für das nächste Projekt?">Klar for neste prosjekt?</h2>
+        <p data-no="Ta kontakt for en uforpliktende samtale." data-en="Get in touch for a no-obligation conversation." data-de="Kontaktieren Sie mich für ein unverbindliches Gespräch.">Ta kontakt for en uforpliktende samtale.</p>
+        <a href="contact.html" class="btn btn-primary" data-no="Kontakt meg" data-en="Contact me" data-de="Kontaktieren Sie mich">Kontakt meg</a>
+      </div>
+    </section>
+
+    <!-- NYHETSBREV -->
+    <section class="section newsletter">
+      <div class="newsletter-inner reveal">
+        <span class="section-label" data-no="Nyhetsbrev" data-en="Newsletter" data-de="Newsletter">Nyhetsbrev</span>
+        <h2 data-no="Hold deg oppdatert" data-en="Stay updated" data-de="Bleib auf dem Laufenden">Hold deg oppdatert</h2>
+        <p data-no="Tips, nye prosjekter og tilbud – noen ganger i året." data-en="Tips, new projects and offers – a few times a year." data-de="Tipps, neue Projekte und Angebote – ein paar Mal im Jahr.">Tips, nye prosjekter og tilbud – noen ganger i året.</p>
+        <form id="newsletterForm" novalidate>
+          <input type="email" name="email" placeholder="Din e-post" aria-label="Din e-post" required>
+          <button type="submit" data-no="Meld på" data-en="Subscribe" data-de="Abonnieren">Meld på</button>
+        </form>
+        <p class="newsletter-status" id="newsletterStatus" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <!-- INSTAGRAM -->
+    <section class="section">
+      <div class="section-head reveal">
+        <span class="section-label">@solemsli_productions</span>
+        <h2 class="section-title" data-no="Fra Instagram" data-en="From Instagram" data-de="Von Instagram">Fra Instagram</h2>
+      </div>
+      <div class="insta-grid stagger">
+        <a class="insta-item reveal-img" href="https://www.instagram.com/solemsli_productions/" target="_blank" rel="noopener noreferrer"><img src="gallery/bryllup/untitled-6005.jpg" alt="Bryllupsbilde fra Solemsli Productions" loading="lazy" width="1600" height="900" srcset="gallery/bryllup/untitled-6005-480.webp 480w, gallery/bryllup/untitled-6005-960.webp 960w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async"></a>
+        <a class="insta-item reveal-img" href="https://www.instagram.com/solemsli_productions/" target="_blank" rel="noopener noreferrer"><img src="gallery/vinjerock/untitled-7604.jpg" alt="Vinjerock festival" loading="lazy" width="900" height="1600" srcset="gallery/vinjerock/untitled-7604-480.webp 480w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async"></a>
+        <a class="insta-item reveal-img" href="https://www.instagram.com/solemsli_productions/" target="_blank" rel="noopener noreferrer"><img src="gallery/konfirmasjon/untitled-5010.jpg" alt="Konfirmasjonsportrett" loading="lazy" width="900" height="1600" srcset="gallery/konfirmasjon/untitled-5010-480.webp 480w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async"></a>
+        <a class="insta-item reveal-img" href="https://www.instagram.com/solemsli_productions/" target="_blank" rel="noopener noreferrer"><img src="gallery/vang-kommune-sentrum/DJI_20251006091304_0231_D.jpg" alt="Vang kommune fra luften" loading="lazy" width="1600" height="900" srcset="gallery/vang-kommune-sentrum/DJI_20251006091304_0231_D-480.webp 480w, gallery/vang-kommune-sentrum/DJI_20251006091304_0231_D-960.webp 960w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async"></a>
+        <a class="insta-item reveal-img" href="https://www.instagram.com/solemsli_productions/" target="_blank" rel="noopener noreferrer"><img src="gallery/vinjerock-drone/untitled--16.jpg" alt="Vinjerock fra luften" loading="lazy" width="1600" height="900" srcset="gallery/vinjerock-drone/untitled--16-480.webp 480w, gallery/vinjerock-drone/untitled--16-960.webp 960w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async"></a>
+        <a class="insta-item reveal-img" href="https://www.instagram.com/solemsli_productions/" target="_blank" rel="noopener noreferrer"><img src="gallery/vang-bygg-oversikt/untitled--10.jpg" alt="Byggeprosjekt fotografert med drone" loading="lazy" width="1600" height="900" srcset="gallery/vang-bygg-oversikt/untitled--10-480.webp 480w, gallery/vang-bygg-oversikt/untitled--10-960.webp 960w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async"></a>
+      </div>
+    </section>
 
   </main>
 
-  <!-- INSTAGRAM -->
-  <section class="instagram blur-fade">
-    <div class="reveal"><div class="section-label">@solemsli_productions</div><h2 class="section-title" data-no="Følg meg på Instagram" data-en="Follow me on Instagram" data-de="Folge mir auf Instagram">Følg meg på Instagram</h2></div>
-    <div class="insta-grid reveal">
-      <div class="insta-item"><img src="gallery/bryllup/untitled-6005.jpg" alt="Instagram" loading="lazy"><div class="insta-overlay"><span>♡</span></div></div>
-      <div class="insta-item"><img src="gallery/vinjerock/untitled-7604.jpg" alt="Instagram" loading="lazy"><div class="insta-overlay"><span>♡</span></div></div>
-      <div class="insta-item"><img src="gallery/konfirmasjon/untitled-5010.jpg" alt="Instagram" loading="lazy"><div class="insta-overlay"><span>♡</span></div></div>
-      <div class="insta-item"><img src="gallery/vang-kommune-sentrum/DJI_20251006091304_0231_D.jpg" alt="Instagram" loading="lazy"><div class="insta-overlay"><span>♡</span></div></div>
-      <div class="insta-item"><img src="gallery/vinjerock-drone/untitled--16.jpg" alt="Instagram" loading="lazy"><div class="insta-overlay"><span>♡</span></div></div>
-      <div class="insta-item"><img src="gallery/vang-bygg-oversikt/untitled--10.jpg" alt="Instagram" loading="lazy"><div class="insta-overlay"><span>♡</span></div></div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
   <footer>
     <div class="footer-left">
       <a href="index.html" class="logo">Solemsli Productions</a>
@@ -545,181 +526,31 @@
     </div>
   </footer>
 
+  <script src="shared.js?v=2026-11-18"></script>
   <script>
-    const nlForm = document.getElementById('newsletterForm');
+    // Hero-zoomen starter når siden er klar – ingen lasteskjerm
+    window.addEventListener('load', function () {
+      var hero = document.querySelector('.hero');
+      if (hero) hero.classList.add('loaded');
+    });
+
+    // Nyhetsbrev – åpner e-postklienten (ingen falsk «sendt»-bekreftelse)
+    var nlForm = document.getElementById('newsletterForm');
     if (nlForm) {
-      nlForm.addEventListener('submit', async (e) => {
+      nlForm.addEventListener('submit', function (e) {
         e.preventDefault();
-        const btn = nlForm.querySelector('button');
-        const origText = btn ? btn.textContent : '';
-        if (btn) { btn.textContent = '...'; btn.disabled = true; }
-        try {
-          const response = await fetch(nlForm.action, {
-            method: 'POST',
-            body: new FormData(nlForm),
-            headers: { 'Accept': 'application/json' }
-          });
-          if (response.ok) {
-            const lang = localStorage.getItem('lang') || 'no';
-            const msgs = { no: 'Takk! Du er nå påmeldt.', en: 'Thanks! You are now subscribed.', de: 'Danke! Sie sind jetzt angemeldet.' };
-            nlForm.innerHTML = '<p style="color:var(--main-blue);font-weight:600">' + (msgs[lang] || msgs.no) + '</p>';
-          } else {
-            if (btn) { btn.textContent = origText; btn.disabled = false; }
-            const existing = nlForm.querySelector('.form-error');
-            if (!existing) {
-              const err = document.createElement('p');
-              err.className = 'form-error';
-              err.style.cssText = 'color:#ff4444;font-size:.85rem;margin-top:8px';
-              err.textContent = 'Noe gikk galt. Prøv igjen.';
-              nlForm.appendChild(err);
-            }
-          }
-        } catch {
-          if (btn) { btn.textContent = origText; btn.disabled = false; }
-          const existing = nlForm.querySelector('.form-error');
-          if (!existing) {
-            const err = document.createElement('p');
-            err.className = 'form-error';
-            err.style.cssText = 'color:#ff4444;font-size:.85rem;margin-top:8px';
-            err.textContent = 'Nettverksfeil. Prøv igjen.';
-            nlForm.appendChild(err);
-          }
+        var input = nlForm.querySelector('input[type="email"]');
+        var status = document.getElementById('newsletterStatus');
+        if (!input.value || input.value.indexOf('@') === -1) {
+          window.SP.status(status, 'invalidEmail', '', true);
+          return;
         }
+        var subject = encodeURIComponent('Påmelding nyhetsbrev — Solemsli Productions');
+        var body = encodeURIComponent('Meld meg på nyhetsbrevet.\n\nE-post: ' + input.value);
+        window.location.href = 'mailto:rakso8080@gmail.com?subject=' + subject + '&body=' + body;
+        window.SP.status(status, 'newsletterOpened');
       });
     }
-  </script>
-  <script src="shared.js"></script>
-  <script>
-    // LOADER
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        document.getElementById('loader').classList.add('hidden');
-        document.querySelector('.hero').classList.add('loaded');
-      }, 800);
-    });
-
-    // HERO TEXT TYPEWRITER
-    let _heroOriginalHTML = '';
-    function splitHeroText() {
-      const h1 = document.getElementById('hero-title');
-      if (!_heroOriginalHTML) _heroOriginalHTML = h1.innerHTML;
-      const lang = localStorage.getItem('lang') || 'no';
-      const tmp = document.createElement('div');
-      tmp.innerHTML = _heroOriginalHTML;
-      const spans = tmp.querySelectorAll('span[data-no]');
-      const fullText = Array.from(spans).map(s => s.getAttribute('data-' + lang) || s.dataset.no).join(' ');
-      h1.innerHTML = '';
-      const textNode = document.createElement('span');
-      h1.appendChild(textNode);
-      const cursor = document.createElement('span');
-      cursor.className = 'typewriter-cursor';
-      h1.appendChild(cursor);
-      let i = 0;
-      function type() {
-        if (i < fullText.length) {
-          textNode.textContent = fullText.substring(0, i + 1);
-          i++;
-          const delay = fullText[i - 1] === ' ' ? 60 : 40 + Math.random() * 40;
-          setTimeout(type, delay);
-        } else {
-          setTimeout(() => cursor.style.display = 'none', 2000);
-        }
-      }
-      setTimeout(type, 800);
-    }
-    splitHeroText();
-
-    // PARALLAX HERO ON SCROLL
-    window.addEventListener('scroll', () => {
-      const s = window.scrollY;
-      const img = document.getElementById('hero-img');
-      if (img && s < window.innerHeight) img.style.transform = `scale(${1 + s * 0.0002}) translateY(${s * 0.3}px)`;
-    });
-
-    // FAQ ACCORDION
-    document.querySelectorAll('.faq-question').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const item = btn.parentElement;
-        const wasOpen = item.classList.contains('open');
-        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-        if (!wasOpen) item.classList.add('open');
-      });
-    });
-
-    // WEBGL PARTICLES
-    try {
-    const canvas = document.getElementById('particles');
-    const ctx = canvas.getContext('2d');
-    let particles = [];
-    let pmx = 0, pmy = 0;
-    const resize = () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; };
-    resize();
-    window.addEventListener('resize', resize);
-    document.addEventListener('mousemove', e => { pmx = e.clientX; pmy = e.clientY; });
-    class Particle {
-      constructor() { this.reset(); }
-      reset() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 2 + 0.5;
-        this.vx = (Math.random() - 0.5) * 0.5;
-        this.vy = (Math.random() - 0.5) * 0.5;
-        this.alpha = Math.random() * 0.5 + 0.1;
-      }
-      update() {
-        const dx = this.x - pmx;
-        const dy = this.y - pmy;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 120) {
-          this.x += dx / dist * 2;
-          this.y += dy / dist * 2;
-        }
-        this.x += this.vx;
-        this.y += this.vy;
-        if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) this.reset();
-      }
-      draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(1, 128, 255, ${this.alpha})`;
-        ctx.fill();
-      }
-    }
-    for (let i = 0; i < 80; i++) particles.push(new Particle());
-    function animParticles() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach(p => { p.update(); p.draw(); });
-      requestAnimationFrame(animParticles);
-    }
-    animParticles();
-    } catch(e) { console.warn('Particles skipped:', e); }
-
-    // LIVE CLOCK
-    function updateClock() {
-      const now = new Date();
-      const time = now.toLocaleTimeString('nb-NO', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-      const date = now.toLocaleDateString('nb-NO', { weekday: 'long', day: 'numeric', month: 'long' });
-      const el = document.getElementById('heroTime');
-      if (el) el.textContent = time + ' — ' + date.charAt(0).toUpperCase() + date.slice(1);
-    }
-    updateClock();
-    setInterval(updateClock, 1000);
-
-    // STAGGERED GRID REVEAL
-    const gridObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('revealed');
-          gridObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.services-grid,.insta-grid,.workflow-steps,.equip-grid').forEach(grid => {
-      gridObserver.observe(grid);
-      grid.querySelectorAll(':scope > *').forEach((child, i) => {
-        child.style.transitionDelay = (i * 0.1) + 's';
-      });
-    });
   </script>
 </body>
 </html>

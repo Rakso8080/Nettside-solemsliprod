@@ -3,407 +3,410 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <link rel="icon" href="Solemsli production.png">
-  <meta name="theme-color" content="#0180ff">
+  <link rel="icon" href="icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="icons/icon-192.png" sizes="192x192" type="image/png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <meta name="theme-color" content="#0a0b0d">
+  <script>
+    (function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t='dark';d.setAttribute('data-theme',t);var l=localStorage.getItem('lang');if(l==='en'||l==='de'||l==='no')d.lang=l;var m=document.querySelector('meta[name="theme-color"]');if(m&&t==='light')m.setAttribute('content','#f6f6f4');}catch(e){}})();
+  </script>
   <link rel="manifest" href="manifest.json">
-  <meta name="description" content="Shop — Kjøp bilete frå Solemsli Productions. Natur, drone, bryllup, event og meir.">
-  <meta property="og:title" content="Solemsli Productions | Shop" />
-  <meta property="og:description" content="Kjøp bilete frå Solemsli Productions." />
-  <meta property="og:image" content="https://solemsliproductions.no/gallery/andre%20natur%20bilder/uranustind.jpg" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://solemsliproductions.no/shop.html" />
+  <meta name="description" content="Shop – kjøp høgoppløselige bilder, LUT-er, powergrades og merch fra Solemsli Productions.">
+  <meta property="og:title" content="Solemsli Productions | Shop">
+  <meta property="og:description" content="Kjøp bilder og produkter fra Solemsli Productions.">
+  <meta property="og:image" content="https://solemsliproductions.no/og/shop.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Solemsli Productions">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://solemsliproductions.no/shop.html">
   <meta property="og:site_name" content="Solemsli Productions">
   <meta property="og:locale" content="nb_NO">
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Solemsli Productions | Shop" />
-  <meta name="twitter:description" content="Kjøp bilete frå Solemsli Productions." />
-  <meta name="twitter:image" content="https://solemsliproductions.no/gallery/andre%20natur%20bilder/uranustind.jpg" />
-  <link rel="canonical" href="https://solemsliproductions.no/shop.html" />
-  <meta name="organization" content="Solemsli Productions 935203708">
-<title>Shop – Solemsli Productions</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
-<link rel="stylesheet" href="shared.css">
-<style>
-  /* HERO */
-  .hero{position:relative;display:flex;align-items:center;justify-content:center;min-height:50vh;overflow:hidden;padding:140px 20px 60px}
-  .hero-bg{position:absolute;inset:0;z-index:0}
-  .hero-bg-image{width:100%;height:100%;object-fit:cover;object-position:center;transform:scale(1.1);transition:transform .8s cubic-bezier(.25,.46,.45,.94)}
-  .hero-bg-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,.35) 50%,rgba(0,0,0,.7) 100%);z-index:1}
-  .hero-content{position:relative;z-index:2;text-align:center;padding:0 24px}
-  .hero-badge{display:inline-block;background:rgba(1,128,255,0.1);border:1px solid rgba(1,128,255,0.2);padding:6px 16px;border-radius:30px;font-size:.75rem;font-weight:600;color:var(--main-blue);margin-bottom:20px}
-  .hero-content h1{font-size:clamp(2.2rem,6vw,3.8rem);font-weight:800;letter-spacing:-2px;line-height:1.1;margin-bottom:16px}
-  .hero-content h1 span{background:linear-gradient(135deg,var(--main-blue),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-  .hero-content p{color:var(--text-muted);max-width:500px;margin:0 auto;font-size:clamp(.95rem,2vw,1.1rem);line-height:1.6}
-  .hero-note{font-size:.8rem;color:var(--text-muted);margin-top:12px;opacity:.7}
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Solemsli Productions | Shop">
+  <meta name="twitter:description" content="Kjøp bilder og produkter fra Solemsli Productions.">
+  <meta name="twitter:image" content="https://solemsliproductions.no/og/shop.jpg">
+  <link rel="canonical" href="https://solemsliproductions.no/shop.html">
+  <title>Shop – Solemsli Productions</title>
+  <link rel="stylesheet" href="shared.css?v=2026-11-18">
+  <style>
+    /* SHOP */
 
-  /* MARQUEE */
-  .marquee-section{overflow:hidden;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.08)}
-  .marquee{display:flex;width:100%}
-  .marquee-track{display:flex;gap:40px;animation:marqueeScroll 18s linear infinite;white-space:nowrap;flex-shrink:0}
-  .marquee-track span{font-size:.85rem;font-weight:600;letter-spacing:.15em;color:var(--text-muted);text-transform:uppercase}
-  .marquee-dot{color:var(--main-blue)!important;font-size:.65rem;align-self:center;opacity:.5}
-  @keyframes marqueeScroll{0%{transform:translateX(0)}100%{transform:translateX(-33.33%)}}
+    .shop-hero{min-height:46vh;align-items:flex-end}
+    .shop-hero .hero-content{padding-bottom:clamp(40px,7vw,64px)}
+    .shop-hero h1{font-size:clamp(2.2rem,5vw,3.6rem)}
+    .shop-hero p{max-width:52ch}
 
-  /* ORDER CARD */
-  .order-section{padding:60px 20px 0;max-width:600px;margin:0 auto}
-  .order-card{background:var(--card-bg);border:1px solid var(--glass-border);border-radius:20px;padding:40px;text-align:center;position:relative;overflow:hidden}
-  .order-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--main-blue),var(--accent))}
-  .order-icon{font-size:2.5rem;margin-bottom:15px}
-  .order-card h3{font-size:1.3rem;font-weight:700;margin-bottom:10px}
-  .order-card > p{font-size:.9rem;color:var(--text-muted);line-height:1.7;margin-bottom:24px}
-  .order-price{font-size:1.8rem;font-weight:800;margin-bottom:8px}
-  .order-price-note{font-size:.8rem;color:var(--text-muted);margin-bottom:24px}
-  .btn-order-big{display:inline-flex;align-items:center;gap:8px;padding:16px 36px;background:var(--main-blue);color:white;border:none;border-radius:30px;font-size:1rem;font-weight:600;cursor:pointer;transition:all .3s;text-decoration:none}
-  .btn-order-big:hover{background:#0066cc;transform:translateY(-2px);box-shadow:0 8px 24px rgba(1,128,255,0.3)}
-  .order-note{font-size:.8rem;color:var(--text-muted);margin-top:16px;line-height:1.6}
+    /* Kjøp bilde */
+    .buy-photo{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(24px,5vw,56px);align-items:start}
+    .buy-photo h2{font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:14px}
+    .buy-photo p{font-size:.95rem;line-height:1.75;max-width:52ch}
+    .price-box{border:1px solid var(--line);border-radius:var(--radius);padding:clamp(24px,3.5vw,32px)}
+    .price-box .amount{font-size:2.2rem;font-weight:500;letter-spacing:-.04em;line-height:1}
+    .price-box .vat{font-size:.75rem;color:var(--text-muted);margin-top:6px}
+    .price-box .note{font-size:.78rem;color:var(--text-muted);line-height:1.6;margin-top:18px}
+    .price-box .btn{width:100%;margin-top:20px}
+    .inline-note{display:block;font-size:.78rem;color:var(--text-muted);margin-top:12px;line-height:1.6}
+    .inline-note[data-state="error"]{color:#ff7676}
+    .copy-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
 
-  /* PRODUCTS GRID */
-  .products-section{padding:40px 20px;max-width:1000px;margin:0 auto}
-  .products-section .section-label{text-align:center;font-size:.75rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--main-blue);margin-bottom:10px}
-  .products-section h2{text-align:center;margin-bottom:32px;font-size:clamp(1.5rem,4vw,2.2rem);font-weight:800;letter-spacing:-1px}
-  .products-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-  .product-card{background:var(--card-bg);border:1px solid var(--glass-border);border-radius:16px;overflow:hidden;transition:border-color .3s,box-shadow .3s,transform .3s}
-  .product-card:hover{border-color:rgba(1,128,255,0.3);box-shadow:0 16px 40px rgba(0,0,0,0.15);transform:translateY(-4px)}
-  .product-image{position:relative;aspect-ratio:4/3;overflow:hidden;background:linear-gradient(135deg,#1a1a2e,#16213e)}
-  .product-image img{width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.23,1,.32,1)}
-  .product-card:hover .product-image img{transform:scale(1.08)}
-  .product-badge{position:absolute;top:12px;left:12px;padding:5px 12px;background:var(--main-blue);color:white;font-size:.65rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;border-radius:20px;z-index:1}
-  .product-badge.coming-soon{background:linear-gradient(135deg,#f59e0b,#d97706)}
-  .product-info{padding:20px}
-  .product-info .product-category{font-size:.7rem;font-weight:600;color:var(--main-blue);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
-  .product-info h3{font-size:1.1rem;font-weight:700;margin-bottom:6px}
-  .product-info p{font-size:.8rem;color:var(--text-muted);line-height:1.5;margin-bottom:16px}
-  .product-footer{display:flex;justify-content:space-between;align-items:center}
-  .product-price{font-size:1.25rem;font-weight:800}
-  .product-price .currency{font-size:.8rem;font-weight:500;color:var(--text-muted)}
-  .btn-buy{padding:10px 22px;background:var(--main-blue);color:white;border:none;border-radius:30px;font-size:.8rem;font-weight:600;cursor:pointer;transition:all .3s}
-  .btn-buy:hover{background:#0066cc;transform:scale(1.03)}
-  .btn-buy.disabled{opacity:.5;cursor:not-allowed}
-  .btn-buy.disabled:hover{background:var(--main-blue);transform:none}
+    /* Produkter */
+    .products{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .product{
+      display:flex;flex-direction:column;
+      border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;
+      background:var(--surface);
+      transition:border-color .3s;
+    }
+    .product:hover{border-color:var(--line-strong)}
+    .product-media{position:relative;aspect-ratio:4/5;overflow:hidden;background:var(--surface-2)}
+    .product-media img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease),opacity .25s}
+    .product:hover .product-media img{transform:scale(1.02)}
+    .badge{
+      position:absolute;top:10px;left:10px;z-index:3;
+      padding:4px 9px;border-radius:999px;
+      background:rgba(0,0,0,.55);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+      color:#fff;font-size:.6rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+    }
+    .product-body{padding:18px;display:flex;flex-direction:column;gap:6px;flex:1}
+    .product-cat{font-size:.6rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--text-muted)}
+    .product-body h3{font-size:1rem;font-weight:600;letter-spacing:-.02em}
+    .product-body p{font-size:.8rem;line-height:1.6}
+    .product-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:auto;padding-top:16px}
+    .product-price{font-size:1rem;font-weight:600}
+    .product-price span{font-size:.7rem;font-weight:400;color:var(--text-muted)}
+    .buy-btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      min-height:34px;padding:0 14px;
+      border:1px solid var(--line-strong);border-radius:999px;
+      background:transparent;color:var(--text);
+      font-size:.74rem;font-weight:600;
+      transition:background .25s,border-color .25s,color .25s;
+    }
+    .buy-btn:hover{background:var(--text);color:var(--bg);border-color:var(--text)}
+    .buy-btn[disabled]{opacity:.45;cursor:not-allowed}
+    .buy-btn[disabled]:hover{background:transparent;color:var(--text);border-color:var(--line-strong)}
 
-  @media(max-width:700px){
-    .products-grid{grid-template-columns:1fr}
-    .product-image{aspect-ratio:16/9}
-  }
+    /* Før/etter */
+    .ba{position:absolute;inset:0;overflow:hidden;touch-action:pan-y;cursor:ew-resize}
+    .ba img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+    .ba-before{clip-path:inset(0 50% 0 0)}
+    .ba-line{position:absolute;top:0;bottom:0;left:50%;width:1px;background:rgba(255,255,255,.8);z-index:2;pointer-events:none}
+    .ba-handle{
+      position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+      width:30px;height:30px;border-radius:50%;
+      border:1px solid rgba(255,255,255,.7);
+      background:rgba(0,0,0,.4);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+      color:#fff;font-size:.6rem;letter-spacing:-.05em;
+      display:flex;align-items:center;justify-content:center;
+      pointer-events:auto;cursor:ew-resize;
+    }
+    .ba-label{position:absolute;bottom:8px;z-index:3;padding:3px 8px;border-radius:999px;background:rgba(0,0,0,.55);color:#fff;font-size:.58rem;letter-spacing:.08em;text-transform:uppercase}
+    .ba-label.before{left:8px}
+    .ba-label.after{right:8px}
 
-  /* FAQ */
-  .faq-section{max-width:700px;margin:0 auto;padding:60px 20px}
-  .faq-section .section-label{text-align:center}
-  .faq-section h2{text-align:center;margin-bottom:32px}
-  .faq-item{background:var(--card-bg);border:1px solid var(--glass-border);border-radius:16px;margin-bottom:12px;overflow:hidden;transition:border-color .3s,box-shadow .3s}
-  .faq-item:hover{border-color:rgba(1,128,255,.2)}
-  .faq-question{display:flex;justify-content:space-between;align-items:center;padding:20px 24px;cursor:pointer;font-weight:600;font-size:1rem;background:none;border:none;color:var(--text);width:100%;text-align:left;font-family:inherit}
-  .faq-question::after{content:'+';font-size:1.4rem;font-weight:300;color:var(--text-muted);transition:transform .3s}
-  .faq-item.open .faq-question::after{transform:rotate(45deg)}
-  .faq-answer{max-height:0;overflow:hidden;transition:max-height .35s ease,padding .35s ease;padding:0 24px}
-  .faq-item.open .faq-answer{max-height:200px;padding:0 24px 20px}
-  .faq-answer p{font-size:.9rem;color:var(--text-muted);line-height:1.7;margin:0}
+    /* Hoodie */
+    .hoodie-thumbs{display:flex;gap:6px;position:absolute;right:8px;bottom:8px;z-index:3}
+    .hoodie-thumb{width:38px;height:38px;padding:0;border:1px solid rgba(255,255,255,.4);border-radius:6px;overflow:hidden;background:#000;opacity:.6;transition:opacity .2s,border-color .2s}
+    .hoodie-thumb img{width:100%;height:100%;object-fit:cover}
+    .hoodie-thumb.active{opacity:1;border-color:#fff}
+    .size-row{display:flex;align-items:center;gap:8px;margin-top:10px}
+    .size-row label{font-size:.68rem;color:var(--text-muted);letter-spacing:.08em;text-transform:uppercase}
+    .size-row select{
+      flex:1;height:34px;padding:0 8px;
+      background:transparent;border:1px solid var(--line);border-radius:8px;
+      color:var(--text);font-size:.78rem;
+    }
+    .size-row select:focus{outline:0;border-color:var(--text)}
 
-  /* TIPS */
-  .tips-section{padding:40px 20px 80px;max-width:600px;margin:0 auto}
-  .tips-card{background:var(--card-bg);border:1px solid var(--glass-border);border-radius:20px;padding:40px;text-align:center;position:relative;overflow:hidden}
-  .tips-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#22c55e,var(--main-blue))}
-  .tips-icon{font-size:2.5rem;margin-bottom:15px}
-  .tips-card h3{font-size:1.3rem;font-weight:700;margin-bottom:10px}
-  .tips-card p{font-size:.9rem;color:var(--text-muted);line-height:1.7;margin-bottom:24px}
-  .btn-tips{display:inline-flex;align-items:center;gap:8px;padding:14px 30px;background:linear-gradient(135deg,#22c55e,#16a34a);color:white;border:none;border-radius:30px;font-size:.95rem;font-weight:600;cursor:pointer;transition:all .3s}
-  .btn-tips:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(34,197,94,0.3)}
-  .tips-heart{font-size:1.1rem}
+    /* FAQ */
+    .faq-wrap{max-width:720px}
 
-  /* CTA */
-  .cta{padding:80px 20px;text-align:center}
-  .cta h2{font-size:clamp(1.5rem,4vw,2.5rem);font-weight:800;letter-spacing:-1px;margin-bottom:12px}
-  .cta p{color:var(--text-muted);font-size:.95rem;margin-bottom:25px}
-  .cta .btn-primary{display:inline-block;padding:12px 28px;background:var(--main-blue);color:white;border-radius:50px;font-size:.85rem;font-weight:600;text-decoration:none;transition:all .3s}
-  .cta .btn-primary:hover{background:#0066cc;transform:translateY(-2px);box-shadow:0 8px 24px rgba(1,128,255,0.3)}
+    /* Tips */
+    .support{
+      display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;
+      border:1px solid var(--line);border-radius:var(--radius);
+      padding:clamp(24px,4vw,36px);
+    }
+    .support h2{font-size:1.2rem;margin-bottom:6px}
+    .support p{font-size:.85rem;max-width:52ch}
+    .support .btn{white-space:nowrap}
 
-  /* INSTAGRAM */
-  .ig-section{padding:40px 20px 60px;text-align:center}
-  .ig-section .section-label{margin-bottom:10px}
-  .ig-section h2{margin-bottom:8px}
-  .ig-section > p{color:var(--text-muted);font-size:.95rem;margin-bottom:28px}
-  .ig-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;max-width:900px;margin:0 auto}
-  .ig-grid a{display:block;aspect-ratio:1;overflow:hidden;border-radius:8px;position:relative}
-  .ig-grid img{width:100%;height:100%;object-fit:cover;transition:transform .4s,filter .4s}
-  .ig-grid a:hover img{transform:scale(1.08);filter:brightness(1.15)}
-  .ig-grid a::after{content:'📷';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.4);opacity:0;transition:opacity .3s;font-size:1.5rem}
-  .ig-grid a:hover::after{opacity:1}
-  @media(max-width:600px){.ig-grid{grid-template-columns:repeat(3,1fr)}}
+    /* Modal */
+    .dialog{
+      position:fixed;inset:0;z-index:5000;
+      display:none;align-items:center;justify-content:center;
+      padding:20px;background:rgba(5,6,8,.7);
+      -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+    }
+    .dialog.open{display:flex;animation:dlgIn .2s ease}
+    @keyframes dlgIn{from{opacity:0}to{opacity:1}}
+    .dialog-card{
+      width:100%;max-width:360px;
+      background:var(--bg);border:1px solid var(--line-strong);border-radius:var(--radius);
+      padding:28px;text-align:center;
+    }
+    .dialog-card h3{font-size:1.05rem;margin-bottom:6px}
+    .dialog-card p{font-size:.82rem;line-height:1.6}
+    .vipps-number{
+      display:flex;align-items:center;justify-content:center;gap:10px;
+      margin:18px 0;padding:12px;
+      border:1px solid var(--line);border-radius:var(--radius-sm);
+      background:var(--surface);
+      font-size:1.15rem;font-weight:600;letter-spacing:.06em;
+    }
+    .copy-btn{
+      border:1px solid var(--line-strong);background:transparent;color:var(--text);
+      padding:5px 10px;border-radius:6px;font-size:.68rem;
+    }
+    .copy-btn:hover{background:var(--text);color:var(--bg)}
+    .dialog-close{
+      width:100%;margin-top:8px;height:38px;border:0;border-radius:999px;
+      background:var(--accent);color:#fff;font-size:.8rem;font-weight:600;
+    }
 
-  /* VIPS / TIPS MODAL */
-  .vipps-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.8);backdrop-filter:blur(8px);z-index:99999;display:flex;align-items:center;justify-content:center;padding:20px}
-  .vipps-modal{background:var(--bg);border:1px solid var(--glass-border);border-radius:20px;padding:32px;max-width:400px;width:100%;text-align:center}
-  .vipps-icon{font-size:3rem;margin-bottom:10px}
-  .vipps-modal h3{font-size:1.2rem;font-weight:700;margin-bottom:8px}
-  .vipps-modal p{color:var(--text-muted);font-size:.85rem;line-height:1.5}
-  .vipps-number-box{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--card-bg);border:1px solid var(--card-border);border-radius:12px;padding:12px 16px;margin:16px 0}
-  .vipps-number-box span{font-size:1.3rem;font-weight:700;letter-spacing:1px;user-select:all}
-  .vipps-copy-btn{background:none;border:1px solid var(--card-border);color:var(--text);padding:6px 12px;border-radius:8px;font-size:.75rem;cursor:pointer;transition:.3s;white-space:nowrap}
-  .vipps-copy-btn:hover{background:var(--main-blue);color:white;border-color:var(--main-blue)}
-  .vipps-copy-btn.copied{background:#22c55e;color:white;border-color:#22c55e}
-  .vipps-note{font-size:.8rem;color:var(--text-muted);margin-top:12px;line-height:1.5}
-  .vipps-close-btn{margin-top:16px;background:none;border:1px solid var(--card-border);color:var(--text);padding:10px 24px;border-radius:30px;cursor:pointer;font-size:.85rem;font-weight:500;transition:.3s}
-  .vipps-close-btn:hover{background:var(--card-bg)}
+    /* Instagram */
+    .ig-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:4px}
+    .ig-grid a{display:block;aspect-ratio:1;overflow:hidden;border-radius:4px}
+    .ig-grid img{width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease),opacity .3s}
+    .ig-grid a:hover img{transform:scale(1.05);opacity:.85}
 
-  /* PAYMENT METHODS */
-  .pay-methods{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px}
-  .pay-method{display:flex;flex-direction:column;align-items:center;gap:4px;padding:12px 8px;background:var(--card-bg);border:2px solid var(--card-border);border-radius:12px;cursor:pointer;transition:all .3s;font-family:inherit}
-  .pay-method:hover{border-color:rgba(1,128,255,0.3)}
-  .pay-method.active{border-color:var(--main-blue);background:rgba(1,128,255,0.08)}
-  .pay-method-icon{font-size:1.3rem}
-  .pay-method-name{font-size:.75rem;font-weight:600;color:var(--text)}
-
-  .crypto-qr{text-align:center;margin:12px 0}
-
-  /* ORDER CONFIRMATION MODAL */
-  .order-confirm-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.8);backdrop-filter:blur(8px);z-index:99999;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;transition:opacity .3s ease}
-  .order-confirm-overlay.show{opacity:1}
-  .order-confirm-modal{background:var(--bg);border:1px solid var(--glass-border);border-radius:20px;padding:40px 32px;max-width:440px;width:100%;text-align:center;transform:translateY(20px) scale(.95);transition:transform .4s cubic-bezier(.23,1,.32,1);position:relative}
-  .order-confirm-overlay.show .order-confirm-modal{transform:translateY(0) scale(1)}
-  .order-confirm-check{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#22c55e,#16a34a);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:1.8rem;color:white;animation:checkPop .5s cubic-bezier(.23,1,.32,1) .2s both}
-  @keyframes checkPop{0%{transform:scale(0);opacity:0}50%{transform:scale(1.2)}100%{transform:scale(1);opacity:1}}
-  .order-confirm-modal h3{font-size:1.3rem;font-weight:700;margin-bottom:6px}
-  .order-confirm-modal .oc-subtitle{font-size:.9rem;color:var(--text-muted);margin-bottom:20px}
-  .oc-item{background:var(--card-bg);border:1px solid var(--glass-border);border-radius:12px;padding:16px;margin-bottom:16px;text-align:left}
-  .oc-item-label{font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--main-blue);margin-bottom:6px}
-  .oc-item-name{font-size:1rem;font-weight:600;margin-bottom:2px}
-  .oc-item-price{font-size:1.2rem;font-weight:800;color:var(--main-blue)}
-  .oc-item-price span{font-size:.8rem;font-weight:500;color:var(--text-muted)}
-  .oc-steps{margin-bottom:20px}
-  .oc-step{display:flex;align-items:flex-start;gap:12px;text-align:left;margin-bottom:12px}
-  .oc-step-num{flex-shrink:0;width:28px;height:28px;border-radius:50%;background:rgba(1,128,255,0.1);border:1px solid rgba(1,128,255,0.2);display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;color:var(--main-blue)}
-  .oc-step-text{font-size:.85rem;color:var(--text-muted);line-height:1.5}
-  .oc-step-text strong{color:var(--text);font-weight:600}
-  .oc-payment{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:20px}
-  .oc-pay-item{padding:12px 8px;background:var(--card-bg);border:1px solid var(--glass-border);border-radius:10px;text-align:center}
-  .oc-pay-icon{font-size:1.2rem;margin-bottom:4px}
-  .oc-pay-name{font-size:.7rem;font-weight:600;color:var(--text-muted)}
-  .oc-pay-detail{font-size:.75rem;font-weight:700;color:var(--text);margin-top:2px}
-  .oc-close{width:100%;padding:14px;background:var(--main-blue);color:white;border:none;border-radius:14px;font-size:.9rem;font-weight:600;cursor:pointer;transition:all .3s;font-family:inherit}
-  .oc-close:hover{background:#0066cc;transform:translateY(-1px)}
-  .oc-ghost{background:none;border:1px solid var(--glass-border);color:var(--text-muted);margin-top:8px}
-  .oc-ghost:hover{background:var(--card-bg);color:var(--text)}
-
-  /* RESPONSIVE */
-  @media(max-width:600px){
-    .hero{min-height:40vh;padding:120px 20px 40px}
-    .order-card{padding:28px 20px}
-    .order-confirm-modal{padding:28px 20px}
-    .oc-payment{grid-template-columns:1fr}
-  }
-</style>
+    @media(max-width:900px){
+      .products{grid-template-columns:1fr 1fr}
+      .buy-photo{grid-template-columns:1fr}
+    }
+    @media(max-width:640px){
+      .products{grid-template-columns:1fr}
+      .product-media{aspect-ratio:4/3}
+      .ig-grid{grid-template-columns:repeat(3,1fr)}
+      .support{flex-direction:column;align-items:flex-start}
+    }
+  </style>
+  <link rel="preload" as="image" href="gallery/andre natur bilder/uranustind-1600.webp" imagesrcset="gallery/andre%20natur%20bilder/uranustind-480.webp 480w, gallery/andre%20natur%20bilder/uranustind-960.webp 960w, gallery/andre%20natur%20bilder/uranustind-1600.webp 1600w" imagesizes="100vw" fetchpriority="high">
 </head>
-
 <body>
   <a href="#main-content" class="skip-link">Hopp til innhold</a>
-  <div id="grain"></div>
   <div id="progress-bar"></div>
 
   <header id="header">
     <a href="index.html" class="logo">Solemsli Productions</a>
-    <div class="menu-toggle" role="button" aria-label="Meny" aria-expanded="false" onclick="this.classList.toggle('active');this.setAttribute('aria-expanded',this.classList.contains('active'));document.querySelector('nav').classList.toggle('active')">
-      <span></span><span></span><span></span>
-    </div>
-    <nav aria-label="Hovedmeny">
+    <button class="menu-toggle" type="button" aria-label="Meny" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span></button>
+    <nav id="site-nav" aria-label="Hovedmeny">
       <a href="index.html" data-no="Hjem" data-en="Home" data-de="Startseite">Hjem</a>
       <a href="about.html" data-no="Om meg" data-en="About" data-de="Über mich">Om meg</a>
       <a href="projects.html" data-no="Portfolio" data-en="Portfolio" data-de="Portfolio">Portfolio</a>
-      <a href="shop.html" class="active" data-no="Shop" data-en="Shop" data-de="Shop">Shop</a>
+      <a href="shop.html" class="active" aria-current="page" data-no="Shop" data-en="Shop" data-de="Shop">Shop</a>
       <a href="prices.html" data-no="Priser" data-en="Pricing" data-de="Preise">Priser</a>
       <a href="contact.html" data-no="Kontakt" data-en="Contact" data-de="Kontakt">Kontakt</a>
       <button class="nav-btn" id="lang-toggle" aria-label="Bytt språk">EN</button>
-      <button class="nav-btn" id="theme-toggle" aria-label="Bytt tema">☀️ Lys</button>
+      <button class="nav-btn" id="theme-toggle" aria-label="Bytt tema">☀ Lys</button>
     </nav>
   </header>
 
   <main id="main-content">
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-bg">
-      <div class="hero-bg-image" style="background-image:url('gallery/andre%20natur%20bilder/uranustind.jpg')"></div>
-    </div>
-    <div class="hero-bg-overlay"></div>
-    <div class="hero-content">
-      <div class="hero-badge" data-no="SHOP" data-en="SHOP" data-de="SHOP">SHOP</div>
-      <h1 id="hero-title"><span data-no="Shop" data-en="Shop" data-de="Shop">Shop</span></h1>
-      <p data-no="Kjøp høgoppløselege bilete frå porteføljen min. Fortell kva du ønskjer, så sender eg deg fila etter betaling." data-en="Buy high-resolution photos from my portfolio. Tell me what you want, and I'll send the file after payment." data-de="Kaufen Sie hochauflösende Fotos aus meinem Portfolio. Sagen Sie mir, was Sie möchten, und ich sende Ihnen die Datei nach Zahlung.">Kjøp høgoppløselege bilete frå porteføljen min. Fortell kva du ønskjer, så sender eg deg fila etter betaling.</p>
-    </div>
-  </section>
 
-  <!-- MARQUEE -->
-  <div class="marquee-section">
-    <div class="marquee">
-      <div class="marquee-track">
-        <span>FOTO</span><span class="marquee-dot">✦</span><span>DRONE</span><span class="marquee-dot">✦</span><span>LANDSKAP</span><span class="marquee-dot">✦</span><span>BRYLLUP</span><span class="marquee-dot">✦</span>
-        <span>FOTO</span><span class="marquee-dot">✦</span><span>DRONE</span><span class="marquee-dot">✦</span><span>LANDSKAP</span><span class="marquee-dot">✦</span><span>BRYLLUP</span><span class="marquee-dot">✦</span>
-        <span>FOTO</span><span class="marquee-dot">✦</span><span>DRONE</span><span class="marquee-dot">✦</span><span>LANDSKAP</span><span class="marquee-dot">✦</span><span>BRYLLUP</span><span class="marquee-dot">✦</span>
+    <!-- HERO -->
+    <section class="hero shop-hero">
+      <div class="hero-bg"><img src="gallery/andre natur bilder/uranustind.jpg" alt="Fjellandskap i Innlandet" fetchpriority="high" width="2000" height="1125" srcset="gallery/andre%20natur%20bilder/uranustind-480.webp 480w, gallery/andre%20natur%20bilder/uranustind-960.webp 960w, gallery/andre%20natur%20bilder/uranustind-1600.webp 1600w" sizes="100vw" decoding="async"></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <div class="hero-badge" data-no="Shop" data-en="Shop" data-de="Shop">Shop</div>
+        <h1 data-no="Bilder og verktøy" data-en="Photos and tools" data-de="Fotos und Werkzeuge">Bilder og verktøy</h1>
+        <p data-no="Høgoppløselige bilder fra porteføljen, pluss LUT-er, powergrades og merch." data-en="High-resolution photos from the portfolio, plus LUTs, powergrades and merch." data-de="Hochauflösende Fotos aus dem Portfolio, plus LUTs, Powergrades und Merch.">Høgoppløselige bilder fra porteføljen, pluss LUT-er, powergrades og merch.</p>
       </div>
-    </div>
-  </div>
+    </section>
 
-  <!-- KJØP BILDE -->
-  <section class="order-section">
-    <div class="order-card reveal">
-      <div class="order-icon">🖼️</div>
-      <h3 data-no="Kjøp bilde" data-en="Buy photo" data-de="Foto kaufen">Kjøp bilde</h3>
-      <p data-no="Fortell meg kva slags bilete du ønsker — natur, drone, bryllup, event, bil eller noko anna. Eg sender deg ein høgoppløyseleg digital fil etter betaling." data-en="Tell me what kind of photo you want — nature, drone, wedding, event, car or something else. I'll send you a high-resolution digital file after payment." data-de="Sagen Sie mir, welches Foto Sie möchten — Natur, Drohne, Hochzeit, Event, Auto oder etwas anderes. Ich sende Ihnen eine hochauflösende digitale Datei nach Zahlung.">Fortell meg kva slags bilete du ønsker — natur, drone, bryllup, event, bil eller noko anna. Eg sender deg ein høgoppløyseleg digital fil etter betaling.</p>
-      <div class="order-price">200 <span style="font-size:1rem;font-weight:500;color:var(--text-muted)">kr</span></div>
-      <div class="order-price-note" data-no="inkl. MVA per bilete" data-en="incl. VAT per photo" data-de="inkl. MwSt. pro Foto">inkl. MVA per bilete</div>
-      <a href="mailto:kontakt@solemsliproductions.no?subject=Bestilling%20bilde%20%E2%80%94%20Solemsli%20Productions&body=Hei!%0A%0AJeg%C3%B8nsker%C3%A5kj%C3%B8peet%C3%A5kj%C3%B8pebilde.%0A%0ABeskrivelse:%20[jeg%C3%B8nskeretbildeav...]%0A%0APris:%20200%C2%A0kr%0A%0AMvh%2C%0A[Navn]" class="btn-order-big" data-no="Bestill via e-post" data-en="Order via email" data-de="Bestellen per E-Mail">✉️ <span data-no="Bestill via e-post" data-en="Order via email" data-de="Bestellen per E-Mail">Bestill via e-post</span></a>
-      <p class="order-note" data-no="Opnar e-postklienten din med emne klart. Betal med Vipps (#65829), bank eller krypto." data-en="Opens your email client with subject ready. Pay with Vipps (#65829), bank or crypto." data-de="Öffnet Ihren E-Mail-Client mit Betreff. Bezahlen mit Vipps (#65829), Bank oder Krypto.">Opnar e-postklienten din med emne klart. Betal med Vipps (#65829), bank eller krypto.</p>
-    </div>
-  </section>
+    <!-- KJØP BILDE -->
+    <section class="section" id="kjop-bilde">
+      <div class="buy-photo">
+        <div class="reveal">
+          <span class="section-label" data-no="Digitalt bilde" data-en="Digital photo" data-de="Digitales Foto">Digitalt bilde</span>
+          <h2 data-no="Kjøp et bilde" data-en="Buy a photo" data-de="Ein Foto kaufen">Kjøp et bilde</h2>
+          <p data-no="Velg et motiv fra porteføljen – natur, drone, bryllup, event eller bil – og fortell meg hvilket. Du får en høgoppløselig digital fil på e-post etter betaling." data-en="Pick a motif from the portfolio – nature, drone, wedding, event or car – and tell me which one. You'll receive a high-resolution digital file by email after payment." data-de="Wählen Sie ein Motiv aus dem Portfolio – Natur, Drohne, Hochzeit, Event oder Auto – und sagen Sie mir welches. Nach der Zahlung erhalten Sie eine hochauflösende digitale Datei per E-Mail.">Velg et motiv fra porteføljen – natur, drone, bryllup, event eller bil – og fortell meg hvilket. Du får en høgoppløselig digital fil på e-post etter betaling.</p>
+          <p class="inline-note" data-no="Vipps: #65829 · E-post: rakso8080@gmail.com" data-en="Vipps: #65829 · Email: rakso8080@gmail.com" data-de="Vipps: #65829 · E-Mail: rakso8080@gmail.com">Vipps: #65829 · E-post: rakso8080@gmail.com</p>
+          <div class="copy-row">
+            <button class="copy-btn" type="button" data-copy="65829" data-no="Kopier Vipps" data-en="Copy Vipps" data-de="Vipps kopieren">Kopier Vipps</button>
+            <button class="copy-btn" type="button" data-copy="rakso8080@gmail.com" data-no="Kopier e-post" data-en="Copy email" data-de="E-Mail kopieren">Kopier e-post</button>
+          </div>
+          <p class="inline-note" id="photoMotif" aria-live="polite"></p>
+        </div>
+        <div class="price-box reveal">
+          <div class="amount">200 kr</div>
+          <div class="vat" data-no="inkl. MVA per bilde" data-en="incl. VAT per photo" data-de="inkl. MwSt. pro Foto">inkl. MVA per bilde</div>
+          <a class="btn btn-primary" id="photoOrder" href="mailto:rakso8080@gmail.com?subject=Bestilling%20bilde%20%E2%80%94%20Solemsli%20Productions&body=Hei!%0A%0AJeg%20%C3%B8nsker%20%C3%A5%20kj%C3%B8pe%20et%20bilde.%0A%0AMotiv%3A%20%5Bskriv%20motiv%5D%0A%C3%98nsket%20st%C3%B8rrelse%2Fbruk%3A%20%5Bvalgfritt%5D%0A%0APris%3A%20200%20kr%20inkl.%20MVA%0A%0AMvh%2C%0A%5Bnavn%5D" data-no="Bestill på e-post" data-en="Order by email" data-de="Per E-Mail bestellen">Bestill på e-post</a>
+          <p class="note" data-no="E-postklienten åpnes med ferdig utfylt bestilling. Betaling skjer med Vipps etter at vi har bekreftet motivet." data-en="Your email client opens with the order pre-filled. Payment is made with Vipps once we've confirmed the motif." data-de="Ihr E-Mail-Client öffnet sich mit der vorausgefüllten Bestellung. Die Zahlung erfolgt per Vipps, sobald das Motiv bestätigt ist.">E-postklienten åpnes med ferdig utfylt bestilling. Betaling skjer med Vipps etter at vi har bekreftet motivet.</p>
+        </div>
+      </div>
+    </section>
 
-  <!-- FLERE PRODUKT -->
-  <section class="products-section">
-    <div class="section-label" data-no="Fleire produkt" data-en="More products" data-de="Weitere Produkte">Fleire produkt</div>
-    <h2 data-no="Utvida sortiment" data-en="Extended range" data-de="Erweitertes Sortiment">Utvida sortiment</h2>
-    <div class="products-grid">
+    <!-- PRODUKTER -->
+    <section class="section" id="produkter">
+      <div class="section-head reveal">
+        <span class="section-label" data-no="Flere produkter" data-en="More products" data-de="Weitere Produkte">Flere produkter</span>
+        <h2 class="section-title" data-no="Utvidet sortiment" data-en="Extended range" data-de="Erweitertes Sortiment">Utvidet sortiment</h2>
+      </div>
+      <div class="products stagger">
 
-      <!-- LUT -->
-      <div class="product-card">
-        <div class="product-image" style="padding:0">
-          <div class="ba-slider" data-start="50" style="position:relative;width:100%;height:100%">
-            <img class="ba-after" src="luts/før:etter/ferrari/1000020827.jpg" alt="${tTips('fôr')}" draggable="false" loading="lazy" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover">
-            <img class="ba-before" src="luts/før:etter/ferrari/_DSC3114.jpeg" alt="${tTips('etter')}" draggable="false" loading="lazy" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;clip-path:inset(0 50% 0 0)">
-            <div class="ba-handle" style="position:absolute;top:0;bottom:0;left:50%;z-index:3;display:flex;flex-direction:column;align-items:center;transform:translateX(-50%);pointer-events:none">
-              <div style="flex:1;width:2px;background:rgba(255,255,255,0.9);box-shadow:0 0 8px rgba(0,0,0,0.5)"></div>
-              <div class="ba-handle-circle" tabindex="0" role="slider" aria-label="Before/After slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" style="width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.95);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;color:#111;box-shadow:0 2px 12px rgba(0,0,0,0.4);flex-shrink:0;pointer-events:auto;cursor:ew-resize">◄►</div>
-              <div style="flex:1;width:2px;background:rgba(255,255,255,0.9);box-shadow:0 0 8px rgba(0,0,0,0.5)"></div>
+        <!-- LUT -->
+        <article class="product">
+          <div class="product-media">
+            <div class="ba" data-ba>
+              <img class="ba-after" src="luts/for-etter/ferrari/1000020827.jpg" alt="Etter LUT – varmere farger og mer kontrast" loading="lazy" draggable="false" width="1200" height="675" srcset="luts/for-etter/ferrari/1000020827-480.webp 480w, luts/for-etter/ferrari/1000020827-960.webp 960w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async">
+              <img class="ba-before" src="luts/for-etter/ferrari/_DSC3114.jpeg" alt="Før LUT – originalt bilde" loading="lazy" draggable="false" width="1200" height="800" srcset="luts/for-etter/ferrari/_DSC3114-480.webp 480w, luts/for-etter/ferrari/_DSC3114-960.webp 960w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async">
+              <div class="ba-line"></div>
+              <button class="ba-handle" type="button" role="slider" aria-label="Før og etter LUT" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">◄►</button>
+              <span class="ba-label before" data-no="Før" data-en="Before" data-de="Vorher">Før</span>
+              <span class="ba-label after" data-no="Etter" data-en="After" data-de="Nachher">Etter</span>
             </div>
-            <div style="position:absolute;bottom:8px;left:8px;z-index:4;padding:4px 10px;background:rgba(0,0,0,0.6);backdrop-filter:blur(6px);border-radius:20px;font-size:.65rem;font-weight:600;color:white;pointer-events:none" data-no="Før" data-en="Before" data-de="Vorher">Før</div>
-            <div style="position:absolute;bottom:8px;right:8px;z-index:4;padding:4px 10px;background:rgba(0,0,0,0.6);backdrop-filter:blur(6px);border-radius:20px;font-size:.65rem;font-weight:600;color:white;pointer-events:none" data-no="Etter" data-en="After" data-de="Nachher">Etter</div>
+            <span class="badge" data-no="Kommer snart" data-en="Coming soon" data-de="Bald">Kommer snart</span>
           </div>
-          <div class="product-badge coming-soon" data-no="Kommer snart" data-en="Coming soon" data-de="Bald">Kommer snart</div>
+          <div class="product-body">
+            <span class="product-cat">LUT</span>
+            <h3>Cinematic LUT Pack</h3>
+            <p data-no="Fargeforhåndsinnstillinger for DaVinci Resolve. Kinematisk look for video og film." data-en="Color presets for DaVinci Resolve. A cinematic look for video and film." data-de="Farbeinstellungen für DaVinci Resolve. Kinematischer Look für Video und Film.">Fargeforhåndsinnstillinger for DaVinci Resolve. Kinematisk look for video og film.</p>
+            <div class="product-foot">
+              <span class="product-price">99 <span>kr</span></span>
+              <button class="buy-btn" type="button" data-interest="Cinematic LUT Pack" data-no="Meld interesse" data-en="Register interest" data-de="Interesse melden">Meld interesse</button>
+            </div>
+            <span class="inline-note" data-note-for="Cinematic LUT Pack" aria-live="polite"></span>
+          </div>
+        </article>
+
+        <!-- POWERGRADE -->
+        <article class="product">
+          <div class="product-media">
+            <img src="powergrade1/preview.jpg" alt="Bilde behandlet med Cinematic Powergrade Pack" loading="lazy" width="787" height="1400" srcset="powergrade1/preview-480.webp 480w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async">
+            <span class="badge" data-no="Kommer snart" data-en="Coming soon" data-de="Bald">Kommer snart</span>
+          </div>
+          <div class="product-body">
+            <span class="product-cat">Powergrade</span>
+            <h3>Cinematic Powergrade Pack</h3>
+            <p data-no="Ferdig node-tre for DaVinci Resolve. Raskt kinematisk preg på videoene dine." data-en="A ready-made node tree for DaVinci Resolve. Quickly add a cinematic look to your videos." data-de="Ein fertiges Node-Netzwerk für DaVinci Resolve. Schnell ein kinematischer Look für Ihre Videos.">Ferdig node-tre for DaVinci Resolve. Raskt kinematisk preg på videoene dine.</p>
+            <div class="product-foot">
+              <span class="product-price">349 <span>kr</span></span>
+              <button class="buy-btn" type="button" data-interest="Cinematic Powergrade Pack" data-no="Meld interesse" data-en="Register interest" data-de="Interesse melden">Meld interesse</button>
+            </div>
+            <span class="inline-note" data-note-for="Cinematic Powergrade Pack" aria-live="polite"></span>
+          </div>
+        </article>
+
+        <!-- HOODIE -->
+        <article class="product">
+          <div class="product-media">
+            <img id="hoodieMain" src="merch/5035.webp" alt="Solemsli Zip Hoodie forfra" loading="lazy" width="900" height="1200">
+            <span class="badge" data-no="Utsolgt" data-en="Sold out" data-de="Ausverkauft">Utsolgt</span>
+            <div class="hoodie-thumbs">
+              <button class="hoodie-thumb active" type="button" data-img="merch/5035.webp" data-alt="Solemsli Zip Hoodie forfra" aria-label="Vis hoodie forfra"><img src="merch/5035.webp" alt="" width="450" height="800"></button>
+              <button class="hoodie-thumb" type="button" data-img="merch/untitled-1628.webp" data-alt="Solemsli Zip Hoodie bakfra" aria-label="Vis hoodie bakfra"><img src="merch/untitled-1628.webp" alt="" width="600" height="800" srcset="merch/untitled-1628-480.webp 480w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async"></button>
+            </div>
+          </div>
+          <div class="product-body">
+            <span class="product-cat">Merch</span>
+            <h3 data-no="Solemsli Zip Hoodie" data-en="Solemsli Zip Hoodie" data-de="Solemsli Zip Hoodie">Solemsli Zip Hoodie</h3>
+            <p data-no="Sort zip-hoodie med Solemsli Productions-logo. Unisex passform, premium kvalitet." data-en="Black zip hoodie with the Solemsli Productions logo. Unisex fit, premium quality." data-de="Schwarze Zip-Hoodie mit Solemsli Productions-Logo. Unisex-Passform, Premium-Qualität.">Sort zip-hoodie med Solemsli Productions-logo. Unisex passform, premium kvalitet.</p>
+            <div class="size-row">
+              <label for="hoodieSize" data-no="Størrelse" data-en="Size" data-de="Größe">Størrelse</label>
+              <select id="hoodieSize">
+                <option value="S">S</option>
+                <option value="M" selected>M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
+              </select>
+            </div>
+            <div class="product-foot">
+              <span class="product-price">700 <span>kr</span></span>
+              <button class="buy-btn" type="button" id="hoodieOrder" disabled aria-disabled="true" data-no="Utsolgt" data-en="Sold out" data-de="Ausverkauft">Utsolgt</button>
+            </div>
+            <span class="inline-note" id="hoodieNote" aria-live="polite" data-no="Hoodie er utsolgt." data-en="The hoodie is sold out." data-de="Die Hoodie ist ausverkauft.">Hoodie er utsolgt.</span>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq">
+      <div class="faq-wrap">
+        <div class="section-head reveal">
+          <span class="section-label" data-no="Ofte stilte spørsmål" data-en="Frequently asked questions" data-de="Häufig gestellte Fragen">Ofte stilte spørsmål</span>
+          <h2 class="section-title" data-no="Spørsmål og svar" data-en="Questions and answers" data-de="Fragen und Antworten">Spørsmål og svar</h2>
         </div>
-        <div class="product-info">
-          <div class="product-category">LUT</div>
-          <h3>Cinematic LUT Pack</h3>
-          <p data-no="Profesjonelle fargeinnstillinger for DaVinci Resolve. Kinematisk look for video og film." data-en="Professional color presets for DaVinci Resolve. Cinematic look for video and film." data-de="Professionelle Farbeinstellungen für DaVinci Resolve. Kinematlicher Look für Video und Film.">Profesjonelle fargeinnstillinger for DaVinci Resolve. Kinematisk look for video og film.</p>
-          <div class="product-footer">
-            <div class="product-price">99 <span class="currency">kr</span></div>
-            <button class="btn-buy disabled" data-no="Kommer snart" data-en="Coming soon" data-de="Bald">Kommer snart</button>
+        <div class="faq">
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false" aria-controls="sfaq1">
+              <span data-no="Hvordan bestiller jeg?" data-en="How do I order?" data-de="Wie bestelle ich?">Hvordan bestiller jeg?</span><span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer" id="sfaq1"><p data-no="Trykk «Bestill på e-post» og beskriv motivet du ønsker. Du får en bekreftelse, og etter betaling via Vipps sendes den høgoppløselige fila på e-post." data-en="Press “Order by email” and describe the motif you want. You'll get a confirmation, and after payment via Vipps the high-resolution file is sent by email." data-de="Klicken Sie auf „Per E-Mail bestellen“ und beschreiben Sie das gewünschte Motiv. Sie erhalten eine Bestätigung, und nach Zahlung per Vipps wird die hochauflösende Datei per E-Mail gesendet.">Trykk «Bestill på e-post» og beskriv motivet du ønsker. Du får en bekreftelse, og etter betaling via Vipps sendes den høgoppløselige fila på e-post.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false" aria-controls="sfaq2">
+              <span data-no="Hva koster det?" data-en="What does it cost?" data-de="Was kostet es?">Hva koster det?</span><span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer" id="sfaq2"><p data-no="200 kr per bilde, inkludert MVA. Hoodie er utsolgt." data-en="200 NOK per photo, including VAT. The hoodie is sold out." data-de="200 NOK pro Foto, inkl. MwSt. Die Hoodie ist ausverkauft.">200 kr per bilde, inkludert MVA. Hoodie er utsolgt.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false" aria-controls="sfaq3">
+              <span data-no="Hvilke betalingsmåter?" data-en="Payment methods?" data-de="Zahlungsmethoden?">Hvilke betalingsmåter?</span><span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer" id="sfaq3"><p data-no="Vipps (#65829) eller bankoverføring. Vipps er enklest." data-en="Vipps (#65829) or bank transfer. Vipps is easiest." data-de="Vipps (#65829) oder Banküberweisung. Vipps ist am einfachsten.">Vipps (#65829) eller bankoverføring. Vipps er enklest.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false" aria-controls="sfaq4">
+              <span data-no="Når får jeg fila?" data-en="When do I get the file?" data-de="Wann erhalte ich die Datei?">Når får jeg fila?</span><span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer" id="sfaq4"><p data-no="Innen 24 timer etter at betalingen er mottatt." data-en="Within 24 hours after payment is received." data-de="Innerhalb von 24 Stunden nach Zahlungseingang.">Innen 24 timer etter at betalingen er mottatt.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false" aria-controls="sfaq5">
+              <span data-no="Kan jeg bruke bildet kommersielt?" data-en="Can I use the photo commercially?" data-de="Kann ich das Foto kommerziell nutzen?">Kan jeg bruke bildet kommersielt?</span><span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer" id="sfaq5"><p data-no="Privat bruk er fritt. For kommersiell bruk, ta kontakt for en avtale." data-en="Private use is free. For commercial use, get in touch for an agreement." data-de="Privatnutzung ist frei. Für kommerzielle Nutzung kontaktieren Sie mich für eine Vereinbarung.">Privat bruk er fritt. For kommersiell bruk, ta kontakt for en avtale.</p></div>
           </div>
         </div>
       </div>
+    </section>
 
-      <!-- POWERGRADE -->
-      <div class="product-card">
-        <div class="product-image">
-          <img src="gallery/bryllup/untitled-6005.jpg" alt="Cinematic Powergrade Pack" loading="lazy">
-          <div class="product-badge coming-soon" data-no="Kommer snart" data-en="Coming soon" data-de="Bald">Kommer snart</div>
+    <!-- TIPS -->
+    <section class="section">
+      <div class="support reveal">
+        <div>
+          <h2 data-no="Støtt arbeidet" data-en="Support the work" data-de="Die Arbeit unterstützen">Støtt arbeidet</h2>
+          <p data-no="Liker du det du ser? Et tips via Vipps betyr mye for en ung fotograf fra Innlandet." data-en="Like what you see? A tip via Vipps means a lot to a young photographer from Innlandet." data-de="Gefällt Ihnen, was Sie sehen? Ein Trinkgeld per Vipps bedeutet einem jungen Fotografen aus Innlandet viel.">Liker du det du ser? Et tips via Vipps betyr mye for en ung fotograf fra Innlandet.</p>
         </div>
-        <div class="product-info">
-          <div class="product-category">POWERGRADE</div>
-          <h3>Cinematic Powergrade Pack</h3>
-          <p data-no="Ferdige fargeinnstillingsnettverk for DaVinci Resolve. Raskt sett kinematisk preg på videoane dine." data-en="Ready-made color grading node tree for DaVinci Resolve. Quickly add a cinematic look to your videos." data-de="Fertiges Farbkorrekture-Node-Netzwerk für DaVinci Resolve. Schnell ein kinematischer Look für Ihre Videos.">Ferdige fargeinnstillingsnettverk for DaVinci Resolve. Raskt sett kinematisk preg på videoane dine.</p>
-          <div class="product-footer">
-            <div class="product-price">349 <span class="currency">kr</span></div>
-            <button class="btn-buy disabled" data-no="Kommer snart" data-en="Coming soon" data-de="Bald">Kommer snart</button>
-          </div>
-        </div>
+        <button class="btn btn-outline" id="tipsBtn" data-no="Send tips" data-en="Send a tip" data-de="Trinkgeld senden">Send tips</button>
       </div>
+    </section>
 
-      <!-- MERCH — ZIP HOODIE -->
-      <div class="product-card">
-        <div class="product-image" style="background:linear-gradient(135deg,#1a1a2e,#2d2d44)">
-          <picture><source srcset="merch/5035.webp" type="image/webp"><img src="merch/5035.jpg" alt="Solemsli Zip Hoodie" loading="lazy"></picture>
-          <div class="product-badge" data-no="Bestselger" data-en="Bestseller" data-de="Bestseller">Bestselger</div>
-        </div>
-        <div class="product-info">
-          <div class="product-category">MERCH</div>
-          <h3 data-no="Solemsli Zip Hoodie" data-en="Solemsli Zip Hoodie" data-de="Solemsli Zip Hoodie">Solemsli Zip Hoodie</h3>
-          <p data-no="Sort zip-hoodie med Solemsli Productions-logo. Unisex passform, premium kvalitet." data-en="Black zip hoodie with Solemsli Productions logo. Unisex fit, premium quality." data-de="Schwarze Zip-Hoodie mit Solemsli Productions-Logo. Unisex-Passform, Premium-Qualität.">Sort zip-hoodie med Solemsli Productions-logo. Unisex passform, premium kvalitet.</p>
-          <div class="product-footer">
-            <div class="product-price">700 <span class="currency">kr</span></div>
-            <a href="mailto:kontakt@solemsliproductions.no?subject=Bestilling%20Merch%20%E2%80%94%20Solemsli%20Zip%20Hoodie&body=Hei!%0A%0AJeg%C3%B8nsker%C3%A5kj%C3%B8peSolemsli%20Zip%20Hoodie%20(700%C2%A0kr).%0A%0ASt%C3%B8rrelse:%20[S/M/L/XL]%0A%0AMvh%2C%0A[Navn]" class="btn-buy" data-no="Bestill" data-en="Order" data-de="Bestellen">Bestill</a>
-          </div>
-        </div>
+    <!-- CTA -->
+    <section class="cta">
+      <div class="reveal">
+        <h2 data-no="Trenger du noe spesielt?" data-en="Need something special?" data-de="Brauchen Sie etwas Besonderes?">Trenger du noe spesielt?</h2>
+        <p data-no="Skreddersydde oppdrag, bryllup, event eller andre prosjekter – ta kontakt." data-en="Custom assignments, weddings, events or other projects – get in touch." data-de="Maßgeschneiderte Aufträge, Hochzeiten, Events oder andere Projekte – kontaktieren Sie mich.">Skreddersydde oppdrag, bryllup, event eller andre prosjekter – ta kontakt.</p>
+        <a href="contact.html" class="btn btn-primary" data-no="Kontakt meg" data-en="Contact me" data-de="Kontaktieren Sie mich">Kontakt meg</a>
       </div>
+    </section>
 
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section class="faq-section reveal">
-    <div class="section-label" data-no="Ofte stilte spørsmål" data-en="Frequently asked questions" data-de="Häufig gestellte Fragen">Ofte stilte spørsmål</div>
-    <h2 class="section-title" data-no="Spørsmål & Svar" data-en="Questions & Answers" data-de="Fragen & Antworten">Spørsmål & Svar</h2>
-    <div class="faq-item">
-      <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-        <span data-no="Hvordan bestiller jeg?" data-en="How do I order?" data-de="Wie bestelle ich?">Hvordan bestiller jeg?</span>
-      </button>
-      <div class="faq-answer"><p data-no="Klikk 'Bestill via e-post' og beskriv kva slags bilete du ønsker. Eg sender deg en bekreftelse, og etter betaling via Vipps får du den høgoppløse fila tilsendt på e-post." data-en="Click 'Order via email' and describe what kind of photo you want. I'll send you a confirmation, and after payment via Vipps you'll receive the high-res file by email." data-de="Klicken Sie auf 'Bestellen per E-Mail' und beschreiben Sie, welches Foto Sie möchten. Ich sende Ihnen eine Bestätigung und nach Zahlung per Vipps erhalten Sie die hochauflösende Datei per E-Mail.">Klikk 'Bestill via e-post' og beskriv kva slags bilete du ønsker. Eg sender deg en bekreftelse, og etter betaling via Vipps får du den høgoppløse fila tilsendt på e-post.</p></div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-        <span data-no="Hva koster det?" data-en="How much does it cost?" data-de="Was kostet es?">Hva koster det?</span>
-      </button>
-      <div class="faq-answer"><p data-no="200 kr per bilete, inkludert MVA." data-en="200 kr per photo, including VAT." data-de="200 kr pro Foto, inkl. MwSt.">200 kr per bilete, inkludert MVA.</p></div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-        <span data-no="Hvilke betalingsmåtar?" data-en="What payment methods?" data-de="Welche Zahlungsmethoden?">Hvilke betalingsmåtar?</span>
-      </button>
-      <div class="faq-answer"><p data-no="Vipps (#65829), bankoverføring og krypto (Bitcoin). Vipps er enklast." data-en="Vipps (#65829), bank transfer and crypto (Bitcoin). Vipps is easiest." data-de="Vipps (#65829), Banküberweisung und Krypto (Bitcoin). Vipps ist am einfachsten.">Vipps (#65829), bankoverføring og krypto (Bitcoin). Vipps er enklast.</p></div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-        <span data-no="Når får jeg fila?" data-en="When do I get the file?" data-de="Wann erhalte ich die Datei?">Når får jeg fila?</span>
-      </button>
-      <div class="faq-answer"><p data-no="Etter betaling er mottatt, sender eg fila på e-post innan 24 timer." data-en="After payment is received, I send the file by email within 24 hours." data-de="Nach Zahlungseingang sende ich die Datei per E-Mail innerhalb von 24 Stunden.">Etter betaling er mottatt, sender eg fila på e-post innan 24 timer.</p></div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-        <span data-no="Kan jeg bruke bildet kommersielt?" data-en="Can I use the photo commercially?" data-de="Kann ich das Foto kommerziell verwenden?">Kan jeg bruke bildet kommersielt?</span>
-      </button>
-      <div class="faq-answer"><p data-no="Privat bruk er fritt. For kommersiell bruk, ta kontakt for avtale." data-en="Private use is free. For commercial use, please get in touch for an agreement." data-de="Privatnutzung ist frei. Für kommerzielle Nutzung kontaktieren Sie mich bitte für eine Vereinbarung.">Privat bruk er fritt. For kommersiell bruk, ta kontakt for avtale.</p></div>
-    </div>
-  </section>
-
-  <!-- TIPS / DONASJON -->
-  <section class="tips-section">
-    <div class="tips-card">
-      <div class="tips-icon">☕</div>
-      <h3 data-no="Støtt meg på reisen" data-en="Support my journey" data-de="Unterstütze meine Reise">Støtt meg på reisen</h3>
-      <p data-no="Hvis du liker arbeidet mitt og vil støtte meg videre, setter jeg stor pris på ethvert tips. Det betyr mye for en ung fotograf fra Innlandet!" data-en="If you enjoy my work and want to support me going forward, any tip is greatly appreciated. It means a lot for a young photographer from Innlandet!" data-de="Wenn dir meine Arbeit gefällt und du mich unterstützen möchtest, schätze ich jedes Trinkgeld. Es bedeutet viel für einen jungen Fotografen aus Innlandet!">Hvis du liker arbeidet mitt og vil støtte meg videre, setter jeg stor pris på ethvert tips. Det betyr mye for en ung fotograf fra Innlandet!</p>
-      <button class="btn-tips" onclick="openTips()">
-        <span data-no="Send tips via Vipps" data-en="Send tip via Vipps" data-de="Trinkgeld per Vipps">Send tips via Vipps</span>
-        <span class="tips-heart">💚</span>
-      </button>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="cta">
-    <h2 data-no="Trenger du noko spesielt?" data-en="Need something special?" data-de="Benötigen Sie etwas Besonderes?">Trenger du noko spesielt?</h2>
-    <p data-no="Ta kontakt for skreddersydde oppdrag, bryllup, event eller andre prosjekt." data-en="Get in touch for custom assignments, weddings, events or other projects." data-de="Kontaktieren Sie mich für maßgeschneiderte Aufträge, Hochzeiten, Veranstaltungen oder andere Projekte.">Ta kontakt for skreddersydde oppdrag, bryllup, event eller andre prosjekt.</p>
-    <a href="contact.html" class="btn-primary" data-no="Kontakt meg" data-en="Contact Me" data-de="Kontaktieren Sie mich">Kontakt meg</a>
-  </section>
-
-  <!-- INSTAGRAM -->
-  <section class="ig-section reveal">
-    <div class="section-label" data-no="Følg meg" data-en="Follow me" data-de="Folgen Sie mir">Følg meg</div>
-    <h2 class="section-title" data-no="Fra Instagram" data-en="From Instagram" data-de="Von Instagram">Fra Instagram</h2>
-    <p data-no="Se flere bilder og behind-the-scenes på Instagram" data-en="See more photos and behind-the-scenes on Instagram" data-de="Mehr Fotos und Hinter den Kulissen auf Instagram">Se flere bilder og behind-the-scenes på Instagram</p>
-    <div class="ig-grid">
-      <a href="https://www.instagram.com/solemsli_productions/" target="_blank" rel="noopener noreferrer"><img src="gallery/andre natur bilder/uranustind.jpg" alt="Instagram bilde" loading="lazy"></a>
-      <a href="https://www.instagram.com/solemsli_productions/" target="_blank" rel="noopener noreferrer"><img src="gallery/andre natur bilder/bilde7.jpg" alt="Instagram bilde" loading="lazy"></a>
-      <a href="https://www.instagram.com/solemsli_productions/" target="_blank" rel="noopener noreferrer"><img src="gallery/bryllup/untitled-6005.jpg" alt="Instagram bilde" loading="lazy"></a>
-      <a href="https://www.instagram.com/solemsli_productions/" target="_blank" rel="noopener noreferrer"><img src="gallery/vinjerock/untitled-7604.jpg" alt="Instagram bilde" loading="lazy"></a>
-      <a href="https://www.instagram.com/solemsli_productions/" target="_blank" rel="noopener noreferrer"><img src="gallery/andre natur bilder/bilde5.jpg" alt="Instagram bilde" loading="lazy"></a>
-      <a href="https://www.instagram.com/solemsli_productions/" target="_blank" rel="noopener noreferrer"><img src="gallery/andre natur bilder/untitled-7896.jpg" alt="Instagram bilde" loading="lazy"></a>
-    </div>
-  </section>
+    <!-- INSTAGRAM -->
+    <section class="section">
+      <div class="section-head reveal">
+        <span class="section-label">@solemsli_productions</span>
+        <h2 class="section-title" data-no="Fra Instagram" data-en="From Instagram" data-de="Von Instagram">Fra Instagram</h2>
+      </div>
+      <div class="ig-grid stagger">
+        <a href="https://www.instagram.com/solemsli_productions/" target="_blank" rel="noopener noreferrer"><img src="gallery/andre natur bilder/uranustind.jpg" alt="Fjellandskap" loading="lazy" width="2000" height="1125" srcset="gallery/andre%20natur%20bilder/uranustind-480.webp 480w, gallery/andre%20natur%20bilder/uranustind-960.webp 960w, gallery/andre%20natur%20bilder/uranustind-1600.webp 1600w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async"></a>
+        <a href="https://www.instagram.com/solemsli_productions/" target="_blank" rel="noopener noreferrer"><img src="gallery/andre natur bilder/bilde7.jpg" alt="Skog fra luften" loading="lazy" width="2000" height="1125" srcset="gallery/andre%20natur%20bilder/bilde7-480.webp 480w, gallery/andre%20natur%20bilder/bilde7-960.webp 960w, gallery/andre%20natur%20bilder/bilde7-1600.webp 1600w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async"></a>
+        <a href="https://www.instagram.com/solemsli_productions/" target="_blank" rel="noopener noreferrer"><img src="gallery/bryllup/untitled-6005.jpg" alt="Bryllupsbilde" loading="lazy" width="1600" height="900" srcset="gallery/bryllup/untitled-6005-480.webp 480w, gallery/bryllup/untitled-6005-960.webp 960w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async"></a>
+        <a href="https://www.instagram.com/solemsli_productions/" target="_blank" rel="noopener noreferrer"><img src="gallery/vinjerock/untitled-7604.jpg" alt="Vinjerock" loading="lazy" width="900" height="1600" srcset="gallery/vinjerock/untitled-7604-480.webp 480w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async"></a>
+        <a href="https://www.instagram.com/solemsli_productions/" target="_blank" rel="noopener noreferrer"><img src="gallery/andre natur bilder/bilde5.jpg" alt="Vann fra luften" loading="lazy" width="2000" height="1125" srcset="gallery/andre%20natur%20bilder/bilde5-480.webp 480w, gallery/andre%20natur%20bilder/bilde5-960.webp 960w, gallery/andre%20natur%20bilder/bilde5-1600.webp 1600w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async"></a>
+        <a href="https://www.instagram.com/solemsli_productions/" target="_blank" rel="noopener noreferrer"><img src="gallery/andre natur bilder/untitled-7896.jpg" alt="Fjellandskap" loading="lazy" width="1600" height="816" srcset="gallery/andre%20natur%20bilder/untitled-7896-480.webp 480w, gallery/andre%20natur%20bilder/untitled-7896-960.webp 960w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async"></a>
+      </div>
+    </section>
 
   </main>
 
-  <!-- FOOTER -->
   <footer>
     <div class="footer-left">
-      <a href="index.html" class="logo footer-logo">Solemsli Productions</a>
+      <a href="index.html" class="logo">Solemsli Productions</a>
       <p>Høgesetvegen 52, 2985 Tyinkrysset</p>
       <p>rakso8080@gmail.com</p>
       <p class="footer-legal">Org.nr: 935 203 708 · ENK · MVA-registrert</p>
@@ -418,184 +421,136 @@
     </div>
   </footer>
 
-  <!-- CUSTOM CURSOR -->
-  <div class="custom-cursor" id="cursor"></div>
-  <div class="custom-cursor-dot" id="cursor-dot"></div>
+  <!-- VIPPS -->
+  <div class="dialog" id="tipsDialog" role="dialog" aria-modal="true" aria-labelledby="tipsTitle" aria-hidden="true">
+    <div class="dialog-card">
+      <h3 id="tipsTitle" data-no="Tips via Vipps" data-en="Tip via Vipps" data-de="Trinkgeld per Vipps">Tips via Vipps</h3>
+      <p data-no="Søk opp nummeret under i Vipps og send valgfritt beløp. Tusen takk!" data-en="Search for the number below in Vipps and send any amount. Thank you!" data-de="Suchen Sie die Nummer unten in Vipps und senden Sie einen beliebigen Betrag. Vielen Dank!">Søk opp nummeret under i Vipps og send valgfritt beløp. Tusen takk!</p>
+      <div class="vipps-number"><span>65829</span><button class="copy-btn" id="copyVipps" type="button" data-copy="65829" data-no="Kopier" data-en="Copy" data-de="Kopieren">Kopier</button></div>
+      <button class="dialog-close" id="closeTips" data-no="Lukk" data-en="Close" data-de="Schließen">Lukk</button>
+    </div>
+  </div>
 
+  <script src="shared.js?v=2026-11-18"></script>
   <script>
-    const VIPPS_TIPS_NUMBER = '66237';
-    const BTC_WALLET = 'bc1pygw2tw0xus8vv4wawhh63zqdpwmfw3xkll5pqwv80eh83tr59d8qlewujt';
-    const BANK_ACCOUNT = 'Ta kontakt for detaljer';
+    (function () {
+      'use strict';
+      var EMAIL = 'rakso8080@gmail.com';
 
-    // TIPS / DONASJON
-    let tipsPayMethod = 'vipps';
-    function tTips(key) {
-      const lang = localStorage.getItem('lang') || 'no';
-      const strings = {
-        takk: {no: 'Tusen takk!', en: 'Thank you so much!', de: 'Vielen Dank!'},
-        send: {no: 'Send et valgfritt beløp — tusen takk for støtten!', en: 'Send any amount — thank you so much for the support!', de: 'Senden Sie einen beliebigen Betrag — vielen Dank für die Unterstützung!'},
-        kopier: {no: 'Kopier', en: 'Copy', de: 'Kopieren'},
-        kopiert: {no: 'Kopiert!', en: 'Copied!', de: 'Kopiert!'},
-        vippsNote: {no: 'Åpne Vipps → Søk opp', en: 'Open Vipps → Search for', de: 'Vipps öffnen → Suchen nach'},
-        sendBelop: {no: '→ Send valgfritt beløp', en: '→ Send any amount', de: '→ Beliebigen Betrag senden'},
-        close: {no: 'Forstått', en: 'Got it', de: 'Verstanden'},
-        cryptoNote: {no: 'Send Bitcoin til adressen under:', en: 'Send Bitcoin to the address below:', de: 'Senden Sie Bitcoin an die Adresse unten:'},
-        cryptoExtra: {no: 'Ta kontakt for ETH, USDT eller annen krypto.', en: 'Contact me for ETH, USDT or other crypto.', de: 'Kontaktieren Sie mich für ETH, USDT oder andere Kryptowährungen.'},
-        bankNote: {no: 'Merk betalingen med navnet ditt.', en: 'Please note your name in the payment.', de: 'Bitte geben Sie Ihren Namen bei der Zahlung an.'},
-        stott: {no: 'Støtt meg på reisen', en: 'Support my journey', de: 'Unterstütze meine Reise'}
-      };
-      return (strings[key] && strings[key][lang]) || strings[key]?.no || '';
-    }
-    function openTips() {
-      const overlay = document.createElement('div');
-      overlay.className = 'vipps-overlay';
-      overlay.innerHTML = `
-        <div class="vipps-modal tips-modal-content">
-          <div class="vipps-icon">☕</div>
-          <h3>${tTips('takk')}</h3>
-          <p style="margin:8px 0 12px;font-size:.9rem;color:var(--text-muted)">${tTips('send')}</p>
-          <div class="pay-methods" style="margin-bottom:16px">
-            <button type="button" class="pay-method active" onclick="tipsPayMethod='vipps';document.querySelectorAll('.tips-modal-content .pay-method').forEach(b=>b.classList.remove('active'));this.classList.add('active');updateTipsContent()">
-              <span class="pay-method-icon">💚</span><span class="pay-method-name">Vipps</span>
-            </button>
-            <button type="button" class="pay-method" onclick="tipsPayMethod='crypto';document.querySelectorAll('.tips-modal-content .pay-method').forEach(b=>b.classList.remove('active'));this.classList.add('active');updateTipsContent()">
-              <span class="pay-method-icon">₿</span><span class="pay-method-name">Crypto</span>
-            </button>
-            <button type="button" class="pay-method" onclick="tipsPayMethod='bank';document.querySelectorAll('.tips-modal-content .pay-method').forEach(b=>b.classList.remove('active'));this.classList.add('active');updateTipsContent()">
-              <span class="pay-method-icon">🏦</span><span class="pay-method-name">Bank</span>
-            </button>
-          </div>
-          <div id="tips-pay-content">
-            <div class="vipps-number-box">
-              <span>${VIPPS_TIPS_NUMBER}</span>
-              <button class="vipps-copy-btn" onclick="navigator.clipboard.writeText('${VIPPS_TIPS_NUMBER}').then(()=>{this.textContent='${tTips('kopiert')}';this.classList.add('copied');setTimeout(()=>{this.textContent='${tTips('kopier')}';this.classList.remove('copied')},2000)})">${tTips('kopier')}</button>
-            </div>
-            <p class="vipps-note" style="margin-top:8px">${tTips('vippsNote')} <strong>${VIPPS_TIPS_NUMBER}</strong> ${tTips('sendBelop')}</p>
-          </div>
-          <button class="vipps-close-btn" onclick="this.closest('.vipps-overlay').remove()">${tTips('close')}</button>
-        </div>`;
-      document.body.appendChild(overlay);
-      overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.remove(); });
-    }
-    function updateTipsContent() {
-      const container = document.getElementById('tips-pay-content');
-      if (!container) return;
-      if (tipsPayMethod === 'vipps') {
-        container.innerHTML = `
-          <div class="vipps-number-box"><span>${VIPPS_TIPS_NUMBER}</span>
-            <button class="vipps-copy-btn" onclick="navigator.clipboard.writeText('${VIPPS_TIPS_NUMBER}').then(()=>{this.textContent='${tTips('kopiert')}';this.classList.add('copied');setTimeout(()=>{this.textContent='${tTips('kopier')}';this.classList.remove('copied')},2000)})">${tTips('kopier')}</button>
-          </div>
-          <p class="vipps-note" style="margin-top:8px">${tTips('vippsNote')} <strong>${VIPPS_TIPS_NUMBER}</strong> ${tTips('sendBelop')}</p>`;
-      } else if (tipsPayMethod === 'crypto') {
-        container.innerHTML = `
-          <p style="font-size:.8rem;color:var(--text-muted);margin-bottom:8px">${tTips('cryptoNote')}</p>
-          <div class="crypto-qr" style="margin:8px 0"><img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=bitcoin:${BTC_WALLET}" alt="Bitcoin QR" style="width:150px;height:150px;border-radius:12px;border:1px solid var(--card-border);background:white;padding:6px"></div>
-          <div class="vipps-number-box"><span style="font-size:.85rem;word-break:break-all;letter-spacing:0">${BTC_WALLET}</span>
-            <button class="vipps-copy-btn" onclick="navigator.clipboard.writeText('${BTC_WALLET}').then(()=>{this.textContent='${tTips('kopiert')}';this.classList.add('copied');setTimeout(()=>{this.textContent='${tTips('kopier')}';this.classList.remove('copied')},2000)})">${tTips('kopier')}</button>
-          </div>
-          <p style="font-size:.75rem;color:var(--text-muted);margin-top:6px">${tTips('cryptoExtra')}</p>`;
-      } else if (tipsPayMethod === 'bank') {
-        container.innerHTML = `
-          <div class="vipps-number-box">
-            <div style="text-align:left;width:100%"><div style="font-size:.7rem;color:var(--text-muted);margin-bottom:2px">Kontonummer</div><span style="font-size:1rem;letter-spacing:1px">${BANK_ACCOUNT}</span></div>
-          </div>
-          <p style="font-size:.75rem;color:var(--text-muted);margin-top:6px">${tTips('bankNote')}</p>`;
-      }
-    }
+      /* FØR/ETTER */
+      document.querySelectorAll('[data-ba]').forEach(function (ba) {
+        var before = ba.querySelector('.ba-before');
+        var line = ba.querySelector('.ba-line');
+        var handle = ba.querySelector('.ba-handle');
+        var dragging = false;
 
-    // ORDER CONFIRMATION MODAL
-    function showOrderConfirm(productName, price) {
-      const overlay = document.createElement('div');
-      overlay.className = 'order-confirm-overlay';
-      overlay.innerHTML = `
-        <div class="order-confirm-modal">
-          <div class="order-confirm-check">✓</div>
-          <h3 data-no="Neste steg" data-en="Next steps" data-de="Nächste Schritte">Neste steg</h3>
-          <p class="oc-subtitle" data-no="Sjekk e-postklienten din for å fullføre" data-en="Check your email client to complete" data-de="Überprüfen Sie Ihren E-Mail-Client">Sjekk e-postklienten din for å fullføre</p>
-          <div class="oc-item">
-            <div class="oc-item-label" data-no="Din bestilling" data-en="Your order" data-de="Ihre Bestellung">Din bestilling</div>
-            <div class="oc-item-name">${productName}</div>
-            <div class="oc-item-price">${price} <span>inkl. MVA</span></div>
-          </div>
-          <div class="oc-steps">
-            <div class="oc-step">
-              <div class="oc-step-num">1</div>
-              <div class="oc-step-text" data-no="Fullfør <strong>e-posten</strong> og send den til oss" data-de="Füllen Sie die <strong>E-Mail aus</strong> und senden Sie sie uns">Fullfør <strong>e-posten</strong> og send den til oss</div>
-            </div>
-            <div class="oc-step">
-              <div class="oc-step-num">2</div>
-              <div class="oc-step-text"><strong data-no="Betal" data-en="Pay" data-de="Bezahlen">Betal</strong> <span data-no="med Vipps, bank eller krypto" data-en="with Vipps, bank or crypto" data-de="mit Vipps, Bank oder Krypto">med Vipps, bank eller krypto</span></div>
-            </div>
-            <div class="oc-step">
-              <div class="oc-step-num">3</div>
-              <div class="oc-step-text"><span data-no="Du får fila tilsendt på e-post innan 24 timer" data-en="You'll receive the file by email within 24 hours" data-de="Sie erhalten die Datei per E-Mail innerhalb von 24 Stunden">Du får fila tilsendt på e-post innan 24 timer</span></div>
-            </div>
-          </div>
-          <div class="oc-payment">
-            <div class="oc-pay-item"><div class="oc-pay-icon">💚</div><div class="oc-pay-name">Vipps</div><div class="oc-pay-detail">#65829</div></div>
-            <div class="oc-pay-item"><div class="oc-pay-icon">🏦</div><div class="oc-pay-name">Bank</div><div class="oc-pay-detail" data-no="Kontakt for detaljer" data-en="Contact for details" data-de="Kontakt für Details">Kontakt for detaljer</div></div>
-            <div class="oc-pay-item"><div class="oc-pay-icon">₿</div><div class="oc-pay-name">Crypto</div><div class="oc-pay-detail">Bitcoin</div></div>
-          </div>
-          <button class="oc-close" onclick="this.closest('.order-confirm-overlay').remove()" data-no="Forstått" data-en="Got it" data-de="Verstanden">Forstått</button>
-          <button class="oc-ghost oc-close" onclick="window.location.href='contact.html'" data-no="Spørsmål? Kontakt meg" data-en="Questions? Contact me" data-de="Fragen? Kontaktieren Sie mich">Spørsmål? Kontakt meg</button>
-        </div>`;
-      document.body.appendChild(overlay);
-      requestAnimationFrame(() => requestAnimationFrame(() => overlay.classList.add('show')));
-      overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.remove(); });
-    }
-
-    // Intercept mailto links for order confirmation
-    document.querySelectorAll('.btn-order-big, .products-section .btn-buy:not(.disabled)').forEach(btn => {
-      btn.addEventListener('click', function(e) {
-        e.preventDefault();
-        const href = this.getAttribute('href');
-        let productName = 'Bilde';
-        let price = '200 kr';
-        if (href && href.includes('Merch')) {
-          productName = 'Solemsli Zip Hoodie';
-          price = '700 kr';
+        function setPos(percent) {
+          percent = Math.max(2, Math.min(98, percent));
+          before.style.clipPath = 'inset(0 ' + (100 - percent) + '% 0 0)';
+          line.style.left = percent + '%';
+          handle.style.left = percent + '%';
+          handle.setAttribute('aria-valuenow', Math.round(percent));
         }
-        window.location.href = href;
-        setTimeout(() => showOrderConfirm(productName, price), 300);
-      });
-    });
 
-    // BEFORE / AFTER SLIDER
-    document.querySelectorAll('.ba-slider').forEach(slider => {
-      const beforeImg = slider.querySelector('.ba-before');
-      const handle = slider.querySelector('.ba-handle');
-      let isDragging = false;
+        function percentFromEvent(e) {
+          var rect = ba.getBoundingClientRect();
+          return ((e.clientX - rect.left) / rect.width) * 100;
+        }
 
-      function setPosition(percent) {
-        percent = Math.max(2, Math.min(98, percent));
-        beforeImg.style.clipPath = `inset(0 ${100 - percent}% 0 0)`;
-        handle.style.left = percent + '%';
-      }
-      setPosition(50);
+        ba.addEventListener('pointerdown', function (e) {
+          dragging = true;
+          ba.setPointerCapture(e.pointerId);
+          setPos(percentFromEvent(e));
+        });
+        ba.addEventListener('pointermove', function (e) {
+          if (!dragging) return;
+          setPos(percentFromEvent(e));
+        });
+        ba.addEventListener('pointerup', function () { dragging = false; });
+        ba.addEventListener('pointercancel', function () { dragging = false; });
 
-      function getPercent(e) {
-        const rect = slider.getBoundingClientRect();
-        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-        return ((clientX - rect.left) / rect.width) * 100;
-      }
+        handle.addEventListener('keydown', function (e) {
+          var current = parseFloat(handle.getAttribute('aria-valuenow')) || 50;
+          if (e.key === 'ArrowLeft') { setPos(current - 3); e.preventDefault(); }
+          if (e.key === 'ArrowRight') { setPos(current + 3); e.preventDefault(); }
+        });
 
-      // Drag
-      slider.addEventListener('pointerdown', (e) => { isDragging = true; setPosition(getPercent(e)); e.preventDefault(); });
-      window.addEventListener('pointermove', (e) => { if (!isDragging) return; setPosition(getPercent(e)); e.preventDefault(); });
-      window.addEventListener('pointerup', () => { isDragging = false; });
-
-      // Keyboard
-      const circle = handle.querySelector('.ba-handle-circle');
-      circle.addEventListener('keydown', (e) => {
-        const current = parseFloat(handle.style.left) || 50;
-        if (e.key === 'ArrowLeft') { setPosition(current - 2); e.preventDefault(); }
-        if (e.key === 'ArrowRight') { setPosition(current + 2); e.preventDefault(); }
+        setPos(50);
       });
 
-      // Touch: make handle detectable
-      handle.style.touchAction = 'pan-x';
-    });
+      /* HOODIE – bytt bilde */
+      var main = document.getElementById('hoodieMain');
+      document.querySelectorAll('.hoodie-thumb').forEach(function (thumb) {
+        thumb.addEventListener('click', function () {
+          document.querySelectorAll('.hoodie-thumb').forEach(function (t) { t.classList.remove('active'); });
+          thumb.classList.add('active');
+          main.src = thumb.dataset.img;
+          main.alt = thumb.dataset.alt;
+        });
+      });
+
+      /* HOODIE – bestilling med størrelse */
+      var hoodieBtn = document.getElementById('hoodieOrder');
+      if (hoodieBtn) {
+        hoodieBtn.addEventListener('click', function () {
+          var size = document.getElementById('hoodieSize').value;
+          var note = document.getElementById('hoodieNote');
+          var subject = encodeURIComponent('Bestilling merch — Solemsli Zip Hoodie (' + size + ')');
+          var body = encodeURIComponent(
+            'Hei!\n\nJeg ønsker å kjøpe Solemsli Zip Hoodie.\n\nStørrelse: ' + size +
+            '\nPris: 700 kr\n\nNavn:\nAdresse:\n\nMvh'
+          );
+          window.location.href = 'mailto:' + EMAIL + '?subject=' + subject + '&body=' + body;
+          window.SP.status(note, 'hoodieOpened', size);
+        });
+      }
+
+      /* MELD INTERESSE */
+      document.querySelectorAll('[data-interest]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var product = btn.getAttribute('data-interest');
+          var subject = encodeURIComponent('Interesse: ' + product + ' — Solemsli Productions');
+          var body = encodeURIComponent(
+            'Hei!\n\nJeg er interessert i ' + product + '. Si fra når det er tilgjengelig.\n\nMvh\n'
+          );
+          window.location.href = 'mailto:' + EMAIL + '?subject=' + subject + '&body=' + body;
+          var note = document.querySelector('[data-note-for="' + product + '"]');
+          window.SP.status(note, 'interestOpened', product);
+        });
+      });
+
+      /* MOTIV FRA PORTEFØLJEN */
+      var motiv = new URLSearchParams(window.location.search).get('motiv');
+      if (motiv) {
+        var orderLink = document.getElementById('photoOrder');
+        var motifNote = document.getElementById('photoMotif');
+        var subject = encodeURIComponent('Bestilling bilde — ' + motiv);
+        var body = encodeURIComponent(
+          'Hei!\n\nJeg ønsker å kjøpe bildet «' + motiv + '».\n\nPris: 200 kr inkl. MVA\n\nMvh,\n'
+        );
+        if (orderLink) orderLink.href = 'mailto:' + EMAIL + '?subject=' + subject + '&body=' + body;
+        if (motifNote) window.SP.status(motifNote, 'motifChosen', motiv);
+      }
+
+      /* TIPS */
+      var dialog = document.getElementById('tipsDialog');
+      function openTips() {
+        dialog.classList.add('open');
+        dialog.setAttribute('aria-hidden', 'false');
+        document.getElementById('closeTips').focus();
+      }
+      function closeTips() {
+        dialog.classList.remove('open');
+        dialog.setAttribute('aria-hidden', 'true');
+      }
+      document.getElementById('tipsBtn').addEventListener('click', openTips);
+      document.getElementById('closeTips').addEventListener('click', closeTips);
+      dialog.addEventListener('click', function (e) { if (e.target === dialog) closeTips(); });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && dialog.classList.contains('open')) closeTips();
+      });
+    })();
   </script>
-  <script src="shared.js"></script>
 </body>
 </html>

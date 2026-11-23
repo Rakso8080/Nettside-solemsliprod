@@ -3,26 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <link rel="icon" href="Solemsli production.png">
-  <meta name="theme-color" content="#0180ff">
+  <link rel="icon" href="icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="icons/icon-192.png" sizes="192x192" type="image/png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <meta name="theme-color" content="#0a0b0d">
+  <script>
+    (function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t='dark';d.setAttribute('data-theme',t);var l=localStorage.getItem('lang');if(l==='en'||l==='de'||l==='no')d.lang=l;var m=document.querySelector('meta[name="theme-color"]');if(m&&t==='light')m.setAttribute('content','#f6f6f4');}catch(e){}})();
+  </script>
   <link rel="manifest" href="manifest.json">
   <meta name="description" content="Salgsbetingelser for Solemsli Productions. Vilkår for kjøp av tenester og produkt.">
   <meta property="og:title" content="Salgsbetingelser — Solemsli Productions" />
   <meta property="og:description" content="Vilkår for kjøp av tenester og produkt." />
-  <meta property="og:image" content="https://solemsliproductions.no/gallery/andre%20natur%20bilder/uranustind.jpg" />
+  <meta property="og:image" content="https://solemsliproductions.no/og/index.jpg" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://solemsliproductions.no/salgsbetingelser.html" />
   <meta property="og:site_name" content="Solemsli Productions">
   <meta property="og:locale" content="nb_NO">
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="canonical" href="https://solemsliproductions.no/salgsbetingelser.html" />
-  <meta name="organization" content="Solemsli Productions 935203708">
   <title>Salgsbetingelser — Solemsli Productions</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
-  <link rel="stylesheet" href="shared.css">
+  <link rel="stylesheet" href="shared.css?v=2026-11-18">
   <style>
     .legal-page{max-width:740px;margin:0 auto;padding:140px 24px 80px}
     .legal-page h1{font-size:clamp(1.8rem,4vw,2.5rem);font-weight:800;letter-spacing:-1px;margin-bottom:8px}
@@ -42,15 +42,12 @@
 </head>
 <body>
   <a href="#main-content" class="skip-link">Hopp til innhold</a>
-  <div id="grain"></div>
   <div id="progress-bar"></div>
 
   <header id="header">
     <a href="index.html" class="logo">Solemsli Productions</a>
-    <div class="menu-toggle" role="button" aria-label="Meny" aria-expanded="false" onclick="this.classList.toggle('active');this.setAttribute('aria-expanded',this.classList.contains('active'));document.querySelector('nav').classList.toggle('active')">
-      <span></span><span></span><span></span>
-    </div>
-    <nav aria-label="Hovedmeny">
+    <button class="menu-toggle" type="button" aria-label="Meny" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span></button>
+    <nav id="site-nav" aria-label="Hovedmeny">
       <a href="index.html" data-no="Hjem" data-en="Home" data-de="Startseite">Hjem</a>
       <a href="about.html" data-no="Om meg" data-en="About" data-de="Über mich">Om meg</a>
       <a href="projects.html" data-no="Portfolio" data-en="Portfolio" data-de="Portfolio">Portfolio</a>
@@ -58,14 +55,14 @@
       <a href="prices.html" data-no="Priser" data-en="Pricing" data-de="Preise">Priser</a>
       <a href="contact.html" data-no="Kontakt" data-en="Contact" data-de="Kontakt">Kontakt</a>
       <button class="nav-btn" id="lang-toggle" aria-label="Bytt språk">EN</button>
-      <button class="nav-btn" id="theme-toggle" aria-label="Bytt tema">☀️ Lys</button>
+      <button class="nav-btn" id="theme-toggle" aria-label="Bytt tema">☀ Lys</button>
     </nav>
   </header>
 
   <main id="main-content">
   <div class="legal-page">
     <h1>Salgsbetingelser</h1>
-    <p class="legal-updated">Sist oppdatert: September 2026</p>
+    <p class="legal-updated">Sist oppdatert: November 2026</p>
 
     <p>Desse vilkåra gjeld for kjøp av tenester og produkt frå Solemsli Productions (ENK, org.nr 935 203 708). Ved å bestille tenester eller produkt frå oss, godtek du desse vilkåra.</p>
 
@@ -79,7 +76,7 @@
 
     <h2>2. Prisar og avgifter</h2>
     <ul>
-      <li><strong>Tenester</strong> (foto, drone, video): Prisane er angitt <strong>eks. MVA og frakt</strong>. MVA kjem i tillegg i henhold til gjeldande sats (25%).</li>
+      <li><strong>Tenester</strong> (foto, drone, video): Prisane er angitt <strong>eks. MVA</strong>. MVA kjem i tillegg i henhold til gjeldande sats (25%). På prissida viser vi også <strong>pris inkl. MVA</strong>, slik at privatkundar ser den faktiske totalkostnaden.</li>
       <li><strong>Bilete og digitalt innhold i shop</strong>: Prisane er angitt <strong>inkl. MVA</strong>.</li>
       <li><strong>Merch</strong>: Prisane er angitt <strong>inkl. MVA</strong>. Frakt kjem i tillegg.</li>
     </ul>
@@ -91,7 +88,6 @@
       <li><strong>Faktura</strong> — for tenester. Forfall etter avtale.</li>
       <li><strong>Vipps</strong> — send til nummer <strong>#65829</strong>. Merk betalinga med navn og kva det gjeld.</li>
       <li><strong>Bankoverføring</strong> — kontonummer blir tilsendt ved bestilling.</li>
-      <li><strong>Krypto (Bitcoin)</strong> — betaling til digital lommebok. Ta kontakt for detaljar.</li>
     </ul>
 
     <h2>4. Levering</h2>
@@ -102,7 +98,7 @@
     </ul>
 
     <h2>5. Angrerett</h2>
-    <p><strong>Digitale bilete og produkt:</strong> Angreretten fell bort i samsvar med angrerettloven §22, då forbrukaren har samtykt til at leveringa byrjar og har erkjent at angreretten fell bort.</p>
+    <p><strong>Digitale bilete og produkt:</strong> Ved bestilling samtykkjer du til at leveringa byrjar straks, og du erkjenner at angreretten fell bort når nedlastinga eller leveringa er starta, jf. angrerettloven §22 bokstav n. Samtykket blir gitt i samband med bestillinga, og bestillinga blir ikkje gjennomført før du har gitt det.</p>
     <p><strong>Merch:</strong> Forbrukaren har 14 dagars angrerett frå vare er motteken, jf. angrerettloven §20. Varene må returnerast ubrukte og i originalforpakning. Returkostnader blir dekt av forbrukaren.</p>
 
     <h2>6. Reklamasjon og manglar</h2>
@@ -156,8 +152,6 @@
     </div>
   </footer>
 
-  <div class="custom-cursor" id="cursor"></div>
-  <div class="custom-cursor-dot" id="cursor-dot"></div>
-  <script src="shared.js"></script>
+  <script src="shared.js?v=2026-11-18"></script>
 </body>
 </html>

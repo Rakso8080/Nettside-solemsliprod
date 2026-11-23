@@ -3,54 +3,83 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <link rel="icon" href="Solemsli production.png">
-  <meta name="theme-color" content="#0180ff">
+  <link rel="icon" href="icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="icons/icon-192.png" sizes="192x192" type="image/png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <meta name="theme-color" content="#0a0b0d">
+  <script>
+    (function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t='dark';d.setAttribute('data-theme',t);var l=localStorage.getItem('lang');if(l==='en'||l==='de'||l==='no')d.lang=l;var m=document.querySelector('meta[name="theme-color"]');if(m&&t==='light')m.setAttribute('content','#f6f6f4');}catch(e){}})();
+  </script>
   <link rel="manifest" href="manifest.json">
   <meta name="description" content="Siden ble ikke funnet.">
   <meta name="robots" content="noindex, nofollow">
-  <meta property="og:title" content="404 - Solemsli Productions" />
-  <meta property="og:description" content="Siden du leter etter finnes ikke." />
-  <meta property="og:image" content="https://solemsliproductions.no/gallery/andre%20natur%20bilder/uranustind.jpg" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://solemsliproductions.no/404.html" />
+  <meta property="og:title" content="404 – Solemsli Productions">
+  <meta property="og:description" content="Siden du leter etter finnes ikke.">
+  <meta property="og:image" content="https://solemsliproductions.no/og/index.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:type" content="website">
   <meta property="og:site_name" content="Solemsli Productions">
   <meta property="og:locale" content="nb_NO">
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="404 - Solemsli Productions" />
-  <meta name="twitter:description" content="Siden du leter etter finnes ikke." />
-  <meta name="twitter:image" content="https://solemsliproductions.no/gallery/andre%20natur%20bilder/uranustind.jpg" />
-  <link rel="canonical" href="https://solemsliproductions.no/404.html" />
-  <meta name="organization" content="Solemsli Productions 935203708">
-  <title>404 - Siden ble ikke funnet | Solemsli Productions</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
-  <link rel="stylesheet" href="shared.css">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>404 – Siden ble ikke funnet | Solemsli Productions</title>
+  <link rel="stylesheet" href="shared.css?v=2026-11-18">
   <style>
-    body{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 20px}
-    .error-code{font-size:clamp(6rem,15vw,12rem);font-weight:800;background:linear-gradient(135deg,var(--main-blue),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;letter-spacing:-5px;margin-bottom:20px;animation:fadeUp .8s forwards;transform:translateY(30px)}
-    h1{font-size:clamp(1.5rem,3vw,2.5rem);font-weight:700;margin-bottom:15px;animation:fadeUp .8s .1s forwards;opacity:0;transform:translateY(30px)}
-    .error-desc{color:var(--text-muted);font-size:1.1rem;max-width:400px;margin:0 auto 40px;line-height:1.6;animation:fadeUp .8s .2s forwards;opacity:0;transform:translateY(30px)}
-    .buttons{display:flex;gap:15px;justify-content:center;animation:fadeUp .8s .3s forwards;opacity:0;transform:translateY(30px)}
-    @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
-    @media(max-width:600px){.buttons{flex-direction:column;align-items:center}}
+    .notfound{
+      width:100%;max-width:var(--max);
+      margin:0 auto;
+      padding:clamp(120px,18vh,200px) var(--pad) clamp(72px,10vw,110px);
+      min-height:calc(100svh - 74px);
+      display:flex;flex-direction:column;justify-content:center;
+    }
+    .notfound-code{
+      font-size:clamp(4rem,11vw,8rem);
+      font-weight:600;letter-spacing:-.06em;line-height:.9;
+      font-variant-numeric:tabular-nums;
+      margin-bottom:22px;
+    }
+    .notfound-code span{color:var(--accent)}
+    .notfound h1{font-size:clamp(1.5rem,3vw,2.2rem);margin-bottom:14px}
+    .notfound p{max-width:44ch;margin-bottom:30px}
+    .notfound-links{display:flex;gap:12px;flex-wrap:wrap}
+    .notfound-meta{
+      margin-top:clamp(44px,7vw,72px);padding-top:20px;
+      border-top:1px solid var(--line);
+      font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;
+      color:var(--text-muted);
+    }
   </style>
 </head>
 <body>
   <a href="#main-content" class="skip-link">Hopp til innhold</a>
-  <div id="grain"></div>
-  <div class="custom-cursor" id="cursor"></div>
-  <div class="custom-cursor-dot" id="cursor-dot"></div>
+  <div id="progress-bar"></div>
+
+  <header id="header">
+    <a href="index.html" class="logo">Solemsli Productions</a>
+    <button class="menu-toggle" type="button" aria-label="Meny" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span></button>
+    <nav id="site-nav" aria-label="Hovedmeny">
+      <a href="index.html" data-no="Hjem" data-en="Home" data-de="Startseite">Hjem</a>
+      <a href="about.html" data-no="Om meg" data-en="About" data-de="Über mich">Om meg</a>
+      <a href="projects.html" data-no="Portfolio" data-en="Portfolio" data-de="Portfolio">Portfolio</a>
+      <a href="shop.html" data-no="Shop" data-en="Shop" data-de="Shop">Shop</a>
+      <a href="prices.html" data-no="Priser" data-en="Pricing" data-de="Preise">Priser</a>
+      <a href="contact.html" data-no="Kontakt" data-en="Contact" data-de="Kontakt">Kontakt</a>
+      <button class="nav-btn" id="lang-toggle" aria-label="Bytt språk">EN</button>
+      <button class="nav-btn" id="theme-toggle" aria-label="Bytt tema">☀ Lys</button>
+    </nav>
+  </header>
 
   <main id="main-content">
-  <div class="error-code">404</div>
-  <h1 data-no="Siden ble ikke funnet" data-en="Page not found" data-de="Seite nicht gefunden">Siden ble ikke funnet</h1>
-  <p class="error-desc" data-no="Siden du leter etter finnes ikke, eller er blitt flyttet." data-en="The page you're looking for doesn't exist or has been moved." data-de="Die gesuchte Seite existiert nicht oder wurde verschoben.">Siden du leter etter finnes ikke, eller er blitt flyttet.</p>
-  <div class="buttons">
-    <a href="index.html" class="btn btn-primary magnetic" data-no="Tilbake til hjem" data-en="Back to home" data-de="Zurueck zur Startseite">Tilbake til hjem</a>
-    <a href="contact.html" class="btn btn-outline magnetic" data-no="Kontakt meg" data-en="Contact me" data-de="Kontaktiere mich">Kontakt meg</a>
-  </div>
+    <section class="notfound">
+      <div class="notfound-code"><span>4</span>0<span>4</span></div>
+      <h1 data-no="Siden ble ikke funnet" data-en="Page not found" data-de="Seite nicht gefunden">Siden ble ikke funnet</h1>
+      <p data-no="Siden du leter etter finnes ikke, eller er blitt flyttet. Prøv forsiden eller porteføljen." data-en="The page you're looking for doesn't exist or has been moved. Try the home page or the portfolio." data-de="Die gesuchte Seite existiert nicht oder wurde verschoben. Versuchen Sie die Startseite oder das Portfolio.">Siden du leter etter finnes ikke, eller er blitt flyttet. Prøv forsiden eller porteføljen.</p>
+      <div class="notfound-links">
+        <a href="index.html" class="btn btn-primary" data-no="Til forsiden" data-en="Back to home" data-de="Zur Startseite">Til forsiden</a>
+        <a href="projects.html" class="btn btn-outline" data-no="Se porteføljen" data-en="See the portfolio" data-de="Portfolio ansehen">Se porteføljen</a>
+      </div>
+      <p class="notfound-meta">Feil 404 · Solemsli Productions</p>
+    </section>
   </main>
 
   <footer>
@@ -62,12 +91,14 @@
       <p class="footer-legal">© 2026 Solemsli Productions</p>
     </div>
     <div class="footer-links">
-      <a href="index.html" data-no="Hjem" data-en="Home" data-de="Startseite">Hjem</a>
+      <a href="https://www.instagram.com/solemsli_productions/" target="_blank" rel="noopener noreferrer">Instagram</a>
+      <a href="contact.html" data-no="Kontakt" data-en="Contact" data-de="Kontakt">Kontakt</a>
+      <a href="about.html" data-no="Om meg" data-en="About" data-de="Über mich">Om meg</a>
       <a href="personvern.html" data-no="Personvern" data-en="Privacy" data-de="Datenschutz">Personvern</a>
       <a href="salgsbetingelser.html" data-no="Salgsbetingelser" data-en="Terms" data-de="AGB">Salgsbetingelser</a>
     </div>
   </footer>
 
-  <script src="shared.js"></script>
+  <script src="shared.js?v=2026-11-18"></script>
 </body>
 </html>

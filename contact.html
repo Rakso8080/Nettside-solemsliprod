@@ -3,460 +3,302 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <link rel="icon" href="Solemsli production.png">
-  <meta name="theme-color" content="#0180ff">
+  <link rel="icon" href="icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="icons/icon-192.png" sizes="192x192" type="image/png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <meta name="theme-color" content="#0a0b0d">
+  <script>
+    (function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t='dark';d.setAttribute('data-theme',t);var l=localStorage.getItem('lang');if(l==='en'||l==='de'||l==='no')d.lang=l;var m=document.querySelector('meta[name="theme-color"]');if(m&&t==='light')m.setAttribute('content','#f6f6f4');}catch(e){}})();
+  </script>
   <link rel="manifest" href="manifest.json">
-  <meta name="description" content="Kontakt Solemsli Productions for foto, video og drone-tjenester. Svar innen 24 timer.">
-  <meta property="og:title" content="Solemsli Productions | Kontakt" />
-  <meta property="og:description" content="Ta kontakt med Solemsli Productions for foto, video og droneoppdrag i Innlandet." />
-  <meta property="og:image" content="https://solemsliproductions.no/gallery/andre%20natur%20bilder/uranustind.jpg" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://solemsliproductions.no/contact.html" />
+  <meta name="description" content="Kontakt Solemsli Productions for foto, video og drone. Svar innen 24 timer.">
+  <meta property="og:title" content="Solemsli Productions | Kontakt">
+  <meta property="og:description" content="Ta kontakt for foto, video og droneoppdrag i Innlandet.">
+  <meta property="og:image" content="https://solemsliproductions.no/og/contact.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Solemsli Productions">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://solemsliproductions.no/contact.html">
   <meta property="og:site_name" content="Solemsli Productions">
   <meta property="og:locale" content="nb_NO">
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Solemsli Productions | Kontakt" />
-  <meta name="twitter:description" content="Ta kontakt med Solemsli Productions for foto, video og droneoppdrag i Innlandet." />
-  <meta name="twitter:image" content="https://solemsliproductions.no/gallery/andre%20natur%20bilder/uranustind.jpg" />
-  <link rel="canonical" href="https://solemsliproductions.no/contact.html" />
-  <meta name="organization" content="Solemsli Productions 935203708">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Solemsli Productions | Kontakt">
+  <meta name="twitter:description" content="Ta kontakt for foto, video og droneoppdrag i Innlandet.">
+  <meta name="twitter:image" content="https://solemsliproductions.no/og/contact.jpg">
+  <link rel="canonical" href="https://solemsliproductions.no/contact.html">
   <title>Kontakt – Solemsli Productions</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
-  <link rel="stylesheet" href="shared.css">
+  <link rel="stylesheet" href="shared.css?v=2026-11-18">
   <style>
-    /* PAGE-SPECIFIC — Contact */
-    body{padding-top:0}
-    main{display:block;padding:0;min-height:auto}
+    /* KONTAKT */
 
-    /* HERO */
-    .contact-hero{position:relative;height:60vh;min-height:400px;display:flex;align-items:center;justify-content:center;overflow:hidden}
-    .contact-hero-bg{position:absolute;inset:0;z-index:0}
-    .contact-hero-bg img{width:100%;height:100%;object-fit:cover;transform:scale(1.1)}
-    .contact-hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.5) 0%,rgba(0,0,0,.4) 50%,rgba(10,10,10,1) 100%);z-index:1}
-    .contact-hero-content{position:relative;z-index:2;text-align:center;padding:0 20px}
-    .contact-hero-badge{display:inline-block;background:rgba(255,255,255,0.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.15);padding:8px 20px;border-radius:30px;font-size:.8rem;color:rgba(255,255,255,0.9);margin-bottom:20px;opacity:0;transform:translateY(20px);animation:fadeUp 1s .2s forwards}
-    .contact-hero h1{font-size:clamp(2.5rem,6vw,4.5rem);font-weight:800;color:white;line-height:1.1;letter-spacing:-2px;margin-bottom:16px;text-shadow:0 4px 30px rgba(0,0,0,0.5);opacity:0;transform:translateY(20px);animation:fadeUp 1s .4s forwards}
-    .contact-hero h1 span{background:linear-gradient(135deg,var(--main-blue),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-    .contact-hero p{font-size:1.1rem;color:rgba(255,255,255,0.8);max-width:500px;margin:0 auto;line-height:1.6;opacity:0;transform:translateY(20px);animation:fadeUp 1s .6s forwards}
-    @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+    .contact-hero{min-height:54vh;align-items:flex-end}
+    .contact-hero .hero-content{padding-bottom:clamp(40px,7vw,64px)}
+    .contact-hero h1{font-size:clamp(2.4rem,6vw,4.4rem)}
+    .contact-hero h1 em{font-style:normal;color:var(--accent)}
+    .contact-hero p{max-width:56ch}
 
-    /* QUICK INFO STRIP */
-    .info-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:60px 40px;max-width:1000px;margin:0 auto}
-    .info-item{text-align:center;padding:24px 16px;background:var(--card-bg);border:1px solid var(--card-border);border-radius:16px;transition:all .3s}
-    .info-item:hover{border-color:rgba(1,128,255,0.3);transform:translateY(-4px)}
-    .info-icon{font-size:2rem;margin-bottom:10px;display:block}
-    .info-item h4{font-size:.95rem;font-weight:700;margin-bottom:4px}
-    .info-item p{font-size:.8rem;color:var(--text-muted);line-height:1.5}
+    /* Info */
+    .info-strip{
+      display:grid;grid-template-columns:repeat(4,1fr);
+      border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+      max-width:var(--max);margin:0 auto;
+    }
+    .info-item{padding:24px var(--pad);border-right:1px solid var(--line)}
+    .info-item:last-child{border-right:0}
+    .info-item strong{display:block;font-size:.82rem;font-weight:600;margin-bottom:4px}
+    .info-item span{font-size:.76rem;color:var(--text-muted);line-height:1.5}
 
-    /* CONTACT SECTION */
-    .contact-section{display:flex;justify-content:center;padding:40px 20px 80px;flex-direction:column;gap:60px;align-items:center;max-width:1200px;margin:0 auto}
-    .contact{background:var(--card-bg);border:1px solid var(--glass-border);border-radius:24px;padding:50px;text-align:center;max-width:600px;width:100%;position:relative;overflow:hidden;transition:all .5s cubic-bezier(.23,1,.32,1)}
-    .contact::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--main-blue),var(--accent))}
-    .contact:hover{border-color:rgba(1,128,255,0.3);transform:translateY(-8px);box-shadow:0 20px 40px rgba(0,0,0,0.1)}
-    .contact h2{font-size:2rem;font-weight:700;letter-spacing:-1px;margin-bottom:20px;background:linear-gradient(135deg,var(--main-blue),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    /* Kontakt */
+    .contact-layout{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(28px,5vw,64px);align-items:start}
+    .contact-intro h2{font-size:clamp(1.7rem,3.2vw,2.4rem);margin-bottom:14px}
+    .contact-intro p{font-size:.95rem;line-height:1.75;max-width:46ch;margin-bottom:28px}
+    .contact-list{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+    .contact-link{
+      display:flex;align-items:center;justify-content:space-between;gap:16px;
+      padding:16px 0;border-bottom:1px solid var(--line);
+      text-decoration:none;color:var(--text);
+      transition:color .25s;
+    }
+    .contact-link:hover{color:var(--accent)}
+    .contact-link span:first-child{font-size:.75rem;color:var(--text-muted);letter-spacing:.08em;text-transform:uppercase}
+    .contact-link span:last-child{font-size:.9rem}
 
-    /* CONTACT OPTIONS */
-    .contact-options{display:flex;gap:16px;margin-bottom:30px;flex-wrap:wrap}
-    .contact-option{display:flex;align-items:center;gap:12px;background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:16px 20px;text-decoration:none;color:var(--text);transition:all .3s;flex:1;min-width:180px}
-    .contact-option:hover{border-color:var(--main-blue);transform:translateY(-3px)}
-    .contact-option-icon{font-size:1.5rem;width:45px;height:45px;background:rgba(1,128,255,0.08);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-    .contact-option strong{display:block;font-size:.9rem;margin-bottom:2px}
-    .contact-option span{font-size:.8rem;color:var(--text-muted)}
+    /* Skjema */
+    .form-card{
+      border:1px solid var(--line);border-radius:var(--radius);
+      padding:clamp(24px,4vw,36px);
+    }
+    .form-card h3{font-size:1rem;font-weight:600;margin-bottom:20px}
+    .field{position:relative;margin-bottom:22px}
+    .field input,.field textarea{
+      width:100%;padding:12px 0;
+      background:transparent;border:0;border-bottom:1px solid var(--line);
+      color:var(--text);font-family:inherit;font-size:.95rem;
+      transition:border-color .25s;
+    }
+    .field textarea{min-height:96px;resize:vertical}
+    .field input:focus,.field textarea:focus{outline:0;border-bottom-color:var(--text)}
+    .field label{
+      display:block;
+      font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;
+      color:var(--text-muted);margin-bottom:4px;
+    }
+    .form-note{font-size:.72rem;color:var(--text-muted);line-height:1.6;margin-top:14px}
+    .form-status{font-size:.8rem;margin-top:12px;color:var(--text-muted);min-height:1.2em}
+    .form-status[data-state="error"]{color:#ff7676}
 
-    /* RESPONSE BADGE */
-    .response-badge{display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,rgba(1,128,255,0.1),rgba(0,212,255,0.05));border:1px solid rgba(1,128,255,0.2);border-radius:16px;padding:16px 20px;margin-bottom:24px}
-    .response-icon{font-size:1.8rem;width:50px;height:50px;background:var(--main-blue);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-    .response-text strong{display:block;font-size:.95rem;margin-bottom:2px}
-    .response-text span{font-size:.8rem;color:var(--text-muted)}
+    /* Kart */
+    #coverage-map{
+      width:100%;height:420px;
+      border:1px solid var(--line);border-radius:var(--radius);
+      background:var(--surface);
+      overflow:hidden;
+    }
+    .map-note{font-size:.82rem;color:var(--text-muted);margin-top:14px;text-align:center}
+    .leaflet-container{background:var(--surface);font-family:inherit}
 
-    /* FORM */
-    .form-group{position:relative;margin-bottom:28px}
-    .form-group input,.form-group textarea{width:100%;padding:14px 4px;background:transparent;border:none;border-bottom:2px solid var(--card-border);color:var(--text);font-size:1rem;font-family:inherit;transition:border-color .3s;outline:none}
-    .form-group textarea{resize:vertical;min-height:100px}
-    .form-group label{position:absolute;top:14px;left:0;color:var(--text-muted);font-size:1rem;transition:all .3s;pointer-events:none}
-    .form-group input:focus+label,.form-group input:not(:placeholder-shown)+label,.form-group textarea:focus+label,.form-group textarea:not(:placeholder-shown)+label{top:-14px;font-size:.75rem;color:var(--main-blue)}
-    .form-line{position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--main-blue);transition:width .3s}
-    .form-group input:focus~.form-line,.form-group textarea:focus~.form-line{width:100%}
+    /* Sosialt */
+    .social-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .social-card{
+      display:flex;flex-direction:column;gap:6px;
+      padding:24px;border:1px solid var(--line);border-radius:var(--radius);
+      text-decoration:none;color:var(--text);
+      transition:border-color .3s,background .3s;
+    }
+    .social-card:hover{border-color:var(--line-strong);background:var(--surface)}
+    .social-card .label{font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted)}
+    .social-card .value{font-size:.9rem}
+    .social-card .arrow{font-size:.8rem;color:var(--accent);margin-top:10px}
 
-    /* SUBMIT BTN */
-    .submit-btn{display:flex;align-items:center;gap:10px;background:var(--main-blue);color:white;border:none;padding:14px 32px;border-radius:30px;font-size:1rem;font-weight:600;cursor:pointer;transition:all .3s;overflow:hidden}
-    .submit-btn:hover{background:#0066cc;transform:translateY(-2px);box-shadow:0 10px 30px rgba(1,128,255,0.3)}
-    .submit-arrow{transition:transform .3s}
-    .submit-btn:hover .submit-arrow{transform:translateX(4px)}
-    .submit-btn:active{transform:translateY(0)}
+    /* Anmeldelser */
+    .quotes{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,3vw,32px)}
+    .quote{border:1px solid var(--line);border-radius:var(--radius);padding:clamp(24px,3.5vw,36px)}
+    .quote blockquote{font-size:.95rem;line-height:1.75;color:var(--text);margin-bottom:18px}
+    .quote .who{font-size:.78rem;color:var(--text-muted)}
 
-    /* MAP */
-    .map-section{padding:80px 40px;max-width:1000px;margin:0 auto}
-    .map-container{max-width:800px;margin:0 auto}
-    #coverage-map{width:100%;height:500px;border-radius:20px;border:1px solid var(--card-border);overflow:hidden}
-    .map-popup{font-family:'Inter',sans-serif}
-    .map-popup strong{color:#0180ff}
-
-    /* FAQ */
-    .faq-section{padding:80px 40px;max-width:800px;margin:0 auto}
-    .faq-grid{display:flex;flex-direction:column;gap:12px;margin-top:40px}
-    .faq-item{background:var(--card-bg);border:1px solid var(--card-border);border-radius:16px;overflow:hidden;transition:all .3s}
-    .faq-item:hover{border-color:rgba(1,128,255,0.2)}
-    .faq-question{display:flex;justify-content:space-between;align-items:center;padding:20px 24px;cursor:pointer;gap:12px}
-    .faq-question h4{font-size:1rem;font-weight:600;margin:0}
-    .faq-arrow{font-size:1.2rem;color:var(--text-muted);transition:transform .3s;flex-shrink:0}
-    .faq-item.open .faq-arrow{transform:rotate(180deg)}
-    .faq-answer{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.23,1,.32,1),padding .3s}
-    .faq-item.open .faq-answer{max-height:200px;padding:0 24px 20px}
-    .faq-answer p{font-size:.9rem;color:var(--text-muted);line-height:1.7;margin:0}
-
-    /* SECTION LABELS */
-    .section-label{font-size:.8rem;color:var(--main-blue);text-transform:uppercase;letter-spacing:2px;font-weight:600;margin-bottom:8px}
-    .section-title{font-size:1.8rem;font-weight:700;letter-spacing:-1px}
-
-    /* MARQUEE */
-    .marquee-section{overflow:hidden;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.08)}
-    .marquee{display:flex;width:100%}
-    .marquee-track{display:flex;gap:40px;animation:marqueeScroll 18s linear infinite;white-space:nowrap;flex-shrink:0}
-    .marquee-track span{font-size:.85rem;font-weight:600;letter-spacing:.15em;color:var(--text-muted);text-transform:uppercase}
-    .marquee-dot{color:var(--main-blue)!important;font-size:.65rem;align-self:center;opacity:.5}
-    @keyframes marqueeScroll{0%{transform:translateX(0)}100%{transform:translateX(-33.33%)}}
-
-    /* SOCIAL CARDS */
-    .social-cards-section{text-align:center;padding:60px 20px}
-    .social-cards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:800px;margin:32px auto 0}
-    .social-card{display:flex;flex-direction:column;align-items:center;padding:32px 24px;background:var(--card-bg);border:1px solid var(--glass-border);border-radius:20px;text-decoration:none;color:var(--text);transition:all .4s cubic-bezier(.25,.46,.45,.94);position:relative;overflow:hidden}
-    .social-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;transition:all .3s;opacity:0}
-    .social-card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(0,0,0,.15);border-color:rgba(1,128,255,.3)}
-    .social-card:hover::before{opacity:1}
-    .social-card--ig::before{background:linear-gradient(135deg,#f58529,#dd2a7b,#8134af,#515bd4)}
-    .social-card--email::before{background:linear-gradient(135deg,var(--main-blue),#0055cc)}
-    .social-card--phone::before{background:linear-gradient(135deg,#22c55e,#16a34a)}
-    .social-card-icon{font-size:2.2rem;margin-bottom:12px}
-    .social-card h3{font-size:1.1rem;font-weight:700;margin-bottom:4px}
-    .social-card p{font-size:.85rem;color:var(--text-muted);margin-bottom:12px}
-    .social-card-cta{font-size:.8rem;font-weight:600;color:var(--main-blue);transition:letter-spacing .3s}
-    .social-card:hover .social-card-cta{letter-spacing:1px}
-    @media(max-width:600px){.social-cards-grid{grid-template-columns:1fr;max-width:320px}}
-
-    /* TESTIMONIALS */
-    .testimonials-contact{text-align:center;padding:60px 20px}
-    .testimonials-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:700px;margin:32px auto 0}
-    .testimonial-card{background:var(--card-bg);border:1px solid var(--glass-border);border-radius:20px;padding:28px;text-align:left;transition:border-color .3s,box-shadow .3s}
-    .testimonial-card:hover{border-color:rgba(1,128,255,.2);box-shadow:0 8px 32px rgba(0,0,0,.08)}
-    .testimonial-stars{color:#fbbf24;font-size:.9rem;margin-bottom:12px;letter-spacing:2px}
-    .testimonial-card p{font-size:.9rem;line-height:1.7;color:var(--text-muted);margin-bottom:16px;font-style:italic}
-    .testimonial-author{font-size:.85rem;font-weight:600;color:var(--text)}
-    .testimonial-author span{font-weight:400;color:var(--text-muted);font-size:.8rem}
-    @media(max-width:600px){.testimonials-grid{grid-template-columns:1fr}}
-
-    /* MAP ANIMATION */
-    .map-container{border-radius:var(--radius-lg);overflow:hidden}
-    #coverage-map{transition:opacity .6s ease}
-
-    /* BUTTONS */
-    .btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 32px;border-radius:30px;font-size:.95rem;font-weight:600;text-decoration:none;cursor:pointer;transition:all .3s;min-width:140px;font-family:inherit;border:none}
-    .btn-primary{background:var(--main-blue);color:white;border:2px solid var(--main-blue)}
-    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(1,128,255,.3);background:#0066ff;border-color:#0066ff}
-    .btn-outline{background:transparent;color:var(--text);border:2px solid var(--glass-border)}
-    .btn-outline:hover{border-color:var(--main-blue);color:var(--main-blue);transform:translateY(-2px)}
-
-    /* RESPONSIVE — PAGE-SPECIFIC */
-    @media(max-width:750px){
-      .contact{padding:35px}
-      .contact-section{padding:40px 16px}
-      .contact-options{flex-direction:column}
-      body{padding-top:0}
-      .info-strip{grid-template-columns:repeat(2,1fr);padding:40px 20px;gap:12px}
-      .info-item{padding:20px 12px}
-      .faq-section{padding:60px 20px}
-      .map-section{padding:60px 20px}
-      .contact-hero{height:50vh;min-height:350px}
+    @media(max-width:900px){
+      .info-strip{grid-template-columns:1fr 1fr}
+      .info-item:nth-child(2){border-right:0}
+      .info-item:nth-child(1),.info-item:nth-child(2){border-bottom:1px solid var(--line)}
+      .contact-layout{grid-template-columns:1fr}
+      .quotes{grid-template-columns:1fr}
+      .social-grid{grid-template-columns:1fr}
+    }
+    @media(max-width:600px){
+      .contact-hero{min-height:44vh}
+      .info-item{padding:20px}
+      #coverage-map{height:320px}
     }
   </style>
+  <link rel="preload" as="image" href="gallery/andre natur bilder/untitled--2-960.webp" imagesrcset="gallery/andre%20natur%20bilder/untitled--2-480.webp 480w, gallery/andre%20natur%20bilder/untitled--2-960.webp 960w" imagesizes="100vw" fetchpriority="high">
 </head>
 <body>
   <a href="#main-content" class="skip-link">Hopp til innhold</a>
-  <!-- CUSTOM CURSOR -->
-  <div class="custom-cursor" id="cursor"></div>
-  <div class="custom-cursor-dot" id="cursor-dot"></div>
-
-  <!-- GRAIN -->
-  <div id="grain"></div>
-
-  <!-- PROGRESS BAR -->
   <div id="progress-bar"></div>
 
-  <!-- HEADER -->
   <header id="header">
     <a href="index.html" class="logo">Solemsli Productions</a>
-    <div class="menu-toggle" role="button" aria-label="Meny" aria-expanded="false" onclick="this.classList.toggle('active');this.setAttribute('aria-expanded',this.classList.contains('active'));document.querySelector('nav').classList.toggle('active')"><span></span><span></span><span></span></div>
-    <nav aria-label="Hovedmeny">
+    <button class="menu-toggle" type="button" aria-label="Meny" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span></button>
+    <nav id="site-nav" aria-label="Hovedmeny">
       <a href="index.html" data-no="Hjem" data-en="Home" data-de="Startseite">Hjem</a>
       <a href="about.html" data-no="Om meg" data-en="About" data-de="Über mich">Om meg</a>
       <a href="projects.html" data-no="Portfolio" data-en="Portfolio" data-de="Portfolio">Portfolio</a>
       <a href="shop.html" data-no="Shop" data-en="Shop" data-de="Shop">Shop</a>
       <a href="prices.html" data-no="Priser" data-en="Pricing" data-de="Preise">Priser</a>
-      <a href="contact.html" class="active" data-no="Kontakt" data-en="Contact" data-de="Kontakt">Kontakt</a>
+      <a href="contact.html" class="active" aria-current="page" data-no="Kontakt" data-en="Contact" data-de="Kontakt">Kontakt</a>
       <button class="nav-btn" id="lang-toggle" aria-label="Bytt språk">EN</button>
-      <button class="nav-btn" id="theme-toggle" aria-label="Bytt tema">☀️ Lys</button>
+      <button class="nav-btn" id="theme-toggle" aria-label="Bytt tema">☀ Lys</button>
     </nav>
   </header>
 
   <!-- HERO -->
-  <section class="contact-hero section-parallax">
-    <div class="contact-hero-bg section-parallax-bg"><img src="gallery/andre natur bilder/untitled--2.jpg" alt="Naturandskap"></div>
-    <div class="contact-hero-overlay"></div>
-    <div class="contact-hero-content">
-      <div class="contact-hero-badge" data-no="📞 Svar innen 24t" data-en="📞 Reply within 24h" data-de="📞 Antwort innerhalb 24h">📞 Svar innen 24t</div>
-      <h1 data-no="Ta kontakt" data-en="Get in touch" data-de="Kontakt aufnehmen">Ta <span>kontakt</span></h1>
-      <p data-no="Har du et prosjekt i tankene? Jeg hører gjerne fra deg. Enten det er bryllup, droneoppdrag, reklamefilm eller noe helt annet — ta gjerne kontakt for en uforpliktende samtale." data-en="Have a project in mind? I'd love to hear from you. Whether it's a wedding, drone job, commercial or something else entirely — feel free to reach out for a no-obligation chat." data-de="Haben Sie ein Projekt im Sinn? Ich freue mich von Ihnen zu hören. Ob Hochzeit, Drohneneinsatz, Werbe oder etwas ganz anderes — kontaktieren Sie mich gerne für ein unverbindliches Gespräch.">Har du et prosjekt i tankene? Jeg hører gjerne fra deg. Enten det er bryllup, droneoppdrag, reklamefilm eller noe helt annet — ta gjerne kontakt for en uforpliktende samtale.</p>
+  <section class="hero contact-hero">
+    <div class="hero-bg"><img src="gallery/andre natur bilder/untitled--2.jpg" alt="Fjellandskap i vinterlys" fetchpriority="high" width="1600" height="900" srcset="gallery/andre%20natur%20bilder/untitled--2-480.webp 480w, gallery/andre%20natur%20bilder/untitled--2-960.webp 960w" sizes="100vw" decoding="async"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-badge" data-no="Svar innen 24 timer" data-en="Reply within 24 hours" data-de="Antwort innerhalb 24 Stunden">Svar innen 24 timer</div>
+      <h1 data-html data-no="Ta <em>kontakt</em>" data-en="Get in <em>touch</em>" data-de="Kontakt <em>aufnehmen</em>">Ta <em>kontakt</em></h1>
+      <p data-no="Har du et prosjekt i tankene? Enten det er bryllup, droneoppdrag, reklamefilm eller noe helt annet – ta gjerne kontakt for en uforpliktende samtale." data-en="Have a project in mind? Whether it's a wedding, drone job, commercial or something else entirely – feel free to reach out for a no-obligation chat." data-de="Haben Sie ein Projekt im Sinn? Ob Hochzeit, Drohneneinsatz, Werbefilm oder etwas ganz anderes – kontaktieren Sie mich gerne für ein unverbindliches Gespräch.">Har du et prosjekt i tankene? Enten det er bryllup, droneoppdrag, reklamefilm eller noe helt annet – ta gjerne kontakt for en uforpliktende samtale.</p>
     </div>
   </section>
 
-  <!-- QUICK INFO -->
-  <section class="info-strip stagger-reveal perspective-section">
-    <div class="info-item reveal">
-      <span class="info-icon">⚡</span>
-      <h4 data-no="Rask respons" data-en="Fast response" data-de="Schnelle Antwort">Rask respons</h4>
-      <p data-no="Svar innen 24 timer" data-en="Reply within 24 hours" data-de="Antwort innerhalb 24h">Svar innen 24 timer</p>
-    </div>
-    <div class="info-item reveal reveal-delay-1">
-      <span class="info-icon">📍</span>
-      <h4 data-no="Basert i Innlandet" data-en="Based in Innlandet" data-de="Basierend in Innlandet">Basert i Innlandet</h4>
-      <p data-no="Tar oppdrag i hele Norge" data-en="Taking jobs across Norway" data-de="Aufträge in ganz Norwegen">Tar oppdrag i hele Norge</p>
-    </div>
-    <div class="info-item reveal reveal-delay-2">
-      <span class="info-icon">💬</span>
-      <h4 data-no="Uforpliktende" data-en="No obligation" data-de="Unverbindlich">Uforpliktende</h4>
-      <p data-no="Gratis førstegangssamtale" data-en="Free initial consultation" data-de="Erstberatung kostenlos">Gratis førstegangssamtale</p>
-    </div>
-    <div class="info-item reveal reveal-delay-3">
-      <span class="info-icon">🎓</span>
-      <h4 data-no="Studentrabatt" data-en="Student discount" data-de="Studentenrabatt">Studentrabatt</h4>
-      <p data-no="10% rabatt for studenter" data-en="10% discount for students" data-de="10% Rabatt für Studenten">10% rabatt for studenter</p>
-    </div>
-  </section>
-
-  <!-- MAIN -->
-  <main id="main-content">
-    <section class="contact-section">
-      <section class="contact reveal glow-scroll">
-        <h2 data-no="Kontakt meg!" data-en="Contact Me!" data-de="Kontaktiere mich!">Kontakt meg!</h2>
-
-        <div class="response-badge">
-          <div class="response-icon">⚡</div>
-          <div class="response-text"><strong data-no="Svar innen 24 timer" data-en="Reply within 24 hours" data-de="Antwort innerhalb 24 Stunden">Svar innen 24 timer</strong><span data-no="Jeg svarer raskt på alle henvendelser" data-en="I respond quickly to all inquiries" data-de="Ich antworte schnell auf alle Anfragen">Jeg svarer raskt på alle henvendelser</span></div>
-        </div>
-
-        <div class="contact-options">
-          <a href="tel:+4790560160" class="contact-option"><div class="contact-option-icon">📞</div><div><strong data-no="Ring meg" data-en="Call me" data-de="Anrufen">Ring meg</strong><span>+47 905 60 160</span></div></a>
-          <a href="mailto:rakso8080@gmail.com" class="contact-option"><div class="contact-option-icon">✉️</div><div><strong data-no="Send e-post" data-en="Send email" data-de="E-Mail senden">Send e-post</strong><span>rakso8080@gmail.com</span></div></a>
-          <a href="https://www.instagram.com/solemsli_productions/" target="_blank" rel="noopener noreferrer" class="contact-option"><div class="contact-option-icon">💬</div><div><strong data-no="Instagram DM" data-en="Instagram DM" data-de="Instagram DM">Instagram DM</strong><span>@solemsli_productions</span></div></a>
-        </div>
-
-        <form id="contact-form" onsubmit="sendContact(event)">
-          <input type="hidden" name="_next" value="https://solemsliproductions.no/contact.html">
-          <div class="form-group">
-            <input type="text" id="name" name="name" placeholder=" " required>
-            <label for="name" data-no="Ditt navn" data-en="Your name" data-de="Ihr Name">Ditt navn</label>
-            <div class="form-line"></div>
-          </div>
-          <div class="form-group">
-            <input type="email" id="email" name="email" placeholder=" " required>
-            <label for="email" data-no="Din e-post" data-en="Your email" data-de="Ihre E-Mail">Din e-post</label>
-            <div class="form-line"></div>
-          </div>
-          <div class="form-group">
-            <input type="tel" id="phone" name="phone" placeholder=" ">
-            <label for="phone" data-no="Telefon (valgfritt)" data-en="Phone (optional)" data-de="Telefon (optional)">Telefon (valgfritt)</label>
-            <div class="form-line"></div>
-          </div>
-          <div class="form-group">
-            <textarea id="message" name="message" placeholder=" " rows="4" required></textarea>
-            <label for="message" data-no="Din melding" data-en="Your message" data-de="Ihre Nachricht">Din melding</label>
-            <div class="form-line"></div>
-          </div>
-          <button type="submit" class="submit-btn"><span data-no="Send melding" data-en="Send message" data-de="Nachricht senden">Send melding</span><div class="submit-arrow">→</div></button>
-        </form>
-      </section>
-    </section>
-  </main>
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Hvor raskt kan dere levere?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "For foto og drone er leveransen typisk 2–5 virkedager. Video og redigert innhold kan ta 1–2 uker. Jeg har levert bryllupsbilder innen 24 timer selv ved store bryllup."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Må jeg være i Innlandet?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Nei! Jeg tar oppdrag i hele Norge. Ved lengre reiser kan det komme et tillegg for reise og overnatting."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Hva skjer hvis det regner?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Vi finner alltid en løsning — enten det er å flytte oppdraget, finne en alternativ lokasjon, eller utnytte været kreativt."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Hvilke betalingsmåter aksepterer dere?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Jeg sender helst faktura. For kjøp av merch, LUT-er og lignende i shoppen aksepterer jeg Vipps, kort, og krypto (Bitcoin, Ethereum, Solana)."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Kan jeg få revisjoner?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Ja! Alle pakker inkluderer opptil 2 revisjoner. Ekstra revisjoner kan kjøpes separat."
-        }
-      }
-    ]
-  }
-  </script>
-
-  <!-- FAQ -->
-  <section class="faq-section">
-    <div class="reveal"><div class="section-label" data-no="Vanlige spørsmål" data-en="FAQ" data-de="Häufige Fragen">Vanlige spørsmål</div><h2 class="section-title" data-no="Spørsmål og svar" data-en="Questions & Answers" data-de="Fragen & Antworten">Spørsmål og svar</h2></div>
-    <div class="faq-grid reveal stagger-reveal">
-      <div class="faq-item">
-        <div class="faq-question" role="button" tabindex="0" aria-expanded="false" aria-controls="cfaq-a1" onclick="this.parentElement.classList.toggle('open');this.setAttribute('aria-expanded',this.parentElement.classList.contains('open'))">
-          <h4 data-no="Hvor raskt kan dere levere?" data-en="How quickly can you deliver?" data-de="Wie schnell können Sie liefern?">Hvor raskt kan dere levere?</h4>
-          <span class="faq-arrow">▼</span>
-        </div>
-        <div class="faq-answer" id="cfaq-a1" role="region"><p data-no="For foto og drone er leveransen typisk 2–5 virkedager. Video og redigert innhold kan ta 1–2 uker, avhengig av omfang. Vi blir alltid enige om en frist på forhånd. Jeg har levert bryllupsbilder innen 24 timer selv ved store bryllup." data-en="For photo and drone, delivery is typically 2–5 business days. Video and edited content can take 1–2 weeks depending on scope. We always agree on a deadline in advance. I have delivered wedding photos within 24 hours even for large weddings." data-de="Bei Foto- und Drohnenaufnahmen beträgt die Lieferzeit typischerweise 2–5 Werktage. Video und bearbeitete Inhalte können 1–2 Wochen dauern, je nach Umfang. Wir einigen uns immer vorher auf eine Frist. Ich habe Hochzeitsfotos innerhalb von 24 Stunden geliefert, auch bei großen Hochzeiten.">For foto og drone er leveransen typisk 2–5 virkedager. Video og redigert innhold kan ta 1–2 uker, avhengig av omfang. Vi blir alltid enige om en frist på forhånd. Jeg har levert bryllupsbilder innen 24 timer selv ved store bryllup.</p></div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" role="button" tabindex="0" aria-expanded="false" aria-controls="cfaq-a2" onclick="this.parentElement.classList.toggle('open');this.setAttribute('aria-expanded',this.parentElement.classList.contains('open'))">
-          <h4 data-no="Må jeg være i Innlandet?" data-en="Do I have to be in Innlandet?" data-de="Muss ich in Innlandet sein?">Må jeg være i Innlandet?</h4>
-          <span class="faq-arrow">▼</span>
-        </div>
-        <div class="faq-answer" id="cfaq-a2" role="region"><p data-no="Nei! Jeg tar oppdrag i hele Norge. Ved lengre reiser kan det komme et tillegg for reise og overnatting, men dette avtales alltid på forhånd." data-en="No! I take jobs across all of Norway. For longer trips there may be an additional charge for travel and accommodation, but this is always agreed in advance." data-de="Nein! Ich übernehme Aufträge in ganz Norwegen. Bei längeren Reisen kann ein Zuschlag für Reise und Unterkunft anfallen, dies wird aber immer vorher vereinbart.">Nei! Jeg tar oppdrag i hele Norge. Ved lengre reiser kan det komme et tillegg for reise og overnatting, men dette avtales alltid på forhånd.</p></div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" role="button" tabindex="0" aria-expanded="false" aria-controls="cfaq-a3" onclick="this.parentElement.classList.toggle('open');this.setAttribute('aria-expanded',this.parentElement.classList.contains('open'))">
-          <h4 data-no="Hva skjer hvis det regner?" data-en="What happens if it rains?" data-de="Was passiert bei Regen?">Hva skjer hvis det regner?</h4>
-          <span class="faq-arrow">▼</span>
-        </div>
-        <div class="faq-answer" id="cfaq-a3" role="region"><p data-no="Vi finner alltid en løsning — enten det er å flytte oppdraget, finne en alternativ lokasjon, eller utnytte været kreativt. Regn kan gi stemningsfulle bilder!" data-en="We always find a solution — whether it's moving the job, finding an alternative location, or using the weather creatively. Rain can create atmospheric photos!" data-de="Wir finden immer eine Lösung — sei es der Auftragsverlegung, einen alternativen Standort oder die kreative Nutzung des Wetters. Regen kann stimmungsvolle Fotos ergeben!">Vi finner alltid en løsning — enten det er å flytte oppdraget, finne en alternativ lokasjon, eller utnytte været kreativt. Regn kan gi stemningsfulle bilder!</p></div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" role="button" tabindex="0" aria-expanded="false" aria-controls="cfaq-a4" onclick="this.parentElement.classList.toggle('open');this.setAttribute('aria-expanded',this.parentElement.classList.contains('open'))">
-          <h4 data-no="Hvilke betalingsmåter aksepterer dere?" data-en="What payment methods do you accept?" data-de="Welche Zahlungsmethoden akzeptieren Sie?">Hvilke betalingsmåter aksepterer dere?</h4>
-          <span class="faq-arrow">▼</span>
-        </div>
-        <div class="faq-answer" id="cfaq-a4" role="region"><p data-no="Jeg sender helst faktura. For kjøp av merch, LUT-er og lignende i shoppen aksepterer jeg Vipps, kort, og krypto (Bitcoin, Ethereum, Solana)." data-en="I prefer sending invoices. For purchasing merch, LUTs and similar items in the shop, I accept Vipps, card, and crypto (Bitcoin, Ethereum, Solana)." data-de="Ich versende lieber Rechnungen. Für den Kauf von Merch, LUTs und ähnlichem im Shop akzeptiere ich Vipps, Karte und Krypto (Bitcoin, Ethereum, Solana).">Jeg sender helst faktura. For kjøp av merch, LUT-er og lignende i shoppen aksepterer jeg Vipps, kort, og krypto (Bitcoin, Ethereum, Solana).</p></div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-question" role="button" tabindex="0" aria-expanded="false" aria-controls="cfaq-a5" onclick="this.parentElement.classList.toggle('open');this.setAttribute('aria-expanded',this.parentElement.classList.contains('open'))">
-          <h4 data-no="Kan jeg få revisjoner?" data-en="Can I get revisions?" data-de="Kann ich Überarbeitungen bekommen?">Kan jeg få revisjoner?</h4>
-          <span class="faq-arrow">▼</span>
-        </div>
-        <div class="faq-answer" id="cfaq-a5" role="region"><p data-no="Ja! Alle pakker inkluderer opptil 2 revisjoner. Ekstra revisjoner kan kjøpes separat." data-en="Yes! All packages include up to 2 revisions. Additional revisions can be purchased separately." data-de="Ja! Alle Pakete beinhalten bis zu 2 Überarbeitungen. Zusätzliche Überarbeitungen können separat gekauft werden.">Ja! Alle pakker inkluderer opptil 2 revisjoner. Ekstra revisjoner kan kjøpes separat.</p></div>
-      </div>
-    </div>
-    <div class="reveal" style="text-align:center;margin-top:32px">
-      <a href="contact.html#contact-form" class="btn btn-primary" style="display:inline-flex;align-items:center;gap:8px" data-no="Kontakt meg" data-en="Contact me" data-de="Kontaktiere mich">Kontakt meg</a>
-    </div>
-  </section>
-
-  <!-- MARQUEE -->
-  <div class="marquee-section">
-    <div class="marquee">
-      <div class="marquee-track">
-        <span>BRYLLUP</span><span class="marquee-dot">✦</span><span>DRONE</span><span class="marquee-dot">✦</span><span>VIDEO</span><span class="marquee-dot">✦</span><span>FOTO</span><span class="marquee-dot">✦</span><span>EVENTER</span><span class="marquee-dot">✦</span>
-        <span>BRYLLUP</span><span class="marquee-dot">✦</span><span>DRONE</span><span class="marquee-dot">✦</span><span>VIDEO</span><span class="marquee-dot">✦</span><span>FOTO</span><span class="marquee-dot">✦</span><span>EVENTER</span><span class="marquee-dot">✦</span>
-        <span>BRYLLUP</span><span class="marquee-dot">✦</span><span>DRONE</span><span class="marquee-dot">✦</span><span>VIDEO</span><span class="marquee-dot">✦</span><span>FOTO</span><span class="marquee-dot">✦</span><span>EVENTER</span><span class="marquee-dot">✦</span>
-      </div>
-    </div>
+  <!-- INFO -->
+  <div class="info-strip">
+    <div class="info-item"><strong data-no="Rask respons" data-en="Fast response" data-de="Schnelle Antwort">Rask respons</strong><span data-no="Svar innen 24 timer" data-en="Reply within 24 hours" data-de="Antwort innerhalb 24 Stunden">Svar innen 24 timer</span></div>
+    <div class="info-item"><strong data-no="Basert i Innlandet" data-en="Based in Innlandet" data-de="Sitz in Innlandet">Basert i Innlandet</strong><span data-no="Oppdrag i hele Norge" data-en="Jobs across Norway" data-de="Aufträge in ganz Norwegen">Oppdrag i hele Norge</span></div>
+    <div class="info-item"><strong data-no="Uforpliktende" data-en="No obligation" data-de="Unverbindlich">Uforpliktende</strong><span data-no="Gratis førstesamtale" data-en="Free first call" data-de="Kostenloses Erstgespräch">Gratis førstesamtale</span></div>
+    <div class="info-item"><strong data-no="Studentrabatt" data-en="Student discount" data-de="Studentenrabatt">Studentrabatt</strong><span data-no="10 % for studenter" data-en="10% for students" data-de="10 % für Studierende">10 % for studenter</span></div>
   </div>
 
-  <!-- SOSIALE MEDIER -->
-  <section class="social-cards-section reveal">
-    <div class="section-label" data-no="Finn meg" data-en="Find me" data-de="Finden Sie mich">Finn meg</div>
-    <h2 class="section-title" data-no="Sosiale medier" data-en="Social media" data-de="Soziale Medien">Sosiale medier</h2>
-    <div class="social-cards-grid">
-      <a href="https://www.instagram.com/solemsli_productions/" target="_blank" rel="noopener noreferrer" class="social-card social-card--ig">
-        <div class="social-card-icon">📷</div>
-        <h3>Instagram</h3>
-        <p>@solemsli_productions</p>
-        <span class="social-card-cta" data-no="Følg meg" data-en="Follow me" data-de="Folgen Sie mir">Følg meg →</span>
-      </a>
-      <a href="mailto:rakso8080@gmail.com" class="social-card social-card--email">
-        <div class="social-card-icon">✉️</div>
-        <h3>E-post</h3>
-        <p>rakso8080@gmail.com</p>
-        <span class="social-card-cta" data-no="Send mail" data-en="Send email" data-de="E-Mail senden">Send mail →</span>
-      </a>
-      <a href="tel:+4790560160" class="social-card social-card--phone">
-        <div class="social-card-icon">📞</div>
-        <h3 data-no="Telefon" data-en="Phone" data-de="Telefon">Telefon</h3>
-        <p>+47 905 60 160</p>
-        <span class="social-card-cta" data-no="Ring meg" data-en="Call me" data-de="Anrufen">Ring meg →</span>
-      </a>
-    </div>
-  </section>
+  <main id="main-content">
 
-  <!-- TESTIMONIALS -->
-  <section class="testimonials-contact reveal">
-    <div class="section-label" data-no="Tilbakemeldinger" data-en="Testimonials" data-de="Referenzen">Tilbakemeldinger</div>
-    <h2 class="section-title" data-no="Hva kundene sier" data-en="What clients say" data-de="Was Kunden sagen">Hva kundene sier</h2>
-    <div class="testimonials-grid">
-      <div class="testimonial-card">
-        <div class="testimonial-stars">★★★★★</div>
-        <p data-no="Solemsli Productions levererte fantastiske bilder fra bryllupet vårt. Profesjonell, kreativ og til å stole på." data-en="Solemsli Productions delivered amazing photos from our wedding. Professional, creative and reliable." data-de="Solemsli Productions hat fantastische Fotos von unserer Hochzeit geliefert. Professionell, kreativ und zuverlässig.">"Solemsli Productions levererte fantastiske bilder fra bryllupet vårt. Profesjonell, kreativ og til å stole på."</p>
-        <div class="testimonial-author">Arctic Domes <span>— Bryllup</span></div>
-      </div>
-      <div class="testimonial-card">
-        <div class="testimonial-stars">★★★★★</div>
-        <p data-no="Dronevideoen fra arrangementet vårt ble helt rå. Rask levering og et sluttprodukt som overgikk forventningene." data-en="The drone video from our event was absolutely amazing. Fast delivery and a final product that exceeded expectations." data-de="Das Drohnenvideo von unserer Veranstaltung war absolut fantastisch. Schnelle Lieferung und ein Endprodukt, das die Erwartungen übertraf.">"Dronevideoen fra arrangementet vårt ble helt rå. Rask levering og et sluttprodukt som overgikk forventningene."</p>
-        <div class="testimonial-author">Lena Ubario <span>— Event</span></div>
-      </div>
-    </div>
-  </section>
+    <!-- KONTAKT -->
+    <section class="section" id="kontakt">
+      <div class="contact-layout">
+        <div class="contact-intro reveal">
+          <span class="section-label" data-no="Kontakt" data-en="Contact" data-de="Kontakt">Kontakt</span>
+          <h2 data-no="Fortell meg om prosjektet" data-en="Tell me about the project" data-de="Erzählen Sie mir vom Projekt">Fortell meg om prosjektet</h2>
+          <p data-no="Jo mer du forteller om dato, sted og ønsket resultat, jo raskere kan jeg gi deg et konkret tilbud." data-en="The more you share about date, location and the result you want, the faster I can give you a concrete quote." data-de="Je mehr Sie über Datum, Ort und gewünschtes Ergebnis erzählen, desto schneller kann ich Ihnen ein konkretes Angebot machen.">Jo mer du forteller om dato, sted og ønsket resultat, jo raskere kan jeg gi deg et konkret tilbud.</p>
+          <div class="contact-list">
+            <div class="contact-link" style="cursor:default"><span data-no="E-post" data-en="Email" data-de="E-Mail">E-post</span><span style="display:flex;align-items:center;gap:10px">rakso8080@gmail.com <button class="copy-btn" type="button" data-copy="rakso8080@gmail.com" data-no="Kopier" data-en="Copy" data-de="Kopieren">Kopier</button></span></div>
+            <a class="contact-link" href="tel:+4790560160"><span data-no="Telefon" data-en="Phone" data-de="Telefon">Telefon</span><span>+47 905 60 160</span></a>
+            <a class="contact-link" href="https://www.instagram.com/solemsli_productions/" target="_blank" rel="noopener noreferrer"><span>Instagram</span><span>@solemsli_productions</span></a>
+          </div>
+        </div>
 
-  <!-- KART -->
-  <section class="section map-section">
-      <div class="reveal"><div class="section-label" data-no="Hvor jeg opererer" data-en="Where I operate" data-de="Einsatzgebiet">Hvor jeg opererer</div><h2 class="section-title" data-no="Dekningsområde" data-en="Coverage area" data-de="Einsatzbereich">Dekningsområde</h2></div>
-    <div class="map-container reveal">
-      <div id="coverage-map"></div>
-      <p style="text-align:center;color:var(--text-muted);font-size:.9rem;margin-top:20px" data-no="Basert i Innlandet, men tar oppdrag over hele Norge." data-en="Based in Innlandet, but taking jobs across all of Norway." data-de="Basierend in Innlandet, aber ich übernehme Aufgaben in ganz Norwegen.">Basert i Innlandet, men tar oppdrag over hele Norge.</p>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="section cta-section reveal" style="margin:60px auto;max-width:1200px;padding:0 20px">
-    <div style="position:relative;border-radius:var(--radius-lg);overflow:hidden;min-height:280px;display:flex;align-items:center;justify-content:center;text-align:center">
-      <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(15,23,42,.9) 0%,rgba(30,41,59,.85) 100%)"></div>
-      <div style="position:relative;z-index:2;padding:48px 32px">
-        <h2 class="section-title" data-no="Se hva jeg har laget" data-en="See what I've created" data-de="Sehen Sie, was ich gemacht habe">Se hva jeg har laget</h2>
-        <p style="color:var(--text-muted);max-width:480px;margin:0 auto 24px" data-no="Utforsk porteføljen min med bilder og video fra tidligere oppdrag." data-en="Explore my portfolio with photos and video from past assignments." data-de="Entdecken Sie mein Portfolio mit Fotos und Videos vergangener Aufträge.">Utforsk porteføljen min med bilder og video fra tidligere oppdrag.</p>
-        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
-          <a href="projects.html" class="btn btn-primary" data-no="Se portfolio" data-en="See portfolio" data-de="Portfolio ansehen">Se portfolio</a>
-          <a href="prices.html" class="btn btn-outline" data-no="Se priser" data-en="See pricing" data-de="Preise ansehen">Se priser</a>
+        <div class="form-card reveal">
+          <h3 data-no="Send en melding" data-en="Send a message" data-de="Nachricht senden">Send en melding</h3>
+          <form id="contact-form" novalidate>
+            <div class="field">
+              <label for="name" data-no="Navn" data-en="Name" data-de="Name">Navn</label>
+              <input type="text" id="name" name="name" autocomplete="name" required>
+            </div>
+            <div class="field">
+              <label for="email" data-no="E-post" data-en="Email" data-de="E-Mail">E-post</label>
+              <input type="email" id="email" name="email" autocomplete="email" required>
+            </div>
+            <div class="field">
+              <label for="phone" data-no="Telefon (valgfritt)" data-en="Phone (optional)" data-de="Telefon (optional)">Telefon (valgfritt)</label>
+              <input type="tel" id="phone" name="phone" autocomplete="tel">
+            </div>
+            <div class="field">
+              <label for="message" data-no="Melding" data-en="Message" data-de="Nachricht">Melding</label>
+              <textarea id="message" name="message" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" id="contactSubmit" data-no="Send melding" data-en="Send message" data-de="Nachricht senden">Send melding</button>
+            <p class="form-status" id="contactStatus" aria-live="polite"></p>
+            <p class="form-note" data-no="Skjemaet åpner e-postklienten din med meldingen ferdig utfylt. Du kan også sende e-post direkte til rakso8080@gmail.com." data-en="The form opens your email client with the message pre-filled. You can also email rakso8080@gmail.com directly." data-de="Das Formular öffnet Ihren E-Mail-Client mit der vorausgefüllten Nachricht. Sie können auch direkt an rakso8080@gmail.com schreiben.">Skjemaet åpner e-postklienten din med meldingen ferdig utfylt. Du kan også sende e-post direkte til rakso8080@gmail.com.</p>
+          </form>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- FOOTER -->
+    <!-- KART -->
+    <section class="section">
+      <div class="section-head reveal">
+        <span class="section-label" data-no="Hvor jeg jobber" data-en="Where I work" data-de="Wo ich arbeite">Hvor jeg jobber</span>
+        <h2 class="section-title" data-no="Dekningsområde" data-en="Coverage area" data-de="Einsatzgebiet">Dekningsområde</h2>
+      </div>
+      <div id="coverage-map" class="reveal">
+        <div class="map-gate">
+          <strong data-no="Kartet lastes bare når du vil" data-en="The map only loads when you choose" data-de="Die Karte lädt nur auf Wunsch">Kartet lastes bare når du vil</strong>
+          <span data-no="Kartfliser fra CARTO og OpenStreetMap lastes først når du trykker. Da deles IP-adressen din med dem." data-en="Map tiles from CARTO and OpenStreetMap load only after you press the button. Your IP address is then shared with them." data-de="Kartenkacheln von CARTO und OpenStreetMap werden erst nach dem Klick geladen. Dabei wird Ihre IP-Adresse an sie übermittelt.">Kartfliser fra CARTO og OpenStreetMap lastes først når du trykker. Da deles IP-adressen din med dem.</span>
+          <button class="btn btn-outline" type="button" id="loadMap" data-no="Vis kartet" data-en="Show the map" data-de="Karte anzeigen">Vis kartet</button>
+        </div>
+      </div>
+      <p class="map-note" data-no="Basert i Innlandet, men tar oppdrag over hele Norge." data-en="Based in Innlandet, but taking jobs across all of Norway." data-de="Sitz in Innlandet, aber Aufträge in ganz Norwegen.">Basert i Innlandet, men tar oppdrag over hele Norge.</p>
+    </section>
+
+    <!-- SOSIALT -->
+    <section class="section">
+      <div class="section-head reveal">
+        <span class="section-label" data-no="Finn meg" data-en="Find me" data-de="Finden Sie mich">Finn meg</span>
+        <h2 class="section-title" data-no="Sosiale medier" data-en="Social media" data-de="Soziale Medien">Sosiale medier</h2>
+      </div>
+      <div class="social-grid stagger">
+        <a class="social-card" href="https://www.instagram.com/solemsli_productions/" target="_blank" rel="noopener noreferrer">
+          <span class="label">Instagram</span><span class="value">@solemsli_productions</span><span class="arrow">→</span>
+        </a>
+        <a class="social-card" href="mailto:rakso8080@gmail.com">
+          <span class="label" data-no="E-post" data-en="Email" data-de="E-Mail">E-post</span><span class="value">rakso8080@gmail.com</span><span class="arrow">→</span>
+        </a>
+        <a class="social-card" href="tel:+4790560160">
+          <span class="label" data-no="Telefon" data-en="Phone" data-de="Telefon">Telefon</span><span class="value">+47 905 60 160</span><span class="arrow">→</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ANMELDELSER -->
+    <section class="section">
+      <div class="section-head reveal">
+        <span class="section-label" data-no="Tilbakemeldinger" data-en="Testimonials" data-de="Referenzen">Tilbakemeldinger</span>
+        <h2 class="section-title" data-no="Hva kundene sier" data-en="What clients say" data-de="Was Kunden sagen">Hva kundene sier</h2>
+      </div>
+      <div class="quotes stagger">
+        <div class="quote">
+          <blockquote data-no="«Leverte fantastiske bilder fra bryllupet vårt. Profesjonell, kreativ og til å stole på.»" data-en="“Delivered amazing photos from our wedding. Professional, creative and reliable.”" data-de="„Hat fantastische Fotos von unserer Hochzeit geliefert. Professionell, kreativ und zuverlässig.“">«Leverte fantastiske bilder fra bryllupet vårt. Profesjonell, kreativ og til å stole på.»</blockquote>
+          <div class="who">Arctic Domes — <span data-no="Bryllup" data-en="Wedding" data-de="Hochzeit">Bryllup</span></div>
+        </div>
+        <div class="quote">
+          <blockquote data-no="«Dronevideoen fra arrangementet ble helt rå. Rask levering og et resultat som overgikk forventningene.»" data-en="“The drone video from our event was amazing. Fast delivery and a result that exceeded expectations.”" data-de="„Das Drohnenvideo von unserer Veranstaltung war großartig. Schnelle Lieferung und ein Ergebnis, das die Erwartungen übertraf.“">«Dronevideoen fra arrangementet ble helt rå. Rask levering og et resultat som overgikk forventningene.»</blockquote>
+          <div class="who">Lena Ubario — <span data-no="Event" data-en="Event" data-de="Event">Event</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section">
+      <div class="section-head reveal">
+        <span class="section-label" data-no="Vanlige spørsmål" data-en="FAQ" data-de="Häufige Fragen">Vanlige spørsmål</span>
+        <h2 class="section-title" data-no="Spørsmål og svar" data-en="Questions and answers" data-de="Fragen und Antworten">Spørsmål og svar</h2>
+      </div>
+      <div class="faq">
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" aria-controls="cfaq1"><span data-no="Hvor raskt kan du levere?" data-en="How quickly can you deliver?" data-de="Wie schnell können Sie liefern?">Hvor raskt kan du levere?</span><span class="faq-icon">+</span></button>
+          <div class="faq-answer" id="cfaq1"><p data-no="Foto og drone leveres typisk innen 2–5 virkedager. Video og redigert innhold kan ta 1–2 uker, avhengig av omfang. Vi blir alltid enige om en frist på forhånd." data-en="Photo and drone are typically delivered within 2–5 business days. Video and edited content can take 1–2 weeks depending on scope. We always agree on a deadline in advance." data-de="Foto und Drohne werden in der Regel innerhalb von 2–5 Werktagen geliefert. Video und bearbeitete Inhalte können je nach Umfang 1–2 Wochen dauern. Wir vereinbaren immer vorher einen Termin.">Foto og drone leveres typisk innen 2–5 virkedager. Video og redigert innhold kan ta 1–2 uker, avhengig av omfang. Vi blir alltid enige om en frist på forhånd.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" aria-controls="cfaq2"><span data-no="Må jeg være i Innlandet?" data-en="Do I have to be in Innlandet?" data-de="Muss ich in Innlandet sein?">Må jeg være i Innlandet?</span><span class="faq-icon">+</span></button>
+          <div class="faq-answer" id="cfaq2"><p data-no="Nei, jeg tar oppdrag i hele Norge. Ved lengre reiser kan det komme et tillegg for reise og overnatting." data-en="No, I take jobs across all of Norway. For longer trips, travel and accommodation may be added." data-de="Nein, ich übernehme Aufträge in ganz Norwegen. Bei längeren Reisen können Reise- und Übernachtungskosten anfallen.">Nei, jeg tar oppdrag i hele Norge. Ved lengre reiser kan det komme et tillegg for reise og overnatting.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" aria-controls="cfaq3"><span data-no="Hva skjer hvis det regner?" data-en="What happens if it rains?" data-de="Was passiert bei Regen?">Hva skjer hvis det regner?</span><span class="faq-icon">+</span></button>
+          <div class="faq-answer" id="cfaq3"><p data-no="Vi finner alltid en løsning – flytte oppdraget, finne en alternativ lokasjon, eller bruke været kreativt." data-en="We always find a solution – move the assignment, find an alternative location, or use the weather creatively." data-de="Wir finden immer eine Lösung – den Auftrag verschieben, einen alternativen Ort finden oder das Wetter kreativ nutzen.">Vi finner alltid en løsning – flytte oppdraget, finne en alternativ lokasjon, eller bruke været kreativt.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" aria-controls="cfaq4"><span data-no="Hvilke betalingsmåter?" data-en="Payment methods?" data-de="Zahlungsmethoden?">Hvilke betalingsmåter?</span><span class="faq-icon">+</span></button>
+          <div class="faq-answer" id="cfaq4"><p data-no="Jeg sender helst faktura. For kjøp i shoppen aksepteres Vipps (#65829) og bankoverføring." data-en="I prefer to send an invoice. For shop purchases, Vipps (#65829) and bank transfer are accepted." data-de="Ich sende am liebsten eine Rechnung. Für Shop-Käufe werden Vipps (#65829) und Banküberweisung akzeptiert.">Jeg sender helst faktura. For kjøp i shoppen aksepteres Vipps (#65829) og bankoverføring.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" aria-controls="cfaq5"><span data-no="Kan jeg få revisjoner?" data-en="Can I get revisions?" data-de="Sind Revisionen möglich?">Kan jeg få revisjoner?</span><span class="faq-icon">+</span></button>
+          <div class="faq-answer" id="cfaq5"><p data-no="Alle pakker inkluderer opptil to revisjoner. Flere revisjoner kan kjøpes separat." data-en="All packages include up to two revisions. Additional revisions can be purchased separately." data-de="Alle Pakete enthalten bis zu zwei Revisionen. Weitere Revisionen können separat erworben werden.">Alle pakker inkluderer opptil to revisjoner. Flere revisjoner kan kjøpes separat.</p></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
   <footer>
     <div class="footer-left">
       <a href="index.html" class="logo">Solemsli Productions</a>
@@ -474,116 +316,104 @@
     </div>
   </footer>
 
-  <script src="shared.js"></script>
+  <script src="shared.js?v=2026-11-18"></script>
   <script>
-    // CONTACT HERO PARALLAX
-    window.addEventListener('scroll', () => {
-      const s = window.scrollY;
-      const img = document.querySelector('.contact-hero-bg img');
-      if (img && s < window.innerHeight) img.style.transform = `scale(${1.1 + s * 0.0002}) translateY(${s * 0.3}px)`;
-    });
+    (function () {
+      'use strict';
 
-    // FORM HANDLER
-    const contactForm = document.getElementById('contact-form');
-    if (contactForm) {
-      contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const btn = contactForm.querySelector('.submit-btn');
-        if (btn) { btn.innerHTML = '<span>Sender...</span>'; btn.disabled = true; btn.style.opacity = '.6'; }
-        const name = document.getElementById('name').value.trim();
-        const email = document.getElementById('email').value.trim();
-        const phone = document.getElementById('phone').value.trim();
-        const message = document.getElementById('message').value.trim();
-        const subject = encodeURIComponent('Kontaktskjema — Solemsli Productions');
-        const body = encodeURIComponent(
-          'Navn: ' + name + '\nE-post: ' + email + '\nTelefon: ' + (phone || 'Ikkje oppgitt') + '\n\nMelding:\n' + message
-        );
-        window.location.href = 'mailto:rakso8080@gmail.com?subject=' + subject + '&body=' + body;
-        contactForm.innerHTML = '<div style="text-align:center;padding:40px"><div style="font-size:3rem;margin-bottom:16px">✅</div><h3>Takk for din henvendelse!</h3><p>Sjekk e-postklienten din for å sende meldinga.</p></div>';
-      });
-    }
-  </script>
-  <script>
-    // LEAFLET COVERAGE MAP
-    const map = L.map('coverage-map', {
-      center: [61.1, 8.5],
-      zoom: 7,
-      zoomControl: false,
-      attributionControl: false
-    });
-    L.control.zoom({ position: 'topright' }).addTo(map);
+      /* KONTAKTSKJEMA – e-post med tydelig status */
+      var form = document.getElementById('contact-form');
+      if (form) {
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          var name = document.getElementById('name');
+          var email = document.getElementById('email');
+          var phone = document.getElementById('phone');
+          var message = document.getElementById('message');
+          var status = document.getElementById('contactStatus');
+          var submit = document.getElementById('contactSubmit');
 
-    // Dark tile layer
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-      maxZoom: 19
-    }).addTo(map);
+          if (!name.value.trim() || !email.value.trim() || email.value.indexOf('@') === -1 || !message.value.trim()) {
+            window.SP.status(status, 'required', '', true);
+            return;
+          }
 
-    // Center marker — Vang
-    const marker = L.marker([61.125, 8.55]).addTo(map);
-    marker.bindPopup('<div class="map-popup"><strong>Solemsli Productions</strong><br>Vang, Innlandet<br>📍 Meg</div>').openPopup();
+          var subject = encodeURIComponent('Kontaktskjema — ' + name.value.trim());
+          var body = encodeURIComponent(
+            'Navn: ' + name.value.trim() +
+            '\nE-post: ' + email.value.trim() +
+            '\nTelefon: ' + (phone.value.trim() || 'Ikke oppgitt') +
+            '\n\nMelding:\n' + message.value.trim()
+          );
 
-    // Coverage circles — gradient from red (center) to cooler colors outward
-    const vang = [61.125, 8.55];
-    const circles = [
-      { r: 30000, color: '#ff3b3b', opacity: 0.25 },   // Rødt — Innlandet
-      { r: 80000, color: '#ff8c00', opacity: 0.18 },   // Oransje — omkringliggende
-      { r: 150000, color: '#ffc107', opacity: 0.12 },  // Gult
-      { r: 300000, color: '#4fc3f7', opacity: 0.08 },  // Lyst blått
-      { r: 500000, color: '#2196f3', opacity: 0.05 },  // Blått — langt unna
-    ];
-    circles.forEach(c => {
-      L.circle(vang, {
-        radius: c.r,
-        color: c.color,
-        fillColor: c.color,
-        fillOpacity: c.opacity,
-        weight: 1,
-        opacity: c.opacity * 1.5
-      }).addTo(map);
-    });
+          window.location.href = 'mailto:rakso8080@gmail.com?subject=' + subject + '&body=' + body;
+          window.SP.status(status, 'mailtoOpened');
+          submit.disabled = true;
+          submit.style.opacity = '.6';
+        });
+      }
 
-    // City markers
-    const cities = [
-      { name: 'Oslo', lat: 59.91, lng: 10.75 },
-      { name: 'Bergen', lat: 60.39, lng: 5.32 },
-      { name: 'Trondheim', lat: 63.43, lng: 10.39 },
-      { name: 'Tromsø', lat: 69.65, lng: 18.96 },
-      { name: 'Stavanger', lat: 58.97, lng: 5.73 },
-      { name: 'Hamar', lat: 60.80, lng: 11.07 },
-      { name: 'Lillehammer', lat: 61.11, lng: 10.47 },
-      { name: 'Gjøvik', lat: 60.80, lng: 10.69 },
-      { name: 'Elverum', lat: 60.88, lng: 11.56 },
-      { name: 'Brumunddal', lat: 60.88, lng: 10.94 },
-    ];
-    cities.forEach(c => {
-      const marker = L.circleMarker([c.lat, c.lng], {
-        radius: 0,
-        color: '#0180ff',
-        fillColor: '#0180ff',
-        fillOpacity: 0.7,
-        weight: 2
-      }).addTo(map).bindTooltip(c.name, { permanent: false, direction: 'top' });
-    });
+      /* KART – lastes først når brukeren trykker */
+      function initMap(mapEl) {
+        try {
+          var map = L.map(mapEl, { center: [61.1, 8.5], zoom: 7, zoomControl: false, attributionControl: false });
+          L.control.zoom({ position: 'topright' }).addTo(map);
+          L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', { maxZoom: 19 }).addTo(map);
 
-    // Animate markers in with stagger when map scrolls into view
-    const mapEl = document.getElementById('coverage-map');
-    const markerLayers = [];
-    map.eachLayer(layer => { if (layer instanceof L.CircleMarker) markerLayers.push(layer); });
-    markerLayers.forEach(m => { m.setRadius(0); m.setStyle({ fillOpacity: 0, opacity: 0 }); });
-    const mapObs = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          markerLayers.forEach((m, i) => {
-            setTimeout(() => {
-              m.setRadius(5);
-              m.setStyle({ fillOpacity: 0.7, opacity: 1 });
-            }, i * 100);
+          L.marker([61.125, 8.55]).addTo(map)
+            .bindPopup('<strong>Solemsli Productions</strong><br>Vang, Innlandet')
+            .openPopup();
+
+          var center = [61.125, 8.55];
+          [30000, 80000, 150000, 300000, 500000].forEach(function (r, i) {
+            L.circle(center, {
+              radius: r,
+              color: '#4c8dff',
+              weight: 1,
+              opacity: 0.18 - i * 0.025,
+              fillColor: '#4c8dff',
+              fillOpacity: 0.05 - i * 0.007
+            }).addTo(map);
           });
-          mapObs.disconnect();
+
+          [
+            ['Oslo', 59.91, 10.75], ['Bergen', 60.39, 5.32], ['Trondheim', 63.43, 10.39],
+            ['Tromsø', 69.65, 18.96], ['Stavanger', 58.97, 5.73], ['Hamar', 60.80, 11.07],
+            ['Lillehammer', 61.11, 10.47], ['Gjøvik', 60.80, 10.69], ['Elverum', 60.88, 11.56]
+          ].forEach(function (city) {
+            L.circleMarker([city[1], city[2]], {
+              radius: 3, color: '#4c8dff', fillColor: '#4c8dff', fillOpacity: .8, weight: 1
+            }).addTo(map).bindTooltip(city[0], { direction: 'top' });
+          });
+        } catch (err) {
+          mapEl.innerHTML = '<p style="padding:24px;color:var(--text-muted)">Kartet kunne ikke lastes.</p>';
         }
-      });
-    }, { threshold: 0.3 });
-    if (mapEl) mapObs.observe(mapEl);
+      }
+
+      var mapButton = document.getElementById('loadMap');
+      if (mapButton) {
+        mapButton.addEventListener('click', function () {
+          var mapEl = document.getElementById('coverage-map');
+          if (!mapEl || mapEl.dataset.loaded) return;
+          mapEl.dataset.loaded = '1';
+          mapButton.disabled = true;
+          mapEl.innerHTML = '<p style="padding:24px;color:var(--text-muted)">Laster kart …</p>';
+
+          var css = document.createElement('link');
+          css.rel = 'stylesheet';
+          css.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
+          document.head.appendChild(css);
+
+          var script = document.createElement('script');
+          script.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+          script.onload = function () { mapEl.innerHTML = ''; initMap(mapEl); };
+          script.onerror = function () {
+            mapEl.innerHTML = '<p style="padding:24px;color:var(--text-muted)">Kartet kunne ikke lastes.</p>';
+          };
+          document.head.appendChild(script);
+        });
+      }
+    })();
   </script>
 </body>
 </html>

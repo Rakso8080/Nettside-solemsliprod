@@ -3,26 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <link rel="icon" href="Solemsli production.png">
-  <meta name="theme-color" content="#0180ff">
+  <link rel="icon" href="icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="icons/icon-192.png" sizes="192x192" type="image/png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <meta name="theme-color" content="#0a0b0d">
+  <script>
+    (function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t='dark';d.setAttribute('data-theme',t);var l=localStorage.getItem('lang');if(l==='en'||l==='de'||l==='no')d.lang=l;var m=document.querySelector('meta[name="theme-color"]');if(m&&t==='light')m.setAttribute('content','#f6f6f4');}catch(e){}})();
+  </script>
   <link rel="manifest" href="manifest.json">
   <meta name="description" content="Personvernerklæring for Solemsli Productions. Korleis vi samlar inn og brukar personopplysningar.">
   <meta property="og:title" content="Personvernerklæring — Solemsli Productions" />
   <meta property="og:description" content="Korleis vi samlar inn og brukar personopplysningar." />
-  <meta property="og:image" content="https://solemsliproductions.no/gallery/andre%20natur%20bilder/uranustind.jpg" />
+  <meta property="og:image" content="https://solemsliproductions.no/og/index.jpg" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://solemsliproductions.no/personvern.html" />
   <meta property="og:site_name" content="Solemsli Productions">
   <meta property="og:locale" content="nb_NO">
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="canonical" href="https://solemsliproductions.no/personvern.html" />
-  <meta name="organization" content="Solemsli Productions 935203708">
   <title>Personvernerklæring — Solemsli Productions</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
-  <link rel="stylesheet" href="shared.css">
+  <link rel="stylesheet" href="shared.css?v=2026-11-18">
   <style>
     .legal-page{max-width:740px;margin:0 auto;padding:140px 24px 80px}
     .legal-page h1{font-size:clamp(1.8rem,4vw,2.5rem);font-weight:800;letter-spacing:-1px;margin-bottom:8px}
@@ -42,15 +42,12 @@
 </head>
 <body>
   <a href="#main-content" class="skip-link">Hopp til innhold</a>
-  <div id="grain"></div>
   <div id="progress-bar"></div>
 
   <header id="header">
     <a href="index.html" class="logo">Solemsli Productions</a>
-    <div class="menu-toggle" role="button" aria-label="Meny" aria-expanded="false" onclick="this.classList.toggle('active');this.setAttribute('aria-expanded',this.classList.contains('active'));document.querySelector('nav').classList.toggle('active')">
-      <span></span><span></span><span></span>
-    </div>
-    <nav aria-label="Hovedmeny">
+    <button class="menu-toggle" type="button" aria-label="Meny" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span></button>
+    <nav id="site-nav" aria-label="Hovedmeny">
       <a href="index.html" data-no="Hjem" data-en="Home" data-de="Startseite">Hjem</a>
       <a href="about.html" data-no="Om meg" data-en="About" data-de="Über mich">Om meg</a>
       <a href="projects.html" data-no="Portfolio" data-en="Portfolio" data-de="Portfolio">Portfolio</a>
@@ -58,14 +55,14 @@
       <a href="prices.html" data-no="Priser" data-en="Pricing" data-de="Preise">Priser</a>
       <a href="contact.html" data-no="Kontakt" data-en="Contact" data-de="Kontakt">Kontakt</a>
       <button class="nav-btn" id="lang-toggle" aria-label="Bytt språk">EN</button>
-      <button class="nav-btn" id="theme-toggle" aria-label="Bytt tema">☀️ Lys</button>
+      <button class="nav-btn" id="theme-toggle" aria-label="Bytt tema">☀ Lys</button>
     </nav>
   </header>
 
   <main id="main-content">
   <div class="legal-page">
     <h1>Personvernerklæring</h1>
-    <p class="legal-updated">Sist oppdatert: September 2026</p>
+    <p class="legal-updated">Sist oppdatert: November 2026</p>
 
     <p>Denne personvernerklæringa forklarer korleis Solemsli Productions (ENK, org.nr 935 203 708) samlar inn, brukar og vernar personopplysningar i samband med drift av nettsida <strong>solemsliproductions.no</strong> og tenester.</p>
 
@@ -103,13 +100,17 @@
       <li><strong>Lovpålagt plikt</strong> (GDPR art. 6(1)(c)) — bokførings- og skatteplikt.</li>
     </ul>
 
-    <h2>5. Deling av personopplysningar</h2>
-    <p>Vi sel ikkje eller deler personopplysningar med tredjepart, unntatt:</p>
+    <h2>5. Deling av personopplysningar og tredjepartstenester</h2>
+    <p>Vi sel ikkje personopplysningar. Nettsida lastar som utgangspunkt inga tredjepartsinnhald – videoar og kart blir først lasta når du sjølv trykkjer på dei. Desse tenestene kan likevel handsame data når du brukar dei:</p>
     <ul>
-      <li><strong>GitHub Pages</strong> — vertskap for nettsida (Microsoft Corporation). Loggdata kan lagrast.</li>
-      <li><strong>E-postleverandør</strong> — for å handtera e-postkommunikasjon.</li>
-      <li><strong>Betalingsløysingar</strong> — Vipps, bank eller krypto-handtering skjer utanfor nettsida; vi lagrar ikkje betalingskort eller finansielle data.</li>
+      <li><strong>GitHub Pages</strong> (Microsoft) — drift og hosting av nettsida. Serverloggar kan innehalde IP-adresse og tekniske data.</li>
+      <li><strong>E-postleverandør</strong> — når du sender e-post til oss, blir meldinga handsama av e-postleverandøren vår.</li>
+      <li><strong>Vipps</strong> — betaling skjer utanfor nettsida. Vi lagrar ikkje kort- eller kontodata.</li>
+      <li><strong>YouTube (Google)</strong> — videoane blir ikkje lasta før du trykkjer play. Etter klikk blir dei lasta frå <strong>youtube-nocookie.com</strong>, som avgrensar sporing. Google kan då handsame IP-adresse og setje naudsynte informasjonskapslar.</li>
+      <li><strong>OpenStreetMap, CARTO og Leaflet</strong> — kartet blir ikkje lasta før du trykkjer «Vis kartet». Då blir IP-adressa di delt med desse tenestene.</li>
+      <li><strong>Instagram (Meta)</strong> — vi brukar berre vanlege lenkjer, ikkje innebygde innlegg. Når du klikkar deg vidare, gjeld Meta sine eigne vilkår og personvernreglar.</li>
     </ul>
+    <p><strong>Fontar, ikon og skript</strong> blir serverte frå vår eigen nettstad. Vi brukar ikkje Google Fonts eller andre eksterne fonttenester, og nettsida har ingen analyse- eller sporingsverktøy.</p>
 
     <h2>6. Lagringstid</h2>
     <ul>
@@ -136,9 +137,8 @@
     <ul>
       <li>Temavalg (mørk/lys modus)</li>
       <li>Språkval (norsk, engelsk, tysk)</li>
-      <li>Scroll-posisjon (for å hugse kor du var på sida)</li>
     </ul>
-    <p>Desse er teknisk naudsynte for nettsida si funksjonalitet og krev ikkje samtykke.</p>
+    <p>Desse er teknisk naudsynte for nettsida si funksjonalitet og krev ikkje samtykke. Informasjonskapslar frå tredjepart kan først oppstå når du sjølv startar ein video eller lastar kartet – sjå punkt 5.</p>
 
     <h2>9. Sikkerheit</h2>
     <p>Vi tek tryggleiken til personopplysningar på alvor. Nettsida brukar HTTPS-kryptering. Likevel kan ingen overføring over internett garanterast 100% sikker.</p>
@@ -172,8 +172,6 @@
     </div>
   </footer>
 
-  <div class="custom-cursor" id="cursor"></div>
-  <div class="custom-cursor-dot" id="cursor-dot"></div>
-  <script src="shared.js"></script>
+  <script src="shared.js?v=2026-11-18"></script>
 </body>
 </html>

@@ -3,493 +3,279 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <link rel="icon" href="Solemsli production.png">
-  <meta name="theme-color" content="#0180ff">
+  <link rel="icon" href="icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="icons/icon-192.png" sizes="192x192" type="image/png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <meta name="theme-color" content="#0a0b0d">
+  <script>
+    (function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t='dark';d.setAttribute('data-theme',t);var l=localStorage.getItem('lang');if(l==='en'||l==='de'||l==='no')d.lang=l;var m=document.querySelector('meta[name="theme-color"]');if(m&&t==='light')m.setAttribute('content','#f6f6f4');}catch(e){}})();
+  </script>
   <link rel="manifest" href="manifest.json">
-  <meta name="description" content="Om Oskar Solemsli - 17 år gammel fotograf og videograf fra Innlandet. Grunnlegger av Solemsli Productions.">
-  <meta property="og:title" content="Solemsli Productions | Om meg" />
-  <meta property="og:description" content="Lær mer om Solemsli Productions - en 17-årig fotograf og videograf fra Vang, Innlandet." />
-  <meta property="og:image" content="https://solemsliproductions.no/gallery/andre%20natur%20bilder/uranustind.jpg" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://solemsliproductions.no/about.html" />
+  <meta name="description" content="Om Oskar Solemsli – grunnlegger av Solemsli Productions. Foto, video og drone fra Vang i Innlandet.">
+  <meta property="og:title" content="Solemsli Productions | Om meg">
+  <meta property="og:description" content="Bli kjent med Oskar Solemsli, fotograf og filmskaper i Innlandet.">
+  <meta property="og:image" content="https://solemsliproductions.no/og/about.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Solemsli Productions">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://solemsliproductions.no/about.html">
   <meta property="og:site_name" content="Solemsli Productions">
   <meta property="og:locale" content="nb_NO">
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Solemsli Productions | Om meg" />
-  <meta name="twitter:description" content="Lær mer om Solemsli Productions - en 17-årig fotograf og videograf fra Vang, Innlandet." />
-  <meta name="twitter:image" content="https://solemsliproductions.no/gallery/andre%20natur%20bilder/uranustind.jpg" />
-  <link rel="canonical" href="https://solemsliproductions.no/about.html" />
-  <meta name="organization" content="Solemsli Productions 935203708">
-  <title>Om Meg – Solemsli Productions</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
-  <link rel="stylesheet" href="shared.css">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Solemsli Productions | Om meg">
+  <meta name="twitter:description" content="Bli kjent med Oskar Solemsli.">
+  <meta name="twitter:image" content="https://solemsliproductions.no/og/about.jpg">
+  <link rel="canonical" href="https://solemsliproductions.no/about.html">
+  <title>Om meg – Solemsli Productions</title>
+  <link rel="stylesheet" href="shared.css?v=2026-11-18">
   <style>
-    /* LOADER */
+    /* OM MEG */
 
-    /* HERO */
-    .hero{position:relative;height:100vh;min-height:700px;display:flex;align-items:center;justify-content:center;overflow:hidden}
-    .hero-bg{position:absolute;inset:0;z-index:0}
-    .hero-bg img{width:100%;height:100%;object-fit:cover;transform:scale(1.1);transition:transform 8s ease-out}
+    .about-hero{min-height:58vh;align-items:flex-end}
+    .about-hero .hero-content{padding-bottom:clamp(40px,7vw,64px)}
+    .about-hero h1{font-size:clamp(2.4rem,6vw,4.4rem)}
 
-    .hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.7) 0%,rgba(0,0,0,.5) 40%,rgba(0,0,0,.6) 70%,rgba(10,10,10,1) 100%);z-index:1}
-    .hero-content{position:relative;z-index:2;text-align:center;padding:0 20px;max-width:900px}
-    .hero-badge{display:inline-block;background:rgba(255,255,255,0.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.15);padding:8px 20px;border-radius:30px;font-size:.8rem;color:rgba(255,255,255,0.9);margin-bottom:30px;opacity:0;transform:translateY(20px);animation:fadeUp 1s .8s forwards}
-    .hero h1{font-size:clamp(2.5rem,6vw,5rem);font-weight:800;color:white;line-height:1.2;letter-spacing:-1px;margin-bottom:20px;text-shadow:0 4px 30px rgba(0,0,0,0.5)}
-    .hero h1 .word{display:inline-block;opacity:0;transform:translateY(30px);transition:all .6s cubic-bezier(.23,1,.32,1)}
-    .hero h1.revealed .word{opacity:1;transform:translateY(0)}
-    .hero h1 span{background:linear-gradient(135deg,var(--main-blue),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-    .hero p{font-size:1.15rem;color:rgba(255,255,255,0.9);max-width:560px;margin:0 auto 40px;line-height:1.7;opacity:0;transform:translateY(30px);animation:fadeUp 1s 1.4s forwards;text-shadow:0 2px 20px rgba(0,0,0,0.6)}
-    .hero-buttons{display:flex;gap:15px;justify-content:center;opacity:0;transform:translateY(30px);animation:fadeUp 1s 1.6s forwards}
-    .scroll-indicator{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);z-index:2;opacity:0;animation:fadeUp 1s 2s forwards}
-    .scroll-indicator div{width:24px;height:40px;border:2px solid rgba(255,255,255,0.3);border-radius:12px;position:relative}
-    .scroll-indicator div::before{content:'';position:absolute;top:8px;left:50%;transform:translateX(-50%);width:4px;height:8px;background:white;border-radius:2px;animation:scrollDot 1.5s infinite}
-    @keyframes scrollDot{0%,100%{opacity:1;top:8px}50%{opacity:.3;top:20px}}
-    @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+    /* Profil */
+    .profile{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(28px,6vw,72px);align-items:start}
+    .profile-photo{position:sticky;top:96px;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line)}
+    .profile-photo img{width:100%;height:auto;display:block}
+    .profile-bio h2{font-size:clamp(1.7rem,3.2vw,2.4rem);margin-bottom:18px}
+    .profile-bio p{font-size:.95rem;line-height:1.8;margin-bottom:16px;max-width:60ch}
+    .profile-bio .highlight{color:var(--text)}
+    .tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:24px}
+    .tag{font-size:.7rem;letter-spacing:.06em;color:var(--text-muted);border:1px solid var(--line);border-radius:999px;padding:5px 10px}
 
-    /* PROFILE SECTION */
-    .profile-section{padding:120px 40px;max-width:1200px;margin:0 auto}
-    .profile-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
-    .profile-photo-wrap{position:relative;display:flex;justify-content:center}
-    .profile-photo{width:320px;height:320px;border-radius:50%;overflow:hidden;position:relative;box-shadow:0 0 60px rgba(1,128,255,0.25),0 0 120px rgba(1,128,255,0.1)}
-    .profile-photo::before{content:'';position:absolute;inset:-3px;border-radius:50%;background:conic-gradient(from 0deg,var(--main-blue),var(--accent),var(--main-blue));z-index:-1;animation:rotateGlow 4s linear infinite}
-    @keyframes rotateGlow{to{transform:rotate(360deg)}}
-    .profile-photo img{width:100%;height:100%;object-fit:cover;display:block}
-    .profile-photo::after{content:'';position:absolute;inset:0;border-radius:50%;background:linear-gradient(135deg,rgba(1,128,255,0.2),transparent 60%);pointer-events:none}
-    .profile-glow-ring{position:absolute;width:360px;height:360px;border-radius:50%;border:1px solid rgba(1,128,255,0.1);top:50%;left:50%;transform:translate(-50%,-50%);animation:pulseRing 3s ease-in-out infinite}
-    @keyframes pulseRing{0%,100%{opacity:.3;transform:translate(-50%,-50%) scale(1)}50%{opacity:.6;transform:translate(-50%,-50%) scale(1.05)}}
-    .profile-glow-ring-2{position:absolute;width:400px;height:400px;border-radius:50%;border:1px solid rgba(1,128,255,0.05);top:50%;left:50%;transform:translate(-50%,-50%);animation:pulseRing 3s ease-in-out infinite .5s}
+    /* Tall */
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:clamp(40px,6vw,72px)}
+    .stat{padding:clamp(24px,4vw,40px) 0;border-right:1px solid var(--line)}
+    .stat:last-child{border-right:0}
+    .stat strong{display:block;font-size:clamp(1.7rem,3.2vw,2.6rem);font-weight:500;letter-spacing:-.04em;line-height:1}
+    .stat span{display:block;margin-top:8px;font-size:.74rem;color:var(--text-muted)}
 
-    .profile-bio{background:var(--card-bg);border:1px solid var(--glass-border);border-radius:24px;padding:50px;position:relative;overflow:hidden}
-    .profile-bio::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--main-blue),var(--accent))}
-    .profile-bio h2{font-size:2rem;font-weight:700;margin-bottom:20px;letter-spacing:-1px}
-    .profile-bio h2 span{background:linear-gradient(135deg,var(--main-blue),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-    .profile-bio p{color:var(--text-muted);line-height:1.8;font-size:1rem;margin-bottom:15px}
-    .profile-bio .highlight{color:var(--text);font-weight:600}
-    .profile-tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:25px}
-    .profile-tag{padding:8px 18px;border-radius:30px;font-size:.8rem;font-weight:500;background:rgba(1,128,255,0.1);color:var(--main-blue);border:1px solid rgba(1,128,255,0.15)}
+    /* Ferdigheter */
+    .skills{display:flex;flex-direction:column;gap:18px;max-width:620px}
+    .skill-head{display:flex;justify-content:space-between;font-size:.8rem;margin-bottom:7px}
+    .skill-head span:last-child{color:var(--text-muted);font-variant-numeric:tabular-nums}
+    .skill-track{height:2px;background:var(--line);overflow:hidden}
+    .skill-fill{height:100%;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform 1s var(--ease)}
+    .skill.active .skill-fill{transform:scaleX(var(--v))}
 
-    /* STATS */
-    .stats{padding:100px 40px;background:linear-gradient(135deg,var(--main-blue),#0066cc);text-align:center}
-    .stats-grid{display:flex;justify-content:center;gap:80px;flex-wrap:wrap;max-width:1000px;margin:0 auto}
-    .stat-item h3{font-size:3rem;font-weight:800;color:white}
-    .stat-item p{color:rgba(255,255,255,0.7);font-size:.9rem;margin-top:5px}
+    /* Utstyr */
+    .gear{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .gear-item{background:var(--bg);padding:24px 0}
+    .gear-item h3{font-size:.88rem;font-weight:600;margin-bottom:6px}
+    .gear-item p{font-size:.76rem;line-height:1.6;max-width:24ch}
 
-    /* SKILLS */
-    .skills-section{padding:120px 40px;background:var(--card-bg)}
-    .skills-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:25px;margin-top:60px}
-    .skill-card{background:var(--bg);border:1px solid var(--glass-border);border-radius:20px;padding:35px 25px;text-align:center;transition:all .5s;position:relative;overflow:hidden}
-    .skill-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--main-blue),var(--accent));transform:scaleX(0);transform-origin:left;transition:transform .5s}
-    .skill-card:hover::before{transform:scaleX(1)}
-    .skill-card:hover{transform:translateY(-8px);border-color:rgba(1,128,255,0.3);box-shadow:0 20px 40px rgba(0,0,0,0.1)}
-    .skill-icon{font-size:2.5rem;margin-bottom:15px;display:block}
-    .skill-card h4{font-size:1rem;font-weight:700;margin-bottom:8px}
-    .skill-card p{font-size:.8rem;color:var(--text-muted);line-height:1.5}
-    .skill-bar-wrap{width:100%;height:4px;background:var(--glass-border);border-radius:2px;margin-top:18px;overflow:hidden}
-    .skill-bar{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--main-blue),var(--accent));width:0;transition:width 1.5s cubic-bezier(.23,1,.32,1)}
-    .skill-card.active .skill-bar{width:var(--skill-level)}
+    /* Galleri */
+    .about-gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+    .about-gallery figure{position:relative;aspect-ratio:4/5;overflow:hidden;border-radius:var(--radius-sm);background:var(--surface)}
+    .about-gallery figure:nth-child(1),
+    .about-gallery figure:nth-child(6){aspect-ratio:4/3;grid-column:span 2}
+    .about-gallery img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease)}
+    .about-gallery figure:hover img{transform:scale(1.03)}
 
-    /* EQUIPMENT */
-    .equipment{padding:120px 40px}
-    .equip-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:25px;margin-top:60px;perspective:1000px}
-    .equip-card{background:var(--card-bg);border:1px solid var(--glass-border);border-radius:20px;padding:30px;text-align:center;transition:all .5s;transform-style:preserve-3d}
-    .equip-card:hover{transform:rotateY(8deg) rotateX(-5deg);border-color:rgba(1,128,255,0.3);box-shadow:0 20px 40px rgba(0,0,0,0.15)}
-    .equip-icon{font-size:3rem;margin-bottom:15px;display:block}
-    .equip-card h4{font-size:1rem;font-weight:700;margin-bottom:8px}
-    .equip-card p{font-size:.8rem;color:var(--text-muted);line-height:1.5}
+    /* Sitat */
+    .quote-band{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:clamp(56px,8vw,96px) var(--pad);text-align:center}
+    .quote-band blockquote{font-size:clamp(1.3rem,3vw,2rem);font-weight:500;letter-spacing:-.03em;line-height:1.4;max-width:24ch;margin:0 auto;color:var(--text)}
+    .quote-band cite{display:block;margin-top:18px;font-size:.75rem;font-style:normal;color:var(--text-muted)}
 
-    /* CREATIVE SHOWCASE */
-    .creative-showcase{padding:120px 40px}
-    .creative-hero{position:relative;border-radius:24px;overflow:hidden;margin-top:60px;height:50vh;min-height:400px}
-    .creative-hero img{width:100%;height:100%;object-fit:cover;transition:transform .1s linear}
-    .creative-hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,0,0,.6) 0%,transparent 50%,rgba(0,0,0,.3) 100%);display:flex;align-items:center;justify-content:center;padding:40px}
-    .creative-quote{font-size:clamp(1.2rem,2.5vw,1.8rem);font-style:italic;color:#fff;text-align:center;max-width:600px;line-height:1.6;text-shadow:0 2px 20px rgba(0,0,0,.5);font-weight:300}
-    .creative-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:60px}
-    .creative-item{border-radius:16px;overflow:hidden;aspect-ratio:1;position:relative}
-    .creative-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.23,1,.32,1),filter .6s}
-    .creative-item:hover img{transform:scale(1.08);filter:brightness(1.1)}
-    .creative-item--tall{grid-row:span 2;aspect-ratio:auto}
-    .creative-item--wide{grid-column:span 2;aspect-ratio:2/1}
-    @media(max-width:750px){.creative-grid{grid-template-columns:repeat(2,1fr)}.creative-item--wide{grid-column:span 2}.creative-item--tall{grid-row:span 1;aspect-ratio:1}.creative-hero{height:40vh;min-height:280px}.creative-showcase{padding:80px 20px}}
+    /* Tidslinje */
+    .timeline{border-left:1px solid var(--line);margin-left:6px;padding-left:clamp(20px,4vw,36px);display:flex;flex-direction:column;gap:34px}
+    .timeline-item{position:relative}
+    .timeline-item::before{content:'';position:absolute;left:calc(-1 * clamp(20px,4vw,36px) - 3px);top:6px;width:5px;height:5px;border-radius:50%;background:var(--line-strong)}
+    .timeline-item.current::before{background:var(--accent);box-shadow:0 0 0 4px rgba(76,141,255,.15)}
+    .timeline-year{font-size:.7rem;letter-spacing:.12em;color:var(--text-muted);margin-bottom:4px}
+    .timeline-item h3{font-size:.98rem;font-weight:600;margin-bottom:6px}
+    .timeline-item p{font-size:.88rem;line-height:1.7;max-width:58ch}
 
-    /* MARQUEE STRIP */
-    .marquee-strip{overflow:hidden;padding:20px 0;background:var(--card-bg);border-top:1px solid var(--glass-border);border-bottom:1px solid var(--glass-border);position:relative}
-    .marquee-track{display:flex;gap:40px;white-space:nowrap;animation:marqueeScroll 20s linear infinite;width:max-content}
-    .marquee-strip--reverse .marquee-track{animation-direction:reverse}
-    .marquee-track span{font-size:clamp(1rem,2vw,1.4rem);font-weight:700;color:var(--text-muted);opacity:.4;letter-spacing:3px;text-transform:uppercase}
-    .marquee-dot{color:var(--main-blue)!important;opacity:.6!important;font-size:.8rem!important}
-    @keyframes marqueeScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-
-    /* HORIZONTAL SCROLL GALLERY */
-    .hscroll-gallery{padding:80px 0;overflow:hidden}
-    .hscroll-track{display:flex;gap:20px;padding:0 40px;width:max-content;will-change:transform}
-    .hscroll-item{flex-shrink:0;width:350px;height:250px;border-radius:16px;overflow:hidden;position:relative}
-    .hscroll-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.23,1,.32,1),filter .4s}
-    .hscroll-item:hover img{transform:scale(1.08);filter:brightness(1.15)}
-    .hscroll-item::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(0,0,0,.4) 100%);pointer-events:none}
-    @media(max-width:750px){.hscroll-item{width:260px;height:180px}.hscroll-track{padding:0 20px;gap:14px}}
-
-    /* FULL BLEED PARALLAX */
-    .fullbleed-parallax{position:relative;height:60vh;min-height:400px;overflow:hidden;display:flex;align-items:center;justify-content:center}
-    .fullbleed-img{position:absolute;inset:-60px;z-index:0}
-    .fullbleed-img img{width:100%;height:100%;object-fit:cover}
-    .fullbleed-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,0,0,.55) 0%,rgba(1,128,255,.15) 50%,rgba(0,0,0,.45) 100%);z-index:1}
-    .fullbleed-content{position:relative;z-index:2;text-align:center;color:white}
-    .fullbleed-content h2{font-size:clamp(2.5rem,6vw,5rem);font-weight:800;letter-spacing:-2px;margin-bottom:10px;text-shadow:0 4px 30px rgba(0,0,0,.5)}
-    .fullbleed-content p{font-size:1.2rem;color:rgba(255,255,255,.8);text-shadow:0 2px 15px rgba(0,0,0,.4)}
-    @media(max-width:750px){.fullbleed-parallax{height:45vh;min-height:280px}}
-
-    /* STATS CREATIVE */
-    .stats--creative{position:relative;overflow:hidden}
-    .stats--creative::before{content:'';position:absolute;inset:0;background:url('gallery/andre natur bilder/bilde6.jpg') center/cover;opacity:.12;z-index:0}
-    .stats--creative .stats-grid{position:relative;z-index:1}
-    .stat-item--creative{display:flex;flex-direction:column;align-items:center;gap:4px}
-    .stat-icon{font-size:2.5rem;margin-bottom:8px;filter:drop-shadow(0 2px 10px rgba(0,0,0,.3))}
-    .stat-number{font-size:3.5rem;font-weight:800;color:white;line-height:1;display:inline-block;min-width:2ch}
-    .stat-plus{font-size:2rem;font-weight:700;color:rgba(255,255,255,.7);display:inline;margin-left:-4px}
-    .stat-item--creative p{color:rgba(255,255,255,.7);font-size:.85rem}
-    @media(max-width:750px){.stat-number{font-size:2.5rem}.stat-icon{font-size:2rem}}
-
-    /* TIMELINE */
-    .timeline-section{padding:120px 40px;background:var(--card-bg);position:relative;overflow:hidden}
-    .timeline-section::before{content:'';position:absolute;top:0;left:0;right:0;height:120px;background:linear-gradient(to bottom,var(--bg),transparent);pointer-events:none;z-index:1}
-    .timeline{position:relative;max-width:800px;margin:60px auto 0;padding-left:60px}
-    .timeline::before{content:'';position:absolute;left:30px;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,var(--main-blue),var(--accent),transparent);border-radius:2px}
-    .timeline::after{content:'';position:absolute;left:30px;top:0;width:3px;height:0;background:linear-gradient(to bottom,var(--main-blue),var(--accent));border-radius:2px;transition:height 1.5s cubic-bezier(.23,1,.32,1);z-index:1}
-    .timeline.animate::after{height:100%}
-    .timeline-item{position:relative;margin-bottom:60px;opacity:0;transform:translateX(-40px);transition:all .8s cubic-bezier(.23,1,.32,1);padding:24px;border-radius:16px;border-left:3px solid transparent}
-    .timeline-item:hover{background:rgba(1,128,255,.04);border-left-color:var(--main-blue);transform:translateX(4px) !important}
-    .timeline-item.active{opacity:1;transform:translateX(0)}
-    .timeline-item:nth-child(2).active{transition-delay:.15s}
-    .timeline-item:nth-child(3).active{transition-delay:.3s}
-    .timeline-item:nth-child(4).active{transition-delay:.45s}
-    .timeline-item:nth-child(5).active{transition-delay:.6s}
-    .timeline-item:nth-child(6).active{transition-delay:.75s}
-    .timeline-dot{position:absolute;left:-42px;top:5px;width:16px;height:16px;background:var(--main-blue);border-radius:50%;border:3px solid var(--bg);box-shadow:0 0 20px rgba(1,128,255,0.4);transition:all .6s;z-index:2}
-    .timeline-item:hover .timeline-dot{transform:scale(1.3);box-shadow:0 0 30px rgba(1,128,255,0.6)}
-    .timeline-item.active .timeline-dot{animation:dotPulse 2s ease-in-out infinite}
-    @keyframes dotPulse{0%,100%{box-shadow:0 0 10px rgba(1,128,255,0.3);transform:scale(1)}50%{box-shadow:0 0 25px rgba(1,128,255,0.6);transform:scale(1.1)}}
-    .timeline-item.active .timeline-dot::after{content:'';position:absolute;inset:-8px;border-radius:50%;border:1px solid rgba(1,128,255,0.2);animation:dotRing 2s ease-in-out infinite .3s}
-    @keyframes dotRing{0%,100%{opacity:0;transform:scale(1)}50%{opacity:1;transform:scale(1.4)}}
-    .timeline-year{font-size:.8rem;font-weight:600;color:var(--main-blue);letter-spacing:1px;margin-bottom:8px}
-    .timeline-item h3{font-size:1.2rem;font-weight:700;margin-bottom:8px}
-    .timeline-item p{color:var(--text-muted);line-height:1.7;font-size:.95rem}
-    .timeline-tag{display:inline-block;margin-top:12px;padding:5px 12px;background:rgba(1,128,255,0.1);color:var(--main-blue);border-radius:20px;font-size:.75rem;font-weight:600}
-
-    /* CTA */
-    .cta{padding:150px 40px;text-align:center}
-    .cta h2{font-size:clamp(2rem,4vw,3.5rem);font-weight:800;letter-spacing:-1px;margin-bottom:20px}
-    .cta p{color:var(--text-muted);font-size:1.1rem;margin-bottom:40px;max-width:500px;margin-left:auto;margin-right:auto}
-
-    /* SKILLS CIRCLE */
-    .skills-circle-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:40px;margin-top:40px}
-    .skill-circle{position:relative;width:120px;height:120px}
-    .skill-circle svg{transform:rotate(-90deg)}
-    .skill-bg{fill:none;stroke:var(--card-border);stroke-width:6}
-    .skill-progress{fill:none;stroke:var(--main-blue);stroke-width:6;stroke-linecap:round;stroke-dasharray:339.292;stroke-dashoffset:339.292;transition:stroke-dashoffset 1.5s ease}
-    .skill-label{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
-    .skill-label span{font-size:.85rem;font-weight:600}
-    .skill-label small{font-size:.75rem;color:var(--text-muted)}
-
-    /* RESPONSIVE */
-    @media(max-width:1000px){.profile-grid{grid-template-columns:1fr;text-align:center}.profile-photo-wrap{margin-bottom:20px}.profile-photo{width:260px;height:260px}.profile-glow-ring{width:300px;height:300px}.profile-glow-ring-2{width:340px;height:340px}.profile-bio{padding:35px}.profile-tags{justify-content:center}.skills-grid{grid-template-columns:repeat(3,1fr)}.equip-grid{grid-template-columns:repeat(2,1fr)}.stats-grid{gap:40px}.stat-item h3{font-size:2rem}.skills-circle-grid{gap:24px}}
-    @media(max-width:750px){.section,.profile-section,.skills-section,.timeline-section,.cta,.equipment,.creative-showcase{padding:80px 20px}.stats{padding:60px 20px}.timeline{padding-left:40px}.timeline::before{left:15px}.timeline-dot{left:-32px}.skills-grid{grid-template-columns:repeat(2,1fr)}.equip-grid{grid-template-columns:1fr}.hero{min-height:auto;height:auto;min-height:100dvh;padding:120px 20px 80px}.profile-photo{width:220px;height:220px}.profile-glow-ring{width:260px;height:260px}.profile-glow-ring-2{width:290px;height:290px}.profile-bio{padding:24px}}
+    @media(max-width:900px){
+      .profile{grid-template-columns:1fr}
+      .profile-photo{position:static;max-width:340px}
+      .stats{grid-template-columns:1fr 1fr}
+      .stat:nth-child(2){border-right:0}
+      .stat:nth-child(1),.stat:nth-child(2){border-bottom:1px solid var(--line)}
+      .gear{grid-template-columns:1fr 1fr}
+      .gear-item{padding:20px 14px 20px 0}
+      .about-gallery{grid-template-columns:1fr 1fr}
+      .about-gallery figure:nth-child(1),.about-gallery figure:nth-child(6){grid-column:span 1;aspect-ratio:4/5}
+    }
+    @media(max-width:600px){
+      .about-hero{min-height:48vh}
+    }
   </style>
+  <link rel="preload" as="image" href="gallery/biler/untitled-9223-1600.webp" imagesrcset="gallery/biler/untitled-9223-480.webp 480w, gallery/biler/untitled-9223-960.webp 960w, gallery/biler/untitled-9223-1600.webp 1600w" imagesizes="100vw" fetchpriority="high">
 </head>
 <body>
   <a href="#main-content" class="skip-link">Hopp til innhold</a>
-  <!-- GRAIN -->
-  <div id="grain"></div>
-
-  <!-- PROGRESS BAR -->
   <div id="progress-bar"></div>
 
-  <!-- CUSTOM CURSOR -->
-  <div class="custom-cursor" id="cursor"></div>
-  <div class="custom-cursor-dot" id="cursor-dot"></div>
-
-  <!-- HEADER -->
   <header id="header">
     <a href="index.html" class="logo">Solemsli Productions</a>
-    <div class="menu-toggle" role="button" aria-label="Meny" aria-expanded="false" onclick="this.classList.toggle('active');this.setAttribute('aria-expanded',this.classList.contains('active'));document.querySelector('nav').classList.toggle('active')"><span></span><span></span><span></span></div>
-    <nav aria-label="Hovedmeny">
+    <button class="menu-toggle" type="button" aria-label="Meny" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span></button>
+    <nav id="site-nav" aria-label="Hovedmeny">
       <a href="index.html" data-no="Hjem" data-en="Home" data-de="Startseite">Hjem</a>
-      <a href="about.html" class="active" data-no="Om meg" data-en="About" data-de="Über mich">Om meg</a>
+      <a href="about.html" class="active" aria-current="page" data-no="Om meg" data-en="About" data-de="Über mich">Om meg</a>
       <a href="projects.html" data-no="Portfolio" data-en="Portfolio" data-de="Portfolio">Portfolio</a>
       <a href="shop.html" data-no="Shop" data-en="Shop" data-de="Shop">Shop</a>
       <a href="prices.html" data-no="Priser" data-en="Pricing" data-de="Preise">Priser</a>
       <a href="contact.html" data-no="Kontakt" data-en="Contact" data-de="Kontakt">Kontakt</a>
       <button class="nav-btn" id="lang-toggle" aria-label="Bytt språk">EN</button>
-      <button class="nav-btn" id="theme-toggle" aria-label="Bytt tema">☀️ Lys</button>
+      <button class="nav-btn" id="theme-toggle" aria-label="Bytt tema">☀ Lys</button>
     </nav>
   </header>
 
   <main id="main-content">
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-bg"><img src="gallery/biler/untitled-9223.jpg" alt="Bil i landskap" id="hero-img"></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <div class="hero-badge" data-no="📍 17 år • Innlandet" data-en="📍 17 years old • Innlandet" data-de="📍 17 Jahre • Innlandet">📍 17 år • Innlandet</div>
-      <h1 id="hero-title"><span data-no="Hei, jeg" data-en="Hi, I'm" data-de="Hallo, ich" class="scramble-text magnetic-text">Hei, jeg</span><br><span data-no="er Oskar" data-en="am Oskar" data-de="bin Oskar" class="scramble-text magnetic-text">er Oskar</span></h1>
-      <p data-no="Grunnlegger av Solemsli Productions. 17 år gammel med en stor lidenskap for visuell historiefortelling, drone og kreativ produksjon." data-en="Founder of Solemsli Productions. 17 years old with a great passion for visual storytelling, drones and creative production." data-de="Gründer von Solemsli Productions. 17 Jahre alt mit einer großen Leidenschaft für visuelles Storytelling, Drohnen und kreative Produktion.">Grunnlegger av Solemsli Productions. 17 år gammel med en stor lidenskap for visuell historiefortelling, drone og kreativ produksjon.</p>
-      <div class="hero-buttons">
-        <a href="#profile" class="btn btn-primary magnetic" data-no="Les mer" data-en="Read more" data-de="Mehr erfahren">Les mer</a>
-        <a href="contact.html" class="btn btn-outline magnetic" data-no="Ta kontakt" data-en="Get in touch" data-de="Kontakt aufnehmen">Ta kontakt</a>
+
+    <!-- HERO -->
+    <section class="hero about-hero">
+      <div class="hero-bg"><img src="gallery/biler/untitled-9223.jpg" alt="Bil fotografert i landskap" fetchpriority="high" width="7008" height="3944" srcset="gallery/biler/untitled-9223-480.webp 480w, gallery/biler/untitled-9223-960.webp 960w, gallery/biler/untitled-9223-1600.webp 1600w" sizes="100vw" decoding="async"></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <div class="hero-badge" data-no="17 år · Innlandet" data-en="17 years old · Innlandet" data-de="17 Jahre · Innlandet">17 år · Innlandet</div>
+        <h1 data-html data-no="Hei, <br>jeg er Oskar" data-en="Hi, <br>I'm Oskar" data-de="Hallo, <br>ich bin Oskar">Hei, <br>jeg er Oskar</h1>
+        <p data-no="Grunnlegger av Solemsli Productions. 17 år, med en stor lidenskap for visuell historiefortelling, drone og kreativ produksjon." data-en="Founder of Solemsli Productions. 17 years old, with a great passion for visual storytelling, drones and creative production." data-de="Gründer von Solemsli Productions. 17 Jahre alt, mit großer Leidenschaft für visuelles Storytelling, Drohnen und kreative Produktion.">Grunnlegger av Solemsli Productions. 17 år, med en stor lidenskap for visuell historiefortelling, drone og kreativ produksjon.</p>
       </div>
-    </div>
-    <div class="scroll-indicator"><div></div></div>
-  </section>
+    </section>
 
-  <!-- MARQUEE STRIP -->
-  <div class="marquee-strip">
-    <div class="marquee-track">
-      <span>FOTO</span><span class="marquee-dot">✦</span>
-      <span>VIDEO</span><span class="marquee-dot">✦</span>
-      <span>DRONE</span><span class="marquee-dot">✦</span>
-      <span>COLOR GRADING</span><span class="marquee-dot">✦</span>
-      <span>EVENTER</span><span class="marquee-dot">✦</span>
-      <span>BRYLLUP</span><span class="marquee-dot">✦</span>
-      <span>FOTO</span><span class="marquee-dot">✦</span>
-      <span>VIDEO</span><span class="marquee-dot">✦</span>
-      <span>DRONE</span><span class="marquee-dot">✦</span>
-      <span>COLOR GRADING</span><span class="marquee-dot">✦</span>
-      <span>EVENTER</span><span class="marquee-dot">✦</span>
-      <span>BRYLLUP</span><span class="marquee-dot">✦</span>
-    </div>
-  </div>
-
-  <!-- PROFILE -->
-  <section class="profile-section" id="profile">
-    <div class="profile-grid">
-      <div class="profile-photo-wrap reveal">
-        <div class="profile-glow-ring-2"></div>
-        <div class="profile-glow-ring"></div>
-        <div class="profile-photo">
-          <img src="gallery/bilde av meg/meg.jpg" alt="Oskar Solemsli med kamera" class="parallax-img">
+    <!-- PROFIL -->
+    <section class="section">
+      <div class="profile">
+        <div class="profile-photo reveal">
+          <img src="gallery/bilde av meg/meg.jpg" alt="Oskar Solemsli med kamera" width="2048" height="1365" srcset="gallery/bilde%20av%20meg/meg-480.webp 480w, gallery/bilde%20av%20meg/meg-960.webp 960w, gallery/bilde%20av%20meg/meg-1600.webp 1600w" sizes="(max-width: 820px) 92vw, 40vw" decoding="async">
+        </div>
+        <div class="profile-bio reveal">
+          <span class="section-label" data-no="Om meg" data-en="About" data-de="Über mich">Om meg</span>
+          <h2 data-no="Bak kamera" data-en="Behind the camera" data-de="Hinter der Kamera">Bak kamera</h2>
+          <p data-no="Mitt navn er Oskar Solemsli, 17 år, fra Vang i Innlandet. Jeg er engasjert og allsidig medieprodusent med solid praktisk erfaring innen foto, video og drone. Jeg går VG2 medieproduksjon og kombinerer skole med aktiv drift av eget enkeltpersonforetak." data-en="My name is Oskar Solemsli, 17 years old, from Vang in Innlandet. I'm an engaged and versatile media producer with solid hands-on experience in photo, video and drone. I'm studying VG2 media production while running my own sole proprietorship." data-de="Mein Name ist Oskar Solemsli, 17 Jahre alt, aus Vang in Innlandet. Ich bin ein engagierter und vielseitiger Medienproduzent mit solider Praxiserfahrung in Foto, Video und Drohne. Ich besuche die VG2 Medienproduktion und betreibe parallel mein eigenes Einzelunternehmen.">Mitt navn er Oskar Solemsli, 17 år, fra Vang i Innlandet. Jeg er engasjert og allsidig medieprodusent med solid praktisk erfaring innen foto, video og drone. Jeg går VG2 medieproduksjon og kombinerer skole med aktiv drift av eget enkeltpersonforetak.</p>
+          <p data-no="I mars 2025 startet jeg Solemsli Productions — mitt eget foretak innen foto, video og droneproduksjon. Siden da har jeg jobbet med reklamefilmer for Vang kommune, filming for SLS Rally og Team Fragus, frivillig festivalmedia for Vinjerock de siste fire årene, droneoppdrag for Vang Bygg, årlige recap-filmer for Valdres Storhall, bryllupsfotografering og nettsideutvikling." data-en="In March 2025, I founded Solemsli Productions — my own business in photo, video and drone production. Since then I've worked on commercials for Vang municipality, filming for SLS Rally and Team Fragus, volunteer festival media for Vinjerock for the last four years, drone missions for Vang Bygg, annual recap films for Valdres Storhall, wedding photography and website development." data-de="Im März 2025 gründete ich Solemsli Productions — mein eigenes Unternehmen für Foto-, Video- und Drohnenproduktion. Seitdem habe ich Werbefilme für die Gemeinde Vang, Dreharbeiten für SLS Rally und Team Fragus, ehrenamtliches Festival-Media für Vinjerock in den letzten vier Jahren, Drohneneinsätze für Vang Bygg, jährliche Recap-Filme für Valdres Storhall, Hochzeitsfotografie und Webentwicklung durchgeführt.">I mars 2025 startet jeg Solemsli Productions — mitt eget foretak innen foto, video og droneproduksjon. Siden da har jeg jobbet med reklamefilmer for Vang kommune, filming for SLS Rally og Team Fragus, frivillig festivalmedia for Vinjerock de siste fire årene, droneoppdrag for Vang Bygg, årlige recap-filmer for Valdres Storhall, bryllupsfotografering og nettsideutvikling.</p>
+          <p data-no="Jeg har også erfaring fra sommerjobb ved Filefjellstuene, som digihjelper for Vang kommune og butikkmedarbeider ved Intersport. På fritiden sykler jeg, går på ski og driver med judo. For meg handler det ikke bare om teknisk kvalitet — det handler om å fortelle en historie og fange den rette stemningen." data-en="I also have experience from seasonal work at Filefjellstuene, as a digital helper for Vang municipality, and retail at Intersport. In my spare time I cycle, ski and practice judo. For me, it's not just about technical quality — it's about telling a story and capturing the right atmosphere." data-de="Ich habe auch Erfahrung durch Saisonarbeit bei Filefjellstuene, als Digitalhelfer für die Gemeinde Vang und als Einzelhandelsmitarbeiter bei Intersport. In meiner Freizeit fahre ich Rad, Ski und betreibe Judo. Für mich geht es nicht nur um technische Qualität — es geht darum, eine Geschichte zu erzählen und die richtige Stimmung einzufangen.">Jeg har også erfaring fra sommerjobb ved Filefjellstuene, som digihjelper for Vang kommune og butikkmedarbeider ved Intersport. På fritiden sykler jeg, går på ski og driver med judo. For meg handler det ikke bare om teknisk kvalitet — det handler om å fortelle en historie og fange den rette stemningen.</p>
+          <p data-no="Målet mitt er å levere innhold som overgår forventningene — hver gang." data-en="My goal is to deliver content that exceeds expectations — every time." data-de="Mein Ziel ist es, Inhalte zu liefern, die die Erwartungen übertreffen — jedes Mal.">Målet mitt er å levere innhold som overgår forventningene — hver gang.</p>
+          <div class="tags">
+            <span class="tag" data-no="Foto" data-en="Photography" data-de="Foto">Foto</span>
+            <span class="tag" data-no="Video" data-en="Video" data-de="Video">Video</span>
+            <span class="tag" data-no="Drone" data-en="Drone" data-de="Drohne">Drone</span>
+            <span class="tag">Color grading</span>
+            <span class="tag" data-no="Event" data-en="Event" data-de="Event">Event</span>
+          </div>
         </div>
       </div>
-      <div class="profile-bio reveal reveal-delay-2 glow-scroll">
-        <h2><span>Om</span> meg</h2>
-        <p data-no="Mitt navn er Oskar Solemsli, 17 år, fra Vang i Innlandet. Jeg er engasjert og allsidig medieprodusent med solid praktisk erfaring innen foto, video og drone. Jeg går VG2 medieproduksjon og kombinerer skole med aktiv drift av eget enkeltpersonforetak. Trygg foran og bak kamera, vant til å levere under tidspress, og liker å lære nye verktøy og teknikker." data-en="My name is Oskar Solemsli, 17 years old, from Vang in Innlandet. I'm an engaged and versatile media producer with solid hands-on experience in photo, video and drone. I'm studying VG2 media production while running my own sole proprietorship. Comfortable in front of and behind the camera, used to delivering under pressure, and I enjoy learning new tools and techniques." data-de="Mein Name ist Oskar Solemsli, 17 Jahre alt, aus Vang in Innlandet. Ich bin ein engagierter und vielseitiger Medienproduzent mit solider Praxiserfahrung in Foto, Video und Drohne. Ich besuche die VG2 Medienproduktion und betreibe parallel mein eigenes Einzelunternehmen. Sicher vor und hinter der Kamera, gewohnt unter Druck zu liefern, und ich lerne gerne neue Werkzeuge und Techniken.">
-          Mitt navn er <span class="highlight">Oskar Solemsli</span>, 17 år, fra Vang i Innlandet. Jeg er engasjert og allsidig medieprodusent med solid praktisk erfaring innen foto, video og drone. Jeg går VG2 medieproduksjon og kombinerer skole med aktiv drift av eget enkeltpersonforetak.
-        </p>
-        <p data-no="I mars 2025 startet jeg Solemsli Productions — mitt eget foretak innen foto, video og droneproduksjon. Siden da har jeg jobbet med reklamefilmer for Vang kommune, filming for SLS Rally og Team Fragus, frivillig festivalmedia for Vinjerock de siste 4 årene, droneoppdrag for Vang Bygg, årlige recap-filmer for Valdres Storhall, bryllupsfotografering og nettsideutvikling." data-en="In March 2025, I founded Solemsli Productions — my own business in photo, video and drone production. Since then I've worked on commercials for Vang municipality, filming for SLS Rally and Team Fragus, volunteer festival media for Vinjerock the last 4 years, drone missions for Vang Bygg, annual recap films for Valdres Storhall, wedding photography and website development." data-de="Im März 2025 gründete ich Solemsli Productions — mein eigenes Unternehmen für Foto-, Video- und Drohnenproduktion. Seitdem habe ich Werbefilme für die Gemeinde Vang, Dreharbeiten für SLS Rally und Team Fragus, ehrenamtliches Festival-Media für Vinjerock in den letzten 4 Jahren, Drohneneinsätze für Vang Bygg, jährliche Recap-Filme für Valdres Storhall, Hochzeitsfotografie und Webentwicklung durchgeführt.">
-          I mars 2025 startet jeg Solemsli Productions — mitt eget foretak innen foto, video og droneproduksjon. Siden da har jeg jobbet med reklamefilmer for Vang kommune, filming for SLS Rally og Team Fragus, frivillig festivalmedia for Vinjerock de siste 4 årene, droneoppdrag for Vang Bygg, årlige recap-filmer for Valdres Storhall, bryllupsfotografering og nettsideutvikling.
-        </p>
-        <p data-no="Jeg har også erfaring som sommerjobb ved Filefjellstuene, digihjelper for Vang kommune og butikkmedarbeider ved Intersport. På fritiden sykler, ski og driver med judo. For meg handler det ikke bare om teknisk kvalitet — det handler om å fortelle en historie og fange den rette stemningen." data-en="I also have experience from seasonal work at Filefjellstuene, digital helper for Vang municipality, and retail at Intersport. In my spare time I cycle, ski and practice judo. For me, it's not just about technical quality — it's about telling a story and capturing the right atmosphere." data-de="Ich habe auch Erfahrung durch Saisonarbeit bei Filefjellstuene, als Digitalhelfer für die Gemeinde Vang und als Einzelhandelsmitarbeiter bei Intersport. In meiner Freizeit fahre ich Rad, Ski und betreibe Judo. Für mich geht es nicht nur um technische Qualität — es geht darum, eine Geschichte zu erzählen und die richtige Stimmung einzufangen.">
-          Jeg har også erfaring fra sommerjobb ved Filefjellstuene, digihjelper for Vang kommune og butikkmedarbeider ved Intersport. På fritiden sykler jeg, går på ski og driver med judo. For meg handler det ikke bare om teknisk kvalitet — det handler om å fortelle en historie og fange den rette stemningen.
-        </p>
-        <p data-no="Jeg trives best når jeg kan kombinere kreativitet med teknisk utfordring — enten det er å finne den perfekte vinkelen fra drone, fange gylne øyeblikk i bryllup, eller skape en filmatisk look i DaVinci Resolve. Målet mitt er å levere innhold som overgår forventningene — hver gang." data-en="I thrive when I can combine creativity with technical challenges — whether it's finding the perfect angle from a drone, capturing golden moments at a wedding, or creating a cinematic look in DaVinci Resolve. My goal is to deliver content that exceeds expectations — every time." data-de="Ich blühe auf, wenn ich Kreativität mit technischen Herausforderungen kombinieren kann — egal ob der perfekte Winkel aus der Drohne, goldene Momente bei einer Hochzeit oder ein filmatischer Look in DaVinci Resolve. Mein Ziel ist es, Inhalte zu liefern, die die Erwartungen übertreffen — jedes Mal.">
-          Jeg trives best når jeg kan kombinere kreativitet med teknisk utfordring — enten det er å finne den perfekte vinkelen fra drone, fange gylne øyeblikk i bryllup, eller skape en filmatisk look i DaVinci Resolve. Målet mitt er å levere innhold som overgår forventningene — hver gang.
-        </p>
-        <div class="profile-tags">
-          <span class="profile-tag" data-no="Foto" data-en="Photography" data-de="Foto">Foto</span>
-          <span class="profile-tag" data-no="Video" data-en="Video" data-de="Video">Video</span>
-          <span class="profile-tag" data-no="Drone" data-en="Drone" data-de="Drohne">Drone</span>
-          <span class="profile-tag" data-no="Color Grading" data-en="Color Grading" data-de="Color Grading">Color Grading</span>
-          <span class="profile-tag" data-no="Eventer" data-en="Events" data-de="Veranstaltungen">Eventer</span>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- STATS -->
-  <section class="stats stats--creative blur-fade">
-    <div class="stats-grid stagger-reveal">
-      <div class="stat-item stat-item--creative reveal">
-        <div class="stat-icon">🎯</div>
-        <div class="stat-number" data-target="20">0</div>
-        <div class="stat-plus">+</div>
-        <p data-no="Oppdrag fullført" data-en="Jobs completed" data-de="Aufträge abgeschlossen">Oppdrag fullført</p>
+      <div class="stats stagger">
+        <div class="stat"><strong>20+</strong><span data-no="Oppdrag fullført" data-en="Jobs completed" data-de="Abgeschlossene Aufträge">Oppdrag fullført</span></div>
+        <div class="stat"><strong>15+</strong><span data-no="Kunder" data-en="Clients" data-de="Kunden">Kunder</span></div>
+        <div class="stat"><strong>10+</strong><span data-no="Droneoppdrag" data-en="Drone missions" data-de="Drohneneinsätze">Droneoppdrag</span></div>
+        <div class="stat"><strong>4+</strong><span data-no="År med drone" data-en="Years with drone" data-de="Jahre mit Drohne">År med drone</span></div>
       </div>
-      <div class="stat-item stat-item--creative reveal reveal-delay-1">
-        <div class="stat-icon">🤝</div>
-        <div class="stat-number" data-target="15">0</div>
-        <div class="stat-plus">+</div>
-        <p data-no="Kunder" data-en="Clients" data-de="Kunden">Kunder</p>
-      </div>
-      <div class="stat-item stat-item--creative reveal reveal-delay-2">
-        <div class="stat-icon">🚁</div>
-        <div class="stat-number" data-target="10">0</div>
-        <div class="stat-plus">+</div>
-        <p data-no="Droneoppdrag" data-en="Drone missions" data-de="Drohnen-Einsätze">Droneoppdrag</p>
-      </div>
-      <div class="stat-item stat-item--creative reveal reveal-delay-3">
-        <div class="stat-icon">⏱️</div>
-        <div class="stat-number" data-target="4">0</div>
-        <div class="stat-plus">+</div>
-        <p data-no="År med drone" data-en="Years with drone" data-de="Jahre mit Drohne">År med drone</p>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- SKILLS -->
-  <section class="skills-section perspective-section">
-    <div class="section">
-      <div class="reveal"><div class="section-label" data-no="Ferdigheter" data-en="Skills" data-de="Fähigkeiten">Ferdigheter</div><h2 class="section-title char-reveal" data-no="Hva jeg er god på" data-en="What I'm good at" data-de="Wofür ich gut bin">Hva jeg er god på</h2></div>
-      <div class="skills-circle-grid reveal stagger-reveal h-stagger">
-        <div class="skill-circle"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="54" class="skill-bg"/><circle cx="60" cy="60" r="54" class="skill-progress" data-progress="90"/></svg><div class="skill-label"><span>Foto</span><small>90%</small></div></div>
-        <div class="skill-circle"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="54" class="skill-bg"/><circle cx="60" cy="60" r="54" class="skill-progress" data-progress="85"/></svg><div class="skill-label"><span>Video</span><small>85%</small></div></div>
-        <div class="skill-circle"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="54" class="skill-bg"/><circle cx="60" cy="60" r="54" class="skill-progress" data-progress="80"/></svg><div class="skill-label"><span>Drone</span><small>80%</small></div></div>
-        <div class="skill-circle"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="54" class="skill-bg"/><circle cx="60" cy="60" r="54" class="skill-progress" data-progress="88"/></svg><div class="skill-label"><span>Color Grading</span><small>88%</small></div></div>
-        <div class="skill-circle"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="54" class="skill-bg"/><circle cx="60" cy="60" r="54" class="skill-progress" data-progress="82"/></svg><div class="skill-label"><span>Redigering</span><small>82%</small></div></div>
+    <!-- FERDIGHETER -->
+    <section class="section">
+      <div class="section-head reveal">
+        <span class="section-label" data-no="Ferdigheter" data-en="Skills" data-de="Fähigkeiten">Ferdigheter</span>
+        <h2 class="section-title" data-no="Hva jeg jobber med" data-en="What I work with" data-de="Womit ich arbeite">Hva jeg jobber med</h2>
       </div>
-    </div>
-  </section>
-
-  <!-- EQUIPMENT -->
-  <section class="equipment perspective-section blur-fade">
-    <div class="section">
-      <div class="reveal"><div class="section-label" data-no="Utstyr" data-en="Equipment" data-de="Ausrüstung">Utstyr</div><h2 class="section-title char-reveal" data-no="Hva jeg jobber med" data-en="What I work with" data-de="Womit ich arbeite">Hva jeg jobber med</h2></div>
-      <div class="equip-grid reveal stagger-reveal h-stagger">
-        <div class="equip-card tilt-glow glow-border"><span class="equip-icon">📷</span><h4>Sony A7IV</h4><p data-no="Fullformat kamera med høy oppløsning" data-en="Full-frame camera with high resolution" data-de="Vollformatkamera mit hoher Auflösung">Fullformat kamera med høy oppløsning</p></div>
-        <div class="equip-card tilt-glow glow-border"><span class="equip-icon">🔭</span><h4>Sigma 24-70mm f/2.8</h4><p data-no="Allsidig zoom-objektiv i topp kvalitet" data-en="Versatile zoom lens in top quality" data-de="Vielseitiges Zoom-Objektiv in Top-Qualität">Allsidig zoom-objektiv i topp kvalitet</p></div>
-        <div class="equip-card tilt-glow glow-border"><span class="equip-icon">🚁</span><h4>DJI Mini 4 Pro</h4><p data-no="Kompakt drone med 4K video" data-en="Compact drone with 4K video" data-de="Kompakte Drohne mit 4K-Video">Kompakt drone med 4K video</p></div>
-        <div class="equip-card tilt-glow glow-border"><span class="equip-icon">🎬</span><h4>DaVinci Resolve</h4><p data-no="Profesjonell videoredigering og color grading" data-en="Professional video editing and color grading" data-de="Professionelle Videobearbeitung und Color Grading">Profesjonell videoredigering og color grading</p></div>
+      <div class="skills reveal">
+        <div class="skill"><div class="skill-head"><span>Foto</span><span>90 %</span></div><div class="skill-track"><div class="skill-fill" style="--v:.9"></div></div></div>
+        <div class="skill"><div class="skill-head"><span>Video</span><span>85 %</span></div><div class="skill-track"><div class="skill-fill" style="--v:.85"></div></div></div>
+        <div class="skill"><div class="skill-head"><span>Drone</span><span>80 %</span></div><div class="skill-track"><div class="skill-fill" style="--v:.8"></div></div></div>
+        <div class="skill"><div class="skill-head"><span>Color grading</span><span>88 %</span></div><div class="skill-track"><div class="skill-fill" style="--v:.88"></div></div></div>
+        <div class="skill"><div class="skill-head"><span data-no="Redigering" data-en="Editing" data-de="Bearbeitung">Redigering</span><span>82 %</span></div><div class="skill-track"><div class="skill-fill" style="--v:.82"></div></div></div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- HORIZONTAL SCROLL GALLERY -->
-  <section class="hscroll-gallery">
-    <div class="hscroll-track">
-      <div class="hscroll-item"><img src="gallery/andre natur bilder/uranustind.jpg" alt="Natur" loading="lazy"></div>
-      <div class="hscroll-item"><img src="gallery/andre natur bilder/bilde6.jpg" alt="Fjell" loading="lazy"></div>
-      <div class="hscroll-item"><img src="gallery/andre natur bilder/untitled-7896.jpg" alt="Landskap" loading="lazy"></div>
-      <div class="hscroll-item"><img src="gallery/andre natur bilder/bilde3.jpg" alt="Drone" loading="lazy"></div>
-      <div class="hscroll-item"><img src="gallery/andre natur bilder/bilde7.jpg" alt="Natur" loading="lazy"></div>
-      <div class="hscroll-item"><img src="gallery/andre natur bilder/untitled-7914.jpg" alt="Nordlys" loading="lazy"></div>
-      <div class="hscroll-item"><img src="gallery/andre natur bilder/bilde4.jpg" alt="Landskap" loading="lazy"></div>
-      <div class="hscroll-item"><img src="gallery/andre natur bilder/bilde5.jpg" alt="Natur" loading="lazy"></div>
-    </div>
-  </section>
-
-  <!-- CREATIVE SHOWCASE -->
-  <section class="creative-showcase">
-    <div class="section">
-      <div class="reveal"><div class="section-label" data-no="Kreativt" data-en="Creative" data-de="Kreativ">Kreativt</div><h2 class="section-title char-reveal" data-no="Bak hvert øyeblikk" data-en="Behind every moment" data-de="Hinter jedem Moment">Bak hvert øyeblikk</h2></div>
-      <div class="creative-hero parallax-img">
-        <img src="gallery/andre natur bilder/untitled--3.jpg" alt="Kreativt øyeblikk" loading="lazy">
-        <div class="creative-hero-overlay">
-          <p class="creative-quote" data-no="&laquo;Det handler ikke om utstyret. Det handler om øyeblikket.&raquo;" data-en="&laquo;It's not about the gear. It's about the moment.&raquo;" data-de="&laquo;Es geht nicht um das Equipment. Es geht um den Moment.&raquo;">&laquo;Det handler ikke om utstyret. Det handler om øyeblikket.&raquo;</p>
-        </div>
+    <!-- UTSTYR -->
+    <section class="section">
+      <div class="section-head reveal">
+        <span class="section-label" data-no="Utstyr" data-en="Equipment" data-de="Ausrüstung">Utstyr</span>
+        <h2 class="section-title" data-no="Verktøyene" data-en="The tools" data-de="Die Werkzeuge">Verktøyene</h2>
       </div>
-      <div class="creative-grid stagger-reveal blur-fade">
-        <div class="creative-item creative-item--tall"><img src="gallery/andre natur bilder/bilde6.jpg" alt="Natur" loading="lazy"></div>
-        <div class="creative-item"><img src="gallery/andre natur bilder/bilde4.jpg" alt="Landskap" loading="lazy"></div>
-        <div class="creative-item"><img src="gallery/andre natur bilder/untitled-7864.jpg" alt="Drone" loading="lazy"></div>
-        <div class="creative-item creative-item--wide"><img src="gallery/andre natur bilder/bilde3.jpg" alt="Fjell" loading="lazy"></div>
-        <div class="creative-item"><img src="gallery/andre natur bilder/untitled-7914.jpg" alt="Natur" loading="lazy"></div>
-        <div class="creative-item creative-item--tall"><img src="gallery/andre natur bilder/bilde11.jpg" alt="Nordlys" loading="lazy"></div>
+      <div class="gear stagger">
+        <div class="gear-item"><h3>Sony A7IV</h3><p data-no="Fullformat kamera med høy oppløsning." data-en="Full-frame camera with high resolution." data-de="Vollformatkamera mit hoher Auflösung.">Fullformat kamera med høy oppløsning.</p></div>
+        <div class="gear-item"><h3>Sigma 24–70mm f/2.8</h3><p data-no="Allsidig zoomobjektiv i topp kvalitet." data-en="Versatile zoom lens in top quality." data-de="Vielseitiges Zoomobjektiv in Topqualität.">Allsidig zoomobjektiv i topp kvalitet.</p></div>
+        <div class="gear-item"><h3>DJI Mini 4 Pro</h3><p data-no="Kompakt drone med 4K video." data-en="Compact drone with 4K video." data-de="Kompakte Drohne mit 4K-Video.">Kompakt drone med 4K video.</p></div>
+        <div class="gear-item"><h3>DaVinci Resolve</h3><p data-no="Videoredigering og color grading." data-en="Video editing and color grading." data-de="Videobearbeitung und Color Grading.">Videoredigering og color grading.</p></div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- FULL BLEED PARALLAX -->
-  <section class="fullbleed-parallax">
-    <div class="fullbleed-img parallax-img"><img src="gallery/andre natur bilder/untitled--2.jpg" alt="Landskap" loading="lazy"></div>
-    <div class="fullbleed-overlay"></div>
-    <div class="fullbleed-content reveal">
-      <h2 data-no="4+ år med drone" data-en="4+ years with drone" data-de="4+ Jahre mit Drohne">4+ år med drone</h2>
-      <p data-no="Over 10 droneoppdrag levert" data-en="Over 10 drone missions delivered" data-de="Über 10 Drohneneinsätze geliefert">Over 10 droneoppdrag levert</p>
-    </div>
-  </section>
+    <!-- GALLERI -->
+    <section class="section">
+      <div class="section-head reveal">
+        <span class="section-label" data-no="Utvalg" data-en="Selection" data-de="Auswahl">Utvalg</span>
+        <h2 class="section-title" data-no="Bilder fra arbeidet" data-en="Images from the work" data-de="Bilder aus der Arbeit">Bilder fra arbeidet</h2>
+      </div>
+      <div class="about-gallery stagger">
+        <figure class="reveal-img"><img src="gallery/andre natur bilder/uranustind.jpg" alt="Fjellandskap i Innlandet" loading="lazy" width="2000" height="1125" srcset="gallery/andre%20natur%20bilder/uranustind-480.webp 480w, gallery/andre%20natur%20bilder/uranustind-960.webp 960w, gallery/andre%20natur%20bilder/uranustind-1600.webp 1600w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async"></figure>
+        <figure class="reveal-img"><img src="gallery/andre natur bilder/bilde6.jpg" alt="Fjell i blått lys" loading="lazy" width="2000" height="1125" srcset="gallery/andre%20natur%20bilder/bilde6-480.webp 480w, gallery/andre%20natur%20bilder/bilde6-960.webp 960w, gallery/andre%20natur%20bilder/bilde6-1600.webp 1600w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async"></figure>
+        <figure class="reveal-img"><img src="gallery/andre natur bilder/untitled-7896.jpg" alt="Landskap i motlys" loading="lazy" width="1600" height="816" srcset="gallery/andre%20natur%20bilder/untitled-7896-480.webp 480w, gallery/andre%20natur%20bilder/untitled-7896-960.webp 960w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async"></figure>
+        <figure class="reveal-img"><img src="gallery/andre natur bilder/bilde3.jpg" alt="Skog og åkre" loading="lazy" width="2000" height="1125" srcset="gallery/andre%20natur%20bilder/bilde3-480.webp 480w, gallery/andre%20natur%20bilder/bilde3-960.webp 960w, gallery/andre%20natur%20bilder/bilde3-1600.webp 1600w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async"></figure>
+        <figure class="reveal-img"><img src="gallery/andre natur bilder/bilde7.jpg" alt="Skog fra luften" loading="lazy" width="2000" height="1125" srcset="gallery/andre%20natur%20bilder/bilde7-480.webp 480w, gallery/andre%20natur%20bilder/bilde7-960.webp 960w, gallery/andre%20natur%20bilder/bilde7-1600.webp 1600w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async"></figure>
+        <figure class="reveal-img"><img src="gallery/andre natur bilder/untitled-7914.jpg" alt="Vidde i kveldslys" loading="lazy" width="1600" height="900" srcset="gallery/andre%20natur%20bilder/untitled-7914-480.webp 480w, gallery/andre%20natur%20bilder/untitled-7914-960.webp 960w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async"></figure>
+      </div>
+    </section>
 
-  <!-- MARQUEE STRIP 2 -->
-  <div class="marquee-strip marquee-strip--reverse">
-    <div class="marquee-track">
-      <span>SONY A7IV</span><span class="marquee-dot">◈</span>
-      <span>SIGMA 24-70</span><span class="marquee-dot">◈</span>
-      <span>DJI MINI 4 PRO</span><span class="marquee-dot">◈</span>
-      <span>DAVINCI RESOLVE</span><span class="marquee-dot">◈</span>
-      <span>SONY A7IV</span><span class="marquee-dot">◈</span>
-      <span>SIGMA 24-70</span><span class="marquee-dot">◈</span>
-      <span>DJI MINI 4 PRO</span><span class="marquee-dot">◈</span>
-      <span>DAVINCI RESOLVE</span><span class="marquee-dot">◈</span>
-    </div>
-  </div>
+    <!-- SITAT -->
+    <section class="quote-band">
+      <div class="reveal">
+        <blockquote data-no="«Det handler ikke om utstyret. Det handler om øyeblikket.»" data-en="“It's not about the gear. It's about the moment.”" data-de="„Es geht nicht um die Ausrüstung. Es geht um den Moment.“">«Det handler ikke om utstyret. Det handler om øyeblikket.»</blockquote>
+        <cite data-no="— Oskar Solemsli" data-en="— Oskar Solemsli" data-de="— Oskar Solemsli">— Oskar Solemsli</cite>
+      </div>
+    </section>
 
-  <!-- TIMELINE -->
-  <section class="timeline-section">
-    <div class="section">
-      <div class="reveal"><div class="section-label" data-no="Reise" data-en="Journey" data-de="Reise">Reise</div><h2 class="section-title" data-no="Min vei inn i produksjon" data-en="My path into production" data-de="Mein Weg in die Produktion">Min vei inn i produksjon</h2></div>
+    <!-- TIDSLINJE -->
+    <section class="section">
+      <div class="section-head reveal">
+        <span class="section-label" data-no="Reise" data-en="Journey" data-de="Reise">Reise</span>
+        <h2 class="section-title" data-no="Vei inn i produksjon" data-en="Path into production" data-de="Weg in die Produktion">Vei inn i produksjon</h2>
+      </div>
       <div class="timeline">
         <div class="timeline-item reveal">
-          <div class="timeline-dot"></div>
           <div class="timeline-year">2020</div>
           <h3 data-no="Første drone" data-en="First drone" data-de="Erste Drohne">Første drone</h3>
-          <p data-no="Begynte å fly drone og oppdaget gleden ved luftbilder og spektakulære videoopptak. Interessen for visuell produksjon vokste raskt." data-en="Started flying drones and discovered the passion for aerial photography and spectacular video. The interest in visual production grew quickly." data-de="Begann Drohne zu fliegen und entdeckte die Freude an Luftaufnahmen und spektakulären Videoaufnahmen. Das Interesse an visueller Produktion wuchs schnell.">
-            Begynte å fly drone og oppdaget gleden ved luftbilder og spektakulære videoopptak. Interessen for visuell produksjon vokste raskt.
-          </p>
-          <span class="timeline-tag" data-no="Drone" data-en="Drone" data-de="Drohne">Drone</span>
+          <p data-no="Begynte å fly drone og oppdaget gleden ved luftbilder og spektakulære videoopptak. Interessen for visuell produksjon vokste raskt." data-en="Started flying drones and discovered the joy of aerial photos and spectacular video. The interest in visual production grew quickly." data-de="Begann Drohne zu fliegen und entdeckte die Freude an Luftaufnahmen und spektakulärem Video. Das Interesse an visueller Produktion wuchs schnell.">Begynte å fly drone og oppdaget gleden ved luftbilder og spektakulære videoopptak. Interessen for visuell produksjon vokste raskt.</p>
         </div>
         <div class="timeline-item reveal">
-          <div class="timeline-dot"></div>
           <div class="timeline-year">2022</div>
           <h3 data-no="Foto og video" data-en="Photo and video" data-de="Foto und Video">Foto og video</h3>
-          <p data-no="Begynte å ta foto og video mer på alvor. Utforsket komposisjon, lys og redigering. Jobbet med drift og sommervikariat sidelangs." data-en="Started taking photo and video more seriously. Explored composition, lighting and editing. Worked with operations and seasonal work on the side." data-de="Begann Foto und Video ernsthafter zu nehmen. Erforschte Komposition, Licht und Bearbeitung. Arbeitete parallel mit Betrieb und Saisonarbeit.">
-            Begynte å ta foto og video mer på alvor. Utforsket komposisjon, lys og redigering. Jobbet med drift og sommervikariat sidelangs.
-          </p>
-          <span class="timeline-tag" data-no="Begynnelsen" data-en="The beginning" data-de="Der Anfang">Begynnelsen</span>
+          <p data-no="Begynte å ta foto og video mer på alvor. Utforsket komposisjon, lys og redigering." data-en="Started taking photo and video more seriously. Explored composition, lighting and editing." data-de="Begann Foto und Video ernsthafter zu nehmen. Erforschte Komposition, Licht und Bearbeitung.">Begynte å ta foto og video mer på alvor. Utforsket komposisjon, lys og redigering.</p>
         </div>
         <div class="timeline-item reveal">
-          <div class="timeline-dot"></div>
           <div class="timeline-year">2024</div>
           <h3 data-no="Første prosjekt" data-en="First project" data-de="Erstes Projekt">Første prosjekt</h3>
-          <p data-no="9. klasse-prosjekt med video og foto. Oppdaget gleden ved å skape noe egenhendig og levere profesjonelt resultat." data-en="9th grade project with video and photo. Discovered the joy of creating something independently and delivering professional results." data-de="Projekt in der 9. Klasse mit Video und Foto. Entdeckte die Freude, etwas Eigenständiges zu schaffen und professionelle Ergebnisse zu liefern.">
-            9. klasse-prosjekt med video og foto. Oppdaget gleden ved å skape noe egenhendig og levere profesjonelt resultat.
-          </p>
-          <span class="timeline-tag" data-no="Prosjekt" data-en="Project" data-de="Projekt">Prosjekt</span>
+          <p data-no="9. klasse-prosjekt med video og foto. Oppdaget gleden ved å skape noe egenhendig og levere et profesjonelt resultat." data-en="9th grade project with video and photo. Discovered the joy of creating something independently and delivering a professional result." data-de="Projekt in der 9. Klasse mit Video und Foto. Entdeckte die Freude, etwas Eigenständiges zu schaffen und ein professionelles Ergebnis zu liefern.">9. klasse-prosjekt med video og foto. Oppdaget gleden ved å skape noe egenhendig og levere et profesjonelt resultat.</p>
         </div>
-        <div class="timeline-item reveal">
-          <div class="timeline-dot active"></div>
+        <div class="timeline-item current reveal">
           <div class="timeline-year">Mars 2025</div>
-          <h3 data-no="Solemsli Productions" data-en="Solemsli Productions" data-de="Solemsli Productions">Solemsli Productions</h3>
-          <p data-no="Startet mitt eget foretak. Foto, video og droneproduksjon for bedrifter og privatpersoner i Innlandet." data-en="Founded my own business. Photo, video and drone production for businesses and individuals in Innlandet." data-de="Mein eigenes Unternehmen gegründet. Foto-, Video- und Drohnenproduktion für Unternehmen und Privatpersonen in Innlandet.">
-            Startet mitt eget foretak. Foto, video og droneproduksjon for bedrifter og privatpersoner i Innlandet.
-          </p>
-          <span class="timeline-tag" data-no="Lansering" data-en="Launch" data-de="Launch">Lansering</span>
+          <h3>Solemsli Productions</h3>
+          <p data-no="Startet mitt eget foretak. Foto, video og droneproduksjon for bedrifter og privatpersoner i Innlandet." data-en="Founded my own business. Photo, video and drone production for businesses and individuals in Innlandet." data-de="Gründete mein eigenes Unternehmen. Foto-, Video- und Drohnenproduktion für Unternehmen und Privatpersonen in Innlandet.">Startet mitt eget foretak. Foto, video og droneproduksjon for bedrifter og privatpersoner i Innlandet.</p>
         </div>
         <div class="timeline-item reveal">
-          <div class="timeline-dot"></div>
           <div class="timeline-year">2025–2026</div>
           <h3 data-no="Vekst og oppdrag" data-en="Growth and jobs" data-de="Wachstum und Aufträge">Vekst og oppdrag</h3>
-          <p data-no="Samarbeid med Vang kommune, Vinjerock, konfirmasjoner og bryllup. Levert reklamefilm og innhold for sosiale medier." data-en="Collaboration with Vang municipality, Vinjerock, confirmations and weddings. Delivered commercials and social media content." data-de="Zusammenarbeit mit der Gemeinde Vang, Vinjerock, Konfirmationen und Hochzeiten. Werbefilme und Social-Media-Inhalte geliefert.">
-            Samarbeid med Vang kommune, Vinjerock, konfirmasjoner og bryllup. Levert reklamefilm og innhold for sosiale medier.
-          </p>
-          <span class="timeline-tag" data-no="Vekst" data-en="Growth" data-de="Wachstum">Vekst</span>
+          <p data-no="Samarbeid med Vang kommune, Vinjerock, konfirmasjoner og bryllup. Levert reklamefilm og innhold for sosiale medier." data-en="Collaboration with Vang municipality, Vinjerock, confirmations and weddings. Delivered commercials and social media content." data-de="Zusammenarbeit mit der Gemeinde Vang, Vinjerock, Konfirmationen und Hochzeiten. Werbefilme und Social-Media-Inhalte geliefert.">Samarbeid med Vang kommune, Vinjerock, konfirmasjoner og bryllup. Levert reklamefilm og innhold for sosiale medier.</p>
         </div>
         <div class="timeline-item reveal">
-          <div class="timeline-dot"></div>
           <div class="timeline-year">2026–nå</div>
           <h3 data-no="Fremtiden" data-en="The future" data-de="Die Zukunft">Fremtiden</h3>
-          <p data-no="Fortsetter å utvikle meg. Målet er å bli blant de beste innen visuell produksjon i Innlandet." data-en="Continue to develop. The goal is to become one of the best in visual production in Innlandet." data-de="Weiterentwickeln. Das Ziel ist, einer der Besten in der visuellen Produktion in Innlandet zu werden.">
-            Fortsetter å utvikle meg. Målet er å bli blant de beste innen visuell produksjon i Innlandet.
-          </p>
-          <span class="timeline-tag" data-no="Mål" data-en="Goal" data-de="Ziel">Mål</span>
+          <p data-no="Fortsetter å utvikle meg. Målet er å bli blant de beste innen visuell produksjon i Innlandet." data-en="Continuing to develop. The goal is to become one of the best in visual production in Innlandet." data-de="Weiterentwicklung. Das Ziel ist, einer der Besten in der visuellen Produktion in Innlandet zu werden.">Fortsetter å utvikle meg. Målet er å bli blant de beste innen visuell produksjon i Innlandet.</p>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- CTA -->
-  <section class="cta">
-    <div class="reveal">
-      <h2 data-no="Klar til å starte?" data-en="Ready to get started?" data-de="Bereit anzufangen?">Klar til å starte?</h2>
-      <p data-no="Ta kontakt for en uforpliktende samtale om ditt neste prosjekt." data-en="Get in touch for a no-obligation chat about your next project." data-de="Kontaktieren Sie mich für ein unverbindliches Gespräch über Ihr nächstes Projekt.">Ta kontakt for en uforpliktende samtale om ditt neste prosjekt.</p>
-        <a href="contact.html" class="btn btn-primary magnetic magnetic-field particle-burst mouse-glow" data-no="Kontakt meg" data-en="Contact me" data-de="Kontaktieren Sie mich">Kontakt meg</a>
-    </div>
-  </section>
+    <!-- CTA -->
+    <section class="cta">
+      <div class="reveal">
+        <h2 data-no="Klar til å starte?" data-en="Ready to get started?" data-de="Bereit anzufangen?">Klar til å starte?</h2>
+        <p data-no="Ta kontakt for en uforpliktende samtale om neste prosjekt." data-en="Get in touch for a no-obligation chat about your next project." data-de="Kontaktieren Sie mich für ein unverbindliches Gespräch über Ihr nächstes Projekt.">Ta kontakt for en uforpliktende samtale om neste prosjekt.</p>
+        <a href="contact.html" class="btn btn-primary" data-no="Kontakt meg" data-en="Contact me" data-de="Kontaktieren Sie mich">Kontakt meg</a>
+      </div>
+    </section>
 
   </main>
 
-  <!-- FOOTER -->
   <footer>
     <div class="footer-left">
-      <a href="index.html" class="logo" style="margin-bottom:10px;display:block">Solemsli Productions</a>
+      <a href="index.html" class="logo">Solemsli Productions</a>
       <p>Høgesetvegen 52, 2985 Tyinkrysset</p>
       <p>rakso8080@gmail.com</p>
       <p class="footer-legal">Org.nr: 935 203 708 · ENK · MVA-registrert</p>
@@ -504,101 +290,22 @@
     </div>
   </footer>
 
-  <script src="shared.js"></script>
+  <script src="shared.js?v=2026-11-18"></script>
   <script>
-    // HERO TEXT SPLIT (word-by-word)
-    function splitHeroText() {
-      const h1 = document.getElementById('hero-title');
-      const spans = h1.querySelectorAll('span[data-no]');
-      const currentLang = localStorage.getItem('lang') || 'no';
-      spans.forEach(span => {
-        const text = currentLang === 'en' ? span.dataset.en : currentLang === 'de' ? span.dataset.de : span.dataset.no;
-        const words = text.split(' ');
-        span.innerHTML = '';
-        words.forEach((word, i) => {
-          const s = document.createElement('span');
-          s.className = 'word';
-          s.textContent = word;
-          span.appendChild(s);
-          if (i < words.length - 1) span.appendChild(document.createTextNode(' '));
+    // Ferdighetslinjer fylles når de kommer i syne
+    var skills = document.querySelector('.skills');
+    if (skills) {
+      var obs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            skills.classList.add('active');
+            skills.querySelectorAll('.skill').forEach(function (s) { s.classList.add('active'); });
+            obs.disconnect();
+          }
         });
-      });
-      setTimeout(() => h1.classList.add('revealed'), 200);
+      }, { threshold: 0.2 });
+      obs.observe(skills);
     }
-    splitHeroText();
-
-    // SKILL CIRCLES
-    const skillObs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.querySelectorAll('.skill-progress').forEach(circle => {
-            const p = circle.dataset.progress;
-            const offset = 339.292 - (339.292 * p / 100);
-            circle.style.strokeDashoffset = offset;
-          });
-          skillObs.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.3 });
-    const skillsGrid = document.querySelector('.skills-circle-grid');
-    if (skillsGrid) skillObs.observe(skillsGrid);
-
-    // TIMELINE ANIMATION
-    const timelineObs = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); });
-    }, { threshold: 0.2 });
-    document.querySelectorAll('.timeline-item').forEach(el => timelineObs.observe(el));
-    const tlEl = document.querySelector('.timeline');
-    if (tlEl) {
-      const tlObs = new IntersectionObserver(entries => {
-        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('animate'); });
-      }, { threshold: 0.1 });
-      tlObs.observe(tlEl);
-    }
-
-    // HORIZONTAL SCROLL GALLERY — scroll-driven
-    const hscrollTrack = document.querySelector('.hscroll-track');
-    if (hscrollTrack) {
-      const hscrollSection = document.querySelector('.hscroll-gallery');
-      window.addEventListener('scroll', () => {
-        const rect = hscrollSection.getBoundingClientRect();
-        const viewH = window.innerHeight;
-        if (rect.top < viewH && rect.bottom > 0) {
-          const progress = (viewH - rect.top) / (viewH + rect.height);
-          const maxScroll = hscrollTrack.scrollWidth - window.innerWidth;
-          hscrollTrack.style.transform = `translateX(${-progress * maxScroll}px)`;
-        }
-      }, { passive: true });
-    }
-
-    // STAT COUNTERS — animate on scroll
-    const statObs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.querySelectorAll('.stat-number').forEach(num => {
-            const target = parseInt(num.dataset.target);
-            let current = 0;
-            const duration = 1500;
-            const step = target / (duration / 16);
-            const timer = setInterval(() => {
-              current += step;
-              if (current >= target) { current = target; clearInterval(timer); }
-              num.textContent = Math.floor(current);
-            }, 16);
-          });
-          statObs.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.3 });
-    const statsSection = document.querySelector('.stats--creative');
-    if (statsSection) statObs.observe(statsSection);
-
-    // PARALLAX HERO
-    window.addEventListener('scroll', () => {
-      const s = window.scrollY;
-      const img = document.getElementById('hero-img');
-      if (img && s < window.innerHeight) img.style.transform = `scale(${1 + s * 0.0002}) translateY(${s * 0.3}px)`;
-    });
   </script>
 </body>
 </html>

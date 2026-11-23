@@ -3,722 +3,771 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <link rel="icon" href="Solemsli production.png">
-  <meta name="theme-color" content="#0180ff">
+  <link rel="icon" href="icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="icons/icon-192.png" sizes="192x192" type="image/png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <meta name="theme-color" content="#0a0b0d">
+  <script>
+    (function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark')t='dark';d.setAttribute('data-theme',t);var l=localStorage.getItem('lang');if(l==='en'||l==='de'||l==='no')d.lang=l;var m=document.querySelector('meta[name="theme-color"]');if(m&&t==='light')m.setAttribute('content','#f6f6f4');}catch(e){}})();
+  </script>
   <link rel="manifest" href="manifest.json">
-  <meta name="description" content="Portefølje - Se foto, video og droneprosjekter fra Solemsli Productions. Bryllup, eventer og bedriftsproduksjoner.">
-  <meta property="og:title" content="Solemsli Productions | Portfolio" />
-  <meta property="og:description" content="Se mitt arbeid med foto, video og drone. Bryllup, eventer, konfirmasjon og mer." />
-  <meta property="og:image" content="https://solemsliproductions.no/gallery/andre%20natur%20bilder/uranustind.jpg" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://solemsliproductions.no/projects.html" />
+  <meta name="description" content="Portfolio – foto, video og droneprosjekter fra Solemsli Productions. Bryllup, eventer, natur og bedriftsproduksjoner.">
+  <meta property="og:title" content="Solemsli Productions | Portfolio">
+  <meta property="og:description" content="Se arbeid med foto, video og drone. Bryllup, eventer, konfirmasjon og mer.">
+  <meta property="og:image" content="https://solemsliproductions.no/og/projects.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Solemsli Productions">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://solemsliproductions.no/projects.html">
   <meta property="og:site_name" content="Solemsli Productions">
   <meta property="og:locale" content="nb_NO">
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Solemsli Productions | Portfolio" />
-  <meta name="twitter:description" content="Se mitt arbeid med foto, video og drone. Bryllup, eventer, konfirmasjon og mer." />
-  <meta name="twitter:image" content="https://solemsliproductions.no/gallery/andre%20natur%20bilder/uranustind.jpg" />
-  <link rel="canonical" href="https://solemsliproductions.no/projects.html" />
-  <meta name="organization" content="Solemsli Productions 935203708">
-<title>Portfolio – Solemsli Productions</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
-<link rel="stylesheet" href="shared.css">
-<script src="exif-data.js" defer></script>
-<style>
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Solemsli Productions | Portfolio">
+  <meta name="twitter:description" content="Se arbeid med foto, video og drone.">
+  <meta name="twitter:image" content="https://solemsliproductions.no/og/projects.jpg">
+  <link rel="canonical" href="https://solemsliproductions.no/projects.html">
+  <title>Portfolio – Solemsli Productions</title>
+  <link rel="stylesheet" href="shared.css?v=2026-11-18">
+  <script src="exif-data.js" defer></script>
+  <style>
+    /* PORTFOLIO */
 
-.hero{position:relative;width:100%;height:70vh;min-height:400px;overflow:hidden;display:flex;align-items:flex-end}
-.hero img{width:100%;height:100%;object-fit:cover;object-position:center 30%;position:absolute;top:0;left:0}
-.hero-overlay{position:relative;z-index:2;padding:60px 40px 40px;background:linear-gradient(transparent,rgba(0,0,0,0.7));width:100%;color:white}
-.hero-overlay h1{font-size:3rem;margin:0 0 10px 0;font-weight:700;letter-spacing:-0.5px}
-.hero-overlay p{font-size:1.15rem;margin:0;opacity:0.9;max-width:600px;line-height:1.6}
+    .hero{min-height:58vh;align-items:flex-end}
+    .hero-bg img{object-position:center 35%}
 
-main{flex:1;padding:0;width:100%}
-.portfolio-section{padding:80px 40px;max-width:1200px;margin:0 auto}
-.section-header{margin-bottom:30px}
-.section-header h2{font-size:clamp(2rem,4vw,3.5rem);font-weight:700;letter-spacing:-1px;margin:0 0 8px 0}
-.section-header p{font-size:1rem;opacity:0.7;margin:0;color:var(--text-muted)}
+    /* Filter */
+    .filter-bar{
+      position:sticky;top:62px;z-index:90;
+      border-bottom:1px solid var(--line);
+      background:var(--bg);
+      background:color-mix(in srgb,var(--bg) 88%,transparent);
+      -webkit-backdrop-filter:blur(14px);
+      backdrop-filter:blur(14px);
+    }
+    .filter-tabs{
+      display:flex;gap:6px;overflow-x:auto;
+      max-width:var(--max);margin:0 auto;
+      padding:12px var(--pad);
+      scrollbar-width:none;
+    }
+    .filter-tabs::-webkit-scrollbar{display:none}
+    .filter-tab{
+      flex:0 0 auto;
+      display:inline-flex;align-items:center;gap:6px;
+      padding:8px 14px;
+      border:1px solid transparent;border-radius:999px;
+      background:transparent;color:var(--text-muted);
+      font-size:.78rem;font-weight:500;
+      transition:color .2s,border-color .2s,background .2s;
+    }
+    .filter-tab:hover{color:var(--text)}
+    .filter-tab.active{color:var(--text);border-color:var(--line-strong);background:var(--surface)}
+    .tab-count{font-size:.66rem;color:var(--text-muted);font-variant-numeric:tabular-nums}
 
-.portfolio-grid{column-count:4;column-gap:12px}
-.portfolio-grid img{width:100%;display:block;border-radius:12px;margin-bottom:12px;break-inside:avoid;cursor:pointer;transition:transform .6s cubic-bezier(.23,1,.32,1),filter .4s,border-radius .4s;will-change:transform}
-.portfolio-grid img:hover{transform:scale(1.06) translate(-1%,-1%);filter:brightness(1.1) saturate(1.1);border-radius:16px;box-shadow:0 20px 50px rgba(0,0,0,.25)}
-.portfolio-grid img:nth-child(4n+1):hover{transform:scale(1.08) translate(-2%,1%)}
-.portfolio-grid img:nth-child(4n+2):hover{transform:scale(1.05) translate(1%,-2%)}
-.portfolio-grid img:nth-child(4n+3):hover{transform:scale(1.07) translate(-1%,-1%)}
-.portfolio-grid img:nth-child(4n):hover{transform:scale(1.06) translate(2%,1%)}
+    /* Seksjoner */
+    .portfolio-section{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:clamp(44px,6vw,72px) var(--pad);
+      border-bottom:1px solid var(--line);
+    }
+    .portfolio-section:last-child{border-bottom:0}
+    .portfolio-section[hidden]{display:none}
+    .section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:24px;max-width:none}
+    .section-head .section-title{margin:0;font-size:clamp(1.5rem,2.8vw,2.1rem)}
+    .section-head .section-label{margin-bottom:8px}
+    .count{font-size:.75rem;color:var(--text-muted);font-variant-numeric:tabular-nums;white-space:nowrap;padding-bottom:6px}
+    .section-desc{font-size:.9rem;max-width:52ch;margin-top:8px}
 
-/* EXIF OVERLAY */
-.portfolio-grid .img-wrap{position:relative;break-inside:avoid;margin-bottom:12px}
-.portfolio-grid .img-wrap img{margin-bottom:0}
-.portfolio-grid .exif-overlay{position:absolute;bottom:0;left:0;right:0;padding:12px 14px;background:linear-gradient(transparent,rgba(0,0,0,.75));border-radius:0 0 12px 12px;opacity:0;transform:translateY(8px);transition:all .35s cubic-bezier(.23,1,.32,1);pointer-events:none;display:flex;gap:12px;flex-wrap:wrap;z-index:5}
-.portfolio-grid .img-wrap:hover .exif-overlay{opacity:1;transform:translateY(0)}
-.exif-tag{font-size:.7rem;color:rgba(255,255,255,.85);background:rgba(255,255,255,.12);backdrop-filter:blur(6px);padding:3px 8px;border-radius:6px;white-space:nowrap;font-weight:500;letter-spacing:.3px}
+    /* Grid */
+    .portfolio-grid{column-count:3;column-gap:10px}
+    .img-wrap{
+      position:relative;
+      break-inside:avoid;
+      margin-bottom:10px;
+      border-radius:var(--radius-sm);
+      overflow:hidden;
+      background:var(--surface);
+      cursor:zoom-in;
+    }
+    .portfolio-grid img{
+      width:100%;height:auto;
+      transition:transform .6s var(--ease),filter .4s;
+    }
+    .img-wrap:hover img{transform:scale(1.025);filter:brightness(1.06)}
+    .img-wrap:focus-within{outline:2px solid var(--accent);outline-offset:2px}
+    .img-wrap::after{
+      content:'Vis';
+      position:absolute;left:10px;bottom:10px;
+      padding:4px 9px;border-radius:999px;
+      background:rgba(0,0,0,.55);
+      -webkit-backdrop-filter:blur(6px);
+      backdrop-filter:blur(6px);
+      color:#fff;font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;
+      opacity:0;transform:translateY(4px);
+      transition:opacity .25s,transform .25s;
+      pointer-events:none;
+    }
+    .img-wrap:hover::after{opacity:1;transform:none}
 
-/* SECTION COUNTER */
-.section-header{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
-.section-count{font-size:.85rem;color:var(--text-muted);opacity:.5;font-weight:500}
+    .exif-overlay{
+      position:absolute;inset:auto 0 0 0;
+      display:flex;gap:6px;flex-wrap:wrap;
+      padding:10px;
+      background:linear-gradient(transparent,rgba(0,0,0,.7));
+      opacity:0;transform:translateY(4px);
+      transition:opacity .3s,transform .3s;
+      pointer-events:none;
+    }
+    .img-wrap:hover .exif-overlay{opacity:1;transform:none}
+    .exif-tag{
+      font-size:.6rem;color:rgba(255,255,255,.85);
+      padding:2px 6px;border-radius:4px;
+      background:rgba(255,255,255,.12);
+      -webkit-backdrop-filter:blur(6px);
+      backdrop-filter:blur(6px);
+      white-space:nowrap;
+    }
 
-.video-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:20px}
-.video-grid .video-wrapper{position:relative;border-radius:20px;overflow:hidden;box-shadow:0 20px 40px rgba(0,0,0,0.15);aspect-ratio:16/9;border:1px solid var(--glass-border)}
-.video-grid iframe{width:100%;height:100%;border:none}
-.shorts-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px}
-.shorts-grid .video-wrapper{position:relative;border-radius:16px;overflow:hidden;box-shadow:0 15px 30px rgba(0,0,0,0.15);aspect-ratio:9/16;border:1px solid var(--glass-border)}
-.shorts-grid iframe{width:100%;height:100%;border:none}
+    /* Video */
+    .video-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    .video-grid.single{grid-template-columns:1fr}
+    .video-wrapper{
+      position:relative;aspect-ratio:16/9;overflow:hidden;
+      border-radius:var(--radius-sm);border:1px solid var(--line);background:#000;
+    }
+    .video-wrapper iframe{width:100%;height:100%;border:0}
+    .shorts-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+    .shorts-grid .video-wrapper{aspect-ratio:9/16}
 
-/* LIGHTBOX */
-.lightbox{position:fixed;inset:0;z-index:3000;display:none;align-items:center;justify-content:center;opacity:0;transition:opacity .3s ease}
-.lightbox.open{display:flex;opacity:1}
-.lightbox-backdrop{position:absolute;inset:0;background:rgba(0,0,0,0.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
-.lightbox-content{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;max-width:90vw;max-height:85vh;animation:lbIn .4s cubic-bezier(.23,1,.32,1)}
-@keyframes lbIn{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}
-.lightbox-img{max-width:90vw;max-height:80vh;border-radius:12px;box-shadow:0 30px 60px rgba(0,0,0,0.5);object-fit:contain;user-select:none;-webkit-user-drag:none}
-.lightbox-close{position:absolute;top:20px;right:20px;z-index:10;width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:white;font-size:24px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.3s;backdrop-filter:blur(10px)}
-.lightbox-close:hover{background:rgba(255,255,255,0.2);transform:rotate(90deg)}
-.lightbox-nav{position:absolute;top:50%;transform:translateY(-50%);z-index:10;width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:white;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.3s;backdrop-filter:blur(10px)}
-.lightbox-nav:hover{background:var(--main-blue);border-color:var(--main-blue)}
-.lightbox-prev{left:20px}
-.lightbox-next{right:20px}
-.lightbox-caption{text-align:center;color:white;font-size:.9rem;font-weight:500;margin-top:15px;opacity:.8}
-.lightbox-exif{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:10px}
-.lightbox-exif span{font-size:.75rem;color:rgba(255,255,255,.7);background:rgba(255,255,255,.1);backdrop-filter:blur(8px);padding:4px 10px;border-radius:8px;font-weight:500;letter-spacing:.3px}
-.lightbox-desc{text-align:center;color:rgba(255,255,255,.55);font-size:.82rem;margin-top:6px;max-width:500px;line-height:1.5;font-style:italic}
-.lightbox-counter{text-align:center;color:rgba(255,255,255,0.5);font-size:.8rem;margin-top:8px;font-weight:500}
+    /* Lightbox */
+    .lightbox{
+      position:fixed;inset:0;z-index:3000;
+      display:none;align-items:center;justify-content:center;
+      background:rgba(6,7,9,.96);
+      -webkit-backdrop-filter:blur(10px);
+      backdrop-filter:blur(10px);
+    }
+    .lightbox.open{display:flex;animation:lbFade .25s ease}
+    @keyframes lbFade{from{opacity:0}to{opacity:1}}
+    .lightbox-content{
+      position:relative;
+      display:flex;flex-direction:column;align-items:center;
+      max-width:92vw;max-height:92vh;
+      animation:lbIn .3s var(--ease);
+    }
+    @keyframes lbIn{from{opacity:0;transform:scale(.98)}to{opacity:1;transform:none}}
+    .lightbox-img{max-width:92vw;max-height:78vh;object-fit:contain;border-radius:6px;user-select:none}
+    .lightbox-close,.lightbox-nav{
+      position:fixed;z-index:2;
+      display:flex;align-items:center;justify-content:center;
+      width:42px;height:42px;
+      border:1px solid rgba(255,255,255,.22);
+      border-radius:50%;background:rgba(255,255,255,.06);
+      color:#fff;font-size:1.1rem;line-height:1;
+      transition:background .2s,border-color .2s;
+    }
+    .lightbox-close{top:20px;right:20px;font-size:1.4rem}
+    .lightbox-nav{top:50%;transform:translateY(-50%);font-size:1.5rem}
+    .lightbox-prev{left:20px}
+    .lightbox-next{right:20px}
+    .lightbox-close:hover,.lightbox-nav:hover{background:rgba(255,255,255,.18);border-color:#fff}
+    .lightbox-meta{text-align:center;margin-top:12px;max-width:520px}
+    .lightbox-caption{color:#fff;font-size:.82rem;font-weight:500}
+    .lightbox-desc{color:rgba(255,255,255,.5);font-size:.75rem;margin-top:4px;line-height:1.5}
+    .lightbox-exif{display:flex;justify-content:center;gap:6px;flex-wrap:wrap;margin-top:8px}
+    .lightbox-exif span{font-size:.62rem;color:rgba(255,255,255,.65);background:rgba(255,255,255,.08);padding:2px 7px;border-radius:4px}
+    .lightbox-counter{color:rgba(255,255,255,.4);font-size:.68rem;margin-top:8px;font-variant-numeric:tabular-nums}
+    .lightbox-buy{
+      display:inline-flex;align-items:center;justify-content:center;
+      margin-top:12px;padding:8px 16px;
+      border:1px solid rgba(255,255,255,.3);border-radius:999px;
+      color:#fff;font-size:.72rem;font-weight:600;text-decoration:none;
+      transition:background .2s,border-color .2s;
+    }
+    .lightbox-buy:hover{background:var(--accent);border-color:var(--accent)}
 
-/* FILTER TABS */
-.filter-tabs{display:flex;justify-content:center;gap:12px;padding:20px;flex-wrap:wrap;position:sticky;top:80px;z-index:100;background:var(--bg);backdrop-filter:blur(10px)}
-.filter-tab{background:var(--card-bg);border:1px solid var(--card-border,rgba(255,255,255,0.1));color:var(--text);padding:8px 20px;border-radius:30px;cursor:pointer;font-size:.85rem;font-weight:500;transition:all .3s}
-.filter-tab.active,.filter-tab:hover{background:var(--main-blue);color:white;border-color:var(--main-blue)}
-.portfolio-section.hidden{display:none}
-
-/* VIDEO WRAPPER */
-.video-wrapper{position:relative;border-radius:16px;overflow:hidden;background:#000;aspect-ratio:16/9}
-.video-wrapper iframe{width:100%;height:100%;border:none}
-.video-wrapper::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,0.3);transition:opacity .3s;pointer-events:none}
-.video-wrapper:hover::after{opacity:0}
-
-@media(max-width:900px){.portfolio-grid{column-count:3}.video-grid{grid-template-columns:1fr}}
-@media(max-width:600px){.portfolio-grid{column-count:2}}
-@media(max-width:750px){.hero{height:50vh;min-height:300px}.hero-overlay h1{font-size:2rem}.portfolio-section{padding:60px 20px}.portfolio-grid{gap:12px}.portfolio-grid .img-wrap,.portfolio-grid img{height:180px}.portfolio-grid .img-wrap{perspective:none;transform:none;will-change:auto}.video-grid iframe{height:250px}.shorts-grid{grid-template-columns:repeat(2,1fr)}.shorts-grid iframe{height:280px}.lightbox-nav{width:40px;height:40px;font-size:18px}.lightbox-prev{left:10px}.lightbox-next{right:10px}.lightbox-close{width:40px;height:40px;font-size:20px;top:10px;right:10px}.exif-overlay{display:none!important}.lightbox-backdrop{backdrop-filter:none;-webkit-backdrop-filter:none}}
-
-/* FAST IMAGE LOADING */
-.portfolio-grid .img-wrap{content-visibility:auto;contain-intrinsic-size:auto 200px}
-
-/* 3D TILT ON HOVER */
-.portfolio-grid .img-wrap{perspective:600px;transform-style:preserve-3d;will-change:transform}
-.portfolio-grid .img-wrap img{transition:transform .15s ease-out,filter .4s,border-radius .4s,box-shadow .4s}
-.portfolio-grid .img-wrap.tilting img{transition:none}
-/* CHROMATIC ABERRATION ON HOVER */
-.portfolio-grid .img-wrap:hover img{filter:brightness(1.08) saturate(1.15) contrast(1.05)}
-
-/* FEATURED BADGE */
-.featured-badge{display:none}
-
-/* BLUR-UP LAZY LOAD */
-.portfolio-grid .img-wrap.blur-load img{opacity:0;transition:opacity .5s}
-.portfolio-grid .img-wrap.blur-load.loaded img{opacity:1}
-
-/* LIGHTBOX CROSSFADE */
-.lightbox-img{transition:opacity .3s ease}
-.lightbox-img.crossfading{opacity:0}
-
-/* FILTER TAB BADGES */
-.filter-tab .tab-count{display:inline-block;background:rgba(255,255,255,.2);padding:1px 7px;border-radius:10px;font-size:.7rem;margin-left:6px;font-weight:600}
-.filter-tab.active .tab-count{background:rgba(255,255,255,.3)}
-
-/* SECTION DIVIDER */
-.portfolio-section+.portfolio-section{border-top:1px solid var(--glass-border);margin-top:20px;padding-top:100px}
-</style>
+    @media(max-width:900px){
+      .portfolio-grid{column-count:2}
+      .video-grid{grid-template-columns:1fr}
+      .shorts-grid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media(max-width:600px){
+      .hero{min-height:46vh}
+      .section-head{flex-direction:column;align-items:flex-start;gap:4px}
+      .count{padding:0}
+      .lightbox-nav{width:36px;height:36px}
+      .lightbox-prev{left:8px}
+      .lightbox-next{right:8px}
+      .lightbox-close{top:10px;right:10px}
+      .exif-overlay{display:none}
+    }
+  </style>
+  <link rel="preload" as="image" href="gallery/andre natur bilder/untitled-7896-960.webp" imagesrcset="gallery/andre%20natur%20bilder/untitled-7896-480.webp 480w, gallery/andre%20natur%20bilder/untitled-7896-960.webp 960w" imagesizes="100vw" fetchpriority="high">
 </head>
 <body>
+  <a href="#main-content" class="skip-link">Hopp til innhold</a>
+  <div id="progress-bar"></div>
 
-<a href="#main-content" class="skip-link">Hopp til innhold</a>
-
-<div id="grain"></div>
-
-<div id="progress-bar"></div>
-
-<!-- CUSTOM CURSOR -->
-<div class="custom-cursor" id="cursor"></div>
-<div class="custom-cursor-dot" id="cursor-dot"></div>
-
-<header id="header">
-  <a href="index.html" class="logo">Solemsli Productions</a>
-    <div class="menu-toggle" role="button" aria-label="Meny" aria-expanded="false" onclick="this.classList.toggle('active');this.setAttribute('aria-expanded',this.classList.contains('active'));document.querySelector('nav').classList.toggle('active')"><span></span><span></span><span></span></div>
-    <nav aria-label="Hovedmeny">
-    <a href="index.html" data-no="Hjem" data-en="Home" data-de="Startseite">Hjem</a>
-    <a href="about.html" data-no="Om meg" data-en="About" data-de="Über mich">Om meg</a>
-    <a href="projects.html" class="active" data-no="Portfolio" data-en="Portfolio" data-de="Portfolio">Portfolio</a>
-    <a href="shop.html" data-no="Shop" data-en="Shop" data-de="Shop">Shop</a>
-    <a href="prices.html" data-no="Priser" data-en="Pricing" data-de="Preise">Priser</a>
-    <a href="contact.html" data-no="Kontakt" data-en="Contact" data-de="Kontakt">Kontakt</a>
-      <button class="nav-btn" id="lang-toggle" aria-label="Bytt språk">EN</button>
-      <button class="nav-btn" id="theme-toggle" aria-label="Bytt tema">☀️ Lys</button>
-  </nav>
-</header>
-
-<!-- HERO HEADER -->
-<section class="hero">
-  <img src="gallery/andre natur bilder/untitled-7896.jpg" alt="Portfolio header" id="hero-img" fetchpriority="high">
-  <div class="hero-overlay">
-    <h1 data-no="Portfolio" data-en="Portfolio" data-de="Portfolio">Portfolio</h1>
-    <p data-no="Et utvalg av foto, video og droneprosjekter fra Innlandet og utover." data-en="A selection of photo, video and drone projects from Innlandet and beyond." data-de="Eine Auswahl an Foto-, Video- und Drohnenprojekten aus Innlandet und darüber hinaus.">Et utvalg av foto, video og droneprosjekter fra Innlandet og utover.</p>
-  </div>
-</section>
-
-<!-- FILTER FANER -->
-<div class="filter-tabs">
-  <button class="filter-tab active" data-filter="all" data-no="Alle" data-en="All" data-de="Alle">Alle</button>
-  <button class="filter-tab" data-filter="foto" data-no="Foto" data-en="Photo" data-de="Foto">Foto</button>
-  <button class="filter-tab" data-filter="video" data-no="Video" data-en="Video" data-de="Video">Video</button>
-  <button class="filter-tab" data-filter="drone" data-no="Drone" data-en="Drone" data-de="Drohne">Drone</button>
-  <button class="filter-tab" data-filter="bryllup" data-no="Bryllup" data-en="Wedding" data-de="Hochzeit">Bryllup</button>
-  <button class="filter-tab" data-filter="event" data-no="Event" data-en="Event" data-de="Veranstaltung">Event</button>
-  <button class="filter-tab" data-filter="biler" data-no="Biler" data-en="Cars" data-de="Autos">Biler</button>
-</div>
-
-<main id="main-content">
-  <!-- SHOWREEL -->
-  <section class="portfolio-section reveal">
-    <div class="section-label" data-no="Showreel" data-en="Showreel" data-de="Showreel">Showreel</div>
-    <div class="section-header">
-      <h2 data-no="Min visuelle presentasjon" data-en="My visual showcase" data-de="Mein visuelles Portfolio">Min visuelle presentasjon</h2>
-      <p data-no="Min visuelle presentasjon av tidligere arbeid" data-en="A visual showcase of previous work" data-de="Ein visuelles Portfolio früherer Arbeiten">Min visuelle presentasjon av tidligere arbeid</p>
-    </div>
-    <div class="video-grid"><div class="video-wrapper"><iframe src="https://www.youtube.com/embed/tWI3Mv6Zr5s" loading="lazy" allowfullscreen title="YouTube video"></iframe></div></div>
-  </section>
-
-
-
-  <!-- PROSJEKTER -->
-  <section class="portfolio-section reveal" data-category="foto">
-    <div class="section-label" data-no="Foto" data-en="Photo" data-de="Foto">Foto</div>
-    <div class="section-header">
-      <h2 data-no="Prosjekter" data-en="Projects" data-de="Projekte">Prosjekter</h2>
-      <p data-no="Drone, foto og videoproduksjon" data-en="Drone, photo and video production" data-de="Drohne, Foto und Videoproduktion">Drone, foto og videoproduksjon</p>
-    </div>
-    <div class="portfolio-grid" id="grid-prosjekter">
-      <img src="bilde9.jpg" alt="Dronebilde av fjellandskap i solnedgang" loading="lazy" data-section="Prosjekter">
-      <img src="gallery/andre natur bilder/bilde3.jpg" alt="Innlandskap med åkre og skog" loading="lazy" data-section="Prosjekter">
-      <img src="gallery/andre natur bilder/bilde4.jpg" alt="Portrett i naturlig lys" loading="lazy" data-section="Prosjekter">
-      <img src="gallery/andre natur bilder/bilde5.jpg" alt="Dronebilde over vann" loading="lazy" data-section="Prosjekter">
-      <img src="gallery/andre natur bilder/bilde6.jpg" alt="Landskapsbilde med fjell" loading="lazy" data-section="Prosjekter">
-      <img src="gallery/andre natur bilder/bilde7.jpg" alt="Dronebilde av skog" loading="lazy" data-section="Prosjekter">
-      <img src="gallery/andre natur bilder/bilde10.jpg" alt="Nordlys over vinterlandskap" loading="lazy" data-section="Prosjekter">
-      <img src="gallery/andre natur bilder/bilde11.jpg" alt="Solnedgang over fjellkjede" loading="lazy" data-section="Prosjekter">
-      <img src="bilde12.jpg" alt="Detaljbilde av natur" loading="lazy" data-section="Prosjekter">
-      <img src="bilde13.jpg" alt="Landskap i blåtime" loading="lazy" data-section="Prosjekter">
-      <img src="bilde14.jpg" alt="Fjelltopp i skodde" loading="lazy" data-section="Prosjekter">
-    </div>
-  </section>
-
-  <!-- VIDEOER -->
-  <section class="portfolio-section reveal" data-category="video">
-    <div class="section-label" data-no="Videoer" data-en="Videos" data-de="Videos">Videoer</div>
-    <div class="section-header">
-      <h2 data-no="Videoprosjekter" data-en="Video Projects" data-de="Videoprojekte">Videoprosjekter</h2>
-      <p data-no="Film og dronevideo" data-en="Film and drone video" data-de="Film und Drohnenvideo">Film og dronevideo</p>
-    </div>
-    <div class="video-grid">
-      <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/kihsArSq2S4" loading="lazy" allowfullscreen title="YouTube video"></iframe></div>
-      <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/bDoI1o90tz0" loading="lazy" allowfullscreen title="YouTube video"></iframe></div>
-      <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/dnu5sXuDk8k" loading="lazy" allowfullscreen title="YouTube video"></iframe></div>
-      <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/tWI3Mv6Zr5s" loading="lazy" allowfullscreen title="YouTube video"></iframe></div>
-      <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/fUQSoRY_zSU" loading="lazy" allowfullscreen title="YouTube video"></iframe></div>
-      <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/jeBpYkVWngU" loading="lazy" allowfullscreen title="YouTube video"></iframe></div>
-    </div>
-  </section>
-
-  <!-- SHORTS -->
-  <section class="portfolio-section reveal" data-category="video">
-    <div class="section-label" data-no="Shorts" data-en="Shorts" data-de="Shorts">Shorts</div>
-    <div class="section-header">
-      <h2 data-no="Shorts" data-en="Shorts" data-de="Shorts">Shorts</h2>
-      <p data-no="Korte klipp for sosiale medier" data-en="Short clips for social media" data-de="Kurze Clips für soziale Medien">Korte klipp for sosiale medier</p>
-    </div>
-    <div class="shorts-grid">
-      <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/zmlPOtFY9_8" loading="lazy" allowfullscreen title="YouTube video"></iframe></div>
-      <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/ZRK-0-iUAj8" loading="lazy" allowfullscreen title="YouTube video"></iframe></div>
-      <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/qyguQjbqtzk" loading="lazy" allowfullscreen title="YouTube video"></iframe></div>
-      <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/V599osfVA9Y" loading="lazy" allowfullscreen title="YouTube video"></iframe></div>
-    </div>
-  </section>
-
-  <!-- BRYLLUP -->
-  <section class="portfolio-section reveal" data-category="bryllup">
-    <div class="section-label" data-no="Bryllup" data-en="Weddings" data-de="Hochzeiten">Bryllup</div>
-    <div class="section-header">
-      <h2 data-no="Bryllup" data-en="Weddings" data-de="Hochzeiten">Bryllup</h2>
-      <p data-no="Profesjonell fotografering av bryllup" data-en="Professional wedding photography" data-de="Professionelle Hochzeitsfotografie">Profesjonell fotografering av bryllup</p>
-    </div>
-    <div class="portfolio-grid" id="grid-bryllup">
-      <img src="gallery/bryllup/untitled-6005.jpg" alt="Bryllup" loading="lazy" data-section="Bryllup">
-      <img src="gallery/bryllup/untitled-6500.jpg" alt="Bryllup" loading="lazy" data-section="Bryllup">
-      <img src="gallery/bryllup/untitled-6900.jpg" alt="Bryllup" loading="lazy" data-section="Bryllup">
-      <img src="gallery/bryllup/untitled-7200.jpg" alt="Bryllup" loading="lazy" data-section="Bryllup">
-      <img src="gallery/bryllup/untitled-7350.jpg" alt="Bryllup" loading="lazy" data-section="Bryllup">
-      <img src="gallery/bryllup/bryllup2/untitled-7953.jpg" alt="Bryllup" loading="lazy" data-section="Bryllup">
-      <img src="gallery/bryllup/bryllup2/untitled-7960.jpg" alt="Bryllup" loading="lazy" data-section="Bryllup">
-      <img src="gallery/bryllup/bryllup2/untitled-8387.jpg" alt="Bryllup" loading="lazy" data-section="Bryllup">
-      <img src="gallery/bryllup/bryllup2/untitled-8434.jpg" alt="Bryllup" loading="lazy" data-section="Bryllup">
-      <img src="gallery/bryllup/bryllup2/untitled-8507.jpg" alt="Bryllup" loading="lazy" data-section="Bryllup">
-      <img src="gallery/bryllup/bryllup2/untitled-8586.jpg" alt="Bryllup" loading="lazy" data-section="Bryllup">
-      <img src="gallery/bryllup/bryllup2/untitled-8623.jpg" alt="Bryllup" loading="lazy" data-section="Bryllup">
-    </div>
-  </section>
-
-  <!-- KONFIRMASJON -->
-  <section class="portfolio-section reveal" data-category="event">
-    <div class="section-label" data-no="Konfirmasjon" data-en="Confirmation" data-de="Konfirmation">Konfirmasjon</div>
-    <div class="section-header">
-      <h2 data-no="Konfirmasjon" data-en="Confirmation" data-de="Konfirmation">Konfirmasjon</h2>
-      <p data-no="Minneverdige øyeblikk fra konfirmasjoner" data-en="Memorable moments from confirmations" data-de="Unvergessliche Momente von Konfirmationen">Minneverdige øyeblikk fra konfirmasjoner</p>
-    </div>
-    <div class="portfolio-grid" id="grid-konfirmasjon">
-      <img src="gallery/konfirmasjon/untitled-5010.jpg" alt="Konfirmasjon" loading="lazy" data-section="Konfirmasjon">
-      <img src="gallery/konfirmasjon/untitled-5193.jpg" alt="Konfirmasjon" loading="lazy" data-section="Konfirmasjon">
-      <img src="gallery/konfirmasjon/untitled-5439.jpg" alt="Konfirmasjon" loading="lazy" data-section="Konfirmasjon">
-      <img src="gallery/konfirmasjon/untitled-5574.jpg" alt="Konfirmasjon" loading="lazy" data-section="Konfirmasjon">
-      <img src="gallery/konfirmasjon/untitled-5649.jpg" alt="Konfirmasjon" loading="lazy" data-section="Konfirmasjon">
-    </div>
-  </section>
-
-  <!-- DRONEBILDER -->
-  <section class="portfolio-section reveal" data-category="drone">
-    <div class="section-label" data-no="Drone" data-en="Drone" data-de="Drohne">Drone</div>
-    <div class="section-header">
-      <h2 data-no="Dronebilder" data-en="Aerial Photos" data-de="Drohnenbilder">Dronebilder</h2>
-      <p data-no="Oversiktsbilder og landskap fra lufta" data-en="Aerial shots and landscapes from above" data-de="Luftaufnahmen und Landschaften aus der Luft">Oversiktsbilder og landskap fra lufta</p>
-    </div>
-    <div class="portfolio-grid" id="grid-dronebilder">
-      <img src="gallery/ola-k/untitled--15.jpg" alt="Dronebilde" loading="lazy" data-section="Dronebilder">
-      <img src="gallery/ola-k/untitled--2.jpg" alt="Dronebilde" loading="lazy" data-section="Dronebilder">
-      <img src="gallery/ola-k/untitled--9.jpg" alt="Dronebilde" loading="lazy" data-section="Dronebilder">
-      <img src="gallery/vang-bygg-oversikt/untitled--10.jpg" alt="Vang bygg" loading="lazy" data-section="Dronebilder">
-      <img src="gallery/vang-bygg-oversikt/untitled--14.jpg" alt="Vang bygg" loading="lazy" data-section="Dronebilder">
-      <img src="gallery/vang-bygg-oversikt/untitled--2.jpg" alt="Vang bygg" loading="lazy" data-section="Dronebilder">
-      <img src="gallery/vang-bygg-oversikt/untitled--20.jpg" alt="Vang bygg" loading="lazy" data-section="Dronebilder">
-      <img src="gallery/vang-bygg-oversikt/untitled--6.jpg" alt="Vang bygg" loading="lazy" data-section="Dronebilder">
-    </div>
-  </section>
-
-  <!-- VANG KOMMUNE -->
-  <section class="portfolio-section reveal" data-category="drone">
-    <div class="section-label" data-no="Kommune" data-en="Municipality" data-de="Gemeinde">Kommune</div>
-    <div class="section-header">
-      <h2 data-no="Vang kommune" data-en="Vang municipality" data-de="Gemeinde Vang">Vang kommune</h2>
-      <p data-no="Droneoppdrag for Vang kommune – Sentrum og reklamefilm" data-en="Drone assignment for Vang municipality – Center and commercial" data-de="Drohneneinsatz für Gemeinde Vang – Zentrum und Werbefilm">Droneoppdrag for Vang kommune – Sentrum og reklamefilm</p>
-    </div>
-    <div class="portfolio-grid" id="grid-vangkommune">
-      <img src="gallery/vang-kommune-sentrum/DJI_20250921114906_0193_D.jpg" alt="Vang kommune" loading="lazy" data-section="Vang kommune">
-      <img src="gallery/vang-kommune-sentrum/DJI_20250921115035_0195_D.jpg" alt="Vang kommune" loading="lazy" data-section="Vang kommune">
-      <img src="gallery/vang-kommune-sentrum/DJI_20250921115332_0198_D.jpg" alt="Vang kommune" loading="lazy" data-section="Vang kommune">
-      <img src="gallery/vang-kommune-sentrum/DJI_20250921115411_0201_D.jpg" alt="Vang kommune" loading="lazy" data-section="Vang kommune">
-      <img src="gallery/vang-kommune-sentrum/DJI_20251006083055_0205_D.jpg" alt="Vang kommune" loading="lazy" data-section="Vang kommune">
-      <img src="gallery/vang-kommune-sentrum/DJI_20251006084058_0212_D.jpg" alt="Vang kommune" loading="lazy" data-section="Vang kommune">
-      <img src="gallery/vang-kommune-sentrum/DJI_20251006084404_0221_D.jpg" alt="Vang kommune" loading="lazy" data-section="Vang kommune">
-      <img src="gallery/vang-kommune-sentrum/DJI_20251006085633_0225_D.jpg" alt="Vang kommune" loading="lazy" data-section="Vang kommune">
-      <img src="gallery/vang-kommune-sentrum/DJI_20251006091304_0231_D.jpg" alt="Vang kommune" loading="lazy" data-section="Vang kommune">
-      <img src="gallery/vang-kommune-sentrum/DJI_20251006091923_0234_D.jpg" alt="Vang kommune" loading="lazy" data-section="Vang kommune">
-      <img src="gallery/vang-kommune-sentrum/DJI_20251006092135_0238_D.jpg" alt="Vang kommune" loading="lazy" data-section="Vang kommune">
-      <img src="gallery/vang-kommune-sentrum/DJI_20251006092218_0241_D.jpg" alt="Vang kommune" loading="lazy" data-section="Vang kommune">
-      <img src="gallery/vang-kommune-sentrum/DJI_20251006093037_0243_D.jpg" alt="Vang kommune" loading="lazy" data-section="Vang kommune">
-      <img src="gallery/vang-kommune-sentrum/DJI_20251006095230_0248_D.jpg" alt="Vang kommune" loading="lazy" data-section="Vang kommune">
-      <img src="gallery/vang-kommune-sentrum/DJI_20251006095433_0251_D.jpg" alt="Vang kommune" loading="lazy" data-section="Vang kommune">
-      <img src="gallery/vang-kommune-sentrum/DJI_20251006095542_0253_D.jpg" alt="Vang kommune" loading="lazy" data-section="Vang kommune">
-      <img src="gallery/vang-kommune-sentrum/DJI_20251006102449_0256_D.jpg" alt="Vang kommune" loading="lazy" data-section="Vang kommune">
-    </div>
-  </section>
-
-  <!-- VINJEROCK -->
-  <section class="portfolio-section reveal" data-category="event">
-    <div class="section-label" data-no="Vinjerock" data-en="Vinjerock" data-de="Vinjerock">Vinjerock</div>
-    <div class="section-header">
-      <h2 data-no="Vinjerock" data-en="Vinjerock" data-de="Vinjerock">Vinjerock</h2>
-      <p data-no="Fotografering og drone under Vinjerock festivalen" data-en="Photography and drone during Vinjerock festival" data-de="Fotografie und Drohne während des Vinjerock-Festivals">Fotografering og drone under Vinjerock festivalen</p>
-    </div>
-    <div class="portfolio-grid" id="grid-vinjerock">
-      <img src="gallery/vinjerock-drone/untitled--16.jpg" alt="Vinjerock drone" loading="lazy" data-section="Vinjerock">
-      <img src="gallery/vinjerock-drone/untitled--2.jpg" alt="Vinjerock drone" loading="lazy" data-section="Vinjerock">
-      <img src="gallery/vinjerock-drone/untitled--9.jpg" alt="Vinjerock drone" loading="lazy" data-section="Vinjerock">
-      <img src="gallery/vinjerock/untitled-7604.jpg" alt="Vinjerock" loading="lazy" data-section="Vinjerock">
-      <img src="gallery/vinjerock/untitled-7610.jpg" alt="Vinjerock" loading="lazy" data-section="Vinjerock">
-      <img src="gallery/vinjerock/untitled-7624.jpg" alt="Vinjerock" loading="lazy" data-section="Vinjerock">
-      <img src="gallery/vinjerock/untitled-7639.jpg" alt="Vinjerock" loading="lazy" data-section="Vinjerock">
-      <img src="gallery/vinjerock/untitled-7648.jpg" alt="Vinjerock" loading="lazy" data-section="Vinjerock">
-      <img src="gallery/vinjerock/untitled-7654.jpg" alt="Vinjerock" loading="lazy" data-section="Vinjerock">
-      <img src="gallery/vinjerock/untitled-7799.jpg" alt="Vinjerock" loading="lazy" data-section="Vinjerock">
-      <img src="gallery/vinjerock/untitled-7812.jpg" alt="Vinjerock" loading="lazy" data-section="Vinjerock">
-    </div>
-  </section>
-
-  <!-- BILER -->
-  <section class="portfolio-section reveal" data-category="biler">
-    <div class="section-label" data-no="Biler" data-en="Cars" data-de="Autos">Biler</div>
-    <div class="section-header">
-      <h2 data-no="Biler" data-en="Cars" data-de="Autos">Biler</h2>
-      <p data-no="Bilfotografering og reklame" data-en="Car photography and commercials" data-de="Auto-Fotografie und Werbung">Bilfotografering og reklame</p>
-    </div>
-    <div class="portfolio-grid" id="grid-biler">
-      <img src="gallery/biler/untitled-9289.jpg" alt="Bil" loading="lazy" data-section="Biler">
-      <img src="gallery/biler/untitled-9203.jpg" alt="Bil" loading="lazy" data-section="Biler">
-      <img src="gallery/biler/untitled-9300.jpg" alt="Bil" loading="lazy" data-section="Biler">
-      <img src="gallery/biler/untitled-9286.jpg" alt="Bil" loading="lazy" data-section="Biler">
-      <img src="gallery/biler/untitled-9327.jpg" alt="Bil" loading="lazy" data-section="Biler">
-      <img src="gallery/biler/untitled-9223.jpg" alt="Bil" loading="lazy" data-section="Biler">
-      <img src="gallery/biler/untitled-9341.jpg" alt="Bil" loading="lazy" data-section="Biler">
-      <img src="gallery/biler/untitled-9320.jpg" alt="Bil" loading="lazy" data-section="Biler">
-      <img src="gallery/biler/bilde1.jpg" alt="Bil" loading="lazy" data-section="Biler">
-      <img src="gallery/biler/bilde2.jpg" alt="Bil" loading="lazy" data-section="Biler">
-    </div>
-  </section>
-
-  <!-- NATUR & LANDSKAP -->
-  <section class="portfolio-section reveal" data-category="foto">
-    <div class="section-label" data-no="Natur" data-en="Nature" data-de="Natur">Natur</div>
-    <div class="section-header">
-      <h2 data-no="Natur & Landskap" data-en="Nature & Landscape" data-de="Natur & Landschaft">Natur & Landskap</h2>
-      <p data-no="Natur, landskap og stemningsbilder fra Innlandet" data-en="Nature, landscape and mood photos from Innlandet" data-de="Natur-, Landschafts- und Stimmungsbilder aus Innlandet">Natur, landskap og stemningsbilder fra Innlandet</p>
-    </div>
-    <div class="portfolio-grid" id="grid-natur">
-      <img src="gallery/andre natur bilder/untitled-7864.jpg" alt="Natur" loading="lazy" data-section="Natur">
-      <img src="gallery/andre natur bilder/untitled-7914.jpg" alt="Natur" loading="lazy" data-section="Natur">
-      <img src="gallery/andre natur bilder/untitled-7896.jpg" alt="Natur" loading="lazy" data-section="Natur">
-      <img src="gallery/andre natur bilder/untitled-4191.jpg" alt="Natur" loading="lazy" data-section="Natur">
-      <img src="gallery/andre natur bilder/untitled-.jpg" alt="Natur" loading="lazy" data-section="Natur">
-      <img src="gallery/andre natur bilder/untitled--3.jpg" alt="Natur" loading="lazy" data-section="Natur">
-      <img src="gallery/andre natur bilder/untitled--2.jpg" alt="Natur" loading="lazy" data-section="Natur">
-      <img src="gallery/andre natur bilder/falke.jpg" alt="Natur" loading="lazy" data-section="Natur">
-      <img src="gallery/andre natur bilder/bildermamma-4.jpg" alt="Natur" loading="lazy" data-section="Natur">
-      <img src="gallery/andre natur bilder/bildermamma-2.jpg" alt="Natur" loading="lazy" data-section="Natur">
-    </div>
-  </section>
-</main>
-
-<footer>
-  <div class="footer-left">
+  <header id="header">
     <a href="index.html" class="logo">Solemsli Productions</a>
-    <p>Høgesetvegen 52, 2985 Tyinkrysset</p>
-    <p>rakso8080@gmail.com</p>
-    <p class="footer-legal">Org.nr: 935 203 708 · ENK · MVA-registrert</p>
-    <p class="footer-legal">© 2026 Solemsli Productions</p>
+    <button class="menu-toggle" type="button" aria-label="Meny" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span></button>
+    <nav id="site-nav" aria-label="Hovedmeny">
+      <a href="index.html" data-no="Hjem" data-en="Home" data-de="Startseite">Hjem</a>
+      <a href="about.html" data-no="Om meg" data-en="About" data-de="Über mich">Om meg</a>
+      <a href="projects.html" class="active" aria-current="page" data-no="Portfolio" data-en="Portfolio" data-de="Portfolio">Portfolio</a>
+      <a href="shop.html" data-no="Shop" data-en="Shop" data-de="Shop">Shop</a>
+      <a href="prices.html" data-no="Priser" data-en="Pricing" data-de="Preise">Priser</a>
+      <a href="contact.html" data-no="Kontakt" data-en="Contact" data-de="Kontakt">Kontakt</a>
+      <button class="nav-btn" id="lang-toggle" aria-label="Bytt språk">EN</button>
+      <button class="nav-btn" id="theme-toggle" aria-label="Bytt tema">☀ Lys</button>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-bg"><img src="gallery/andre natur bilder/untitled-7896.jpg" alt="Fjellandskap fotografert i Innlandet" fetchpriority="high" width="1600" height="816" srcset="gallery/andre%20natur%20bilder/untitled-7896-480.webp 480w, gallery/andre%20natur%20bilder/untitled-7896-960.webp 960w" sizes="100vw" decoding="async" data-full="gallery/andre%20natur%20bilder/untitled-7896-960.webp"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-badge" data-no="Utvalgt arbeid" data-en="Selected work" data-de="Ausgewählte Arbeiten">Utvalgt arbeid</div>
+      <h1 data-no="Portfolio" data-en="Portfolio" data-de="Portfolio">Portfolio</h1>
+      <p data-no="Et utvalg foto, video og droneprosjekter fra Innlandet og utover." data-en="A selection of photo, video and drone projects from Innlandet and beyond." data-de="Eine Auswahl an Foto-, Video- und Drohnenprojekten aus Innlandet und darüber hinaus.">Et utvalg foto, video og droneprosjekter fra Innlandet og utover.</p>
+    </div>
+  </section>
+
+  <div class="filter-bar">
+    <div class="filter-tabs" role="tablist" aria-label="Filtrer portfolio">
+      <button class="filter-tab active" data-filter="all" role="tab" aria-selected="true" data-no="Alle" data-en="All" data-de="Alle">Alle</button>
+      <button class="filter-tab" data-filter="foto" role="tab" aria-selected="false" data-no="Foto" data-en="Photo" data-de="Foto">Foto</button>
+      <button class="filter-tab" data-filter="video" role="tab" aria-selected="false" data-no="Video" data-en="Video" data-de="Video">Video</button>
+      <button class="filter-tab" data-filter="drone" role="tab" aria-selected="false" data-no="Drone" data-en="Drone" data-de="Drohne">Drone</button>
+      <button class="filter-tab" data-filter="bryllup" role="tab" aria-selected="false" data-no="Bryllup" data-en="Wedding" data-de="Hochzeit">Bryllup</button>
+      <button class="filter-tab" data-filter="event" role="tab" aria-selected="false" data-no="Event" data-en="Event" data-de="Event">Event</button>
+      <button class="filter-tab" data-filter="biler" role="tab" aria-selected="false" data-no="Biler" data-en="Cars" data-de="Autos">Biler</button>
+    </div>
   </div>
-  <div class="footer-links">
-    <a href="https://www.instagram.com/solemsli_productions/" target="_blank" rel="noopener noreferrer">Instagram</a>
-    <a href="contact.html" data-no="Kontakt" data-en="Contact" data-de="Kontakt">Kontakt</a>
-    <a href="about.html" data-no="Om meg" data-en="About" data-de="Über mich">Om meg</a>
-    <a href="personvern.html" data-no="Personvern" data-en="Privacy" data-de="Datenschutz">Personvern</a>
-    <a href="salgsbetingelser.html" data-no="Salgsbetingelser" data-en="Terms" data-de="AGB">Salgsbetingelser</a>
+
+  <main id="main-content">
+
+    <!-- 1. SHOWREEL -->
+    <section class="portfolio-section" id="showreel">
+      <div class="section-head">
+        <div>
+          <span class="section-label" data-no="Showreel" data-en="Showreel" data-de="Showreel">Showreel</span>
+          <h2 class="section-title" data-no="Min visuelle presentasjon" data-en="My visual showcase" data-de="Mein visuelles Portfolio">Min visuelle presentasjon</h2>
+        </div>
+      </div>
+      <div class="video-grid single">
+        <div class="video-wrapper"><button class="video-facade" type="button" data-video="tWI3Mv6Zr5s" data-title="Showreel – Solemsli Productions" data-aria-no="Spill av: Showreel – Solemsli Productions" data-aria-en="Play: Showreel – Solemsli Productions" data-aria-de="Abspielen: Showreel – Solemsli Productions" aria-label="Spill av: Showreel – Solemsli Productions"><img src="video-thumbs/tWI3Mv6Zr5s.webp" alt="" width="1280" height="720" loading="lazy" decoding="async"><span class="video-play" aria-hidden="true"></span></button></div>
+      </div>
+    </section>
+
+    <!-- 2. FOTO: UTVALGTE ARBEIDER -->
+    <section class="portfolio-section" id="utvalgte" data-category="foto">
+      <div class="section-head">
+        <div>
+          <span class="section-label" data-no="Foto" data-en="Photo" data-de="Foto">Foto</span>
+          <h2 class="section-title" data-no="Utvalgte arbeider" data-en="Selected work" data-de="Ausgewählte Arbeiten">Utvalgte arbeider</h2>
+          <p class="section-desc" data-no="Et knippe bilder fra ulike oppdrag og prosjekter." data-en="A handful of images from various assignments and projects." data-de="Eine Auswahl an Bildern aus verschiedenen Aufträgen und Projekten.">Et knippe bilder fra ulike oppdrag og prosjekter.</p>
+        </div>
+        <span class="count"></span>
+      </div>
+      <div class="portfolio-grid">
+        <div class="img-wrap"><img fetchpriority="high" src="bilde9.jpg" alt="Dronebilde av fjellandskap i solnedgang" loading="eager" data-section="Utvalgte arbeider" data-desc="Fjellandskap i solnedgang, Innlandet." width="2000" height="1408" srcset="bilde9-480.webp 480w, bilde9-960.webp 960w, bilde9-1600.webp 1600w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="bilde9-1600.webp"></div>
+        <div class="img-wrap"><img src="gallery/andre natur bilder/bilde3.jpg" alt="Innlandskap med åkre og skog" loading="eager" data-section="Utvalgte arbeider" data-desc="Åkre og skog i Innlandet." width="2000" height="1125" srcset="gallery/andre%20natur%20bilder/bilde3-480.webp 480w, gallery/andre%20natur%20bilder/bilde3-960.webp 960w, gallery/andre%20natur%20bilder/bilde3-1600.webp 1600w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/andre%20natur%20bilder/bilde3-1600.webp"></div>
+        <div class="img-wrap"><img src="gallery/andre natur bilder/bilde4.jpg" alt="Portrett i naturlig lys" loading="eager" data-section="Utvalgte arbeider" data-desc="Portrett fotografert i naturlig lys." width="2000" height="1125" srcset="gallery/andre%20natur%20bilder/bilde4-480.webp 480w, gallery/andre%20natur%20bilder/bilde4-960.webp 960w, gallery/andre%20natur%20bilder/bilde4-1600.webp 1600w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/andre%20natur%20bilder/bilde4-1600.webp"></div>
+        <div class="img-wrap"><img src="gallery/andre natur bilder/bilde5.jpg" alt="Dronebilde over vann" loading="lazy" data-section="Utvalgte arbeider" data-desc="Vann sett fra luften." width="2000" height="1125" srcset="gallery/andre%20natur%20bilder/bilde5-480.webp 480w, gallery/andre%20natur%20bilder/bilde5-960.webp 960w, gallery/andre%20natur%20bilder/bilde5-1600.webp 1600w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/andre%20natur%20bilder/bilde5-1600.webp"></div>
+        <div class="img-wrap"><img src="gallery/andre natur bilder/bilde6.jpg" alt="Landskapsbilde med fjell" loading="lazy" data-section="Utvalgte arbeider" data-desc="Fjellandskap i blått lys." width="2000" height="1125" srcset="gallery/andre%20natur%20bilder/bilde6-480.webp 480w, gallery/andre%20natur%20bilder/bilde6-960.webp 960w, gallery/andre%20natur%20bilder/bilde6-1600.webp 1600w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/andre%20natur%20bilder/bilde6-1600.webp"></div>
+        <div class="img-wrap"><img src="gallery/andre natur bilder/bilde7.jpg" alt="Dronebilde av skog" loading="lazy" data-section="Utvalgte arbeider" data-desc="Skog sett ovenfra." width="2000" height="1125" srcset="gallery/andre%20natur%20bilder/bilde7-480.webp 480w, gallery/andre%20natur%20bilder/bilde7-960.webp 960w, gallery/andre%20natur%20bilder/bilde7-1600.webp 1600w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/andre%20natur%20bilder/bilde7-1600.webp"></div>
+        <div class="img-wrap"><img src="gallery/andre natur bilder/bilde10.jpg" alt="Nordlys over vinterlandskap" loading="lazy" data-section="Utvalgte arbeider" data-desc="Nordlys over vinterlandskap." width="2000" height="1125" srcset="gallery/andre%20natur%20bilder/bilde10-480.webp 480w, gallery/andre%20natur%20bilder/bilde10-960.webp 960w, gallery/andre%20natur%20bilder/bilde10-1600.webp 1600w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/andre%20natur%20bilder/bilde10-1600.webp"></div>
+        <div class="img-wrap"><img src="gallery/andre natur bilder/bilde11.jpg" alt="Solnedgang over fjellkjede" loading="lazy" data-section="Utvalgte arbeider" data-desc="Solnedgang over fjellkjeden." width="2000" height="1125" srcset="gallery/andre%20natur%20bilder/bilde11-480.webp 480w, gallery/andre%20natur%20bilder/bilde11-960.webp 960w, gallery/andre%20natur%20bilder/bilde11-1600.webp 1600w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/andre%20natur%20bilder/bilde11-1600.webp"></div>
+        <div class="img-wrap"><img src="bilde12.jpg" alt="Detaljbilde av natur" loading="lazy" data-section="Utvalgte arbeider" data-desc="Naturdetalj." width="2000" height="1125" srcset="bilde12-480.webp 480w, bilde12-960.webp 960w, bilde12-1600.webp 1600w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="bilde12-1600.webp"></div>
+        <div class="img-wrap"><img src="bilde13.jpg" alt="Landskap i blåtime" loading="lazy" data-section="Utvalgte arbeider" data-desc="Landskap i blåtime." width="1106" height="2000" srcset="bilde13-480.webp 480w, bilde13-960.webp 960w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="bilde13-960.webp"></div>
+        <div class="img-wrap"><img src="bilde14.jpg" alt="Fjelltopp i skodde" loading="lazy" data-section="Utvalgte arbeider" data-desc="Fjelltopp i skodde." width="2000" height="1125" srcset="bilde14-480.webp 480w, bilde14-960.webp 960w, bilde14-1600.webp 1600w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="bilde14-1600.webp"></div>
+      </div>
+    </section>
+
+    <!-- 3. FOTO: NATUR & LANDSKAP -->
+    <section class="portfolio-section" id="natur" data-category="foto">
+      <div class="section-head">
+        <div>
+          <span class="section-label" data-no="Foto" data-en="Photo" data-de="Foto">Foto</span>
+          <h2 class="section-title" data-no="Natur & landskap" data-en="Nature & landscape" data-de="Natur & Landschaft">Natur & landskap</h2>
+          <p class="section-desc" data-no="Natur, landskap og stemningsbilder fra Innlandet." data-en="Nature, landscape and mood photos from Innlandet." data-de="Natur-, Landschafts- und Stimmungsbilder aus Innlandet.">Natur, landskap og stemningsbilder fra Innlandet.</p>
+        </div>
+        <span class="count"></span>
+      </div>
+      <div class="portfolio-grid">
+        <div class="img-wrap"><img src="gallery/andre natur bilder/untitled-7864.jpg" alt="Naturlandskap med fjell og vann" loading="lazy" data-section="Natur & landskap" data-desc="Fjell og vann i Innlandet." width="5293" height="3430" srcset="gallery/andre%20natur%20bilder/untitled-7864-480.webp 480w, gallery/andre%20natur%20bilder/untitled-7864-960.webp 960w, gallery/andre%20natur%20bilder/untitled-7864-1600.webp 1600w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/andre%20natur%20bilder/untitled-7864-1600.webp"></div>
+        <div class="img-wrap"><img src="gallery/andre natur bilder/untitled-7914.jpg" alt="Vidde i kveldslys" loading="lazy" data-section="Natur & landskap" data-desc="Vidde i kveldslys." width="1600" height="900" srcset="gallery/andre%20natur%20bilder/untitled-7914-480.webp 480w, gallery/andre%20natur%20bilder/untitled-7914-960.webp 960w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/andre%20natur%20bilder/untitled-7914-960.webp"></div>
+        <div class="img-wrap"><img src="gallery/andre natur bilder/untitled-7896.jpg" alt="Fjellandskap fotografert i motlys" loading="lazy" data-section="Natur & landskap" data-desc="Fjellandskap i motlys." width="1600" height="816" srcset="gallery/andre%20natur%20bilder/untitled-7896-480.webp 480w, gallery/andre%20natur%20bilder/untitled-7896-960.webp 960w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/andre%20natur%20bilder/untitled-7896-960.webp"></div>
+        <div class="img-wrap"><img src="gallery/andre natur bilder/untitled-4191.jpg" alt="Skog og fjell i tåke" loading="lazy" data-section="Natur & landskap" data-desc="Skog og fjell i tåke." width="2000" height="1125" srcset="gallery/andre%20natur%20bilder/untitled-4191-480.webp 480w, gallery/andre%20natur%20bilder/untitled-4191-960.webp 960w, gallery/andre%20natur%20bilder/untitled-4191-1600.webp 1600w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/andre%20natur%20bilder/untitled-4191-1600.webp"></div>
+        <div class="img-wrap"><img src="gallery/andre natur bilder/untitled-.jpg" alt="Landskap ved solnedgang" loading="lazy" data-section="Natur & landskap" data-desc="Landskap ved solnedgang." width="1600" height="1126" srcset="gallery/andre%20natur%20bilder/untitled--480.webp 480w, gallery/andre%20natur%20bilder/untitled--960.webp 960w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/andre%20natur%20bilder/untitled--960.webp"></div>
+        <div class="img-wrap"><img src="gallery/andre natur bilder/untitled--3.jpg" alt="Fjellside med snø" loading="lazy" data-section="Natur & landskap" data-desc="Fjellside med snø." width="1600" height="2844" srcset="gallery/andre%20natur%20bilder/untitled--3-480.webp 480w, gallery/andre%20natur%20bilder/untitled--3-960.webp 960w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/andre%20natur%20bilder/untitled--3-960.webp"></div>
+        <div class="img-wrap"><img src="gallery/andre natur bilder/untitled--2.jpg" alt="Fjellandskap i vinterlys" loading="lazy" data-section="Natur & landskap" data-desc="Fjellandskap i vinterlys." width="1600" height="900" srcset="gallery/andre%20natur%20bilder/untitled--2-480.webp 480w, gallery/andre%20natur%20bilder/untitled--2-960.webp 960w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/andre%20natur%20bilder/untitled--2-960.webp"></div>
+        <div class="img-wrap"><img src="gallery/andre natur bilder/falke.jpg" alt="Falke i flukt" loading="lazy" data-section="Natur & landskap" data-desc="Falke fotografert i flukt." width="2000" height="1125" srcset="gallery/andre%20natur%20bilder/falke-480.webp 480w, gallery/andre%20natur%20bilder/falke-960.webp 960w, gallery/andre%20natur%20bilder/falke-1600.webp 1600w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/andre%20natur%20bilder/falke-1600.webp"></div>
+        <div class="img-wrap"><img src="gallery/andre natur bilder/bildermamma-4.jpg" alt="Naturmotiv med mykt lys" loading="lazy" data-section="Natur & landskap" data-desc="Naturmotiv med mykt lys." width="2000" height="1125" srcset="gallery/andre%20natur%20bilder/bildermamma-4-480.webp 480w, gallery/andre%20natur%20bilder/bildermamma-4-960.webp 960w, gallery/andre%20natur%20bilder/bildermamma-4-1600.webp 1600w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/andre%20natur%20bilder/bildermamma-4-1600.webp"></div>
+        <div class="img-wrap"><img src="gallery/andre natur bilder/bildermamma-2.jpg" alt="Landskapsdetalj fra fjellet" loading="lazy" data-section="Natur & landskap" data-desc="Landskapsdetalj fra fjellet." width="2000" height="1125" srcset="gallery/andre%20natur%20bilder/bildermamma-2-480.webp 480w, gallery/andre%20natur%20bilder/bildermamma-2-960.webp 960w, gallery/andre%20natur%20bilder/bildermamma-2-1600.webp 1600w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/andre%20natur%20bilder/bildermamma-2-1600.webp"></div>
+      </div>
+    </section>
+
+    <!-- 4. VIDEO: VIDEOPROSJEKTER -->
+    <section class="portfolio-section" id="video" data-category="video">
+      <div class="section-head">
+        <div>
+          <span class="section-label" data-no="Video" data-en="Video" data-de="Video">Video</span>
+          <h2 class="section-title" data-no="Videoprosjekter" data-en="Video projects" data-de="Videoprojekte">Videoprosjekter</h2>
+          <p class="section-desc" data-no="Film og dronevideo fra oppdrag og egne prosjekter." data-en="Film and drone video from assignments and personal projects." data-de="Film- und Drohnenvideo aus Aufträgen und eigenen Projekten.">Film og dronevideo fra oppdrag og egne prosjekter.</p>
+        </div>
+        <span class="count"></span>
+      </div>
+      <div class="video-grid">
+        <div class="video-wrapper"><button class="video-facade" type="button" data-video="kihsArSq2S4" data-title="Videoprosjekt 1" data-aria-no="Spill av: Videoprosjekt 1" data-aria-en="Play: Videoprosjekt 1" data-aria-de="Abspielen: Videoprosjekt 1" aria-label="Spill av: Videoprosjekt 1"><img src="video-thumbs/kihsArSq2S4.webp" alt="" width="1280" height="720" loading="lazy" decoding="async"><span class="video-play" aria-hidden="true"></span></button></div>
+        <div class="video-wrapper"><button class="video-facade" type="button" data-video="bDoI1o90tz0" data-title="Videoprosjekt 2" data-aria-no="Spill av: Videoprosjekt 2" data-aria-en="Play: Videoprosjekt 2" data-aria-de="Abspielen: Videoprosjekt 2" aria-label="Spill av: Videoprosjekt 2"><img src="video-thumbs/bDoI1o90tz0.webp" alt="" width="1280" height="720" loading="lazy" decoding="async"><span class="video-play" aria-hidden="true"></span></button></div>
+        <div class="video-wrapper"><button class="video-facade" type="button" data-video="dnu5sXuDk8k" data-title="Videoprosjekt 3" data-aria-no="Spill av: Videoprosjekt 3" data-aria-en="Play: Videoprosjekt 3" data-aria-de="Abspielen: Videoprosjekt 3" aria-label="Spill av: Videoprosjekt 3"><img src="video-thumbs/dnu5sXuDk8k.webp" alt="" width="1280" height="720" loading="lazy" decoding="async"><span class="video-play" aria-hidden="true"></span></button></div>
+        <div class="video-wrapper"><button class="video-facade" type="button" data-video="fUQSoRY_zSU" data-title="Videoprosjekt 4" data-aria-no="Spill av: Videoprosjekt 4" data-aria-en="Play: Videoprosjekt 4" data-aria-de="Abspielen: Videoprosjekt 4" aria-label="Spill av: Videoprosjekt 4"><img src="video-thumbs/fUQSoRY_zSU.webp" alt="" width="1280" height="720" loading="lazy" decoding="async"><span class="video-play" aria-hidden="true"></span></button></div>
+        <div class="video-wrapper"><button class="video-facade" type="button" data-video="jeBpYkVWngU" data-title="Videoprosjekt 5" data-aria-no="Spill av: Videoprosjekt 5" data-aria-en="Play: Videoprosjekt 5" data-aria-de="Abspielen: Videoprosjekt 5" aria-label="Spill av: Videoprosjekt 5"><img src="video-thumbs/jeBpYkVWngU.webp" alt="" width="1280" height="720" loading="lazy" decoding="async"><span class="video-play" aria-hidden="true"></span></button></div>
+      </div>
+    </section>
+
+    <!-- 5. VIDEO: SHORTS -->
+    <section class="portfolio-section" id="shorts" data-category="video">
+      <div class="section-head">
+        <div>
+          <span class="section-label" data-no="Shorts" data-en="Shorts" data-de="Shorts">Shorts</span>
+          <h2 class="section-title" data-no="Korte formater" data-en="Short formats" data-de="Kurzformate">Korte formater</h2>
+          <p class="section-desc" data-no="Korte klipp laget for sosiale medier." data-en="Short clips made for social media." data-de="Kurze Clips für soziale Medien.">Korte klipp laget for sosiale medier.</p>
+        </div>
+        <span class="count"></span>
+      </div>
+      <div class="shorts-grid">
+        <div class="video-wrapper"><button class="video-facade" type="button" data-video="zmlPOtFY9_8" data-title="Short 1" data-aria-no="Spill av: Short 1" data-aria-en="Play: Short 1" data-aria-de="Abspielen: Short 1" aria-label="Spill av: Short 1"><img src="video-thumbs/zmlPOtFY9_8.webp" alt="" width="1280" height="720" loading="lazy" decoding="async"><span class="video-play" aria-hidden="true"></span></button></div>
+        <div class="video-wrapper"><button class="video-facade" type="button" data-video="ZRK-0-iUAj8" data-title="Short 2" data-aria-no="Spill av: Short 2" data-aria-en="Play: Short 2" data-aria-de="Abspielen: Short 2" aria-label="Spill av: Short 2"><img src="video-thumbs/ZRK-0-iUAj8.webp" alt="" width="1280" height="720" loading="lazy" decoding="async"><span class="video-play" aria-hidden="true"></span></button></div>
+        <div class="video-wrapper"><button class="video-facade" type="button" data-video="qyguQjbqtzk" data-title="Short 3" data-aria-no="Spill av: Short 3" data-aria-en="Play: Short 3" data-aria-de="Abspielen: Short 3" aria-label="Spill av: Short 3"><img src="video-thumbs/qyguQjbqtzk.webp" alt="" width="1280" height="720" loading="lazy" decoding="async"><span class="video-play" aria-hidden="true"></span></button></div>
+        <div class="video-wrapper"><button class="video-facade" type="button" data-video="V599osfVA9Y" data-title="Short 4" data-aria-no="Spill av: Short 4" data-aria-en="Play: Short 4" data-aria-de="Abspielen: Short 4" aria-label="Spill av: Short 4"><img src="video-thumbs/V599osfVA9Y.webp" alt="" width="1280" height="720" loading="lazy" decoding="async"><span class="video-play" aria-hidden="true"></span></button></div>
+      </div>
+    </section>
+
+    <!-- 6. DRONE: DRONEBILDER -->
+    <section class="portfolio-section" id="drone" data-category="drone">
+      <div class="section-head">
+        <div>
+          <span class="section-label" data-no="Drone" data-en="Drone" data-de="Drohne">Drone</span>
+          <h2 class="section-title" data-no="Dronebilder" data-en="Aerial photos" data-de="Drohnenbilder">Dronebilder</h2>
+          <p class="section-desc" data-no="Oversiktsbilder og landskap fra luften." data-en="Aerial shots and landscapes from above." data-de="Luftaufnahmen und Landschaften aus der Luft.">Oversiktsbilder og landskap fra luften.</p>
+        </div>
+        <span class="count"></span>
+      </div>
+      <div class="portfolio-grid">
+        <div class="img-wrap"><img src="gallery/ola-k/untitled--15.jpg" alt="Dronebilde av skog og vann" loading="lazy" data-section="Dronebilder" data-desc="Skog og vann sett fra luften." width="1600" height="1126" srcset="gallery/ola-k/untitled--15-480.webp 480w, gallery/ola-k/untitled--15-960.webp 960w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/ola-k/untitled--15-960.webp"></div>
+        <div class="img-wrap"><img src="gallery/ola-k/untitled--2.jpg" alt="Dronebilde av skogsområde" loading="lazy" data-section="Dronebilder" data-desc="Skogsområde fra luften." width="1600" height="1126" srcset="gallery/ola-k/untitled--2-480.webp 480w, gallery/ola-k/untitled--2-960.webp 960w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/ola-k/untitled--2-960.webp"></div>
+        <div class="img-wrap"><img src="gallery/ola-k/untitled--9.jpg" alt="Dronebilde av elv gjennom skog" loading="lazy" data-section="Dronebilder" data-desc="Elv gjennom skogen." width="1600" height="900" srcset="gallery/ola-k/untitled--9-480.webp 480w, gallery/ola-k/untitled--9-960.webp 960w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/ola-k/untitled--9-960.webp"></div>
+        <div class="img-wrap"><img src="gallery/vang-bygg-oversikt/untitled--10.jpg" alt="Byggeprosjekt sett fra drone" loading="lazy" data-section="Dronebilder" data-desc="Byggeprosjekt fotografert med drone." width="1600" height="900" srcset="gallery/vang-bygg-oversikt/untitled--10-480.webp 480w, gallery/vang-bygg-oversikt/untitled--10-960.webp 960w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/vang-bygg-oversikt/untitled--10-960.webp"></div>
+        <div class="img-wrap"><img src="gallery/vang-bygg-oversikt/untitled--14.jpg" alt="Oversiktsbilde av byggeplass" loading="lazy" data-section="Dronebilder" data-desc="Oversiktsbilde av byggeplassen." width="1600" height="900" srcset="gallery/vang-bygg-oversikt/untitled--14-480.webp 480w, gallery/vang-bygg-oversikt/untitled--14-960.webp 960w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/vang-bygg-oversikt/untitled--14-960.webp"></div>
+        <div class="img-wrap"><img src="gallery/vang-bygg-oversikt/untitled--2.jpg" alt="Bygg og tomt fra luften" loading="lazy" data-section="Dronebilder" data-desc="Bygg og tomt fra luften." width="1600" height="900" srcset="gallery/vang-bygg-oversikt/untitled--2-480.webp 480w, gallery/vang-bygg-oversikt/untitled--2-960.webp 960w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/vang-bygg-oversikt/untitled--2-960.webp"></div>
+        <div class="img-wrap"><img src="gallery/vang-bygg-oversikt/untitled--20.jpg" alt="Dronebilde av eiendom" loading="lazy" data-section="Dronebilder" data-desc="Eiendom fotografert fra luften." width="1600" height="900" srcset="gallery/vang-bygg-oversikt/untitled--20-480.webp 480w, gallery/vang-bygg-oversikt/untitled--20-960.webp 960w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/vang-bygg-oversikt/untitled--20-960.webp"></div>
+        <div class="img-wrap"><img src="gallery/vang-bygg-oversikt/untitled--6.jpg" alt="Byggeprosjekt i landskapet" loading="lazy" data-section="Dronebilder" data-desc="Byggeprosjekt i landskapet." width="1600" height="900" srcset="gallery/vang-bygg-oversikt/untitled--6-480.webp 480w, gallery/vang-bygg-oversikt/untitled--6-960.webp 960w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/vang-bygg-oversikt/untitled--6-960.webp"></div>
+      </div>
+    </section>
+
+    <!-- 7. DRONE: VANG KOMMUNE -->
+    <section class="portfolio-section" id="vang" data-category="drone">
+      <div class="section-head">
+        <div>
+          <span class="section-label" data-no="Drone" data-en="Drone" data-de="Drohne">Drone</span>
+          <h2 class="section-title" data-no="Vang kommune" data-en="Vang municipality" data-de="Gemeinde Vang">Vang kommune</h2>
+          <p class="section-desc" data-no="Droneoppdrag for Vang kommune – sentrum og reklamefilm." data-en="Drone assignment for Vang municipality – town centre and commercial." data-de="Drohneneinsatz für die Gemeinde Vang – Zentrum und Werbefilm.">Droneoppdrag for Vang kommune – sentrum og reklamefilm.</p>
+        </div>
+        <span class="count"></span>
+      </div>
+      <div class="portfolio-grid">
+        <div class="img-wrap"><img src="gallery/vang-kommune-sentrum/DJI_20250921114906_0193_D.jpg" alt="Vang kommune – sentrum fra luften 1" loading="lazy" data-section="Vang kommune" data-desc="Vang sentrum sett ovenfra." width="1600" height="900" srcset="gallery/vang-kommune-sentrum/DJI_20250921114906_0193_D-480.webp 480w, gallery/vang-kommune-sentrum/DJI_20250921114906_0193_D-960.webp 960w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/vang-kommune-sentrum/DJI_20250921114906_0193_D-960.webp"></div>
+        <div class="img-wrap"><img src="gallery/vang-kommune-sentrum/DJI_20250921115035_0195_D.jpg" alt="Vang kommune – sentrum fra luften 2" loading="lazy" data-section="Vang kommune" data-desc="Vang sentrum sett ovenfra." width="1600" height="900" srcset="gallery/vang-kommune-sentrum/DJI_20250921115035_0195_D-480.webp 480w, gallery/vang-kommune-sentrum/DJI_20250921115035_0195_D-960.webp 960w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/vang-kommune-sentrum/DJI_20250921115035_0195_D-960.webp"></div>
+        <div class="img-wrap"><img src="gallery/vang-kommune-sentrum/DJI_20250921115332_0198_D.jpg" alt="Vang kommune – sentrum fra luften 3" loading="lazy" data-section="Vang kommune" data-desc="Vang sentrum sett ovenfra." width="1600" height="900" srcset="gallery/vang-kommune-sentrum/DJI_20250921115332_0198_D-480.webp 480w, gallery/vang-kommune-sentrum/DJI_20250921115332_0198_D-960.webp 960w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/vang-kommune-sentrum/DJI_20250921115332_0198_D-960.webp"></div>
+        <div class="img-wrap"><img src="gallery/vang-kommune-sentrum/DJI_20250921115411_0201_D.jpg" alt="Vang kommune – sentrum fra luften 4" loading="lazy" data-section="Vang kommune" data-desc="Vang sentrum sett ovenfra." width="1600" height="900" srcset="gallery/vang-kommune-sentrum/DJI_20250921115411_0201_D-480.webp 480w, gallery/vang-kommune-sentrum/DJI_20250921115411_0201_D-960.webp 960w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/vang-kommune-sentrum/DJI_20250921115411_0201_D-960.webp"></div>
+        <div class="img-wrap"><img src="gallery/vang-kommune-sentrum/DJI_20251006083055_0205_D.jpg" alt="Vang kommune – bebyggelse fra luften 5" loading="lazy" data-section="Vang kommune" data-desc="Bebyggelse i Vang." width="1600" height="900" srcset="gallery/vang-kommune-sentrum/DJI_20251006083055_0205_D-480.webp 480w, gallery/vang-kommune-sentrum/DJI_20251006083055_0205_D-960.webp 960w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/vang-kommune-sentrum/DJI_20251006083055_0205_D-960.webp"></div>
+        <div class="img-wrap"><img src="gallery/vang-kommune-sentrum/DJI_20251006084058_0212_D.jpg" alt="Vang kommune – bebyggelse fra luften 6" loading="lazy" data-section="Vang kommune" data-desc="Bebyggelse i Vang." width="1600" height="951" srcset="gallery/vang-kommune-sentrum/DJI_20251006084058_0212_D-480.webp 480w, gallery/vang-kommune-sentrum/DJI_20251006084058_0212_D-960.webp 960w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/vang-kommune-sentrum/DJI_20251006084058_0212_D-960.webp"></div>
+        <div class="img-wrap"><img src="gallery/vang-kommune-sentrum/DJI_20251006084404_0221_D.jpg" alt="Vang kommune – bebyggelse fra luften 7" loading="lazy" data-section="Vang kommune" data-desc="Bebyggelse i Vang." width="1600" height="900" srcset="gallery/vang-kommune-sentrum/DJI_20251006084404_0221_D-480.webp 480w, gallery/vang-kommune-sentrum/DJI_20251006084404_0221_D-960.webp 960w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/vang-kommune-sentrum/DJI_20251006084404_0221_D-960.webp"></div>
+        <div class="img-wrap"><img src="gallery/vang-kommune-sentrum/DJI_20251006085633_0225_D.jpg" alt="Vang kommune – bebyggelse fra luften 8" loading="lazy" data-section="Vang kommune" data-desc="Bebyggelse i Vang." width="1600" height="900" srcset="gallery/vang-kommune-sentrum/DJI_20251006085633_0225_D-480.webp 480w, gallery/vang-kommune-sentrum/DJI_20251006085633_0225_D-960.webp 960w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/vang-kommune-sentrum/DJI_20251006085633_0225_D-960.webp"></div>
+        <div class="img-wrap"><img src="gallery/vang-kommune-sentrum/DJI_20251006091304_0231_D.jpg" alt="Vang kommune – bebyggelse fra luften 9" loading="lazy" data-section="Vang kommune" data-desc="Bebyggelse i Vang." width="1600" height="900" srcset="gallery/vang-kommune-sentrum/DJI_20251006091304_0231_D-480.webp 480w, gallery/vang-kommune-sentrum/DJI_20251006091304_0231_D-960.webp 960w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/vang-kommune-sentrum/DJI_20251006091304_0231_D-960.webp"></div>
+        <div class="img-wrap"><img src="gallery/vang-kommune-sentrum/DJI_20251006091923_0234_D.jpg" alt="Vang kommune – bebyggelse fra luften 10" loading="lazy" data-section="Vang kommune" data-desc="Bebyggelse i Vang." width="1600" height="900" srcset="gallery/vang-kommune-sentrum/DJI_20251006091923_0234_D-480.webp 480w, gallery/vang-kommune-sentrum/DJI_20251006091923_0234_D-960.webp 960w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/vang-kommune-sentrum/DJI_20251006091923_0234_D-960.webp"></div>
+        <div class="img-wrap"><img src="gallery/vang-kommune-sentrum/DJI_20251006092135_0238_D.jpg" alt="Vang kommune – bebyggelse fra luften 11" loading="lazy" data-section="Vang kommune" data-desc="Bebyggelse i Vang." width="1600" height="940" srcset="gallery/vang-kommune-sentrum/DJI_20251006092135_0238_D-480.webp 480w, gallery/vang-kommune-sentrum/DJI_20251006092135_0238_D-960.webp 960w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/vang-kommune-sentrum/DJI_20251006092135_0238_D-960.webp"></div>
+        <div class="img-wrap"><img src="gallery/vang-kommune-sentrum/DJI_20251006092218_0241_D.jpg" alt="Vang kommune – bebyggelse fra luften 12" loading="lazy" data-section="Vang kommune" data-desc="Bebyggelse i Vang." width="1600" height="1073" srcset="gallery/vang-kommune-sentrum/DJI_20251006092218_0241_D-480.webp 480w, gallery/vang-kommune-sentrum/DJI_20251006092218_0241_D-960.webp 960w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/vang-kommune-sentrum/DJI_20251006092218_0241_D-960.webp"></div>
+        <div class="img-wrap"><img src="gallery/vang-kommune-sentrum/DJI_20251006093037_0243_D.jpg" alt="Vang kommune – bebyggelse fra luften 13" loading="lazy" data-section="Vang kommune" data-desc="Bebyggelse i Vang." width="1600" height="900" srcset="gallery/vang-kommune-sentrum/DJI_20251006093037_0243_D-480.webp 480w, gallery/vang-kommune-sentrum/DJI_20251006093037_0243_D-960.webp 960w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/vang-kommune-sentrum/DJI_20251006093037_0243_D-960.webp"></div>
+        <div class="img-wrap"><img src="gallery/vang-kommune-sentrum/DJI_20251006095230_0248_D.jpg" alt="Vang kommune – bebyggelse fra luften 14" loading="lazy" data-section="Vang kommune" data-desc="Bebyggelse i Vang." width="1600" height="900" srcset="gallery/vang-kommune-sentrum/DJI_20251006095230_0248_D-480.webp 480w, gallery/vang-kommune-sentrum/DJI_20251006095230_0248_D-960.webp 960w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/vang-kommune-sentrum/DJI_20251006095230_0248_D-960.webp"></div>
+        <div class="img-wrap"><img src="gallery/vang-kommune-sentrum/DJI_20251006095433_0251_D.jpg" alt="Vang kommune – bebyggelse fra luften 15" loading="lazy" data-section="Vang kommune" data-desc="Bebyggelse i Vang." width="1600" height="900" srcset="gallery/vang-kommune-sentrum/DJI_20251006095433_0251_D-480.webp 480w, gallery/vang-kommune-sentrum/DJI_20251006095433_0251_D-960.webp 960w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/vang-kommune-sentrum/DJI_20251006095433_0251_D-960.webp"></div>
+        <div class="img-wrap"><img src="gallery/vang-kommune-sentrum/DJI_20251006095542_0253_D.jpg" alt="Vang kommune – bebyggelse fra luften 16" loading="lazy" data-section="Vang kommune" data-desc="Bebyggelse i Vang." width="1600" height="931" srcset="gallery/vang-kommune-sentrum/DJI_20251006095542_0253_D-480.webp 480w, gallery/vang-kommune-sentrum/DJI_20251006095542_0253_D-960.webp 960w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/vang-kommune-sentrum/DJI_20251006095542_0253_D-960.webp"></div>
+        <div class="img-wrap"><img src="gallery/vang-kommune-sentrum/DJI_20251006102449_0256_D.jpg" alt="Vang kommune – bebyggelse fra luften 17" loading="lazy" data-section="Vang kommune" data-desc="Bebyggelse i Vang." width="1600" height="878" srcset="gallery/vang-kommune-sentrum/DJI_20251006102449_0256_D-480.webp 480w, gallery/vang-kommune-sentrum/DJI_20251006102449_0256_D-960.webp 960w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/vang-kommune-sentrum/DJI_20251006102449_0256_D-960.webp"></div>
+      </div>
+    </section>
+
+    <!-- 8. BRYLLUP -->
+    <section class="portfolio-section" id="bryllup" data-category="bryllup">
+      <div class="section-head">
+        <div>
+          <span class="section-label" data-no="Bryllup" data-en="Weddings" data-de="Hochzeiten">Bryllup</span>
+          <h2 class="section-title" data-no="Bryllupsfotografering" data-en="Wedding photography" data-de="Hochzeitsfotografie">Bryllupsfotografering</h2>
+          <p class="section-desc" data-no="Rolige, naturlige bilder fra bryllupsdagen." data-en="Calm, natural photos from the wedding day." data-de="Ruhige, natürliche Fotos vom Hochzeitstag.">Rolige, naturlige bilder fra bryllupsdagen.</p>
+        </div>
+        <span class="count"></span>
+      </div>
+      <div class="portfolio-grid">
+        <div class="img-wrap"><img src="gallery/bryllup/untitled-6005.jpg" alt="Brudepar i naturlig lys" loading="lazy" data-section="Bryllup" data-desc="Brudepar fotografert i naturlig lys." width="1600" height="900" srcset="gallery/bryllup/untitled-6005-480.webp 480w, gallery/bryllup/untitled-6005-960.webp 960w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/bryllup/untitled-6005-960.webp"></div>
+        <div class="img-wrap"><img src="gallery/bryllup/untitled-6500.jpg" alt="Bryllupsseremoni" loading="lazy" data-section="Bryllup" data-desc="Øyeblikk fra seremonien." width="900" height="1600" srcset="gallery/bryllup/untitled-6500-480.webp 480w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/bryllup/untitled-6500-480.webp"></div>
+        <div class="img-wrap"><img src="gallery/bryllup/untitled-6900.jpg" alt="Brudeparportrett" loading="lazy" data-section="Bryllup" data-desc="Portrett av brudeparet." width="1600" height="900" srcset="gallery/bryllup/untitled-6900-480.webp 480w, gallery/bryllup/untitled-6900-960.webp 960w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/bryllup/untitled-6900-960.webp"></div>
+        <div class="img-wrap"><img src="gallery/bryllup/untitled-7200.jpg" alt="Detaljer fra bryllupet" loading="lazy" data-section="Bryllup" data-desc="Detaljer fra bryllupsdagen." width="1600" height="900" srcset="gallery/bryllup/untitled-7200-480.webp 480w, gallery/bryllup/untitled-7200-960.webp 960w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/bryllup/untitled-7200-960.webp"></div>
+        <div class="img-wrap"><img src="gallery/bryllup/untitled-7350.jpg" alt="Bryllupsfest" loading="lazy" data-section="Bryllup" data-desc="Stemning fra bryllupsfesten." width="900" height="1600" srcset="gallery/bryllup/untitled-7350-480.webp 480w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/bryllup/untitled-7350-480.webp"></div>
+        <div class="img-wrap"><img src="gallery/bryllup/bryllup2/untitled-7953.jpg" alt="Brudepar i landskap" loading="lazy" data-section="Bryllup" data-desc="Brudepar fotografert i landskapet." width="1600" height="900" srcset="gallery/bryllup/bryllup2/untitled-7953-480.webp 480w, gallery/bryllup/bryllup2/untitled-7953-960.webp 960w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/bryllup/bryllup2/untitled-7953-960.webp"></div>
+        <div class="img-wrap"><img src="gallery/bryllup/bryllup2/untitled-7960.jpg" alt="Bryllupsportrett utendørs" loading="lazy" data-section="Bryllup" data-desc="Bryllupsportrett utendørs." width="3944" height="7008" srcset="gallery/bryllup/bryllup2/untitled-7960-480.webp 480w, gallery/bryllup/bryllup2/untitled-7960-960.webp 960w, gallery/bryllup/bryllup2/untitled-7960-1600.webp 1600w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/bryllup/bryllup2/untitled-7960-1600.webp"></div>
+        <div class="img-wrap"><img src="gallery/bryllup/bryllup2/untitled-8387.jpg" alt="Brudebukett og detaljer" loading="lazy" data-section="Bryllup" data-desc="Bukett og detaljer." width="3944" height="7008" srcset="gallery/bryllup/bryllup2/untitled-8387-480.webp 480w, gallery/bryllup/bryllup2/untitled-8387-960.webp 960w, gallery/bryllup/bryllup2/untitled-8387-1600.webp 1600w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/bryllup/bryllup2/untitled-8387-1600.webp"></div>
+        <div class="img-wrap"><img src="gallery/bryllup/bryllup2/untitled-8434.jpg" alt="Gjestene under bryllupet" loading="lazy" data-section="Bryllup" data-desc="Gjester under bryllupet." width="1600" height="2843" srcset="gallery/bryllup/bryllup2/untitled-8434-480.webp 480w, gallery/bryllup/bryllup2/untitled-8434-960.webp 960w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/bryllup/bryllup2/untitled-8434-960.webp"></div>
+        <div class="img-wrap"><img src="gallery/bryllup/bryllup2/untitled-8507.jpg" alt="Bryllupsfest om kvelden" loading="lazy" data-section="Bryllup" data-desc="Bryllupsfest om kvelden." width="1600" height="900" srcset="gallery/bryllup/bryllup2/untitled-8507-480.webp 480w, gallery/bryllup/bryllup2/untitled-8507-960.webp 960w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/bryllup/bryllup2/untitled-8507-960.webp"></div>
+        <div class="img-wrap"><img src="gallery/bryllup/bryllup2/untitled-8586.jpg" alt="Brudepar i kveldslys" loading="lazy" data-section="Bryllup" data-desc="Brudepar i kveldslys." width="7008" height="3944" srcset="gallery/bryllup/bryllup2/untitled-8586-480.webp 480w, gallery/bryllup/bryllup2/untitled-8586-960.webp 960w, gallery/bryllup/bryllup2/untitled-8586-1600.webp 1600w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/bryllup/bryllup2/untitled-8586-1600.webp"></div>
+        <div class="img-wrap"><img src="gallery/bryllup/bryllup2/untitled-8623.jpg" alt="Siste bilde fra bryllupsdagen" loading="lazy" data-section="Bryllup" data-desc="Siste lys av bryllupsdagen." width="7008" height="3944" srcset="gallery/bryllup/bryllup2/untitled-8623-480.webp 480w, gallery/bryllup/bryllup2/untitled-8623-960.webp 960w, gallery/bryllup/bryllup2/untitled-8623-1600.webp 1600w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/bryllup/bryllup2/untitled-8623-1600.webp"></div>
+      </div>
+    </section>
+
+    <!-- 9. EVENT: KONFIRMASJON -->
+    <section class="portfolio-section" id="konfirmasjon" data-category="event">
+      <div class="section-head">
+        <div>
+          <span class="section-label" data-no="Event" data-en="Event" data-de="Event">Event</span>
+          <h2 class="section-title" data-no="Konfirmasjon" data-en="Confirmation" data-de="Konfirmation">Konfirmasjon</h2>
+          <p class="section-desc" data-no="Minneverdige øyeblikk fra konfirmasjonsdagen." data-en="Memorable moments from the confirmation day." data-de="Unvergessliche Momente vom Konfirmationstag.">Minneverdige øyeblikk fra konfirmasjonsdagen.</p>
+        </div>
+        <span class="count"></span>
+      </div>
+      <div class="portfolio-grid">
+        <div class="img-wrap"><img src="gallery/konfirmasjon/untitled-5010.jpg" alt="Konfirmant portrettert utendørs" loading="lazy" data-section="Konfirmasjon" data-desc="Konfirmant portrettert utendørs." width="900" height="1600" srcset="gallery/konfirmasjon/untitled-5010-480.webp 480w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/konfirmasjon/untitled-5010-480.webp"></div>
+        <div class="img-wrap"><img src="gallery/konfirmasjon/untitled-5193.jpg" alt="Konfirmant med familie" loading="lazy" data-section="Konfirmasjon" data-desc="Konfirmant sammen med familie." width="900" height="1600" srcset="gallery/konfirmasjon/untitled-5193-480.webp 480w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/konfirmasjon/untitled-5193-480.webp"></div>
+        <div class="img-wrap"><img src="gallery/konfirmasjon/untitled-5439.jpg" alt="Konfirmasjonsseremoni" loading="lazy" data-section="Konfirmasjon" data-desc="Øyeblikk fra seremonien." width="1600" height="900" srcset="gallery/konfirmasjon/untitled-5439-480.webp 480w, gallery/konfirmasjon/untitled-5439-960.webp 960w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/konfirmasjon/untitled-5439-960.webp"></div>
+        <div class="img-wrap"><img src="gallery/konfirmasjon/untitled-5574.jpg" alt="Portrett av konfirmant" loading="lazy" data-section="Konfirmasjon" data-desc="Portrett av konfirmanten." width="1600" height="900" srcset="gallery/konfirmasjon/untitled-5574-480.webp 480w, gallery/konfirmasjon/untitled-5574-960.webp 960w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/konfirmasjon/untitled-5574-960.webp"></div>
+        <div class="img-wrap"><img src="gallery/konfirmasjon/untitled-5649.jpg" alt="Konfirmant i naturlig lys" loading="lazy" data-section="Konfirmasjon" data-desc="Konfirmant i naturlig lys." width="900" height="1600" srcset="gallery/konfirmasjon/untitled-5649-480.webp 480w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/konfirmasjon/untitled-5649-480.webp"></div>
+      </div>
+    </section>
+
+    <!-- 10. EVENT: VINJEROCK -->
+    <section class="portfolio-section" id="vinjerock" data-category="event">
+      <div class="section-head">
+        <div>
+          <span class="section-label" data-no="Event" data-en="Event" data-de="Event">Event</span>
+          <h2 class="section-title" data-no="Vinjerock" data-en="Vinjerock" data-de="Vinjerock">Vinjerock</h2>
+          <p class="section-desc" data-no="Fotografering og drone under Vinjerock-festivalen." data-en="Photography and drone at the Vinjerock festival." data-de="Fotografie und Drohne beim Vinjerock-Festival.">Fotografering og drone under Vinjerock-festivalen.</p>
+        </div>
+        <span class="count"></span>
+      </div>
+      <div class="portfolio-grid">
+        <div class="img-wrap"><img src="gallery/vinjerock-drone/untitled--16.jpg" alt="Vinjerock-festivalen fra luften" loading="lazy" data-section="Vinjerock" data-desc="Festivalområdet sett fra luften." width="1600" height="900" srcset="gallery/vinjerock-drone/untitled--16-480.webp 480w, gallery/vinjerock-drone/untitled--16-960.webp 960w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/vinjerock-drone/untitled--16-960.webp"></div>
+        <div class="img-wrap"><img src="gallery/vinjerock-drone/untitled--2.jpg" alt="Vinjerock scene fra luften" loading="lazy" data-section="Vinjerock" data-desc="Scenen og publikum fra luften." width="1600" height="1126" srcset="gallery/vinjerock-drone/untitled--2-480.webp 480w, gallery/vinjerock-drone/untitled--2-960.webp 960w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/vinjerock-drone/untitled--2-960.webp"></div>
+        <div class="img-wrap"><img src="gallery/vinjerock-drone/untitled--9.jpg" alt="Vinjerock campingområde fra luften" loading="lazy" data-section="Vinjerock" data-desc="Campingområdet fra luften." width="1600" height="1126" srcset="gallery/vinjerock-drone/untitled--9-480.webp 480w, gallery/vinjerock-drone/untitled--9-960.webp 960w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/vinjerock-drone/untitled--9-960.webp"></div>
+        <div class="img-wrap"><img src="gallery/vinjerock/untitled-7604.jpg" alt="Publikum på Vinjerock" loading="lazy" data-section="Vinjerock" data-desc="Publikum under festivalen." width="900" height="1600" srcset="gallery/vinjerock/untitled-7604-480.webp 480w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/vinjerock/untitled-7604-480.webp"></div>
+        <div class="img-wrap"><img src="gallery/vinjerock/untitled-7610.jpg" alt="Konsert på Vinjerock" loading="lazy" data-section="Vinjerock" data-desc="Konsertstemning." width="900" height="1600" srcset="gallery/vinjerock/untitled-7610-480.webp 480w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/vinjerock/untitled-7610-480.webp"></div>
+        <div class="img-wrap"><img src="gallery/vinjerock/untitled-7624.jpg" alt="Artist på scenen" loading="lazy" data-section="Vinjerock" data-desc="Artist på scenen." width="1600" height="900" srcset="gallery/vinjerock/untitled-7624-480.webp 480w, gallery/vinjerock/untitled-7624-960.webp 960w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/vinjerock/untitled-7624-960.webp"></div>
+        <div class="img-wrap"><img src="gallery/vinjerock/untitled-7639.jpg" alt="Detaljer fra festivalen" loading="lazy" data-section="Vinjerock" data-desc="Detaljer fra festivalområdet." width="1600" height="900" srcset="gallery/vinjerock/untitled-7639-480.webp 480w, gallery/vinjerock/untitled-7639-960.webp 960w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/vinjerock/untitled-7639-960.webp"></div>
+        <div class="img-wrap"><img src="gallery/vinjerock/untitled-7648.jpg" alt="Festivalgjest" loading="lazy" data-section="Vinjerock" data-desc="Festivalgjest." width="900" height="1600" srcset="gallery/vinjerock/untitled-7648-480.webp 480w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/vinjerock/untitled-7648-480.webp"></div>
+        <div class="img-wrap"><img src="gallery/vinjerock/untitled-7654.jpg" alt="Vinjerock om kvelden" loading="lazy" data-section="Vinjerock" data-desc="Festivalen om kvelden." width="900" height="1600" srcset="gallery/vinjerock/untitled-7654-480.webp 480w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/vinjerock/untitled-7654-480.webp"></div>
+        <div class="img-wrap"><img src="gallery/vinjerock/untitled-7799.jpg" alt="Scene og lys på Vinjerock" loading="lazy" data-section="Vinjerock" data-desc="Scenelys og stemning." width="1600" height="900" srcset="gallery/vinjerock/untitled-7799-480.webp 480w, gallery/vinjerock/untitled-7799-960.webp 960w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/vinjerock/untitled-7799-960.webp"></div>
+        <div class="img-wrap"><img src="gallery/vinjerock/untitled-7812.jpg" alt="Publikum foran scenen" loading="lazy" data-section="Vinjerock" data-desc="Publikum foran scenen." width="1600" height="900" srcset="gallery/vinjerock/untitled-7812-480.webp 480w, gallery/vinjerock/untitled-7812-960.webp 960w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/vinjerock/untitled-7812-960.webp"></div>
+      </div>
+    </section>
+
+    <!-- 11. BILER -->
+    <section class="portfolio-section" id="biler" data-category="biler">
+      <div class="section-head">
+        <div>
+          <span class="section-label" data-no="Biler" data-en="Cars" data-de="Autos">Biler</span>
+          <h2 class="section-title" data-no="Bilfotografering" data-en="Car photography" data-de="Autofotografie">Bilfotografering</h2>
+          <p class="section-desc" data-no="Bilfotografering og reklame med fokus på linjer og detaljer." data-en="Car photography and commercials focused on lines and details." data-de="Autofotografie und Werbung mit Fokus auf Linien und Details.">Bilfotografering og reklame med fokus på linjer og detaljer.</p>
+        </div>
+        <span class="count"></span>
+      </div>
+      <div class="portfolio-grid">
+        <div class="img-wrap"><img src="gallery/biler/untitled-9289.jpg" alt="Bil fotografert i kveldslys" loading="lazy" data-section="Biler" data-desc="Bil i kveldslys." width="1600" height="900" srcset="gallery/biler/untitled-9289-480.webp 480w, gallery/biler/untitled-9289-960.webp 960w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/biler/untitled-9289-960.webp"></div>
+        <div class="img-wrap"><img src="gallery/biler/untitled-9203.jpg" alt="Bildetalj fra bil" loading="lazy" data-section="Biler" data-desc="Detalj av bilen." width="7008" height="3944" srcset="gallery/biler/untitled-9203-480.webp 480w, gallery/biler/untitled-9203-960.webp 960w, gallery/biler/untitled-9203-1600.webp 1600w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/biler/untitled-9203-1600.webp"></div>
+        <div class="img-wrap"><img src="gallery/biler/untitled-9300.jpg" alt="Bil i bevegelse" loading="lazy" data-section="Biler" data-desc="Bil i bevegelse." width="1600" height="900" srcset="gallery/biler/untitled-9300-480.webp 480w, gallery/biler/untitled-9300-960.webp 960w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/biler/untitled-9300-960.webp"></div>
+        <div class="img-wrap"><img src="gallery/biler/untitled-9286.jpg" alt="Bil fotografert utendørs" loading="lazy" data-section="Biler" data-desc="Bil utendørs." width="1600" height="900" srcset="gallery/biler/untitled-9286-480.webp 480w, gallery/biler/untitled-9286-960.webp 960w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/biler/untitled-9286-960.webp"></div>
+        <div class="img-wrap"><img src="gallery/biler/untitled-9327.jpg" alt="Bildetalj i sollys" loading="lazy" data-section="Biler" data-desc="Detalj i sollys." width="1600" height="900" srcset="gallery/biler/untitled-9327-480.webp 480w, gallery/biler/untitled-9327-960.webp 960w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/biler/untitled-9327-960.webp"></div>
+        <div class="img-wrap"><img src="gallery/biler/untitled-9223.jpg" alt="Bil på vei" loading="lazy" data-section="Biler" data-desc="Bil på veien." width="7008" height="3944" srcset="gallery/biler/untitled-9223-480.webp 480w, gallery/biler/untitled-9223-960.webp 960w, gallery/biler/untitled-9223-1600.webp 1600w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/biler/untitled-9223-1600.webp"></div>
+        <div class="img-wrap"><img src="gallery/biler/untitled-9341.jpg" alt="Bil forfra" loading="lazy" data-section="Biler" data-desc="Bilen forfra." width="1600" height="900" srcset="gallery/biler/untitled-9341-480.webp 480w, gallery/biler/untitled-9341-960.webp 960w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/biler/untitled-9341-960.webp"></div>
+        <div class="img-wrap"><img src="gallery/biler/untitled-9320.jpg" alt="Bil i profil" loading="lazy" data-section="Biler" data-desc="Bilen i profil." width="1600" height="900" srcset="gallery/biler/untitled-9320-480.webp 480w, gallery/biler/untitled-9320-960.webp 960w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/biler/untitled-9320-960.webp"></div>
+        <div class="img-wrap"><img src="gallery/biler/bilde1.jpg" alt="Bilfotografering i landskap" loading="lazy" data-section="Biler" data-desc="Bil i landskapet." width="2000" height="1125" srcset="gallery/biler/bilde1-480.webp 480w, gallery/biler/bilde1-960.webp 960w, gallery/biler/bilde1-1600.webp 1600w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/biler/bilde1-1600.webp"></div>
+        <div class="img-wrap"><img src="gallery/biler/bilde2.jpg" alt="Bil fotografert fra lav vinkel" loading="lazy" data-section="Biler" data-desc="Bil fra lav vinkel." width="2000" height="1125" srcset="gallery/biler/bilde2-480.webp 480w, gallery/biler/bilde2-960.webp 960w, gallery/biler/bilde2-1600.webp 1600w" sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" decoding="async" data-full="gallery/biler/bilde2-1600.webp"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="footer-left">
+      <a href="index.html" class="logo">Solemsli Productions</a>
+      <p>Høgesetvegen 52, 2985 Tyinkrysset</p>
+      <p>rakso8080@gmail.com</p>
+      <p class="footer-legal">Org.nr: 935 203 708 · ENK · MVA-registrert</p>
+      <p class="footer-legal">© 2026 Solemsli Productions</p>
+    </div>
+    <div class="footer-links">
+      <a href="https://www.instagram.com/solemsli_productions/" target="_blank" rel="noopener noreferrer">Instagram</a>
+      <a href="contact.html" data-no="Kontakt" data-en="Contact" data-de="Kontakt">Kontakt</a>
+      <a href="about.html" data-no="Om meg" data-en="About" data-de="Über mich">Om meg</a>
+      <a href="personvern.html" data-no="Personvern" data-en="Privacy" data-de="Datenschutz">Personvern</a>
+      <a href="salgsbetingelser.html" data-no="Salgsbetingelser" data-en="Terms" data-de="AGB">Salgsbetingelser</a>
+    </div>
+  </footer>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Bildevisning" aria-hidden="true">
+    <button class="lightbox-close" id="lb-close" aria-label="Lukk">&times;</button>
+    <button class="lightbox-nav lightbox-prev" id="lb-prev" aria-label="Forrige bilde">&#8249;</button>
+    <button class="lightbox-nav lightbox-next" id="lb-next" aria-label="Neste bilde">&#8250;</button>
+    <div class="lightbox-content">
+      <img class="lightbox-img" id="lb-img" src="" alt="">
+      <div class="lightbox-meta">
+        <div class="lightbox-caption" id="lb-caption"></div>
+        <div class="lightbox-desc" id="lb-desc"></div>
+        <div class="lightbox-exif" id="lb-exif"></div>
+        <div class="lightbox-counter" id="lb-counter" aria-live="polite"></div>
+        <a class="lightbox-buy" id="lb-buy" href="shop.html#kjop-bilde" data-no="Kjøp dette bildet" data-en="Buy this photo" data-de="Dieses Foto kaufen">Kjøp dette bildet</a>
+      </div>
+    </div>
   </div>
-</footer>
 
-<!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox" role="dialog" aria-label="Bildevisning" aria-hidden="true">
-  <div class="lightbox-backdrop" id="lb-backdrop"></div>
-  <button class="lightbox-close" id="lb-close" aria-label="Lukk">&times;</button>
-  <button class="lightbox-nav lightbox-prev" id="lb-prev" aria-label="Forrige bilde">&#8249;</button>
-  <button class="lightbox-nav lightbox-next" id="lb-next" aria-label="Neste bilde">&#8250;</button>
-  <div class="lightbox-content">
-    <img class="lightbox-img" id="lb-img" src="" alt="">
-    <div class="lightbox-caption" id="lb-caption"></div>
-    <div class="lightbox-exif" id="lb-exif"></div>
-    <div class="lightbox-desc" id="lb-desc"></div>
-    <div class="lightbox-counter" id="lb-counter"></div>
-  </div>
-</div>
+  <script>
+    (function () {
+      'use strict';
 
-<script>
-(function() {
-  // LIGHTBOX
-  const lightbox = document.getElementById('lightbox');
-  const lbImg = document.getElementById('lb-img');
-  const lbCaption = document.getElementById('lb-caption');
-  const lbCounter = document.getElementById('lb-counter');
-  let currentImages = [];
-  let currentIndex = 0;
-  let currentSection = '';
+      /* BILDEVISER */
+      var lightbox = document.getElementById('lightbox');
+      var lbImg = document.getElementById('lb-img');
+      var lbCaption = document.getElementById('lb-caption');
+      var lbDesc = document.getElementById('lb-desc');
+      var lbExif = document.getElementById('lb-exif');
+      var lbCounter = document.getElementById('lb-counter');
+      var lbBuy = document.getElementById('lb-buy');
+      var closeBtn = document.getElementById('lb-close');
+      var lastFocus = null;
+      var images = [];
+      var index = 0;
+      var sectionName = '';
 
-  function getImagesInSection(section) {
-    return Array.from(document.querySelectorAll('.portfolio-grid img[data-section="' + section + '"]'));
-  }
+      function collect(section) {
+        return Array.prototype.slice.call(document.querySelectorAll('.portfolio-grid img[data-section="' + section + '"]'));
+      }
 
-  function openLightbox(img) {
-    currentSection = img.dataset.section;
-    currentImages = getImagesInSection(currentSection);
-    currentIndex = currentImages.indexOf(img);
-    updateLightbox();
-    lightbox.classList.add('open');
-    lightbox.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-  }
+      function fullSrc(img) {
+        return img.dataset.full || img.currentSrc || img.src;
+      }
 
-  function closeLightbox() {
-    lightbox.classList.remove('open');
-    lightbox.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-  }
+      function render() {
+        var img = images[index];
+        if (!img) return;
+        lbImg.removeAttribute('srcset');
+        lbImg.src = fullSrc(img);
+        lbImg.alt = img.alt;
+        lbCaption.textContent = img.alt;
+        lbDesc.textContent = img.dataset.desc || '';
+        if (lbBuy) lbBuy.href = 'shop.html?motiv=' + encodeURIComponent(img.alt) + '#kjop-bilde';
 
-  function updateLightbox() {
-    const img = currentImages[currentIndex];
-    lbImg.src = img.src;
-    lbImg.alt = img.alt;
-    lbCaption.textContent = img.alt || currentSection;
-    const lang = localStorage.getItem('lang') || 'no';
-    const ofText = {no: 'av', en: 'of', de: 'von'};
-    lbCounter.textContent = (currentIndex + 1) + ' ' + (ofText[lang] || 'av') + ' ' + currentImages.length;
+        var lang = (window.SP && window.SP.lang()) || localStorage.getItem('lang') || 'no';
+        var of = { no: 'av', en: 'of', de: 'von' };
+        lbCounter.textContent = (index + 1) + ' ' + (of[lang] || 'av') + ' ' + images.length;
 
-    // EXIF info
-    const exifEl = document.getElementById('lb-exif');
-    const exif = typeof EXIF_DATA !== 'undefined' ? EXIF_DATA[img.getAttribute('src')] : null;
-    if (exif) {
-      const tags = [];
-      if (exif.cam) tags.push(exif.cam);
-      if (exif.lens) tags.push(exif.lens);
-      if (exif.f) tags.push(exif.f);
-      if (exif.iso) tags.push('ISO ' + exif.iso);
-      if (exif.shutter) tags.push(exif.shutter);
-      if (exif.focal) tags.push(exif.focal);
-      exifEl.innerHTML = tags.map(t => '<span>' + t + '</span>').join('');
-      exifEl.style.display = 'flex';
-    } else {
-      exifEl.innerHTML = '';
-      exifEl.style.display = 'none';
-    }
+        var exif = typeof EXIF_DATA !== 'undefined' ? EXIF_DATA[img.getAttribute('src')] : null;
+        var tags = [];
+        if (exif) {
+          if (exif.cam) tags.push(exif.cam);
+          if (exif.lens) tags.push(exif.lens);
+          if (exif.f) tags.push(exif.f);
+          if (exif.iso) tags.push('ISO ' + exif.iso);
+          if (exif.shutter) tags.push(exif.shutter);
+          if (exif.focal) tags.push(exif.focal);
+        }
+        lbExif.innerHTML = tags.map(function (t) { return '<span>' + t + '</span>'; }).join('');
 
-    // Short description
-    const descEl = document.getElementById('lb-desc');
-    const descs = {
-      'Prosjekter': 'Natur og landskap fra Innlandet',
-      'Foto': 'Foto fra ulike oppdrag og prosjekter',
-      'Bryllup': 'Bryllupsfotografering i vakre omgivelser',
-      'Konfirmasjon': 'Konfirmasjonsdag foreviget',
-      'Drone': 'Luftbilder tatt med DJI Mini 4 Pro',
-      'Kommune': 'Vang kommune sett ovenfra',
-      'Vinjerock': 'Vinjerock festival — stemning og øyeblikk',
-      'Biler': 'Bilfotografering med fokus på detaljer',
-      'Natur': 'Natur og landskap i Valdres',
-      'Shorts': 'Korte videoformater for sosiale medier'
-    };
-    descEl.textContent = descs[currentSection] || '';
-  }
+        // Forhåndslast neste bilde
+        var next = images[(index + 1) % images.length];
+        if (next) { var pre = new Image(); pre.src = fullSrc(next); }
+      }
 
-  function nextImage() {
-    currentIndex = (currentIndex + 1) % currentImages.length;
-    updateLightbox();
-  }
+      function open(img) {
+        sectionName = img.dataset.section;
+        images = collect(sectionName);
+        index = images.indexOf(img);
+        lastFocus = document.activeElement;
+        render();
+        lightbox.classList.add('open');
+        lightbox.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        closeBtn.focus();
+      }
 
-  function prevImage() {
-    currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
-    updateLightbox();
-  }
+      function close() {
+        lightbox.classList.remove('open');
+        lightbox.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        if (lastFocus) lastFocus.focus();
+      }
 
-  // Event delegation for all portfolio images
-  document.addEventListener('click', (e) => {
-    const wrap = e.target.closest('.portfolio-grid .img-wrap');
-    if (wrap) {
-      const img = wrap.querySelector('img[data-section]');
-      if (img) { openLightbox(img); return; }
-    }
-    const img = e.target.closest('.portfolio-grid img[data-section]');
-    if (img) openLightbox(img);
-  });
+      function step(dir) {
+        if (!images.length) return;
+        index = (index + dir + images.length) % images.length;
+        render();
+      }
 
-  document.getElementById('lb-close').addEventListener('click', closeLightbox);
-  document.getElementById('lb-backdrop').addEventListener('click', closeLightbox);
-  document.getElementById('lb-next').addEventListener('click', nextImage);
-  document.getElementById('lb-prev').addEventListener('click', prevImage);
-
-  // Keyboard
-  document.addEventListener('keydown', (e) => {
-    if (!lightbox.classList.contains('open')) return;
-    if (e.key === 'Escape') closeLightbox();
-    if (e.key === 'ArrowRight') nextImage();
-    if (e.key === 'ArrowLeft') prevImage();
-  });
-
-  // PARALLAX HERO (desktop only)
-  if (!('ontouchstart' in window)) {
-    window.addEventListener('scroll', () => {
-      const s = window.scrollY;
-      const img = document.getElementById('hero-img');
-      if (img && s < window.innerHeight) img.style.transform = 'scale(' + (1 + s * 0.0002) + ') translateY(' + (s * 0.3) + 'px)';
-    });
-  }
-
-  // FILTER TABS
-  document.querySelectorAll('.filter-tab').forEach(tab => {
-    tab.addEventListener('click', () => {
-      document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-      const f = tab.dataset.filter;
-      document.querySelectorAll('.portfolio-section[data-category]').forEach(sec => {
-        sec.classList.toggle('hidden', f !== 'all' && sec.dataset.category !== f);
+      document.addEventListener('click', function (e) {
+        var wrap = e.target.closest('.portfolio-grid .img-wrap');
+        if (!wrap) return;
+        var img = wrap.querySelector('img[data-section]');
+        if (img) open(img);
       });
-      document.querySelectorAll('.portfolio-section:not([data-category])').forEach(sec => {
-        sec.classList.remove('hidden');
+
+      // Gjør bildeflisene tastaturtilgjengelige
+      document.querySelectorAll('.portfolio-grid .img-wrap').forEach(function (wrap) {
+        wrap.setAttribute('tabindex', '0');
+        wrap.setAttribute('role', 'button');
+        var img = wrap.querySelector('img');
+        if (img) wrap.setAttribute('aria-label', 'Åpne bilde: ' + img.alt);
+        wrap.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            var image = wrap.querySelector('img[data-section]');
+            if (image) open(image);
+          }
+        });
       });
-    });
-  });
 
-  // URL FILTER — activate filter from ?filter= query param
-  const urlFilter = new URLSearchParams(window.location.search).get('filter');
-  if (urlFilter) {
-    const targetTab = document.querySelector(`.filter-tab[data-filter="${urlFilter}"]`);
-    if (targetTab) {
-      targetTab.click();
-      setTimeout(() => {
-        const firstSection = document.querySelector(`.portfolio-section[data-category="${urlFilter}"]`);
-        if (firstSection) firstSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 150);
-    }
-  }
+      closeBtn.addEventListener('click', close);
+      document.getElementById('lb-next').addEventListener('click', function () { step(1); });
+      document.getElementById('lb-prev').addEventListener('click', function () { step(-1); });
 
-  // EXIF OVERLAY — wrap images + add real camera metadata
-  document.querySelectorAll('.portfolio-grid').forEach(grid => {
-    const section = grid.closest('.portfolio-section');
-    const images = grid.querySelectorAll('img');
+      lightbox.addEventListener('click', function (e) {
+        if (e.target === lightbox) close();
+      });
 
-    // Add section counter
-    const header = section?.querySelector('.section-header h2');
-    if (header && images.length) {
-      const counter = document.createElement('span');
-      counter.className = 'section-count';
-      counter.textContent = `(${images.length})`;
-      header.appendChild(counter);
-    }
+      document.addEventListener('keydown', function (e) {
+        if (!lightbox.classList.contains('open')) return;
+        if (e.key === 'Escape') close();
+        if (e.key === 'ArrowRight') step(1);
+        if (e.key === 'ArrowLeft') step(-1);
+        if (e.key === 'Tab') {
+          // Enkel fokusfelle
+          var focusables = [closeBtn, document.getElementById('lb-prev'), document.getElementById('lb-next'), lbBuy].filter(Boolean);
+          var first = focusables[0];
+          var last = focusables[focusables.length - 1];
+          if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+          else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+        }
+      });
 
-    images.forEach(img => {
-      const wrap = document.createElement('div');
-      wrap.className = 'img-wrap';
-      img.parentNode.insertBefore(wrap, img);
-      wrap.appendChild(img);
+      // Sveip
+      var touchX = 0;
+      lightbox.addEventListener('touchstart', function (e) { touchX = e.touches[0].clientX; }, { passive: true });
+      lightbox.addEventListener('touchend', function (e) {
+        var diff = touchX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 50) step(diff > 0 ? 1 : -1);
+      }, { passive: true });
 
-      // Look up real EXIF data by src path
-      const src = img.getAttribute('src');
-      const exif = typeof EXIF_DATA !== 'undefined' ? EXIF_DATA[src] : null;
+      /* FILTRE */
+      var tabs = document.querySelectorAll('.filter-tab');
+      var sections = Array.prototype.slice.call(document.querySelectorAll('.portfolio-section[data-category]'));
 
-      if (exif) {
-        const overlay = document.createElement('div');
-        overlay.className = 'exif-overlay';
-        const tags = [];
+      function mediaIn(section) {
+        return section.querySelectorAll('.portfolio-grid img, .video-wrapper iframe, .video-wrapper .video-facade').length;
+      }
+
+      function updateCounts() {
+        var totals = { all: 0 };
+        sections.forEach(function (section) {
+          var cat = section.dataset.category;
+          var n = mediaIn(section);
+          totals.all += n;
+          totals[cat] = (totals[cat] || 0) + n;
+          var label = section.querySelector('.count');
+          if (label) {
+            var isVideo = !section.querySelector('.portfolio-grid img') && (section.querySelector('.video-wrapper iframe') || section.querySelector('.video-wrapper .video-facade'));
+            var words = {
+              no: { video: [' video', ' videoer'], image: [' bilde', ' bilder'] },
+              en: { video: [' video', ' videos'], image: [' photo', ' photos'] },
+              de: { video: [' Video', ' Videos'], image: [' Foto', ' Fotos'] }
+            };
+            var lang = (window.SP && window.SP.lang()) || localStorage.getItem('lang') || 'no';
+            var set = words[lang] || words.no;
+            var kind = isVideo ? set.video : set.image;
+            label.textContent = n + (n === 1 ? kind[0] : kind[1]);
+          }
+        });
+        tabs.forEach(function (tab) {
+          var f = tab.dataset.filter;
+          var badge = tab.querySelector('.tab-count');
+          if (!badge) {
+            badge = document.createElement('span');
+            badge.className = 'tab-count';
+            tab.appendChild(badge);
+          }
+          badge.textContent = totals[f] || 0;
+        });
+      }
+
+      function applyFilter(filter) {
+        tabs.forEach(function (tab) {
+          var on = tab.dataset.filter === filter;
+          tab.classList.toggle('active', on);
+          tab.setAttribute('aria-selected', on ? 'true' : 'false');
+        });
+        sections.forEach(function (section) {
+          section.hidden = filter !== 'all' && section.dataset.category !== filter;
+        });
+      }
+
+      tabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          applyFilter(tab.dataset.filter);
+        });
+      });
+
+      updateCounts();
+
+      var urlFilter = new URLSearchParams(window.location.search).get('filter');
+      if (urlFilter && document.querySelector('.filter-tab[data-filter="' + urlFilter + '"]')) {
+        applyFilter(urlFilter);
+        var first = document.querySelector('.portfolio-section[data-category="' + urlFilter + '"]');
+        if (first) setTimeout(function () { first.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 100);
+      }
+
+      /* AVDEKKING AV BILDER */
+      document.querySelectorAll('.portfolio-grid img').forEach(function (img) {
+        img.classList.add('reveal-img');
+      });
+      document.querySelectorAll('.reveal-img').forEach(function (el) {
+        var obs = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('active');
+              obs.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.05, rootMargin: '100px 0px' });
+        obs.observe(el);
+      });
+
+      /* EXIF PÅ HOVER */
+      document.querySelectorAll('.portfolio-grid img').forEach(function (img) {
+        var exif = typeof EXIF_DATA !== 'undefined' ? EXIF_DATA[img.getAttribute('src')] : null;
+        if (!exif) return;
+        var wrap = img.closest('.img-wrap');
+        if (!wrap) return;
+        var tags = [];
         if (exif.cam) tags.push(exif.cam);
         if (exif.lens) tags.push(exif.lens);
         if (exif.f) tags.push(exif.f);
         if (exif.iso) tags.push('ISO ' + exif.iso);
         if (exif.shutter) tags.push(exif.shutter);
-        overlay.innerHTML = tags.map(t => `<span class="exif-tag">${t}</span>`).join('');
+        var overlay = document.createElement('div');
+        overlay.className = 'exif-overlay';
+        overlay.innerHTML = tags.map(function (t) { return '<span class="exif-tag">' + t + '</span>'; }).join('');
         wrap.appendChild(overlay);
-      }
-    });
-  });
-
-  // SCROLL-TRIGGERED STAGGER — images appear with delay
-  const imgObs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.style.opacity = '1';
-        e.target.style.transform = 'translateY(0)';
-        imgObs.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.1 });
-
-  document.querySelectorAll('.portfolio-grid .img-wrap').forEach((wrap, i) => {
-    wrap.style.opacity = '0';
-    wrap.style.transform = 'translateY(30px)';
-    wrap.style.transition = `opacity .6s ${(i % 8) * 0.08}s cubic-bezier(.23,1,.32,1), transform .6s ${(i % 8) * 0.08}s cubic-bezier(.23,1,.32,1)`;
-    imgObs.observe(wrap);
-  });
-
-  // 3D TILT ON HOVER — follows cursor position
-  document.querySelectorAll('.portfolio-grid .img-wrap').forEach(wrap => {
-    const img = wrap.querySelector('img');
-    if (!img) return;
-    wrap.addEventListener('mousemove', e => {
-      wrap.classList.add('tilting');
-      const rect = wrap.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width - 0.5;
-      const y = (e.clientY - rect.top) / rect.height - 0.5;
-      const tiltX = y * -12;
-      const tiltY = x * 12;
-      img.style.transform = `perspective(600px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale(1.05)`;
-      img.style.boxShadow = `${-tiltY * 2}px ${tiltX * 2}px 40px rgba(0,0,0,.25)`;
-    });
-    wrap.addEventListener('mouseleave', () => {
-      wrap.classList.remove('tilting');
-      img.style.transform = '';
-      img.style.boxShadow = '';
-    });
-  });
-
-  // BLUR-UP LAZY LOAD — fade from blurry to sharp
-  document.querySelectorAll('.portfolio-grid .img-wrap img').forEach(img => {
-    if (img.complete) return;
-    img.parentElement.classList.add('blur-load');
-    img.addEventListener('load', () => img.parentElement.classList.add('loaded'));
-    img.addEventListener('error', () => img.parentElement.classList.add('loaded'));
-  });
-
-
-  // FILTER TAB IMAGE COUNTS
-  document.querySelectorAll('.filter-tab').forEach(tab => {
-    const f = tab.dataset.filter;
-    let count = 0;
-    if (f === 'all') {
-      count = document.querySelectorAll('.portfolio-section[data-category] .portfolio-grid img').length;
-    } else {
-      count = document.querySelectorAll(`.portfolio-section[data-category="${f}"] .portfolio-grid img`).length;
-    }
-    if (count > 0) {
-      const badge = document.createElement('span');
-      badge.className = 'tab-count';
-      badge.textContent = count;
-      tab.appendChild(badge);
-    }
-  });
-
-  // DYNAMIC COLOR THEME — extract dominant color from lightbox image (desktop only)
-  if (!('ontouchstart' in window)) {
-    const colorCanvas = document.createElement('canvas');
-    const colorCtx = colorCanvas.getContext('2d', { willReadFrequently: true });
-    colorCanvas.width = 50; colorCanvas.height = 50;
-    function extractDominantColor(img) {
-      colorCtx.drawImage(img, 0, 0, 50, 50);
-      const data = colorCtx.getImageData(0, 0, 50, 50).data;
-      let r = 0, g = 0, b = 0, count = 0;
-      for (let i = 0; i < data.length; i += 16) {
-        r += data[i]; g += data[i+1]; b += data[i+2]; count++;
-      }
-      r = Math.round(r/count); g = Math.round(g/count); b = Math.round(b/count);
-      return `rgb(${r},${g},${b})`;
-    }
-    document.querySelectorAll('.portfolio-grid .img-wrap img').forEach(img => {
-      img.addEventListener('click', () => {
-        if (img.complete && img.naturalWidth > 0) {
-          try {
-            const color = extractDominantColor(img);
-            document.documentElement.style.setProperty('--main-blue', color);
-            document.documentElement.style.setProperty('--accent', color);
-          } catch(e) {}
-        }
       });
-    });
-  }
-
-  // TOUCH SWIPE in lightbox
-  let touchStartX = 0;
-  lightbox.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
-  lightbox.addEventListener('touchend', e => {
-    const diff = touchStartX - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 50) {
-      if (diff > 0) nextImage();
-      else prevImage();
-    }
-  });
-
-})();
-</script>
-<script src="shared.js"></script>
+    })();
+  </script>
+  <script src="shared.js?v=2026-11-18"></script>
 </body>
 </html>
